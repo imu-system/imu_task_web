@@ -1,3 +1,4 @@
+
 {
   "LoginPage": {
     "title": "Iniciar sesión en ImuTask",
@@ -26,3 +27,4 @@
     "searchPlaceholder": "Buscar tareas..."
   }
 }
+

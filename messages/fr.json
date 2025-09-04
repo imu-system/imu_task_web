@@ -1,3 +1,4 @@
+
 {
   "LoginPage": {
     "title": "Connectez-vous à ImuTask",
@@ -26,3 +27,4 @@
     "searchPlaceholder": "Rechercher des tâches..."
   }
 }
+
