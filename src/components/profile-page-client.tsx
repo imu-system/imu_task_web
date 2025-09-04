@@ -38,18 +38,21 @@ function SubmitButton() {
 
 function SkillCategorizer() {
   const { toast } = useToast();
-  const [state, formAction] = useFormState(async (_: any, formData: FormData) => {
+  type SkillState = { success: boolean; skills: string[]; error: string };
+  const initialState: SkillState = { success: false, skills: [], error: '' };
+  const [state, formAction] = useFormState(async (_: any, formData: FormData): Promise<SkillState> => {
     const profileDescription = formData.get("profileDescription") as string;
     const result = await getCategorizedSkills(profileDescription);
-    if(result.error) {
+    if (result.error) {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
         description: result.error,
       });
+      return { success: false, skills: [], error: result.error };
     }
-    return result;
-  }, { skills: [], error: null });
+    return { success: true, skills: result.skills ?? [], error: '' };
+  }, initialState);
 
   return (
     <form action={formAction}>
