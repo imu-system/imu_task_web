@@ -1,34 +1,37 @@
-import Link from "next/link"
+import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
-import { Button } from "@/components/ui/button"
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { ImuTaskLogo } from "@/components/icons"
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { ImuTaskLogo } from '@/components/icons';
 
 export default function LoginPage() {
+  const t = useTranslations('LoginPage');
+
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-10rem)]">
       <Card className="mx-auto max-w-sm">
         <CardHeader>
           <div className="flex justify-center mb-4">
-            <ImuTaskLogo className="h-12 w-12 text-primary"/>
+            <ImuTaskLogo className="h-12 w-12 text-primary" />
           </div>
-          <CardTitle className="text-2xl text-center">Login to ImuTask</CardTitle>
+          <CardTitle className="text-2xl text-center">{t('title')}</CardTitle>
           <CardDescription className="text-center">
-            Enter your email below to login to your account
+            {t('description')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <div className="grid gap-4">
             <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">{t('emailLabel')}</Label>
               <Input
                 id="email"
                 type="email"
@@ -38,31 +41,31 @@ export default function LoginPage() {
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">{t('passwordLabel')}</Label>
                 <Link
                   href="#"
                   className="ml-auto inline-block text-sm underline"
                 >
-                  Forgot your password?
+                  {t('forgotPassword')}
                 </Link>
               </div>
               <Input id="password" type="password" required />
             </div>
             <Button type="submit" className="w-full" asChild>
-                <Link href="/">Login</Link>
+              <Link href="/">{t('loginButton')}</Link>
             </Button>
             <Button variant="outline" className="w-full">
-              Login with Google
+              {t('loginWithGoogle')}
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
+            {t('noAccount')}{' '}
             <Link href="/signup" className="underline">
-              Sign up
+              {t('signUp')}
             </Link>
           </div>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

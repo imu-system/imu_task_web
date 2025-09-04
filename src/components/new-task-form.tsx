@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type FieldErrors } from "react-hook-form";
 import { z } from "zod";
-import { useParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -68,8 +67,6 @@ export function NewTaskForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
-  const params = useParams();
-  const locale = params.locale;
 
   const {
     register,
@@ -126,10 +123,10 @@ export function NewTaskForm() {
           <CardDescription className="mb-8">Providers will now be able to view and bid on your task.</CardDescription>
           <div className="flex gap-4 justify-center">
             <Button asChild>
-              <Link href={`/${locale}`}>Back to Dashboard</Link>
+              <Link href="/">Back to Dashboard</Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href={`/${locale}/tasks/new`} onClick={() => { setIsSubmitted(false); setCurrentStep(0); }}>Post Another Task</Link>
+              <Link href="/tasks/new" onClick={() => { setIsSubmitted(false); setCurrentStep(0); }}>Post Another Task</Link>
             </Button>
           </div>
         </motion.div>
