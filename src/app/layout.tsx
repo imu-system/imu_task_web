@@ -3,14 +3,11 @@ import Link from 'next/link';
 import {
   Bell,
   Home,
-  LineChart,
   MessageSquare,
-  Package,
-  Package2,
   Search,
   Users,
-  Briefcase,
   PlusCircle,
+  Menu,
 } from 'lucide-react';
 import './globals.css';
 
@@ -26,15 +23,10 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import {
-  SidebarProvider,
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
-  SidebarInset,
-} from '@/components/ui/sidebar';
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ImuTaskLogo } from '@/components/icons';
 
@@ -51,88 +43,125 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-body antialiased">
-        <SidebarProvider>
-          <div className="flex min-h-screen w-full flex-col bg-muted/40">
-            <Sidebar side="left" collapsible="icon" variant="sidebar">
-              <SidebarContent>
-                <SidebarHeader className="h-14">
-                  <Link href="/" className="flex items-center gap-2 font-semibold">
+        <div className="flex min-h-screen w-full flex-col">
+          <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6 z-50">
+            <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+              <Link
+                href="/"
+                className="flex items-center gap-2 text-lg font-semibold md:text-base"
+              >
+                <ImuTaskLogo className="h-8 w-8 text-primary" />
+                <span className="sr-only">ImuTask</span>
+              </Link>
+              <Link
+                href="/"
+                className="text-foreground transition-colors hover:text-foreground"
+              >
+                Dashboard
+              </Link>
+              <Link
+                href="/tasks/new"
+                className="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                New Task
+              </Link>
+              <Link
+                href="/providers"
+                className="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Providers
+              </Link>
+              <Link
+                href="/messages"
+                className="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Messages
+              </Link>
+            </nav>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="shrink-0 md:hidden"
+                >
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Toggle navigation menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left">
+                <nav className="grid gap-6 text-lg font-medium">
+                  <Link
+                    href="/"
+                    className="flex items-center gap-2 text-lg font-semibold"
+                  >
                     <ImuTaskLogo className="h-8 w-8 text-primary" />
-                    <span className="">ImuTask</span>
+                    <span className="sr-only">ImuTask</span>
                   </Link>
-                </SidebarHeader>
-                <SidebarMenu className="flex-1">
-                  <SidebarMenuItem>
-                    <SidebarMenuButton href="/" tooltip="Dashboard">
-                      <Home />
-                      <span>Dashboard</span>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton href="/tasks/new" tooltip="New Task">
-                      <PlusCircle />
-                      <span>New Task</span>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton href="/providers" tooltip="Providers">
-                      <Users />
-                      <span>Providers</span>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <SidebarMenuButton href="/messages" tooltip="Messages">
-                      <MessageSquare />
-                      <span>Messages</span>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarContent>
-            </Sidebar>
-            <div className="flex flex-col sm:gap-4 sm:py-4">
-              <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-                <div className="relative flex-1 md:grow-0">
+                  <Link href="/" className="hover:text-foreground">
+                    Dashboard
+                  </Link>
+                  <Link
+                    href="/tasks/new"
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    New Task
+                  </Link>
+                  <Link
+                    href="/providers"
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    Providers
+                  </Link>
+                  <Link
+                    href="/messages"
+                    className="text-muted-foreground hover:text-foreground"
+                  >
+                    Messages
+                  </Link>
+                </nav>
+              </SheetContent>
+            </Sheet>
+            <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+              <form className="ml-auto flex-1 sm:flex-initial">
+                <div className="relative">
                   <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                   <Input
                     type="search"
                     placeholder="Search tasks..."
-                    className="w-full rounded-lg bg-background pl-8 md:w-[280px] lg:w-[320px]"
+                    className="pl-8 sm:w-[300px] md:w-[200px] lg:w-[300px]"
                   />
                 </div>
-                <div className="flex items-center gap-4 ml-auto">
-                  <Button variant="ghost" size="icon" className="rounded-full">
-                    <Bell className="h-5 w-5" />
-                    <span className="sr-only">Toggle notifications</span>
+              </form>
+               <Button variant="ghost" size="icon" className="rounded-full">
+                <Bell className="h-5 w-5" />
+                <span className="sr-only">Toggle notifications</span>
+              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="secondary" size="icon" className="rounded-full">
+                     <Avatar className="h-8 w-8">
+                        <AvatarImage src="https://picsum.photos/100" alt="@shadcn" data-ai-hint="person" />
+                        <AvatarFallback>U</AvatarFallback>
+                      </Avatar>
+                    <span className="sr-only">Toggle user menu</span>
                   </Button>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button variant="secondary" size="icon" className="rounded-full">
-                        <Avatar className="h-8 w-8">
-                          <AvatarImage src="https://picsum.photos/100" alt="@shadcn" data-ai-hint="person" />
-                          <AvatarFallback>U</AvatarFallback>
-                        </Avatar>
-                        <span className="sr-only">Toggle user menu</span>
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem asChild>
-                        <Link href="/profile">Profile</Link>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>Support</DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem asChild>
-                        <Link href="/login">Logout</Link>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </div>
-              </header>
-              <main className="flex-1 p-4 sm:px-6 sm:py-0">{children}</main>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild><Link href="/profile">Profile</Link></DropdownMenuItem>
+                  <DropdownMenuItem>Support</DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild><Link href="/login">Logout</Link></DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
-          </div>
-        </SidebarProvider>
+          </header>
+          <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
+            {children}
+          </main>
+        </div>
         <Toaster />
       </body>
     </html>
