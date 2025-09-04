@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import {notFound} from 'next/navigation';
+import {NextIntlClientProvider} from 'next-intl';
+import {getMessages} from 'next-intl/server';
 
 import { Toaster } from '@/components/ui/toaster';
 
@@ -21,10 +22,6 @@ export default function RootLayout({
   children,
   params: {locale}
 }: Props) {
-  // Validate that the incoming `locale` parameter is valid
-  const locales = ['en', 'fr', 'de', 'es'];
-  if (!locales.includes(locale)) notFound();
-  
   return (
     <html lang={locale}>
       <body className="font-body antialiased">
