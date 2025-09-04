@@ -1,0 +1,17 @@
+{
+  "Navigation": {
+    "dashboard": "Tableau de bord",
+    "newTask": "Nouvelle tâche",
+    "providers": "Fournisseurs",
+    "messages": "Messages"
+  },
+  "UserMenu": {
+    "myAccount": "Mon compte",
+    "profile": "Profil",
+    "support": "Support",
+    "logout": "Déconnexion"
+  },
+  "RootLayout": {
+    "searchPlaceholder": "Rechercher des tâches..."
+  }
+}
