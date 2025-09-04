@@ -1,0 +1,28 @@
+{
+  "LoginPage": {
+    "title": "Bei ImuTask anmelden",
+    "description": "Geben Sie unten Ihre E-Mail-Adresse ein, um sich bei Ihrem Konto anzumelden",
+    "emailLabel": "E-Mail",
+    "passwordLabel": "Passwort",
+    "forgotPassword": "Passwort vergessen?",
+    "loginButton": "Anmelden",
+    "loginWithGoogle": "Mit Google anmelden",
+    "noAccount": "Haben Sie noch kein Konto?",
+    "signUp": "Registrieren"
+  },
+  "Navigation": {
+    "dashboard": "Dashboard",
+    "newTask": "Neue Aufgabe",
+    "providers": "Anbieter",
+    "messages": "Nachrichten"
+  },
+  "UserMenu": {
+    "myAccount": "Mein Konto",
+    "profile": "Profil",
+    "support": "Hilfe",
+    "logout": "Abmelden"
+  },
+  "RootLayout": {
+    "searchPlaceholder": "Aufgaben suchen..."
+  }
+}
