@@ -182,7 +182,7 @@ export default async function LocaleLayout({
                     <DropdownMenuItem>{tUserMenu('support')}</DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem asChild>
-                      <Link href="/login">{tUserMenu('logout')}</Link>
+                      <Link href="/auth/login">{tUserMenu('logout')}</Link>
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
