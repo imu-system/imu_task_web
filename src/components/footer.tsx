@@ -1,7 +1,11 @@
 import { Zap } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export default function Footer() {
+  const t = useTranslations('Footer');
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="border-t">
       <div className="container mx-auto py-8 px-4 md:px-6">
@@ -11,20 +15,20 @@ export default function Footer() {
             <span className="font-bold font-headline text-lg">ImuTask</span>
           </div>
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} ImuTask. Tous droits réservés.
+            {t('rights', {currentYear})}
           </p>
           <nav className="flex gap-4 sm:gap-6">
             <Link
               href="/legal/terms"
               className="text-sm hover:underline underline-offset-4"
             >
-              Conditions d'utilisation
+              {t('terms')}
             </Link>
             <Link
               href="/legal/privacy"
               className="text-sm hover:underline underline-offset-4"
             >
-              Politique de confidentialité
+              {t('privacy')}
             </Link>
           </nav>
         </div>

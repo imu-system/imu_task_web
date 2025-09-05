@@ -1,45 +1,14 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import { cn } from '@/lib/utils';
-import { Toaster } from '@/components/ui/toaster';
-import Footer from '@/components/footer';
+// This is a RootLayout that contains server components.
+// We can't use `useParams` here.
+// See: https://next-intl-docs.vercel.app/docs/getting-started/app-router#layouts-and-not-found
 
-export const metadata: Metadata = {
-  title: 'ImuTask - Vos besoins, leur mission.',
-  description:
-    'Connecte personnes âgées et actifs avec des étudiants pour des services du quotidien.',
+import {ReactNode} from 'react';
+
+type Props = {
+  children: ReactNode;
+  params: {locale: string};
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="fr" suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body
-        className={cn(
-          'min-h-screen bg-background font-body antialiased',
-        )}
-      >
-        <div className="relative flex min-h-dvh flex-col">
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </div>
-        <Toaster />
-      </body>
-    </html>
-  );
+export default function RootLayout({children, params}: Props) {
+  return children;
 }

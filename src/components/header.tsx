@@ -23,14 +23,20 @@ import {
 import { useState } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { cn } from '@/lib/utils';
-
-const navLinks = [
-  { href: '#features', label: 'Fonctionnalités' },
-  { href: '#how-it-works', label: 'Comment ça marche' },
-  { href: '#categories', label: 'Catégories' },
-];
+import { useTranslations } from 'next-intl';
+import { usePathname } from 'next-intl/client';
 
 export default function Header() {
+  const t = useTranslations('Header');
+  const tLang = useTranslations('LanguageSwitcher');
+  const pathname = usePathname();
+
+  const navLinks = [
+    { href: '#features', label: t('features') },
+    { href: '#how-it-works', label: t('howItWorks') },
+    { href: '#categories', label: t('categories') },
+  ];
+
   // Mock authentication state
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -62,19 +68,19 @@ export default function Header() {
         <DropdownMenuItem asChild>
           <Link href="/dashboard">
             <LayoutGrid className="mr-2 h-4 w-4" />
-            <span>Dashboard</span>
+            <span>{t('dashboard')}</span>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
           <Link href="/dashboard/profile">
             <User className="mr-2 h-4 w-4" />
-            <span>Profil</span>
+            <span>{t('profile')}</span>
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout}>
           <LogOut className="mr-2 h-4 w-4" />
-          <span>Se déconnecter</span>
+          <span>{t('signOut')}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
@@ -83,10 +89,10 @@ export default function Header() {
   const AuthButtons = () => (
     <div className="hidden md:flex items-center gap-2">
       <Button variant="ghost" asChild>
-        <Link href="/sign-in" onClick={handleLogin}>Se connecter</Link>
+        <Link href="/sign-in" onClick={handleLogin}>{t('signIn')}</Link>
       </Button>
       <Button asChild>
-        <Link href="/sign-up">S'inscrire</Link>
+        <Link href="/sign-up">{t('signUp')}</Link>
       </Button>
     </div>
   );
@@ -119,7 +125,7 @@ export default function Header() {
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
                   <Menu />
-                  <span className="sr-only">Ouvrir le menu</span>
+                  <span className="sr-only">{t('openMenu')}</span>
                 </Button>
               </SheetTrigger>
               <SheetContent side="left">
@@ -143,13 +149,13 @@ export default function Header() {
                 <div className="border-t pt-4">
                   {isAuthenticated ? (
                      <div className="flex flex-col gap-2">
-                        <Link href="/dashboard" className="w-full"><Button className="w-full">Dashboard</Button></Link>
-                        <Button variant="secondary" onClick={handleLogout}>Se déconnecter</Button>
+                        <Link href="/dashboard" className="w-full"><Button className="w-full">{t('dashboard')}</Button></Link>
+                        <Button variant="secondary" onClick={handleLogout}>{t('signOut')}</Button>
                      </div>
                   ) : (
                     <div className="flex flex-col gap-2">
-                      <Button variant="ghost" asChild><Link href="/sign-in" className="w-full">Se connecter</Link></Button>
-                      <Button asChild><Link href="/sign-up" className="w-full">S'inscrire</Link></Button>
+                      <Button variant="ghost" asChild><Link href="/sign-in" className="w-full">{t('signIn')}</Link></Button>
+                      <Button asChild><Link href="/sign-up" className="w-full">{t('signUp')}</Link></Button>
                     </div>
                   )}
                 </div>
@@ -168,13 +174,19 @@ export default function Header() {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon">
                   <Globe className="h-5 w-5" />
-                  <span className="sr-only">Changer de langue</span>
+                  <span className="sr-only">{tLang('changeLanguage')}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem>Français</DropdownMenuItem>
-                <DropdownMenuItem>English</DropdownMenuItem>
-                <DropdownMenuItem>日本語</DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href={pathname} locale="fr">{tLang('fr')}</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href={pathname} locale="en">{tLang('en')}</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href={pathname} locale="ja" disabled>{tLang('ja')}</Link>
+                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 

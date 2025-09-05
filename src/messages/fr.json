@@ -1,0 +1,55 @@
+
+{
+    "Header": {
+        "features": "Fonctionnalités",
+        "howItWorks": "Comment ça marche",
+        "categories": "Catégories",
+        "signIn": "Se connecter",
+        "signUp": "S'inscrire",
+        "signOut": "Se déconnecter",
+        "dashboard": "Dashboard",
+        "profile": "Profil",
+        "openMenu": "Ouvrir le menu"
+    },
+    "Footer": {
+        "rights": "© {currentYear} ImuTask. Tous droits réservés.",
+        "terms": "Conditions d'utilisation",
+        "privacy": "Politique de confidentialité"
+    },
+    "HomePage": {
+        "title": "ImuTask",
+        "subtitle": "Vos besoins, leur mission.",
+        "description": "Connecter les générations pour des services du quotidien, en toute simplicité, fiabilité et sécurité.",
+        "findHelp": "Trouver de l'aide",
+        "offerServices": "Proposer mes services",
+        "whyChoose": "Pourquoi choisir ImuTask ?",
+        "feature1Title": "Entraide Intergénérationnelle",
+        "feature1Desc": "Créez des liens uniques en aidant ou en recevant de l'aide de personnes de votre communauté.",
+        "feature2Title": "Confiance & Sécurité",
+        "feature2Desc": "Profils vérifiés (KYC), paiements sécurisés et avis pour garantir des missions en toute sérénité.",
+        "feature3Title": "Communication Simple",
+        "feature3Desc": "Discutez facilement avec les membres via notre messagerie intégrée pour organiser les détails de la mission.",
+        "howItWorksTitle": "Comment ça marche ?",
+        "howItWorksDesc": "En quelques étapes simples, trouvez de l'aide ou proposez vos compétences.",
+        "step1Title": "Publiez une mission",
+        "step1Desc": "Décrivez votre besoin, le lieu, le créneau et votre budget.",
+        "step2Title": "Recevez des offres",
+        "step2Desc": "Des jeunes motivés de votre quartier vous proposent leur aide.",
+        "step3Title": "Choisissez & Validez",
+        "step3Desc": "Acceptez une offre et payez en toute sécurité. Les fonds sont conservés jusqu'à la fin de la mission.",
+        "categoriesTitle": "Des services pour tous vos besoins",
+        "categoryShopping": "Courses",
+        "categoryGardening": "Jardinage",
+        "categoryCleaning": "Ménage",
+        "categoryAdmin": "Aide administrative",
+        "readyToStartTitle": "Prêt à commencer ?",
+        "readyToStartDesc": "Rejoignez une communauté bienveillante et solidaire.",
+        "signUpFree": "Inscrivez-vous gratuitement"
+    },
+    "LanguageSwitcher": {
+        "changeLanguage": "Changer de langue",
+        "fr": "Français",
+        "en": "English",
+        "ja": "日本語"
+    }
+}
