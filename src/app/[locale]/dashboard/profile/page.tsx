@@ -15,7 +15,7 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin } from "lucide-react";
+import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
 
@@ -98,49 +98,68 @@ export default function ProfilePage() {
           {t('subtitle')}
         </p>
       </div>
-
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
         <Card>
           <CardHeader>
             <CardTitle>{t('personalInfo')}</CardTitle>
             <CardDescription>{t('personalInfoDesc')}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
-            <div className="flex items-center gap-4">
-              <Avatar className="h-20 w-20">
-                <AvatarImage src={user.profile?.photoUrl || undefined} />
-                <AvatarFallback>{user.profile?.displayName?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}</AvatarFallback>
-              </Avatar>
-              <Button type="button" variant="outline">{t('changePhoto')}</Button>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Label htmlFor="displayName">{t('fullName')}</Label>
-                <Input id="displayName" {...register('displayName')} />
-                {errors.displayName && <p className="text-xs text-destructive mt-1">{errors.displayName.message}</p>}
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">{t('emailAddress')}</Label>
-                <Input id="email" type="email" defaultValue={user.email || ''} disabled />
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="bio">{t('bio')}</Label>
-              <Textarea id="bio" placeholder={t('bioPlaceholder')} {...register('bio')} />
-               {errors.bio && <p className="text-xs text-destructive mt-1">{errors.bio.message}</p>}
+            <div className="flex flex-col sm:flex-row gap-6">
+                <div className="flex-shrink-0">
+                    <Avatar className="h-24 w-24">
+                        <AvatarImage src={user.profile?.photoUrl || undefined} />
+                        <AvatarFallback>{user.profile?.displayName?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}</AvatarFallback>
+                    </Avatar>
+                    <Button type="button" variant="outline" className="mt-2 w-full">{t('changePhoto')}</Button>
+                </div>
+                <div className="flex-grow space-y-4">
+                     <div className="space-y-2">
+                        <Label htmlFor="displayName">{t('fullName')}</Label>
+                        <Input id="displayName" {...register('displayName')} />
+                        {errors.displayName && <p className="text-xs text-destructive mt-1">{errors.displayName.message}</p>}
+                    </div>
+                     <div className="space-y-2">
+                        <Label htmlFor="email">{t('emailAddress')}</Label>
+                        <Input id="email" type="email" defaultValue={user.email || ''} disabled />
+                    </div>
+                </div>
             </div>
             
-             <div className="flex justify-end">
-                <Button type="submit" disabled={isSaving || !isDirty}>
-                    {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    {t('saveChanges')}
-                </Button>
+            <Separator />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center md:text-left">
+                <div className="p-4 bg-accent/50 rounded-lg">
+                    <div className="flex items-center justify-center md:justify-start gap-2">
+                        <Star className="h-5 w-5 text-yellow-500"/>
+                        <p className="text-lg font-bold">{user.profile?.averageRating.toFixed(1) || '0.0'}</p>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{t('averageRating')}</p>
+                </div>
+                <div className="p-4 bg-accent/50 rounded-lg">
+                    <div className="flex items-center justify-center md:justify-start gap-2">
+                        <Medal className="h-5 w-5 text-primary"/>
+                        <p className="text-lg font-bold">{user.profile?.reviewsCount || 0}</p>
+                    </div>
+                     <p className="text-sm text-muted-foreground">{t('reviewsCount')}</p>
+                </div>
             </div>
+
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <div className="space-y-2">
+                <Label htmlFor="bio">{t('bio')}</Label>
+                <Textarea id="bio" placeholder={t('bioPlaceholder')} {...register('bio')} />
+                {errors.bio && <p className="text-xs text-destructive mt-1">{errors.bio.message}</p>}
+                </div>
+                
+                <div className="flex justify-end">
+                    <Button type="submit" disabled={isSaving || !isDirty}>
+                        {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                        {t('saveChanges')}
+                    </Button>
+                </div>
+            </form>
           </CardContent>
         </Card>
-      </form>
 
        <Card>
             <CardHeader>

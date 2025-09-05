@@ -172,6 +172,8 @@
         "addAddress": "Ajouter une adresse",
         "default": "Par défaut",
         "edit": "Modifier",
-        "delete": "Supprimer"
+        "delete": "Supprimer",
+        "averageRating": "Note moyenne",
+        "reviewsCount": "Avis reçus"
     }
 }

@@ -172,6 +172,8 @@
         "addAddress": "Add Address",
         "default": "Default",
         "edit": "Edit",
-        "delete": "Delete"
+        "delete": "Delete",
+        "averageRating": "Average Rating",
+        "reviewsCount": "Reviews Received"
     }
 }
