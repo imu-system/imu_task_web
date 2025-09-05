@@ -27,6 +27,8 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function AdminBookingDetailPage() {
     const { user: adminUser, loading: authLoading } = useAuth();
@@ -215,7 +217,45 @@ export default function AdminBookingDetailPage() {
                         <Button variant="outline" disabled><Edit className="mr-2"/>{t('cards.moderation.reschedule')}</Button>
                         <Button variant="outline"><CheckCircle className="mr-2"/>{t('cards.moderation.markCompleted')}</Button>
                         <Button variant="outline"><XCircle className="mr-2"/>{t('cards.moderation.declareNoShow')}</Button>
-                        <Button variant="outline"><Euro className="mr-2"/>{t('cards.moderation.adjustPrice')}</Button>
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="outline"><Euro className="mr-2"/>{t('cards.moderation.adjustPrice')}</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>{t('cards.moderation.adjustPriceDialog.title')}</AlertDialogTitle>
+                                    <AlertDialogDescription>{t('cards.moderation.adjustPriceDialog.description', { currentAmount: (booking.agreedAmount / 100).toFixed(2) })}</AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <div className="space-y-4 py-2">
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="adjustment-amount">{t('cards.moderation.adjustPriceDialog.amountLabel')}</Label>
+                                            <Input id="adjustment-amount" type="number" placeholder="e.g. 5.50" />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="adjustment-type">{t('cards.moderation.adjustPriceDialog.typeLabel')}</Label>
+                                             <Select defaultValue="credit">
+                                                <SelectTrigger id="adjustment-type">
+                                                    <SelectValue />
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="credit">{t('cards.moderation.adjustPriceDialog.creditProvider')}</SelectItem>
+                                                    <SelectItem value="debit">{t('cards.moderation.adjustPriceDialog.debitProvider')}</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="adjustment-reason">{t('cards.moderation.adjustPriceDialog.reasonLabel')}</Label>
+                                        <Textarea id="adjustment-reason" placeholder={t('cards.moderation.adjustPriceDialog.reasonPlaceholder')} />
+                                    </div>
+                                </div>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>{t('cards.moderation.adjustPriceDialog.cancel')}</AlertDialogCancel>
+                                    <AlertDialogAction>{t('cards.moderation.adjustPriceDialog.confirm')}</AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                         <AlertDialog>
                             <AlertDialogTrigger asChild>
                                 <Button variant="destructive"><Trash2 className="mr-2"/>{t('cards.moderation.cancel')}</Button>
@@ -236,7 +276,24 @@ export default function AdminBookingDetailPage() {
                             </AlertDialogContent>
                         </AlertDialog>
                         <Separator className="my-2"/>
-                         <Button variant="ghost"><MessageSquare className="mr-2"/>{t('cards.moderation.internalNote')}</Button>
+                         <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="ghost"><MessageSquare className="mr-2"/>{t('cards.moderation.internalNote')}</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>{t('cards.moderation.internalNoteDialog.title')}</AlertDialogTitle>
+                                    <AlertDialogDescription>{t('cards.moderation.internalNoteDialog.description')}</AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <div className="py-2">
+                                    <Textarea placeholder={t('cards.moderation.internalNoteDialog.placeholder')} />
+                                </div>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>{t('cards.moderation.internalNoteDialog.cancel')}</AlertDialogCancel>
+                                    <AlertDialogAction>{t('cards.moderation.internalNoteDialog.save')}</AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                     </CardContent>
                 </Card>
                  <Button variant="outline" className="w-full">
@@ -248,3 +305,4 @@ export default function AdminBookingDetailPage() {
     </div>
   );
 }
+

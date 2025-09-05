@@ -712,6 +712,25 @@
                     "reasonPlaceholder": "e.g. Provider is sick...",
                     "cancel": "Close",
                     "confirm": "Confirm Cancellation"
+                },
+                "adjustPriceDialog": {
+                    "title": "Adjust Booking Price",
+                    "description": "The current agreed amount is {currentAmount}€. This action will create a credit or debit for the provider.",
+                    "amountLabel": "Adjustment Amount (€)",
+                    "typeLabel": "Adjustment Type",
+                    "creditProvider": "Credit Provider (more)",
+                    "debitProvider": "Debit Provider (less)",
+                    "reasonLabel": "Reason for adjustment (required)",
+                    "reasonPlaceholder": "e.g. Additional work requested, task was shorter than expected...",
+                    "cancel": "Cancel",
+                    "confirm": "Confirm Adjustment"
+                },
+                "internalNoteDialog": {
+                    "title": "Add Internal Note",
+                    "description": "This note will only be visible to administrators and moderators.",
+                    "placeholder": "Enter your note here...",
+                    "cancel": "Cancel",
+                    "save": "Save Note"
                 }
             }
         }

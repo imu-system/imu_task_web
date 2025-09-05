@@ -712,6 +712,25 @@
                     "reasonPlaceholder": "Ex: Le prestataire est malade...",
                     "cancel": "Fermer",
                     "confirm": "Confirmer l'annulation"
+                },
+                "adjustPriceDialog": {
+                    "title": "Ajuster le prix de la réservation",
+                    "description": "Le montant actuel est de {currentAmount}€. Cette action créera un crédit ou un débit pour le prestataire.",
+                    "amountLabel": "Montant de l'ajustement (€)",
+                    "typeLabel": "Type d'ajustement",
+                    "creditProvider": "Créditer Prestataire (plus)",
+                    "debitProvider": "Débiter Prestataire (moins)",
+                    "reasonLabel": "Motif de l'ajustement (obligatoire)",
+                    "reasonPlaceholder": "Ex: Travail supplémentaire demandé, mission plus courte que prévue...",
+                    "cancel": "Annuler",
+                    "confirm": "Confirmer l'ajustement"
+                },
+                "internalNoteDialog": {
+                    "title": "Ajouter une note interne",
+                    "description": "Cette note ne sera visible que par les administrateurs et modérateurs.",
+                    "placeholder": "Saisissez votre note ici...",
+                    "cancel": "Annuler",
+                    "save": "Enregistrer la note"
                 }
             }
         }
