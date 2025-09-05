@@ -3,8 +3,6 @@ import {notFound} from 'next/navigation';
 import {NextIntlClientProvider, useMessages} from 'next-intl';
 import {unstable_setRequestLocale} from 'next-intl/server';
 import {locales, type Locale} from '@/navigation';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
 import { AuthProvider } from '@/hooks/use-auth';
 import { Toaster } from '@/components/ui/toaster';
 
@@ -14,6 +12,9 @@ type Props = {
   params: {locale: string};
 };
 
+// This is the root layout. It applies to all routes.
+// It's a good place for providers, but not for visual layout
+// that should differ between public and authenticated pages.
 export default function LocaleLayout({children, params}: Props) {
   const {locale} = params;
   // Validate that the incoming `locale` parameter is valid
@@ -27,11 +28,7 @@ export default function LocaleLayout({children, params}: Props) {
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
         <AuthProvider>
-            <div className="relative flex min-h-dvh flex-col">
-              <Header />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </div>
+            {children}
             <Toaster />
         </AuthProvider>
     </NextIntlClientProvider>
