@@ -212,6 +212,7 @@
         "quickActionUsers": "Manage Users",
         "quickActionExport": "Accounting Export",
         "quickActionTasks": "Manage Tasks",
+        "quickActionOffers": "Manage Offers",
         "actionView": "View"
     },
     "AdminCategoriesPage": {
@@ -517,8 +518,8 @@
     },
     "AdminTaskDetailPage": {
         "title": "Task Details",
-        "notFound": "Task not found.",
         "backToList": "Back to task list",
+        "notFound": "Task not found.",
         "postedBy": "Posted by",
         "details": {
             "status": "Status",

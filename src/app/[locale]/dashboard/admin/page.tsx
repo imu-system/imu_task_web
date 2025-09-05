@@ -10,7 +10,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useRouter, Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
-import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered } from "lucide-react";
+import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered, Handshake } from "lucide-react";
 
 const kpiData = [
   { title: "Revenus (Mensuel)", value: "€4,231.89", change: "+20.1% vs mois dernier", icon: <DollarSign className="h-4 w-4 text-muted-foreground" /> },
@@ -140,16 +140,18 @@ export default function AdminDashboardPage() {
                         <CardTitle>{t('quickActionsTitle')}</CardTitle>
                     </CardHeader>
                     <CardContent className="grid grid-cols-2 gap-4">
-                        <Button asChild>
-                            <Link href="/dashboard/admin/services/categories"><PlusCircle className="mr-2"/>{t('quickActionCategory')}</Link>
+                        <Button variant="outline" asChild>
+                            <Link href="/dashboard/admin/users"><Users2 className="mr-2"/>{t('quickActionUsers')}</Link>
+                        </Button>
+                        <Button variant="outline" asChild>
+                           <Link href="/dashboard/admin/services/categories"><PlusCircle className="mr-2"/>{t('quickActionCategory')}</Link>
                         </Button>
                         <Button variant="outline" asChild>
                             <Link href="/dashboard/admin/tasks"><ListOrdered className="mr-2"/>{t('quickActionTasks')}</Link>
                         </Button>
                         <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/users"><Users2 className="mr-2"/>{t('quickActionUsers')}</Link>
+                            <Link href="/dashboard/admin/offers"><Handshake className="mr-2"/>{t('quickActionOffers')}</Link>
                         </Button>
-                        <Button variant="outline">{t('quickActionExport')}</Button>
                     </CardContent>
                 </Card>
             </div>

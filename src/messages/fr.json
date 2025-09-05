@@ -212,6 +212,7 @@
         "quickActionUsers": "Gérer les utilisateurs",
         "quickActionExport": "Export Comptable",
         "quickActionTasks": "Gérer les missions",
+        "quickActionOffers": "Gérer les offres",
         "actionView": "Voir"
     },
     "AdminCategoriesPage": {
