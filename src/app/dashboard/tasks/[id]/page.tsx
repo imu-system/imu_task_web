@@ -28,6 +28,7 @@ import { Label } from '@/components/ui/label';
 import { type Offer } from '@/lib/types';
 import { Switch } from '@/components/ui/switch';
 import { useState } from 'react';
+import { useLocale } from 'next-intl';
 import { useToast } from '@/hooks/use-toast';
 
 const OfferCard = ({ offer }: { offer: Offer }) => {
@@ -106,7 +107,8 @@ const OfferForm = () => {
 export default function TaskDetailPage({ params }: { params: { id: string } }) {
   const task = getTasks().find((t) => t.id === params.id);
   const offers = getOffersForTask(params.id);
-  
+  const locale = useLocale();
+
   // Mock current user role for demonstration
   const [isClientView, setIsClientView] = useState(true);
 
@@ -141,7 +143,7 @@ export default function TaskDetailPage({ params }: { params: { id: string } }) {
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
                   <span>
-                    {new Intl.DateTimeFormat('fr-FR', {
+                    {new Intl.DateTimeFormat(locale, {
                       dateStyle: 'long',
                       timeStyle: 'short',
                     }).format(task.date)}
