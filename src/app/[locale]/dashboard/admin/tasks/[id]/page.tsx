@@ -15,6 +15,19 @@ import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 
 export default function AdminTaskDetailPage() {
     const { user: adminUser, loading: authLoading } = useAuth();
@@ -179,7 +192,25 @@ export default function AdminTaskDetailPage() {
                     <CardContent className="grid grid-cols-1 gap-2">
                         <Button variant="outline"><PlayCircle className="mr-2"/>{t('moderation.forcePublish')}</Button>
                         <Button variant="outline"><Ban className="mr-2"/>{t('moderation.unpublish')}</Button>
-                        <Button variant="destructive" disabled><Trash2 className="mr-2"/>{t('moderation.cancel')}</Button>
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="destructive"><Trash2 className="mr-2"/>{t('moderation.cancel')}</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>{t('moderation.cancelDialog.title')}</AlertDialogTitle>
+                                    <AlertDialogDescription>{t('moderation.cancelDialog.description')}</AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <div className="space-y-2 py-2">
+                                    <Label htmlFor="cancellation-reason">{t('moderation.cancelDialog.reasonLabel')}</Label>
+                                    <Textarea id="cancellation-reason" placeholder={t('moderation.cancelDialog.reasonPlaceholder')} />
+                                </div>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>{t('moderation.cancelDialog.cancel')}</AlertDialogCancel>
+                                    <AlertDialogAction>{t('moderation.cancelDialog.confirm')}</AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                     </CardContent>
                 </Card>
                  <Card>

@@ -537,7 +537,15 @@
             "description": "Actions de modération sur cette mission.",
             "forcePublish": "Forcer la publication",
             "unpublish": "Dépublier",
-            "cancel": "Annuler la mission"
+            "cancel": "Annuler la mission",
+            "cancelDialog": {
+                "title": "Annuler la mission",
+                "description": "Cette action est irréversible et notifiera le client et les prestataires ayant fait une offre. Veuillez indiquer un motif d'annulation.",
+                "reasonLabel": "Motif de l'annulation",
+                "reasonPlaceholder": "Ex: La mission enfreint les conditions de service...",
+                "cancel": "Fermer",
+                "confirm": "Confirmer l'annulation"
+            }
         },
         "flags": {
             "title": "Signalements",

@@ -537,7 +537,15 @@
             "description": "Moderation actions on this task.",
             "forcePublish": "Force Publish",
             "unpublish": "Unpublish",
-            "cancel": "Cancel Task"
+            "cancel": "Cancel Task",
+            "cancelDialog": {
+                "title": "Cancel Task",
+                "description": "This action is irreversible and will notify the client and any providers who made an offer. Please provide a reason for cancellation.",
+                "reasonLabel": "Reason for cancellation",
+                "reasonPlaceholder": "e.g., Task violates terms of service...",
+                "cancel": "Close",
+                "confirm": "Confirm Cancellation"
+            }
         },
         "flags": {
             "title": "Flags",
