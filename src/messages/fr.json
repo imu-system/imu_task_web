@@ -163,15 +163,9 @@
         "bio": "Bio",
         "bioPlaceholder": "Parlez un peu de vous...",
         "saveChanges": "Enregistrer les modifications",
-        "kyc": "Vérification d'identité (KYC)",
-        "kycDesc": "Pour la sécurité de tous, la vérification est requise pour effectuer des missions.",
-        "kycVerified": "Votre identité a été vérifiée avec succès.",
-        "kycButton": "Vérifié",
-        "notifications": "Notifications",
-        "notificationsDesc": "Choisissez comment vous souhaitez être notifié.",
-        "newOfferEmail": "Nouvelle offre par e-mail",
-        "newOfferEmailDesc": "Recevez un e-mail à chaque nouvelle offre sur vos missions.",
-        "newMessageEmail": "Nouveau message par e-mail",
-        "newMessageEmailDesc": "Soyez prévenu par e-mail lorsque vous recevez un nouveau message."
+        "toastSuccessTitle": "Profil mis à jour",
+        "toastSuccessDescription": "Vos informations ont été enregistrées avec succès.",
+        "toastErrorTitle": "Erreur",
+        "toastErrorDescription": "Une erreur est survenue lors de la mise à jour de votre profil."
     }
 }

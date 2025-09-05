@@ -163,15 +163,9 @@
         "bio": "Bio",
         "bioPlaceholder": "Tell us a little about yourself...",
         "saveChanges": "Save Changes",
-        "kyc": "Identity Verification (KYC)",
-        "kycDesc": "For everyone's safety, verification is required to perform tasks.",
-        "kycVerified": "Your identity has been successfully verified.",
-        "kycButton": "Verified",
-        "notifications": "Notifications",
-        "notificationsDesc": "Choose how you want to be notified.",
-        "newOfferEmail": "New offer by email",
-        "newOfferEmailDesc": "Receive an email for each new offer on your tasks.",
-        "newMessageEmail": "New message by email",
-        "newMessageEmailDesc": "Be notified by email when you receive a new message."
+        "toastSuccessTitle": "Profile updated",
+        "toastSuccessDescription": "Your information has been successfully saved.",
+        "toastErrorTitle": "Error",
+        "toastErrorDescription": "An error occurred while updating your profile."
     }
 }

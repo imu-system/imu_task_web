@@ -1,96 +1,131 @@
+
+'use client';
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
-import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
+import { useAuth } from "@/hooks/use-auth";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import { useToast } from "@/hooks/use-toast";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
+
+const profileSchema = z.object({
+  displayName: z.string().min(2, "Le nom est requis."),
+  bio: z.string().max(500, "La biographie ne peut pas dépasser 500 caractères.").optional(),
+});
+
+type ProfileFormValues = z.infer<typeof profileSchema>;
 
 export default function ProfilePage() {
+  const { user, profileLoading } = useAuth();
+  const { toast } = useToast();
+  const [isSaving, setIsSaving] = useState(false);
+  const t = useTranslations('ProfilePage');
+
+  const { register, handleSubmit, formState: { errors, isDirty } } = useForm<ProfileFormValues>({
+    resolver: zodResolver(profileSchema),
+    values: {
+        displayName: user?.profile?.displayName || '',
+        bio: user?.profile?.bio || '',
+    }
+  });
+
+  const onSubmit = async (data: ProfileFormValues) => {
+    if (!user) return;
+    setIsSaving(true);
+    try {
+      const profileRef = doc(db, "profiles", user.uid);
+      await updateDoc(profileRef, {
+        displayName: data.displayName,
+        bio: data.bio,
+      });
+      toast({
+        title: t('toastSuccessTitle'),
+        description: t('toastSuccessDescription'),
+      });
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      toast({
+        variant: "destructive",
+        title: t('toastErrorTitle'),
+        description: t('toastErrorDescription'),
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  if (profileLoading || !user) {
+    return (
+        <div className="flex justify-center items-center h-64">
+            <Loader2 className="h-16 w-16 animate-spin text-primary" />
+        </div>
+    )
+  }
+
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
       <div>
         <h1 className="text-3xl font-bold tracking-tight font-headline">
-          Profil & Paramètres
+          {t('title')}
         </h1>
         <p className="text-muted-foreground">
-          Gérez vos informations personnelles et vos préférences.
+          {t('subtitle')}
         </p>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Informations personnelles</CardTitle>
-          <CardDescription>Mettez à jour vos informations publiques.</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="flex items-center gap-4">
-            <Avatar className="h-20 w-20">
-              <AvatarImage src="https://picsum.photos/id/1005/100/100" />
-              <AvatarFallback>LB</AvatarFallback>
-            </Avatar>
-            <Button variant="outline">Changer la photo</Button>
-          </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+        <Card>
+          <CardHeader>
+            <CardTitle>{t('personalInfo')}</CardTitle>
+            <CardDescription>{t('personalInfoDesc')}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="flex items-center gap-4">
+              <Avatar className="h-20 w-20">
+                <AvatarImage src={user.profile?.photoUrl || `https://i.pravatar.cc/150?u=${user.uid}`} />
+                <AvatarFallback>{user.profile?.displayName?.charAt(0).toUpperCase()}</AvatarFallback>
+              </Avatar>
+              <Button type="button" variant="outline">{t('changePhoto')}</Button>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="displayName">{t('fullName')}</Label>
+                <Input id="displayName" {...register('displayName')} />
+                {errors.displayName && <p className="text-xs text-destructive mt-1">{errors.displayName.message}</p>}
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">{t('emailAddress')}</Label>
+                <Input id="email" type="email" defaultValue={user.email || ''} disabled />
+              </div>
+            </div>
+
             <div className="space-y-2">
-              <Label htmlFor="name">Nom complet</Label>
-              <Input id="name" defaultValue="Lucas Bernard" />
+              <Label htmlFor="bio">{t('bio')}</Label>
+              <Textarea id="bio" placeholder={t('bioPlaceholder')} {...register('bio')} />
+               {errors.bio && <p className="text-xs text-destructive mt-1">{errors.bio.message}</p>}
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="email">Adresse e-mail</Label>
-              <Input id="email" type="email" defaultValue="lucas.bernard@email.com" disabled />
+            
+             <div className="flex justify-end">
+                <Button type="submit" disabled={isSaving || !isDirty}>
+                    {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    {t('saveChanges')}
+                </Button>
             </div>
-          </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="bio">Bio</Label>
-            <Textarea id="bio" placeholder="Parlez un peu de vous..." defaultValue="Étudiant en informatique passionné par le service à la communauté. Fiable, ponctuel et toujours prêt à aider !" />
-          </div>
-
-          <div className="flex justify-end">
-            <Button>Enregistrer les modifications</Button>
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-            <CardTitle>Vérification d'identité (KYC)</CardTitle>
-            <CardDescription>Pour la sécurité de tous, la vérification est requise pour effectuer des missions.</CardDescription>
-        </CardHeader>
-        <CardContent>
-            <div className="flex items-center justify-between rounded-lg border p-4 bg-green-50 dark:bg-green-900/20">
-                <p className="font-medium text-green-800 dark:text-green-300">Votre identité a été vérifiée avec succès.</p>
-                <Button variant="outline" disabled>Vérifié</Button>
-            </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Notifications</CardTitle>
-          <CardDescription>Choisissez comment vous souhaitez être notifié.</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-            <div className="flex items-center justify-between">
-                <div>
-                    <Label htmlFor="new-offer-email">Nouvelle offre par e-mail</Label>
-                    <p className="text-xs text-muted-foreground">Recevez un e-mail à chaque nouvelle offre sur vos missions.</p>
-                </div>
-                <Switch id="new-offer-email" defaultChecked />
-            </div>
-            <Separator />
-            <div className="flex items-center justify-between">
-                <div>
-                    <Label htmlFor="message-email">Nouveau message par e-mail</Label>
-                    <p className="text-xs text-muted-foreground">Soyez prévenu par e-mail lorsque vous recevez un nouveau message.</p>
-                </div>
-                <Switch id="message-email" />
-            </div>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </form>
     </div>
   );
 }
