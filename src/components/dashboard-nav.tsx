@@ -1,13 +1,9 @@
+
 'use client';
 
-import Link from 'next/link';
+import { Link, useRouter } from '@/navigation';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/components/ui/avatar';
 import {
   Sidebar,
   SidebarContent,
@@ -19,20 +15,26 @@ import {
 } from '@/components/ui/sidebar';
 import {
   BookMarked,
-  ClipboardList,
   LayoutGrid,
   LogOut,
   MessageSquare,
   PlusCircle,
-  Settings,
   UserCircle,
   Wallet,
   Zap,
 } from 'lucide-react';
+import { useAuth } from '@/hooks/use-auth';
 
 export function DashboardNav() {
   const pathname = usePathname();
   const t = useTranslations('DashboardNav');
+  const { signOut } = useAuth();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await signOut();
+    router.push('/');
+  }
 
   const navItems = [
     { href: '/dashboard', icon: <LayoutGrid />, label: t('dashboard') },
@@ -78,12 +80,10 @@ export function DashboardNav() {
                 </Link>
             </SidebarMenuItem>
               <SidebarMenuItem>
-                <Link href="/">
-                    <SidebarMenuButton>
-                        <LogOut />
-                        <span>{t('logout')}</span>
-                    </SidebarMenuButton>
-                </Link>
+                <SidebarMenuButton onClick={handleSignOut}>
+                    <LogOut />
+                    <span>{t('logout')}</span>
+                </SidebarMenuButton>
             </SidebarMenuItem>
         </SidebarMenu>
       </SidebarFooter>

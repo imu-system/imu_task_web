@@ -25,11 +25,14 @@ import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import { usePathname, Link } from '@/navigation';
+import { useAuth } from '@/hooks/use-auth';
 
 export default function Header() {
   const t = useTranslations('Header');
   const tLang = useTranslations('LanguageSwitcher');
   const pathname = usePathname();
+  const { user, signOut } = useAuth();
+  const isAuthenticated = !!user;
 
   const navLinks = [
     { href: '#features', label: t('features') },
@@ -37,30 +40,24 @@ export default function Header() {
     { href: '#categories', label: t('categories') },
   ];
 
-  // Mock authentication state
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // This is a mock login function for demonstration
-  const handleLogin = () => setIsAuthenticated(true);
-  const handleLogout = () => setIsAuthenticated(false);
 
   const UserMenu = () => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-9 w-9">
-            <AvatarImage src="https://picsum.photos/id/1005/100/100" alt="User" />
-            <AvatarFallback>U</AvatarFallback>
+            <AvatarImage src={user?.photoURL || "https://picsum.photos/id/1005/100/100"} alt="User" />
+            <AvatarFallback>{user?.email?.charAt(0).toUpperCase()}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">Lucas Bernard</p>
+            <p className="text-sm font-medium leading-none">{user?.displayName || 'Utilisateur'}</p>
             <p className="text-xs leading-none text-muted-foreground">
-              lucas.bernard@email.com
+              {user?.email}
             </p>
           </div>
         </DropdownMenuLabel>
@@ -78,7 +75,7 @@ export default function Header() {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={handleLogout}>
+        <DropdownMenuItem onClick={signOut}>
           <LogOut className="mr-2 h-4 w-4" />
           <span>{t('signOut')}</span>
         </DropdownMenuItem>
@@ -89,7 +86,7 @@ export default function Header() {
   const AuthButtons = () => (
     <div className="hidden md:flex items-center gap-2">
       <Button variant="ghost" asChild>
-        <Link href="/sign-in" onClick={handleLogin}>{t('signIn')}</Link>
+        <Link href="/sign-in">{t('signIn')}</Link>
       </Button>
       <Button asChild>
         <Link href="/sign-up">{t('signUp')}</Link>
@@ -150,7 +147,7 @@ export default function Header() {
                   {isAuthenticated ? (
                      <div className="flex flex-col gap-2">
                         <Link href="/dashboard" className="w-full"><Button className="w-full">{t('dashboard')}</Button></Link>
-                        <Button variant="secondary" onClick={handleLogout}>{t('signOut')}</Button>
+                        <Button variant="secondary" onClick={signOut}>{t('signOut')}</Button>
                      </div>
                   ) : (
                     <div className="flex flex-col gap-2">

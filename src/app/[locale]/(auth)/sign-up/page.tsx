@@ -13,11 +13,27 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Link } from '@/navigation';
-import { Zap } from 'lucide-react';
+import { Zap, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { signUpSchema, useAuth, type SignUpFormValues } from '@/hooks/use-auth';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { useEffect } from 'react';
 
 export default function SignUpPage() {
     const t = useTranslations('SignUpPage');
+    const { signUp, loading, error, setError } = useAuth();
+    
+    const { register, handleSubmit, formState: { errors } } = useForm<SignUpFormValues>({
+        resolver: zodResolver(signUpSchema),
+    });
+
+    useEffect(() => {
+    return () => {
+      setError(null);
+    }
+  }, [setError]);
 
   return (
     <>
@@ -35,17 +51,23 @@ export default function SignUpPage() {
       </div>
       <Card>
         <CardContent className="p-6">
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit(signUp)}>
+             {error && (
+                <Alert variant="destructive">
+                    <AlertTitle>{t('errorTitle')}</AlertTitle>
+                    <AlertDescription>{error}</AlertDescription>
+                </Alert>
+            )}
             <div>
               <Label htmlFor="name">{t('nameLabel')}</Label>
               <div className="mt-2">
                 <Input
                   id="name"
-                  name="name"
                   type="text"
                   autoComplete="name"
-                  required
+                  {...register('name')}
                 />
+                 {errors.name && <p className="text-xs text-destructive mt-1">{errors.name.message}</p>}
               </div>
             </div>
 
@@ -54,11 +76,11 @@ export default function SignUpPage() {
               <div className="mt-2">
                 <Input
                   id="email"
-                  name="email"
                   type="email"
                   autoComplete="email"
-                  required
+                  {...register('email')}
                 />
+                 {errors.email && <p className="text-xs text-destructive mt-1">{errors.email.message}</p>}
               </div>
             </div>
 
@@ -67,16 +89,17 @@ export default function SignUpPage() {
               <div className="mt-2">
                 <Input
                   id="password"
-                  name="password"
                   type="password"
                   autoComplete="new-password"
-                  required
+                  {...register('password')}
                 />
+                 {errors.password && <p className="text-xs text-destructive mt-1">{errors.password.message}</p>}
               </div>
             </div>
             
             <div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading && <Loader2 className="animate-spin" />}
                 {t('submitButton')}
               </Button>
             </div>

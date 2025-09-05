@@ -110,7 +110,8 @@
         "emailLabel": "Email address",
         "passwordLabel": "Password",
         "forgotPasswordLink": "Forgot password?",
-        "submitButton": "Sign in"
+        "submitButton": "Sign in",
+        "errorTitle": "Authentication Error"
     },
     "SignUpPage": {
         "title": "Create your ImuTask account",
@@ -121,7 +122,8 @@
         "passwordLabel": "Password",
         "submitButton": "Create account",
         "termsPrefix": "By creating an account, you agree to our",
-        "termsLink": "Terms of Service"
+        "termsLink": "Terms of Service",
+        "errorTitle": "Registration Error"
     },
     "OfferCard": {
         "toastAcceptTitle": "Offer accepted!",

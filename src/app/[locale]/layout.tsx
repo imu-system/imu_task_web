@@ -1,3 +1,4 @@
+
 import {ReactNode} from 'react';
 import {notFound} from 'next/navigation';
 import {NextIntlClientProvider} from 'next-intl';
@@ -5,6 +6,7 @@ import {unstable_setRequestLocale} from 'next-intl/server';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import {locales, type Locale} from '@/navigation';
+import { AuthProvider } from '@/hooks/use-auth';
 
 type Props = {
   children: ReactNode;
@@ -28,11 +30,13 @@ export default async function LocaleLayout({children, params}: Props) {
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <div className="relative flex min-h-dvh flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-      </div>
+      <AuthProvider>
+        <div className="relative flex min-h-dvh flex-col">
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
+      </AuthProvider>
     </NextIntlClientProvider>
   );
 }
