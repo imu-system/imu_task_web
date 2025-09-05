@@ -265,6 +265,9 @@ export interface Task {
     addressId: string;
     title: string;
     description: string;
+    location: string;
+    date: DateTime;
+    price: number;
     latitude: number;
     longitude: number;
     timeWindowStart: DateTime;
