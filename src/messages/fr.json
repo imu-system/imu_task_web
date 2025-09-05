@@ -122,5 +122,31 @@
         "submitButton": "Créer le compte",
         "termsPrefix": "En créant un compte, vous acceptez nos",
         "termsLink": "Conditions d'utilisation"
+    },
+    "OfferCard": {
+        "toastAcceptTitle": "Offre acceptée !",
+        "toastAcceptDescription": "La mission est maintenant assignée à {name}.",
+        "reviews": "({count} avis)",
+        "accept": "Accepter l'offre",
+        "contact": "Contacter"
+    },
+    "OfferForm": {
+        "title": "Faire une offre",
+        "description": "Proposez vos services pour cette mission.",
+        "priceLabel": "Votre prix (€)",
+        "messageLabel": "Votre message",
+        "messagePlaceholder": "Présentez-vous et expliquez pourquoi vous êtes la bonne personne pour cette mission.",
+        "submit": "Envoyer mon offre"
+    },
+    "TaskDetailPage": {
+        "clientView": "Vue Client",
+        "providerView": "Vue Prestataire",
+        "offersReceived": "Offres reçues ({count})",
+        "noOffers": "Vous n'avez pas encore reçu d'offres pour cette mission.",
+        "budget": "Budget du client",
+        "client": "Client",
+        "memberSince": "Membre depuis {year}",
+        "identityVerified": "Identité vérifiée",
+        "paymentVerified": "Paiement vérifié"
     }
 }

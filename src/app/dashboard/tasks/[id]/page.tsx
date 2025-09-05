@@ -1,8 +1,7 @@
 'use client';
 
-import { getOffersForTask, getTasks, users } from '@/lib/data';
+import { getOffersForTask, getTasks } from '@/lib/data';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -30,14 +29,16 @@ import { Switch } from '@/components/ui/switch';
 import { useState } from 'react';
 import { useLocale } from 'next-intl';
 import { useToast } from '@/hooks/use-toast';
+import { useTranslations } from 'next-intl';
 
 const OfferCard = ({ offer }: { offer: Offer }) => {
   const { toast } = useToast();
-  
+  const t = useTranslations('OfferCard');
+
   const handleAccept = () => {
     toast({
-        title: 'Offre acceptée !',
-        description: `La mission est maintenant assignée à ${offer.provider.name}.`,
+        title: t('toastAcceptTitle'),
+        description: t('toastAcceptDescription', { name: offer.provider.name }),
     });
   }
 
@@ -57,7 +58,7 @@ const OfferCard = ({ offer }: { offer: Offer }) => {
                 <Star className='h-4 w-4 fill-current' />
                 <Star className='h-4 w-4 fill-current' />
                 <Star className='h-4 w-4 text-muted-foreground fill-muted-foreground' />
-                <span className="text-xs text-muted-foreground ml-1">(12 avis)</span>
+                <span className="text-xs text-muted-foreground ml-1">{t('reviews', { count: 12 })}</span>
             </div>
           </div>
           <p className="text-lg font-bold text-primary">{offer.price}€</p>
@@ -66,10 +67,10 @@ const OfferCard = ({ offer }: { offer: Offer }) => {
           {offer.message}
         </p>
         <div className="flex gap-2 pt-2">
-          <Button size="sm" onClick={handleAccept}>Accepter l'offre</Button>
+          <Button size="sm" onClick={handleAccept}>{t('accept')}</Button>
           <Button size="sm" variant="ghost">
             <MessageSquare className="mr-2 h-4 w-4" />
-            Contacter
+            {t('contact')}
           </Button>
         </div>
       </div>
@@ -78,27 +79,29 @@ const OfferCard = ({ offer }: { offer: Offer }) => {
 };
 
 const OfferForm = () => {
+  const t = useTranslations('OfferForm');
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Faire une offre</CardTitle>
+        <CardTitle>{t('title')}</CardTitle>
         <CardDescription>
-          Proposez vos services pour cette mission.
+          {t('description')}
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="price">Votre prix (€)</Label>
+          <Label htmlFor="price">{t('priceLabel')}</Label>
           <Input id="price" type="number" placeholder="25" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="message">Votre message</Label>
+          <Label htmlFor="message">{t('messageLabel')}</Label>
           <Textarea
             id="message"
-            placeholder="Présentez-vous et expliquez pourquoi vous êtes la bonne personne pour cette mission."
+            placeholder={t('messagePlaceholder')}
           />
         </div>
-        <Button className="w-full">Envoyer mon offre</Button>
+        <Button className="w-full">{t('submit')}</Button>
       </CardContent>
     </Card>
   );
@@ -107,7 +110,7 @@ const OfferForm = () => {
 export default function TaskDetailPage({ params }: { params: { id: string } }) {
   const task = getTasks().find((t) => t.id === params.id);
   const offers = getOffersForTask(params.id);
-  const locale = useLocale();
+  const t = useTranslations('TaskDetailPage');
 
   // Mock current user role for demonstration
   const [isClientView, setIsClientView] = useState(true);
@@ -119,13 +122,13 @@ export default function TaskDetailPage({ params }: { params: { id: string } }) {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="flex items-center space-x-2 text-sm mb-4">
-        <Label htmlFor="role-switch">Vue Client</Label>
+        <Label htmlFor="role-switch">{t('clientView')}</Label>
         <Switch
           id="role-switch"
           checked={!isClientView}
           onCheckedChange={() => setIsClientView(!isClientView)}
         />
-        <Label htmlFor="role-switch">Vue Prestataire</Label>
+        <Label htmlFor="role-switch">{t('providerView')}</Label>
       </div>
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-6">
@@ -158,7 +161,7 @@ export default function TaskDetailPage({ params }: { params: { id: string } }) {
 
           {isClientView ? (
             <div className="space-y-4">
-              <h2 className="text-2xl font-bold font-headline">Offres reçues ({offers.length})</h2>
+              <h2 className="text-2xl font-bold font-headline">{t('offersReceived', { count: offers.length })}</h2>
               {offers.length > 0 ? (
                 <div className="space-y-4">
                   {offers.map((offer) => (
@@ -167,7 +170,7 @@ export default function TaskDetailPage({ params }: { params: { id: string } }) {
                 </div>
               ) : (
                 <Card className="text-center p-8">
-                  <p className="text-muted-foreground">Vous n'avez pas encore reçu d'offres pour cette mission.</p>
+                  <p className="text-muted-foreground">{t('noOffers')}</p>
                 </Card>
               )}
             </div>
@@ -179,12 +182,12 @@ export default function TaskDetailPage({ params }: { params: { id: string } }) {
           <Card>
             <CardHeader className="text-center">
               <span className="text-4xl font-bold text-primary">{task.price}€</span>
-              <CardDescription>Budget du client</CardDescription>
+              <CardDescription>{t('budget')}</CardDescription>
             </CardHeader>
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Client</CardTitle>
+              <CardTitle>{t('client')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="flex items-center gap-3">
@@ -196,18 +199,18 @@ export default function TaskDetailPage({ params }: { params: { id: string } }) {
                 </Avatar>
                 <div>
                   <p className="font-semibold">{task.client.name}</p>
-                  <p className="text-sm text-muted-foreground">Membre depuis 2023</p>
+                  <p className="text-sm text-muted-foreground">{t('memberSince', { year: 2023 })}</p>
                 </div>
               </div>
               <Separator />
               <div className="space-y-2 text-sm">
                  <div className="flex items-center gap-2 text-green-600">
                     <ShieldCheck className="h-4 w-4"/>
-                    <span>Identité vérifiée</span>
+                    <span>{t('identityVerified')}</span>
                  </div>
                  <div className="flex items-center gap-2">
                     <UserCheck className="h-4 w-4 text-muted-foreground"/>
-                    <span>Paiement vérifié</span>
+                    <span>{t('paymentVerified')}</span>
                  </div>
               </div>
             </CardContent>

@@ -122,5 +122,31 @@
         "submitButton": "Create account",
         "termsPrefix": "By creating an account, you agree to our",
         "termsLink": "Terms of Service"
+    },
+    "OfferCard": {
+        "toastAcceptTitle": "Offer accepted!",
+        "toastAcceptDescription": "The task is now assigned to {name}.",
+        "reviews": "({count} reviews)",
+        "accept": "Accept offer",
+        "contact": "Contact"
+    },
+    "OfferForm": {
+        "title": "Make an offer",
+        "description": "Propose your services for this task.",
+        "priceLabel": "Your price (€)",
+        "messageLabel": "Your message",
+        "messagePlaceholder": "Introduce yourself and explain why you're the right person for this task.",
+        "submit": "Send my offer"
+    },
+    "TaskDetailPage": {
+        "clientView": "Client view",
+        "providerView": "Provider view",
+        "offersReceived": "Offers received ({count})",
+        "noOffers": "You haven't received any offers for this task yet.",
+        "budget": "Client budget",
+        "client": "Client",
+        "memberSince": "Member since {year}",
+        "identityVerified": "Identity verified",
+        "paymentVerified": "Payment verified"
     }
 }
