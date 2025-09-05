@@ -14,7 +14,7 @@ import { z } from "zod";
 import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 
@@ -31,13 +31,22 @@ export default function ProfilePage() {
   const [isSaving, setIsSaving] = useState(false);
   const t = useTranslations('ProfilePage');
 
-  const { register, handleSubmit, formState: { errors, isDirty } } = useForm<ProfileFormValues>({
+  const { register, handleSubmit, formState: { errors, isDirty }, reset } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
-    values: {
-        displayName: user?.profile?.displayName || '',
-        bio: user?.profile?.bio || '',
+    defaultValues: {
+        displayName: '',
+        bio: '',
     }
   });
+
+  useEffect(() => {
+    if (user?.profile) {
+      reset({
+        displayName: user.profile.displayName || '',
+        bio: user.profile.bio || '',
+      });
+    }
+  }, [user, reset]);
 
   const onSubmit = async (data: ProfileFormValues) => {
     if (!user) return;
@@ -92,8 +101,8 @@ export default function ProfilePage() {
           <CardContent className="space-y-6">
             <div className="flex items-center gap-4">
               <Avatar className="h-20 w-20">
-                <AvatarImage src={user.profile?.photoUrl || `https://i.pravatar.cc/150?u=${user.uid}`} />
-                <AvatarFallback>{user.profile?.displayName?.charAt(0).toUpperCase()}</AvatarFallback>
+                <AvatarImage src={user.profile?.photoUrl || undefined} />
+                <AvatarFallback>{user.profile?.displayName?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}</AvatarFallback>
               </Avatar>
               <Button type="button" variant="outline">{t('changePhoto')}</Button>
             </div>
