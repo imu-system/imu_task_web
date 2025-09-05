@@ -195,6 +195,18 @@
         "cancel": "Annuler",
         "save": "Enregistrer l'adresse"
     },
+     "AdminDashboard": {
+        "subtitle": "Bienvenue dans votre centre de contrôle.",
+        "conversionTitle": "Entonnoir de conversion",
+        "conversionDesc": "De la publication de la mission à sa finalisation.",
+        "priorityQueueTitle": "File d'attente prioritaire",
+        "priorityQueueDesc": "Éléments nécessitant votre attention immédiate.",
+        "quickActionsTitle": "Actions Rapides",
+        "quickActionCategory": "Nouvelle Catégorie",
+        "quickActionAnnouncement": "Annonce système",
+        "quickActionUsers": "Gérer les utilisateurs",
+        "quickActionExport": "Export Comptable"
+    },
     "AdminCategoriesPage": {
         "title": "Catégories de services",
         "subtitle": "Gérez les catégories de services disponibles sur la plateforme.",
