@@ -28,7 +28,7 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { doc, getDoc, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-// import { updateServiceCategory } from '@/lib/data';
+import { updateServiceCategory } from '@/lib/data';
 
 const categoryFormSchema = z.object({
   name: z.string().min(3, 'Le nom doit contenir au moins 3 caractères.'),
@@ -107,39 +107,33 @@ export default function AdminEditCategoryPage() {
     }, [categoryId, form, router, toast]);
 
     const onSubmit = async (data: CategoryFormValues) => {
+        if (!categoryId) return;
         setIsSaving(true);
-        console.log("Form data to save:", data);
-        // try {
-            // const categoryData: ServiceCategoryCreation = {
-            //     slug: data.slug,
-            //     name: data.name,
-            //     description: data.description,
-            //     icon: '', // Placeholder for now
-            //     displayOrder: data.displayOrder,
-            //     isActive: data.isActive,
-            // }
-            // await updateServiceCategory(categoryId, categoryData);
-            // toast({
-            //     title: tForm('toastUpdateSuccessTitle'),
-            //     description: tForm('toastUpdateSuccessDescription'),
-            // });
-            // router.push('/dashboard/admin/services/categories');
-        // } catch (error) {
-        //     console.error("Error updating category:", error);
-        //     toast({
-        //         variant: "destructive",
-        //         title: tForm('toastErrorTitle'),
-        //         description: tForm('toastUpdateErrorDescription'),
-        //     });
-        // } finally {
-        //     setIsSaving(false);
-        // }
-         setTimeout(() => {
+        try {
+            const categoryData: Partial<ServiceCategoryCreation> = {
+                slug: data.slug,
+                name: data.name,
+                description: data.description,
+                icon: '', // Placeholder for now
+                displayOrder: data.displayOrder,
+                isActive: data.isActive,
+            }
+            await updateServiceCategory(categoryId, categoryData);
             toast({
-                 title: "Fonctionnalité en cours de développement",
+                title: tForm('toastUpdateSuccessTitle'),
+                description: tForm('toastUpdateSuccessDescription'),
             });
+            router.push('/dashboard/admin/services/categories');
+        } catch (error) {
+            console.error("Error updating category:", error);
+            toast({
+                variant: "destructive",
+                title: tForm('toastErrorTitle'),
+                description: tForm('toastUpdateErrorDescription'),
+            });
+        } finally {
             setIsSaving(false);
-         }, 1000);
+        }
     }
 
     if (authLoading || isLoading || !user || !user.roles?.includes(UserRole.admin)) {

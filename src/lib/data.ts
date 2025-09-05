@@ -2,7 +2,7 @@
 
 import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation } from './types';
 import { db } from './firebase';
-import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
 
 
 export const users: User[] = [
@@ -225,6 +225,14 @@ export async function createServiceCategory(categoryData: ServiceCategoryCreatio
         updatedAt: serverTimestamp(),
     });
     return docRef.id;
+}
+
+export async function updateServiceCategory(id: string, categoryData: Partial<ServiceCategoryCreation>) {
+    const docRef = doc(db, 'serviceCategories', id);
+    await updateDoc(docRef, {
+        ...categoryData,
+        updatedAt: serverTimestamp(),
+    });
 }
 
 export async function deleteServiceCategory(id: string) {
