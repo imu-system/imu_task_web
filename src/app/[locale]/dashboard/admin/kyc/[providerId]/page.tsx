@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { Loader2, ArrowLeft } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/button';
 
 const mockKycRequests = [
     { id: 'usr_2', providerName: 'Jane Doe', email: 'jane.doe@example.com', country: 'FR', status: 'pending', submittedAt: '2023-10-26T10:00:00Z', documents: ['identity', 'selfie'] },
