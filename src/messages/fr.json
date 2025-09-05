@@ -203,7 +203,26 @@
         "tableHeaderStatus": "Statut",
         "statusActive": "Actif",
         "statusInactive": "Inactif",
-        "newCategory": "Nouvelle Catégorie"
+        "newCategory": "Nouvelle Catégorie",
+        "noCategories": "Aucune catégorie trouvée. Ajoutez-en une pour commencer !",
+        "actions": "Actions",
+        "edit": "Modifier",
+        "duplicate": "Dupliquer",
+        "delete": "Supprimer",
+        "deleteDialog": {
+            "title": "Êtes-vous sûr ?",
+            "description": "Cette action est irréversible. La catégorie sera supprimée définitivement.",
+            "cancel": "Annuler",
+            "confirm": "Continuer"
+        },
+        "toastDeleteSuccessTitle": "Catégorie supprimée",
+        "toastDeleteSuccessDescription": "La catégorie a été supprimée avec succès.",
+        "toastDeleteErrorTitle": "Erreur de suppression",
+        "toastDeleteErrorDescription": "Impossible de supprimer la catégorie.",
+        "toastDuplicateSuccessTitle": "Catégorie dupliquée",
+        "toastDuplicateSuccessDescription": "La catégorie a été dupliquée avec succès.",
+        "toastDuplicateErrorTitle": "Erreur de duplication",
+        "toastDuplicateErrorDescription": "Impossible de dupliquer la catégorie."
     },
     "AdminCategoryForm": {
         "titleNew": "Nouvelle catégorie de service",

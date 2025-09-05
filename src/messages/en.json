@@ -203,7 +203,26 @@
         "tableHeaderStatus": "Status",
         "statusActive": "Active",
         "statusInactive": "Inactive",
-        "newCategory": "New Category"
+        "newCategory": "New Category",
+        "noCategories": "No categories found. Add one to get started!",
+        "actions": "Actions",
+        "edit": "Edit",
+        "duplicate": "Duplicate",
+        "delete": "Delete",
+        "deleteDialog": {
+            "title": "Are you sure?",
+            "description": "This action cannot be undone. This will permanently delete the category.",
+            "cancel": "Cancel",
+            "confirm": "Continue"
+        },
+        "toastDeleteSuccessTitle": "Category deleted",
+        "toastDeleteSuccessDescription": "The category has been successfully deleted.",
+        "toastDeleteErrorTitle": "Deletion Error",
+        "toastDeleteErrorDescription": "Could not delete the category.",
+        "toastDuplicateSuccessTitle": "Category duplicated",
+        "toastDuplicateSuccessDescription": "The category has been successfully duplicated.",
+        "toastDuplicateErrorTitle": "Duplication Error",
+        "toastDuplicateErrorDescription": "Could not duplicate the category."
     },
     "AdminCategoryForm": {
         "titleNew": "New Service Category",

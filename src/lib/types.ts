@@ -1,4 +1,3 @@
-
 // Types partagés pour le monorepo (générés d'après le schéma Prisma)
 // GitHub Copilot
 
@@ -242,7 +241,6 @@ export interface ServiceCategory {
     displayOrder: number;
     recommendedPriceMin?: number | null;
     recommendedPriceMax?: number | null;
-
     createdAt: DateTime;
     updatedAt: DateTime;
 
