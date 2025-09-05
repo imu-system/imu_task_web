@@ -68,14 +68,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setLoading(true);
         setProfileLoading(true);
         if (firebaseUser) {
-            const profileDocRef = doc(db, 'profiles', firebaseUser.uid);
-            const profileDoc = await getDoc(profileDocRef);
-            
-            const authUser: AuthUser = {
-                ...firebaseUser,
-                profile: profileDoc.exists() ? (profileDoc.data() as Profile) : null
-            };
-            setUser(authUser);
+            try {
+                const profileDocRef = doc(db, 'profiles', firebaseUser.uid);
+                const profileDoc = await getDoc(profileDocRef);
+                
+                const authUser: AuthUser = {
+                    ...firebaseUser,
+                    profile: profileDoc.exists() ? (profileDoc.data() as Profile) : null
+                };
+                setUser(authUser);
+            } catch (err) {
+                console.error("Failed to fetch user profile:", err);
+                // Set user without profile if firestore fails
+                setUser({ ...firebaseUser, profile: null });
+                setError("Impossible de récupérer le profil utilisateur. Veuillez vérifier votre connexion.");
+            }
         } else {
             setUser(null);
         }
