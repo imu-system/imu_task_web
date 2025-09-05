@@ -109,13 +109,13 @@ export default function Header() {
 
         <nav className="hidden md:flex items-center gap-6 text-sm">
           {navLinks.map((link) => (
-            <Link
+            <a
               key={link.href}
               href={link.href}
               className="text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
-            </Link>
+            </a>
           ))}
         </nav>
         
@@ -136,14 +136,14 @@ export default function Header() {
                 </Link>
                 <nav className="flex flex-col gap-4">
                   {navLinks.map((link) => (
-                    <Link
+                    <a
                       key={link.href}
                       href={link.href}
                       className="text-muted-foreground"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {link.label}
-                    </Link>
+                    </a>
                   ))}
                 </nav>
                 <div className="border-t pt-4">

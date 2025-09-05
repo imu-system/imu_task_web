@@ -19,6 +19,8 @@ export const pathnames = {
     en: '/sign-up',
     fr: '/inscription'
   },
+  '/dashboard/profile': '/dashboard/profile',
+  '/legal/terms': '/legal/terms',
 
   // If locales use different paths, you can
   // specify each external path per locale.
