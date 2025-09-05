@@ -95,23 +95,46 @@ export default function AdminUserDetailPage() {
 
     useEffect(() => {
         setLoading(true);
-        const fetchedUser = mockUsers.find(u => u.id === userId);
+        // Find user in mock data, assuming adminUser's uid could be in mockUsers as well
+        const fetchedUser = mockUsers.find(u => u.id === userId || (adminUser && u.id === adminUser.uid && userId === adminUser.uid));
+        
         if (fetchedUser) {
             setUser(fetchedUser);
             profileForm.reset({
-                displayName: fetchedUser.profile.displayName || fetchedUser.displayName,
-                city: fetchedUser.profile.city || '',
-                languages: (fetchedUser.profile.languages || []).join(', '),
-                verifiedBadges: (fetchedUser.profile.verifiedBadges || []).join(', '),
+                displayName: fetchedUser.displayName || '',
+                city: fetchedUser.profile?.city || '',
+                languages: (fetchedUser.profile?.languages || []).join(', '),
+                verifiedBadges: (fetchedUser.profile?.verifiedBadges || []).join(', '),
             });
             rolesForm.reset({
                 roles: fetchedUser.roles || []
             })
         } else {
-            console.error("User not found");
+             // Special case for the admin user if not in mock data
+            if (adminUser && userId === adminUser.uid) {
+                 setUser({
+                    id: adminUser.uid,
+                    displayName: adminUser.profile?.displayName || adminUser.displayName,
+                    email: adminUser.email,
+                    roles: adminUser.roles,
+                    status: adminUser.status,
+                    kycStatus: adminUser.KYCStatus,
+                    createdAt: adminUser.metadata.creationTime,
+                    profile: adminUser.profile
+                });
+                profileForm.reset({
+                    displayName: adminUser.profile?.displayName || adminUser.displayName || '',
+                    city: adminUser.profile?.city || '',
+                    languages: (adminUser.profile?.languages || []).join(', '),
+                    verifiedBadges: (adminUser.profile?.verifiedBadges || []).join(', '),
+                });
+                rolesForm.reset({ roles: adminUser.roles });
+            } else {
+                console.error("User not found");
+            }
         }
         setLoading(false);
-    }, [userId, profileForm, rolesForm]);
+    }, [userId, profileForm, rolesForm, adminUser]);
 
     const onProfileSubmit = async (data: ProfileEditFormValues) => {
         setIsSaving(true);
@@ -231,7 +254,7 @@ export default function AdminUserDetailPage() {
                         <div className="flex items-center gap-4">
                             <Avatar className="h-20 w-20">
                                 <AvatarImage src={`https://i.pravatar.cc/150?u=${user.id}`} />
-                                <AvatarFallback>{user.displayName.charAt(0)}</AvatarFallback>
+                                <AvatarFallback>{user.displayName?.charAt(0)}</AvatarFallback>
                             </Avatar>
                             <div>
                                 <h2 className="text-2xl font-bold">{user.displayName}</h2>
@@ -504,9 +527,3 @@ export default function AdminUserDetailPage() {
     </div>
   );
 }
-
-    
-
-    
-
-    

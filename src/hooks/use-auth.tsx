@@ -139,18 +139,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       if (user && user.roles.includes(UserRole.admin)) {
           setOriginalAdmin(user);
           // We need to create a complete AuthUser object for the target
-          const impersonatedAuthUser: AuthUser = {
-              ...targetUser, // This is mock data, might need conversion if it was real firebase user
+           const impersonatedAuthUser: AuthUser = {
               uid: targetUser.id,
-              // Add mock Firebase User properties if they are missing from targetUser
+              email: targetUser.email,
+              displayName: targetUser.displayName,
+              photoURL: `https://i.pravatar.cc/150?u=${targetUser.id}`,
+              roles: targetUser.roles,
+              status: targetUser.status,
+              KYCStatus: targetUser.kycStatus,
+              profile: targetUser.profile,
+              // Add mock Firebase User properties as they don't exist on the simple mock object
               providerData: user.providerData, 
               isAnonymous: false,
               tenantId: null,
-              delete: async () => {},
-              getIdToken: async () => '',
-              getIdTokenResult: async () => ({} as any),
-              reload: async () => {},
-              toJSON: () => ({}),
+              delete: async () => console.log("Delete called on impersonated user"),
+              getIdToken: async () => 'mock-token',
+              getIdTokenResult: async () => ({ token: 'mock-token' } as any),
+              reload: async () => console.log("Reload called on impersonated user"),
+              toJSON: () => ({ uid: targetUser.id, email: targetUser.email }),
           };
           setUser(impersonatedAuthUser);
       }
@@ -269,5 +275,3 @@ export const useAuth = (): AuthContextType => {
   }
   return context;
 };
-
-    
