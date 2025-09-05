@@ -2,7 +2,7 @@
 'use client';
 
 import { useAuth } from '@/hooks/use-auth';
-import { useRouter } from '@/navigation';
+import { useRouter, Link } from '@/navigation';
 import { useEffect, useState } from 'react';
 import { Loader2, Shield, PlusCircle, MoreHorizontal } from 'lucide-react';
 import { UserRole } from '@/lib/types';
@@ -61,9 +61,11 @@ export default function AdminCategoriesPage() {
                 {t('subtitle')}
                 </p>
             </div>
-            <Button>
+            <Button asChild>
+              <Link href="/dashboard/admin/services/categories/new">
                 <PlusCircle className="mr-2 h-4 w-4"/>
                 {t('newCategory')}
+              </Link>
             </Button>
         </div>
 

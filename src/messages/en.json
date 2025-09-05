@@ -204,5 +204,23 @@
         "statusActive": "Active",
         "statusInactive": "Inactive",
         "newCategory": "New Category"
+    },
+    "AdminCategoryForm": {
+        "titleNew": "New Service Category",
+        "subtitleNew": "Fill out the form to add a new category.",
+        "backToList": "Back to list",
+        "cardTitle": "Category Details",
+        "cardDescription": "Provide the necessary information for the category.",
+        "nameLabel": "Name (FR)",
+        "namePlaceholder": "e.g., Home Cleaning",
+        "slugLabel": "Slug",
+        "slugPlaceholder": "e.g., home-cleaning",
+        "descriptionLabel": "Description (FR)",
+        "descriptionPlaceholder": "Describe the category...",
+        "displayOrderLabel": "Display Order",
+        "statusLabel": "Status",
+        "statusActive": "Active",
+        "cancel": "Cancel",
+        "save": "Save"
     }
 }

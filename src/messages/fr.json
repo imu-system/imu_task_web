@@ -204,5 +204,23 @@
         "statusActive": "Actif",
         "statusInactive": "Inactif",
         "newCategory": "Nouvelle Catégorie"
+    },
+    "AdminCategoryForm": {
+        "titleNew": "Nouvelle catégorie de service",
+        "subtitleNew": "Remplissez le formulaire pour ajouter une nouvelle catégorie.",
+        "backToList": "Retour à la liste",
+        "cardTitle": "Détails de la catégorie",
+        "cardDescription": "Fournissez les informations nécessaires pour la catégorie.",
+        "nameLabel": "Nom (FR)",
+        "namePlaceholder": "Ex: Ménage à domicile",
+        "slugLabel": "Slug",
+        "slugPlaceholder": "Ex: menage-domicile",
+        "descriptionLabel": "Description (FR)",
+        "descriptionPlaceholder": "Décrivez la catégorie...",
+        "displayOrderLabel": "Ordre d'affichage",
+        "statusLabel": "Statut",
+        "statusActive": "Actif",
+        "cancel": "Annuler",
+        "save": "Enregistrer"
     }
 }
