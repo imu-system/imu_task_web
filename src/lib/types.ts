@@ -14,6 +14,15 @@ export type TaskCategory =
   | 'Petits bricolages'
   | 'Garde d’animaux';
 
+export type CategoryKey =
+  | 'shopping'
+  | 'gardening'
+  | 'lightCleaning'
+  | 'digitalHelp'
+  | 'administrativeHelp'
+  | 'handyman'
+  | 'petSitting';
+
 export type Task = {
   id: string;
   title: string;
