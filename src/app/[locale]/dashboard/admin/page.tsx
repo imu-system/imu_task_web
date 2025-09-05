@@ -10,7 +10,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useRouter, Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
-import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion } from "lucide-react";
+import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2 } from "lucide-react";
 
 const kpiData = [
   { title: "Revenus (Mensuel)", value: "€4,231.89", change: "+20.1% vs mois dernier", icon: <DollarSign className="h-4 w-4 text-muted-foreground" /> },
@@ -139,7 +139,7 @@ export default function AdminDashboardPage() {
                         </Button>
                         <Button variant="outline">{t('quickActionAnnouncement')}</Button>
                         <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/users">{t('quickActionUsers')}</Link>
+                            <Link href="/dashboard/admin/users"><Users2 className="mr-2"/>{t('quickActionUsers')}</Link>
                         </Button>
                         <Button variant="outline">{t('quickActionExport')}</Button>
                     </CardContent>
