@@ -9,7 +9,7 @@ import {
   ReactNode,
 } from 'react';
 import {
-  User,
+  User as FirebaseUser,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -17,10 +17,11 @@ import {
   AuthError,
   updateProfile,
 } from 'firebase/auth';
-import { doc, setDoc, getFirestore, serverTimestamp, writeBatch } from 'firebase/firestore';
+import { doc, setDoc, getDoc, getFirestore, serverTimestamp, writeBatch } from 'firebase/firestore';
 import { auth, db } from '@/lib/firebase';
 import { useRouter } from '@/navigation';
 import { z } from 'zod';
+import { type Profile } from '@/lib/types';
 
 export const signUpSchema = z.object({
   name: z.string().min(2, "Le nom est requis"),
@@ -37,10 +38,15 @@ export const signInSchema = z.object({
 export type SignUpFormValues = z.infer<typeof signUpSchema>;
 export type SignInFormValues = z.infer<typeof signInSchema>;
 
+export interface AuthUser extends FirebaseUser {
+    profile: Profile | null;
+}
+
 
 interface AuthContextType {
-  user: User | null;
+  user: AuthUser | null;
   loading: boolean;
+  profileLoading: boolean;
   error: string | null;
   setError: (error: string | null) => void;
   signIn: (data: SignInFormValues) => Promise<void>;
@@ -51,15 +57,30 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
+  const [profileLoading, setProfileLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
-      setLoading(false);
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+        setLoading(true);
+        setProfileLoading(true);
+        if (firebaseUser) {
+            const profileDocRef = doc(db, 'profiles', firebaseUser.uid);
+            const profileDoc = await getDoc(profileDocRef);
+            
+            const authUser: AuthUser = {
+                ...firebaseUser,
+                profile: profileDoc.exists() ? (profileDoc.data() as Profile) : null
+            };
+            setUser(authUser);
+        } else {
+            setUser(null);
+        }
+        setLoading(false);
+        setProfileLoading(false);
     });
     return () => unsubscribe();
   }, []);
@@ -97,17 +118,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setError(null);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
-      const user = userCredential.user;
+      const firebaseUser = userCredential.user;
 
       // Update Firebase Auth profile
-      await updateProfile(user, { displayName: data.name });
+      await updateProfile(firebaseUser, { displayName: data.name });
       
       // Create user and profile documents in a batch
       const batch = writeBatch(db);
 
-      const userDocRef = doc(db, 'users', user.uid);
+      const userDocRef = doc(db, 'users', firebaseUser.uid);
       batch.set(userDocRef, {
-        email: user.email,
+        email: firebaseUser.email,
         roles: ['client'],
         status: 'active',
         KYCStatus: 'not_required',
@@ -115,9 +136,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         updatedAt: serverTimestamp(),
       });
 
-      const profileDocRef = doc(db, 'profiles', user.uid);
+      const profileDocRef = doc(db, 'profiles', firebaseUser.uid);
       batch.set(profileDocRef, {
-        userId: user.uid,
+        userId: firebaseUser.uid,
         displayName: data.name,
         photoUrl: '',
         bio: '',
@@ -142,11 +163,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signOut = async () => {
     await firebaseSignOut(auth);
+    setUser(null);
     router.push('/');
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, error, setError, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={{ user, loading, profileLoading, error, setError, signIn, signUp, signOut }}>
       {children}
     </AuthContext.Provider>
   );
