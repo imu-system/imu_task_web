@@ -60,7 +60,9 @@
         "profile": "Profil",
         "logout": "Se déconnecter",
         "admin": "Admin",
-        "kycVerification": "Vérifications KYC"
+        "kycVerification": "Vérifications KYC",
+        "users": "Utilisateurs",
+        "categories": "Catégories"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -488,5 +490,3 @@
         }
     }
 }
-
-    

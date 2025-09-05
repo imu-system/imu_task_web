@@ -60,7 +60,9 @@
         "profile": "Profile",
         "logout": "Log out",
         "admin": "Admin",
-        "kycVerification": "KYC Verifications"
+        "kycVerification": "KYC Verifications",
+        "users": "Users",
+        "categories": "Categories"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -488,5 +490,3 @@
         }
     }
 }
-
-    
