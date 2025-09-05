@@ -177,8 +177,8 @@ export default function AdminTaskDetailPage() {
                         <CardDescription>{t('moderation.description')}</CardDescription>
                     </CardHeader>
                     <CardContent className="grid grid-cols-1 gap-2">
-                        <Button variant="outline" disabled><PlayCircle className="mr-2"/>{t('moderation.forcePublish')}</Button>
-                        <Button variant="outline" disabled><Ban className="mr-2"/>{t('moderation.unpublish')}</Button>
+                        <Button variant="outline"><PlayCircle className="mr-2"/>{t('moderation.forcePublish')}</Button>
+                        <Button variant="outline"><Ban className="mr-2"/>{t('moderation.unpublish')}</Button>
                         <Button variant="destructive" disabled><Trash2 className="mr-2"/>{t('moderation.cancel')}</Button>
                     </CardContent>
                 </Card>
