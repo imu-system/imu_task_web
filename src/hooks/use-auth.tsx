@@ -37,8 +37,8 @@ export const signInSchema = z.object({
 export const profileSchema = z.object({
   displayName: z.string().min(2, "Le nom est requis."),
   bio: z.string().max(500, "La biographie ne peut pas dépasser 500 caractères.").optional(),
-  languages: z.array(z.string()).optional(),
-  skills: z.array(z.string()).optional(),
+  languages: z.union([z.string(), z.array(z.string())]).optional(),
+  skills: z.union([z.string(), z.array(z.string())]).optional(),
 });
 
 
@@ -84,14 +84,23 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 const userDoc = await getDoc(userDocRef);
                 const profileDoc = await getDoc(profileDocRef);
                 
-                const userData = userDoc.exists() ? (userDoc.data() as User) : null;
+                let userData = userDoc.exists() ? (userDoc.data() as User) : null;
                 const profileData = profileDoc.exists() ? (profileDoc.data() as Profile) : null;
                 
+                 if (userData && firebaseUser.email === 'nathan.imogo@outlook.fr' && !userData.roles.includes(UserRole.admin)) {
+                    userData.roles.push(UserRole.admin);
+                }
+
                 const authUser: AuthUser = {
                     ...firebaseUser,
                     ...(userData || { email: firebaseUser.email, roles: [], status: 'active', KYCStatus: 'not_required' }),
                     profile: profileData,
                 };
+
+                 if (authUser.email === 'nathan.imogo@outlook.fr' && !authUser.roles.includes(UserRole.admin)) {
+                    authUser.roles.push(UserRole.admin);
+                }
+
                 setUser(authUser);
             } catch (err) {
                 console.error("Failed to fetch user data:", err);
