@@ -116,6 +116,7 @@ export default function AdminKycDetailPage() {
     
     const handleApprove = async () => {
         setIsSubmitting(true);
+        // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1000));
         toast({
             title: t('toast.approveSuccessTitle'),
@@ -127,6 +128,7 @@ export default function AdminKycDetailPage() {
     
     const handleReject = async () => {
         setIsSubmitting(true);
+        // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1000));
         toast({
             variant: 'destructive',
@@ -150,7 +152,9 @@ export default function AdminKycDetailPage() {
         return (
              <div className="text-center">
                 <h1 className="text-xl">{t('notFound')}</h1>
-                <Link href="/dashboard/admin/kyc">{t('backToList')}</Link>
+                <Button asChild variant="link">
+                    <Link href="/dashboard/admin/kyc">{t('backToList')}</Link>
+                </Button>
             </div>
         )
     }
@@ -208,7 +212,7 @@ export default function AdminKycDetailPage() {
                     <CardContent className="grid grid-cols-2 gap-2">
                         <AlertDialog>
                             <AlertDialogTrigger asChild>
-                                <Button variant="destructive" disabled={isSubmitting}>
+                                <Button variant="destructive" disabled={isSubmitting || provider.status !== 'pending'}>
                                     <X className="mr-2"/> {t('cards.actions.reject')}
                                 </Button>
                             </AlertDialogTrigger>
@@ -235,7 +239,7 @@ export default function AdminKycDetailPage() {
                             </AlertDialogContent>
                         </AlertDialog>
 
-                        <Button onClick={handleApprove} disabled={isSubmitting}>
+                        <Button onClick={handleApprove} disabled={isSubmitting || provider.status !== 'pending'}>
                             {isSubmitting ? <Loader2 className="animate-spin mr-2"/> : <Check className="mr-2"/>}
                             {t('cards.actions.approve')}
                         </Button>
@@ -297,3 +301,5 @@ export default function AdminKycDetailPage() {
   );
 }
 
+
+    
