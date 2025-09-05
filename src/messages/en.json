@@ -332,7 +332,31 @@
                 "editProfile": "Edit Profile",
                 "impersonate": "Impersonate",
                 "suspend": "Suspend User",
-                "delete": "Delete User"
+                "reactivate": "Reactivate User",
+                "delete": "Delete User",
+                "suspendDialog": {
+                    "title": "Suspend User",
+                    "description": "Are you sure you want to suspend {name}?",
+                    "reasonLabel": "Reason for suspension",
+                    "reasonPlaceholder": "Provide a reason (visible to moderators)...",
+                    "durationLabel": "Duration",
+                    "duration7d": "7 days",
+                    "duration30d": "30 days",
+                    "durationPermanent": "Permanent",
+                    "notifyUser": "Notify the user of this suspension",
+                    "cancel": "Cancel",
+                    "confirm": "Suspend User"
+                },
+                "reactivateDialog": {
+                    "title": "Reactivate User",
+                    "description": "Are you sure you want to reactivate the account for {name}?",
+                    "cancel": "Cancel",
+                    "confirm": "Reactivate"
+                },
+                "toastSuspendSuccessTitle": "User suspended",
+                "toastSuspendSuccessDescription": "The user has been successfully suspended.",
+                "toastReactivateSuccessTitle": "User reactivated",
+                "toastReactivateSuccessDescription": "The user has been successfully reactivated."
             },
             "editProfile": {
                 "title": "Edit Profile (Admin)",
@@ -357,3 +381,5 @@
         }
     }
 }
+
+    

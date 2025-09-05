@@ -6,7 +6,7 @@ import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Loader2, ArrowLeft, User, ShieldCheck, Mail, Phone, CalendarDays, KeyRound, AlertTriangle, UserCog, EyeOff, Trash2, BadgeCheck, Languages, MapPin, UserPlus } from 'lucide-react';
-import { UserRole } from '@/lib/types';
+import { UserRole, UserStatus } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -20,6 +20,21 @@ import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDes
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Textarea } from '@/components/ui/textarea';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+
 
 const profileEditSchema = z.object({
   displayName: z.string().min(2, "Le nom est requis."),
@@ -60,6 +75,8 @@ export default function AdminUserDetailPage() {
     const [loading, setLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
     const [isSavingRoles, setIsSavingRoles] = useState(false);
+    const [isSuspensionDialogOpen, setSuspensionDialogOpen] = useState(false);
+    const [isReactivationDialogOpen, setReactivationDialogOpen] = useState(false);
 
     const profileForm = useForm<ProfileEditFormValues>({
         resolver: zodResolver(profileEditSchema),
@@ -116,6 +133,26 @@ export default function AdminUserDetailPage() {
         });
         setIsSavingRoles(false);
     };
+    
+    const handleSuspendUser = async () => {
+        console.log("Suspending user...");
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        toast({
+            title: t('cards.actions.toastSuspendSuccessTitle'),
+            description: t('cards.actions.toastSuspendSuccessDescription'),
+        });
+        setSuspensionDialogOpen(false);
+    }
+    
+    const handleReactivateUser = async () => {
+        console.log("Reactivating user...");
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        toast({
+            title: t('cards.actions.toastReactivateSuccessTitle'),
+            description: t('cards.actions.toastReactivateSuccessDescription'),
+        });
+        setReactivationDialogOpen(false);
+    }
 
     if (authLoading || loading || !adminUser || !adminUser.roles?.includes(UserRole.admin)) {
         return (
@@ -305,7 +342,70 @@ export default function AdminUserDetailPage() {
                     </CardHeader>
                     <CardContent className="grid grid-cols-1 gap-2">
                         <Button variant="outline" disabled><EyeOff className="mr-2"/> {t('cards.actions.impersonate')}</Button>
-                        <Button variant="outline" disabled className="text-amber-600 hover:text-amber-700"><AlertTriangle className="mr-2"/> {t('cards.actions.suspend')}</Button>
+                        
+                        {user.status === UserStatus.active ? (
+                            <AlertDialog open={isSuspensionDialogOpen} onOpenChange={setSuspensionDialogOpen}>
+                                <AlertDialogTrigger asChild>
+                                    <Button variant="outline" className="text-amber-600 hover:text-amber-700">
+                                        <AlertTriangle className="mr-2"/> {t('cards.actions.suspend')}
+                                    </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle>{t('cards.actions.suspendDialog.title')}</AlertDialogTitle>
+                                        <AlertDialogDescription>{t('cards.actions.suspendDialog.description', { name: user.displayName })}</AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <div className="space-y-4 py-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="suspension-reason">{t('cards.actions.suspendDialog.reasonLabel')}</Label>
+                                            <Textarea id="suspension-reason" placeholder={t('cards.actions.suspendDialog.reasonPlaceholder')} />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="suspension-duration">{t('cards.actions.suspendDialog.durationLabel')}</Label>
+                                            <Select defaultValue="7d">
+                                                <SelectTrigger id="suspension-duration">
+                                                    <SelectValue placeholder="Choisir une durée"/>
+                                                </SelectTrigger>
+                                                <SelectContent>
+                                                    <SelectItem value="7d">{t('cards.actions.suspendDialog.duration7d')}</SelectItem>
+                                                    <SelectItem value="30d">{t('cards.actions.suspendDialog.duration30d')}</SelectItem>
+                                                    <SelectItem value="permanent">{t('cards.actions.suspendDialog.durationPermanent')}</SelectItem>
+                                                </SelectContent>
+                                            </Select>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                            <Checkbox id="notify-user" defaultChecked />
+                                            <label htmlFor="notify-user" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                                {t('cards.actions.suspendDialog.notifyUser')}
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel>{t('cards.actions.suspendDialog.cancel')}</AlertDialogCancel>
+                                        <AlertDialogAction onClick={handleSuspendUser}>{t('cards.actions.suspendDialog.confirm')}</AlertDialogAction>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
+                        ) : (
+                             <AlertDialog open={isReactivationDialogOpen} onOpenChange={setReactivationDialogOpen}>
+                                <AlertDialogTrigger asChild>
+                                    <Button variant="outline" className="text-green-600 hover:text-green-700">
+                                        <BadgeCheck className="mr-2"/> {t('cards.actions.reactivate')}
+                                    </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle>{t('cards.actions.reactivateDialog.title')}</AlertDialogTitle>
+                                        <AlertDialogDescription>{t('cards.actions.reactivateDialog.description', { name: user.displayName })}</AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel>{t('cards.actions.reactivateDialog.cancel')}</AlertDialogCancel>
+                                        <AlertDialogAction onClick={handleReactivateUser}>{t('cards.actions.reactivateDialog.confirm')}</AlertDialogAction>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
+                        )}
+
                         <Button variant="destructive" disabled><Trash2 className="mr-2"/> {t('cards.actions.delete')}</Button>
                     </CardContent>
                 </Card>
@@ -394,3 +494,5 @@ export default function AdminUserDetailPage() {
     </div>
   );
 }
+
+    
