@@ -1,4 +1,5 @@
 
+
 // Types partagés pour le monorepo (générés d'après le schéma Prisma)
 // GitHub Copilot
 
@@ -236,12 +237,14 @@ export interface ServiceCategory {
     id: string;
     slug: string;
     name: Record<string, string>;
-    description?: Record<string, string>;
+    description: Record<string, string | undefined>;
     icon?: string | null;
     isActive: boolean;
     displayOrder: number;
     recommendedPriceMin?: number | null;
     recommendedPriceMax?: number | null;
+    targetCities?: string;
+    internalNotes?: string;
     createdAt: DateTime;
     updatedAt: DateTime;
 
@@ -249,7 +252,7 @@ export interface ServiceCategory {
     tasks?: Task[];
 }
 
-export type ServiceCategoryCreation = Omit<ServiceCategory, 'id' | 'createdAt' | 'updatedAt' | 'tasks'>;
+export type ServiceCategoryCreation = Omit<ServiceCategory, 'id' | 'createdAt' | 'updatedAt' | 'tasks' | 'targetCities' | 'internalNotes'>;
 
 
 export interface ServiceCategoryI18n {

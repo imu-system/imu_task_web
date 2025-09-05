@@ -39,12 +39,14 @@ const categoryFormSchema = z.object({
       fr: z.string().min(3, 'Le nom FR doit contenir au moins 3 caractères.'),
       en: z.string().min(3, 'Le nom EN doit contenir au moins 3 caractères.'),
   }),
-    description: z.object({
-        fr: z.string().optional(),
-        en: z.string().optional(),
-    }),
+  description: z.object({
+      fr: z.string().optional(),
+      en: z.string().optional(),
+  }),
   recommendedPriceMin: z.coerce.number().int().min(0).optional(),
   recommendedPriceMax: z.coerce.number().int().min(0).optional(),
+  targetCities: z.string().optional(),
+  internalNotes: z.string().optional(),
 }).refine(data => {
     if (data.recommendedPriceMin !== undefined && data.recommendedPriceMax !== undefined) {
         return data.recommendedPriceMax >= data.recommendedPriceMin;
@@ -128,6 +130,8 @@ export default function AdminEditCategoryPage() {
                         description: categoryData.description || { fr: '', en: '' },
                         recommendedPriceMin: categoryData.recommendedPriceMin,
                         recommendedPriceMax: categoryData.recommendedPriceMax,
+                        targetCities: categoryData.targetCities,
+                        internalNotes: categoryData.internalNotes,
                     };
                     form.reset(defaultValues);
                 } else {
@@ -296,6 +300,32 @@ export default function AdminEditCategoryPage() {
                                             )}
                                         />
                                     </div>
+                                    <FormField
+                                        control={form.control}
+                                        name="targetCities"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>{tForm('targetCitiesLabel')}</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder={tForm('targetCitiesPlaceholder')} {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <FormField
+                                        control={form.control}
+                                        name="internalNotes"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>{tForm('internalNotesLabel')}</FormLabel>
+                                                <FormControl>
+                                                    <Textarea placeholder={tForm('internalNotesPlaceholder')} {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
                                 </CardContent>
                             </Card>
                         </TabsContent>

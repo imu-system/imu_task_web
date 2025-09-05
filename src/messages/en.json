@@ -260,6 +260,10 @@
         "cardTitleTranslations": "Translations",
         "cardDescriptionTranslations": "Manage the category name and description in different languages.",
         "priceMinLabel": "Recommended Min Price (cents)",
-        "priceMaxLabel": "Recommended Max Price (cents)"
+        "priceMaxLabel": "Recommended Max Price (cents)",
+        "targetCitiesLabel": "Target Cities",
+        "targetCitiesPlaceholder": "e.g. Paris, Lyon, Marseille",
+        "internalNotesLabel": "Internal Notes",
+        "internalNotesPlaceholder": "Notes for administrators..."
     }
 }

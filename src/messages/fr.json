@@ -260,6 +260,10 @@
         "cardTitleTranslations": "Traductions",
         "cardDescriptionTranslations": "Gérez le nom et la description de la catégorie dans différentes langues.",
         "priceMinLabel": "Prix Min Recommandé (centimes)",
-        "priceMaxLabel": "Prix Max Recommandé (centimes)"
+        "priceMaxLabel": "Prix Max Recommandé (centimes)",
+        "targetCitiesLabel": "Villes Cibles",
+        "targetCitiesPlaceholder": "Ex: Paris, Lyon, Marseille",
+        "internalNotesLabel": "Notes Internes",
+        "internalNotesPlaceholder": "Notes pour les administrateurs..."
     }
 }
