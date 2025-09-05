@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2, ArrowLeft, Calendar, User, Euro, MessageSquare, Clock, XCircle, CheckCircle, Edit, ShieldAlert, Handshake, CreditCard, CalendarCheck } from 'lucide-react';
+import { Loader2, ArrowLeft, Calendar, User, Euro, MessageSquare, Clock, XCircle, CheckCircle, Edit, ShieldAlert, Handshake, CreditCard, CalendarCheck, Trash2 } from 'lucide-react';
 import { UserRole, Booking } from '@/lib/types';
 import { useTranslations, useLocale } from 'next-intl';
 import { getBookings } from '@/lib/bookings';
@@ -14,6 +14,19 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/com
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
 
 export default function AdminBookingDetailPage() {
     const { user: adminUser, loading: authLoading } = useAuth();
@@ -203,7 +216,25 @@ export default function AdminBookingDetailPage() {
                         <Button variant="outline"><CheckCircle className="mr-2"/>{t('cards.moderation.markCompleted')}</Button>
                         <Button variant="outline"><XCircle className="mr-2"/>{t('cards.moderation.declareNoShow')}</Button>
                         <Button variant="outline"><Euro className="mr-2"/>{t('cards.moderation.adjustPrice')}</Button>
-                        <Button variant="destructive" disabled><Calendar className="mr-2"/>{t('cards.moderation.cancel')}</Button>
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="destructive"><Trash2 className="mr-2"/>{t('cards.moderation.cancel')}</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>{t('cards.moderation.cancelDialog.title')}</AlertDialogTitle>
+                                    <AlertDialogDescription>{t('cards.moderation.cancelDialog.description')}</AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <div className="space-y-2 py-2">
+                                    <Label htmlFor="cancellation-reason">{t('cards.moderation.cancelDialog.reasonLabel')}</Label>
+                                    <Textarea id="cancellation-reason" placeholder={t('cards.moderation.cancelDialog.reasonPlaceholder')} />
+                                </div>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>{t('cards.moderation.cancelDialog.cancel')}</AlertDialogCancel>
+                                    <AlertDialogAction>{t('cards.moderation.cancelDialog.confirm')}</AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                         <Separator className="my-2"/>
                          <Button variant="ghost"><MessageSquare className="mr-2"/>{t('cards.moderation.internalNote')}</Button>
                     </CardContent>

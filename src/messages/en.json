@@ -704,7 +704,15 @@
                 "adjustPrice": "Adjust Price",
                 "cancel": "Cancel Booking",
                 "internalNote": "Add Internal Note",
-                "openDispute": "Open a Dispute"
+                "openDispute": "Open a Dispute",
+                "cancelDialog": {
+                    "title": "Cancel Booking",
+                    "description": "Are you sure you want to cancel this booking? This action is irreversible and will notify both the client and the provider.",
+                    "reasonLabel": "Reason for cancellation (required)",
+                    "reasonPlaceholder": "e.g. Provider is sick...",
+                    "cancel": "Close",
+                    "confirm": "Confirm Cancellation"
+                }
             }
         }
     }

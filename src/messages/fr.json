@@ -704,7 +704,15 @@
                 "adjustPrice": "Ajuster le tarif",
                 "cancel": "Annuler la réservation",
                 "internalNote": "Ajouter une note interne",
-                "openDispute": "Ouvrir un litige"
+                "openDispute": "Ouvrir un litige",
+                "cancelDialog": {
+                    "title": "Annuler la réservation",
+                    "description": "Êtes-vous sûr de vouloir annuler cette réservation ? Cette action est irréversible et notifiera le client et le prestataire.",
+                    "reasonLabel": "Motif de l'annulation (obligatoire)",
+                    "reasonPlaceholder": "Ex: Le prestataire est malade...",
+                    "cancel": "Fermer",
+                    "confirm": "Confirmer l'annulation"
+                }
             }
         }
     }
