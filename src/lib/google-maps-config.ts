@@ -3,11 +3,12 @@
 
 const GOOGLE_MAPS_API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
 
-if (!GOOGLE_MAPS_API_KEY) {
-  throw new Error("Missing Google Maps API key. Please add NEXT_PUBLIC_GOOGLE_MAPS_API_KEY to your environment variables.");
-}
-
 export const loadGoogleMapsScript = (callback: () => void) => {
+    if (!GOOGLE_MAPS_API_KEY) {
+        console.warn("Google Maps API key is missing. Address autocomplete will be disabled. Please add NEXT_PUBLIC_GOOGLE_MAPS_API_KEY to your environment variables.");
+        return;
+    }
+
     const existingScript = document.getElementById('googleMapsScript');
 
     if (!existingScript) {
@@ -20,6 +21,15 @@ export const loadGoogleMapsScript = (callback: () => void) => {
           callback();
         };
     } else {
-        callback();
+        // If the script is already there, the callback might have been missed,
+        // so we check if the google object is available.
+        if ((window as any).google) {
+            callback();
+        } else {
+            // If not, we set the initMap function again.
+             (window as any).initMap = () => {
+                callback();
+            };
+        }
     }
 };

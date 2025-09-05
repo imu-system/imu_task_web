@@ -15,8 +15,8 @@ import { useTranslations } from 'next-intl';
 const addressSchema = z.object({
   label: z.string().min(2, 'Le nom est requis.'),
   formatted: z.string().min(5, "L'adresse est requise."),
-  latitude: z.number(),
-  longitude: z.number(),
+  latitude: z.number().optional(),
+  longitude: z.number().optional(),
 });
 
 type AddressFormValues = z.infer<typeof addressSchema>;
@@ -39,8 +39,6 @@ export default function AddressForm({ onSave, onClose, initialData }: AddressFor
     defaultValues: initialData || {
       label: '',
       formatted: '',
-      latitude: 0,
-      longitude: 0,
     },
   });
 
@@ -51,7 +49,7 @@ export default function AddressForm({ onSave, onClose, initialData }: AddressFor
   }, []);
 
   useEffect(() => {
-    if (isMapsScriptLoaded && autocompleteInputRef.current) {
+    if (isMapsScriptLoaded && autocompleteInputRef.current && !autocompleteInstance.current) {
       autocompleteInstance.current = new google.maps.places.Autocomplete(autocompleteInputRef.current, {
         types: ['address'],
         componentRestrictions: { country: 'fr' }, // Restrict to France for now
