@@ -1,3 +1,5 @@
+'use client';
+
 import { CreateTaskForm } from '@/components/create-task-form';
 import { useTranslations } from 'next-intl';
 

@@ -1,3 +1,5 @@
+'use client';
+
 import TaskCard from '@/components/task-card';
 import { Button } from '@/components/ui/button';
 import { getTasks } from '@/lib/data';

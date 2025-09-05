@@ -1,11 +1,13 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
 import '../globals.css';
 import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import Footer from '@/components/footer';
+import Header from '@/components/header';
 
 export const metadata: Metadata = {
   title: 'ImuTask - Vos besoins, leur mission.',
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
     'Connecte personnes âgées et actifs avec des étudiants pour des services du quotidien.',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params: {locale},
 }: Readonly<{
@@ -21,9 +23,18 @@ export default function RootLayout({
   params: {locale: string};
 }>) {
   // Validate that the incoming `locale` parameter is valid
-  if (locale !== 'fr' && locale !== 'en') notFound();
+  const locales = ['en', 'fr'];
+  if (!locales.includes(locale)) notFound();
 
-  const messages = useMessages();
+  // Enable static rendering
+  unstable_setRequestLocale(locale);
+
+  let messages;
+  try {
+    messages = (await import(`../../messages/${locale}.json`)).default;
+  } catch (error) {
+    notFound();
+  }
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -46,6 +57,7 @@ export default function RootLayout({
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <div className="relative flex min-h-dvh flex-col">
+            <Header />
             <main className="flex-1">{children}</main>
             <Footer />
           </div>

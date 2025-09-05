@@ -1,5 +1,4 @@
 import { DashboardNav } from '@/components/dashboard-nav';
-import Header from '@/components/header';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
 
 export default function DashboardLayout({

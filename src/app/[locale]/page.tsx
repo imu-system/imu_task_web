@@ -1,3 +1,5 @@
+'use client';
+
 import Header from '@/components/header';
 import { Button } from '@/components/ui/button';
 import {
@@ -61,7 +63,6 @@ export default function Home() {
 
   return (
     <>
-      <Header />
       <div className="flex flex-col">
         <section className="relative w-full py-20 md:py-32 lg:py-40 bg-card">
           <div className="container mx-auto px-4 md:px-6 text-center">
