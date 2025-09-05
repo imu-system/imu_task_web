@@ -30,14 +30,31 @@ export default function AdminCategoriesPage() {
     }, [user, authLoading, router]);
 
     useEffect(() => {
+        setLoading(true);
         const q = query(collection(db, 'serviceCategories'));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
-            const categoriesData: ServiceCategory[] = [];
-            querySnapshot.forEach((doc) => {
-                categoriesData.push({ id: doc.id, ...doc.data() } as ServiceCategory);
-            });
-            // You might want to sort or further process the categories here
-            setCategories(categoriesData);
+            if (querySnapshot.empty) {
+                // If firestore is empty, use mock data
+                const mockCategories: ServiceCategory[] = [
+                    { id: '1', slug: 'Faire les courses alimentaires', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '2', slug: 'Livraison à domicile', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '3', slug: 'Ménage léger', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '4', slug: 'Petits bricolages', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '5', slug: 'Jardinage simple', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '6', slug: 'Visites de convivialité', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '7', slug: 'Assistance numérique', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '8', slug: 'Soutien scolaire', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '9', slug: 'Promenade de chiens', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '10', slug: 'Aide pour déménagement léger', isActive: false, createdAt: new Date(), updatedAt: new Date() },
+                ];
+                setCategories(mockCategories);
+            } else {
+                const categoriesData: ServiceCategory[] = [];
+                querySnapshot.forEach((doc) => {
+                    categoriesData.push({ id: doc.id, ...doc.data() } as ServiceCategory);
+                });
+                setCategories(categoriesData);
+            }
             setLoading(false);
         }, (error) => {
             console.error("Error fetching service categories: ", error);
