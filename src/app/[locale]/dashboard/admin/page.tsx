@@ -135,10 +135,12 @@ export default function AdminDashboardPage() {
                     </CardHeader>
                     <CardContent className="grid grid-cols-2 gap-4">
                         <Button asChild>
-                            <Link href="/dashboard/admin/services/categories/new"><PlusCircle className="mr-2"/>{t('quickActionCategory')}</Link>
+                            <Link href="/dashboard/admin/services/categories"><PlusCircle className="mr-2"/>{t('quickActionCategory')}</Link>
                         </Button>
                         <Button variant="outline">{t('quickActionAnnouncement')}</Button>
-                        <Button variant="outline">{t('quickActionUsers')}</Button>
+                        <Button variant="outline" asChild>
+                            <Link href="/dashboard/admin/users">{t('quickActionUsers')}</Link>
+                        </Button>
                         <Button variant="outline">{t('quickActionExport')}</Button>
                     </CardContent>
                 </Card>

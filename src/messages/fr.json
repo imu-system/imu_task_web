@@ -277,5 +277,39 @@
         "targetCitiesPlaceholder": "Ex: Paris, Lyon, Marseille",
         "internalNotesLabel": "Notes Internes",
         "internalNotesPlaceholder": "Notes pour les administrateurs..."
+    },
+    "AdminUsersPage": {
+        "title": "Gestion des utilisateurs",
+        "subtitle": "Consultez et gérez tous les utilisateurs de la plateforme.",
+        "searchPlaceholder": "Rechercher par nom, email...",
+        "tableTitle": "Tous les utilisateurs",
+        "tableDescription": "Liste de tous les utilisateurs inscrits.",
+        "actions": "Actions",
+        "viewProfile": "Voir le profil",
+        "table": {
+            "user": "Utilisateur",
+            "role": "Rôle",
+            "status": "Statut",
+            "kyc": "KYC",
+            "registeredAt": "Inscrit le"
+        },
+        "roles": {
+            "admin": "Admin",
+            "client": "Client",
+            "provider": "Prestataire",
+            "moderator": "Modérateur"
+        },
+        "status": {
+            "active": "Actif",
+            "suspended": "Suspendu",
+            "closed": "Fermé"
+        },
+        "kycStatus": {
+            "not_required": "N/A",
+            "required": "Requis",
+            "pending": "En attente",
+            "verified": "Vérifié",
+            "rejected": "Rejeté"
+        }
     }
 }
