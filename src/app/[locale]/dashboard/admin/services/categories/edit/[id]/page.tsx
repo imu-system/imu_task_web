@@ -45,6 +45,7 @@ export default function AdminEditCategoryPage() {
     const router = useRouter();
     const params = useParams<{ id: string }>();
     const categoryId = params.id;
+    const localStorageKey = `edit-category-form-${categoryId}`;
 
     const t = useTranslations('AdminCategoriesPage');
     const tForm = useTranslations('AdminCategoryForm');
@@ -60,6 +61,15 @@ export default function AdminEditCategoryPage() {
             displayOrder: 10,
         }
     });
+
+    const watchedValues = form.watch();
+
+    useEffect(() => {
+        if (!isLoading) {
+            localStorage.setItem(localStorageKey, JSON.stringify(watchedValues));
+        }
+    }, [watchedValues, isLoading, localStorageKey]);
+
 
     useEffect(() => {
         if (!authLoading && (!user || !user.roles?.includes(UserRole.admin))) {
@@ -77,13 +87,16 @@ export default function AdminEditCategoryPage() {
 
                 if (categorySnap.exists()) {
                     const categoryData = categorySnap.data() as ServiceCategory;
-                    form.reset({
+                    
+                    const savedData = localStorage.getItem(localStorageKey);
+                    const defaultValues = savedData ? JSON.parse(savedData) : {
                         name: categoryData.name,
                         slug: categoryData.slug,
                         description: categoryData.description || '',
                         displayOrder: categoryData.displayOrder,
                         isActive: categoryData.isActive
-                    });
+                    };
+                    form.reset(defaultValues);
                 } else {
                      toast({
                         variant: "destructive",
@@ -104,7 +117,7 @@ export default function AdminEditCategoryPage() {
         };
 
         fetchCategory();
-    }, [categoryId, form, router, toast]);
+    }, [categoryId, form, router, toast, localStorageKey]);
 
     const onSubmit = async (data: CategoryFormValues) => {
         if (!categoryId) return;
@@ -119,6 +132,7 @@ export default function AdminEditCategoryPage() {
                 isActive: data.isActive,
             }
             await updateServiceCategory(categoryId, categoryData);
+            localStorage.removeItem(localStorageKey);
             toast({
                 title: tForm('toastUpdateSuccessTitle'),
                 description: tForm('toastUpdateSuccessDescription'),

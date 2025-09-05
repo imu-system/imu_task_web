@@ -37,6 +37,7 @@ const categoryFormSchema = z.object({
 });
 
 type CategoryFormValues = z.infer<typeof categoryFormSchema>;
+const localStorageKey = 'new-category-form';
 
 export default function AdminNewCategoryPage() {
     const { user, loading: authLoading } = useAuth();
@@ -57,6 +58,23 @@ export default function AdminNewCategoryPage() {
         },
     });
 
+    const watchedValues = form.watch();
+
+    useEffect(() => {
+        try {
+            const savedData = localStorage.getItem(localStorageKey);
+            if (savedData) {
+                form.reset(JSON.parse(savedData));
+            }
+        } catch (error) {
+            console.error("Failed to read from localStorage", error);
+        }
+    }, [form]);
+
+    useEffect(() => {
+        localStorage.setItem(localStorageKey, JSON.stringify(watchedValues));
+    }, [watchedValues]);
+
     useEffect(() => {
         if (!authLoading && (!user || !user.roles?.includes(UserRole.admin))) {
             router.push('/dashboard');
@@ -75,6 +93,7 @@ export default function AdminNewCategoryPage() {
                 isActive: data.isActive,
             }
             await createServiceCategory(categoryData);
+            localStorage.removeItem(localStorageKey);
             toast({
                 title: tForm('toastSuccessTitle'),
                 description: tForm('toastSuccessDescription'),
