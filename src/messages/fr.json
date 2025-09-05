@@ -415,7 +415,9 @@
         },
         "documents": {
             "identity": "Pièce d'identité",
-            "selfie": "Selfie"
+            "selfie": "Selfie",
+            "identity_front": "Pièce d'identité (Recto)",
+            "identity_back": "Pièce d'identité (Verso)"
         }
     },
     "AdminKycDetailPage": {
@@ -441,7 +443,9 @@
             "approveSuccessTitle": "KYC Approuvé",
             "approveSuccessDescription": "{name} a été vérifié avec succès.",
             "rejectSuccessTitle": "KYC Rejeté",
-            "rejectSuccessDescription": "{name} a été notifié du rejet."
+            "rejectSuccessDescription": "{name} a été notifié du rejet.",
+            "resubmissionSuccessTitle": "Demande envoyée",
+            "resubmissionSuccessDescription": "Une demande de nouveaux documents a été envoyée à {name}."
         },
         "cards": {
             "actions": {
@@ -449,11 +453,21 @@
                 "approve": "Approuver",
                 "reject": "Rejeter",
                 "flag": "Marquer comme suspect",
+                "requestResubmission": "Redemander des documents",
                 "rejectDialog": {
                     "title": "Rejeter la vérification",
                     "description": "Veuillez sélectionner un motif de rejet. L'utilisateur sera notifié.",
                     "cancel": "Annuler",
                     "confirm": "Confirmer le rejet"
+                },
+                "resubmissionDialog": {
+                    "title": "Demander de nouveaux documents",
+                    "description": "Cochez les documents à redemander et laissez un message à l'utilisateur.",
+                    "checklistLabel": "Documents requis",
+                    "messageLabel": "Message pour l'utilisateur",
+                    "messagePlaceholder": "Expliquez pourquoi les documents sont nécessaires (ex: la photo était floue).",
+                    "cancel": "Annuler",
+                    "confirm": "Envoyer la demande"
                 }
             },
             "provider": {

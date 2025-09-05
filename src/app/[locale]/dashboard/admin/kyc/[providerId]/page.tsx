@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2, ArrowLeft, User, Mail, Calendar, Check, X, ShieldAlert } from 'lucide-react';
+import { Loader2, ArrowLeft, User, Mail, Calendar, Check, X, ShieldAlert, FileUp } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
@@ -28,6 +28,8 @@ import {
 } from "@/components/ui/alert-dialog"
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const mockKycRequests = [
     { 
@@ -85,7 +87,13 @@ const rejectionReasons = [
     { id: 'expired', labelKey: 'reasons.expired' },
     { id: 'not_matching', labelKey: 'reasons.notMatching' },
     { id: 'other', labelKey: 'reasons.other' },
-]
+];
+
+const resubmissionDocuments = [
+    { id: 'identity_front', labelKey: 'documents.identity_front' },
+    { id: 'identity_back', labelKey: 'documents.identity_back' },
+    { id: 'selfie', labelKey: 'documents.selfie' },
+];
 
 export default function AdminKycDetailPage() {
     const { user: adminUser, loading: authLoading } = useAuth();
@@ -134,6 +142,18 @@ export default function AdminKycDetailPage() {
             variant: 'destructive',
             title: t('toast.rejectSuccessTitle'),
             description: t('toast.rejectSuccessDescription', { name: provider.providerName }),
+        });
+        router.push('/dashboard/admin/kyc');
+        setIsSubmitting(false);
+    }
+
+    const handleRequestResubmission = async () => {
+        setIsSubmitting(true);
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        toast({
+            title: t('toast.resubmissionSuccessTitle'),
+            description: t('toast.resubmissionSuccessDescription', { name: provider.providerName }),
         });
         router.push('/dashboard/admin/kyc');
         setIsSubmitting(false);
@@ -209,7 +229,11 @@ export default function AdminKycDetailPage() {
                         {provider.status === 'pending' && <Badge variant="secondary">{t('status.pending')}</Badge>}
                          {provider.status === 'rejected' && <Badge variant="destructive">{t('status.rejected')}</Badge>}
                     </CardHeader>
-                    <CardContent className="grid grid-cols-2 gap-2">
+                    <CardContent className="grid grid-cols-1 gap-2">
+                        <Button onClick={handleApprove} disabled={isSubmitting || provider.status !== 'pending'}>
+                            {isSubmitting ? <Loader2 className="animate-spin mr-2"/> : <Check className="mr-2"/>}
+                            {t('cards.actions.approve')}
+                        </Button>
                         <AlertDialog>
                             <AlertDialogTrigger asChild>
                                 <Button variant="destructive" disabled={isSubmitting || provider.status !== 'pending'}>
@@ -224,8 +248,8 @@ export default function AdminKycDetailPage() {
                                 <RadioGroup defaultValue="blurry" className="py-4 space-y-2">
                                     {rejectionReasons.map(reason => (
                                         <div key={reason.id} className="flex items-center space-x-2">
-                                            <RadioGroupItem value={reason.id} id={reason.id} />
-                                            <Label htmlFor={reason.id}>{t(reason.labelKey as any)}</Label>
+                                            <RadioGroupItem value={reason.id} id={`reject-${reason.id}`} />
+                                            <Label htmlFor={`reject-${reason.id}`}>{t(reason.labelKey as any)}</Label>
                                         </div>
                                     ))}
                                 </RadioGroup>
@@ -238,11 +262,41 @@ export default function AdminKycDetailPage() {
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>
-
-                        <Button onClick={handleApprove} disabled={isSubmitting || provider.status !== 'pending'}>
-                            {isSubmitting ? <Loader2 className="animate-spin mr-2"/> : <Check className="mr-2"/>}
-                            {t('cards.actions.approve')}
-                        </Button>
+                         <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="outline" disabled={isSubmitting || provider.status !== 'pending'}>
+                                    <FileUp className="mr-2"/> {t('cards.actions.requestResubmission')}
+                                </Button>
+                            </AlertDialogTrigger>
+                             <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>{t('cards.actions.resubmissionDialog.title')}</AlertDialogTitle>
+                                    <AlertDialogDescription>{t('cards.actions.resubmissionDialog.description')}</AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <div className="py-4 space-y-4">
+                                    <div className="space-y-2">
+                                        <Label>{t('cards.actions.resubmissionDialog.checklistLabel')}</Label>
+                                        {resubmissionDocuments.map(doc => (
+                                            <div key={doc.id} className="flex items-center space-x-2">
+                                                <Checkbox id={`resubmit-${doc.id}`} />
+                                                <Label htmlFor={`resubmit-${doc.id}`}>{t(doc.labelKey as any)}</Label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="resubmission-message">{t('cards.actions.resubmissionDialog.messageLabel')}</Label>
+                                        <Textarea id="resubmission-message" placeholder={t('cards.actions.resubmissionDialog.messagePlaceholder')} />
+                                    </div>
+                                </div>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>{t('cards.actions.resubmissionDialog.cancel')}</AlertDialogCancel>
+                                    <AlertDialogAction onClick={handleRequestResubmission} disabled={isSubmitting}>
+                                        {isSubmitting ? <Loader2 className="animate-spin mr-2"/> : null}
+                                        {t('cards.actions.resubmissionDialog.confirm')}
+                                    </AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                     </CardContent>
                  </Card>
 

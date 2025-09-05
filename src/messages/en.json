@@ -415,7 +415,9 @@
         },
         "documents": {
             "identity": "ID Document",
-            "selfie": "Selfie"
+            "selfie": "Selfie",
+            "identity_front": "ID Document (Front)",
+            "identity_back": "ID Document (Back)"
         }
     },
     "AdminKycDetailPage": {
@@ -441,7 +443,9 @@
             "approveSuccessTitle": "KYC Approved",
             "approveSuccessDescription": "{name} has been successfully verified.",
             "rejectSuccessTitle": "KYC Rejected",
-            "rejectSuccessDescription": "{name} has been notified of the rejection."
+            "rejectSuccessDescription": "{name} has been notified of the rejection.",
+            "resubmissionSuccessTitle": "Request sent",
+            "resubmissionSuccessDescription": "A request for new documents has been sent to {name}."
         },
         "cards": {
             "actions": {
@@ -449,11 +453,21 @@
                 "approve": "Approve",
                 "reject": "Reject",
                 "flag": "Flag as suspicious",
+                "requestResubmission": "Request Resubmission",
                 "rejectDialog": {
                     "title": "Reject Verification",
                     "description": "Please select a reason for rejection. The user will be notified.",
                     "cancel": "Cancel",
                     "confirm": "Confirm Rejection"
+                },
+                "resubmissionDialog": {
+                    "title": "Request New Documents",
+                    "description": "Check the documents to be resubmitted and leave a message for the user.",
+                    "checklistLabel": "Required Documents",
+                    "messageLabel": "Message to user",
+                    "messagePlaceholder": "Explain why the documents are needed (e.g., photo was blurry).",
+                    "cancel": "Cancel",
+                    "confirm": "Send Request"
                 }
             },
             "provider": {
