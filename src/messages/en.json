@@ -227,6 +227,8 @@
     "AdminCategoryForm": {
         "titleNew": "New Service Category",
         "subtitleNew": "Fill out the form to add a new category.",
+        "titleEdit": "Edit Service Category",
+        "subtitleEdit": "You are editing the category with ID: {categoryId}",
         "backToList": "Back to list",
         "cardTitle": "Category Details",
         "cardDescription": "Provide the necessary information for the category.",
@@ -243,7 +245,10 @@
         "save": "Save",
         "toastSuccessTitle": "Category created!",
         "toastSuccessDescription": "The new category has been saved.",
+        "toastUpdateSuccessTitle": "Category updated!",
+        "toastUpdateSuccessDescription": "The category has been successfully updated.",
         "toastErrorTitle": "Creation Error",
-        "toastErrorDescription": "Could not create the category."
+        "toastErrorDescription": "Could not create the category.",
+        "toastUpdateErrorDescription": "Could not update the category."
     }
 }

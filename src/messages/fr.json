@@ -227,6 +227,8 @@
     "AdminCategoryForm": {
         "titleNew": "Nouvelle catégorie de service",
         "subtitleNew": "Remplissez le formulaire pour ajouter une nouvelle catégorie.",
+        "titleEdit": "Modifier la catégorie de service",
+        "subtitleEdit": "Vous modifiez la catégorie avec l'ID : {categoryId}",
         "backToList": "Retour à la liste",
         "cardTitle": "Détails de la catégorie",
         "cardDescription": "Fournissez les informations nécessaires pour la catégorie.",
@@ -243,7 +245,10 @@
         "save": "Enregistrer",
         "toastSuccessTitle": "Catégorie créée !",
         "toastSuccessDescription": "La nouvelle catégorie a été enregistrée.",
+        "toastUpdateSuccessTitle": "Catégorie mise à jour !",
+        "toastUpdateSuccessDescription": "La catégorie a été mise à jour avec succès.",
         "toastErrorTitle": "Erreur de création",
-        "toastErrorDescription": "Impossible de créer la catégorie."
+        "toastErrorDescription": "Impossible de créer la catégorie.",
+        "toastUpdateErrorDescription": "Impossible de mettre à jour la catégorie."
     }
 }
