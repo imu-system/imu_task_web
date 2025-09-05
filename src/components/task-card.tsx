@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { type Task } from '@/lib/types';
+import { type Task, type TaskCategory, type CategoryKey } from '@/lib/types';
 import {
   Calendar,
   MapPin,
@@ -23,7 +23,7 @@ import { Button } from './ui/button';
 import { useTranslations, useLocale } from 'next-intl';
 import { ReactNode } from 'react';
 
-const categoryIcons: Record<string, ReactNode> = {
+const categoryIcons: Record<CategoryKey, ReactNode> = {
   shopping: <ShoppingBasket className="h-4 w-4" />,
   gardening: <Spade className="h-4 w-4" />,
   lightCleaning: <SparklesIcon className="h-4 w-4" />,
@@ -50,7 +50,7 @@ const categoryIcons: Record<string, ReactNode> = {
   petSitting: <PawPrint className="h-4 w-4" />,
 };
 
-const categoryKeyMap: Record<string, keyof typeof categoryIcons> = {
+const categoryKeyMap: Record<TaskCategory, CategoryKey> = {
   Courses: 'shopping',
   Jardinage: 'gardening',
   'Ménage léger': 'lightCleaning',
