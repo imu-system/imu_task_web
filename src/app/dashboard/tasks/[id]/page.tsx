@@ -1,7 +1,7 @@
 'use client';
 
 import { getOffersForTask, getTasks } from '@/lib/data';
-import { notFound } from 'next/navigation';
+import { notFound, useParams } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -107,10 +107,12 @@ const OfferForm = () => {
   );
 };
 
-export default function TaskDetailPage({ params }: { params: { id: string } }) {
-  const task = getTasks().find((t) => t.id === params.id);
-  const offers = getOffersForTask(params.id);
+export default function TaskDetailPage() {
+  const { id } = useParams<{ id: string }>();
+  const task = getTasks().find((t) => t.id === id);
+  const offers = getOffersForTask(id);
   const t = useTranslations('TaskDetailPage');
+  const locale = useLocale();
 
   // Mock current user role for demonstration
   const [isClientView, setIsClientView] = useState(true);
