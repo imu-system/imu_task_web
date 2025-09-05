@@ -2,7 +2,8 @@
 'use client';
 
 import { useAuth } from '@/hooks/use-auth';
-import { Link, useRouter, useParams } from '@/navigation';
+import { Link, useRouter } from '@/navigation';
+import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Loader2, ArrowLeft } from 'lucide-react';
 import { UserRole, type ServiceCategory, type ServiceCategoryCreation } from '@/lib/types';
