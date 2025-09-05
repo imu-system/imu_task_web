@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2, ArrowLeft, User, ShieldCheck, Mail, Phone, CalendarDays, KeyRound, AlertTriangle, UserCog, Eye, Trash2, BadgeCheck, Languages, MapPin, UserPlus } from 'lucide-react';
+import { Loader2, ArrowLeft, User, ShieldCheck, Mail, Phone, CalendarDays, KeyRound, AlertTriangle, UserCog, Eye, Trash2, BadgeCheck, Languages, MapPin, UserPlus, FileUp } from 'lucide-react';
 import { UserRole, UserStatus } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -78,6 +78,7 @@ export default function AdminUserDetailPage() {
     const [isSavingRoles, setIsSavingRoles] = useState(false);
     const [isSuspensionDialogOpen, setSuspensionDialogOpen] = useState(false);
     const [isReactivationDialogOpen, setReactivationDialogOpen] = useState(false);
+    const [isKycResetDialogOpen, setKycResetDialogOpen] = useState(false);
 
     const profileForm = useForm<ProfileEditFormValues>({
         resolver: zodResolver(profileEditSchema),
@@ -176,6 +177,16 @@ export default function AdminUserDetailPage() {
             description: t('cards.actions.toastReactivateSuccessDescription'),
         });
         setReactivationDialogOpen(false);
+    }
+    
+    const handleResetKyc = async () => {
+        console.log("Resetting KYC...");
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        toast({
+            title: t('cards.actions.toastResetKycSuccessTitle'),
+            description: t('cards.actions.toastResetKycSuccessDescription'),
+        });
+        setKycResetDialogOpen(false);
     }
 
     const handleImpersonate = () => {
@@ -438,6 +449,26 @@ export default function AdminUserDetailPage() {
                                 </AlertDialogContent>
                             </AlertDialog>
                         )}
+                        
+                        <AlertDialog open={isKycResetDialogOpen} onOpenChange={setKycResetDialogOpen}>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="outline"><FileUp className="mr-2"/> {t('cards.actions.resetKyc')}</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>{t('cards.actions.resetKycDialog.title')}</AlertDialogTitle>
+                                    <AlertDialogDescription>{t('cards.actions.resetKycDialog.description', { name: user.displayName })}</AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <div className="space-y-2 py-2">
+                                    <Label htmlFor="kyc-reset-reason">{t('cards.actions.resetKycDialog.reasonLabel')}</Label>
+                                    <Textarea id="kyc-reset-reason" placeholder={t('cards.actions.resetKycDialog.reasonPlaceholder')} />
+                                </div>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>{t('cards.actions.resetKycDialog.cancel')}</AlertDialogCancel>
+                                    <AlertDialogAction onClick={handleResetKyc}>{t('cards.actions.resetKycDialog.confirm')}</AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
 
                         <Button variant="destructive" disabled><Trash2 className="mr-2"/> {t('cards.actions.delete')}</Button>
                     </CardContent>
@@ -527,3 +558,5 @@ export default function AdminUserDetailPage() {
     </div>
   );
 }
+
+    

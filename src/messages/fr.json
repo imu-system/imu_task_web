@@ -333,6 +333,7 @@
                 "impersonate": "Voir en tant que",
                 "suspend": "Suspendre l'utilisateur",
                 "reactivate": "Réactiver l'utilisateur",
+                "resetKyc": "Réinitialiser KYC",
                 "delete": "Supprimer l'utilisateur",
                 "suspendDialog": {
                     "title": "Suspendre l'utilisateur",
@@ -353,10 +354,20 @@
                     "cancel": "Annuler",
                     "confirm": "Réactiver"
                 },
+                "resetKycDialog": {
+                    "title": "Réinitialiser le processus KYC",
+                    "description": "Cette action demandera à {name} de soumettre à nouveau ses documents d'identité. Êtes-vous sûr ?",
+                    "reasonLabel": "Motif de la réinitialisation (optionnel, pour audit)",
+                    "reasonPlaceholder": "Ex: Documents expirés, qualité médiocre.",
+                    "cancel": "Annuler",
+                    "confirm": "Confirmer & Réinitialiser"
+                },
                 "toastSuspendSuccessTitle": "Utilisateur suspendu",
                 "toastSuspendSuccessDescription": "L'utilisateur a été suspendu avec succès.",
                 "toastReactivateSuccessTitle": "Utilisateur réactivé",
                 "toastReactivateSuccessDescription": "L'utilisateur a été réactivé avec succès.",
+                "toastResetKycSuccessTitle": "Processus KYC réinitialisé",
+                "toastResetKycSuccessDescription": "L'utilisateur a été notifié pour soumettre à nouveau ses documents.",
                 "impersonateWarning": {
                     "text": "Vous êtes actuellement connecté en tant que {email}.",
                     "stop": "Arrêter l'impersonation"
@@ -386,5 +397,4 @@
     }
 }
 
-    
     

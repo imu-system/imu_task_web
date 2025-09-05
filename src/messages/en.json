@@ -333,6 +333,7 @@
                 "impersonate": "Impersonate",
                 "suspend": "Suspend User",
                 "reactivate": "Reactivate User",
+                "resetKyc": "Reset KYC",
                 "delete": "Delete User",
                 "suspendDialog": {
                     "title": "Suspend User",
@@ -353,10 +354,20 @@
                     "cancel": "Cancel",
                     "confirm": "Reactivate"
                 },
+                "resetKycDialog": {
+                    "title": "Reset KYC Process",
+                    "description": "This will require {name} to resubmit their identity documents. Are you sure?",
+                    "reasonLabel": "Reason for reset (optional, for audit log)",
+                    "reasonPlaceholder": "e.g., Documents expired, quality was poor.",
+                    "cancel": "Cancel",
+                    "confirm": "Confirm & Reset"
+                },
                 "toastSuspendSuccessTitle": "User suspended",
                 "toastSuspendSuccessDescription": "The user has been successfully suspended.",
                 "toastReactivateSuccessTitle": "User reactivated",
                 "toastReactivateSuccessDescription": "The user has been successfully reactivated.",
+                "toastResetKycSuccessTitle": "KYC process reset",
+                "toastResetKycSuccessDescription": "The user has been notified to resubmit their documents.",
                 "impersonateWarning": {
                     "text": "You are currently impersonating {email}.",
                     "stop": "Stop impersonating"
@@ -386,5 +397,4 @@
     }
 }
 
-    
     
