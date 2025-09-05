@@ -30,32 +30,22 @@ import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { Badge } from './ui/badge';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { suggestTaskCategories } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
-import { type TaskCategory } from '@/lib/types';
+import { type ServiceCategory } from '@/lib/types';
 import { Card, CardContent } from './ui/card';
 import { useTranslations } from 'next-intl';
 import { createTask } from '@/lib/data';
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from '@/navigation';
-
-const taskCategories: [TaskCategory, ...TaskCategory[]] = [
-  'Courses',
-  'Jardinage',
-  'Ménage léger',
-  'Aide numérique',
-  'Aide administrative',
-  'Petits bricolages',
-  'Garde d’animaux',
-];
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 const formSchema = z.object({
   title: z.string().min(5, 'Le titre doit faire au moins 5 caractères.'),
   description: z.string().min(20, 'La description doit faire au moins 20 caractères.'),
-  category: z.enum(taskCategories, {
-    errorMap: () => ({ message: 'Veuillez sélectionner une catégorie.' }),
-  }),
+  categoryId: z.string({ required_error: 'Veuillez sélectionner une catégorie.' }),
   location: z.string().min(3, 'Veuillez indiquer un lieu.'),
   date: z.date({
     required_error: 'Veuillez sélectionner une date et une heure.',
@@ -64,15 +54,36 @@ const formSchema = z.object({
 });
 
 export function CreateTaskForm() {
-  const [suggestedCategories, setSuggestedCategories] = useState<string[]>([]);
+  const [taskCategories, setTaskCategories] = useState<ServiceCategory[]>([]);
+  const [suggestedCategories, setSuggestedCategories] = useState<ServiceCategory[]>([]);
   const [isSuggesting, setIsSuggesting] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
   const { toast } = useToast();
   const t = useTranslations('CreateTaskForm');
-  const tCat = useTranslations('TaskCategories');
   const { user } = useAuth();
   const router = useRouter();
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const q = query(collection(db, 'serviceCategories'), where('isActive', '==', true));
+        const querySnapshot = await getDocs(q);
+        const categories = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as ServiceCategory));
+        setTaskCategories(categories);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+        toast({
+          variant: 'destructive',
+          title: t('toastErrorTitle'),
+          description: "Impossible de charger les catégories.",
+        });
+      } finally {
+        setIsLoadingCategories(false);
+      }
+    };
+    fetchCategories();
+  }, [toast, t]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -97,7 +108,7 @@ export function CreateTaskForm() {
     }
     setIsSubmitting(true);
     try {
-        const taskId = await createTask({
+        await createTask({
             ...values,
             clientId: user.uid,
         });
@@ -116,7 +127,7 @@ export function CreateTaskForm() {
     } finally {
         setIsSubmitting(false);
     }
-}
+  }
 
   const handleSuggestCategories = async () => {
     const description = form.getValues('description');
@@ -124,9 +135,7 @@ export function CreateTaskForm() {
     setIsSuggesting(true);
     const result = await suggestTaskCategories({ taskDescription: description });
     if (result.success && result.categories) {
-      const filtered = result.categories.filter((cat) =>
-        taskCategories.includes(cat as TaskCategory)
-      );
+      const filtered = taskCategories.filter(tc => result.categories!.includes(tc.slug));
       setSuggestedCategories(filtered);
     } else {
       toast({
@@ -138,16 +147,6 @@ export function CreateTaskForm() {
     setIsSuggesting(false);
   };
   
-  const categoryMap: Record<TaskCategory, string> = {
-    'Courses': tCat('shopping'),
-    'Jardinage': tCat('gardening'),
-    'Ménage léger': tCat('lightCleaning'),
-    'Aide numérique': tCat('digitalHelp'),
-    'Aide administrative': tCat('administrativeHelp'),
-    'Petits bricolages': tCat('handyman'),
-    'Garde d’animaux': tCat('petSitting'),
-  };
-
   return (
     <Card>
     <CardContent className="p-6">
@@ -194,7 +193,7 @@ export function CreateTaskForm() {
               variant="outline"
               size="sm"
               onClick={handleSuggestCategories}
-              disabled={isSuggesting || descriptionValue.length < 20}
+              disabled={isSuggesting || descriptionValue.length < 20 || taskCategories.length === 0}
             >
               {isSuggesting ? (
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -209,12 +208,12 @@ export function CreateTaskForm() {
                 <div className="flex flex-wrap gap-2">
                     {suggestedCategories.map((cat) => (
                     <Badge
-                        key={cat}
+                        key={cat.id}
                         variant="secondary"
                         className="cursor-pointer"
-                        onClick={() => form.setValue('category', cat as TaskCategory, { shouldValidate: true })}
+                        onClick={() => form.setValue('categoryId', cat.id, { shouldValidate: true })}
                     >
-                        {cat}
+                        {cat.slug}
                     </Badge>
                     ))}
                 </div>
@@ -225,20 +224,20 @@ export function CreateTaskForm() {
 
         <FormField
           control={form.control}
-          name="category"
+          name="categoryId"
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('categoryLabel')}</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={isLoadingCategories}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder={t('categoryPlaceholder')} />
+                    <SelectValue placeholder={isLoadingCategories ? "Chargement..." : t('categoryPlaceholder')} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
                   {taskCategories.map((cat) => (
-                    <SelectItem key={cat} value={cat}>
-                      {categoryMap[cat]}
+                    <SelectItem key={cat.id} value={cat.id}>
+                      {cat.slug}
                     </SelectItem>
                   ))}
                 </SelectContent>

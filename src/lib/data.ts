@@ -1,4 +1,5 @@
 
+
 import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp } from 'firebase/firestore';
@@ -92,6 +93,7 @@ export const users: User[] = [
 ];
 
 // --- Service Categories ---
+// This data is now read from Firestore. These are here for reference/backup.
 
 // EN — English
 export const taskCategoriesEn: ServiceCategory[] = [
@@ -279,10 +281,9 @@ export const getTasks = (): Task[] => [
   },
 ];
 
-export async function createTask(taskData: Omit<Task, 'id' | 'client' | 'status' | 'createdAt' | 'updatedAt' | 'addressId' | 'latitude' | 'longitude' | 'timeWindowStart' | 'timeWindowEnd' | 'attachments' | 'visibility' | 'categoryId'> & { category: string; date: Date }) {
+export async function createTask(taskData: Omit<Task, 'id' | 'client' | 'status' | 'createdAt' | 'updatedAt' | 'addressId' | 'latitude' | 'longitude' | 'timeWindowStart' | 'timeWindowEnd' | 'attachments' | 'visibility' | 'category'>) {
     const docRef = await addDoc(collection(db, "tasks"), {
         ...taskData,
-        categoryId: taskData.category,
         timeWindowStart: taskData.date,
         timeWindowEnd: taskData.date,
         status: 'published',

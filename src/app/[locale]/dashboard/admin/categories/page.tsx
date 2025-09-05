@@ -3,30 +3,51 @@
 
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from '@/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Loader2, Shield } from 'lucide-react';
-import { UserRole } from '@/lib/types';
+import { UserRole, ServiceCategory } from '@/lib/types';
 import { useLocale, useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { taskCategoriesByLocale } from '@/lib/data';
 import { Badge } from '@/components/ui/badge';
+import { collection, onSnapshot, query } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 export default function AdminCategoriesPage() {
-    const { user, loading } = useAuth();
+    const { user, loading: authLoading } = useAuth();
     const router = useRouter();
     const t = useTranslations('AdminCategoriesPage');
     const tDashboard = useTranslations('DashboardNav');
     const locale = useLocale();
-    const categories = taskCategoriesByLocale[locale as keyof typeof taskCategoriesByLocale] || taskCategoriesByLocale.en;
+    
+    const [categories, setCategories] = useState<ServiceCategory[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (!loading && (!user || !user.roles?.includes(UserRole.admin))) {
-        router.push('/dashboard');
+        if (!authLoading && (!user || !user.roles?.includes(UserRole.admin))) {
+            router.push('/dashboard');
         }
-    }, [user, loading, router]);
+    }, [user, authLoading, router]);
 
-    if (loading || !user || !user.roles?.includes(UserRole.admin)) {
+    useEffect(() => {
+        const q = query(collection(db, 'serviceCategories'));
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+            const categoriesData: ServiceCategory[] = [];
+            querySnapshot.forEach((doc) => {
+                categoriesData.push({ id: doc.id, ...doc.data() } as ServiceCategory);
+            });
+            // You might want to sort or further process the categories here
+            setCategories(categoriesData);
+            setLoading(false);
+        }, (error) => {
+            console.error("Error fetching service categories: ", error);
+            setLoading(false);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    if (authLoading || loading || !user || !user.roles?.includes(UserRole.admin)) {
         return (
         <div className="flex justify-center items-center h-64">
             <Loader2 className="h-16 w-16 animate-spin text-primary" />
