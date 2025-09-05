@@ -40,7 +40,7 @@ export function DashboardNav() {
   }
 
   const navItems = [
-    { href: '/dashboard', icon: <LayoutGrid />, label: t('dashboard') },
+    { href: '/dashboard', icon: <LayoutGrid />, label: t('dashboard'), exact: true },
     { href: '/dashboard/tasks/new', icon: <PlusCircle />, label: t('createTask') },
     { href: '/dashboard/bookings', icon: <BookMarked />, label: t('myTasks') },
     { href: '/dashboard/messages', icon: <MessageSquare />, label: t('messages') },
@@ -63,7 +63,7 @@ export function DashboardNav() {
             <SidebarMenuItem key={item.href}>
               <Link href={item.href}>
                 <SidebarMenuButton
-                  isActive={pathname.startsWith(item.href) && item.href !== '/dashboard' || pathname === '/dashboard'}
+                  isActive={item.exact ? pathname === item.href : pathname.startsWith(item.href)}
                   className="w-full justify-start"
                 >
                   {item.icon}
