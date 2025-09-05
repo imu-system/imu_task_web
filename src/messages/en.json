@@ -64,7 +64,8 @@
         "users": "Users",
         "categories": "Categories",
         "tasks": "Tasks",
-        "offers": "Offers"
+        "offers": "Offers",
+        "bookings": "Bookings"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -213,6 +214,7 @@
         "quickActionExport": "Accounting Export",
         "quickActionTasks": "Manage Tasks",
         "quickActionOffers": "Manage Offers",
+        "quickActionBookings": "Manage Bookings",
         "actionView": "View"
     },
     "AdminCategoriesPage": {
@@ -631,5 +633,35 @@
                 }
             }
         }
+    },
+    "AdminBookingsPage": {
+        "title": "Booking Management",
+        "subtitle": "Supervise all confirmed bookings on the platform.",
+        "searchPlaceholder": "Search by ID, user, task...",
+        "tableTitle": "All Bookings",
+        "tableDescription": "List of all bookings between clients and providers.",
+        "details": "Details",
+        "table": {
+            "id": "Booking ID",
+            "task": "Task",
+            "client": "Client",
+            "provider": "Provider",
+            "amount": "Amount",
+            "status": "Status",
+            "actions": "Actions"
+        },
+        "status": {
+            "scheduled": "Scheduled",
+            "in_progress": "In Progress",
+            "completed": "Completed",
+            "no_show_client": "Client No-Show",
+            "no_show_provider": "Provider No-Show",
+            "canceled": "Canceled"
+        }
+    },
+    "AdminBookingDetailPage": {
+        "title": "Booking Details",
+        "backToList": "Back to bookings list",
+        "notFound": "Booking not found."
     }
 }

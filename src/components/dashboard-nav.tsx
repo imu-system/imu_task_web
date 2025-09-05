@@ -29,6 +29,7 @@ import {
   LayoutList,
   ListOrdered,
   Handshake,
+  CalendarCheck,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -118,6 +119,14 @@ export function DashboardNav() {
                         <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/offers')}>
                             <Handshake />
                             <span>{t('offers')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+                 <SidebarMenuItem>
+                    <Link href="/dashboard/admin/bookings">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/bookings')}>
+                            <CalendarCheck />
+                            <span>{t('bookings')}</span>
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>

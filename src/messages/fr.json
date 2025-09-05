@@ -64,7 +64,8 @@
         "users": "Utilisateurs",
         "categories": "Catégories",
         "tasks": "Missions",
-        "offers": "Offres"
+        "offers": "Offres",
+        "bookings": "Réservations"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -213,6 +214,7 @@
         "quickActionExport": "Export Comptable",
         "quickActionTasks": "Gérer les missions",
         "quickActionOffers": "Gérer les offres",
+        "quickActionBookings": "Gérer les réservations",
         "actionView": "Voir"
     },
     "AdminCategoriesPage": {
@@ -631,5 +633,35 @@
                 }
             }
         }
+    },
+    "AdminBookingsPage": {
+        "title": "Gestion des Réservations",
+        "subtitle": "Supervisez toutes les réservations confirmées sur la plateforme.",
+        "searchPlaceholder": "Rechercher par ID, utilisateur, mission...",
+        "tableTitle": "Toutes les Réservations",
+        "tableDescription": "Liste de toutes les réservations entre clients et prestataires.",
+        "details": "Détails",
+        "table": {
+            "id": "ID Réservation",
+            "task": "Mission",
+            "client": "Client",
+            "provider": "Prestataire",
+            "amount": "Montant",
+            "status": "Statut",
+            "actions": "Actions"
+        },
+        "status": {
+            "scheduled": "Planifiée",
+            "in_progress": "En cours",
+            "completed": "Terminée",
+            "no_show_client": "Client absent",
+            "no_show_provider": "Prestataire absent",
+            "canceled": "Annulée"
+        }
+    },
+    "AdminBookingDetailPage": {
+        "title": "Détails de la Réservation",
+        "backToList": "Retour à la liste des réservations",
+        "notFound": "Réservation non trouvée."
     }
 }
