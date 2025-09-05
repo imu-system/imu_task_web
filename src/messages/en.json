@@ -206,7 +206,8 @@
         "quickActionCategory": "New Category",
         "quickActionAnnouncement": "System Announcement",
         "quickActionUsers": "Manage Users",
-        "quickActionExport": "Accounting Export"
+        "quickActionExport": "Accounting Export",
+        "actionView": "View"
     },
     "AdminCategoriesPage": {
         "title": "Service Categories",

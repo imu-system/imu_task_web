@@ -206,7 +206,8 @@
         "quickActionCategory": "Nouvelle Catégorie",
         "quickActionAnnouncement": "Annonce système",
         "quickActionUsers": "Gérer les utilisateurs",
-        "quickActionExport": "Export Comptable"
+        "quickActionExport": "Export Comptable",
+        "actionView": "Voir"
     },
     "AdminCategoriesPage": {
         "title": "Catégories de services",

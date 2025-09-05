@@ -10,7 +10,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useRouter, Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
-import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2 } from "lucide-react";
+import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye } from "lucide-react";
 
 const kpiData = [
   { title: "Revenus (Mensuel)", value: "€4,231.89", change: "+20.1% vs mois dernier", icon: <DollarSign className="h-4 w-4 text-muted-foreground" /> },
@@ -27,9 +27,9 @@ const conversionData = [
 ];
 
 const priorityQueue = [
-    { id: 'KYC001', type: 'KYC en attente', user: 'Jean Dupont', date: '2023-10-26', icon: <ShieldQuestion className="h-5 w-5 text-yellow-500"/>},
-    { id: 'DIS042', type: 'Litige ouvert', user: 'Marie Curie', date: '2023-10-25', icon: <BadgeAlert className="h-5 w-5 text-red-500"/>},
-    { id: 'PAY314', type: 'Paiement en échec', user: 'Pierre Martin', date: '2023-10-25', icon: <CreditCard className="h-5 w-5 text-blue-500"/>},
+    { id: 'KYC001', type: 'KYC en attente', user: 'Jean Dupont', date: '2023-10-26', icon: <ShieldQuestion className="h-5 w-5 text-yellow-500"/>, href: '/dashboard/admin/kyc'},
+    { id: 'DIS042', type: 'Litige ouvert', user: 'Marie Curie', date: '2023-10-25', icon: <BadgeAlert className="h-5 w-5 text-red-500"/>, href: '#'},
+    { id: 'PAY314', type: 'Paiement en échec', user: 'Pierre Martin', date: '2023-10-25', icon: <CreditCard className="h-5 w-5 text-blue-500"/>, href: '#'},
 ];
 
 export default function AdminDashboardPage() {
@@ -111,6 +111,7 @@ export default function AdminDashboardPage() {
                                 <TableRow>
                                     <TableHead>Type</TableHead>
                                     <TableHead>Utilisateur</TableHead>
+                                    <TableHead className="text-right">Action</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -123,6 +124,11 @@ export default function AdminDashboardPage() {
                                             </div>
                                         </TableCell>
                                         <TableCell>{item.user}</TableCell>
+                                        <TableCell className="text-right">
+                                             <Button variant="outline" size="sm" asChild>
+                                                <Link href={item.href}><Eye className="h-4 w-4"/></Link>
+                                            </Button>
+                                        </TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
