@@ -1,29 +1,34 @@
+
+'use client';
+
 import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Link } from '@/navigation';
 import { Zap } from 'lucide-react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export default function SignInPage() {
+  const t = useTranslations('SignInPage');
+
   return (
     <>
       <div className="flex flex-col items-center text-center mb-8">
         <Link href="/" className="flex items-center gap-2 font-bold mb-4">
           <Zap className="h-8 w-8 text-primary" />
         </Link>
-        <CardTitle className="text-2xl">Connectez-vous à votre compte</CardTitle>
+        <CardTitle className="text-2xl">{t('title')}</CardTitle>
         <CardDescription>
-          Ou{' '}
+          {t('orSignUp')}{' '}
           <Link href="/sign-up" className="font-medium text-primary hover:underline">
-            créez un nouveau compte
+            {t('signUpLink')}
           </Link>
         </CardDescription>
       </div>
@@ -31,7 +36,7 @@ export default function SignInPage() {
         <CardContent className="p-6">
           <form className="space-y-6">
             <div>
-              <Label htmlFor="email">Adresse e-mail</Label>
+              <Label htmlFor="email">{t('emailLabel')}</Label>
               <div className="mt-2">
                 <Input
                   id="email"
@@ -45,10 +50,10 @@ export default function SignInPage() {
 
             <div>
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">Mot de passe</Label>
+                <Label htmlFor="password">{t('passwordLabel')}</Label>
                 <div className="text-sm">
                   <a href="#" className="font-medium text-primary hover:underline">
-                    Mot de passe oublié ?
+                    {t('forgotPasswordLink')}
                   </a>
                 </div>
               </div>
@@ -65,7 +70,7 @@ export default function SignInPage() {
 
             <div>
               <Button type="submit" className="w-full">
-                Se connecter
+                {t('submitButton')}
               </Button>
             </div>
           </form>

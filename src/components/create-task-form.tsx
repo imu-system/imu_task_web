@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useForm, Controller } from 'react-hook-form';
@@ -34,6 +35,7 @@ import { suggestTaskCategories } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 import { type TaskCategory } from '@/lib/types';
 import { Card, CardContent } from './ui/card';
+import { useTranslations } from 'next-intl';
 
 const taskCategories: [TaskCategory, ...TaskCategory[]] = [
   'Courses',
@@ -62,6 +64,8 @@ export function CreateTaskForm() {
   const [suggestedCategories, setSuggestedCategories] = useState<string[]>([]);
   const [isSuggesting, setIsSuggesting] = useState(false);
   const { toast } = useToast();
+  const t = useTranslations('CreateTaskForm');
+  const tCat = useTranslations('TaskCategories');
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -76,8 +80,8 @@ export function CreateTaskForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     toast({
-      title: "Mission créée !",
-      description: "Votre mission a été publiée avec succès.",
+      title: t('toastSuccessTitle'),
+      description: t('toastSuccessDescription'),
     });
   }
 
@@ -90,11 +94,21 @@ export function CreateTaskForm() {
     } else {
       toast({
         variant: 'destructive',
-        title: 'Erreur',
-        description: result.error,
+        title: t('toastErrorTitle'),
+        description: result.error || t('toastErrorDescription'),
       });
     }
     setIsSuggesting(false);
+  };
+  
+  const categoryMap: Record<TaskCategory, string> = {
+    'Courses': tCat('shopping'),
+    'Jardinage': tCat('gardening'),
+    'Ménage léger': tCat('lightCleaning'),
+    'Aide numérique': tCat('digitalHelp'),
+    'Aide administrative': tCat('administrativeHelp'),
+    'Petits bricolages': tCat('handyman'),
+    'Garde d’animaux': tCat('petSitting'),
   };
 
   return (
@@ -107,9 +121,9 @@ export function CreateTaskForm() {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Titre de la mission</FormLabel>
+              <FormLabel>{t('taskTitleLabel')}</FormLabel>
               <FormControl>
-                <Input placeholder="Ex: Tondre la pelouse" {...field} />
+                <Input placeholder={t('taskTitlePlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -121,16 +135,16 @@ export function CreateTaskForm() {
           name="description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description détaillée</FormLabel>
+              <FormLabel>{t('descriptionLabel')}</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Décrivez précisément ce dont vous avez besoin..."
+                  placeholder={t('descriptionPlaceholder')}
                   className="resize-none"
                   {...field}
                 />
               </FormControl>
               <FormDescription>
-                Plus vous serez précis, plus vous recevrez d'offres pertinentes.
+                {t('descriptionHelp')}
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -144,11 +158,11 @@ export function CreateTaskForm() {
                 ) : (
                     <Sparkles className="mr-2 h-4 w-4" />
                 )}
-                Suggérer des catégories avec l'IA
+                {t('suggestCategoriesButton')}
             </Button>
             {suggestedCategories.length > 0 && (
                 <div className="mt-4 space-y-2">
-                <p className="text-sm font-medium">Suggestions :</p>
+                <p className="text-sm font-medium">{t('suggestionsLabel')}</p>
                 <div className="flex flex-wrap gap-2">
                     {suggestedCategories.map((cat) => (
                     <Badge
@@ -171,17 +185,17 @@ export function CreateTaskForm() {
           name="category"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Catégorie</FormLabel>
+              <FormLabel>{t('categoryLabel')}</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Choisissez une catégorie" />
+                    <SelectValue placeholder={t('categoryPlaceholder')} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
                   {taskCategories.map((cat) => (
                     <SelectItem key={cat} value={cat}>
-                      {cat}
+                      {categoryMap[cat]}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -197,9 +211,9 @@ export function CreateTaskForm() {
             name="location"
             render={({ field }) => (
                 <FormItem>
-                <FormLabel>Lieu de la mission</FormLabel>
+                <FormLabel>{t('locationLabel')}</FormLabel>
                 <FormControl>
-                    <Input placeholder="Adresse, Ville" {...field} />
+                    <Input placeholder={t('locationPlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
                 </FormItem>
@@ -211,7 +225,7 @@ export function CreateTaskForm() {
             name="date"
             render={({ field }) => (
                 <FormItem className="flex flex-col">
-                <FormLabel>Date et heure</FormLabel>
+                <FormLabel>{t('datetimeLabel')}</FormLabel>
                 <Popover>
                     <PopoverTrigger asChild>
                     <FormControl>
@@ -225,7 +239,7 @@ export function CreateTaskForm() {
                         {field.value ? (
                             format(field.value, 'PPP à HH:mm', { locale: fr })
                         ) : (
-                            <span>Choisissez une date</span>
+                            <span>{t('datetimePlaceholder')}</span>
                         )}
                         <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                         </Button>
@@ -240,7 +254,6 @@ export function CreateTaskForm() {
                         initialFocus
                         locale={fr}
                     />
-                    {/* Time picker could be added here */}
                     </PopoverContent>
                 </Popover>
                 <FormMessage />
@@ -254,19 +267,19 @@ export function CreateTaskForm() {
           name="price"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Votre budget (en €)</FormLabel>
+              <FormLabel>{t('budgetLabel')}</FormLabel>
               <FormControl>
                 <Input type="number" {...field} />
               </FormControl>
               <FormDescription>
-                Ceci est le montant qui sera proposé au prestataire.
+                {t('budgetHelp')}
               </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit" size="lg">Publier la mission</Button>
+        <Button type="submit" size="lg">{t('submitButton')}</Button>
       </form>
     </Form>
     </CardContent>

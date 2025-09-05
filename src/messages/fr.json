@@ -49,8 +49,7 @@
     "LanguageSwitcher": {
         "changeLanguage": "Changer de langue",
         "fr": "Français",
-        "en": "English",
-        "ja": "日本語"
+        "en": "English"
     },
     "DashboardNav": {
         "dashboard": "Dashboard",
@@ -81,5 +80,47 @@
         "administrativeHelp": "Aide administrative",
         "handyman": "Petits bricolages",
         "petSitting": "Garde d’animaux"
+    },
+    "CreateTaskForm": {
+        "taskTitleLabel": "Titre de la mission",
+        "taskTitlePlaceholder": "Ex: Tondre la pelouse",
+        "descriptionLabel": "Description détaillée",
+        "descriptionPlaceholder": "Décrivez précisément ce dont vous avez besoin...",
+        "descriptionHelp": "Plus vous serez précis, plus vous recevrez d'offres pertinentes.",
+        "suggestCategoriesButton": "Suggérer des catégories avec l'IA",
+        "suggestionsLabel": "Suggestions :",
+        "categoryLabel": "Catégorie",
+        "categoryPlaceholder": "Choisissez une catégorie",
+        "locationLabel": "Lieu de la mission",
+        "locationPlaceholder": "Adresse, Ville",
+        "datetimeLabel": "Date et heure",
+        "datetimePlaceholder": "Choisissez une date",
+        "budgetLabel": "Votre budget (en €)",
+        "budgetHelp": "Ceci est le montant qui sera proposé au prestataire.",
+        "submitButton": "Publier la mission",
+        "toastSuccessTitle": "Mission créée !",
+        "toastSuccessDescription": "Votre mission a été publiée avec succès.",
+        "toastErrorTitle": "Erreur",
+        "toastErrorDescription": "Une erreur est survenue lors de la suggestion des catégories."
+    },
+    "SignInPage": {
+        "title": "Connectez-vous à votre compte",
+        "orSignUp": "Ou",
+        "signUpLink": "créez un nouveau compte",
+        "emailLabel": "Adresse e-mail",
+        "passwordLabel": "Mot de passe",
+        "forgotPasswordLink": "Mot de passe oublié ?",
+        "submitButton": "Se connecter"
+    },
+    "SignUpPage": {
+        "title": "Créez votre compte ImuTask",
+        "orSignIn": "Déjà membre ?",
+        "signInLink": "Connectez-vous",
+        "nameLabel": "Nom complet",
+        "emailLabel": "Adresse e-mail",
+        "passwordLabel": "Mot de passe",
+        "submitButton": "Créer le compte",
+        "termsPrefix": "En créant un compte, vous acceptez nos",
+        "termsLink": "Conditions d'utilisation"
     }
 }

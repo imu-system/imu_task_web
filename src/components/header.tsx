@@ -1,6 +1,6 @@
+
 'use client';
 
-import Link from 'next/link';
 import { Button } from './ui/button';
 import {
   DropdownMenu,
@@ -24,7 +24,7 @@ import { useState } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
-import { usePathname, Link as IntlLink } from '@/navigation';
+import { usePathname, Link } from '@/navigation';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -179,10 +179,10 @@ export default function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem asChild>
-                  <IntlLink href={pathname} locale="fr">{tLang('fr')}</IntlLink>
+                  <Link href={pathname} locale="fr">{tLang('fr')}</Link>
                 </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <IntlLink href={pathname} locale="en">{tLang('en')}</IntlLink>
+                    <Link href={pathname} locale="en">{tLang('en')}</Link>
                   </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

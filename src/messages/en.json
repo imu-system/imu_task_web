@@ -49,8 +49,7 @@
     "LanguageSwitcher": {
         "changeLanguage": "Change language",
         "fr": "Français",
-        "en": "English",
-        "ja": "日本語"
+        "en": "English"
     },
     "DashboardNav": {
         "dashboard": "Dashboard",
@@ -81,5 +80,47 @@
         "administrativeHelp": "Administrative help",
         "handyman": "Handyman",
         "petSitting": "Pet sitting"
+    },
+    "CreateTaskForm": {
+        "taskTitleLabel": "Task title",
+        "taskTitlePlaceholder": "E.g. Mow the lawn",
+        "descriptionLabel": "Detailed description",
+        "descriptionPlaceholder": "Describe precisely what you need...",
+        "descriptionHelp": "The more precise you are, the more relevant offers you will receive.",
+        "suggestCategoriesButton": "Suggest categories with AI",
+        "suggestionsLabel": "Suggestions:",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "Choose a category",
+        "locationLabel": "Task location",
+        "locationPlaceholder": "Address, City",
+        "datetimeLabel": "Date and time",
+        "datetimePlaceholder": "Choose a date",
+        "budgetLabel": "Your budget (in €)",
+        "budgetHelp": "This is the amount that will be offered to the provider.",
+        "submitButton": "Publish task",
+        "toastSuccessTitle": "Task created!",
+        "toastSuccessDescription": "Your task has been successfully published.",
+        "toastErrorTitle": "Error",
+        "toastErrorDescription": "An error occurred while suggesting categories."
+    },
+    "SignInPage": {
+        "title": "Sign in to your account",
+        "orSignUp": "Or",
+        "signUpLink": "create a new account",
+        "emailLabel": "Email address",
+        "passwordLabel": "Password",
+        "forgotPasswordLink": "Forgot password?",
+        "submitButton": "Sign in"
+    },
+    "SignUpPage": {
+        "title": "Create your ImuTask account",
+        "orSignIn": "Already a member?",
+        "signInLink": "Sign in",
+        "nameLabel": "Full name",
+        "emailLabel": "Email address",
+        "passwordLabel": "Password",
+        "submitButton": "Create account",
+        "termsPrefix": "By creating an account, you agree to our",
+        "termsLink": "Terms of Service"
     }
 }

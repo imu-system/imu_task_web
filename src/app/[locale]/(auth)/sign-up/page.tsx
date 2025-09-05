@@ -1,3 +1,6 @@
+
+'use client';
+
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -9,21 +12,24 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Link } from '@/navigation';
 import { Zap } from 'lucide-react';
-import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export default function SignUpPage() {
+    const t = useTranslations('SignUpPage');
+
   return (
     <>
       <div className="flex flex-col items-center text-center mb-8">
         <Link href="/" className="flex items-center gap-2 font-bold mb-4">
           <Zap className="h-8 w-8 text-primary" />
         </Link>
-        <CardTitle className="text-2xl">Créez votre compte ImuTask</CardTitle>
+        <CardTitle className="text-2xl">{t('title')}</CardTitle>
         <CardDescription>
-          Déjà membre ?{' '}
+          {t('orSignIn')}{' '}
           <Link href="/sign-in" className="font-medium text-primary hover:underline">
-            Connectez-vous
+            {t('signInLink')}
           </Link>
         </CardDescription>
       </div>
@@ -31,7 +37,7 @@ export default function SignUpPage() {
         <CardContent className="p-6">
           <form className="space-y-6">
             <div>
-              <Label htmlFor="name">Nom complet</Label>
+              <Label htmlFor="name">{t('nameLabel')}</Label>
               <div className="mt-2">
                 <Input
                   id="name"
@@ -44,7 +50,7 @@ export default function SignUpPage() {
             </div>
 
             <div>
-              <Label htmlFor="email">Adresse e-mail</Label>
+              <Label htmlFor="email">{t('emailLabel')}</Label>
               <div className="mt-2">
                 <Input
                   id="email"
@@ -57,7 +63,7 @@ export default function SignUpPage() {
             </div>
 
             <div>
-              <Label htmlFor="password">Mot de passe</Label>
+              <Label htmlFor="password">{t('passwordLabel')}</Label>
               <div className="mt-2">
                 <Input
                   id="password"
@@ -71,16 +77,16 @@ export default function SignUpPage() {
             
             <div>
               <Button type="submit" className="w-full">
-                Créer le compte
+                {t('submitButton')}
               </Button>
             </div>
           </form>
         </CardContent>
         <CardFooter className="px-6 pb-6">
              <p className="text-xs text-muted-foreground text-center">
-                En créant un compte, vous acceptez nos{' '}
+                {t('termsPrefix')}{' '}
                 <Link href="/legal/terms" className="underline hover:text-primary">
-                    Conditions d'utilisation
+                    {t('termsLink')}
                 </Link>
                 .
             </p>
