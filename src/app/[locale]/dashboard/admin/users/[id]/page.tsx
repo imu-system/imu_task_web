@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2, ArrowLeft, User, ShieldCheck, Mail, Phone, CalendarDays, KeyRound, AlertTriangle, UserCog, EyeOff, Trash2, BadgeCheck, Languages, MapPin } from 'lucide-react';
+import { Loader2, ArrowLeft, User, ShieldCheck, Mail, Phone, CalendarDays, KeyRound, AlertTriangle, UserCog, EyeOff, Trash2, BadgeCheck, Languages, MapPin, UserPlus } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -16,9 +16,10 @@ import { Badge } from '@/components/ui/badge';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage, FormDescription } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const profileEditSchema = z.object({
   displayName: z.string().min(2, "Le nom est requis."),
@@ -28,6 +29,14 @@ const profileEditSchema = z.object({
 });
 
 type ProfileEditFormValues = z.infer<typeof profileEditSchema>;
+
+const rolesFormSchema = z.object({
+    roles: z.array(z.string()).refine(value => value.some(role => role), {
+        message: "L'utilisateur doit avoir au moins un rôle."
+    })
+})
+type RolesFormValues = z.infer<typeof rolesFormSchema>;
+
 
 // Using the same mock data as the list page for consistency
 const mockUsers: any[] = [
@@ -50,9 +59,14 @@ export default function AdminUserDetailPage() {
     const [user, setUser] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [isSaving, setIsSaving] = useState(false);
+    const [isSavingRoles, setIsSavingRoles] = useState(false);
 
-    const form = useForm<ProfileEditFormValues>({
+    const profileForm = useForm<ProfileEditFormValues>({
         resolver: zodResolver(profileEditSchema),
+    });
+
+    const rolesForm = useForm<RolesFormValues>({
+        resolver: zodResolver(rolesFormSchema),
     });
 
     useEffect(() => {
@@ -66,41 +80,41 @@ export default function AdminUserDetailPage() {
         const fetchedUser = mockUsers.find(u => u.id === userId);
         if (fetchedUser) {
             setUser(fetchedUser);
-            form.reset({
+            profileForm.reset({
                 displayName: fetchedUser.profile.displayName || fetchedUser.displayName,
                 city: fetchedUser.profile.city || '',
                 languages: (fetchedUser.profile.languages || []).join(', '),
                 verifiedBadges: (fetchedUser.profile.verifiedBadges || []).join(', '),
             });
+            rolesForm.reset({
+                roles: fetchedUser.roles || []
+            })
         } else {
             console.error("User not found");
         }
         setLoading(false);
-    }, [userId, form]);
+    }, [userId, profileForm, rolesForm]);
 
-    const onSubmit = async (data: ProfileEditFormValues) => {
+    const onProfileSubmit = async (data: ProfileEditFormValues) => {
         setIsSaving(true);
-        console.log("Saving data:", data);
-        // In a real app, you'd call an update function here.
-        // e.g., await updateUserProfileByAdmin(userId, data);
+        console.log("Saving profile data:", data);
         await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Update mock data for demonstration
-        const userIndex = mockUsers.findIndex(u => u.id === userId);
-        if(userIndex > -1) {
-            mockUsers[userIndex].displayName = data.displayName;
-            mockUsers[userIndex].profile.displayName = data.displayName;
-            mockUsers[userIndex].profile.city = data.city;
-            mockUsers[userIndex].profile.languages = data.languages;
-            mockUsers[userIndex].profile.verifiedBadges = data.verifiedBadges;
-        }
-
         toast({
             title: t('toastUpdateSuccessTitle'),
             description: t('toastUpdateSuccessDescription'),
         });
         setIsSaving(false);
-        router.refresh();
+    };
+
+    const onRolesSubmit = async (data: RolesFormValues) => {
+        setIsSavingRoles(true);
+        console.log("Saving roles data:", data);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        toast({
+            title: t('cards.roles.toastSuccessTitle'),
+            description: t('cards.roles.toastSuccessDescription'),
+        });
+        setIsSavingRoles(false);
     };
 
     if (authLoading || loading || !adminUser || !adminUser.roles?.includes(UserRole.admin)) {
@@ -136,6 +150,12 @@ export default function AdminUserDetailPage() {
             default: return 'outline';
         }
     }
+    
+    const availableRoles = [
+        { id: UserRole.client, label: tUsers('roles.client') },
+        { id: UserRole.provider, label: tUsers('roles.provider') },
+        { id: UserRole.moderator, label: tUsers('roles.moderator') },
+    ];
 
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
@@ -205,8 +225,8 @@ export default function AdminUserDetailPage() {
                     </CardContent>
                 </Card>
 
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <Form {...profileForm}>
+                    <form onSubmit={profileForm.handleSubmit(onProfileSubmit)} className="space-y-6">
                         <Card>
                             <CardHeader>
                                 <CardTitle>{t('cards.editProfile.title')}</CardTitle>
@@ -214,7 +234,7 @@ export default function AdminUserDetailPage() {
                             </CardHeader>
                             <CardContent className="space-y-4">
                                 <FormField
-                                    control={form.control}
+                                    control={profileForm.control}
                                     name="displayName"
                                     render={({ field }) => (
                                         <FormItem>
@@ -227,7 +247,7 @@ export default function AdminUserDetailPage() {
                                     )}
                                 />
                                 <FormField
-                                    control={form.control}
+                                    control={profileForm.control}
                                     name="city"
                                     render={({ field }) => (
                                         <FormItem>
@@ -240,7 +260,7 @@ export default function AdminUserDetailPage() {
                                     )}
                                 />
                                 <FormField
-                                    control={form.control}
+                                    control={profileForm.control}
                                     name="languages"
                                     render={({ field }) => (
                                         <FormItem>
@@ -253,7 +273,7 @@ export default function AdminUserDetailPage() {
                                     )}
                                 />
                                  <FormField
-                                    control={form.control}
+                                    control={profileForm.control}
                                     name="verifiedBadges"
                                     render={({ field }) => (
                                         <FormItem>
@@ -266,13 +286,13 @@ export default function AdminUserDetailPage() {
                                     )}
                                 />
                             </CardContent>
+                            <CardContent className="flex justify-end">
+                                <Button type="submit" disabled={isSaving}>
+                                    {isSaving && <Loader2 className="animate-spin mr-2"/>}
+                                    {t('cards.editProfile.saveChanges')}
+                                </Button>
+                            </CardContent>
                         </Card>
-                        <div className="flex justify-end">
-                            <Button type="submit" disabled={isSaving}>
-                                {isSaving && <Loader2 className="animate-spin mr-2"/>}
-                                {t('cards.editProfile.saveChanges')}
-                            </Button>
-                        </div>
                     </form>
                 </Form>
 
@@ -289,10 +309,88 @@ export default function AdminUserDetailPage() {
                         <Button variant="destructive" disabled><Trash2 className="mr-2"/> {t('cards.actions.delete')}</Button>
                     </CardContent>
                 </Card>
+
+                <Form {...rolesForm}>
+                    <form onSubmit={rolesForm.handleSubmit(onRolesSubmit)}>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>{t('cards.roles.title')}</CardTitle>
+                                <CardDescription>{t('cards.roles.description')}</CardDescription>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <FormField
+                                    control={rolesForm.control}
+                                    name="roles"
+                                    render={() => (
+                                        <FormItem>
+                                            {availableRoles.map((item) => (
+                                                <FormField
+                                                    key={item.id}
+                                                    control={rolesForm.control}
+                                                    name="roles"
+                                                    render={({ field }) => {
+                                                        const isProviderRole = item.id === UserRole.provider;
+                                                        const kycNotVerified = user.kycStatus !== 'verified';
+                                                        return (
+                                                            <FormItem key={item.id} className="flex flex-row items-center space-x-3 space-y-0">
+                                                                <FormControl>
+                                                                    <Checkbox
+                                                                        checked={field.value?.includes(item.id)}
+                                                                        onCheckedChange={(checked) => {
+                                                                            return checked
+                                                                                ? field.onChange([...field.value, item.id])
+                                                                                : field.onChange(
+                                                                                    field.value?.filter(
+                                                                                        (value) => value !== item.id
+                                                                                    )
+                                                                                )
+                                                                        }}
+                                                                    />
+                                                                </FormControl>
+                                                                <FormLabel className="font-normal flex items-center gap-2">
+                                                                    {item.label}
+                                                                    {isProviderRole && kycNotVerified && (
+                                                                        <TooltipProvider>
+                                                                            <Tooltip>
+                                                                                <TooltipTrigger>
+                                                                                    <AlertTriangle className="h-4 w-4 text-amber-500" />
+                                                                                </TooltipTrigger>
+                                                                                <TooltipContent>
+                                                                                    <p>{t('cards.roles.kycWarning')}</p>
+                                                                                </TooltipContent>
+                                                                            </Tooltip>
+                                                                        </TooltipProvider>
+                                                                    )}
+                                                                </FormLabel>
+                                                            </FormItem>
+                                                        )
+                                                    }}
+                                                />
+                                            ))}
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+
+                                {user.roles.includes('admin') && (
+                                     <div className="flex flex-row items-center space-x-3 space-y-0 text-muted-foreground">
+                                        <Checkbox checked disabled/>
+                                        <label className="font-normal opacity-70">{tUsers('roles.admin')} ({t('cards.roles.adminUneditable')})</label>
+                                    </div>
+                                )}
+
+                            </CardContent>
+                            <CardContent className="flex justify-end">
+                                <Button type="submit" disabled={isSavingRoles}>
+                                    {isSavingRoles && <Loader2 className="animate-spin mr-2"/>}
+                                    {t('cards.roles.save')}
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </form>
+                </Form>
             </div>
         </div>
     </div>
   );
 }
-
-    

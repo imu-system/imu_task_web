@@ -344,9 +344,16 @@
                 "verifiedBadges": "Verified Badges",
                 "commaSeparated": "Separate with commas",
                 "saveChanges": "Save Changes"
+            },
+            "roles": {
+                "title": "Role Management",
+                "description": "Modify user roles. Be careful, this can impact their permissions.",
+                "kycWarning": "KYC not verified. Assigning 'Provider' role is not recommended.",
+                "adminUneditable": "Not editable",
+                "save": "Save Roles",
+                "toastSuccessTitle": "Roles updated",
+                "toastSuccessDescription": "The user's roles have been updated."
             }
         }
     }
 }
-
-    

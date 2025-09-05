@@ -344,9 +344,16 @@
                 "verifiedBadges": "Badges vérifiés",
                 "commaSeparated": "Séparer par des virgules",
                 "saveChanges": "Enregistrer les modifications"
+            },
+            "roles": {
+                "title": "Gestion des Rôles",
+                "description": "Modifiez les rôles de l'utilisateur. Attention, cela peut impacter ses permissions.",
+                "kycWarning": "KYC non vérifié. Assigner le rôle 'Prestataire' est déconseillé.",
+                "adminUneditable": "Non modifiable",
+                "save": "Enregistrer les rôles",
+                "toastSuccessTitle": "Rôles mis à jour",
+                "toastSuccessDescription": "Les rôles de l'utilisateur ont été mis à jour."
             }
         }
     }
 }
-
-    
