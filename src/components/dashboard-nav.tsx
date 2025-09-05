@@ -82,7 +82,7 @@ export function DashboardNav() {
                 <SidebarSeparator className="my-2"/>
                  <SidebarMenuItem>
                     <Link href="/dashboard/admin">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin') && !pathname.startsWith('/dashboard/admin/users') && !pathname.startsWith('/dashboard/admin/kyc') && !pathname.startsWith('/dashboard/admin/services') && !pathname.startsWith('/dashboard/admin/tasks')}>
+                        <SidebarMenuButton isActive={pathname === '/dashboard/admin'}>
                             <Shield />
                             <span>{t('admin')}</span>
                         </SidebarMenuButton>
