@@ -5,40 +5,57 @@ import TaskCard from '@/components/task-card';
 import { Button } from '@/components/ui/button';
 import { db } from '@/lib/firebase';
 import { Task } from '@/lib/types';
-import { collection, onSnapshot, query, where, doc, getDoc } from 'firebase/firestore';
+import { collection, onSnapshot, query, where, doc, getDoc, Timestamp } from 'firebase/firestore';
 import { PlusCircle, Loader2 } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
+import { useAuth } from '@/hooks/use-auth';
 
 export default function DashboardPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const t = useTranslations('DashboardPage');
+  const { user } = useAuth();
 
   useEffect(() => {
+    // We don't fetch tasks until the user is loaded
+    if (!user) {
+        setLoading(true);
+        return;
+    };
+
     const q = query(collection(db, 'tasks'), where('status', '==', 'open'));
     
     const unsubscribe = onSnapshot(q, async (querySnapshot) => {
       setLoading(true);
       const tasksData: Task[] = [];
       
+      const userPromises = new Map<string, Promise<any>>();
+      const getUser = (userId: string) => {
+        if (!userPromises.has(userId)) {
+          userPromises.set(userId, getDoc(doc(db, 'users', userId)));
+        }
+        return userPromises.get(userId)!;
+      }
+
       for (const taskDoc of querySnapshot.docs) {
         const taskData = taskDoc.data();
         
         let clientData: any = null;
         if (taskData.clientId) {
-          const userDocRef = doc(db, 'users', taskData.clientId);
-          const userDoc = await getDoc(userDocRef);
+          const userDoc = await getUser(taskData.clientId);
           if (userDoc.exists()) {
             clientData = { id: userDoc.id, ...userDoc.data() };
           }
         }
+        
+        const date = (taskData.date as Timestamp)?.toDate ? (taskData.date as Timestamp).toDate() : new Date();
 
         tasksData.push({
           id: taskDoc.id,
           ...taskData,
-          date: taskData.date.toDate(),
+          date: date,
           client: clientData ? { id: clientData.id, email: clientData.email, profile: { displayName: clientData.displayName, photoUrl: clientData.photoURL || `https://i.pravatar.cc/150?u=${clientData.id}` }} : null,
         } as Task);
       }
@@ -51,7 +68,7 @@ export default function DashboardPage() {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [user]);
 
   return (
     <div className="space-y-8">

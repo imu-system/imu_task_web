@@ -1,3 +1,4 @@
+
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -18,7 +19,7 @@ import {
   Wrench,
   PawPrint,
 } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { Button } from './ui/button';
 import { useTranslations, useLocale } from 'next-intl';
 import { ReactNode } from 'react';
@@ -69,11 +70,12 @@ export default function TaskCard({ task }: TaskCardProps) {
   const locale = useLocale();
   const t = useTranslations('TaskCard');
   const tCat = useTranslations('TaskCategories');
-  const catKey = categoryKeyMap[category];
+  const catKey = category ? categoryKeyMap[category] : 'shopping';
+  const categoryLabel = category ? tCat(catKey) : category;
+
   const clientName = client?.profile?.displayName || 'Utilisateur';
   const clientAvatarUrl = client?.profile?.photoUrl;
-  const clientFallback = clientName.charAt(0);
-
+  const clientFallback = clientName ? clientName.charAt(0) : 'U';
 
   return (
     <Card className="flex flex-col h-full">
@@ -81,7 +83,7 @@ export default function TaskCard({ task }: TaskCardProps) {
         <div className="flex items-center justify-between">
             <Badge variant="secondary" className="flex items-center gap-2">
                 {categoryIcons[catKey]}
-                <span>{tCat(catKey)}</span>
+                <span>{categoryLabel}</span>
             </Badge>
             <span className="text-xl font-bold text-primary">{price}€</span>
         </div>
