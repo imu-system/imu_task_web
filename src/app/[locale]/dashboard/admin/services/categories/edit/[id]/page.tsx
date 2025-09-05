@@ -6,7 +6,7 @@ import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Loader2, ArrowLeft } from 'lucide-react';
-import { UserRole, type ServiceCategory, type ServiceCategoryCreation } from '@/lib/types';
+import { UserRole, type ServiceCategory } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -26,16 +26,33 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
-import { doc, getDoc, Timestamp } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { updateServiceCategory } from '@/lib/data';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const categoryFormSchema = z.object({
-  name: z.string().min(3, 'Le nom doit contenir au moins 3 caractères.'),
   slug: z.string().min(3, 'Le slug doit contenir au moins 3 caractères.').regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Slug invalide (doit être en minuscules, sans espaces, ex: "home-cleaning").'),
-  description: z.string().optional(),
   displayOrder: z.coerce.number().int().min(0).default(10),
   isActive: z.boolean().default(true),
+  name: z.object({
+      fr: z.string().min(3, 'Le nom FR doit contenir au moins 3 caractères.'),
+      en: z.string().min(3, 'Le nom EN doit contenir au moins 3 caractères.'),
+  }),
+    description: z.object({
+        fr: z.string().optional(),
+        en: z.string().optional(),
+    }),
+  recommendedPriceMin: z.coerce.number().int().min(0).optional(),
+  recommendedPriceMax: z.coerce.number().int().min(0).optional(),
+}).refine(data => {
+    if (data.recommendedPriceMin !== undefined && data.recommendedPriceMax !== undefined) {
+        return data.recommendedPriceMax >= data.recommendedPriceMin;
+    }
+    return true;
+}, {
+    message: "Le prix maximum doit être supérieur ou égal au prix minimum.",
+    path: ["recommendedPriceMax"],
 });
 
 type CategoryFormValues = z.infer<typeof categoryFormSchema>;
@@ -59,6 +76,8 @@ export default function AdminEditCategoryPage() {
         defaultValues: {
             isActive: true,
             displayOrder: 10,
+            name: { fr: '', en: '' },
+            description: { fr: '', en: '' },
         }
     });
 
@@ -66,7 +85,11 @@ export default function AdminEditCategoryPage() {
 
     useEffect(() => {
         if (!isLoading) {
-            localStorage.setItem(localStorageKey, JSON.stringify(watchedValues));
+            try {
+                localStorage.setItem(localStorageKey, JSON.stringify(watchedValues));
+            } catch (e) {
+                console.error("Could not save to localStorage", e);
+            }
         }
     }, [watchedValues, isLoading, localStorageKey]);
 
@@ -88,13 +111,23 @@ export default function AdminEditCategoryPage() {
                 if (categorySnap.exists()) {
                     const categoryData = categorySnap.data() as ServiceCategory;
                     
-                    const savedData = localStorage.getItem(localStorageKey);
-                    const defaultValues = savedData ? JSON.parse(savedData) : {
-                        name: categoryData.name,
+                    let savedData = null;
+                    try {
+                         const item = localStorage.getItem(localStorageKey);
+                         if (item) savedData = JSON.parse(item);
+                    } catch (e) {
+                        console.error("Could not read from localStorage", e);
+                        savedData = null;
+                    }
+
+                    const defaultValues = savedData || {
                         slug: categoryData.slug,
-                        description: categoryData.description || '',
                         displayOrder: categoryData.displayOrder,
-                        isActive: categoryData.isActive
+                        isActive: categoryData.isActive,
+                        name: categoryData.name || { fr: '', en: '' },
+                        description: categoryData.description || { fr: '', en: '' },
+                        recommendedPriceMin: categoryData.recommendedPriceMin,
+                        recommendedPriceMax: categoryData.recommendedPriceMax,
                     };
                     form.reset(defaultValues);
                 } else {
@@ -123,16 +156,12 @@ export default function AdminEditCategoryPage() {
         if (!categoryId) return;
         setIsSaving(true);
         try {
-            const categoryData: Partial<ServiceCategoryCreation> = {
-                slug: data.slug,
-                name: data.name,
-                description: data.description,
-                icon: '', // Placeholder for now
-                displayOrder: data.displayOrder,
-                isActive: data.isActive,
+            await updateServiceCategory(categoryId, data);
+            try {
+                localStorage.removeItem(localStorageKey);
+            } catch (e) {
+                 console.error("Could not remove from localStorage", e);
             }
-            await updateServiceCategory(categoryId, categoryData);
-            localStorage.removeItem(localStorageKey);
             toast({
                 title: tForm('toastUpdateSuccessTitle'),
                 description: tForm('toastUpdateSuccessDescription'),
@@ -178,103 +207,179 @@ export default function AdminEditCategoryPage() {
             </div>
 
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>{tForm('cardTitle')}</CardTitle>
-                    <CardDescription>{tForm('cardDescription')}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <FormField
-                                    control={form.control}
-                                    name="name"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>{tForm('nameLabel')}</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder={tForm('namePlaceholder')} {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="slug"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>{tForm('slugLabel')}</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder={tForm('slugPlaceholder')} {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                            </div>
-                            <FormField
-                                control={form.control}
-                                name="description"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>{tForm('descriptionLabel')}</FormLabel>
-                                        <FormControl>
-                                            <Textarea placeholder={tForm('descriptionPlaceholder')} {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <FormField
-                                    control={form.control}
-                                    name="displayOrder"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>{tForm('displayOrderLabel')}</FormLabel>
-                                            <FormControl>
-                                                <Input type="number" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                                <FormField
-                                    control={form.control}
-                                    name="isActive"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>{tForm('statusLabel')}</FormLabel>
-                                            <div className="flex items-center space-x-2 pt-2">
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)}>
+                    <Tabs defaultValue="general">
+                        <TabsList className="mb-4">
+                            <TabsTrigger value="general">{tForm('tabs.general')}</TabsTrigger>
+                            <TabsTrigger value="translations">{tForm('tabs.translations')}</TabsTrigger>
+                        </TabsList>
+                        <TabsContent value="general">
+                             <Card>
+                                <CardHeader>
+                                    <CardTitle>{tForm('cardTitleGeneral')}</CardTitle>
+                                    <CardDescription>{tForm('cardDescriptionGeneral')}</CardDescription>
+                                </CardHeader>
+                                <CardContent className="space-y-6">
+                                    <FormField
+                                        control={form.control}
+                                        name="slug"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>{tForm('slugLabel')}</FormLabel>
                                                 <FormControl>
-                                                    <Switch
-                                                        checked={field.value}
-                                                        onCheckedChange={field.onChange}
-                                                    />
+                                                    <Input placeholder={tForm('slugPlaceholder')} {...field} />
                                                 </FormControl>
-                                                <Label htmlFor="isActive">{tForm('statusActive')}</Label>
-                                            </div>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
-                            </div>
-
-                            <div className="flex justify-end gap-2 pt-4">
-                                <Button type="button" variant="ghost" asChild>
-                                    <Link href="/dashboard/admin/services/categories">{tForm('cancel')}</Link>
-                                </Button>
-                                <Button type="submit" disabled={isSaving}>
-                                    {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
-                                    {tForm('save')}
-                                </Button>
-                            </div>
-                        </form>
-                    </Form>
-                </CardContent>
-            </Card>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <FormField
+                                            control={form.control}
+                                            name="displayOrder"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{tForm('displayOrderLabel')}</FormLabel>
+                                                    <FormControl>
+                                                        <Input type="number" {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="isActive"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{tForm('statusLabel')}</FormLabel>
+                                                    <div className="flex items-center space-x-2 pt-2">
+                                                        <FormControl>
+                                                            <Switch
+                                                                checked={field.value}
+                                                                onCheckedChange={field.onChange}
+                                                            />
+                                                        </FormControl>
+                                                        <Label htmlFor="isActive">{tForm('statusActive')}</Label>
+                                                    </div>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </div>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <FormField
+                                            control={form.control}
+                                            name="recommendedPriceMin"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{tForm('priceMinLabel')}</FormLabel>
+                                                    <FormControl>
+                                                        <Input type="number" {...field} placeholder="e.g. 1500 for 15.00€" />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="recommendedPriceMax"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{tForm('priceMaxLabel')}</FormLabel>
+                                                    <FormControl>
+                                                        <Input type="number" {...field} placeholder="e.g. 3000 for 30.00€" />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </TabsContent>
+                        <TabsContent value="translations">
+                             <Card>
+                                <CardHeader>
+                                    <CardTitle>{tForm('cardTitleTranslations')}</CardTitle>
+                                    <CardDescription>{tForm('cardDescriptionTranslations')}</CardDescription>
+                                </CardHeader>
+                                <CardContent className="space-y-6">
+                                     <div className="space-y-4 p-4 border rounded-md">
+                                        <h3 className="font-medium">Français</h3>
+                                        <FormField
+                                            control={form.control}
+                                            name="name.fr"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{tForm('nameLabel')}</FormLabel>
+                                                    <FormControl>
+                                                        <Input placeholder={tForm('namePlaceholderFR')} {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="description.fr"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{tForm('descriptionLabel')}</FormLabel>
+                                                    <FormControl>
+                                                        <Textarea placeholder={tForm('descriptionPlaceholder')} {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                     </div>
+                                     <div className="space-y-4 p-4 border rounded-md">
+                                        <h3 className="font-medium">English</h3>
+                                         <FormField
+                                            control={form.control}
+                                            name="name.en"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{tForm('nameLabel')}</FormLabel>
+                                                    <FormControl>
+                                                        <Input placeholder={tForm('namePlaceholderEN')} {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="description.en"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>{tForm('descriptionLabel')}</FormLabel>
+                                                    <FormControl>
+                                                        <Textarea placeholder={tForm('descriptionPlaceholder')} {...field} />
+                                                    </FormControl>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                     </div>
+                                </CardContent>
+                            </Card>
+                        </TabsContent>
+                    </Tabs>
+                    
+                    <div className="flex justify-end gap-2 pt-4">
+                        <Button type="button" variant="ghost" asChild>
+                            <Link href="/dashboard/admin/services/categories">{tForm('cancel')}</Link>
+                        </Button>
+                        <Button type="submit" disabled={isSaving}>
+                            {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
+                            {tForm('save')}
+                        </Button>
+                    </div>
+                </form>
+            </Form>
         </div>
     );
 }

@@ -232,11 +232,12 @@
         "backToList": "Back to list",
         "cardTitle": "Category Details",
         "cardDescription": "Provide the necessary information for the category.",
-        "nameLabel": "Name (EN)",
-        "namePlaceholder": "e.g., Home Cleaning",
+        "nameLabel": "Name",
+        "namePlaceholderEN": "e.g., Home Cleaning",
+        "namePlaceholderFR": "e.g., Ménage à domicile",
         "slugLabel": "Slug",
         "slugPlaceholder": "e.g., home-cleaning",
-        "descriptionLabel": "Description (EN)",
+        "descriptionLabel": "Description",
         "descriptionPlaceholder": "Describe the category...",
         "displayOrderLabel": "Display Order",
         "statusLabel": "Status",
@@ -249,6 +250,16 @@
         "toastUpdateSuccessDescription": "The category has been successfully updated.",
         "toastErrorTitle": "Creation Error",
         "toastErrorDescription": "Could not create the category.",
-        "toastUpdateErrorDescription": "Could not update the category."
+        "toastUpdateErrorDescription": "Could not update the category.",
+        "tabs": {
+            "general": "General",
+            "translations": "Translations"
+        },
+        "cardTitleGeneral": "General Details",
+        "cardDescriptionGeneral": "Manage general settings of the category.",
+        "cardTitleTranslations": "Translations",
+        "cardDescriptionTranslations": "Manage the category name and description in different languages.",
+        "priceMinLabel": "Recommended Min Price (cents)",
+        "priceMaxLabel": "Recommended Max Price (cents)"
     }
 }

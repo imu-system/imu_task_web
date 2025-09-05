@@ -232,11 +232,12 @@
         "backToList": "Retour à la liste",
         "cardTitle": "Détails de la catégorie",
         "cardDescription": "Fournissez les informations nécessaires pour la catégorie.",
-        "nameLabel": "Nom (FR)",
-        "namePlaceholder": "Ex: Ménage à domicile",
+        "nameLabel": "Nom",
+        "namePlaceholderFR": "Ex: Ménage à domicile",
+        "namePlaceholderEN": "Ex: Home Cleaning",
         "slugLabel": "Slug",
         "slugPlaceholder": "Ex: menage-domicile",
-        "descriptionLabel": "Description (FR)",
+        "descriptionLabel": "Description",
         "descriptionPlaceholder": "Décrivez la catégorie...",
         "displayOrderLabel": "Ordre d'affichage",
         "statusLabel": "Statut",
@@ -249,6 +250,16 @@
         "toastUpdateSuccessDescription": "La catégorie a été mise à jour avec succès.",
         "toastErrorTitle": "Erreur de création",
         "toastErrorDescription": "Impossible de créer la catégorie.",
-        "toastUpdateErrorDescription": "Impossible de mettre à jour la catégorie."
+        "toastUpdateErrorDescription": "Impossible de mettre à jour la catégorie.",
+        "tabs": {
+            "general": "Général",
+            "translations": "Traductions"
+        },
+        "cardTitleGeneral": "Détails Généraux",
+        "cardDescriptionGeneral": "Gérez les paramètres généraux de la catégorie.",
+        "cardTitleTranslations": "Traductions",
+        "cardDescriptionTranslations": "Gérez le nom et la description de la catégorie dans différentes langues.",
+        "priceMinLabel": "Prix Min Recommandé (centimes)",
+        "priceMaxLabel": "Prix Max Recommandé (centimes)"
     }
 }

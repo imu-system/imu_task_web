@@ -1,3 +1,4 @@
+
 // Types partagés pour le monorepo (générés d'après le schéma Prisma)
 // GitHub Copilot
 
@@ -234,8 +235,8 @@ export interface Address {
 export interface ServiceCategory {
     id: string;
     slug: string;
-    name: string;
-    description?: string | null;
+    name: Record<string, string>;
+    description?: Record<string, string>;
     icon?: string | null;
     isActive: boolean;
     displayOrder: number;
@@ -245,7 +246,6 @@ export interface ServiceCategory {
     updatedAt: DateTime;
 
     // Relations
-    // translations?: ServiceCategoryI18n[]; // i18n can be handled differently
     tasks?: Task[];
 }
 

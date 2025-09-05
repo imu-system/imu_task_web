@@ -227,7 +227,7 @@ export async function createServiceCategory(categoryData: ServiceCategoryCreatio
     return docRef.id;
 }
 
-export async function updateServiceCategory(id: string, categoryData: Partial<ServiceCategoryCreation>) {
+export async function updateServiceCategory(id: string, categoryData: Partial<ServiceCategory>) {
     const docRef = doc(db, 'serviceCategories', id);
     await updateDoc(docRef, {
         ...categoryData,
@@ -244,13 +244,18 @@ export async function duplicateServiceCategory(id: string) {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-        const data = docSnap.data() as ServiceCategoryCreation;
+        const data = docSnap.data() as ServiceCategory;
         const newSlug = `${data.slug}-copy`;
         
+        // We only need the creation data, not the full object with id, etc.
+        const { id: categoryId, createdAt, updatedAt, ...creationData } = data;
+
         await createServiceCategory({
-            ...data,
+            ...creationData,
             slug: newSlug,
-            name: `${data.name} (Copie)`,
+            name: Object.fromEntries(
+                Object.entries(data.name).map(([lang, value]) => [lang, `${value} (Copie)`])
+            ),
         });
 
     } else {
