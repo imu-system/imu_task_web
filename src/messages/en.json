@@ -538,6 +538,8 @@
             "forcePublish": "Force Publish",
             "unpublish": "Unpublish",
             "cancel": "Cancel Task",
+            "hideInfo": "Hide Public Info",
+            "asTemplate": "Convert to Template",
             "cancelDialog": {
                 "title": "Cancel Task",
                 "description": "This action is irreversible and will notify the client and any providers who made an offer. Please provide a reason for cancellation.",

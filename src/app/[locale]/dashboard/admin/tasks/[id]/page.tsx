@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2, ArrowLeft, User, Calendar, MapPin, Euro, ShieldAlert, BadgeInfo, PlayCircle, Ban, Trash2 } from 'lucide-react';
+import { Loader2, ArrowLeft, User, Calendar, MapPin, Euro, ShieldAlert, BadgeInfo, PlayCircle, Ban, Trash2, EyeOff, FileBox } from 'lucide-react';
 import { UserRole, Task, Offer, OfferStatus, TaskStatus } from '@/lib/types';
 import { useLocale, useTranslations } from 'next-intl';
 import { getTasks, getOffersForTask } from '@/lib/data';
@@ -192,6 +192,8 @@ export default function AdminTaskDetailPage() {
                     <CardContent className="grid grid-cols-1 gap-2">
                         <Button variant="outline"><PlayCircle className="mr-2"/>{t('moderation.forcePublish')}</Button>
                         <Button variant="outline"><Ban className="mr-2"/>{t('moderation.unpublish')}</Button>
+                        <Button variant="outline"><EyeOff className="mr-2"/>{t('moderation.hideInfo')}</Button>
+                        <Button variant="outline" disabled><FileBox className="mr-2"/>{t('moderation.asTemplate')}</Button>
                         <AlertDialog>
                             <AlertDialogTrigger asChild>
                                 <Button variant="destructive"><Trash2 className="mr-2"/>{t('moderation.cancel')}</Button>

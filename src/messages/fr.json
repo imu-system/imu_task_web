@@ -538,6 +538,8 @@
             "forcePublish": "Forcer la publication",
             "unpublish": "Dépublier",
             "cancel": "Annuler la mission",
+            "hideInfo": "Masquer infos publiques",
+            "asTemplate": "Convertir en template",
             "cancelDialog": {
                 "title": "Annuler la mission",
                 "description": "Cette action est irréversible et notifiera le client et les prestataires ayant fait une offre. Veuillez indiquer un motif d'annulation.",
