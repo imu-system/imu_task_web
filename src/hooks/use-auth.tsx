@@ -17,7 +17,7 @@ import {
   AuthError,
   updateProfile,
 } from 'firebase/auth';
-import { doc, setDoc, getFirestore, serverTimestamp } from 'firebase/firestore';
+import { doc, setDoc, getFirestore, serverTimestamp, writeBatch } from 'firebase/firestore';
 import { auth, db } from '@/lib/firebase';
 import { useRouter } from '@/navigation';
 import { z } from 'zod';
@@ -102,17 +102,35 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       // Update Firebase Auth profile
       await updateProfile(user, { displayName: data.name });
       
-      // Create user document in Firestore
+      // Create user and profile documents in a batch
+      const batch = writeBatch(db);
+
       const userDocRef = doc(db, 'users', user.uid);
-      await setDoc(userDocRef, {
+      batch.set(userDocRef, {
         email: user.email,
-        displayName: data.name,
         roles: ['client'],
         status: 'active',
         KYCStatus: 'not_required',
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
       });
+
+      const profileDocRef = doc(db, 'profiles', user.uid);
+      batch.set(profileDocRef, {
+        userId: user.uid,
+        displayName: data.name,
+        photoUrl: '',
+        bio: '',
+        languages: ['fr'],
+        averageRating: 0,
+        reviewsCount: 0,
+        skills: [],
+        verifiedBadges: [],
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      });
+
+      await batch.commit();
 
       router.push('/dashboard');
     } catch (err) {
