@@ -356,7 +356,11 @@
                 "toastSuspendSuccessTitle": "Utilisateur suspendu",
                 "toastSuspendSuccessDescription": "L'utilisateur a été suspendu avec succès.",
                 "toastReactivateSuccessTitle": "Utilisateur réactivé",
-                "toastReactivateSuccessDescription": "L'utilisateur a été réactivé avec succès."
+                "toastReactivateSuccessDescription": "L'utilisateur a été réactivé avec succès.",
+                "impersonateWarning": {
+                    "text": "Vous êtes actuellement connecté en tant que {email}.",
+                    "stop": "Arrêter l'impersonation"
+                }
             },
             "editProfile": {
                 "title": "Modifier le profil (Admin)",
@@ -382,4 +386,5 @@
     }
 }
 
+    
     

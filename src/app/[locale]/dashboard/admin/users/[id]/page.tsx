@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2, ArrowLeft, User, ShieldCheck, Mail, Phone, CalendarDays, KeyRound, AlertTriangle, UserCog, EyeOff, Trash2, BadgeCheck, Languages, MapPin, UserPlus } from 'lucide-react';
+import { Loader2, ArrowLeft, User, ShieldCheck, Mail, Phone, CalendarDays, KeyRound, AlertTriangle, UserCog, Eye, Trash2, BadgeCheck, Languages, MapPin, UserPlus } from 'lucide-react';
 import { UserRole, UserStatus } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -64,7 +64,7 @@ const mockUsers: any[] = [
 
 
 export default function AdminUserDetailPage() {
-    const { user: adminUser, loading: authLoading } = useAuth();
+    const { user: adminUser, loading: authLoading, startImpersonation } = useAuth();
     const router = useRouter();
     const params = useParams<{ id: string }>();
     const userId = params.id;
@@ -153,6 +153,13 @@ export default function AdminUserDetailPage() {
             description: t('cards.actions.toastReactivateSuccessDescription'),
         });
         setReactivationDialogOpen(false);
+    }
+
+    const handleImpersonate = () => {
+        if (user) {
+            startImpersonation(user);
+            router.push('/dashboard');
+        }
     }
 
     if (authLoading || loading || !adminUser || !adminUser.roles?.includes(UserRole.admin)) {
@@ -342,7 +349,9 @@ export default function AdminUserDetailPage() {
                         <CardDescription>{t('cards.actions.description')}</CardDescription>
                     </CardHeader>
                     <CardContent className="grid grid-cols-1 gap-2">
-                        <Button variant="outline" disabled><EyeOff className="mr-2"/> {t('cards.actions.impersonate')}</Button>
+                        <Button variant="outline" onClick={handleImpersonate} disabled={user.id === adminUser?.uid}>
+                            <Eye className="mr-2"/> {t('cards.actions.impersonate')}
+                        </Button>
                         
                         {user.status === UserStatus.active ? (
                             <AlertDialog open={isSuspensionDialogOpen} onOpenChange={setSuspensionDialogOpen}>
@@ -495,6 +504,8 @@ export default function AdminUserDetailPage() {
     </div>
   );
 }
+
+    
 
     
 

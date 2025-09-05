@@ -356,7 +356,11 @@
                 "toastSuspendSuccessTitle": "User suspended",
                 "toastSuspendSuccessDescription": "The user has been successfully suspended.",
                 "toastReactivateSuccessTitle": "User reactivated",
-                "toastReactivateSuccessDescription": "The user has been successfully reactivated."
+                "toastReactivateSuccessDescription": "The user has been successfully reactivated.",
+                "impersonateWarning": {
+                    "text": "You are currently impersonating {email}.",
+                    "stop": "Stop impersonating"
+                }
             },
             "editProfile": {
                 "title": "Edit Profile (Admin)",
@@ -382,4 +386,5 @@
     }
 }
 
+    
     

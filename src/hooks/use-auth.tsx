@@ -61,6 +61,9 @@ interface AuthContextType {
   signIn: (data: SignInFormValues) => Promise<void>;
   signUp: (data: SignUpFormValues) => Promise<void>;
   signOut: () => Promise<void>;
+  impersonatingUser: AuthUser | null;
+  startImpersonation: (targetUser: any) => void;
+  stopImpersonation: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -70,51 +73,59 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
   const [profileLoading, setProfileLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [originalAdmin, setOriginalAdmin] = useState<AuthUser | null>(null);
   const router = useRouter();
+
+  const impersonatingUser = originalAdmin ? user : null;
+
+  const fetchUserData = async (firebaseUser: FirebaseUser) => {
+    try {
+        const userDocRef = doc(db, 'users', firebaseUser.uid);
+        const profileDocRef = doc(db, 'profiles', firebaseUser.uid);
+
+        const userDoc = await getDoc(userDocRef);
+        const profileDoc = await getDoc(profileDocRef);
+        
+        let userData = userDoc.exists() ? (userDoc.data() as User) : null;
+        const profileData = profileDoc.exists() ? (profileDoc.data() as Profile) : null;
+        
+         if (userData && firebaseUser.email === 'nathan.imogo@outlook.fr' && !userData.roles.includes(UserRole.admin)) {
+            userData.roles.push(UserRole.admin);
+        }
+
+        const authUser: AuthUser = {
+            ...firebaseUser,
+            ...(userData || { email: firebaseUser.email, roles: [], status: 'active', KYCStatus: 'not_required' }),
+            profile: profileData,
+        };
+
+         if (authUser.email === 'nathan.imogo@outlook.fr' && !authUser.roles.includes(UserRole.admin)) {
+            authUser.roles.push(UserRole.admin);
+        }
+        return authUser;
+    } catch (err) {
+        console.error("Failed to fetch user data:", err);
+        setError("Impossible de récupérer les données utilisateur. Veuillez vérifier votre connexion.");
+        return { 
+            ...firebaseUser,
+            email: firebaseUser.email!,
+            roles: [], 
+            status: 'active', 
+            KYCStatus: 'not_required',
+            profile: null 
+        };
+    }
+  }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+        if (originalAdmin) return; // Don't do anything if we are impersonating
+
         setLoading(true);
         setProfileLoading(true);
         if (firebaseUser) {
-            try {
-                const userDocRef = doc(db, 'users', firebaseUser.uid);
-                const profileDocRef = doc(db, 'profiles', firebaseUser.uid);
-
-                const userDoc = await getDoc(userDocRef);
-                const profileDoc = await getDoc(profileDocRef);
-                
-                let userData = userDoc.exists() ? (userDoc.data() as User) : null;
-                const profileData = profileDoc.exists() ? (profileDoc.data() as Profile) : null;
-                
-                 if (userData && firebaseUser.email === 'nathan.imogo@outlook.fr' && !userData.roles.includes(UserRole.admin)) {
-                    userData.roles.push(UserRole.admin);
-                }
-
-                const authUser: AuthUser = {
-                    ...firebaseUser,
-                    ...(userData || { email: firebaseUser.email, roles: [], status: 'active', KYCStatus: 'not_required' }),
-                    profile: profileData,
-                };
-
-                 if (authUser.email === 'nathan.imogo@outlook.fr' && !authUser.roles.includes(UserRole.admin)) {
-                    authUser.roles.push(UserRole.admin);
-                }
-
-                setUser(authUser);
-            } catch (err) {
-                console.error("Failed to fetch user data:", err);
-                // Set user with basic info if firestore fails
-                setUser({ 
-                    ...firebaseUser,
-                    email: firebaseUser.email!,
-                    roles: [], 
-                    status: 'active', 
-                    KYCStatus: 'not_required',
-                    profile: null 
-                });
-                setError("Impossible de récupérer les données utilisateur. Veuillez vérifier votre connexion.");
-            }
+            const fullUser = await fetchUserData(firebaseUser);
+            setUser(fullUser);
         } else {
             setUser(null);
         }
@@ -122,7 +133,36 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setProfileLoading(false);
     });
     return () => unsubscribe();
-  }, []);
+  }, [originalAdmin]);
+
+  const startImpersonation = (targetUser: any) => {
+      if (user && user.roles.includes(UserRole.admin)) {
+          setOriginalAdmin(user);
+          // We need to create a complete AuthUser object for the target
+          const impersonatedAuthUser: AuthUser = {
+              ...targetUser, // This is mock data, might need conversion if it was real firebase user
+              uid: targetUser.id,
+              // Add mock Firebase User properties if they are missing from targetUser
+              providerData: user.providerData, 
+              isAnonymous: false,
+              tenantId: null,
+              delete: async () => {},
+              getIdToken: async () => '',
+              getIdTokenResult: async () => ({} as any),
+              reload: async () => {},
+              toJSON: () => ({}),
+          };
+          setUser(impersonatedAuthUser);
+      }
+  }
+
+  const stopImpersonation = () => {
+      if (originalAdmin) {
+          setUser(originalAdmin);
+          setOriginalAdmin(null);
+      }
+  }
+
 
   const handleAuthError = (err: AuthError) => {
     switch (err.code) {
@@ -207,13 +247,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signOut = async () => {
+    if (originalAdmin) {
+        stopImpersonation();
+    }
     await firebaseSignOut(auth);
     setUser(null);
     router.push('/');
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, profileLoading, error, setError, signIn, signUp, signOut }}>
+    <AuthContext.Provider value={{ user, loading, profileLoading, error, setError, signIn, signUp, signOut, impersonatingUser, startImpersonation, stopImpersonation }}>
       {children}
     </AuthContext.Provider>
   );
@@ -226,3 +269,5 @@ export const useAuth = (): AuthContextType => {
   }
   return context;
 };
+
+    
