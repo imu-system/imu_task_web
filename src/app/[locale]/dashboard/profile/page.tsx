@@ -15,8 +15,9 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Loader2 } from "lucide-react";
+import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Separator } from "@/components/ui/separator";
 
 const profileSchema = z.object({
   displayName: z.string().min(2, "Le nom est requis."),
@@ -24,6 +25,12 @@ const profileSchema = z.object({
 });
 
 type ProfileFormValues = z.infer<typeof profileSchema>;
+
+// Mock data for addresses
+const mockAddresses = [
+    { id: '1', label: 'Maison', formatted: '123 Rue Principale, 75001 Paris, France', isDefault: true },
+    { id: '2', label: 'Travail', formatted: '456 Avenue des Champs-Élysées, 75008 Paris, France', isDefault: false },
+]
 
 export default function ProfilePage() {
   const { user, profileLoading } = useAuth();
@@ -131,10 +138,51 @@ export default function ProfilePage() {
                     {t('saveChanges')}
                 </Button>
             </div>
-
           </CardContent>
         </Card>
       </form>
+
+       <Card>
+            <CardHeader>
+                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <CardTitle>{t('addressesTitle')}</CardTitle>
+                        <CardDescription>{t('addressesDesc')}</CardDescription>
+                    </div>
+                    <Button type="button" variant="outline">
+                        <PlusCircle className="mr-2"/>
+                        {t('addAddress')}
+                    </Button>
+                </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                {mockAddresses.map((address, index) => (
+                    <div key={address.id}>
+                        <div className="flex items-start justify-between">
+                            <div className="flex items-start gap-4">
+                                <MapPin className="h-6 w-6 text-primary mt-1" />
+                                <div>
+                                    <p className="font-semibold">{address.label} {address.isDefault && <span className="text-xs text-muted-foreground">({t('default')})</span>}</p>
+                                    <p className="text-sm text-muted-foreground">{address.formatted}</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Button variant="ghost" size="icon">
+                                    <Edit className="h-4 w-4"/>
+                                    <span className="sr-only">{t('edit')}</span>
+                                </Button>
+                                <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive">
+                                    <Trash2 className="h-4 w-4"/>
+                                     <span className="sr-only">{t('delete')}</span>
+                                </Button>
+                            </div>
+                        </div>
+                        {index < mockAddresses.length - 1 && <Separator className="mt-4" />}
+                    </div>
+                ))}
+            </CardContent>
+        </Card>
+
     </div>
   );
 }

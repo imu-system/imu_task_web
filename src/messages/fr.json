@@ -166,6 +166,12 @@
         "toastSuccessTitle": "Profil mis à jour",
         "toastSuccessDescription": "Vos informations ont été enregistrées avec succès.",
         "toastErrorTitle": "Erreur",
-        "toastErrorDescription": "Une erreur est survenue lors de la mise à jour de votre profil."
+        "toastErrorDescription": "Une erreur est survenue lors de la mise à jour de votre profil.",
+        "addressesTitle": "Mes Adresses",
+        "addressesDesc": "Gérez vos adresses enregistrées pour les missions.",
+        "addAddress": "Ajouter une adresse",
+        "default": "Par défaut",
+        "edit": "Modifier",
+        "delete": "Supprimer"
     }
 }
