@@ -202,6 +202,7 @@
         "tableHeaderName": "Nom",
         "tableHeaderStatus": "Statut",
         "statusActive": "Actif",
-        "statusInactive": "Inactif"
+        "statusInactive": "Inactif",
+        "newCategory": "Nouvelle Catégorie"
     }
 }

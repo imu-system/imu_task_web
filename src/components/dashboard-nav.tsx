@@ -77,7 +77,7 @@ export function DashboardNav() {
             <SidebarMenu>
                 <SidebarSeparator className="my-2"/>
                  <SidebarMenuItem>
-                    <Link href="/dashboard/admin/categories">
+                    <Link href="/dashboard/admin/services/categories">
                         <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin')}>
                             <Shield />
                             <span>{t('admin')}</span>
