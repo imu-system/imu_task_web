@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 import { Toaster } from '@/components/ui/toaster';
 import Footer from '@/components/footer';
 import Header from '@/components/header';
+import { locales, type Locale } from '@/navigation';
 
 export const metadata: Metadata = {
   title: 'ImuTask - Vos besoins, leur mission.',
@@ -23,8 +24,7 @@ export default async function RootLayout({
   params: {locale: string};
 }>) {
   // Validate that the incoming `locale` parameter is valid
-  const locales = ['en', 'fr'];
-  if (!locales.includes(locale)) notFound();
+  if (!locales.includes(locale as Locale)) notFound();
 
   // Enable static rendering
   unstable_setRequestLocale(locale);
