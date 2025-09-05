@@ -578,5 +578,52 @@
             "expired": "Expirée",
             "withdrawn": "Retirée"
         }
+    },
+    "AdminOfferDetailPage": {
+        "title": "Détails de l'offre",
+        "backToList": "Retour à la liste des offres",
+        "notFound": "Offre non trouvée.",
+        "cards": {
+            "offer": {
+                "title": "Détails de l'offre",
+                "description": "Offre de {providerName} pour la mission \"{taskTitle}\"",
+                "status": "Statut",
+                "price": "Prix proposé",
+                "expires": "Expire le"
+            },
+            "task": {
+                "title": "Mission Associée",
+                "view": "Voir la mission"
+            },
+            "provider": {
+                "title": "Prestataire",
+                "viewProfile": "Voir le profil"
+            },
+            "moderation": {
+                "title": "Modération",
+                "description": "Actions de modération sur cette offre.",
+                "forceStatus": "Forcer le statut",
+                "withdraw": "Retirer l'offre (abusive)",
+                "adjustExpiration": "Ajuster l'expiration",
+                "forceStatusDialog": {
+                    "title": "Forcer le statut de l'offre",
+                    "description": "Cette action manuelle outrepassera le statut actuel de l'offre.",
+                    "accept": "Forcer l'acceptation",
+                    "decline": "Forcer le refus",
+                    "justificationLabel": "Justification (pour l'audit)",
+                    "justificationPlaceholder": "Ex: Accord trouvé hors plateforme, erreur client...",
+                    "cancel": "Annuler",
+                    "confirm": "Confirmer"
+                },
+                "withdrawDialog": {
+                    "title": "Retirer l'offre",
+                    "description": "Êtes-vous sûr de vouloir retirer cette offre ? Cette action est généralement réservée aux offres abusives ou frauduleuses.",
+                    "cancel": "Annuler",
+                    "confirm": "Retirer l'offre"
+                }
+            }
+        }
     }
 }
+
+    

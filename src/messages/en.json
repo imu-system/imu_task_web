@@ -578,5 +578,52 @@
             "expired": "Expired",
             "withdrawn": "Withdrawn"
         }
+    },
+    "AdminOfferDetailPage": {
+        "title": "Offer Details",
+        "backToList": "Back to offer list",
+        "notFound": "Offer not found.",
+        "cards": {
+            "offer": {
+                "title": "Offer Details",
+                "description": "Offer from {providerName} for task \"{taskTitle}\"",
+                "status": "Status",
+                "price": "Proposed Price",
+                "expires": "Expires"
+            },
+            "task": {
+                "title": "Associated Task",
+                "view": "View Task"
+            },
+            "provider": {
+                "title": "Provider",
+                "viewProfile": "View Profile"
+            },
+            "moderation": {
+                "title": "Moderation",
+                "description": "Moderation actions on this offer.",
+                "forceStatus": "Force Status",
+                "withdraw": "Withdraw Offer (abusive)",
+                "adjustExpiration": "Adjust Expiration",
+                "forceStatusDialog": {
+                    "title": "Force Offer Status",
+                    "description": "This manual action will override the current status of the offer.",
+                    "accept": "Force Accept",
+                    "decline": "Force Decline",
+                    "justificationLabel": "Justification (for audit)",
+                    "justificationPlaceholder": "e.g. Agreement found off-platform, client error...",
+                    "cancel": "Cancel",
+                    "confirm": "Confirm"
+                },
+                "withdrawDialog": {
+                    "title": "Withdraw Offer",
+                    "description": "Are you sure you want to withdraw this offer? This action is usually reserved for abusive or fraudulent offers.",
+                    "cancel": "Cancel",
+                    "confirm": "Withdraw Offer"
+                }
+            }
+        }
     }
 }
+
+    
