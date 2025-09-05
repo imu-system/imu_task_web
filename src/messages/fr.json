@@ -63,7 +63,8 @@
     "DashboardPage": {
         "title": "Missions disponibles",
         "subtitle": "Trouvez une mission qui vous correspond près de chez vous.",
-        "createTask": "Créer une mission"
+        "createTask": "Créer une mission",
+        "noTasks": "Aucune mission disponible pour le moment."
     },
     "NewTaskPage": {
         "title": "Créer une nouvelle mission",
@@ -150,5 +151,27 @@
         "memberSince": "Membre depuis {year}",
         "identityVerified": "Identité vérifiée",
         "paymentVerified": "Paiement vérifié"
+    },
+    "ProfilePage": {
+        "title": "Profil & Paramètres",
+        "subtitle": "Gérez vos informations personnelles et vos préférences.",
+        "personalInfo": "Informations personnelles",
+        "personalInfoDesc": "Mettez à jour vos informations publiques.",
+        "changePhoto": "Changer la photo",
+        "fullName": "Nom complet",
+        "emailAddress": "Adresse e-mail",
+        "bio": "Bio",
+        "bioPlaceholder": "Parlez un peu de vous...",
+        "saveChanges": "Enregistrer les modifications",
+        "kyc": "Vérification d'identité (KYC)",
+        "kycDesc": "Pour la sécurité de tous, la vérification est requise pour effectuer des missions.",
+        "kycVerified": "Votre identité a été vérifiée avec succès.",
+        "kycButton": "Vérifié",
+        "notifications": "Notifications",
+        "notificationsDesc": "Choisissez comment vous souhaitez être notifié.",
+        "newOfferEmail": "Nouvelle offre par e-mail",
+        "newOfferEmailDesc": "Recevez un e-mail à chaque nouvelle offre sur vos missions.",
+        "newMessageEmail": "Nouveau message par e-mail",
+        "newMessageEmailDesc": "Soyez prévenu par e-mail lorsque vous recevez un nouveau message."
     }
 }

@@ -1,31 +1,43 @@
 import type { Task, User, Offer } from './types';
+import { db } from './firebase';
+import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp } from 'firebase/firestore';
+
 
 export const users: User[] = [
   {
     id: 'user1',
-    name: 'Anne-Marie Dupont',
-    avatarUrl: 'https://picsum.photos/id/1027/100/100',
-    role: 'client',
+    email: 'anne-marie.dupont@email.com',
+    profile: {
+        displayName: 'Anne-Marie Dupont',
+        photoUrl: 'https://picsum.photos/id/1027/100/100',
+    }
   },
   {
     id: 'user2',
-    name: 'Lucas Bernard',
-    avatarUrl: 'https://picsum.photos/id/1005/100/100',
-    role: 'provider',
+    email: 'lucas.bernard@email.com',
+    profile: {
+        displayName: 'Lucas Bernard',
+        photoUrl: 'https://picsum.photos/id/1005/100/100',
+    }
   },
   {
     id: 'user3',
-    name: 'Chloé Petit',
-    avatarUrl: 'https://picsum.photos/id/1011/100/100',
-    role: 'provider',
+    email: 'chloe.petit@email.com',
+    profile: {
+        displayName: 'Chloé Petit',
+        photoUrl: 'https://picsum.photos/id/1011/100/100',
+    }
   },
   {
     id: 'user4',
-    name: 'Marc Dubois',
-    avatarUrl: 'https://picsum.photos/id/1012/100/100',
-    role: 'client',
+    email: 'marc.dubois@email.com',
+    profile: {
+        displayName: 'Marc Dubois',
+        photoUrl: 'https://picsum.photos/id/1012/100/100',
+    }
   },
 ];
+
 
 export const getTasks = (): Task[] => [
   {
@@ -94,6 +106,16 @@ export const getTasks = (): Task[] => [
     status: 'open',
   },
 ];
+
+export async function createTask(taskData: Omit<Task, 'id' | 'client' | 'status' | 'createdAt'>): Promise<string> {
+    const docRef = await addDoc(collection(db, "tasks"), {
+        ...taskData,
+        status: 'open',
+        createdAt: serverTimestamp(),
+    });
+    return docRef.id;
+}
+
 
 export const getOffersForTask = (taskId: string): Offer[] => {
     if (taskId === 'task1') {

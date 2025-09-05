@@ -51,8 +51,8 @@ const categoryIcons: Record<CategoryKey, ReactNode> = {
 };
 
 const categoryKeyMap: Record<TaskCategory, CategoryKey> = {
-  Courses: 'shopping',
-  Jardinage: 'gardening',
+  'Courses': 'shopping',
+  'Jardinage': 'gardening',
   'Ménage léger': 'lightCleaning',
   'Aide numérique': 'digitalHelp',
   'Aide administrative': 'administrativeHelp',
@@ -70,6 +70,10 @@ export default function TaskCard({ task }: TaskCardProps) {
   const t = useTranslations('TaskCard');
   const tCat = useTranslations('TaskCategories');
   const catKey = categoryKeyMap[category];
+  const clientName = client?.profile?.displayName || 'Utilisateur';
+  const clientAvatarUrl = client?.profile?.photoUrl;
+  const clientFallback = clientName.charAt(0);
+
 
   return (
     <Card className="flex flex-col h-full">
@@ -91,17 +95,17 @@ export default function TaskCard({ task }: TaskCardProps) {
           </div>
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4" />
-            <span>{new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(date)}</span>
+            <span>{new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(date))}</span>
           </div>
         </div>
       </CardContent>
       <CardFooter className="flex justify-between items-center">
         <div className="flex items-center gap-2">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={client.avatarUrl} alt={client.name} />
-            <AvatarFallback>{client.name.charAt(0)}</AvatarFallback>
+            <AvatarImage src={clientAvatarUrl || undefined} alt={clientName} />
+            <AvatarFallback>{clientFallback}</AvatarFallback>
           </Avatar>
-          <span className="text-sm font-medium">{client.name}</span>
+          <span className="text-sm font-medium">{clientName}</span>
         </div>
         <Button asChild>
           <Link href={`/dashboard/tasks/${id}`}>{t('viewTask')}</Link>

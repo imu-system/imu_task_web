@@ -63,7 +63,8 @@
     "DashboardPage": {
         "title": "Available tasks",
         "subtitle": "Find a task that suits you near you.",
-        "createTask": "Create task"
+        "createTask": "Create task",
+        "noTasks": "No tasks available at the moment."
     },
     "NewTaskPage": {
         "title": "Create a new task",
@@ -150,5 +151,27 @@
         "memberSince": "Member since {year}",
         "identityVerified": "Identity verified",
         "paymentVerified": "Payment verified"
+    },
+    "ProfilePage": {
+        "title": "Profile & Settings",
+        "subtitle": "Manage your personal information and preferences.",
+        "personalInfo": "Personal Information",
+        "personalInfoDesc": "Update your public information.",
+        "changePhoto": "Change Photo",
+        "fullName": "Full Name",
+        "emailAddress": "Email Address",
+        "bio": "Bio",
+        "bioPlaceholder": "Tell us a little about yourself...",
+        "saveChanges": "Save Changes",
+        "kyc": "Identity Verification (KYC)",
+        "kycDesc": "For everyone's safety, verification is required to perform tasks.",
+        "kycVerified": "Your identity has been successfully verified.",
+        "kycButton": "Verified",
+        "notifications": "Notifications",
+        "notificationsDesc": "Choose how you want to be notified.",
+        "newOfferEmail": "New offer by email",
+        "newOfferEmailDesc": "Receive an email for each new offer on your tasks.",
+        "newMessageEmail": "New message by email",
+        "newMessageEmailDesc": "Be notified by email when you receive a new message."
     }
 }

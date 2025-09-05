@@ -36,6 +36,9 @@ import { useToast } from '@/hooks/use-toast';
 import { type TaskCategory } from '@/lib/types';
 import { Card, CardContent } from './ui/card';
 import { useTranslations } from 'next-intl';
+import { createTask } from '@/lib/data';
+import { useAuth } from '@/hooks/use-auth';
+import { useRouter } from '@/navigation';
 
 const taskCategories: [TaskCategory, ...TaskCategory[]] = [
   'Courses',
@@ -63,9 +66,13 @@ const formSchema = z.object({
 export function CreateTaskForm() {
   const [suggestedCategories, setSuggestedCategories] = useState<string[]>([]);
   const [isSuggesting, setIsSuggesting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const t = useTranslations('CreateTaskForm');
   const tCat = useTranslations('TaskCategories');
+  const { user } = useAuth();
+  const router = useRouter();
+
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -80,12 +87,36 @@ export function CreateTaskForm() {
   const descriptionValue = form.watch('description');
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: t('toastSuccessTitle'),
-      description: t('toastSuccessDescription'),
-    });
-  }
+    if (!user) {
+        toast({
+            variant: 'destructive',
+            title: "Erreur d'authentification",
+            description: "Vous devez être connecté pour créer une mission.",
+        });
+        return;
+    }
+    setIsSubmitting(true);
+    try {
+        const taskId = await createTask({
+            ...values,
+            clientId: user.uid,
+        });
+        toast({
+            title: t('toastSuccessTitle'),
+            description: t('toastSuccessDescription'),
+        });
+        router.push('/dashboard');
+    } catch (error) {
+        console.error("Error creating task:", error);
+        toast({
+            variant: 'destructive',
+            title: "Erreur",
+            description: "Une erreur est survenue lors de la création de la mission.",
+        });
+    } finally {
+        setIsSubmitting(false);
+    }
+}
 
   const handleSuggestCategories = async () => {
     const description = form.getValues('description');
@@ -291,7 +322,10 @@ export function CreateTaskForm() {
           )}
         />
 
-        <Button type="submit" size="lg">{t('submitButton')}</Button>
+        <Button type="submit" size="lg" disabled={isSubmitting}>
+            {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            {t('submitButton')}
+        </Button>
       </form>
     </Form>
     </CardContent>

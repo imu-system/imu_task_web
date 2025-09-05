@@ -1,15 +1,58 @@
+
 'use client';
 
 import TaskCard from '@/components/task-card';
 import { Button } from '@/components/ui/button';
-import { getTasks } from '@/lib/data';
-import { PlusCircle } from 'lucide-react';
+import { db } from '@/lib/firebase';
+import { Task } from '@/lib/types';
+import { collection, onSnapshot, query, where, doc, getDoc } from 'firebase/firestore';
+import { PlusCircle, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
 
 export default function DashboardPage() {
-  const tasks = getTasks();
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [loading, setLoading] = useState(true);
   const t = useTranslations('DashboardPage');
+
+  useEffect(() => {
+    const q = query(collection(db, 'tasks'), where('status', '==', 'open'));
+    
+    const unsubscribe = onSnapshot(q, async (querySnapshot) => {
+      setLoading(true);
+      const tasksData: Task[] = [];
+      
+      for (const taskDoc of querySnapshot.docs) {
+        const taskData = taskDoc.data();
+        
+        let clientData: any = null;
+        if (taskData.clientId) {
+          const userDocRef = doc(db, 'users', taskData.clientId);
+          const userDoc = await getDoc(userDocRef);
+          if (userDoc.exists()) {
+            clientData = { id: userDoc.id, ...userDoc.data() };
+          }
+        }
+
+        tasksData.push({
+          id: taskDoc.id,
+          ...taskData,
+          date: taskData.date.toDate(),
+          client: clientData ? { id: clientData.id, email: clientData.email, profile: { displayName: clientData.displayName, photoUrl: clientData.photoURL || `https://i.pravatar.cc/150?u=${clientData.id}` }} : null,
+        } as Task);
+      }
+      
+      setTasks(tasksData);
+      setLoading(false);
+    }, (error) => {
+      console.error("Error fetching tasks: ", error);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
   return (
     <div className="space-y-8">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -28,12 +71,22 @@ export default function DashboardPage() {
           </Link>
         </Button>
       </div>
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {tasks.filter(t => t.status === 'open').map((task) => (
-          <TaskCard key={task.id} task={task} />
-        ))}
-      </div>
+      
+      {loading ? (
+        <div className="flex justify-center items-center h-64">
+          <Loader2 className="h-16 w-16 animate-spin text-primary" />
+        </div>
+      ) : tasks.length === 0 ? (
+         <div className="text-center py-12">
+            <p className="text-muted-foreground">{t('noTasks')}</p>
+        </div>
+      ) : (
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {tasks.map((task) => (
+            <TaskCard key={task.id} task={task} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
