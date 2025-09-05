@@ -515,6 +515,33 @@
     },
     "AdminTaskDetailPage": {
         "title": "Task Details",
-        "notFound": "Task not found."
+        "notFound": "Task not found.",
+        "backToList": "Back to task list",
+        "postedBy": "Posted by",
+        "details": {
+            "status": "Status",
+            "budget": "Budget",
+            "date": "Date",
+            "location": "Location"
+        },
+        "offers": {
+            "title": "Offers",
+            "description": "{count, plural, =0 {No offers received} one {# offer received} other {# offers received}}",
+            "provider": "Provider",
+            "price": "Proposed Price",
+            "status": "Status",
+            "noOffers": "No offers have been made for this task yet."
+        },
+        "moderation": {
+            "title": "Moderation",
+            "description": "Moderation actions on this task.",
+            "forcePublish": "Force Publish",
+            "unpublish": "Unpublish",
+            "cancel": "Cancel Task"
+        },
+        "flags": {
+            "title": "Flags",
+            "noFlags": "No flags for this task."
+        }
     }
 }

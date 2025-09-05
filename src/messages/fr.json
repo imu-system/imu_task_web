@@ -515,6 +515,33 @@
     },
     "AdminTaskDetailPage": {
         "title": "Détails de la mission",
-        "notFound": "Mission non trouvée."
+        "notFound": "Mission non trouvée.",
+        "backToList": "Retour à la liste des missions",
+        "postedBy": "Postée par",
+        "details": {
+            "status": "Statut",
+            "budget": "Budget",
+            "date": "Date",
+            "location": "Lieu"
+        },
+        "offers": {
+            "title": "Offres",
+            "description": "{count, plural, =0 {Aucune offre reçue} one {# offre reçue} other {# offres reçues}}",
+            "provider": "Prestataire",
+            "price": "Prix proposé",
+            "status": "Statut",
+            "noOffers": "Aucune offre n'a été faite pour cette mission pour le moment."
+        },
+        "moderation": {
+            "title": "Modération",
+            "description": "Actions de modération sur cette mission.",
+            "forcePublish": "Forcer la publication",
+            "unpublish": "Dépublier",
+            "cancel": "Annuler la mission"
+        },
+        "flags": {
+            "title": "Signalements",
+            "noFlags": "Aucun signalement pour cette mission."
+        }
     }
 }
