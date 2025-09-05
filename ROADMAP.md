@@ -1,116 +1,132 @@
-# Feuille de Route de Développement pour ImuTask
+# Feuille de Route de Développement pour ImuTask (Version Complète)
 
-Ce document décrit les étapes planifiées pour faire évoluer le prototype ImuTask en une application web complète, sécurisée et intelligente.
-
----
-
-### **Étape 1 : Authentification et Gestion des Utilisateurs**
-
-**Objectif :** Mettre en place un système d'authentification sécurisé et une base de données pour les informations des utilisateurs.
-
-1.  **Mise en place de Firebase Authentication :**
-    *   [ ] Créer un fichier de configuration Firebase (`src/lib/firebase.ts`) pour initialiser les services Firebase côté client.
-    *   [ ] Implémenter la logique d'inscription (`Sign Up`) avec email/mot de passe en utilisant `firebase/auth`.
-    *   [ ] Implémenter la logique de connexion (`Sign In`) et de déconnexion.
-    *   [ ] Afficher les erreurs d'authentification à l'utilisateur (ex: mot de passe incorrect).
-
-2.  **Création d'une collection `users` dans Firestore :**
-    *   [ ] Lors de l'inscription, créer un document dans une collection `users` de Firestore avec l'UID de l'utilisateur comme identifiant de document.
-    *   [ ] Stocker les informations de base : nom, email, rôle (client/prestataire), date de création du compte.
-
-3.  **Gestion de la Session Utilisateur :**
-    *   [ ] Créer un `AuthProvider` (React Context) pour gérer l'état de l'utilisateur connecté et le rendre accessible dans toute l'application.
-    *   [ ] Protéger les routes du `/dashboard` pour rediriger les utilisateurs non connectés vers la page de connexion.
-    *   [ ] Mettre à jour l'interface (header, etc.) pour afficher dynamiquement l'état connecté/déconnecté.
+Ce document décrit les étapes planifiées pour construire ImuTask en se basant sur le schéma de données détaillé.
 
 ---
 
-### **Étape 2 : Gestion des Missions avec Firestore**
+### **Étape 1 : Fondations - Authentification et Profil Utilisateur (Enrichi)**
 
-**Objectif :** Remplacer les données statiques par une base de données temps réel pour rendre les missions dynamiques.
+**Objectif :** Mettre en place une base solide pour la gestion des utilisateurs, allant au-delà de la simple connexion.
 
-1.  **Migration vers Firestore :**
-    *   [ ] Créer une collection `tasks` dans Firestore.
-    *   [ ] Modifier le formulaire de création de mission (`CreateTaskForm`) pour écrire un nouveau document dans la collection `tasks`. Le document doit contenir un `clientId` correspondant à l'UID de l'utilisateur connecté.
-    *   [ ] Modifier la page du dashboard (`/dashboard`) pour lire et afficher la liste des missions depuis Firestore en temps réel.
-    *   [ ] Modifier la page de détail de mission (`/dashboard/tasks/[id]`) pour récupérer les données de la mission correspondante depuis Firestore.
+1.  **Authentification (Terminé) :**
+    *   [x] Configuration de Firebase Auth.
+    *   [x] Logique d'inscription, connexion, déconnexion.
 
-2.  **Règles de Sécurité Firestore :**
-    *   [ ] Écrire et déployer des règles de sécurité pour la collection `tasks`.
-    *   [ ] Permettre la lecture de toutes les missions par tout utilisateur authentifié.
-    *   [ ] Restreindre la création de missions aux utilisateurs authentifiés.
-    *   [ ] N'autoriser la modification ou la suppression d'une mission qu'à son créateur (`clientId`).
+2.  **Création des collections `users` et `profiles` :**
+    *   [ ] À l'inscription, créer un document dans `users` avec les informations de base (`email`, `roles`, `status`, `createdAt`, etc.).
+    *   [ ] Simultanément, créer un document lié dans une nouvelle collection `profiles` avec `userId`, `displayName`, et des valeurs par défaut pour `averageRating: 0`, `reviewsCount: 0`, `languages: ['fr']`, etc.
+    *   [ ] Mettre à jour le hook `useAuth` pour qu'il retourne non seulement l'objet `User` de Firebase Auth, mais aussi le profil Firestore.
+
+3.  **Page de Profil Utilisateur :**
+    *   [ ] Créer une page `/dashboard/profile/edit` permettant à l'utilisateur de modifier son `displayName`, `bio`, `photoUrl`, `languages` et `skills`.
+    *   [ ] Afficher les informations non modifiables comme l'email, la note moyenne et le nombre d'avis.
 
 ---
 
-### **Étape 3 : Système d'Offres et de Messagerie**
+### **Étape 2 : Gestion des Adresses et Catégories de Service**
 
-**Objectif :** Permettre l'interaction cruciale entre les clients et les prestataires.
+**Objectif :** Permettre aux utilisateurs de gérer leurs adresses et d'avoir une liste de services structurée.
+
+1.  **Gestion des Adresses (`addresses`) :**
+    *   [ ] Sur la page de profil, créer une section pour ajouter, voir, et supprimer des adresses.
+    *   [ ] Utiliser une API de géocodage (ex: Google Places) pour auto-compléter les adresses et récupérer latitude/longitude.
+    *   [ ] Permettre de définir une adresse par défaut.
+
+2.  **Gestion des Catégories (`serviceCategories`) :**
+    *   [ ] (Admin) Créer une interface simple (non visible pour les utilisateurs normaux) pour gérer les catégories de service.
+    *   [ ] Migrer les catégories de tâches existantes (codées en dur) vers la collection `serviceCategories` dans Firestore.
+    *   [ ] Mettre à jour le formulaire de création de mission pour qu'il charge dynamiquement les catégories depuis Firestore.
+
+---
+
+### **Étape 3 : Gestion des Missions (Mise à Niveau)**
+
+**Objectif :** Aligner la création et l'affichage des missions sur le nouveau modèle de données `Task`.
+
+1.  **Mise à jour du Formulaire de Création :**
+    *   [ ] Remplacer le champ de localisation texte par un sélecteur d'adresses enregistrées par l'utilisateur.
+    *   [ ] Remplacer le champ de date unique par deux champs : `timeWindowStart` et `timeWindowEnd`.
+    *   [ ] Ajouter des champs pour `estimatedDurationMin`, `priceOffered`, et la possibilité de joindre des fichiers (`attachments`).
+    *   [ ] Au lieu de stocker la catégorie en texte, stocker l'`id` de la `ServiceCategory`.
+
+2.  **Mise à jour de l'Affichage des Missions :**
+    *   [ ] Mettre à jour `TaskCard` et la page de détail de mission pour afficher les nouvelles informations (fenêtre de temps, etc.).
+    *   [ ] Implémenter la logique pour récupérer et afficher les informations de l'adresse et de la catégorie via leurs IDs.
+
+---
+
+### **Étape 4 : Système d'Offres (`offers`)**
+
+**Objectif :** Permettre aux prestataires de faire des offres sur les missions.
 
 1.  **Logique des Offres :**
     *   [ ] Créer une sous-collection `offers` pour chaque document `task`.
-    *   [ ] Implémenter la logique du formulaire `OfferForm` pour qu'un prestataire puisse créer un nouveau document dans la sous-collection `offers`.
-    *   [ ] Afficher les offres soumises sur la page de détail de la mission pour le client.
-    *   [ ] Ajouter une fonctionnalité "Accepter l'offre" qui met à jour le statut de la mission (`assigned`) et de l'offre (`accepted`), et assigne un `providerId` à la mission.
+    *   [ ] Sur la page de détail d'une mission, si l'utilisateur est un prestataire (`provider`), afficher un formulaire pour soumettre une offre.
+    *   [ ] Le formulaire permettra de proposer un prix (`proposedPrice`) et un message.
+    *   [ ] Le client verra la liste des offres sur la page de la mission.
+    *   [ ] Implémenter le bouton "Accepter l'offre".
 
-2.  **Messagerie en Temps Réel :**
-    *   [ ] Concevoir un modèle de données pour les conversations, par exemple une collection `chats` où chaque document représente une conversation entre deux utilisateurs concernant une mission.
-    *   [ ] Créer une page de messagerie (`/dashboard/messages`) qui liste les conversations de l'utilisateur.
-    *   [ ] Développer une interface de chat qui permet l'échange de messages en temps réel en utilisant `onSnapshot` de Firestore.
-
----
-
-### **Étape 4 : Améliorations avec l'IA (Genkit)**
-
-**Objectif :** Enrichir l'expérience utilisateur avec des fonctionnalités intelligentes.
-
-1.  **Modération de Contenu :**
-    *   [ ] Créer un flow Genkit qui prend un texte en entrée et utilise un modèle de langage pour évaluer s'il contient du contenu inapproprié (discours haineux, spam, etc.).
-    *   [ ] Intégrer ce flow (de manière asynchrone) lors de la création d'une mission et de l'envoi d'un message pour signaler les contenus problématiques.
-
-2.  **Matching Intelligent Prestataire-Mission :**
-    *   [ ] Enrichir le profil utilisateur avec des champs pour les compétences et les zones géographiques préférées.
-    *   [ ] Développer un flow Genkit qui reçoit l'ID d'un prestataire et renvoie une liste de missions recommandées en fonction de son profil et des missions disponibles.
-    *   [ ] Afficher ces recommandations sur le dashboard du prestataire.
-
-3.  **Aide à la Tarification :**
-    *   [ ] Créer un flow Genkit qui analyse la description et la catégorie d'une nouvelle mission.
-    *   [ ] Le flow recherchera dans la base de données des missions similaires terminées pour suggérer une fourchette de prix juste au client lors de la création de la mission.
+2.  **Action d'Accepter une Offre :**
+    *   [ ] L'acceptation mettra à jour le statut de l'offre à `accepted`.
+    *   [ ] Elle mettra à jour le statut de la `Task` à `matched`.
+    *   [ ] Elle créera un nouveau document dans la collection `bookings`.
 
 ---
 
-### **Étape 5 : Paiements et Finalisation**
+### **Étape 5 : Réservation et Messagerie (`bookings` & `threads`)**
 
-**Objectif :** Sécuriser les transactions et implémenter un système de réputation.
+**Objectif :** Formaliser l'accord et permettre la communication.
 
-1.  **Intégration des Paiements (ex: Stripe Connect) :**
-    *   [ ] Mettre en place l'onboarding des prestataires pour qu'ils puissent recevoir des paiements.
-    *   [ ] Intégrer le tunnel de paiement pour que le client paie la mission lorsqu'il accepte une offre. Les fonds seront séquestrés.
-    *   [ ] Créer un mécanisme pour que le client puisse "libérer" le paiement une fois la mission terminée.
-    *   [ ] Gérer les remboursements et les litiges simples.
+1.  **Création du Booking :**
+    *   [ ] Le document `Booking` contiendra les IDs de la tâche, du client, du prestataire, le montant convenu et le statut `scheduled`.
+    *   [ ] Créer une page "Mes Missions" (`/dashboard/bookings`) où clients et prestataires voient leurs missions à venir et passées.
 
-2.  **Système d'Avis et de Notation :**
-    *   [ ] Une fois le paiement libéré, permettre aux deux parties de se laisser mutuellement une note (sur 5 étoiles) et un commentaire.
-    *   [ ] Stocker ces avis dans une collection `reviews`.
-    *   [ ] Calculer et afficher la note moyenne sur le profil de chaque utilisateur.
+2.  **Messagerie en Temps Réel (`threads` & `messages`) :**
+    *   [ ] Lorsqu'un booking est créé, créer également un `Thread` lié à la `Task`.
+    *   [ ] Le `Thread` listera les `participants` (client et prestataire).
+    *   [ ] Développer une interface de messagerie (`/dashboard/messages/[threadId]`) où les participants peuvent échanger des `Messages` en temps réel.
 
 ---
 
-### **Étape 6 : Internationalisation (i18n) et Accessibilité**
+### **Étape 6 : Paiements et Transactions (`transactions`, `transfers`, `payouts`)**
 
-**Objectif :** Rendre l'application accessible à un public plus large et améliorer l'inclusivité.
+**Objectif :** Intégrer un système de paiement sécurisé (ex: Stripe Connect).
 
-1.  **Mise en place de l'Internationalisation :**
-    *   [ ] Intégrer une bibliothèque d'i18n compatible avec Next.js (ex: `next-intl`).
-    *   [ ] Extraire toutes les chaînes de caractères codées en dur (en français) des composants et les placer dans des fichiers de ressources (ex: `fr.json`, `en.json`).
-        *   [ ] Pages et navigation du dashboard
-        *   [ ] Formulaire de création de mission
-        *   [ ] Page de profil et détails de mission
-    *   [ ] Implémenter un sélecteur de langue dans l'interface utilisateur (par exemple, dans l'en-tête ou le pied de page).
-    *   [ ] Configurer le routage pour prendre en charge différentes langues (ex: `/fr/dashboard`, `/en/dashboard`).
+1.  **Paiement et Séquestre :**
+    *   [ ] Lors de l'acceptation de l'offre, intégrer un tunnel de paiement pour que le client autorise le paiement.
+    *   [ ] Créer un document `Transaction` avec le statut `authorized`.
+2.  **Finalisation et Transfert :**
+    *   [ ] Lorsque la mission est marquée comme "terminée" par le client, capturer le paiement. Mettre à jour la `Transaction`.
+    *   [ ] Créer un `Transfer` pour virer les fonds (moins la commission) vers le compte du prestataire.
+3.  **Paiements aux Prestataires (`payouts`) :**
+    *   [ ] Mettre en place une logique pour regrouper les transferts et initier des `Payouts` vers le compte bancaire du prestataire.
 
-2.  **Amélioration de l'Accessibilité (a11y) :**
-    *   [ ] Effectuer un audit d'accessibilité de l'application.
-    *   [ ] S'assurer que tous les éléments interactifs sont accessibles au clavier.
-    *   [ ] Ajouter des attributs ARIA (Accessible Rich Internet Applications) pertinents là où c'est nécessaire.
-    *   [ ] Garantir un contraste de couleurs suffisant pour une bonne lisibilité.
+---
+
+### **Étape 7 : Avis et Litiges (`reviews` & `disputes`)**
+
+**Objectif :** Mettre en place un système de réputation et de résolution de problèmes.
+
+1.  **Système d'Avis (`reviews`) :**
+    *   [ ] Une fois un `Booking` complété, permettre au client et au prestataire de se laisser un avis (note + commentaire).
+    *   [ ] Créer un document dans la collection `reviews`.
+    *   [ ] Mettre à jour les `averageRating` and `reviewsCount` dans le `Profile` de l'utilisateur noté.
+
+2.  **Gestion des Litiges (`disputes`) :**
+    *   [ ] Permettre à un utilisateur d'ouvrir un litige sur un `Booking`.
+    *   [ ] Créer une interface pour que les modérateurs/administrateurs puissent examiner et résoudre les litiges.
+
+---
+
+### **Étape 8 : Notifications et Disponibilités**
+
+**Objectif :** Améliorer l'engagement et la planification.
+
+1.  **Notifications (`notifications`) :**
+    *   [ ] Créer un service qui génère des notifications (ex: nouvelle offre, message reçu, etc.).
+    *   [ ] Afficher les notifications dans l'application.
+
+2.  **Gestion des Disponibilités (`availabilities`) :**
+    *   [ ] Permettre aux prestataires de définir leurs horaires de travail récurrents sur leur profil.
+    *   [ ] Permettre de définir des exceptions (jours de congé).
+    *   [ ] Utiliser ces informations pour filtrer les prestataires ou suggérer des créneaux.
