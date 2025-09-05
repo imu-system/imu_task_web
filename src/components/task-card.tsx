@@ -3,7 +3,6 @@ import { Badge } from '@/components/ui/badge';
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -21,15 +20,44 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from './ui/button';
+import { useTranslations, useLocale } from 'next-intl';
+import { ReactNode } from 'react';
 
-const categoryIcons = {
-  'Courses': <ShoppingBasket className="h-4 w-4" />,
-  'Jardinage': <Spade className="h-4 w-4" />,
-  'Ménage léger': <SparklesIcon className="h-4 w-4" />,
-  'Aide numérique': <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 11h2"/><path d="M17 11h2"/><path d="M12 17v-1.17a2 2 0 0 1 .59-1.42l.82-.82a2 2 0 0 0 .59-1.42V11a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v.17a2 2 0 0 0 .59 1.42l.82.82a2 2 0 0 1 .59 1.42V17"/><rect width="18" height="18" x="3" y="4" rx="2"/></svg>,
-  'Aide administrative': <Briefcase className="h-4 w-4" />,
-  'Petits bricolages': <Wrench className="h-4 w-4" />,
-  'Garde d’animaux': <PawPrint className="h-4 w-4" />,
+const categoryIcons: Record<string, ReactNode> = {
+  shopping: <ShoppingBasket className="h-4 w-4" />,
+  gardening: <Spade className="h-4 w-4" />,
+  lightCleaning: <SparklesIcon className="h-4 w-4" />,
+  digitalHelp: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 11h2" />
+      <path d="M17 11h2" />
+      <path d="M12 17v-1.17a2 2 0 0 1 .59-1.42l.82-.82a2 2 0 0 0 .59-1.42V11a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v.17a2 2 0 0 0 .59 1.42l.82.82a2 2 0 0 1 .59 1.42V17" />
+      <rect width="18" height="18" x="3" y="4" rx="2" />
+    </svg>
+  ),
+  administrativeHelp: <Briefcase className="h-4 w-4" />,
+  handyman: <Wrench className="h-4 w-4" />,
+  petSitting: <PawPrint className="h-4 w-4" />,
+};
+
+const categoryKeyMap: Record<string, keyof typeof categoryIcons> = {
+  Courses: 'shopping',
+  Jardinage: 'gardening',
+  'Ménage léger': 'lightCleaning',
+  'Aide numérique': 'digitalHelp',
+  'Aide administrative': 'administrativeHelp',
+  'Petits bricolages': 'handyman',
+  'Garde d’animaux': 'petSitting',
 };
 
 type TaskCardProps = {
@@ -38,14 +66,18 @@ type TaskCardProps = {
 
 export default function TaskCard({ task }: TaskCardProps) {
   const { title, client, category, location, date, price, id } = task;
+  const locale = useLocale();
+  const t = useTranslations('TaskCard');
+  const tCat = useTranslations('TaskCategories');
+  const catKey = categoryKeyMap[category];
 
   return (
     <Card className="flex flex-col h-full">
       <CardHeader>
         <div className="flex items-center justify-between">
             <Badge variant="secondary" className="flex items-center gap-2">
-                {categoryIcons[category]}
-                <span>{category}</span>
+                {categoryIcons[catKey]}
+                <span>{tCat(catKey)}</span>
             </Badge>
             <span className="text-xl font-bold text-primary">{price}€</span>
         </div>
@@ -59,7 +91,7 @@ export default function TaskCard({ task }: TaskCardProps) {
           </div>
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4" />
-            <span>{new Intl.DateTimeFormat('fr-FR', { dateStyle: 'medium', timeStyle: 'short' }).format(date)}</span>
+            <span>{new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(date)}</span>
           </div>
         </div>
       </CardContent>
@@ -72,7 +104,7 @@ export default function TaskCard({ task }: TaskCardProps) {
           <span className="text-sm font-medium">{client.name}</span>
         </div>
         <Button asChild>
-          <Link href={`/dashboard/tasks/${id}`}>Voir la mission</Link>
+          <Link href={`/dashboard/tasks/${id}`}>{t('viewTask')}</Link>
         </Button>
       </CardFooter>
     </Card>

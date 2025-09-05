@@ -35,7 +35,7 @@ import { useToast } from '@/hooks/use-toast';
 import { type TaskCategory } from '@/lib/types';
 import { Card, CardContent } from './ui/card';
 
-const taskCategories: TaskCategory[] = [
+const taskCategories: [TaskCategory, ...TaskCategory[]] = [
   'Courses',
   'Jardinage',
   'Ménage léger',

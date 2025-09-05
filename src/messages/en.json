@@ -51,5 +51,35 @@
         "fr": "Français",
         "en": "English",
         "ja": "日本語"
+    },
+    "DashboardNav": {
+        "dashboard": "Dashboard",
+        "createTask": "Create task",
+        "myTasks": "My tasks",
+        "messages": "Messages",
+        "wallet": "Wallet",
+        "profile": "Profile",
+        "logout": "Log out"
+    },
+    "DashboardPage": {
+        "title": "Available tasks",
+        "subtitle": "Find a task that suits you near you.",
+        "createTask": "Create task"
+    },
+    "NewTaskPage": {
+        "title": "Create a new task",
+        "subtitle": "Fill in the details below to find help quickly."
+    },
+    "TaskCard": {
+        "viewTask": "View task"
+    },
+    "TaskCategories": {
+        "shopping": "Shopping",
+        "gardening": "Gardening",
+        "lightCleaning": "Light cleaning",
+        "digitalHelp": "Digital help",
+        "administrativeHelp": "Administrative help",
+        "handyman": "Handyman",
+        "petSitting": "Pet sitting"
     }
 }

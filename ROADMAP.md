@@ -103,6 +103,9 @@ Ce document décrit les étapes planifiées pour faire évoluer le prototype Imu
 1.  **Mise en place de l'Internationalisation :**
     *   [ ] Intégrer une bibliothèque d'i18n compatible avec Next.js (ex: `next-intl`).
     *   [ ] Extraire toutes les chaînes de caractères codées en dur (en français) des composants et les placer dans des fichiers de ressources (ex: `fr.json`, `en.json`).
+        *   [ ] Pages et navigation du dashboard
+        *   [ ] Formulaire de création de mission
+        *   [ ] Page de profil et détails de mission
     *   [ ] Implémenter un sélecteur de langue dans l'interface utilisateur (par exemple, dans l'en-tête ou le pied de page).
     *   [ ] Configurer le routage pour prendre en charge différentes langues (ex: `/fr/dashboard`, `/en/dashboard`).
 

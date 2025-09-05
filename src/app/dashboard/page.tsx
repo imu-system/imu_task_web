@@ -3,24 +3,26 @@ import { Button } from '@/components/ui/button';
 import { getTasks } from '@/lib/data';
 import { PlusCircle } from 'lucide-react';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 export default function DashboardPage() {
   const tasks = getTasks();
+  const t = useTranslations('DashboardPage');
   return (
     <div className="space-y-8">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight font-headline">
-            Missions disponibles
+            {t('title')}
           </h1>
           <p className="text-muted-foreground">
-            Trouvez une mission qui vous correspond près de chez vous.
+            {t('subtitle')}
           </p>
         </div>
         <Button asChild>
           <Link href="/dashboard/tasks/new">
             <PlusCircle className="mr-2 h-4 w-4" />
-            Créer une mission
+            {t('createTask')}
           </Link>
         </Button>
       </div>
