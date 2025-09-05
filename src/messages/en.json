@@ -62,7 +62,8 @@
         "admin": "Admin",
         "kycVerification": "KYC Verifications",
         "users": "Users",
-        "categories": "Categories"
+        "categories": "Categories",
+        "tasks": "Tasks"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -488,5 +489,32 @@
             "notMatching": "Information does not match",
             "other": "Other (will be forwarded to support)"
         }
+    },
+    "AdminTasksPage": {
+        "title": "Task Management",
+        "subtitle": "View and manage all tasks on the platform.",
+        "searchPlaceholder": "Search by title, ID, user...",
+        "tableTitle": "All Tasks",
+        "tableDescription": "List of all created tasks.",
+        "details": "Details",
+        "table": {
+            "task": "Task",
+            "client": "Client",
+            "category": "Category",
+            "status": "Status",
+            "actions": "Actions"
+        },
+        "status": {
+            "draft": "Draft",
+            "published": "Published",
+            "matched": "Matched",
+            "in_progress": "In Progress",
+            "completed": "Completed",
+            "canceled": "Canceled"
+        }
+    },
+    "AdminTaskDetailPage": {
+        "title": "Task Details",
+        "notFound": "Task not found."
     }
 }

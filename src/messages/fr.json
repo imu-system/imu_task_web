@@ -62,7 +62,8 @@
         "admin": "Admin",
         "kycVerification": "Vérifications KYC",
         "users": "Utilisateurs",
-        "categories": "Catégories"
+        "categories": "Catégories",
+        "tasks": "Missions"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -488,5 +489,32 @@
             "notMatching": "Les informations ne correspondent pas",
             "other": "Autre (sera transmis au support)"
         }
+    },
+    "AdminTasksPage": {
+        "title": "Gestion des Missions",
+        "subtitle": "Consultez et gérez toutes les missions de la plateforme.",
+        "searchPlaceholder": "Rechercher par titre, ID, utilisateur...",
+        "tableTitle": "Toutes les missions",
+        "tableDescription": "Liste de toutes les missions créées.",
+        "details": "Détails",
+        "table": {
+            "task": "Mission",
+            "client": "Client",
+            "category": "Catégorie",
+            "status": "Statut",
+            "actions": "Actions"
+        },
+        "status": {
+            "draft": "Brouillon",
+            "published": "Publiée",
+            "matched": "Assignée",
+            "in_progress": "En cours",
+            "completed": "Terminée",
+            "canceled": "Annulée"
+        }
+    },
+    "AdminTaskDetailPage": {
+        "title": "Détails de la mission",
+        "notFound": "Mission non trouvée."
     }
 }

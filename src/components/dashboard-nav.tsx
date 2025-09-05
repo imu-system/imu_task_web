@@ -27,6 +27,7 @@ import {
   ShieldCheck,
   Users,
   LayoutList,
+  ListOrdered,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -81,7 +82,7 @@ export function DashboardNav() {
                 <SidebarSeparator className="my-2"/>
                  <SidebarMenuItem>
                     <Link href="/dashboard/admin">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin') && !pathname.startsWith('/dashboard/admin/users') && !pathname.startsWith('/dashboard/admin/kyc') && !pathname.startsWith('/dashboard/admin/services')}>
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin') && !pathname.startsWith('/dashboard/admin/users') && !pathname.startsWith('/dashboard/admin/kyc') && !pathname.startsWith('/dashboard/admin/services') && !pathname.startsWith('/dashboard/admin/tasks')}>
                             <Shield />
                             <span>{t('admin')}</span>
                         </SidebarMenuButton>
@@ -100,6 +101,14 @@ export function DashboardNav() {
                         <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/services')}>
                             <LayoutList />
                             <span>{t('categories')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+                 <SidebarMenuItem>
+                    <Link href="/dashboard/admin/tasks">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/tasks')}>
+                            <ListOrdered />
+                            <span>{t('tasks')}</span>
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>
