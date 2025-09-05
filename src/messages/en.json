@@ -620,10 +620,15 @@
                     "description": "Are you sure you want to withdraw this offer? This action is usually reserved for abusive or fraudulent offers.",
                     "cancel": "Cancel",
                     "confirm": "Withdraw Offer"
+                },
+                "adjustExpirationDialog": {
+                    "title": "Adjust Expiration Date",
+                    "description": "Select a new expiration date for this offer. This will notify the provider.",
+                    "justificationLabel": "Reason for adjustment (optional, for audit log)",
+                    "cancel": "Cancel",
+                    "confirm": "Confirm & Adjust"
                 }
             }
         }
     }
 }
-
-    

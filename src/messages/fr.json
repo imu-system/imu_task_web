@@ -620,10 +620,15 @@
                     "description": "Êtes-vous sûr de vouloir retirer cette offre ? Cette action est généralement réservée aux offres abusives ou frauduleuses.",
                     "cancel": "Annuler",
                     "confirm": "Retirer l'offre"
+                },
+                "adjustExpirationDialog": {
+                    "title": "Ajuster la date d'expiration",
+                    "description": "Sélectionnez une nouvelle date d'expiration pour cette offre. Le prestataire sera notifié.",
+                    "justificationLabel": "Motif de l'ajustement (optionnel, pour l'audit)",
+                    "cancel": "Annuler",
+                    "confirm": "Confirmer & Ajuster"
                 }
             }
         }
     }
 }
-
-    

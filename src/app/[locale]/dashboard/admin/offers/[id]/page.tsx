@@ -28,6 +28,7 @@ import {
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Calendar as CalendarIcon } from '@/components/ui/calendar';
 
 export default function AdminOfferDetailPage() {
     const { user: adminUser, loading: authLoading } = useAuth();
@@ -236,8 +237,34 @@ export default function AdminOfferDetailPage() {
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>
-
-                        <Button variant="outline" disabled><Clock className="mr-2"/>{t('cards.moderation.adjustExpiration')}</Button>
+                        
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="outline"><Clock className="mr-2"/>{t('cards.moderation.adjustExpiration')}</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>{t('cards.moderation.adjustExpirationDialog.title')}</AlertDialogTitle>
+                                    <AlertDialogDescription>{t('cards.moderation.adjustExpirationDialog.description')}</AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <div className="py-4 flex justify-center">
+                                    <CalendarIcon
+                                        mode="single"
+                                        selected={new Date()} // Replace with state
+                                        // onSelect={...} // Replace with state handler
+                                        className="rounded-md border"
+                                    />
+                                </div>
+                                <div className="space-y-2 py-2">
+                                    <Label htmlFor="expiration-justification">{t('cards.moderation.adjustExpirationDialog.justificationLabel')}</Label>
+                                    <Textarea id="expiration-justification" placeholder={t('cards.moderation.forceStatusDialog.justificationPlaceholder')} />
+                                </div>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>{t('cards.moderation.adjustExpirationDialog.cancel')}</AlertDialogCancel>
+                                    <AlertDialogAction>{t('cards.moderation.adjustExpirationDialog.confirm')}</AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                     </CardContent>
                 </Card>
             </div>
@@ -245,6 +272,3 @@ export default function AdminOfferDetailPage() {
     </div>
   );
 }
-
-
-    
