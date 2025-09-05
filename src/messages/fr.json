@@ -174,6 +174,12 @@
         "edit": "Modifier",
         "delete": "Supprimer",
         "averageRating": "Note moyenne",
-        "reviewsCount": "Avis reçus"
+        "reviewsCount": "Avis reçus",
+        "providerInfo": "Informations Prestataire",
+        "languages": "Langues parlées",
+        "languagesPlaceholder": "Ex: Français, Anglais",
+        "skills": "Compétences",
+        "skillsPlaceholder": "Ex: Jardinage, Bricolage",
+        "commaSeparated": "Séparer par des virgules"
     }
 }

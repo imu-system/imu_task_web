@@ -34,9 +34,18 @@ export const signInSchema = z.object({
   password: z.string().min(1, "Le mot de passe est requis"),
 });
 
+export const profileSchema = z.object({
+  displayName: z.string().min(2, "Le nom est requis."),
+  bio: z.string().max(500, "La biographie ne peut pas dépasser 500 caractères.").optional(),
+  languages: z.array(z.string()).optional(),
+  skills: z.array(z.string()).optional(),
+});
+
 
 export type SignUpFormValues = z.infer<typeof signUpSchema>;
 export type SignInFormValues = z.infer<typeof signInSchema>;
+export type ProfileFormValues = z.infer<typeof profileSchema>;
+
 
 export interface AuthUser extends FirebaseUser {
     profile: Profile | null;
