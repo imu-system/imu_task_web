@@ -367,7 +367,7 @@
                 "resetKycDialog": {
                     "title": "Réinitialiser le processus KYC",
                     "description": "Cette action demandera à {name} de soumettre à nouveau ses documents d'identité. Êtes-vous sûr ?",
-                    "reasonLabel": "Motif de la réinitialisation (optionnel, pour audit)",
+                    "reasonLabel": "Motif de la réinitialisation (optionnel, pour l'audit)",
                     "reasonPlaceholder": "Ex: Documents expirés, qualité médiocre.",
                     "cancel": "Annuler",
                     "confirm": "Confirmer & Réinitialiser"
@@ -731,6 +731,16 @@
                     "placeholder": "Saisissez votre note ici...",
                     "cancel": "Annuler",
                     "save": "Enregistrer la note"
+                },
+                "rescheduleDialog": {
+                    "title": "Replanifier la réservation",
+                    "description": "Sélectionnez une nouvelle date et heure pour la réservation. Les deux parties seront notifiées.",
+                    "startTime": "Heure de début",
+                    "endTime": "Heure de fin",
+                    "reasonLabel": "Motif de la replanification (pour audit)",
+                    "reasonPlaceholder": "Ex: Accord mutuel suite à un imprévu.",
+                    "cancel": "Annuler",
+                    "confirm": "Confirmer & Replanifier"
                 }
             }
         }

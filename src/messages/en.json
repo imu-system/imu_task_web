@@ -731,6 +731,16 @@
                     "placeholder": "Enter your note here...",
                     "cancel": "Cancel",
                     "save": "Save Note"
+                },
+                 "rescheduleDialog": {
+                    "title": "Reschedule Booking",
+                    "description": "Select a new date and time for the booking. Both parties will be notified.",
+                    "startTime": "Start Time",
+                    "endTime": "End Time",
+                    "reasonLabel": "Reason for rescheduling (for audit)",
+                    "reasonPlaceholder": "e.g., Mutual agreement following an unforeseen event.",
+                    "cancel": "Cancel",
+                    "confirm": "Confirm & Reschedule"
                 }
             }
         }

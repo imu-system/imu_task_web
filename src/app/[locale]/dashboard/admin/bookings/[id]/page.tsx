@@ -29,6 +29,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Calendar as CalendarPicker } from '@/components/ui/calendar';
 
 export default function AdminBookingDetailPage() {
     const { user: adminUser, loading: authLoading } = useAuth();
@@ -214,7 +215,46 @@ export default function AdminBookingDetailPage() {
                         <CardDescription>{t('cards.moderation.description')}</CardDescription>
                     </CardHeader>
                     <CardContent className="grid grid-cols-1 gap-2">
-                        <Button variant="outline" disabled><Edit className="mr-2"/>{t('cards.moderation.reschedule')}</Button>
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="outline"><Edit className="mr-2"/>{t('cards.moderation.reschedule')}</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                <AlertDialogTitle>{t('cards.moderation.rescheduleDialog.title')}</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                    {t('cards.moderation.rescheduleDialog.description')}
+                                </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <div className="space-y-4 py-2">
+                                    <div className="flex justify-center">
+                                        <CalendarPicker
+                                            mode="single"
+                                            selected={new Date(booking.startAt)} // You'd use state here
+                                            // onSelect={handleDateSelect}
+                                        />
+                                    </div>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div className="space-y-2">
+                                            <Label htmlFor="start-time">{t('cards.moderation.rescheduleDialog.startTime')}</Label>
+                                            <Input id="start-time" type="time" defaultValue={new Date(booking.startAt).toTimeString().substring(0,5)} />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label htmlFor="end-time">{t('cards.moderation.rescheduleDialog.endTime')}</Label>
+                                            <Input id="end-time" type="time" defaultValue={new Date(booking.endAt).toTimeString().substring(0,5)} />
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="reschedule-reason">{t('cards.moderation.rescheduleDialog.reasonLabel')}</Label>
+                                        <Textarea id="reschedule-reason" placeholder={t('cards.moderation.rescheduleDialog.reasonPlaceholder')} />
+                                    </div>
+                                </div>
+                                <AlertDialogFooter>
+                                <AlertDialogCancel>{t('cards.moderation.rescheduleDialog.cancel')}</AlertDialogCancel>
+                                <AlertDialogAction>{t('cards.moderation.rescheduleDialog.confirm')}</AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                         <Button variant="outline"><CheckCircle className="mr-2"/>{t('cards.moderation.markCompleted')}</Button>
                         <Button variant="outline"><XCircle className="mr-2"/>{t('cards.moderation.declareNoShow')}</Button>
                         <AlertDialog>
