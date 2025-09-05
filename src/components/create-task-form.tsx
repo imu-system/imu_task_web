@@ -77,6 +77,8 @@ export function CreateTaskForm() {
     },
   });
 
+  const descriptionValue = form.watch('description');
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
     toast({
@@ -87,10 +89,14 @@ export function CreateTaskForm() {
 
   const handleSuggestCategories = async () => {
     const description = form.getValues('description');
+    if (description.length < 20) return;
     setIsSuggesting(true);
     const result = await suggestTaskCategories({ taskDescription: description });
     if (result.success && result.categories) {
-      setSuggestedCategories(result.categories);
+      const filtered = result.categories.filter((cat) =>
+        taskCategories.includes(cat as TaskCategory)
+      );
+      setSuggestedCategories(filtered);
     } else {
       toast({
         variant: 'destructive',
@@ -152,12 +158,18 @@ export function CreateTaskForm() {
         />
 
         <div>
-            <Button type="button" variant="outline" size="sm" onClick={handleSuggestCategories} disabled={isSuggesting}>
-                {isSuggesting ? (
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                    <Sparkles className="mr-2 h-4 w-4" />
-                )}
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={handleSuggestCategories}
+              disabled={isSuggesting || descriptionValue.length < 20}
+            >
+              {isSuggesting ? (
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              ) : (
+                  <Sparkles className="mr-2 h-4 w-4" />
+              )}
                 {t('suggestCategoriesButton')}
             </Button>
             {suggestedCategories.length > 0 && (
