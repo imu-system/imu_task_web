@@ -15,11 +15,12 @@ import {
   createUserWithEmailAndPassword,
   signOut as firebaseSignOut,
   AuthError,
+  updateProfile,
 } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
+import { doc, setDoc, getFirestore, serverTimestamp } from 'firebase/firestore';
+import { auth, db } from '@/lib/firebase';
 import { useRouter } from '@/navigation';
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
 
 export const signUpSchema = z.object({
   name: z.string().min(2, "Le nom est requis"),
@@ -95,8 +96,24 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     setLoading(true);
     setError(null);
     try {
-      await createUserWithEmailAndPassword(auth, data.email, data.password);
-       // TODO: Create user document in Firestore
+      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+      const user = userCredential.user;
+
+      // Update Firebase Auth profile
+      await updateProfile(user, { displayName: data.name });
+      
+      // Create user document in Firestore
+      const userDocRef = doc(db, 'users', user.uid);
+      await setDoc(userDocRef, {
+        email: user.email,
+        displayName: data.name,
+        roles: ['client'],
+        status: 'active',
+        KYCStatus: 'not_required',
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+      });
+
       router.push('/dashboard');
     } catch (err) {
       setError(handleAuthError(err as AuthError));
