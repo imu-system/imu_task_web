@@ -21,7 +21,7 @@ import { doc, setDoc, getDoc, getFirestore, serverTimestamp, writeBatch } from '
 import { auth, db } from '@/lib/firebase';
 import { useRouter } from '@/navigation';
 import { z } from 'zod';
-import { type Profile, UserRole } from '@/lib/types';
+import { type Profile, UserRole, type User } from '@/lib/types';
 
 export const signUpSchema = z.object({
   name: z.string().min(2, "Le nom est requis"),
@@ -47,7 +47,7 @@ export type SignInFormValues = z.infer<typeof signInSchema>;
 export type ProfileFormValues = z.infer<typeof profileSchema>;
 
 
-export interface AuthUser extends FirebaseUser {
+export interface AuthUser extends FirebaseUser, Omit<User, 'id' | 'createdAt' | 'updatedAt' | 'profile'> {
     profile: Profile | null;
 }
 
@@ -78,19 +78,33 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setProfileLoading(true);
         if (firebaseUser) {
             try {
+                const userDocRef = doc(db, 'users', firebaseUser.uid);
                 const profileDocRef = doc(db, 'profiles', firebaseUser.uid);
+
+                const userDoc = await getDoc(userDocRef);
                 const profileDoc = await getDoc(profileDocRef);
+                
+                const userData = userDoc.exists() ? (userDoc.data() as User) : null;
+                const profileData = profileDoc.exists() ? (profileDoc.data() as Profile) : null;
                 
                 const authUser: AuthUser = {
                     ...firebaseUser,
-                    profile: profileDoc.exists() ? (profileDoc.data() as Profile) : null
+                    ...(userData || { email: firebaseUser.email, roles: [], status: 'active', KYCStatus: 'not_required' }),
+                    profile: profileData,
                 };
                 setUser(authUser);
             } catch (err) {
-                console.error("Failed to fetch user profile:", err);
-                // Set user without profile if firestore fails
-                setUser({ ...firebaseUser, profile: null });
-                setError("Impossible de récupérer le profil utilisateur. Veuillez vérifier votre connexion.");
+                console.error("Failed to fetch user data:", err);
+                // Set user with basic info if firestore fails
+                setUser({ 
+                    ...firebaseUser,
+                    email: firebaseUser.email!,
+                    roles: [], 
+                    status: 'active', 
+                    KYCStatus: 'not_required',
+                    profile: null 
+                });
+                setError("Impossible de récupérer les données utilisateur. Veuillez vérifier votre connexion.");
             }
         } else {
             setUser(null);

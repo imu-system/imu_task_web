@@ -11,7 +11,8 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarFooter
+  SidebarFooter,
+  SidebarSeparator,
 } from '@/components/ui/sidebar';
 import {
   BookMarked,
@@ -22,13 +23,15 @@ import {
   UserCircle,
   Wallet,
   Zap,
+  Shield,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
+import { UserRole } from '@/lib/types';
 
 export function DashboardNav() {
   const pathname = usePathname();
   const t = useTranslations('DashboardNav');
-  const { signOut } = useAuth();
+  const { user, signOut } = useAuth();
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -43,6 +46,8 @@ export function DashboardNav() {
     { href: '/dashboard/messages', icon: <MessageSquare />, label: t('messages') },
     { href: '/dashboard/wallet', icon: <Wallet />, label: t('wallet') },
   ];
+  
+  const isAdmin = user?.roles?.includes(UserRole.admin);
 
   return (
     <Sidebar>
@@ -58,7 +63,7 @@ export function DashboardNav() {
             <SidebarMenuItem key={item.href}>
               <Link href={item.href}>
                 <SidebarMenuButton
-                  isActive={pathname === item.href}
+                  isActive={pathname.startsWith(item.href) && item.href !== '/dashboard' || pathname === '/dashboard'}
                   className="w-full justify-start"
                 >
                   {item.icon}
@@ -68,6 +73,19 @@ export function DashboardNav() {
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
+        {isAdmin && (
+            <SidebarMenu>
+                <SidebarSeparator className="my-2"/>
+                 <SidebarMenuItem>
+                    <Link href="/dashboard/admin/categories">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin')}>
+                            <Shield />
+                            <span>{t('admin')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+            </SidebarMenu>
+        )}
       </SidebarContent>
       <SidebarFooter className='mt-auto'>
         <SidebarMenu>

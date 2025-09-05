@@ -58,7 +58,8 @@
         "messages": "Messages",
         "wallet": "Portefeuille",
         "profile": "Profil",
-        "logout": "Se déconnecter"
+        "logout": "Se déconnecter",
+        "admin": "Admin"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -193,7 +194,14 @@
         "addressPlaceholder": "Commencez à taper votre adresse...",
         "cancel": "Annuler",
         "save": "Enregistrer l'adresse"
+    },
+    "AdminCategoriesPage": {
+        "title": "Catégories de services",
+        "subtitle": "Gérez les catégories de services disponibles sur la plateforme.",
+        "description": "Voici la liste des catégories de services actuellement configurées.",
+        "tableHeaderName": "Nom",
+        "tableHeaderStatus": "Statut",
+        "statusActive": "Actif",
+        "statusInactive": "Inactif"
     }
 }
-
-    

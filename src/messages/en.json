@@ -58,7 +58,8 @@
         "messages": "Messages",
         "wallet": "Wallet",
         "profile": "Profile",
-        "logout": "Log out"
+        "logout": "Log out",
+        "admin": "Admin"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -193,7 +194,14 @@
         "addressPlaceholder": "Start typing your address...",
         "cancel": "Cancel",
         "save": "Save Address"
+    },
+    "AdminCategoriesPage": {
+        "title": "Service Categories",
+        "subtitle": "Manage the service categories available on the platform.",
+        "description": "Here is the list of currently configured service categories.",
+        "tableHeaderName": "Name",
+        "tableHeaderStatus": "Status",
+        "statusActive": "Active",
+        "statusInactive": "Inactive"
     }
 }
-
-    
