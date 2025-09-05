@@ -210,6 +210,7 @@
         "quickActionAnnouncement": "Annonce système",
         "quickActionUsers": "Gérer les utilisateurs",
         "quickActionExport": "Export Comptable",
+        "quickActionTasks": "Gérer les missions",
         "actionView": "Voir"
     },
     "AdminCategoriesPage": {

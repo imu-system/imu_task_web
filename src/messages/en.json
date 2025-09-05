@@ -210,6 +210,7 @@
         "quickActionAnnouncement": "System Announcement",
         "quickActionUsers": "Manage Users",
         "quickActionExport": "Accounting Export",
+        "quickActionTasks": "Manage Tasks",
         "actionView": "View"
     },
     "AdminCategoriesPage": {
