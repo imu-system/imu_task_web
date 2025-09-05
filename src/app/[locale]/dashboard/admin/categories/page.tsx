@@ -6,7 +6,7 @@ import { useRouter } from '@/navigation';
 import { useEffect } from 'react';
 import { Loader2, Shield } from 'lucide-react';
 import { UserRole } from '@/lib/types';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { taskCategoriesByLocale } from '@/lib/data';
@@ -17,7 +17,7 @@ export default function AdminCategoriesPage() {
     const router = useRouter();
     const t = useTranslations('AdminCategoriesPage');
     const tDashboard = useTranslations('DashboardNav');
-    const locale = useTranslations().locale();
+    const locale = useLocale();
     const categories = taskCategoriesByLocale[locale as keyof typeof taskCategoriesByLocale] || taskCategoriesByLocale.en;
 
     useEffect(() => {
