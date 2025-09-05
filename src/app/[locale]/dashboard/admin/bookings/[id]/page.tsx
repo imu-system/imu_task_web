@@ -200,15 +200,15 @@ export default function AdminBookingDetailPage() {
                     </CardHeader>
                     <CardContent className="grid grid-cols-1 gap-2">
                         <Button variant="outline" disabled><Edit className="mr-2"/>{t('cards.moderation.reschedule')}</Button>
-                        <Button variant="outline" disabled><CheckCircle className="mr-2"/>{t('cards.moderation.markCompleted')}</Button>
-                        <Button variant="outline" disabled><XCircle className="mr-2"/>{t('cards.moderation.declareNoShow')}</Button>
-                        <Button variant="outline" disabled><Euro className="mr-2"/>{t('cards.moderation.adjustPrice')}</Button>
+                        <Button variant="outline"><CheckCircle className="mr-2"/>{t('cards.moderation.markCompleted')}</Button>
+                        <Button variant="outline"><XCircle className="mr-2"/>{t('cards.moderation.declareNoShow')}</Button>
+                        <Button variant="outline"><Euro className="mr-2"/>{t('cards.moderation.adjustPrice')}</Button>
                         <Button variant="destructive" disabled><Calendar className="mr-2"/>{t('cards.moderation.cancel')}</Button>
                         <Separator className="my-2"/>
-                         <Button variant="ghost" disabled><MessageSquare className="mr-2"/>{t('cards.moderation.internalNote')}</Button>
+                         <Button variant="ghost"><MessageSquare className="mr-2"/>{t('cards.moderation.internalNote')}</Button>
                     </CardContent>
                 </Card>
-                 <Button variant="outline" className="w-full" disabled>
+                 <Button variant="outline" className="w-full">
                     <ShieldAlert className="mr-2"/>
                     {t('cards.moderation.openDispute')}
                 </Button>
@@ -217,5 +217,3 @@ export default function AdminBookingDetailPage() {
     </div>
   );
 }
-
-    
