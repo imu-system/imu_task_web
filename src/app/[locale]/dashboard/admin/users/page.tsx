@@ -120,9 +120,11 @@ export default function AdminUsersPage() {
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent align="end">
                                             <DropdownMenuLabel>{t('actions')}</DropdownMenuLabel>
-                                            <DropdownMenuItem>
-                                                <Eye className="mr-2 h-4 w-4" />
-                                                {t('viewProfile')}
+                                            <DropdownMenuItem asChild>
+                                                <Link href={`/dashboard/admin/users/${u.id}`}>
+                                                    <Eye className="mr-2 h-4 w-4" />
+                                                    {t('viewProfile')}
+                                                </Link>
                                             </DropdownMenuItem>
                                         </DropdownMenuContent>
                                     </DropdownMenu>

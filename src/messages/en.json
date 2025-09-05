@@ -245,8 +245,8 @@
         "cardTitle": "Category Details",
         "cardDescription": "Provide the necessary information for the category.",
         "nameLabel": "Name",
-        "namePlaceholderEN": "e.g., Home Cleaning",
         "namePlaceholderFR": "e.g., Ménage à domicile",
+        "namePlaceholderEN": "e.g., Home Cleaning",
         "slugLabel": "Slug",
         "slugPlaceholder": "e.g., home-cleaning",
         "descriptionLabel": "Description",
@@ -310,6 +310,28 @@
             "pending": "Pending",
             "verified": "Verified",
             "rejected": "Rejected"
+        }
+    },
+    "AdminUserDetailPage": {
+        "title": "User Details",
+        "backToList": "Back to user list",
+        "userNotFound": "User not found.",
+        "noInfo": "Not provided",
+        "cards": {
+            "summary": {
+                "title": "User Summary",
+                "status": "Status",
+                "kyc": "KYC",
+                "memberSince": "Member since {date}"
+            },
+            "actions": {
+                "title": "Admin Actions",
+                "description": "Perform administrative actions on this user.",
+                "editProfile": "Edit Profile",
+                "impersonate": "Impersonate",
+                "suspend": "Suspend User",
+                "delete": "Delete User"
+            }
         }
     }
 }

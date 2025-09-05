@@ -311,5 +311,27 @@
             "verified": "Vérifié",
             "rejected": "Rejeté"
         }
+    },
+    "AdminUserDetailPage": {
+        "title": "Détails de l'utilisateur",
+        "backToList": "Retour à la liste des utilisateurs",
+        "userNotFound": "Utilisateur non trouvé.",
+        "noInfo": "Non renseigné",
+        "cards": {
+            "summary": {
+                "title": "Résumé de l'utilisateur",
+                "status": "Statut",
+                "kyc": "KYC",
+                "memberSince": "Membre depuis le {date}"
+            },
+            "actions": {
+                "title": "Actions Administratives",
+                "description": "Effectuer des actions administratives sur cet utilisateur.",
+                "editProfile": "Modifier le profil",
+                "impersonate": "Voir en tant que",
+                "suspend": "Suspendre l'utilisateur",
+                "delete": "Supprimer l'utilisateur"
+            }
+        }
     }
 }
