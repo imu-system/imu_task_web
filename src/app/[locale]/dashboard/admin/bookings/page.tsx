@@ -120,10 +120,10 @@ export default function AdminBookingsPage() {
                                     </div>
                                 </TableCell>
                                  <TableCell>
-                                    <div className="font-medium">{booking.agreedAmount} {booking.currency}</div>
+                                    <div className="font-medium">{booking.agreedAmount / 100} {booking.currency}</div>
                                 </TableCell>
                                 <TableCell>
-                                    <Badge variant={getStatusVariant(booking.status)}>{t(`status.${booking.status}`)}</Badge>
+                                    <Badge variant={t(`statusVariants.${booking.status}`) as any}>{t(`status.${booking.status}`)}</Badge>
                                 </TableCell>
                                 <TableCell className="text-right">
                                     <Button asChild variant="outline" size="sm">
@@ -142,3 +142,5 @@ export default function AdminBookingsPage() {
     </div>
   );
 }
+
+    

@@ -5,11 +5,15 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2, ArrowLeft } from 'lucide-react';
+import { Loader2, ArrowLeft, Calendar, User, Euro, MessageSquare, Clock, XCircle, CheckCircle, Edit, ShieldAlert } from 'lucide-react';
 import { UserRole, Booking } from '@/lib/types';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { getBookings } from '@/lib/bookings';
 import { Button } from '@/components/ui/button';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Separator } from '@/components/ui/separator';
+import { Badge } from '@/components/ui/badge';
 
 export default function AdminBookingDetailPage() {
     const { user: adminUser, loading: authLoading } = useAuth();
@@ -17,6 +21,8 @@ export default function AdminBookingDetailPage() {
     const params = useParams<{ id: string }>();
     const bookingId = params.id;
     const t = useTranslations('AdminBookingDetailPage');
+    const tBookings = useTranslations('AdminBookingsPage');
+    const locale = useLocale();
     
     const [booking, setBooking] = useState<Booking | null>(null);
     const [loading, setLoading] = useState(true);
@@ -71,9 +77,104 @@ export default function AdminBookingDetailPage() {
                 </p>
             </div>
         </div>
-        <div>
-            <p>Booking details for {booking.task?.title} will be displayed here.</p>
+        
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div className="lg:col-span-2 space-y-8">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>{t('cards.summary.title')}</CardTitle>
+                        <CardDescription>
+                            {t('cards.summary.description', { taskTitle: booking.task?.title })}
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <h3 className="font-semibold">{t('cards.summary.client')}</h3>
+                                <div className="flex items-center gap-2 mt-2">
+                                    <Avatar className="h-10 w-10">
+                                        <AvatarImage src={booking.client?.profile?.photoUrl} />
+                                        <AvatarFallback>{booking.client?.profile?.displayName.charAt(0)}</AvatarFallback>
+                                    </Avatar>
+                                    <div>
+                                        <p>{booking.client?.profile?.displayName}</p>
+                                        <Link href={`/dashboard/admin/users/${booking.client?.id}`} className="text-sm text-primary hover:underline">{t('viewProfile')}</Link>
+                                    </div>
+                                </div>
+                            </div>
+                             <div>
+                                <h3 className="font-semibold">{t('cards.summary.provider')}</h3>
+                                <div className="flex items-center gap-2 mt-2">
+                                    <Avatar className="h-10 w-10">
+                                        <AvatarImage src={booking.provider?.profile?.photoUrl} />
+                                        <AvatarFallback>{booking.provider?.profile?.displayName.charAt(0)}</AvatarFallback>
+                                    </Avatar>
+                                    <div>
+                                        <p>{booking.provider?.profile?.displayName}</p>
+                                        <Link href={`/dashboard/admin/users/${booking.provider?.id}`} className="text-sm text-primary hover:underline">{t('viewProfile')}</Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <Separator/>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                            <div className="flex items-center gap-2">
+                                <Badge variant={tBookings(`statusVariants.${booking.status}`) as any} className="text-sm">
+                                    {tBookings(`status.${booking.status}`)}
+                                </Badge>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Euro className="h-4 w-4 text-muted-foreground"/>
+                                <strong>{t('cards.summary.amount')}:</strong>
+                                <span>{booking.agreedAmount / 100} {booking.currency}</span>
+                            </div>
+                            <div className="flex items-center gap-2 col-span-full">
+                                <Calendar className="h-4 w-4 text-muted-foreground"/>
+                                <strong>{t('cards.summary.date')}:</strong>
+                                <span>{new Intl.DateTimeFormat(locale, { dateStyle: 'full', timeStyle: 'short' }).format(new Date(booking.startAt))}</span>
+                            </div>
+                        </div>
+                    </CardContent>
+                </Card>
+
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>{t('cards.timeline.title')}</CardTitle>
+                        <CardDescription>{t('cards.timeline.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="border-dashed border-2 rounded-lg p-8 text-center text-muted-foreground">
+                            <Clock className="mx-auto h-8 w-8 mb-2"/>
+                            <p>{t('cards.timeline.placeholder')}</p>
+                        </div>
+                    </CardContent>
+                </Card>
+
+            </div>
+            <div className="space-y-6">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>{t('cards.moderation.title')}</CardTitle>
+                        <CardDescription>{t('cards.moderation.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="grid grid-cols-1 gap-2">
+                        <Button variant="outline" disabled><Edit className="mr-2"/>{t('cards.moderation.reschedule')}</Button>
+                        <Button variant="outline" disabled><CheckCircle className="mr-2"/>{t('cards.moderation.markCompleted')}</Button>
+                        <Button variant="outline" disabled><XCircle className="mr-2"/>{t('cards.moderation.declareNoShow')}</Button>
+                        <Button variant="outline" disabled><Euro className="mr-2"/>{t('cards.moderation.adjustPrice')}</Button>
+                        <Button variant="destructive" disabled><Calendar className="mr-2"/>{t('cards.moderation.cancel')}</Button>
+                        <Separator className="my-2"/>
+                         <Button variant="ghost" disabled><MessageSquare className="mr-2"/>{t('cards.moderation.internalNote')}</Button>
+                    </CardContent>
+                </Card>
+                 <Button variant="outline" className="w-full" disabled>
+                    <ShieldAlert className="mr-2"/>
+                    {t('cards.moderation.openDispute')}
+                </Button>
+            </div>
         </div>
     </div>
   );
 }
+
+    

@@ -543,8 +543,8 @@
             "forcePublish": "Force Publish",
             "unpublish": "Unpublish",
             "cancel": "Cancel Task",
-            "hideInfo": "Hide Public Info",
             "asTemplate": "Convert to Template",
+            "hideInfo": "Hide Public Info",
             "cancelDialog": {
                 "title": "Cancel Task",
                 "description": "This action is irreversible and will notify the client and any providers who made an offer. Please provide a reason for cancellation.",
@@ -657,11 +657,48 @@
             "no_show_client": "Client No-Show",
             "no_show_provider": "Provider No-Show",
             "canceled": "Canceled"
+        },
+        "statusVariants": {
+            "scheduled": "secondary",
+            "in_progress": "secondary",
+            "completed": "default",
+            "no_show_client": "destructive",
+            "no_show_provider": "destructive",
+            "canceled": "destructive"
         }
     },
     "AdminBookingDetailPage": {
         "title": "Booking Details",
         "backToList": "Back to bookings list",
-        "notFound": "Booking not found."
+        "notFound": "Booking not found.",
+        "viewProfile": "View profile",
+        "cards": {
+            "summary": {
+                "title": "Booking Summary",
+                "description": "Booking for task: \"{taskTitle}\"",
+                "client": "Client",
+                "provider": "Provider",
+                "amount": "Agreed Amount",
+                "date": "Scheduled for"
+            },
+            "timeline": {
+                "title": "Timeline",
+                "description": "Chronological history of the booking.",
+                "placeholder": "Timeline view will be implemented here."
+            },
+            "moderation": {
+                "title": "Moderation",
+                "description": "Actions on this booking.",
+                "reschedule": "Reschedule",
+                "markCompleted": "Mark as Completed",
+                "declareNoShow": "Declare No-Show",
+                "adjustPrice": "Adjust Price",
+                "cancel": "Cancel Booking",
+                "internalNote": "Add Internal Note",
+                "openDispute": "Open a Dispute"
+            }
+        }
     }
 }
+
+    

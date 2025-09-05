@@ -520,8 +520,8 @@
     },
     "AdminTaskDetailPage": {
         "title": "Détails de la mission",
-        "notFound": "Mission non trouvée.",
         "backToList": "Retour à la liste des missions",
+        "notFound": "Mission non trouvée.",
         "postedBy": "Postée par",
         "details": {
             "status": "Statut",
@@ -543,8 +543,8 @@
             "forcePublish": "Forcer la publication",
             "unpublish": "Dépublier",
             "cancel": "Annuler la mission",
-            "hideInfo": "Masquer infos publiques",
             "asTemplate": "Convertir en template",
+            "hideInfo": "Masquer infos publiques",
             "cancelDialog": {
                 "title": "Annuler la mission",
                 "description": "Cette action est irréversible et notifiera le client et les prestataires ayant fait une offre. Veuillez indiquer un motif d'annulation.",
@@ -657,11 +657,48 @@
             "no_show_client": "Client absent",
             "no_show_provider": "Prestataire absent",
             "canceled": "Annulée"
+        },
+        "statusVariants": {
+            "scheduled": "secondary",
+            "in_progress": "secondary",
+            "completed": "default",
+            "no_show_client": "destructive",
+            "no_show_provider": "destructive",
+            "canceled": "destructive"
         }
     },
     "AdminBookingDetailPage": {
         "title": "Détails de la Réservation",
         "backToList": "Retour à la liste des réservations",
-        "notFound": "Réservation non trouvée."
+        "notFound": "Réservation non trouvée.",
+        "viewProfile": "Voir le profil",
+        "cards": {
+            "summary": {
+                "title": "Résumé de la réservation",
+                "description": "Réservation pour la mission : \"{taskTitle}\"",
+                "client": "Client",
+                "provider": "Prestataire",
+                "amount": "Montant convenu",
+                "date": "Prévue le"
+            },
+            "timeline": {
+                "title": "Timeline",
+                "description": "Historique chronologique de la réservation.",
+                "placeholder": "La vue timeline sera implémentée ici."
+            },
+            "moderation": {
+                "title": "Modération",
+                "description": "Actions sur cette réservation.",
+                "reschedule": "Replanifier",
+                "markCompleted": "Marquer comme terminée",
+                "declareNoShow": "Déclarer un No-Show",
+                "adjustPrice": "Ajuster le tarif",
+                "cancel": "Annuler la réservation",
+                "internalNote": "Ajouter une note interne",
+                "openDispute": "Ouvrir un litige"
+            }
+        }
     }
 }
+
+    
