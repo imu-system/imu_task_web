@@ -29,9 +29,17 @@ import { useToast } from '@/hooks/use-toast';
 import { createServiceCategory } from '@/lib/data';
 
 const categoryFormSchema = z.object({
-  name: z.string().min(3, 'Le nom doit contenir au moins 3 caractères.'),
-  slug: z.string().min(3, 'Le slug doit contenir au moins 3 caractères.').regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Slug invalide (doit être en minuscules, sans espaces, ex: "home-cleaning").'),
-  description: z.string().optional(),
+  name: z.object({
+    fr: z.string().min(3, 'Le nom doit contenir au moins 3 caractères.'),
+    en: z.string().optional(),
+    jp: z.string().optional(),
+  }),
+  slug: z.string().min(3, 'Le slug doit contenir au moins 3 caractères.').regex(/^[a-z0-9]+(?:-[a-z0_9]+)*$/, 'Slug invalide (doit être en minuscules, sans espaces, ex: "home-cleaning").'),
+  description: z.object({
+      fr: z.string().optional(),
+      en: z.string().optional(),
+      jp: z.string().optional(),
+  }),
   displayOrder: z.coerce.number().int().min(0).default(10),
   isActive: z.boolean().default(true),
 });
@@ -42,7 +50,6 @@ const localStorageKey = 'new-category-form';
 export default function AdminNewCategoryPage() {
     const { user, loading: authLoading } = useAuth();
     const router = useRouter();
-    const t = useTranslations('AdminCategoriesPage');
     const tForm = useTranslations('AdminCategoryForm');
     const [isSaving, setIsSaving] = useState(false);
     const { toast } = useToast();
@@ -50,9 +57,9 @@ export default function AdminNewCategoryPage() {
     const form = useForm<CategoryFormValues>({
         resolver: zodResolver(categoryFormSchema),
         defaultValues: {
-            name: '',
+            name: { fr: '' },
             slug: '',
-            description: '',
+            description: { fr: '' },
             displayOrder: 10,
             isActive: true,
         },
@@ -150,12 +157,12 @@ export default function AdminNewCategoryPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <FormField
                                 control={form.control}
-                                name="name"
+                                name="name.fr"
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>{tForm('nameLabel')}</FormLabel>
                                         <FormControl>
-                                            <Input placeholder={tForm('namePlaceholder')} {...field} />
+                                            <Input placeholder={tForm('namePlaceholderFR')} {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>
@@ -177,7 +184,7 @@ export default function AdminNewCategoryPage() {
                         </div>
                         <FormField
                             control={form.control}
-                            name="description"
+                            name="description.fr"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>{tForm('descriptionLabel')}</FormLabel>
@@ -239,3 +246,5 @@ export default function AdminNewCategoryPage() {
     </div>
   );
 }
+
+    
