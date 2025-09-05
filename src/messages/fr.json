@@ -420,6 +420,57 @@
     },
     "AdminKycDetailPage": {
         "title": "Revue KYC",
-        "subtitle": "Examen des documents pour {providerName}"
+        "subtitle": "Examen des documents pour {providerName}",
+        "backToList": "Retour à la liste",
+        "notFound": "Demande KYC non trouvée.",
+        "documents": {
+            "identity_front": "Pièce d'identité (Recto)",
+            "identity_back": "Pièce d'identité (Verso)",
+            "selfie": "Selfie"
+        },
+        "data": {
+            "name": "Nom",
+            "dob": "Date de naissance",
+            "expires": "Expire le"
+        },
+        "status": {
+            "pending": "En attente",
+            "rejected": "Rejeté"
+        },
+        "toast": {
+            "approveSuccessTitle": "KYC Approuvé",
+            "approveSuccessDescription": "{name} a été vérifié avec succès.",
+            "rejectSuccessTitle": "KYC Rejeté",
+            "rejectSuccessDescription": "{name} a été notifié du rejet."
+        },
+        "cards": {
+            "actions": {
+                "title": "Actions",
+                "approve": "Approuver",
+                "reject": "Rejeter",
+                "flag": "Marquer comme suspect",
+                "rejectDialog": {
+                    "title": "Rejeter la vérification",
+                    "description": "Veuillez sélectionner un motif de rejet. L'utilisateur sera notifié.",
+                    "cancel": "Annuler",
+                    "confirm": "Confirmer le rejet"
+                }
+            },
+            "provider": {
+                "title": "Prestataire",
+                "country": "Pays",
+                "memberSince": "Membre depuis",
+                "stripeId": "ID Stripe"
+            },
+            "history": {
+                "title": "Historique"
+            }
+        },
+        "reasons": {
+            "blurry": "Photo floue ou illisible",
+            "expired": "Document expiré",
+            "notMatching": "Les informations ne correspondent pas",
+            "other": "Autre (sera transmis au support)"
+        }
     }
 }

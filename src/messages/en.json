@@ -420,6 +420,57 @@
     },
     "AdminKycDetailPage": {
         "title": "KYC Review",
-        "subtitle": "Reviewing documents for {providerName}"
+        "subtitle": "Reviewing documents for {providerName}",
+        "backToList": "Back to list",
+        "notFound": "KYC Request not found.",
+        "documents": {
+            "identity_front": "ID Document (Front)",
+            "identity_back": "ID Document (Back)",
+            "selfie": "Selfie"
+        },
+        "data": {
+            "name": "Name",
+            "dob": "Date of Birth",
+            "expires": "Expires on"
+        },
+        "status": {
+            "pending": "Pending",
+            "rejected": "Rejected"
+        },
+        "toast": {
+            "approveSuccessTitle": "KYC Approved",
+            "approveSuccessDescription": "{name} has been successfully verified.",
+            "rejectSuccessTitle": "KYC Rejected",
+            "rejectSuccessDescription": "{name} has been notified of the rejection."
+        },
+        "cards": {
+            "actions": {
+                "title": "Actions",
+                "approve": "Approve",
+                "reject": "Reject",
+                "flag": "Flag as suspicious",
+                "rejectDialog": {
+                    "title": "Reject Verification",
+                    "description": "Please select a reason for rejection. The user will be notified.",
+                    "cancel": "Cancel",
+                    "confirm": "Confirm Rejection"
+                }
+            },
+            "provider": {
+                "title": "Provider",
+                "country": "Country",
+                "memberSince": "Member Since",
+                "stripeId": "Stripe ID"
+            },
+            "history": {
+                "title": "History"
+            }
+        },
+        "reasons": {
+            "blurry": "Photo is blurry or unreadable",
+            "expired": "Document is expired",
+            "notMatching": "Information does not match",
+            "other": "Other (will be forwarded to support)"
+        }
     }
 }
