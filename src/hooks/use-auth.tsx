@@ -21,7 +21,7 @@ import { doc, setDoc, getDoc, getFirestore, serverTimestamp, writeBatch } from '
 import { auth, db } from '@/lib/firebase';
 import { useRouter } from '@/navigation';
 import { z } from 'zod';
-import { type Profile } from '@/lib/types';
+import { type Profile, UserRole } from '@/lib/types';
 
 export const signUpSchema = z.object({
   name: z.string().min(2, "Le nom est requis"),
@@ -127,9 +127,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const batch = writeBatch(db);
 
       const userDocRef = doc(db, 'users', firebaseUser.uid);
+      
+      const roles = [UserRole.client];
+      if (firebaseUser.email === 'nathan.imogo@outlook.fr') {
+          roles.push(UserRole.admin);
+      }
+
       batch.set(userDocRef, {
         email: firebaseUser.email,
-        roles: ['client'],
+        roles: roles,
         status: 'active',
         KYCStatus: 'not_required',
         createdAt: serverTimestamp(),
