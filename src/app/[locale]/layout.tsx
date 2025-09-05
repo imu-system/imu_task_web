@@ -2,7 +2,6 @@ import {ReactNode} from 'react';
 import {notFound} from 'next/navigation';
 import {NextIntlClientProvider} from 'next-intl';
 import {unstable_setRequestLocale} from 'next-intl/server';
-import {Toaster} from '@/components/ui/toaster';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import {locales, type Locale} from '@/navigation';
@@ -34,7 +33,6 @@ export default async function LocaleLayout({children, params}: Props) {
         <main className="flex-1">{children}</main>
         <Footer />
       </div>
-      <Toaster />
     </NextIntlClientProvider>
   );
 }
