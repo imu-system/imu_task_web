@@ -28,6 +28,7 @@ import {
   Users,
   LayoutList,
   ListOrdered,
+  Handshake,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -109,6 +110,14 @@ export function DashboardNav() {
                         <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/tasks')}>
                             <ListOrdered />
                             <span>{t('tasks')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+                 <SidebarMenuItem>
+                    <Link href="/dashboard/admin/offers">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/offers')}>
+                            <Handshake />
+                            <span>{t('offers')}</span>
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>

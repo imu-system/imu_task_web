@@ -263,34 +263,61 @@ export async function duplicateServiceCategory(id: string) {
     }
 }
 
+export const getOffers = (): Offer[] => [
+    {
+        id: 'offer1',
+        taskId: 'task1',
+        task: getTasks().find(t => t.id === 'task1'),
+        providerId: 'user2',
+        provider: users.find(u => u.id === 'user2')!,
+        message: 'Bonjour, je suis disponible et véhiculé. Je peux faire vos courses cet après-midi si vous le souhaitez.',
+        proposedPrice: 25,
+        status: OfferStatus.pending,
+        expiresAt: new Date('2024-08-30T23:59:59'),
+        createdAt: '',
+        updatedAt: ''
+    },
+    {
+        id: 'offer2',
+        taskId: 'task1',
+        task: getTasks().find(t => t.id === 'task1'),
+        providerId: 'user3',
+        provider: users.find(u => u.id === 'user3')!,
+        message: "Bonjour, j'habite juste à côté et je serais ravie de vous aider pour vos courses. Je suis disponible demain matin.",
+        proposedPrice: 23,
+        status: OfferStatus.pending,
+        expiresAt: new Date('2024-08-30T23:59:59'),
+        createdAt: '',
+        updatedAt: ''
+    },
+     {
+        id: 'offer3',
+        taskId: 'task3',
+        task: getTasks().find(t => t.id === 'task3'),
+        providerId: 'user2',
+        provider: users.find(u => u.id === 'user2')!,
+        message: "Bonjour, j'ai tout le matériel nécessaire pour fixer votre étagère solidement. Je peux passer dans l'après-midi.",
+        proposedPrice: 20,
+        status: OfferStatus.accepted,
+        expiresAt: new Date('2024-08-25T23:59:59'),
+        createdAt: '',
+        updatedAt: ''
+    },
+     {
+        id: 'offer4',
+        taskId: 'task2',
+        task: getTasks().find(t => t.id === 'task2'),
+        providerId: 'user3',
+        provider: users.find(u => u.id === 'user3')!,
+        message: "Le jardinage c'est ma passion ! Je serais heureux de m'occuper de votre jardin.",
+        proposedPrice: 45,
+        status: OfferStatus.declined,
+        expiresAt: new Date('2024-08-20T23:59:59'),
+        createdAt: '',
+        updatedAt: ''
+    },
+];
+
 export const getOffersForTask = (taskId: string): Offer[] => {
-    if (taskId === 'task1') {
-        return [
-            {
-              id: 'offer1',
-              taskId: 'task1',
-              providerId: 'user2',
-              provider: users.find(u => u.id === 'user2')!,
-              message: 'Bonjour, je suis disponible et véhiculé. Je peux faire vos courses cet après-midi si vous le souhaitez.',
-              proposedPrice: 25,
-              status: OfferStatus.pending,
-              expiresAt: new Date(),
-              createdAt: '',
-              updatedAt: ''
-            },
-            {
-              id: 'offer2',
-              taskId: 'task1',
-              providerId: 'user3',
-              provider: users.find(u => u.id === 'user3')!,
-              message: "Bonjour, j'habite juste à côté et je serais ravie de vous aider pour vos courses. Je suis disponible demain matin.",
-              proposedPrice: 23,
-              status: OfferStatus.pending,
-              expiresAt: new Date(),
-              createdAt: '',
-              updatedAt: ''
-            },
-        ]
-    }
-    return [];
+    return getOffers().filter(o => o.taskId === taskId);
 };

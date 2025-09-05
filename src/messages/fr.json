@@ -63,7 +63,8 @@
         "kycVerification": "Vérifications KYC",
         "users": "Utilisateurs",
         "categories": "Catégories",
-        "tasks": "Missions"
+        "tasks": "Missions",
+        "offers": "Offres"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -553,6 +554,29 @@
         "flags": {
             "title": "Signalements",
             "noFlags": "Aucun signalement pour cette mission."
+        }
+    },
+    "AdminOffersPage": {
+        "title": "Gestion des Offres",
+        "subtitle": "Supervisez toutes les propositions faites sur la plateforme.",
+        "tableTitle": "Toutes les Offres",
+        "tableDescription": "Liste de toutes les offres soumises par les prestataires.",
+        "details": "Détails",
+        "table": {
+            "id": "ID Offre",
+            "task": "Mission",
+            "provider": "Prestataire",
+            "price": "Prix",
+            "status": "Statut",
+            "expiresAt": "Expire le",
+            "actions": "Actions"
+        },
+        "status": {
+            "pending": "En attente",
+            "accepted": "Acceptée",
+            "declined": "Refusée",
+            "expired": "Expirée",
+            "withdrawn": "Retirée"
         }
     }
 }

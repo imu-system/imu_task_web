@@ -63,7 +63,8 @@
         "kycVerification": "KYC Verifications",
         "users": "Users",
         "categories": "Categories",
-        "tasks": "Tasks"
+        "tasks": "Tasks",
+        "offers": "Offers"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -553,6 +554,29 @@
         "flags": {
             "title": "Flags",
             "noFlags": "No flags for this task."
+        }
+    },
+    "AdminOffersPage": {
+        "title": "Offer Management",
+        "subtitle": "Supervise all proposals made on the platform.",
+        "tableTitle": "All Offers",
+        "tableDescription": "List of all offers submitted by providers.",
+        "details": "Details",
+        "table": {
+            "id": "Offer ID",
+            "task": "Task",
+            "provider": "Provider",
+            "price": "Price",
+            "status": "Status",
+            "expiresAt": "Expires At",
+            "actions": "Actions"
+        },
+        "status": {
+            "pending": "Pending",
+            "accepted": "Accepted",
+            "declined": "Declined",
+            "expired": "Expired",
+            "withdrawn": "Withdrawn"
         }
     }
 }
