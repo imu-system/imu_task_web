@@ -155,7 +155,7 @@ export default function Header() {
                   ) : (
                     <div className="flex flex-col gap-2">
                       <Button variant="ghost" asChild><Link href="/sign-in" className="w-full">{t('signIn')}</Link></Button>
-                      <Button asChild><Link href="/sign-up" className="w-full">{t('signUp')}</Button>
+                      <Button asChild><Link href="/sign-up" className="w-full">{t('signUp')}</Link></Button>
                     </div>
                   )}
                 </div>
@@ -181,12 +181,9 @@ export default function Header() {
                 <DropdownMenuItem asChild>
                   <IntlLink href={pathname} locale="fr">{tLang('fr')}</IntlLink>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <IntlLink href={pathname} locale="en">{tLang('en')}</IntlLink>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <IntlLink href={pathname} locale="ja" disabled>{tLang('ja')}</IntlLink>
-                </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <IntlLink href={pathname} locale="en">{tLang('en')}</IntlLink>
+                  </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
 

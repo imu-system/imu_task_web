@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import {
   Avatar,
   AvatarFallback,
@@ -28,18 +29,18 @@ import {
   Wallet,
   Zap,
 } from 'lucide-react';
-import { Button } from './ui/button';
-
-const navItems = [
-  { href: '/dashboard', icon: <LayoutGrid />, label: 'Dashboard' },
-  { href: '/dashboard/tasks/new', icon: <PlusCircle />, label: 'Créer une mission' },
-  { href: '/dashboard/bookings', icon: <BookMarked />, label: 'Mes missions' },
-  { href: '/dashboard/messages', icon: <MessageSquare />, label: 'Messages' },
-  { href: '/dashboard/wallet', icon: <Wallet />, label: 'Portefeuille' },
-];
 
 export function DashboardNav() {
   const pathname = usePathname();
+  const t = useTranslations('DashboardNav');
+
+  const navItems = [
+    { href: '/dashboard', icon: <LayoutGrid />, label: t('dashboard') },
+    { href: '/dashboard/tasks/new', icon: <PlusCircle />, label: t('createTask') },
+    { href: '/dashboard/bookings', icon: <BookMarked />, label: t('myTasks') },
+    { href: '/dashboard/messages', icon: <MessageSquare />, label: t('messages') },
+    { href: '/dashboard/wallet', icon: <Wallet />, label: t('wallet') },
+  ];
 
   return (
     <Sidebar>
@@ -72,15 +73,15 @@ export function DashboardNav() {
                 <Link href="/dashboard/profile">
                     <SidebarMenuButton isActive={pathname === '/dashboard/profile'}>
                         <UserCircle />
-                        <span>Profil</span>
+                        <span>{t('profile')}</span>
                     </SidebarMenuButton>
                 </Link>
             </SidebarMenuItem>
-            <SidebarMenuItem>
+              <SidebarMenuItem>
                 <Link href="/">
-                    <SidebarMenuButton variant="ghost">
+                    <SidebarMenuButton>
                         <LogOut />
-                        <span>Se déconnecter</span>
+                        <span>{t('logout')}</span>
                     </SidebarMenuButton>
                 </Link>
             </SidebarMenuItem>

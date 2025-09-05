@@ -51,5 +51,35 @@
         "fr": "Français",
         "en": "English",
         "ja": "日本語"
+    },
+    "DashboardNav": {
+        "dashboard": "Dashboard",
+        "createTask": "Créer une mission",
+        "myTasks": "Mes missions",
+        "messages": "Messages",
+        "wallet": "Portefeuille",
+        "profile": "Profil",
+        "logout": "Se déconnecter"
+    },
+    "DashboardPage": {
+        "title": "Missions disponibles",
+        "subtitle": "Trouvez une mission qui vous correspond près de chez vous.",
+        "createTask": "Créer une mission"
+    },
+    "NewTaskPage": {
+        "title": "Créer une nouvelle mission",
+        "subtitle": "Remplissez les détails ci-dessous pour trouver de l'aide rapidement."
+    },
+    "TaskCard": {
+        "viewTask": "Voir la mission"
+    },
+    "TaskCategories": {
+        "shopping": "Courses",
+        "gardening": "Jardinage",
+        "lightCleaning": "Ménage léger",
+        "digitalHelp": "Aide numérique",
+        "administrativeHelp": "Aide administrative",
+        "handyman": "Petits bricolages",
+        "petSitting": "Garde d’animaux"
     }
 }
