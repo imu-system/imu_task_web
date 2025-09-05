@@ -34,6 +34,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Label } from '@/components/ui/label';
 
 
 const profileEditSchema = z.object({
@@ -494,5 +495,7 @@ export default function AdminUserDetailPage() {
     </div>
   );
 }
+
+    
 
     
