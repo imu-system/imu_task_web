@@ -684,7 +684,16 @@
             "timeline": {
                 "title": "Timeline",
                 "description": "Historique chronologique de la réservation.",
-                "placeholder": "La vue timeline sera implémentée ici."
+                "events": {
+                    "offerAccepted": "Offre Acceptée",
+                    "offerAcceptedDesc": "Le client a accepté l'offre du prestataire.",
+                    "paymentAuthorized": "Paiement Autorisé",
+                    "paymentAuthorizedDesc": "Le montant a été autorisé et mis sous séquestre avec succès.",
+                    "bookingConfirmed": "Réservation Confirmée",
+                    "bookingConfirmedDesc": "La mission est officiellement planifiée.",
+                    "taskCompleted": "Mission marquée comme terminée",
+                    "taskCompletedDesc": "Le prestataire a indiqué que la mission est terminée, en attente de la confirmation du client."
+                }
             },
             "moderation": {
                 "title": "Modération",
@@ -700,5 +709,3 @@
         }
     }
 }
-
-    

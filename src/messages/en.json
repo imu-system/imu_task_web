@@ -684,7 +684,16 @@
             "timeline": {
                 "title": "Timeline",
                 "description": "Chronological history of the booking.",
-                "placeholder": "Timeline view will be implemented here."
+                "events": {
+                    "offerAccepted": "Offer Accepted",
+                    "offerAcceptedDesc": "The client accepted the provider's offer.",
+                    "paymentAuthorized": "Payment Authorized",
+                    "paymentAuthorizedDesc": "The amount has been successfully authorized and held in escrow.",
+                    "bookingConfirmed": "Booking Confirmed",
+                    "bookingConfirmedDesc": "The task is officially scheduled.",
+                    "taskCompleted": "Task Marked as Completed",
+                    "taskCompletedDesc": "The provider has indicated the task is finished, awaiting client confirmation."
+                }
             },
             "moderation": {
                 "title": "Moderation",
@@ -700,5 +709,3 @@
         }
     }
 }
-
-    

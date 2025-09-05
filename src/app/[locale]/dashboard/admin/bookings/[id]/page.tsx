@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2, ArrowLeft, Calendar, User, Euro, MessageSquare, Clock, XCircle, CheckCircle, Edit, ShieldAlert } from 'lucide-react';
+import { Loader2, ArrowLeft, Calendar, User, Euro, MessageSquare, Clock, XCircle, CheckCircle, Edit, ShieldAlert, Handshake, CreditCard, CalendarCheck } from 'lucide-react';
 import { UserRole, Booking } from '@/lib/types';
 import { useTranslations, useLocale } from 'next-intl';
 import { getBookings } from '@/lib/bookings';
@@ -58,6 +58,33 @@ export default function AdminBookingDetailPage() {
             </div>
         )
     }
+
+    const timelineEvents = [
+        {
+          icon: <Handshake className="h-5 w-5" />,
+          titleKey: "offerAccepted",
+          timestamp: "2024-08-17T09:55:00Z",
+          descriptionKey: "offerAcceptedDesc",
+        },
+        {
+          icon: <CreditCard className="h-5 w-5" />,
+          titleKey: "paymentAuthorized",
+          timestamp: "2024-08-17T09:56:00Z",
+          descriptionKey: "paymentAuthorizedDesc"
+        },
+        {
+          icon: <CalendarCheck className="h-5 w-5" />,
+          titleKey: "bookingConfirmed",
+          timestamp: "2024-08-17T10:00:00Z",
+          descriptionKey: "bookingConfirmedDesc"
+        },
+         {
+          icon: <CheckCircle className="h-5 w-5" />,
+          titleKey: "taskCompleted",
+          timestamp: "2024-08-18T12:05:00Z",
+          descriptionKey: "taskCompletedDesc"
+        }
+      ];
 
   return (
     <div className="space-y-8 max-w-6xl mx-auto">
@@ -143,10 +170,24 @@ export default function AdminBookingDetailPage() {
                         <CardDescription>{t('cards.timeline.description')}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <div className="border-dashed border-2 rounded-lg p-8 text-center text-muted-foreground">
-                            <Clock className="mx-auto h-8 w-8 mb-2"/>
-                            <p>{t('cards.timeline.placeholder')}</p>
-                        </div>
+                        <ul className="space-y-6">
+                            {timelineEvents.map((event, index) => (
+                                <li key={index} className="flex gap-4">
+                                    <div className="flex-shrink-0">
+                                        <div className="h-10 w-10 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                                            {event.icon}
+                                        </div>
+                                    </div>
+                                    <div className="flex-grow">
+                                        <h4 className="font-semibold">{t(`cards.timeline.events.${event.titleKey}`)}</h4>
+                                        <p className="text-sm text-muted-foreground">
+                                            {new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(event.timestamp))}
+                                        </p>
+                                        <p className="text-sm mt-1">{t(`cards.timeline.events.${event.descriptionKey}`)}</p>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
                     </CardContent>
                 </Card>
 
