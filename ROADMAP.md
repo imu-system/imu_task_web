@@ -93,3 +93,21 @@ Ce document décrit les étapes planifiées pour faire évoluer le prototype Imu
     *   [ ] Une fois le paiement libéré, permettre aux deux parties de se laisser mutuellement une note (sur 5 étoiles) et un commentaire.
     *   [ ] Stocker ces avis dans une collection `reviews`.
     *   [ ] Calculer et afficher la note moyenne sur le profil de chaque utilisateur.
+
+---
+
+### **Étape 6 : Internationalisation (i18n) et Accessibilité**
+
+**Objectif :** Rendre l'application accessible à un public plus large et améliorer l'inclusivité.
+
+1.  **Mise en place de l'Internationalisation :**
+    *   [ ] Intégrer une bibliothèque d'i18n compatible avec Next.js (ex: `next-intl`).
+    *   [ ] Extraire toutes les chaînes de caractères codées en dur (en français) des composants et les placer dans des fichiers de ressources (ex: `fr.json`, `en.json`).
+    *   [ ] Implémenter un sélecteur de langue dans l'interface utilisateur (par exemple, dans l'en-tête ou le pied de page).
+    *   [ ] Configurer le routage pour prendre en charge différentes langues (ex: `/fr/dashboard`, `/en/dashboard`).
+
+2.  **Amélioration de l'Accessibilité (a11y) :**
+    *   [ ] Effectuer un audit d'accessibilité de l'application.
+    *   [ ] S'assurer que tous les éléments interactifs sont accessibles au clavier.
+    *   [ ] Ajouter des attributs ARIA (Accessible Rich Internet Applications) pertinents là où c'est nécessaire.
+    *   [ ] Garantir un contraste de couleurs suffisant pour une bonne lisibilité.
