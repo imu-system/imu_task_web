@@ -59,7 +59,8 @@
         "wallet": "Wallet",
         "profile": "Profile",
         "logout": "Log out",
-        "admin": "Admin"
+        "admin": "Admin",
+        "kycVerification": "KYC Verifications"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -394,7 +395,30 @@
                 "toastSuccessDescription": "The user's roles have been updated."
             }
         }
+    },
+    "AdminKycPage": {
+        "title": "KYC Queue",
+        "subtitle": "Verify provider identities.",
+        "tableTitle": "Pending Requests",
+        "tableDescription": "List of users who have submitted documents for verification.",
+        "table": {
+            "provider": "Provider",
+            "country": "Country",
+            "status": "Status",
+            "submittedAt": "Submitted At",
+            "documents": "Documents",
+            "actions": "Actions"
+        },
+        "actions": {
+            "review": "Review"
+        },
+        "documents": {
+            "identity": "ID Document",
+            "selfie": "Selfie"
+        }
+    },
+    "AdminKycDetailPage": {
+        "title": "KYC Review",
+        "subtitle": "Reviewing documents for {providerName}"
     }
 }
-
-    

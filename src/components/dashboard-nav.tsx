@@ -24,6 +24,7 @@ import {
   Wallet,
   Zap,
   Shield,
+  ShieldCheck,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -78,9 +79,17 @@ export function DashboardNav() {
                 <SidebarSeparator className="my-2"/>
                  <SidebarMenuItem>
                     <Link href="/dashboard/admin">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin')}>
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin') && !pathname.startsWith('/dashboard/admin/kyc')}>
                             <Shield />
                             <span>{t('admin')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+                 <SidebarMenuItem>
+                    <Link href="/dashboard/admin/kyc">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/kyc')}>
+                            <ShieldCheck />
+                            <span>{t('kycVerification')}</span>
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>

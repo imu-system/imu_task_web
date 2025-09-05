@@ -59,7 +59,8 @@
         "wallet": "Portefeuille",
         "profile": "Profil",
         "logout": "Se déconnecter",
-        "admin": "Admin"
+        "admin": "Admin",
+        "kycVerification": "Vérifications KYC"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -394,7 +395,30 @@
                 "toastSuccessDescription": "Les rôles de l'utilisateur ont été mis à jour."
             }
         }
+    },
+    "AdminKycPage": {
+        "title": "File d'attente KYC",
+        "subtitle": "Vérifiez les identités des prestataires.",
+        "tableTitle": "Demandes en attente",
+        "tableDescription": "Liste des utilisateurs ayant soumis des documents pour vérification.",
+        "table": {
+            "provider": "Prestataire",
+            "country": "Pays",
+            "status": "Statut",
+            "submittedAt": "Soumis le",
+            "documents": "Documents",
+            "actions": "Actions"
+        },
+        "actions": {
+            "review": "Réviser"
+        },
+        "documents": {
+            "identity": "Pièce d'identité",
+            "selfie": "Selfie"
+        }
+    },
+    "AdminKycDetailPage": {
+        "title": "Revue KYC",
+        "subtitle": "Examen des documents pour {providerName}"
     }
 }
-
-    
