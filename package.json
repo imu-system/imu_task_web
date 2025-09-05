@@ -9,7 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "seed:admin": "tsx scripts/create-default-admin.ts"
   },
   "dependencies": {
     "@genkit-ai/googleai": "^1.14.1",
