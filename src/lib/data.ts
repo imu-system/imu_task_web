@@ -1,6 +1,6 @@
 
 
-import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility } from './types';
+import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp } from 'firebase/firestore';
 
@@ -97,74 +97,74 @@ export const users: User[] = [
 
 // EN — English
 export const taskCategoriesEn: ServiceCategory[] = [
-  { id: 'groceries',            slug: 'Groceries & Deliveries',             isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'cleaning',             slug: 'Housekeeping & Light Cleaning',      isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'laundry',              slug: 'Laundry & Ironing',                  isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'organizing',           slug: 'Organizing & Decluttering',          isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'handyman',             slug: 'Handyman & Assembly',                isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'gardening',            slug: 'Gardening & Yard Work',              isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'pet-care',             slug: 'Pet Care & Dog Walking',             isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'house-sitting',        slug: 'House Sitting & Plant Care',         isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'companionship',        slug: 'Senior Companionship Visits',        isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'mobility-assistance',  slug: 'Accompaniment & Mobility Support',   isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'admin-help',           slug: 'Administrative Assistance',          isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'digital-assistance',   slug: 'Digital & IT Help',                  isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'tutoring',             slug: 'Tutoring & Homework Help',           isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'language-lessons',     slug: 'Language Lessons',                   isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'cooking',              slug: 'Cooking & Meal Prep',                isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'moving-help',          slug: 'Light Moving & Carrying',            isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'event-help',           slug: 'Event Assistance',                   isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'photo-video',          slug: 'Simple Photo/Video',                 isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'parcel-delivery',      slug: 'Small Parcel Pickup/Delivery',       isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'tech-setup',           slug: 'Tech Setup (Apps & Devices)',        isActive: true, createdAt: '', updatedAt: '' }
+  { id: 'groceries',            slug: 'Groceries & Deliveries',    name: 'Groceries & Deliveries',             isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'cleaning',             slug: 'Housekeeping & Light Cleaning', name: 'Housekeeping & Light Cleaning',      isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'laundry',              slug: 'Laundry & Ironing', name: 'Laundry & Ironing',                  isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'organizing',           slug: 'Organizing & Decluttering', name: 'Organizing & Decluttering',          isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'handyman',             slug: 'Handyman & Assembly', name: 'Handyman & Assembly',                isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'gardening',            slug: 'Gardening & Yard Work', name: 'Gardening & Yard Work',              isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'pet-care',             slug: 'Pet Care & Dog Walking', name: 'Pet Care & Dog Walking',             isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'house-sitting',        slug: 'House Sitting & Plant Care', name: 'House Sitting & Plant Care',         isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'companionship',        slug: 'Senior Companionship Visits', name: 'Senior Companionship Visits',        isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'mobility-assistance',  slug: 'Accompaniment & Mobility Support', name: 'Accompaniment & Mobility Support',   isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'admin-help',           slug: 'Administrative Assistance', name: 'Administrative Assistance',          isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'digital-assistance',   slug: 'Digital & IT Help', name: 'Digital & IT Help',                  isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'tutoring',             slug: 'Tutoring & Homework Help', name: 'Tutoring & Homework Help',           isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'language-lessons',     slug: 'Language Lessons', name: 'Language Lessons',                   isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'cooking',              slug: 'Cooking & Meal Prep', name: 'Cooking & Meal Prep',                isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'moving-help',          slug: 'Light Moving & Carrying', name: 'Light Moving & Carrying',            isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'event-help',           slug: 'Event Assistance', name: 'Event Assistance',                   isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'photo-video',          slug: 'Simple Photo/Video', name: 'Simple Photo/Video',                 isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'parcel-delivery',      slug: 'Small Parcel Pickup/Delivery', name: 'Small Parcel Pickup/Delivery',       isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'tech-setup',           slug: 'Tech Setup (Apps & Devices)', name: 'Tech Setup (Apps & Devices)',        isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 }
 ];
 
 // FR — Français
 export const taskCategoriesFr: ServiceCategory[] = [
-  { id: 'groceries',            slug: 'Courses & livraisons',               isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'cleaning',             slug: 'Ménage & nettoyage léger',           isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'laundry',              slug: 'Linge & repassage',                  isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'organizing',           slug: 'Rangement & désencombrement',        isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'handyman',             slug: 'Bricolage & montage',                isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'gardening',            slug: 'Jardinage',                          isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'pet-care',             slug: 'Promenade & garde d’animaux',        isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'house-sitting',        slug: 'Surveillance habitation & plantes',  isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'companionship',        slug: 'Visites de convivialité (seniors)',  isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'mobility-assistance',  slug: 'Accompagnement & mobilité',          isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'admin-help',           slug: 'Aide administrative',                 isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'digital-assistance',   slug: 'Assistance numérique / IT',          isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'tutoring',             slug: 'Soutien scolaire & devoirs',         isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'language-lessons',     slug: 'Cours de langues',                   isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'cooking',              slug: 'Cuisine & préparation repas',        isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'moving-help',          slug: 'Déménagement léger & portage',       isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'event-help',           slug: 'Aide événementielle',                isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'photo-video',          slug: 'Photos / Vidéos simples',            isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'parcel-delivery',      slug: 'Petits colis & retraits',            isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'tech-setup',           slug: 'Installation (apps & appareils)',    isActive: true, createdAt: '', updatedAt: '' }
+  { id: 'groceries',            slug: 'Courses & livraisons', name: 'Courses & livraisons',               isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'cleaning',             slug: 'Ménage & nettoyage léger', name: 'Ménage & nettoyage léger',           isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'laundry',              slug: 'Linge & repassage', name: 'Linge & repassage',                  isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'organizing',           slug: 'Rangement & désencombrement', name: 'Rangement & désencombrement',        isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'handyman',             slug: 'Bricolage & montage', name: 'Bricolage & montage',                isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'gardening',            slug: 'Jardinage', name: 'Jardinage',                          isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'pet-care',             slug: 'Promenade & garde d’animaux', name: 'Promenade & garde d’animaux',        isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'house-sitting',        slug: 'Surveillance habitation & plantes', name: 'Surveillance habitation & plantes',  isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'companionship',        slug: 'Visites de convivialité (seniors)', name: 'Visites de convivialité (seniors)',  isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'mobility-assistance',  slug: 'Accompagnement & mobilité', name: 'Accompagnement & mobilité',          isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'admin-help',           slug: 'Aide administrative', name: 'Aide administrative',                 isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'digital-assistance',   slug: 'Assistance numérique / IT', name: 'Assistance numérique / IT',          isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'tutoring',             slug: 'Soutien scolaire & devoirs', name: 'Soutien scolaire & devoirs',         isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'language-lessons',     slug: 'Cours de langues', name: 'Cours de langues',                   isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'cooking',              slug: 'Cuisine & préparation repas', name: 'Cuisine & préparation repas',        isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'moving-help',          slug: 'Déménagement léger & portage', name: 'Déménagement léger & portage',       isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'event-help',           slug: 'Aide événementielle', name: 'Aide événementielle',                isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'photo-video',          slug: 'Photos / Vidéos simples', name: 'Photos / Vidéos simples',            isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'parcel-delivery',      slug: 'Petits colis & retraits', name: 'Petits colis & retraits',            isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'tech-setup',           slug: 'Installation (apps & appareils)', name: 'Installation (apps & appareils)',    isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 }
 ];
 
 // JP — 日本語
 export const taskCategoriesJa: ServiceCategory[] = [
-  { id: 'groceries',            slug: '買い物・配達',                           isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'cleaning',             slug: '掃除・軽作業',                           isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'laundry',              slug: '洗濯・アイロン',                         isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'organizing',           slug: '片付け・断捨離',                         isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'handyman',             slug: '家具組み立て・修理',                     isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'gardening',            slug: '園芸・庭仕事',                           isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'pet-care',             slug: 'ペットケア・犬の散歩',                   isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'house-sitting',        slug: '留守番・植物の世話',                     isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'companionship',        slug: '高齢者の交流訪問',                       isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'mobility-assistance',  slug: '付き添い・外出サポート',                 isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'admin-help',           slug: '行政手続きサポート',                     isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'digital-assistance',   slug: 'デジタル・ITサポート',                    isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'tutoring',             slug: '学習サポート・宿題支援',                 isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'language-lessons',     slug: '語学レッスン',                           isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'cooking',              slug: '料理・食事準備',                         isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'moving-help',          slug: '軽作業引っ越し・運搬',                   isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'event-help',           slug: 'イベント手伝い',                         isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'photo-video',          slug: '写真・ビデオ簡易撮影',                   isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'parcel-delivery',      slug: '小包回収・お届け',                       isActive: true, createdAt: '', updatedAt: '' },
-  { id: 'tech-setup',           slug: '設定サポート（アプリ・機器）',           isActive: true, createdAt: '', updatedAt: '' }
+  { id: 'groceries',            slug: '買い物・配達', name: '買い物・配達',                           isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'cleaning',             slug: '掃除・軽作業', name: '掃除・軽作業',                           isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'laundry',              slug: '洗濯・アイロン', name: '洗濯・アイロン',                         isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'organizing',           slug: '片付け・断捨離', name: '片付け・断捨離',                         isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'handyman',             slug: '家具組み立て・修理', name: '家具組み立て・修理',                     isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'gardening',            slug: '園芸・庭仕事', name: '園芸・庭仕事',                           isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'pet-care',             slug: 'ペットケア・犬の散歩', name: 'ペットケア・犬の散歩',                   isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'house-sitting',        slug: '留守番・植物の世話', name: '留守番・植物の世話',                     isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'companionship',        slug: '高齢者の交流訪問', name: '高齢者の交流訪問',                       isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'mobility-assistance',  slug: '付き添い・外出サポート', name: '付き添い・外出サポート',                 isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'admin-help',           slug: '行政手続きサポート', name: '行政手続きサポート',                     isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'digital-assistance',   slug: 'デジタル・ITサポート', name: 'デジタル・ITサポート',                    isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'tutoring',             slug: '学習サポート・宿題支援', name: '学習サポート・宿題支援',                 isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'language-lessons',     slug: '語学レッスン', name: '語学レッスン',                           isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'cooking',              slug: '料理・食事準備', name: '料理・食事準備',                         isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'moving-help',          slug: '軽作業引っ越し・運搬', name: '軽作業引っ越し・運搬',                   isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'event-help',           slug: 'イベント手伝い', name: 'イベント手伝い',                         isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'photo-video',          slug: '写真・ビデオ簡易撮影', name: '写真・ビデオ簡易撮影',                   isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'parcel-delivery',      slug: '小包回収・お届け', name: '小包回収・お届け',                       isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 },
+  { id: 'tech-setup',           slug: '設定サポート（アプリ・機器）', name: '設定サポート（アプリ・機器）',           isActive: true, createdAt: '', updatedAt: '', displayOrder: 10 }
 ];
 
 export const taskCategoriesByLocale = {
@@ -294,6 +294,15 @@ export async function createTask(taskData: Omit<Task, 'id' | 'client' | 'status'
         addressId: '', // Placeholder
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
+    });
+    return docRef.id;
+}
+
+export async function createServiceCategory(categoryData: ServiceCategoryCreation) {
+    const docRef = await addDoc(collection(db, "serviceCategories"), {
+        ...categoryData,
+        createdAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
     });
     return docRef.id;
 }

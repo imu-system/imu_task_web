@@ -211,16 +211,20 @@
         "backToList": "Back to list",
         "cardTitle": "Category Details",
         "cardDescription": "Provide the necessary information for the category.",
-        "nameLabel": "Name (FR)",
+        "nameLabel": "Name (EN)",
         "namePlaceholder": "e.g., Home Cleaning",
         "slugLabel": "Slug",
         "slugPlaceholder": "e.g., home-cleaning",
-        "descriptionLabel": "Description (FR)",
+        "descriptionLabel": "Description (EN)",
         "descriptionPlaceholder": "Describe the category...",
         "displayOrderLabel": "Display Order",
         "statusLabel": "Status",
         "statusActive": "Active",
         "cancel": "Cancel",
-        "save": "Save"
+        "save": "Save",
+        "toastSuccessTitle": "Category created!",
+        "toastSuccessDescription": "The new category has been saved.",
+        "toastErrorTitle": "Creation Error",
+        "toastErrorDescription": "Could not create the category."
     }
 }

@@ -221,6 +221,10 @@
         "statusLabel": "Statut",
         "statusActive": "Actif",
         "cancel": "Annuler",
-        "save": "Enregistrer"
+        "save": "Enregistrer",
+        "toastSuccessTitle": "Catégorie créée !",
+        "toastSuccessDescription": "La nouvelle catégorie a été enregistrée.",
+        "toastErrorTitle": "Erreur de création",
+        "toastErrorDescription": "Impossible de créer la catégorie."
     }
 }
