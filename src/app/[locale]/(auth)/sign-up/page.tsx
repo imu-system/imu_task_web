@@ -25,15 +25,16 @@ export default function SignUpPage() {
     const t = useTranslations('SignUpPage');
     const { signUp, loading, error, setError } = useAuth();
     
-    const { register, handleSubmit, formState: { errors } } = useForm<SignUpFormValues>({
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm<SignUpFormValues>({
         resolver: zodResolver(signUpSchema),
+        mode: 'onChange', // Validate on change to enable/disable button
     });
 
     useEffect(() => {
-    return () => {
-      setError(null);
-    }
-  }, [setError]);
+        return () => {
+        setError(null);
+        }
+    }, [setError]);
 
   return (
     <>
@@ -98,7 +99,7 @@ export default function SignUpPage() {
             </div>
             
             <div>
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button type="submit" className="w-full" disabled={loading || !isValid}>
                 {loading && <Loader2 className="animate-spin" />}
                 {t('submitButton')}
               </Button>

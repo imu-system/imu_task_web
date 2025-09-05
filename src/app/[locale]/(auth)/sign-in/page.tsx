@@ -24,8 +24,9 @@ export default function SignInPage() {
   const t = useTranslations('SignInPage');
   const { signIn, loading, error, setError } = useAuth();
   
-  const { register, handleSubmit, formState: { errors } } = useForm<SignInFormValues>({
+  const { register, handleSubmit, formState: { errors, isValid } } = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),
+    mode: 'onChange',
   });
 
   useEffect(() => {
@@ -91,7 +92,7 @@ export default function SignInPage() {
             </div>
 
             <div>
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button type="submit" className="w-full" disabled={loading || !isValid}>
                 {loading && <Loader2 className="animate-spin" />}
                 {t('submitButton')}
               </Button>
