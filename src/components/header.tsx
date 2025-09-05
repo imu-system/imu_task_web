@@ -24,7 +24,7 @@ import { useState } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
-import { usePathname } from 'next-intl/client';
+import { usePathname, Link as IntlLink } from '@/navigation';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -155,7 +155,7 @@ export default function Header() {
                   ) : (
                     <div className="flex flex-col gap-2">
                       <Button variant="ghost" asChild><Link href="/sign-in" className="w-full">{t('signIn')}</Link></Button>
-                      <Button asChild><Link href="/sign-up" className="w-full">{t('signUp')}</Link></Button>
+                      <Button asChild><Link href="/sign-up" className="w-full">{t('signUp')}</Button>
                     </div>
                   )}
                 </div>
@@ -179,13 +179,13 @@ export default function Header() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
                 <DropdownMenuItem asChild>
-                  <Link href={pathname} locale="fr">{tLang('fr')}</Link>
+                  <IntlLink href={pathname} locale="fr">{tLang('fr')}</IntlLink>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href={pathname} locale="en">{tLang('en')}</Link>
+                  <IntlLink href={pathname} locale="en">{tLang('en')}</IntlLink>
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
-                  <Link href={pathname} locale="ja" disabled>{tLang('ja')}</Link>
+                  <IntlLink href={pathname} locale="ja" disabled>{tLang('ja')}</IntlLink>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
