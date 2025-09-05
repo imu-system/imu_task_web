@@ -317,6 +317,8 @@
         "backToList": "Retour à la liste des utilisateurs",
         "userNotFound": "Utilisateur non trouvé.",
         "noInfo": "Non renseigné",
+        "toastUpdateSuccessTitle": "Profil mis à jour",
+        "toastUpdateSuccessDescription": "Le profil de l'utilisateur a été mis à jour avec succès.",
         "cards": {
             "summary": {
                 "title": "Résumé de l'utilisateur",
@@ -331,7 +333,20 @@
                 "impersonate": "Voir en tant que",
                 "suspend": "Suspendre l'utilisateur",
                 "delete": "Supprimer l'utilisateur"
+            },
+            "editProfile": {
+                "title": "Modifier le profil (Admin)",
+                "description": "Modifiez les informations de l'utilisateur. Ces actions sont enregistrées.",
+                "displayName": "Nom d'affichage",
+                "city": "Ville",
+                "cityPlaceholder": "Ex: Paris",
+                "languages": "Langues parlées",
+                "verifiedBadges": "Badges vérifiés",
+                "commaSeparated": "Séparer par des virgules",
+                "saveChanges": "Enregistrer les modifications"
             }
         }
     }
 }
+
+    

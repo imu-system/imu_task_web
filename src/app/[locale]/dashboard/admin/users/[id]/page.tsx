@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2, ArrowLeft, User, ShieldCheck, Mail, Phone, CalendarDays, KeyRound, AlertTriangle, UserCog, EyeOff, Trash2 } from 'lucide-react';
+import { Loader2, ArrowLeft, User, ShieldCheck, Mail, Phone, CalendarDays, KeyRound, AlertTriangle, UserCog, EyeOff, Trash2, BadgeCheck, Languages, MapPin } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,13 +13,28 @@ import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
+import { useForm, Controller } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Form, FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
+
+const profileEditSchema = z.object({
+  displayName: z.string().min(2, "Le nom est requis."),
+  city: z.string().optional(),
+  languages: z.string().transform(val => val.split(',').map(s => s.trim()).filter(Boolean)),
+  verifiedBadges: z.string().transform(val => val.split(',').map(s => s.trim()).filter(Boolean)),
+});
+
+type ProfileEditFormValues = z.infer<typeof profileEditSchema>;
 
 // Using the same mock data as the list page for consistency
 const mockUsers: any[] = [
-    { id: 'usr_1', displayName: 'Nathan Imogo', email: 'nathan.imogo@outlook.fr', phone: '+33 6 12 34 56 78', roles: ['admin', 'client'], status: 'active', kycStatus: 'verified', createdAt: '2023-01-15T10:00:00Z', lastActiveAt: '2023-10-26T12:00:00Z' },
-    { id: 'usr_2', displayName: 'Jane Doe', email: 'jane.doe@example.com', phone: '+33 7 89 01 23 45', roles: ['provider'], status: 'active', kycStatus: 'pending', createdAt: '2023-02-20T11:30:00Z', lastActiveAt: '2023-10-25T18:45:00Z' },
-    { id: 'usr_3', displayName: 'John Smith', email: 'john.smith@example.com', phone: null, roles: ['client'], status: 'suspended', kycStatus: 'not_required', createdAt: '2023-05-10T08:00:00Z', lastActiveAt: '2023-09-01T22:10:00Z' },
-    { id: 'usr_4', displayName: 'Marie Curie', email: 'marie.curie@example.com', phone: '+33 1 23 45 67 89', roles: ['provider', 'client'], status: 'active', kycStatus: 'verified', createdAt: '2022-12-01T15:20:00Z', lastActiveAt: '2023-10-26T11:55:00Z' },
+    { id: 'usr_1', displayName: 'Nathan Imogo', email: 'nathan.imogo@outlook.fr', phone: '+33 6 12 34 56 78', roles: ['admin', 'client'], status: 'active', kycStatus: 'verified', createdAt: '2023-01-15T10:00:00Z', lastActiveAt: '2023-10-26T12:00:00Z', profile: { city: 'Paris', languages: ['Français', 'Anglais'], verifiedBadges: ['ID Verified', 'Payment Verified'] } },
+    { id: 'usr_2', displayName: 'Jane Doe', email: 'jane.doe@example.com', phone: '+33 7 89 01 23 45', roles: ['provider'], status: 'active', kycStatus: 'pending', createdAt: '2023-02-20T11:30:00Z', lastActiveAt: '2023-10-25T18:45:00Z', profile: { city: 'Lyon', languages: ['Français'], verifiedBadges: [] }},
+    { id: 'usr_3', displayName: 'John Smith', email: 'john.smith@example.com', phone: null, roles: ['client'], status: 'suspended', kycStatus: 'not_required', createdAt: '2023-05-10T08:00:00Z', lastActiveAt: '2023-09-01T22:10:00Z', profile: { city: 'Marseille', languages: ['Anglais'], verifiedBadges: [] } },
+    { id: 'usr_4', displayName: 'Marie Curie', email: 'marie.curie@example.com', phone: '+33 1 23 45 67 89', roles: ['provider', 'client'], status: 'active', kycStatus: 'verified', createdAt: '2022-12-01T15:20:00Z', lastActiveAt: '2023-10-26T11:55:00Z', profile: { city: 'Lille', languages: ['Français', 'Polonais'], verifiedBadges: ['ID Verified'] } },
 ];
 
 
@@ -30,9 +45,15 @@ export default function AdminUserDetailPage() {
     const userId = params.id;
     const t = useTranslations('AdminUserDetailPage');
     const tUsers = useTranslations('AdminUsersPage');
+    const { toast } = useToast();
     
     const [user, setUser] = useState<any>(null);
     const [loading, setLoading] = useState(true);
+    const [isSaving, setIsSaving] = useState(false);
+
+    const form = useForm<ProfileEditFormValues>({
+        resolver: zodResolver(profileEditSchema),
+    });
 
     useEffect(() => {
         if (!authLoading && (!adminUser || !adminUser.roles?.includes(UserRole.admin))) {
@@ -45,12 +66,42 @@ export default function AdminUserDetailPage() {
         const fetchedUser = mockUsers.find(u => u.id === userId);
         if (fetchedUser) {
             setUser(fetchedUser);
+            form.reset({
+                displayName: fetchedUser.profile.displayName || fetchedUser.displayName,
+                city: fetchedUser.profile.city || '',
+                languages: (fetchedUser.profile.languages || []).join(', '),
+                verifiedBadges: (fetchedUser.profile.verifiedBadges || []).join(', '),
+            });
         } else {
-            // In a real app, you would redirect to a 404 page
             console.error("User not found");
         }
         setLoading(false);
-    }, [userId]);
+    }, [userId, form]);
+
+    const onSubmit = async (data: ProfileEditFormValues) => {
+        setIsSaving(true);
+        console.log("Saving data:", data);
+        // In a real app, you'd call an update function here.
+        // e.g., await updateUserProfileByAdmin(userId, data);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Update mock data for demonstration
+        const userIndex = mockUsers.findIndex(u => u.id === userId);
+        if(userIndex > -1) {
+            mockUsers[userIndex].displayName = data.displayName;
+            mockUsers[userIndex].profile.displayName = data.displayName;
+            mockUsers[userIndex].profile.city = data.city;
+            mockUsers[userIndex].profile.languages = data.languages;
+            mockUsers[userIndex].profile.verifiedBadges = data.verifiedBadges;
+        }
+
+        toast({
+            title: t('toastUpdateSuccessTitle'),
+            description: t('toastUpdateSuccessDescription'),
+        });
+        setIsSaving(false);
+        router.refresh();
+    };
 
     if (authLoading || loading || !adminUser || !adminUser.roles?.includes(UserRole.admin)) {
         return (
@@ -153,6 +204,78 @@ export default function AdminUserDetailPage() {
                         </div>
                     </CardContent>
                 </Card>
+
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>{t('cards.editProfile.title')}</CardTitle>
+                                <CardDescription>{t('cards.editProfile.description')}</CardDescription>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <FormField
+                                    control={form.control}
+                                    name="displayName"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>{t('cards.editProfile.displayName')}</FormLabel>
+                                            <FormControl>
+                                                <Input {...field} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="city"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>{t('cards.editProfile.city')}</FormLabel>
+                                            <FormControl>
+                                                <Input {...field} placeholder={t('cards.editProfile.cityPlaceholder')} />
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                <FormField
+                                    control={form.control}
+                                    name="languages"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>{t('cards.editProfile.languages')}</FormLabel>
+                                            <FormControl>
+                                                <Input {...field} placeholder={t('cards.editProfile.commaSeparated')}/>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                                 <FormField
+                                    control={form.control}
+                                    name="verifiedBadges"
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>{t('cards.editProfile.verifiedBadges')}</FormLabel>
+                                            <FormControl>
+                                                <Input {...field} placeholder={t('cards.editProfile.commaSeparated')}/>
+                                            </FormControl>
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </CardContent>
+                        </Card>
+                        <div className="flex justify-end">
+                            <Button type="submit" disabled={isSaving}>
+                                {isSaving && <Loader2 className="animate-spin mr-2"/>}
+                                {t('cards.editProfile.saveChanges')}
+                            </Button>
+                        </div>
+                    </form>
+                </Form>
+
             </div>
             <div className="space-y-8">
                 <Card>
@@ -161,9 +284,8 @@ export default function AdminUserDetailPage() {
                         <CardDescription>{t('cards.actions.description')}</CardDescription>
                     </CardHeader>
                     <CardContent className="grid grid-cols-1 gap-2">
-                        <Button variant="outline" disabled><UserCog className="mr-2"/> {t('cards.actions.editProfile')}</Button>
                         <Button variant="outline" disabled><EyeOff className="mr-2"/> {t('cards.actions.impersonate')}</Button>
-                         <Button variant="outline" disabled className="text-amber-600 hover:text-amber-700"><AlertTriangle className="mr-2"/> {t('cards.actions.suspend')}</Button>
+                        <Button variant="outline" disabled className="text-amber-600 hover:text-amber-700"><AlertTriangle className="mr-2"/> {t('cards.actions.suspend')}</Button>
                         <Button variant="destructive" disabled><Trash2 className="mr-2"/> {t('cards.actions.delete')}</Button>
                     </CardContent>
                 </Card>
@@ -172,3 +294,5 @@ export default function AdminUserDetailPage() {
     </div>
   );
 }
+
+    

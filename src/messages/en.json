@@ -317,6 +317,8 @@
         "backToList": "Back to user list",
         "userNotFound": "User not found.",
         "noInfo": "Not provided",
+        "toastUpdateSuccessTitle": "Profile updated",
+        "toastUpdateSuccessDescription": "The user's profile has been successfully updated.",
         "cards": {
             "summary": {
                 "title": "User Summary",
@@ -331,7 +333,20 @@
                 "impersonate": "Impersonate",
                 "suspend": "Suspend User",
                 "delete": "Delete User"
+            },
+            "editProfile": {
+                "title": "Edit Profile (Admin)",
+                "description": "Modify user information. These actions are logged.",
+                "displayName": "Display Name",
+                "city": "City",
+                "cityPlaceholder": "e.g. Paris",
+                "languages": "Spoken Languages",
+                "verifiedBadges": "Verified Badges",
+                "commaSeparated": "Separate with commas",
+                "saveChanges": "Save Changes"
             }
         }
     }
 }
+
+    
