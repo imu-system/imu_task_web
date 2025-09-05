@@ -173,6 +173,7 @@
         "default": "Default",
         "edit": "Edit",
         "delete": "Delete",
+        "noAddresses": "You haven't added any addresses yet.",
         "averageRating": "Average Rating",
         "reviewsCount": "Reviews Received",
         "providerInfo": "Provider Information",
@@ -180,6 +181,18 @@
         "languagesPlaceholder": "e.g. French, English",
         "skills": "Skills",
         "skillsPlaceholder": "e.g. Gardening, DIY",
-        "commaSeparated": "Separate with commas"
+        "commaSeparated": "Separate with commas",
+        "addressForm": {
+            "title": "Add a new address"
+        }
+    },
+    "AddressForm": {
+        "title": "Add a new address",
+        "label": "Address Name",
+        "labelPlaceholder": "e.g. Home, Office",
+        "address": "Full Address",
+        "addressPlaceholder": "Start typing your address...",
+        "cancel": "Cancel",
+        "save": "Save Address"
     }
 }

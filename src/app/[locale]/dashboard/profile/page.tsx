@@ -17,9 +17,12 @@ import { useState, useEffect } from "react";
 import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import AddressForm from "@/components/address-form";
 
 // Helper function to split string by comma and trim whitespace
-const stringToArray = (str: string | undefined): string[] => {
+const stringToArray = (str: string | undefined | string[]): string[] => {
+    if (Array.isArray(str)) return str;
     if (!str) return [];
     return str.split(',').map(item => item.trim()).filter(Boolean);
 };
@@ -34,6 +37,7 @@ export default function ProfilePage() {
   const { user, profileLoading } = useAuth();
   const { toast } = useToast();
   const [isSaving, setIsSaving] = useState(false);
+  const [isAddressFormOpen, setIsAddressFormOpen] = useState(false);
   const t = useTranslations('ProfilePage');
 
   const { register, handleSubmit, formState: { errors, isDirty }, reset } = useForm<ProfileFormValues>({
@@ -57,13 +61,13 @@ export default function ProfilePage() {
     }
   }, [user, reset]);
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: ProfileFormValues) => {
     if (!user) return;
     setIsSaving(true);
     
     // The form gives us strings, we need to convert them to arrays
-    const languagesArray = stringToArray(data.languages);
-    const skillsArray = stringToArray(data.skills);
+    const languagesArray = stringToArray(data.languages as string | string[]);
+    const skillsArray = stringToArray(data.skills as string | string[]);
 
     try {
       const profileRef = doc(db, "profiles", user.uid);
@@ -171,7 +175,6 @@ export default function ProfilePage() {
                             id="languages" 
                             {...register('languages')} 
                             placeholder={t('languagesPlaceholder')} 
-                            defaultValue={user.profile?.languages?.join(', ')}
                         />
                          <p className="text-xs text-muted-foreground">{t('commaSeparated')}</p>
                     </div>
@@ -180,55 +183,13 @@ export default function ProfilePage() {
                         <Input 
                             id="skills" 
                             {...register('skills')} 
-                            placeholder={t('skillsPlaceholder')} 
-                            defaultValue={user.profile?.skills?.join(', ')}
+                            placeholder={t('skillsPlaceholder')}
                         />
                         <p className="text-xs text-muted-foreground">{t('commaSeparated')}</p>
                     </div>
                 </div>
 
               </CardContent>
-            </Card>
-
-           <Card>
-                <CardHeader>
-                    <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                        <div>
-                            <CardTitle>{t('addressesTitle')}</CardTitle>
-                            <CardDescription>{t('addressesDesc')}</CardDescription>
-                        </div>
-                        <Button type="button" variant="outline">
-                            <PlusCircle className="mr-2"/>
-                            {t('addAddress')}
-                        </Button>
-                    </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    {mockAddresses.map((address, index) => (
-                        <div key={address.id}>
-                            <div className="flex items-start justify-between">
-                                <div className="flex items-start gap-4">
-                                    <MapPin className="h-6 w-6 text-primary mt-1" />
-                                    <div>
-                                        <p className="font-semibold">{address.label} {address.isDefault && <span className="text-xs text-muted-foreground">({t('default')})</span>}</p>
-                                        <p className="text-sm text-muted-foreground">{address.formatted}</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-center gap-2">
-                                    <Button variant="ghost" size="icon">
-                                        <Edit className="h-4 w-4"/>
-                                        <span className="sr-only">{t('edit')}</span>
-                                    </Button>
-                                    <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive">
-                                        <Trash2 className="h-4 w-4"/>
-                                         <span className="sr-only">{t('delete')}</span>
-                                    </Button>
-                                </div>
-                            </div>
-                            {index < mockAddresses.length - 1 && <Separator className="mt-4" />}
-                        </div>
-                    ))}
-                </CardContent>
             </Card>
 
             <div className="flex justify-end">
@@ -238,6 +199,63 @@ export default function ProfilePage() {
                 </Button>
             </div>
         </form>
+
+        <Card>
+            <CardHeader>
+                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <CardTitle>{t('addressesTitle')}</CardTitle>
+                        <CardDescription>{t('addressesDesc')}</CardDescription>
+                    </div>
+                    <Dialog open={isAddressFormOpen} onOpenChange={setIsAddressFormOpen}>
+                        <DialogTrigger asChild>
+                            <Button type="button" variant="outline">
+                                <PlusCircle className="mr-2"/>
+                                {t('addAddress')}
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>{t('addressForm.title')}</DialogTitle>
+                            </DialogHeader>
+                            <AddressForm 
+                                onSave={(data) => console.log(data)}
+                                onClose={() => setIsAddressFormOpen(false)}
+                            />
+                        </DialogContent>
+                    </Dialog>
+                </div>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                {mockAddresses.map((address, index) => (
+                    <div key={address.id}>
+                        <div className="flex items-start justify-between">
+                            <div className="flex items-start gap-4">
+                                <MapPin className="h-6 w-6 text-primary mt-1" />
+                                <div>
+                                    <p className="font-semibold">{address.label} {address.isDefault && <span className="text-xs text-muted-foreground">({t('default')})</span>}</p>
+                                    <p className="text-sm text-muted-foreground">{address.formatted}</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Button variant="ghost" size="icon">
+                                    <Edit className="h-4 w-4"/>
+                                    <span className="sr-only">{t('edit')}</span>
+                                </Button>
+                                <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive">
+                                    <Trash2 className="h-4 w-4"/>
+                                     <span className="sr-only">{t('delete')}</span>
+                                </Button>
+                            </div>
+                        </div>
+                        {index < mockAddresses.length - 1 && <Separator className="mt-4" />}
+                    </div>
+                ))}
+                {mockAddresses.length === 0 && (
+                    <p className="text-sm text-muted-foreground text-center py-4">{t('noAddresses')}</p>
+                )}
+            </CardContent>
+        </Card>
     </div>
   );
 }

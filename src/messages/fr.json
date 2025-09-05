@@ -173,6 +173,7 @@
         "default": "Par défaut",
         "edit": "Modifier",
         "delete": "Supprimer",
+        "noAddresses": "Vous n'avez pas encore ajouté d'adresse.",
         "averageRating": "Note moyenne",
         "reviewsCount": "Avis reçus",
         "providerInfo": "Informations Prestataire",
@@ -180,6 +181,18 @@
         "languagesPlaceholder": "Ex: Français, Anglais",
         "skills": "Compétences",
         "skillsPlaceholder": "Ex: Jardinage, Bricolage",
-        "commaSeparated": "Séparer par des virgules"
+        "commaSeparated": "Séparer par des virgules",
+        "addressForm": {
+            "title": "Ajouter une nouvelle adresse"
+        }
+    },
+    "AddressForm": {
+        "title": "Ajouter une nouvelle adresse",
+        "label": "Nom de l'adresse",
+        "labelPlaceholder": "Ex: Maison, Bureau",
+        "address": "Adresse complète",
+        "addressPlaceholder": "Commencez à taper votre adresse...",
+        "cancel": "Annuler",
+        "save": "Enregistrer l'adresse"
     }
 }
