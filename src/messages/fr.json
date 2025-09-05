@@ -170,8 +170,7 @@
         "addressesTitle": "Mes Adresses",
         "addressesDesc": "Gérez vos adresses enregistrées pour les missions.",
         "addAddress": "Ajouter une adresse",
-        "default": "Par défaut",
-        "edit": "Modifier",
+        "setDefault": "Définir par défaut",
         "delete": "Supprimer",
         "noAddresses": "Vous n'avez pas encore ajouté d'adresse.",
         "averageRating": "Note moyenne",
@@ -196,3 +195,5 @@
         "save": "Enregistrer l'adresse"
     }
 }
+
+    

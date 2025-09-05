@@ -170,8 +170,7 @@
         "addressesTitle": "My Addresses",
         "addressesDesc": "Manage your saved addresses for tasks.",
         "addAddress": "Add Address",
-        "default": "Default",
-        "edit": "Edit",
+        "setDefault": "Set as default",
         "delete": "Delete",
         "noAddresses": "You haven't added any addresses yet.",
         "averageRating": "Average Rating",
@@ -196,3 +195,5 @@
         "save": "Save Address"
     }
 }
+
+    

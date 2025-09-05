@@ -233,14 +233,14 @@ export default function ProfilePage() {
                             <div className="flex items-start gap-4">
                                 <MapPin className="h-6 w-6 text-primary mt-1" />
                                 <div>
-                                    <p className="font-semibold">{address.label} {address.isDefault && <span className="text-xs text-muted-foreground">({t('default')})</span>}</p>
+                                    <p className="font-semibold">{address.label}</p>
                                     <p className="text-sm text-muted-foreground">{address.formatted}</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-2">
-                                <Button variant="ghost" size="icon">
-                                    <Edit className="h-4 w-4"/>
-                                    <span className="sr-only">{t('edit')}</span>
+                                <Button variant="ghost" size="icon" className={address.isDefault ? "text-yellow-500 hover:text-yellow-600" : "text-muted-foreground hover:text-yellow-500"}>
+                                    <Star className={`h-5 w-5 ${address.isDefault ? 'fill-current' : ''}`}/>
+                                    <span className="sr-only">{t('setDefault')}</span>
                                 </Button>
                                 <Button variant="ghost" size="icon" className="text-destructive hover:text-destructive">
                                     <Trash2 className="h-4 w-4"/>
@@ -259,3 +259,5 @@ export default function ProfilePage() {
     </div>
   );
 }
+
+    
