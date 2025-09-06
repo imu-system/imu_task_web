@@ -876,7 +876,12 @@
         },
         "reconciliation": {
             "title": "Reconciliation",
-            "subtitle": "Tools for financial reconciliation."
+            "subtitle": "Tools for financial reconciliation.",
+            "card": {
+                "title": "Under Construction",
+                "description": "This section is dedicated to financial reconciliation tools.",
+                "content": "Functionality for comparing platform data with Stripe statements, identifying discrepancies, and generating reports will be implemented here."
+            }
         }
     },
     "AdminPaymentsLayout": {

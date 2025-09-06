@@ -876,7 +876,12 @@
         },
         "reconciliation": {
             "title": "Réconciliation",
-            "subtitle": "Outils pour la réconciliation financière."
+            "subtitle": "Outils pour la réconciliation financière.",
+            "card": {
+                "title": "En construction",
+                "description": "Cette section est dédiée aux outils de rapprochement financier.",
+                "content": "Les fonctionnalités permettant de comparer les données de la plateforme avec les relevés Stripe, d'identifier les écarts et de générer des rapports seront implémentées ici."
+            }
         }
     },
     "AdminPaymentsLayout": {
