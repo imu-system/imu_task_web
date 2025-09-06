@@ -1096,9 +1096,41 @@
             "title": "Historique des Notifications",
             "subtitle": "Consultez toutes les notifications envoyées.",
             "card": {
-                "title": "En construction",
-                "description": "Cette section affichera le journal de toutes les notifications envoyées.",
-                "content": "Vous pourrez filtrer par utilisateur, type, canal et statut pour suivre les communications."
+                "title": "Journal des notifications",
+                "description": "Liste de toutes les notifications envoyées depuis la plateforme."
+            },
+            "table": {
+                "user": "Utilisateur",
+                "type": "Type",
+                "channel": "Canal",
+                "status": "Statut",
+                "date": "Date d'envoi",
+                "viewDetails": "Voir détails"
+            },
+            "types": {
+                "task_offer_received": "Nouvelle Offre",
+                "offer_accepted": "Offre Acceptée",
+                "booking_scheduled": "Réservation Planifiée",
+                "booking_reminder": "Rappel de Réservation",
+                "payment_action_required": "Action de Paiement Requise",
+                "dispute_update": "Mise à jour Litige"
+            },
+            "channels": {
+                "in_app": "In-App",
+                "push": "Push",
+                "email": "E-mail"
+            },
+            "statuses": {
+                "queued": "En attente",
+                "sent": "Envoyée",
+                "failed": "Échouée"
+            },
+            "filters": {
+                "searchPlaceholder": "Rechercher par utilisateur...",
+                "type": "Type",
+                "allTypes": "Tous les types",
+                "status": "Statut",
+                "allStatuses": "Tous les statuts"
             }
         },
         "broadcast": {

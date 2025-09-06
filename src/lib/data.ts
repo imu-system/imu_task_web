@@ -1,6 +1,6 @@
 
 
-import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole } from './types';
+import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole, Notification, NotificationType, NotificationChannel, DeliveryStatus } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
 
@@ -500,3 +500,51 @@ export const getDisputes = (): Dispute[] => [
 export const getDisputeById = (id: string): Dispute | undefined => {
     return getDisputes().find(d => d.id === id);
 }
+
+export const getNotifications = (): Notification[] => [
+    {
+        id: 'notif1',
+        userId: 'user1',
+        user: users.find(u => u.id === 'user1'),
+        type: NotificationType.task_offer_received,
+        channel: NotificationChannel.in_app,
+        deliveryStatus: DeliveryStatus.sent,
+        sentAt: new Date('2024-08-25T10:00:00Z'),
+        readAt: new Date('2024-08-25T10:05:00Z'),
+        createdAt: new Date('2024-08-25T10:00:00Z'),
+        updatedAt: new Date('2024-08-25T10:00:00Z'),
+    },
+    {
+        id: 'notif2',
+        userId: 'user2',
+        user: users.find(u => u.id === 'user2'),
+        type: NotificationType.offer_accepted,
+        channel: NotificationChannel.email,
+        deliveryStatus: DeliveryStatus.sent,
+        sentAt: new Date('2024-08-25T11:00:00Z'),
+        createdAt: new Date('2024-08-25T11:00:00Z'),
+        updatedAt: new Date('2024-08-25T11:00:00Z'),
+    },
+    {
+        id: 'notif3',
+        userId: 'user4',
+        user: users.find(u => u.id === 'user4'),
+        type: NotificationType.booking_reminder,
+        channel: NotificationChannel.push,
+        deliveryStatus: DeliveryStatus.queued,
+        sentAt: new Date('2024-08-26T09:00:00Z'),
+        createdAt: new Date('2024-08-26T09:00:00Z'),
+        updatedAt: new Date('2024-08-26T09:00:00Z'),
+    },
+    {
+        id: 'notif4',
+        userId: 'user1',
+        user: users.find(u => u.id === 'user1'),
+        type: NotificationType.dispute_update,
+        channel: NotificationChannel.in_app,
+        deliveryStatus: DeliveryStatus.failed,
+        sentAt: new Date('2024-08-24T14:00:00Z'),
+        createdAt: new Date('2024-08-24T14:00:00Z'),
+        updatedAt: new Date('2024-08-24T14:00:00Z'),
+    },
+];
