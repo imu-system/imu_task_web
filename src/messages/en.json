@@ -68,7 +68,8 @@
         "bookings": "Bookings",
         "payments": "Payments",
         "reviews": "Reviews",
-        "disputes": "Disputes"
+        "disputes": "Disputes",
+        "notifications": "Notifications"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -221,6 +222,7 @@
         "quickActionPayments": "Manage Payments",
         "quickActionReviews": "Manage Reviews",
         "quickActionDisputes": "Manage Disputes",
+        "quickActionNotifications": "Manage Notifications",
         "actionView": "View"
     },
     "AdminCategoriesPage": {
@@ -1081,6 +1083,40 @@
                     "cancel": "Cancel",
                     "confirm": "Confirm & Refund"
                 }
+            }
+        }
+    },
+    "AdminNotificationsLayout": {
+        "history": "History",
+        "broadcast": "Broadcast",
+        "templates": "Templates"
+    },
+    "AdminNotificationsPage": {
+        "history": {
+            "title": "Notification History",
+            "subtitle": "Review all notifications sent.",
+            "card": {
+                "title": "Under Construction",
+                "description": "This section will display a log of all sent notifications.",
+                "content": "You will be able to filter by user, type, channel, and status to track communication."
+            }
+        },
+        "broadcast": {
+            "title": "Broadcast a Message",
+            "subtitle": "Send a notification to a group of users.",
+            "card": {
+                "title": "Under Construction",
+                "description": "This section will allow sending mass notifications.",
+                "content": "You will be able to target users by role, city, or other criteria, schedule the broadcast, and view results."
+            }
+        },
+        "templates": {
+            "title": "Notification Templates",
+            "subtitle": "Manage transactional notification templates.",
+            "card": {
+                "title": "Under Construction",
+                "description": "This section will allow editing notification templates.",
+                "content": "You will be able to edit email, push, and in-app notification templates using variables and a multi-language editor."
             }
         }
     }

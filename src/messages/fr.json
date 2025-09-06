@@ -68,7 +68,8 @@
         "bookings": "Réservations",
         "payments": "Paiements",
         "reviews": "Avis",
-        "disputes": "Litiges"
+        "disputes": "Litiges",
+        "notifications": "Notifications"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -221,6 +222,7 @@
         "quickActionPayments": "Gérer les paiements",
         "quickActionReviews": "Gérer les Avis",
         "quickActionDisputes": "Gérer les Litiges",
+        "quickActionNotifications": "Gérer les Notifications",
         "actionView": "Voir"
     },
     "AdminCategoriesPage": {
@@ -1081,6 +1083,40 @@
                     "cancel": "Annuler",
                     "confirm": "Confirmer & Rembourser"
                 }
+            }
+        }
+    },
+    "AdminNotificationsLayout": {
+        "history": "Historique",
+        "broadcast": "Diffusions",
+        "templates": "Modèles"
+    },
+    "AdminNotificationsPage": {
+        "history": {
+            "title": "Historique des Notifications",
+            "subtitle": "Consultez toutes les notifications envoyées.",
+            "card": {
+                "title": "En construction",
+                "description": "Cette section affichera le journal de toutes les notifications envoyées.",
+                "content": "Vous pourrez filtrer par utilisateur, type, canal et statut pour suivre les communications."
+            }
+        },
+        "broadcast": {
+            "title": "Diffuser un Message",
+            "subtitle": "Envoyez une notification à un groupe d'utilisateurs.",
+            "card": {
+                "title": "En construction",
+                "description": "Cette section permettra l'envoi de notifications de masse.",
+                "content": "Vous pourrez cibler les utilisateurs par rôle, ville ou autres critères, planifier la diffusion et consulter les résultats."
+            }
+        },
+        "templates": {
+            "title": "Modèles de Notifications",
+            "subtitle": "Gérez les modèles de notifications transactionnelles.",
+            "card": {
+                "title": "En construction",
+                "description": "Cette section permettra d'éditer les modèles de notifications.",
+                "content": "Vous pourrez modifier les modèles d'e-mail, de push et de notifications in-app en utilisant des variables et un éditeur multilingue."
             }
         }
     }

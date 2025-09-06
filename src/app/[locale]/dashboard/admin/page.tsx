@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
@@ -10,7 +11,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useRouter, Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
-import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered, Handshake, CalendarCheck, Wallet, Star } from "lucide-react";
+import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered, Handshake, CalendarCheck, Wallet, Star, Bell } from "lucide-react";
 
 const kpiData = [
   { title: "Revenus (Mensuel)", value: "€4,231.89", change: "+20.1% vs mois dernier", icon: <DollarSign className="h-4 w-4 text-muted-foreground" /> },
@@ -163,6 +164,9 @@ export default function AdminDashboardPage() {
                         </Button>
                         <Button variant="outline" asChild>
                             <Link href="/dashboard/admin/disputes"><BadgeAlert className="mr-2"/>{t('quickActionDisputes')}</Link>
+                        </Button>
+                         <Button variant="outline" asChild>
+                            <Link href="/dashboard/admin/notifications"><Bell className="mr-2"/>{t('quickActionNotifications')}</Link>
                         </Button>
                     </CardContent>
                 </Card>
