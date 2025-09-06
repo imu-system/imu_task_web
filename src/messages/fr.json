@@ -1136,12 +1136,7 @@
         "broadcast": {
             "title": "Diffuser un Message",
             "subtitle": "Envoyez une notification à un groupe d'utilisateurs.",
-            "card": {
-                "title": "En construction",
-                "description": "Cette section permettra l'envoi de notifications de masse.",
-                "content": "Vous pourrez cibler les utilisateurs par rôle, ville ou autres critères, planifier la diffusion et consulter les résultats."
-            },
-             "form": {
+            "form": {
                 "content": {
                     "title": "Contenu",
                     "description": "Rédigez le message de votre notification.",
@@ -1215,3 +1210,5 @@
         }
     }
 }
+
+    

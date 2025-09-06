@@ -1136,11 +1136,6 @@
         "broadcast": {
             "title": "Broadcast a Message",
             "subtitle": "Send a notification to a group of users.",
-            "card": {
-                "title": "Under Construction",
-                "description": "This section will allow sending mass notifications.",
-                "content": "You will be able to target users by role, city, or other criteria, schedule the broadcast, and view results."
-            },
             "form": {
                 "content": {
                     "title": "Content",
@@ -1175,15 +1170,15 @@
                     "successTitle": "Broadcast Sent!",
                     "successDescription": "Your message has been successfully sent to the targeted users."
                 }
-            }
-        },
-        "templates": {
-            "title": "Notification Templates",
-            "subtitle": "Manage transactional notification templates.",
-            "card": {
-                "title": "Template Editor",
-                "description": "This section is for editing transactional notification templates.",
-                "content": "Functionality to manage email, push, and in-app templates using variables and a multi-language editor will be implemented here. This will allow for consistent and personalized communication."
+            },
+            "templates": {
+                "title": "Notification Templates",
+                "subtitle": "Manage transactional notification templates.",
+                "card": {
+                    "title": "Template Editor",
+                    "description": "This section is for editing transactional notification templates.",
+                    "content": "Functionality to manage email, push, and in-app templates using variables and a multi-language editor will be implemented here. This will allow for consistent and personalized communication."
+                }
             }
         },
         "detail": {
@@ -1212,6 +1207,17 @@
                     "resend": "Resend Notification"
                 }
             }
+        },
+        "templates": {
+            "title": "Notification Templates",
+            "subtitle": "Manage transactional notification templates.",
+            "card": {
+                "title": "Template Editor",
+                "description": "This section is for editing transactional notification templates.",
+                "content": "Functionality to manage email, push, and in-app templates using variables and a multi-language editor will be implemented here. This will allow for consistent and personalized communication."
+            }
         }
     }
 }
+
+    
