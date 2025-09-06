@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2, ArrowLeft, Star, MessageSquare, User, Calendar, Eye, EyeOff, ShieldAlert, Trash2 } from 'lucide-react';
+import { Loader2, ArrowLeft, Star, MessageSquare, User, Calendar, Eye, EyeOff, ShieldAlert, Trash2, Edit } from 'lucide-react';
 import { UserRole, Review, ReviewVisibility } from '@/lib/types';
 import { useLocale, useTranslations } from 'next-intl';
 import { getReviewById } from '@/lib/data';
@@ -26,6 +26,8 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useToast } from '@/hooks/use-toast';
+import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
 
 const StarRating = ({ rating }: { rating: number }) => {
     return (
@@ -90,6 +92,16 @@ export default function AdminReviewDetailPage() {
         });
         router.push('/dashboard/admin/reviews');
     }
+    
+    const handleEditReview = () => {
+        if (!review) return;
+        // Simulate API call to save the edited review
+        toast({
+            title: t('toast.edit.title'),
+            description: t('toast.edit.description'),
+        });
+    }
+
 
     if (authLoading || loading || !adminUser || !adminUser.roles?.includes(UserRole.admin)) {
         return (
@@ -222,6 +234,31 @@ export default function AdminReviewDetailPage() {
                                 <><Eye className="mr-2"/>{t('cards.moderation.show')}</>
                             )}
                         </Button>
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="outline"><Edit className="mr-2"/>{t('cards.moderation.edit')}</Button>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>{t('cards.moderation.editDialog.title')}</AlertDialogTitle>
+                                    <AlertDialogDescription>{t('cards.moderation.editDialog.description')}</AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <div className="space-y-4 py-4">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="review-comment">{t('cards.moderation.editDialog.commentLabel')}</Label>
+                                        <Textarea id="review-comment" defaultValue={review.comment || ''} />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="edit-reason">{t('cards.moderation.editDialog.reasonLabel')}</Label>
+                                        <Textarea id="edit-reason" placeholder={t('cards.moderation.editDialog.reasonPlaceholder')} />
+                                    </div>
+                                </div>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>{t('cards.moderation.editDialog.cancel')}</AlertDialogCancel>
+                                    <AlertDialogAction onClick={handleEditReview}>{t('cards.moderation.editDialog.confirm')}</AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                         <AlertDialog>
                             <AlertDialogTrigger asChild>
                                 <Button variant="destructive"><Trash2 className="mr-2"/>{t('cards.moderation.delete')}</Button>

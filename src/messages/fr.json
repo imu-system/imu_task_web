@@ -944,11 +944,21 @@
                 "hide": "Masquer l'avis",
                 "show": "Rendre l'avis public",
                 "delete": "Supprimer l'avis",
+                "edit": "Modifier l'avis",
                 "deleteDialog": {
                     "title": "Êtes-vous sûr(e) ?",
                     "description": "Cette action est irréversible et supprimera définitivement cet avis.",
                     "cancel": "Annuler",
                     "confirm": "Supprimer"
+                },
+                "editDialog": {
+                    "title": "Modifier l'avis",
+                    "description": "Cette action est réservée aux cas légaux (ex: retrait d'infos personnelles) et doit être utilisée avec précaution. L'action sera enregistrée.",
+                    "commentLabel": "Commentaire de l'avis",
+                    "reasonLabel": "Motif de la modification (pour audit)",
+                    "reasonPlaceholder": "Ex: Retrait d'un numéro de téléphone du commentaire.",
+                    "cancel": "Annuler",
+                    "confirm": "Enregistrer"
                 }
             }
         },
@@ -960,6 +970,10 @@
             "delete": {
                 "title": "Avis supprimé",
                 "description": "L'avis a été supprimé définitivement."
+            },
+            "edit": {
+                "title": "Avis modifié",
+                "description": "L'avis a été modifié avec succès et l'action a été enregistrée."
             }
         }
     }

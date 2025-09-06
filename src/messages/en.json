@@ -944,11 +944,21 @@
                 "hide": "Hide Review",
                 "show": "Make Review Public",
                 "delete": "Delete Review",
+                "edit": "Edit Review",
                 "deleteDialog": {
                     "title": "Are you sure?",
                     "description": "This action cannot be undone. This will permanently delete the review.",
                     "cancel": "Cancel",
                     "confirm": "Delete"
+                },
+                "editDialog": {
+                    "title": "Edit Review",
+                    "description": "This action is for legal reasons (e.g. removing personal data) and should be used with caution. The action will be logged.",
+                    "commentLabel": "Review Comment",
+                    "reasonLabel": "Reason for editing (for audit)",
+                    "reasonPlaceholder": "e.g. Removed a phone number from the comment.",
+                    "cancel": "Cancel",
+                    "confirm": "Save Changes"
                 }
             }
         },
@@ -960,6 +970,10 @@
             "delete": {
                 "title": "Review Deleted",
                 "description": "The review has been permanently deleted."
+            },
+            "edit": {
+                "title": "Review Edited",
+                "description": "The review has been successfully edited and the action logged."
             }
         }
     }
