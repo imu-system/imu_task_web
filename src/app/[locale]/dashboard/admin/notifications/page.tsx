@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useAuth } from '@/hooks/use-auth';
@@ -149,9 +150,11 @@ export default function AdminNotificationsPage() {
                                                 </Button>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
-                                                <DropdownMenuItem>
-                                                    <Eye className="mr-2"/>
-                                                    {t('table.viewDetails')}
+                                                <DropdownMenuItem asChild>
+                                                    <Link href={`/dashboard/admin/notifications/${notif.id}`}>
+                                                        <Eye className="mr-2"/>
+                                                        {t('table.viewDetails')}
+                                                    </Link>
                                                 </DropdownMenuItem>
                                             </DropdownMenuContent>
                                         </DropdownMenu>

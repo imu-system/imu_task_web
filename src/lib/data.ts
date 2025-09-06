@@ -513,6 +513,11 @@ export const getNotifications = (): Notification[] => [
         readAt: new Date('2024-08-25T10:05:00Z'),
         createdAt: new Date('2024-08-25T10:00:00Z'),
         updatedAt: new Date('2024-08-25T10:00:00Z'),
+        payload: {
+            taskId: 'task1',
+            offerId: 'offer2',
+            providerName: 'Chloé Petit',
+        }
     },
     {
         id: 'notif2',
@@ -524,6 +529,11 @@ export const getNotifications = (): Notification[] => [
         sentAt: new Date('2024-08-25T11:00:00Z'),
         createdAt: new Date('2024-08-25T11:00:00Z'),
         updatedAt: new Date('2024-08-25T11:00:00Z'),
+        payload: {
+            taskId: 'task3',
+            taskTitle: "Installer une nouvelle étagère murale",
+            clientName: 'Anne-Marie Dupont',
+        }
     },
     {
         id: 'notif3',
@@ -535,6 +545,11 @@ export const getNotifications = (): Notification[] => [
         sentAt: new Date('2024-08-26T09:00:00Z'),
         createdAt: new Date('2024-08-26T09:00:00Z'),
         updatedAt: new Date('2024-08-26T09:00:00Z'),
+        payload: {
+            bookingId: 'booking2',
+            taskTitle: 'Promener mon chien pendant mes vacances',
+            startTime: '2024-08-27T09:00:00Z'
+        }
     },
     {
         id: 'notif4',
@@ -546,5 +561,13 @@ export const getNotifications = (): Notification[] => [
         sentAt: new Date('2024-08-24T14:00:00Z'),
         createdAt: new Date('2024-08-24T14:00:00Z'),
         updatedAt: new Date('2024-08-24T14:00:00Z'),
+        payload: {
+            disputeId: 'dispute1',
+            newStatus: 'under_review'
+        }
     },
 ];
+
+export const getNotificationById = (id: string): Notification | undefined => {
+    return getNotifications().find(n => n.id === id);
+}

@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Features",
@@ -1149,6 +1150,33 @@
                 "title": "Under Construction",
                 "description": "This section will allow editing notification templates.",
                 "content": "You will be able to edit email, push, and in-app notification templates using variables and a multi-language editor."
+            }
+        },
+        "detail": {
+            "title": "Notification Details",
+            "backToList": "Back to notification list",
+            "notFound": "Notification not found.",
+            "toast": {
+                "resendSuccessTitle": "Notification Resent",
+                "resendSuccessDescription": "The notification has been queued for sending again."
+            },
+            "cards": {
+                "details": {
+                    "title": "Details",
+                    "description": "Key information about this notification.",
+                    "type": "Type",
+                    "channel": "Channel",
+                    "status": "Status",
+                    "recipient": "Recipient"
+                },
+                "payload": {
+                    "title": "Payload",
+                    "description": "The raw data sent with the notification."
+                },
+                "actions": {
+                    "title": "Actions",
+                    "resend": "Resend Notification"
+                }
             }
         }
     }

@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -1149,6 +1150,33 @@
                 "title": "En construction",
                 "description": "Cette section permettra d'éditer les modèles de notifications.",
                 "content": "Vous pourrez modifier les modèles d'e-mail, de push et de notifications in-app en utilisant des variables et un éditeur multilingue."
+            }
+        },
+        "detail": {
+            "title": "Détails de la Notification",
+            "backToList": "Retour à la liste des notifications",
+            "notFound": "Notification non trouvée.",
+            "toast": {
+                "resendSuccessTitle": "Notification renvoyée",
+                "resendSuccessDescription": "La notification a été mise en file d'attente pour être renvoyée."
+            },
+            "cards": {
+                "details": {
+                    "title": "Détails",
+                    "description": "Informations clés sur cette notification.",
+                    "type": "Type",
+                    "channel": "Canal",
+                    "status": "Statut",
+                    "recipient": "Destinataire"
+                },
+                "payload": {
+                    "title": "Payload",
+                    "description": "Les données brutes envoyées avec la notification."
+                },
+                "actions": {
+                    "title": "Actions",
+                    "resend": "Renvoyer la notification"
+                }
             }
         }
     }
