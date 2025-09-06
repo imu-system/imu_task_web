@@ -344,6 +344,23 @@
                 "kyc": "KYC",
                 "memberSince": "Membre depuis le {date}"
             },
+            "devices": {
+                "title": "Appareils Enregistrés",
+                "description": "Liste des appareils utilisés par l'utilisateur pour recevoir des notifications push.",
+                "lastActive": "Dernière activité",
+                "sendTest": "Envoyer un test Push",
+                "noDevices": "Aucun appareil enregistré pour cet utilisateur.",
+                "dialog": {
+                    "title": "Envoyer une Notification Push de Test",
+                    "description": "Rédigez et envoyez une notification push de test à cet appareil spécifique.",
+                    "titleLabel": "Titre de la notification",
+                    "bodyLabel": "Corps de la notification",
+                    "cancel": "Annuler",
+                    "confirm": "Envoyer le test"
+                },
+                "toastSentTitle": "Push de Test Envoyé",
+                "toastSentDescription": "La notification de test a été envoyée à l'appareil {deviceId}."
+            },
             "actions": {
                 "title": "Actions Administratives",
                 "description": "Effectuer des actions administratives sur cet utilisateur.",

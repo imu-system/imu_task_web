@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { useRouter, Link } from '@/navigation';
 import { useEffect, useState } from 'react';
 import { Loader2, Shield, MoreHorizontal, User, Eye } from 'lucide-react';
-import { User as UserType, UserRole } from '@/lib/types';
+import { User as UserType, UserRole, DevicePlatform } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -16,10 +16,10 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 
 const mockUsers: any[] = [
-    { id: 'usr_1', displayName: 'Nathan Imogo', email: 'nathan.imogo@outlook.fr', roles: ['admin', 'client'], status: 'active', kycStatus: 'verified', createdAt: '2023-01-15T10:00:00Z', lastActiveAt: '2023-10-26T12:00:00Z' },
-    { id: 'usr_2', displayName: 'Jane Doe', email: 'jane.doe@example.com', roles: ['provider'], status: 'active', kycStatus: 'pending', createdAt: '2023-02-20T11:30:00Z', lastActiveAt: '2023-10-25T18:45:00Z' },
-    { id: 'usr_3', displayName: 'John Smith', email: 'john.smith@example.com', roles: ['client'], status: 'suspended', kycStatus: 'not_required', createdAt: '2023-05-10T08:00:00Z', lastActiveAt: '2023-09-01T22:10:00Z' },
-    { id: 'usr_4', displayName: 'Marie Curie', email: 'marie.curie@example.com', roles: ['provider', 'client'], status: 'active', kycStatus: 'verified', createdAt: '2022-12-01T15:20:00Z', lastActiveAt: '2023-10-26T11:55:00Z' },
+    { id: 'usr_1', displayName: 'Nathan Imogo', email: 'nathan.imogo@outlook.fr', roles: ['admin', 'client'], status: 'active', kycStatus: 'verified', createdAt: '2023-01-15T10:00:00Z', lastActiveAt: '2023-10-26T12:00:00Z', devices: [ { id: 'dev_1', platform: DevicePlatform.ios, lastActiveAt: new Date('2023-10-26T11:00:00Z') }, { id: 'dev_2', platform: DevicePlatform.web, lastActiveAt: new Date('2023-10-25T09:00:00Z') }] },
+    { id: 'usr_2', displayName: 'Jane Doe', email: 'jane.doe@example.com', roles: ['provider'], status: 'active', kycStatus: 'pending', createdAt: '2023-02-20T11:30:00Z', lastActiveAt: '2023-10-25T18:45:00Z', devices: [{ id: 'dev_3', platform: DevicePlatform.android, lastActiveAt: new Date('2023-10-25T18:45:00Z') }] },
+    { id: 'usr_3', displayName: 'John Smith', email: 'john.smith@example.com', roles: ['client'], status: 'suspended', kycStatus: 'not_required', createdAt: '2023-05-10T08:00:00Z', lastActiveAt: '2023-09-01T22:10:00Z', devices: [] },
+    { id: 'usr_4', displayName: 'Marie Curie', email: 'marie.curie@example.com', roles: ['provider', 'client'], status: 'active', kycStatus: 'verified', createdAt: '2022-12-01T15:20:00Z', lastActiveAt: '2023-10-26T11:55:00Z', devices: [] },
 ];
 
 export default function AdminUsersPage() {

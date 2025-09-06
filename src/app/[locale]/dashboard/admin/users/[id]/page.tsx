@@ -5,8 +5,8 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2, ArrowLeft, User, ShieldCheck, Mail, Phone, CalendarDays, KeyRound, AlertTriangle, UserCog, Eye, Trash2, BadgeCheck, Languages, MapPin, UserPlus, FileUp } from 'lucide-react';
-import { UserRole, UserStatus } from '@/lib/types';
+import { Loader2, ArrowLeft, User, ShieldCheck, Mail, Phone, CalendarDays, KeyRound, AlertTriangle, UserCog, Eye, Trash2, BadgeCheck, Languages, MapPin, UserPlus, FileUp, Smartphone, Send } from 'lucide-react';
+import { UserRole, UserStatus, DevicePlatform } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -56,10 +56,10 @@ type RolesFormValues = z.infer<typeof rolesFormSchema>;
 
 // Using the same mock data as the list page for consistency
 const mockUsers: any[] = [
-    { id: 'usr_1', displayName: 'Nathan Imogo', email: 'nathan.imogo@outlook.fr', phone: '+33 6 12 34 56 78', roles: ['admin', 'client'], status: 'active', kycStatus: 'verified', createdAt: '2023-01-15T10:00:00Z', lastActiveAt: '2023-10-26T12:00:00Z', profile: { city: 'Paris', languages: ['Français', 'Anglais'], verifiedBadges: ['ID Verified', 'Payment Verified'] } },
-    { id: 'usr_2', displayName: 'Jane Doe', email: 'jane.doe@example.com', phone: '+33 7 89 01 23 45', roles: ['provider'], status: 'active', kycStatus: 'pending', createdAt: '2023-02-20T11:30:00Z', lastActiveAt: '2023-10-25T18:45:00Z', profile: { city: 'Lyon', languages: ['Français'], verifiedBadges: [] }},
-    { id: 'usr_3', displayName: 'John Smith', email: 'john.smith@example.com', phone: null, roles: ['client'], status: 'suspended', kycStatus: 'not_required', createdAt: '2023-05-10T08:00:00Z', lastActiveAt: '2023-09-01T22:10:00Z', profile: { city: 'Marseille', languages: ['Anglais'], verifiedBadges: [] } },
-    { id: 'usr_4', displayName: 'Marie Curie', email: 'marie.curie@example.com', phone: '+33 1 23 45 67 89', roles: ['provider', 'client'], status: 'active', kycStatus: 'verified', createdAt: '2022-12-01T15:20:00Z', lastActiveAt: '2023-10-26T11:55:00Z', profile: { city: 'Lille', languages: ['Français', 'Polonais'], verifiedBadges: ['ID Verified'] } },
+    { id: 'usr_1', displayName: 'Nathan Imogo', email: 'nathan.imogo@outlook.fr', phone: '+33 6 12 34 56 78', roles: ['admin', 'client'], status: 'active', kycStatus: 'verified', createdAt: '2023-01-15T10:00:00Z', lastActiveAt: '2023-10-26T12:00:00Z', profile: { city: 'Paris', languages: ['Français', 'Anglais'], verifiedBadges: ['ID Verified', 'Payment Verified'] }, devices: [ { id: 'dev_1', platform: DevicePlatform.ios, lastActiveAt: new Date('2023-10-26T11:00:00Z') }, { id: 'dev_2', platform: DevicePlatform.web, lastActiveAt: new Date('2023-10-25T09:00:00Z') }] },
+    { id: 'usr_2', displayName: 'Jane Doe', email: 'jane.doe@example.com', phone: '+33 7 89 01 23 45', roles: ['provider'], status: 'active', kycStatus: 'pending', createdAt: '2023-02-20T11:30:00Z', lastActiveAt: '2023-10-25T18:45:00Z', profile: { city: 'Lyon', languages: ['Français'], verifiedBadges: [] }, devices: [{ id: 'dev_3', platform: DevicePlatform.android, lastActiveAt: new Date('2023-10-25T18:45:00Z') }] },
+    { id: 'usr_3', displayName: 'John Smith', email: 'john.smith@example.com', phone: null, roles: ['client'], status: 'suspended', kycStatus: 'not_required', createdAt: '2023-05-10T08:00:00Z', lastActiveAt: '2023-09-01T22:10:00Z', profile: { city: 'Marseille', languages: ['Anglais'], verifiedBadges: [] }, devices: [] },
+    { id: 'usr_4', displayName: 'Marie Curie', email: 'marie.curie@example.com', phone: '+33 1 23 45 67 89', roles: ['provider', 'client'], status: 'active', kycStatus: 'verified', createdAt: '2022-12-01T15:20:00Z', lastActiveAt: '2023-10-26T11:55:00Z', profile: { city: 'Lille', languages: ['Français', 'Polonais'], verifiedBadges: ['ID Verified'] }, devices: [] },
 ];
 
 
@@ -195,6 +195,15 @@ export default function AdminUserDetailPage() {
             router.push('/dashboard');
         }
     }
+    
+    const handleSendTestPush = async (deviceId: string) => {
+        console.log(`Sending test push to device ${deviceId}`);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        toast({
+            title: t('cards.devices.toastSentTitle'),
+            description: t('cards.devices.toastSentDescription', { deviceId }),
+        })
+    }
 
     if (authLoading || loading || !adminUser || !adminUser.roles?.includes(UserRole.admin)) {
         return (
@@ -301,6 +310,62 @@ export default function AdminUserDetailPage() {
                                 <span>{t('cards.summary.memberSince', { date: new Date(user.createdAt).toLocaleDateString() })}</span>
                             </div>
                         </div>
+                    </CardContent>
+                </Card>
+
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>{t('cards.devices.title')}</CardTitle>
+                        <CardDescription>{t('cards.devices.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        {user.devices && user.devices.length > 0 ? (
+                            <ul className="space-y-4">
+                                {user.devices.map((device: any) => (
+                                    <li key={device.id} className="flex items-center justify-between p-2 rounded-md hover:bg-muted/50">
+                                        <div className="flex items-center gap-3">
+                                            <Smartphone className="h-5 w-5 text-muted-foreground" />
+                                            <div>
+                                                <p className="font-medium capitalize">{device.platform}</p>
+                                                <p className="text-xs text-muted-foreground">
+                                                    {t('cards.devices.lastActive')}: {new Date(device.lastActiveAt).toLocaleString()}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <AlertDialog>
+                                            <AlertDialogTrigger asChild>
+                                                <Button variant="outline" size="sm">
+                                                    <Send className="mr-2 h-4 w-4" />
+                                                    {t('cards.devices.sendTest')}
+                                                </Button>
+                                            </AlertDialogTrigger>
+                                            <AlertDialogContent>
+                                                <AlertDialogHeader>
+                                                    <AlertDialogTitle>{t('cards.devices.dialog.title')}</AlertDialogTitle>
+                                                    <AlertDialogDescription>{t('cards.devices.dialog.description')}</AlertDialogDescription>
+                                                </AlertDialogHeader>
+                                                <div className="space-y-4 py-4">
+                                                    <div className="space-y-2">
+                                                        <Label htmlFor="push-title">{t('cards.devices.dialog.titleLabel')}</Label>
+                                                        <Input id="push-title" defaultValue="Test Notification" />
+                                                    </div>
+                                                    <div className="space-y-2">
+                                                        <Label htmlFor="push-body">{t('cards.devices.dialog.bodyLabel')}</Label>
+                                                        <Textarea id="push-body" defaultValue="This is a test notification from the admin panel." />
+                                                    </div>
+                                                </div>
+                                                <AlertDialogFooter>
+                                                    <AlertDialogCancel>{t('cards.devices.dialog.cancel')}</AlertDialogCancel>
+                                                    <AlertDialogAction onClick={() => handleSendTestPush(device.id)}>{t('cards.devices.dialog.confirm')}</AlertDialogAction>
+                                                </AlertDialogFooter>
+                                            </AlertDialogContent>
+                                        </AlertDialog>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p className="text-sm text-muted-foreground text-center py-4">{t('cards.devices.noDevices')}</p>
+                        )}
                     </CardContent>
                 </Card>
 

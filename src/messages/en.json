@@ -344,6 +344,23 @@
                 "kyc": "KYC",
                 "memberSince": "Member since {date}"
             },
+            "devices": {
+                "title": "Registered Devices",
+                "description": "List of devices used by the user to receive push notifications.",
+                "lastActive": "Last active",
+                "sendTest": "Send Test Push",
+                "noDevices": "No devices registered for this user.",
+                "dialog": {
+                    "title": "Send Test Push Notification",
+                    "description": "Compose and send a test push notification to this specific device.",
+                    "titleLabel": "Notification Title",
+                    "bodyLabel": "Notification Body",
+                    "cancel": "Cancel",
+                    "confirm": "Send Test"
+                },
+                "toastSentTitle": "Test Push Sent",
+                "toastSentDescription": "The test notification has been sent to device {deviceId}."
+            },
             "actions": {
                 "title": "Admin Actions",
                 "description": "Perform administrative actions on this user.",
