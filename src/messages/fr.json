@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -1141,6 +1140,41 @@
                 "title": "En construction",
                 "description": "Cette section permettra l'envoi de notifications de masse.",
                 "content": "Vous pourrez cibler les utilisateurs par rôle, ville ou autres critères, planifier la diffusion et consulter les résultats."
+            },
+             "form": {
+                "content": {
+                    "title": "Contenu",
+                    "description": "Rédigez le message de votre notification.",
+                    "titleLabel": "Titre",
+                    "titlePlaceholder": "Ex: Maintenance importante",
+                    "messageLabel": "Message",
+                    "messagePlaceholder": "Votre message aux utilisateurs...",
+                    "messageDescription": "Vous pouvez utiliser des variables comme {displayName}."
+                },
+                "targeting": {
+                    "title": "Ciblage",
+                    "description": "Choisissez qui recevra cette notification.",
+                    "rolesLabel": "Rôles cibles",
+                    "citiesLabel": "Villes cibles (optionnel)",
+                    "citiesPlaceholder": "Ex: Paris, Lyon",
+                    "citiesDescription": "Laissez vide pour cibler toutes les villes. Séparez par des virgules."
+                },
+                "sending": {
+                    "title": "Envoi",
+                    "description": "Choisissez comment et quand envoyer.",
+                    "channelsLabel": "Canaux",
+                    "sendOptionLabel": "Moment de l'envoi",
+                    "sendNow": "Envoyer maintenant",
+                    "sendLater": "Planifier pour plus tard",
+                    "dateLabel": "Date",
+                    "timeLabel": "Heure",
+                    "datePlaceholder": "Choisissez une date"
+                },
+                "submitButton": "Envoyer la diffusion",
+                "toast": {
+                    "successTitle": "Diffusion envoyée !",
+                    "successDescription": "Votre message a été envoyé avec succès aux utilisateurs ciblés."
+                }
             }
         },
         "templates": {

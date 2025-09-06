@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Features",
@@ -1141,6 +1140,41 @@
                 "title": "Under Construction",
                 "description": "This section will allow sending mass notifications.",
                 "content": "You will be able to target users by role, city, or other criteria, schedule the broadcast, and view results."
+            },
+            "form": {
+                "content": {
+                    "title": "Content",
+                    "description": "Write the message for your notification.",
+                    "titleLabel": "Title",
+                    "titlePlaceholder": "e.g. Important Maintenance",
+                    "messageLabel": "Message",
+                    "messagePlaceholder": "Your message to users...",
+                    "messageDescription": "You can use variables like {displayName}."
+                },
+                "targeting": {
+                    "title": "Targeting",
+                    "description": "Choose who will receive this notification.",
+                    "rolesLabel": "Target Roles",
+                    "citiesLabel": "Target Cities (optional)",
+                    "citiesPlaceholder": "e.g. Paris, Lyon",
+                    "citiesDescription": "Leave blank to target all cities. Separate with commas."
+                },
+                "sending": {
+                    "title": "Sending",
+                    "description": "Choose how and when to send.",
+                    "channelsLabel": "Channels",
+                    "sendOptionLabel": "Send Time",
+                    "sendNow": "Send Now",
+                    "sendLater": "Schedule for later",
+                    "dateLabel": "Date",
+                    "timeLabel": "Time",
+                    "datePlaceholder": "Pick a date"
+                },
+                "submitButton": "Send Broadcast",
+                "toast": {
+                    "successTitle": "Broadcast Sent!",
+                    "successDescription": "Your message has been successfully sent to the targeted users."
+                }
             }
         },
         "templates": {
