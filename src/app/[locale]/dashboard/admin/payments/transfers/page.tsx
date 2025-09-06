@@ -29,7 +29,9 @@ export default function AdminTransfersPage() {
     const filteredTransfers = useMemo(() => {
         return mockTransfers.filter(tr => {
             return searchTerm 
-                ? tr.id.includes(searchTerm) || tr.bookingId.includes(searchTerm) || tr.provider?.profile?.displayName.toLowerCase().includes(searchTerm.toLowerCase())
+                ? tr.id.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                  tr.bookingId.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                  tr.provider?.profile?.displayName.toLowerCase().includes(searchTerm.toLowerCase())
                 : true;
         });
     }, [searchTerm]);
