@@ -1,6 +1,7 @@
 
 
-import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking } from './types';
+
+import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
 
@@ -21,7 +22,7 @@ export const users: User[] = [
       createdAt: '',
       updatedAt: ''
     },
-    roles: [],
+    roles: [UserRole.client],
     status: UserStatus.active,
     KYCStatus: KYCStatus.not_required,
     createdAt: '',
@@ -42,9 +43,9 @@ export const users: User[] = [
       createdAt: '',
       updatedAt: ''
     },
-    roles: [],
+    roles: [UserRole.provider],
     status: UserStatus.active,
-    KYCStatus: KYCStatus.not_required,
+    KYCStatus: KYCStatus.verified,
     createdAt: '',
     updatedAt: ''
   },
@@ -63,9 +64,9 @@ export const users: User[] = [
       createdAt: '',
       updatedAt: ''
     },
-    roles: [],
+    roles: [UserRole.provider],
     status: UserStatus.active,
-    KYCStatus: KYCStatus.not_required,
+    KYCStatus: KYCStatus.verified,
     createdAt: '',
     updatedAt: ''
   },
@@ -84,12 +85,33 @@ export const users: User[] = [
       createdAt: '',
       updatedAt: ''
     },
-    roles: [],
+    roles: [UserRole.client],
     status: UserStatus.active,
     KYCStatus: KYCStatus.not_required,
     createdAt: '',
     updatedAt: ''
   },
+   {
+    id: 'user5',
+    email: 'moderator.emma@email.com',
+    profile: {
+      displayName: 'Emma Moreau',
+      photoUrl: 'https://picsum.photos/id/1015/100/100',
+      userId: '',
+      languages: [],
+      averageRating: 0,
+      reviewsCount: 0,
+      skills: [],
+      verifiedBadges: [],
+      createdAt: '',
+      updatedAt: ''
+    },
+    roles: [UserRole.moderator],
+    status: UserStatus.active,
+    KYCStatus: KYCStatus.not_required,
+    createdAt: '',
+    updatedAt: ''
+  }
 ];
 
 
@@ -427,4 +449,55 @@ export const getReviews = (): Review[] => [
 
 export const getReviewById = (id: string): Review | undefined => {
     return getReviews().find(r => r.id === id);
+}
+
+export const getDisputes = (): Dispute[] => [
+    {
+        id: 'dispute1',
+        bookingId: 'booking1',
+        openedById: 'user1',
+        openedBy: users.find(u => u.id === 'user1'),
+        type: DisputeType.quality,
+        description: "L'étagère n'est pas droite et semble peu solide. Je ne suis pas satisfait du travail.",
+        attachments: ['https://picsum.photos/seed/shelf_dispute/600/400'],
+        status: DisputeStatus.open,
+        assignedToId: null,
+        assignedTo: null,
+        createdAt: new Date('2024-08-19T18:00:00Z'),
+        updatedAt: new Date('2024-08-19T18:00:00Z'),
+    },
+    {
+        id: 'dispute2',
+        bookingId: 'booking2',
+        openedById: 'user4',
+        openedBy: users.find(u => u.id === 'user4'),
+        type: DisputeType.no_show,
+        description: "Le prestataire ne s'est jamais présenté pour la promenade du chien du matin. J'ai dû trouver une solution d'urgence.",
+        attachments: [],
+        status: DisputeStatus.under_review,
+        assignedToId: 'user5',
+        assignedTo: users.find(u => u.id === 'user5'),
+        createdAt: new Date('2024-08-20T10:00:00Z'),
+        updatedAt: new Date('2024-08-20T11:30:00Z'),
+    },
+     {
+        id: 'dispute3',
+        bookingId: 'booking3',
+        openedById: 'user2',
+        openedBy: users.find(u => u.id === 'user2'),
+        type: DisputeType.other,
+        description: "Le client a changé la nature de la mission à mon arrivée, demandant beaucoup plus de travail que prévu pour le même prix. Nous n'avons pas trouvé d'accord.",
+        attachments: [],
+        status: DisputeStatus.resolved_refund_full,
+        assignedToId: 'user5',
+        assignedTo: users.find(u => u.id === 'user5'),
+        resolvedById: 'user5',
+        resolvedAt: new Date('2024-08-23T15:00:00Z'),
+        createdAt: new Date('2024-08-22T09:00:00Z'),
+        updatedAt: new Date('2024-08-23T15:00:00Z'),
+    }
+];
+
+export const getDisputeById = (id: string): Dispute | undefined => {
+    return getDisputes().find(d => d.id === id);
 }

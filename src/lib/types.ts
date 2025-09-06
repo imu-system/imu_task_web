@@ -1,5 +1,6 @@
 
 
+
 // Types partagés pour le monorepo (générés d'après le schéma Prisma)
 // GitHub Copilot
 
@@ -457,6 +458,7 @@ export interface Dispute {
     resolutionNote?: string | null;
     resolvedById?: string | null;
     resolvedAt?: DateTime | null;
+    assignedToId?: string | null;
 
     createdAt: DateTime;
     updatedAt: DateTime;
@@ -465,6 +467,7 @@ export interface Dispute {
     booking?: Booking;
     openedBy?: User;
     resolvedBy?: User | null;
+    assignedTo?: User | null;
 }
 
 export interface Availability {

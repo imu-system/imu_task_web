@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -67,7 +68,8 @@
         "offers": "Offres",
         "bookings": "Réservations",
         "payments": "Paiements",
-        "reviews": "Avis"
+        "reviews": "Avis",
+        "disputes": "Litiges"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -976,6 +978,40 @@
                 "title": "Avis modifié",
                 "description": "L'avis a été modifié avec succès et l'action a été enregistrée."
             }
+        }
+    },
+    "AdminDisputesPage": {
+        "title": "Gestion des litiges",
+        "subtitle": "Gérez et résolvez les litiges des utilisateurs.",
+        "unassigned": "Non assigné",
+        "table": {
+            "title": "Litiges ouverts",
+            "description": "Liste de tous les litiges en cours et passés.",
+            "header": {
+                "id": "ID",
+                "booking": "Réservation",
+                "type": "Type",
+                "status": "Statut",
+                "agent": "Agent",
+                "actions": "Actions"
+            },
+            "actions": {
+                "details": "Détails"
+            }
+        },
+        "types": {
+            "no_show": "Non-présentation",
+            "quality": "Qualité",
+            "delay": "Retard",
+            "other": "Autre"
+        },
+        "status": {
+            "open": "Ouvert",
+            "under_review": "En cours d'examen",
+            "resolved_refund_full": "Résolu (Remb. total)",
+            "resolved_refund_partial": "Résolu (Remb. partiel)",
+            "resolved_no_refund": "Résolu (Sans remb.)",
+            "canceled": "Annulé"
         }
     }
 }

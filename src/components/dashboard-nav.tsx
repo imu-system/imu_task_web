@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { Link, useRouter } from '@/navigation';
@@ -31,6 +32,7 @@ import {
   Handshake,
   CalendarCheck,
   Star,
+  BadgeAlert,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -152,6 +154,14 @@ export function DashboardNav() {
                         <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/reviews')}>
                             <Star />
                             <span>{t('reviews')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <Link href="/dashboard/admin/disputes">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/disputes')}>
+                            <BadgeAlert />
+                            <span>{t('disputes')}</span>
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>
