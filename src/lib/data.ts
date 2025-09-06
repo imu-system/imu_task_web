@@ -1,6 +1,6 @@
 
 
-import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus } from './types';
+import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
 
@@ -346,3 +346,44 @@ export const getTransfers = (): Transfer[] => [
         updatedAt: '2024-08-21T11:05:00Z',
     },
 ];
+
+export const getPayouts = (): Payout[] => [
+    {
+        id: 'po_1',
+        providerId: 'user3',
+        provider: users.find(u => u.id === 'user3')!,
+        payoutId: 'po_1PkWaTLqgLzJ7fV0123ABCD',
+        amount: 1380,
+        currency: 'eur',
+        status: PayoutStatus.paid,
+        arrivalDate: new Date('2024-08-22T00:00:00Z'),
+        createdAt: '2024-08-21T12:00:00Z',
+        updatedAt: '2024-08-21T12:00:00Z',
+    },
+    {
+        id: 'po_2',
+        providerId: 'user2',
+        provider: users.find(u => u.id === 'user2')!,
+        payoutId: 'po_1PlXbULqgLzJ7fV0456EFGH',
+        amount: 3030,
+        currency: 'eur',
+        status: PayoutStatus.in_transit,
+        arrivalDate: new Date('2024-08-24T00:00:00Z'),
+        createdAt: '2024-08-22T14:00:00Z',
+        updatedAt: '2024-08-22T14:00:00Z',
+    },
+     {
+        id: 'po_3',
+        providerId: 'user2',
+        provider: users.find(u => u.id === 'user2')!,
+        payoutId: 'po_1PmYcVLqgLzJ7fV0789IJKL',
+        amount: 5500,
+        currency: 'eur',
+        status: PayoutStatus.pending,
+        arrivalDate: new Date('2024-08-26T00:00:00Z'),
+        createdAt: '2024-08-23T10:00:00Z',
+        updatedAt: '2024-08-23T10:00:00Z',
+    },
+];
+
+    

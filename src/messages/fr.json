@@ -845,7 +845,34 @@
         },
         "payouts": {
             "title": "Versements",
-            "subtitle": "Liste de tous les versements sur les comptes bancaires."
+            "subtitle": "Liste de tous les versements sur les comptes bancaires.",
+            "currency": "€",
+            "table": {
+                "title": "Historique des versements",
+                "description": "Consultez tous les versements de fonds vers les comptes bancaires des prestataires.",
+                "header": {
+                    "payoutId": "ID Versement",
+                    "provider": "Prestataire",
+                    "amount": "Montant",
+                    "status": "Statut",
+                    "arrivalDate": "Date d'arrivée",
+                    "actions": "Actions"
+                }
+            },
+            "status": {
+                "pending": "En attente",
+                "in_transit": "En transit",
+                "paid": "Payé",
+                "canceled": "Annulé",
+                "failed": "Échoué"
+            },
+            "actions": {
+                "viewOnStripe": "Voir sur Stripe",
+                "retry": "Réessayer le versement"
+            },
+            "filters": {
+                "searchPlaceholder": "Rechercher par ID, prestataire..."
+            }
         },
         "reconciliation": {
             "title": "Réconciliation",
@@ -859,3 +886,5 @@
         "reconciliation": "Réconciliation"
     }
 }
+
+    

@@ -845,7 +845,34 @@
         },
         "payouts": {
             "title": "Payouts",
-            "subtitle": "List of all payouts to bank accounts."
+            "subtitle": "List of all payouts to bank accounts.",
+            "currency": "€",
+            "table": {
+                "title": "Payout History",
+                "description": "Review all fund payouts to provider bank accounts.",
+                "header": {
+                    "payoutId": "Payout ID",
+                    "provider": "Provider",
+                    "amount": "Amount",
+                    "status": "Status",
+                    "arrivalDate": "Arrival Date",
+                    "actions": "Actions"
+                }
+            },
+            "status": {
+                "pending": "Pending",
+                "in_transit": "In Transit",
+                "paid": "Paid",
+                "canceled": "Canceled",
+                "failed": "Failed"
+            },
+            "actions": {
+                "viewOnStripe": "View on Stripe",
+                "retry": "Retry Payout"
+            },
+            "filters": {
+                "searchPlaceholder": "Search by ID, provider..."
+            }
         },
         "reconciliation": {
             "title": "Reconciliation",
@@ -859,3 +886,5 @@
         "reconciliation": "Reconciliation"
     }
 }
+
+    
