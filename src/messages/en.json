@@ -65,7 +65,8 @@
         "categories": "Categories",
         "tasks": "Tasks",
         "offers": "Offers",
-        "bookings": "Bookings"
+        "bookings": "Bookings",
+        "payments": "Payments"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -743,6 +744,24 @@
                     "confirm": "Confirm & Reschedule"
                 }
             }
+        }
+    },
+    "AdminPaymentsPage": {
+        "transactions": {
+            "title": "Transactions",
+            "subtitle": "List of all payments from clients."
+        },
+        "transfers": {
+            "title": "Transfers",
+            "subtitle": "List of all transfers to providers."
+        },
+        "payouts": {
+            "title": "Payouts",
+            "subtitle": "List of all payouts to bank accounts."
+        },
+        "reconciliation": {
+            "title": "Reconciliation",
+            "subtitle": "Tools for financial reconciliation."
         }
     }
 }

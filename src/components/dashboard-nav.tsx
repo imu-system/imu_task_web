@@ -138,6 +138,14 @@ export function DashboardNav() {
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <Link href="/dashboard/admin/payments/transactions">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/payments')}>
+                            <Wallet />
+                            <span>{t('payments')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
             </SidebarMenu>
         )}
       </SidebarContent>

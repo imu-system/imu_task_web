@@ -65,7 +65,8 @@
         "categories": "Catégories",
         "tasks": "Missions",
         "offers": "Offres",
-        "bookings": "Réservations"
+        "bookings": "Réservations",
+        "payments": "Paiements"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -743,6 +744,24 @@
                     "confirm": "Confirmer & Replanifier"
                 }
             }
+        }
+    },
+    "AdminPaymentsPage": {
+        "transactions": {
+            "title": "Transactions",
+            "subtitle": "Liste de tous les paiements des clients."
+        },
+        "transfers": {
+            "title": "Transferts",
+            "subtitle": "Liste de tous les transferts vers les prestataires."
+        },
+        "payouts": {
+            "title": "Versements",
+            "subtitle": "Liste de tous les versements sur les comptes bancaires."
+        },
+        "reconciliation": {
+            "title": "Réconciliation",
+            "subtitle": "Outils pour la réconciliation financière."
         }
     }
 }
