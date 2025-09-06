@@ -30,7 +30,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { format, subDays } from 'date-fns';
+import { format } from 'date-fns';
 import { DateRange } from 'react-day-picker';
 import { useToast } from '@/hooks/use-toast';
 
@@ -53,17 +53,14 @@ export default function AdminTransactionsPage() {
     const [exportDateRange, setExportDateRange] = useState<DateRange | undefined>(undefined);
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState<PaymentStatus | 'all'>('all');
-    const [dateFilter, setDateFilter] = useState<DateRange | undefined>({
-      from: subDays(new Date(), 30),
-      to: new Date(),
-    });
+    const [dateFilter, setDateFilter] = useState<DateRange | undefined>(undefined);
 
     const filteredTransactions = useMemo(() => {
         return mockTransactions.filter(tx => {
             const txDate = new Date(tx.createdAt);
             const matchesSearch = searchTerm ? tx.id.includes(searchTerm) || tx.bookingId.includes(searchTerm) : true;
             const matchesStatus = statusFilter !== 'all' ? tx.status === statusFilter : true;
-            const matchesDate = dateFilter?.from && dateFilter?.to ? (txDate >= dateFilter.from && txDate <= dateFilter.to) : true;
+            const matchesDate = !dateFilter?.from || (txDate >= dateFilter.from && txDate <= (dateFilter.to || new Date()));
 
             return matchesSearch && matchesStatus && matchesDate;
         });
@@ -310,7 +307,7 @@ export default function AdminTransactionsPage() {
                                              <DropdownMenuSeparator/>
                                              <AlertDialog>
                                                 <AlertDialogTrigger asChild>
-                                                    <DropdownMenuItem onSelect={(e) => e.preventDefault()} disabled={tx.status !== PaymentStatus.captured}>
+                                                    <DropdownMenuItem onSelect={(e) => e.preventDefault()} disabled={tx.status !== PaymentStatus.captured && tx.status !== PaymentStatus.authorized}>
                                                         <Undo2 className="mr-2"/>
                                                         {t('actions.refund')}
                                                     </DropdownMenuItem>
