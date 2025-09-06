@@ -10,7 +10,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useRouter, Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
-import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered, Handshake, CalendarCheck } from "lucide-react";
+import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered, Handshake, CalendarCheck, Wallet } from "lucide-react";
 
 const kpiData = [
   { title: "Revenus (Mensuel)", value: "€4,231.89", change: "+20.1% vs mois dernier", icon: <DollarSign className="h-4 w-4 text-muted-foreground" /> },
@@ -154,6 +154,9 @@ export default function AdminDashboardPage() {
                         </Button>
                         <Button variant="outline" asChild>
                             <Link href="/dashboard/admin/bookings"><CalendarCheck className="mr-2"/>{t('quickActionBookings')}</Link>
+                        </Button>
+                        <Button variant="outline" asChild>
+                            <Link href="/dashboard/admin/payments/transactions"><Wallet className="mr-2"/>{t('quickActionPayments')}</Link>
                         </Button>
                     </CardContent>
                 </Card>

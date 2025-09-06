@@ -216,6 +216,7 @@
         "quickActionTasks": "Manage Tasks",
         "quickActionOffers": "Manage Offers",
         "quickActionBookings": "Manage Bookings",
+        "quickActionPayments": "Manage Payments",
         "actionView": "View"
     },
     "AdminCategoriesPage": {
@@ -893,7 +894,3 @@
         "reconciliation": "Reconciliation"
     }
 }
-
-    
-
-    
