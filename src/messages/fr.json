@@ -901,8 +901,6 @@
             "title": "Tous les Avis",
             "description": "Liste de tous les avis soumis par les utilisateurs.",
             "header": {
-                "id": "ID",
-                "booking": "Réservation",
                 "reviewer": "Évaluateur",
                 "reviewee": "Évalué",
                 "rating": "Note",
@@ -911,10 +909,7 @@
                 "actions": "Actions"
             },
             "actions": {
-                "details": "Détails",
-                "viewBooking": "Voir Réservation",
-                "viewReviewer": "Voir Évaluateur",
-                "viewReviewee": "Voir Évalué"
+                "details": "Détails"
             },
             "visibility": {
                 "public": "Public",

@@ -901,8 +901,6 @@
             "title": "All Reviews",
             "description": "List of all reviews submitted by users.",
             "header": {
-                "id": "ID",
-                "booking": "Booking",
                 "reviewer": "Reviewer",
                 "reviewee": "Reviewee",
                 "rating": "Rating",
@@ -911,10 +909,7 @@
                 "actions": "Actions"
             },
             "actions": {
-                "details": "Details",
-                "viewBooking": "View Booking",
-                "viewReviewer": "View Reviewer",
-                "viewReviewee": "View Reviewee"
+                "details": "Details"
             },
             "visibility": {
                 "public": "Public",
