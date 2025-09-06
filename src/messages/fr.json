@@ -825,5 +825,12 @@
             "title": "Réconciliation",
             "subtitle": "Outils pour la réconciliation financière."
         }
+    },
+    "AdminPaymentsLayout": {
+        "transactions": "Transactions",
+        "transfers": "Transferts",
+        "payouts": "Versements",
+        "reconciliation": "Réconciliation"
     }
 }
+

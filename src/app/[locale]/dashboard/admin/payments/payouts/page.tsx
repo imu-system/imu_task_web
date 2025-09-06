@@ -28,10 +28,9 @@ export default function AdminPayoutsPage() {
     }
     
     return (
-        <div className="space-y-8 max-w-7xl mx-auto">
+        <div className="space-y-8">
             <div>
                 <h1 className="text-3xl font-bold tracking-tight font-headline flex items-center gap-2">
-                    <Wallet className="h-8 w-8 text-primary"/>
                     {t('title')}
                 </h1>
                 <p className="text-muted-foreground">
@@ -41,3 +40,4 @@ export default function AdminPayoutsPage() {
         </div>
     );
 }
+
