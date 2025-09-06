@@ -18,6 +18,11 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 
 
 const mockFaqData = [
@@ -54,14 +59,65 @@ export default function AdminFaqPage() {
                     </p>
                 </div>
                 <div className="flex gap-2">
-                    <Button variant="outline">
-                        <PlusCircle className="mr-2"/>
-                        {t('addQuestion')}
-                    </Button>
-                     <Button>
-                        <PlusCircle className="mr-2"/>
-                        {t('addCategory')}
-                    </Button>
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <Button variant="outline">
+                                <PlusCircle className="mr-2"/>
+                                {t('addQuestion')}
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>{t('form.addQuestionTitle')}</DialogTitle>
+                                <DialogDescription>{t('form.addQuestionDesc')}</DialogDescription>
+                            </DialogHeader>
+                             <div className="grid gap-4 py-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="question-category">{t('form.categoryLabel')}</Label>
+                                    <Select>
+                                        <SelectTrigger id="question-category">
+                                            <SelectValue placeholder={t('form.categoryPlaceholder')} />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            {mockFaqData.map(cat => (
+                                                <SelectItem key={cat.id} value={cat.id}>{cat.name}</SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="question-text">{t('form.questionLabel')}</Label>
+                                    <Input id="question-text" placeholder={t('form.questionPlaceholder')} />
+                                </div>
+                                 <div className="space-y-2">
+                                    <Label htmlFor="question-answer">{t('form.answerLabel')}</Label>
+                                    <Textarea id="question-answer" placeholder={t('form.answerPlaceholder')} />
+                                </div>
+                            </div>
+                            <Button type="submit">{t('form.save')}</Button>
+                        </DialogContent>
+                    </Dialog>
+                    <Dialog>
+                        <DialogTrigger asChild>
+                            <Button>
+                                <PlusCircle className="mr-2"/>
+                                {t('addCategory')}
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                             <DialogHeader>
+                                <DialogTitle>{t('form.addCategoryTitle')}</DialogTitle>
+                                <DialogDescription>{t('form.addCategoryDesc')}</DialogDescription>
+                            </DialogHeader>
+                            <div className="grid gap-4 py-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="category-name">{t('form.categoryNameLabel')}</Label>
+                                    <Input id="category-name" placeholder={t('form.categoryNamePlaceholder')} />
+                                </div>
+                            </div>
+                            <Button type="submit">{t('form.save')}</Button>
+                        </DialogContent>
+                    </Dialog>
                 </div>
             </div>
 

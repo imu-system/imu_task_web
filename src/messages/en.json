@@ -1300,8 +1300,7 @@
         },
         "faq": {
             "title": "FAQ Management",
-            "description": "A system for managing Frequently Asked Questions.",
-            "content": "Functionality to create categories, add/edit questions and answers, reorder items, and manage translations will be implemented here.",
+            "description": "Manage Frequently Asked Questions.",
             "addCategory": "Add Category",
             "addQuestion": "Add Question",
             "actions": {
@@ -1314,6 +1313,21 @@
                 "questionDescription": "This action cannot be undone. This will permanently delete the question.",
                 "cancel": "Cancel",
                 "confirm": "Confirm"
+            },
+            "form": {
+                "addCategoryTitle": "Add a new category",
+                "addCategoryDesc": "Enter the name for the new FAQ category.",
+                "categoryNameLabel": "Category Name",
+                "categoryNamePlaceholder": "e.g. Payments",
+                "addQuestionTitle": "Add a new question",
+                "addQuestionDesc": "Fill in the details for the new question and answer.",
+                "categoryLabel": "Category",
+                "categoryPlaceholder": "Select a category",
+                "questionLabel": "Question",
+                "questionPlaceholder": "e.g. How do I get paid?",
+                "answerLabel": "Answer",
+                "answerPlaceholder": "Write the answer here...",
+                "save": "Save"
             }
         },
         "policies": {

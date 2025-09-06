@@ -1313,6 +1313,21 @@
                 "questionDescription": "Cette action est irréversible. Cela supprimera définitivement la question.",
                 "cancel": "Annuler",
                 "confirm": "Confirmer"
+            },
+            "form": {
+                "addCategoryTitle": "Ajouter une nouvelle catégorie",
+                "addCategoryDesc": "Saisissez le nom de la nouvelle catégorie de FAQ.",
+                "categoryNameLabel": "Nom de la catégorie",
+                "categoryNamePlaceholder": "Ex: Paiements",
+                "addQuestionTitle": "Ajouter une nouvelle question",
+                "addQuestionDesc": "Remplissez les détails pour la nouvelle question et sa réponse.",
+                "categoryLabel": "Catégorie",
+                "categoryPlaceholder": "Sélectionnez une catégorie",
+                "questionLabel": "Question",
+                "questionPlaceholder": "Ex: Comment suis-je payé ?",
+                "answerLabel": "Réponse",
+                "answerPlaceholder": "Rédigez la réponse ici...",
+                "save": "Enregistrer"
             }
         },
         "policies": {
