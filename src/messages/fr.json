@@ -1300,8 +1300,20 @@
         },
         "faq": {
             "title": "Gestion de la FAQ",
-            "description": "Un système pour gérer la Foire Aux Questions.",
-            "content": "Les fonctionnalités pour créer des catégories, ajouter/modifier des questions et réponses, réorganiser les éléments et gérer les traductions seront implémentées ici."
+            "description": "Gérez les questions et réponses fréquemment posées.",
+            "addCategory": "Ajouter une catégorie",
+            "addQuestion": "Ajouter une question",
+            "actions": {
+                "edit": "Modifier",
+                "delete": "Supprimer"
+            },
+            "dialog": {
+                "title": "Êtes-vous sûr ?",
+                "categoryDescription": "Cette action est irréversible. Cela supprimera définitivement la catégorie et toutes ses questions.",
+                "questionDescription": "Cette action est irréversible. Cela supprimera définitivement la question.",
+                "cancel": "Annuler",
+                "confirm": "Confirmer"
+            }
         },
         "policies": {
             "title": "Gestion des Politiques",

@@ -1301,7 +1301,20 @@
         "faq": {
             "title": "FAQ Management",
             "description": "A system for managing Frequently Asked Questions.",
-            "content": "Functionality to create categories, add/edit questions and answers, reorder items, and manage translations will be implemented here."
+            "content": "Functionality to create categories, add/edit questions and answers, reorder items, and manage translations will be implemented here.",
+            "addCategory": "Add Category",
+            "addQuestion": "Add Question",
+            "actions": {
+                "edit": "Edit",
+                "delete": "Delete"
+            },
+            "dialog": {
+                "title": "Are you sure?",
+                "categoryDescription": "This action cannot be undone. This will permanently delete the category and all its questions.",
+                "questionDescription": "This action cannot be undone. This will permanently delete the question.",
+                "cancel": "Cancel",
+                "confirm": "Confirm"
+            }
         },
         "policies": {
             "title": "Policy Management",
