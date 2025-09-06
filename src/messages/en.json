@@ -32,7 +32,7 @@
         "howItWorksTitle": "How does it work?",
         "howItWorksDesc": "In a few simple steps, find help or offer your skills.",
         "step1Title": "Post a mission",
-        "step1Desc": "Describe your need, location, time slot, and budget.",
+        "step1Desc": "Describe your need, location, time slot, and your budget.",
         "step2Title": "Receive offers",
         "step2Desc": "Motivated young people from your neighborhood offer their help.",
         "step3Title": "Choose & Validate",
@@ -1300,8 +1300,8 @@
         },
         "faq": {
             "title": "FAQ Management",
-            "description": "Under Construction",
-            "content": "A system for creating, categorizing, and editing Frequently Asked Questions will be implemented here."
+            "description": "A system for managing Frequently Asked Questions.",
+            "content": "Functionality to create categories, add/edit questions and answers, reorder items, and manage translations will be implemented here."
         },
         "policies": {
             "title": "Policy Management",
