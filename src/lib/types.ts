@@ -400,6 +400,7 @@ export interface Transaction {
 export interface Transfer {
     id: string;
     bookingId: string;
+    provider?: User;
     transferId: string;
     amount: number;
     currency: string;

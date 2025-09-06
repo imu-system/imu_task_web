@@ -815,7 +815,33 @@
         },
         "transfers": {
             "title": "Transfers",
-            "subtitle": "List of all transfers to providers."
+            "subtitle": "List of all transfers to providers.",
+            "currency": "€",
+            "table": {
+                "title": "Transfer History",
+                "description": "Review all fund transfers to provider accounts.",
+                "header": {
+                    "transferId": "Transfer ID",
+                    "booking": "Booking",
+                    "provider": "Provider",
+                    "amount": "Amount",
+                    "status": "Status",
+                    "date": "Date",
+                    "actions": "Actions"
+                }
+            },
+            "status": {
+                "pending": "Pending",
+                "succeeded": "Succeeded",
+                "failed": "Failed",
+                "canceled": "Canceled"
+            },
+            "actions": {
+                "viewOnStripe": "View on Stripe"
+            },
+            "filters": {
+                "searchPlaceholder": "Search by ID, provider..."
+            }
         },
         "payouts": {
             "title": "Payouts",
@@ -833,4 +859,3 @@
         "reconciliation": "Reconciliation"
     }
 }
-

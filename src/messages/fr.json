@@ -815,7 +815,33 @@
         },
         "transfers": {
             "title": "Transferts",
-            "subtitle": "Liste de tous les transferts vers les prestataires."
+            "subtitle": "Liste de tous les transferts vers les prestataires.",
+            "currency": "€",
+            "table": {
+                "title": "Historique des transferts",
+                "description": "Consultez tous les transferts de fonds vers les comptes des prestataires.",
+                "header": {
+                    "transferId": "ID Transfert",
+                    "booking": "Réservation",
+                    "provider": "Prestataire",
+                    "amount": "Montant",
+                    "status": "Statut",
+                    "date": "Date",
+                    "actions": "Actions"
+                }
+            },
+            "status": {
+                "pending": "En attente",
+                "succeeded": "Réussi",
+                "failed": "Échoué",
+                "canceled": "Annulé"
+            },
+            "actions": {
+                "viewOnStripe": "Voir sur Stripe"
+            },
+            "filters": {
+                "searchPlaceholder": "Rechercher par ID, prestataire..."
+            }
         },
         "payouts": {
             "title": "Versements",
@@ -833,4 +859,3 @@
         "reconciliation": "Réconciliation"
     }
 }
-

@@ -1,6 +1,6 @@
 
 
-import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation } from './types';
+import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
 
@@ -321,3 +321,28 @@ export const getOffers = (): Offer[] => [
 export const getOffersForTask = (taskId: string): Offer[] => {
     return getOffers().filter(o => o.taskId === taskId);
 };
+
+export const getTransfers = (): Transfer[] => [
+    {
+        id: 'tr_1',
+        bookingId: 'booking2',
+        provider: users.find(u => u.id === 'user3')!,
+        transferId: 'tr_3PjY4oLqgLzJ7fV01ABCDEFG',
+        amount: 1380, // 1500 - 150 - 70
+        currency: 'eur',
+        status: TransferStatus.succeeded,
+        createdAt: '2024-08-20T10:10:00Z',
+        updatedAt: '2024-08-20T10:10:00Z',
+    },
+    {
+        id: 'tr_2',
+        bookingId: 'booking3',
+        provider: users.find(u => u.id === 'user2')!,
+        transferId: 'tr_3PkZ5tLqgLzJ7fV01HIJKLMN',
+        amount: 3030, // 3500 - 350 - 120
+        currency: 'eur',
+        status: TransferStatus.pending,
+        createdAt: '2024-08-21T11:05:00Z',
+        updatedAt: '2024-08-21T11:05:00Z',
+    },
+];
