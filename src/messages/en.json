@@ -218,6 +218,7 @@
         "quickActionOffers": "Manage Offers",
         "quickActionBookings": "Manage Bookings",
         "quickActionPayments": "Manage Payments",
+        "quickActionReviews": "Manage Reviews",
         "actionView": "View"
     },
     "AdminCategoriesPage": {
