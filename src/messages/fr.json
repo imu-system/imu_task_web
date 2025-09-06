@@ -1300,7 +1300,7 @@
         },
         "faq": {
             "title": "Gestion de la FAQ",
-            "description": "Un système de gestion pour la Foire Aux Questions.",
+            "description": "Un système pour gérer la Foire Aux Questions.",
             "content": "Les fonctionnalités pour créer des catégories, ajouter/modifier des questions et réponses, réorganiser les éléments et gérer les traductions seront implémentées ici."
         },
         "policies": {
