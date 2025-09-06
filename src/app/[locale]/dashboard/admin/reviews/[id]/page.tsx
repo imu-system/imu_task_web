@@ -25,6 +25,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useToast } from '@/hooks/use-toast';
 
 const StarRating = ({ rating }: { rating: number }) => {
     return (
@@ -48,6 +49,7 @@ export default function AdminReviewDetailPage() {
     const reviewId = params.id;
     const t = useTranslations('AdminReviewDetailPage');
     const locale = useLocale();
+    const { toast } = useToast();
     
     const [review, setReview] = useState<Review | null>(null);
     const [loading, setLoading] = useState(true);
@@ -66,6 +68,27 @@ export default function AdminReviewDetailPage() {
         }
         setLoading(false);
     }, [reviewId]);
+
+    const handleToggleVisibility = () => {
+        if (!review) return;
+        // Simulate API call
+        const newVisibility = review.visibility === ReviewVisibility.public ? ReviewVisibility.hidden : ReviewVisibility.public;
+        setReview({ ...review, visibility: newVisibility });
+        toast({
+            title: t('toast.visibility.title'),
+            description: t('toast.visibility.description', { status: t(`visibility.${newVisibility}`) }),
+        });
+    };
+    
+    const handleDelete = () => {
+        if (!review) return;
+        // Simulate API call
+        toast({
+            title: t('toast.delete.title'),
+            description: t('toast.delete.description'),
+        });
+        router.push('/dashboard/admin/reviews');
+    }
 
     if (authLoading || loading || !adminUser || !adminUser.roles?.includes(UserRole.admin)) {
         return (
@@ -189,12 +212,30 @@ export default function AdminReviewDetailPage() {
                         <CardDescription>{t('cards.moderation.description')}</CardDescription>
                     </CardHeader>
                     <CardContent className="grid grid-cols-1 gap-2">
-                        {review.visibility === ReviewVisibility.public ? (
-                            <Button variant="outline"><EyeOff className="mr-2"/>{t('cards.moderation.hide')}</Button>
-                        ) : (
-                            <Button variant="outline"><Eye className="mr-2"/>{t('cards.moderation.show')}</Button>
-                        )}
-                        <Button variant="destructive"><Trash2 className="mr-2"/>{t('cards.moderation.delete')}</Button>
+                        <Button variant="outline" onClick={handleToggleVisibility}>
+                            {review.visibility === ReviewVisibility.public ? (
+                                <><EyeOff className="mr-2"/>{t('cards.moderation.hide')}</>
+                            ) : (
+                                <><Eye className="mr-2"/>{t('cards.moderation.show')}</>
+                            )}
+                        </Button>
+                        <AlertDialog>
+                            <AlertDialogTrigger asChild>
+                                <Button variant="destructive"><Trash2 className="mr-2"/>{t('cards.moderation.delete')}</Button>
+                            </AlertDialogTrigger>
+                             <AlertDialogContent>
+                                <AlertDialogHeader>
+                                <AlertDialogTitle>{t('cards.moderation.deleteDialog.title')}</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                    {t('cards.moderation.deleteDialog.description')}
+                                </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                <AlertDialogCancel>{t('cards.moderation.deleteDialog.cancel')}</AlertDialogCancel>
+                                <AlertDialogAction onClick={handleDelete}>{t('cards.moderation.deleteDialog.confirm')}</AlertDialogAction>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
                     </CardContent>
                 </Card>
             </div>

@@ -943,7 +943,23 @@
                 "description": "Modérer cet avis.",
                 "hide": "Masquer l'avis",
                 "show": "Rendre l'avis public",
-                "delete": "Supprimer l'avis"
+                "delete": "Supprimer l'avis",
+                "deleteDialog": {
+                    "title": "Êtes-vous sûr(e) ?",
+                    "description": "Cette action est irréversible et supprimera définitivement cet avis.",
+                    "cancel": "Annuler",
+                    "confirm": "Supprimer"
+                }
+            }
+        },
+        "toast": {
+            "visibility": {
+                "title": "Visibilité mise à jour",
+                "description": "L'avis est maintenant {status}."
+            },
+            "delete": {
+                "title": "Avis supprimé",
+                "description": "L'avis a été supprimé définitivement."
             }
         }
     }

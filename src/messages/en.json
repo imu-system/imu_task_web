@@ -943,7 +943,23 @@
                 "description": "Moderate this review.",
                 "hide": "Hide Review",
                 "show": "Make Review Public",
-                "delete": "Delete Review"
+                "delete": "Delete Review",
+                "deleteDialog": {
+                    "title": "Are you sure?",
+                    "description": "This action cannot be undone. This will permanently delete the review.",
+                    "cancel": "Cancel",
+                    "confirm": "Delete"
+                }
+            }
+        },
+        "toast": {
+            "visibility": {
+                "title": "Visibility Updated",
+                "description": "The review is now {status}."
+            },
+            "delete": {
+                "title": "Review Deleted",
+                "description": "The review has been permanently deleted."
             }
         }
     }
