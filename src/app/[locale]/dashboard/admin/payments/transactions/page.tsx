@@ -32,6 +32,7 @@ import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { format, subDays } from 'date-fns';
 import { DateRange } from 'react-day-picker';
+import { useToast } from '@/hooks/use-toast';
 
 
 const mockTransactions = [
@@ -46,6 +47,7 @@ export default function AdminTransactionsPage() {
     const { user, loading: authLoading } = useAuth();
     const router = useRouter();
     const t = useTranslations('AdminPaymentsPage.transactions');
+    const { toast } = useToast();
     
     const [loading, setLoading] = useState(false);
     const [exportDate, setExportDate] = useState<Date | undefined>(undefined);
@@ -72,6 +74,16 @@ export default function AdminTransactionsPage() {
         setSearchTerm('');
         setStatusFilter('all');
         setDateFilter(undefined);
+    }
+    
+    const handleRefund = async (txId: string) => {
+        // Here you would call your API to process the refund.
+        // We'll simulate it with a toast.
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        toast({
+            title: t('actions.refundDialog.toastSuccessTitle'),
+            description: t('actions.refundDialog.toastSuccessDescription', { txId }),
+        })
     }
 
 
@@ -284,15 +296,15 @@ export default function AdminTransactionsPage() {
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent align="end">
                                              <DropdownMenuItem asChild>
-                                                <Link href={`https://dashboard.stripe.com/test/payments/${tx.id}`} target="_blank">
+                                                <a href={`https://dashboard.stripe.com/test/payments/${tx.id}`} target="_blank" rel="noopener noreferrer">
                                                     <ExternalLink className="mr-2"/>
                                                     {t('actions.viewOnStripe')}
-                                                </Link>
+                                                </a>
                                              </DropdownMenuItem>
                                              <DropdownMenuSeparator/>
                                              <AlertDialog>
                                                 <AlertDialogTrigger asChild>
-                                                    <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                                                    <DropdownMenuItem onSelect={(e) => e.preventDefault()} disabled={tx.status !== PaymentStatus.captured}>
                                                         <Undo2 className="mr-2"/>
                                                         {t('actions.refund')}
                                                     </DropdownMenuItem>
@@ -325,7 +337,7 @@ export default function AdminTransactionsPage() {
                                                     </div>
                                                     <AlertDialogFooter>
                                                         <AlertDialogCancel>{t('actions.refundDialog.cancel')}</AlertDialogCancel>
-                                                        <AlertDialogAction>{t('actions.refundDialog.confirm')}</AlertDialogAction>
+                                                        <AlertDialogAction onClick={() => handleRefund(tx.id)}>{t('actions.refundDialog.confirm')}</AlertDialogAction>
                                                     </AlertDialogFooter>
                                                 </AlertDialogContent>
                                              </AlertDialog>
@@ -342,3 +354,6 @@ export default function AdminTransactionsPage() {
   );
 }
 
+
+
+    

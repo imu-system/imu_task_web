@@ -788,6 +788,8 @@
                     "notePlaceholder": "Détails sur le remboursement...",
                     "cancel": "Annuler",
                     "confirm": "Confirmer le remboursement",
+                    "toastSuccessTitle": "Remboursement en cours",
+                    "toastSuccessDescription": "Le remboursement pour la transaction {txId} a été initié.",
                     "reasons": {
                         "clientRequest": "Demande du client",
                         "goodwill": "Geste commercial",
@@ -891,3 +893,5 @@
         "reconciliation": "Réconciliation"
     }
 }
+
+    

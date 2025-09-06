@@ -788,6 +788,8 @@
                     "notePlaceholder": "Details about the refund...",
                     "cancel": "Cancel",
                     "confirm": "Confirm Refund",
+                    "toastSuccessTitle": "Refund in progress",
+                    "toastSuccessDescription": "The refund for transaction {txId} has been initiated.",
                     "reasons": {
                         "clientRequest": "Client Request",
                         "goodwill": "Goodwill Gesture",
@@ -891,3 +893,5 @@
         "reconciliation": "Reconciliation"
     }
 }
+
+    
