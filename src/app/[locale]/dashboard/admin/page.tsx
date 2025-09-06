@@ -28,7 +28,7 @@ const conversionData = [
 
 const priorityQueue = [
     { id: 'KYC001', type: 'KYC en attente', user: 'Jean Dupont', date: '2023-10-26', icon: <ShieldQuestion className="h-5 w-5 text-yellow-500"/>, href: '/dashboard/admin/kyc'},
-    { id: 'DIS042', type: 'Litige ouvert', user: 'Marie Curie', date: '2023-10-25', icon: <BadgeAlert className="h-5 w-5 text-red-500"/>, href: '#'},
+    { id: 'DIS042', type: 'Litige ouvert', user: 'Marie Curie', date: '2023-10-25', icon: <BadgeAlert className="h-5 w-5 text-red-500"/>, href: '/dashboard/admin/disputes'},
     { id: 'PAY314', type: 'Paiement en échec', user: 'Pierre Martin', date: '2023-10-25', icon: <CreditCard className="h-5 w-5 text-blue-500"/>, href: '#'},
 ];
 
@@ -160,6 +160,9 @@ export default function AdminDashboardPage() {
                         </Button>
                         <Button variant="outline" asChild>
                             <Link href="/dashboard/admin/reviews"><Star className="mr-2"/>{t('quickActionReviews')}</Link>
+                        </Button>
+                        <Button variant="outline" asChild>
+                            <Link href="/dashboard/admin/disputes"><BadgeAlert className="mr-2"/>{t('quickActionDisputes')}</Link>
                         </Button>
                     </CardContent>
                 </Card>

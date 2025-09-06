@@ -220,6 +220,7 @@
         "quickActionBookings": "Gérer les réservations",
         "quickActionPayments": "Gérer les paiements",
         "quickActionReviews": "Gérer les Avis",
+        "quickActionDisputes": "Gérer les Litiges",
         "actionView": "Voir"
     },
     "AdminCategoriesPage": {

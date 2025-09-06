@@ -220,6 +220,7 @@
         "quickActionBookings": "Manage Bookings",
         "quickActionPayments": "Manage Payments",
         "quickActionReviews": "Manage Reviews",
+        "quickActionDisputes": "Manage Disputes",
         "actionView": "View"
     },
     "AdminCategoriesPage": {
