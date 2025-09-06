@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -984,6 +983,7 @@
         "title": "Gestion des litiges",
         "subtitle": "Gérez et résolvez les litiges des utilisateurs.",
         "unassigned": "Non assigné",
+        "mockSla": "24h restantes",
         "table": {
             "title": "Litiges ouverts",
             "description": "Liste de tous les litiges en cours et passés.",
@@ -993,7 +993,8 @@
                 "type": "Type",
                 "status": "Statut",
                 "agent": "Agent",
-                "actions": "Actions"
+                "actions": "Actions",
+                "sla": "SLA Restant"
             },
             "actions": {
                 "details": "Détails"

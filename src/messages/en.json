@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Features",
@@ -984,6 +983,7 @@
         "title": "Dispute Management",
         "subtitle": "Handle and resolve user disputes.",
         "unassigned": "Unassigned",
+        "mockSla": "24h remaining",
         "table": {
             "title": "Open Disputes",
             "description": "List of all ongoing and past disputes.",
@@ -993,7 +993,8 @@
                 "type": "Type",
                 "status": "Status",
                 "agent": "Agent",
-                "actions": "Actions"
+                "actions": "Actions",
+                "sla": "Remaining SLA"
             },
             "actions": {
                 "details": "Details"

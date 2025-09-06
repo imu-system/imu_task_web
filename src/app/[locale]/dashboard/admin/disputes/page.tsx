@@ -79,6 +79,7 @@ export default function AdminDisputesPage() {
                             <TableHead>{t('table.header.booking')}</TableHead>
                             <TableHead>{t('table.header.type')}</TableHead>
                             <TableHead>{t('table.header.status')}</TableHead>
+                            <TableHead>{t('table.header.sla')}</TableHead>
                             <TableHead>{t('table.header.agent')}</TableHead>
                             <TableHead><span className="sr-only">{t('table.header.actions')}</span></TableHead>
                         </TableRow>
@@ -99,6 +100,9 @@ export default function AdminDisputesPage() {
                                 </TableCell>
                                 <TableCell>
                                     <Badge variant={getStatusVariant(dispute.status)}>{t(`status.${dispute.status}`)}</Badge>
+                                </TableCell>
+                                <TableCell>
+                                    <span className="text-sm text-muted-foreground">{t('mockSla')}</span>
                                 </TableCell>
                                 <TableCell>
                                     {dispute.assignedTo ? (
