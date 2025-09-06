@@ -84,6 +84,7 @@ export default function AdminReviewDetailPage() {
         if (!review) return;
         // Simulate API call
         toast({
+            variant: "destructive",
             title: t('toast.delete.title'),
             description: t('toast.delete.description'),
         });
@@ -155,9 +156,11 @@ export default function AdminReviewDetailPage() {
                             <StarRating rating={review.rating} />
                             <span className="font-bold text-lg">{review.rating.toFixed(1)} / 5.0</span>
                         </div>
-                        <blockquote className="border-l-2 pl-6 italic text-muted-foreground">
-                            {review.comment}
-                        </blockquote>
+                        {review.comment && (
+                             <blockquote className="border-l-2 pl-6 italic text-muted-foreground">
+                                {review.comment}
+                            </blockquote>
+                        )}
                         <Separator className="my-4"/>
                         <div className="text-sm text-muted-foreground">
                            <p><strong>{t('cards.review.bookingId')}:</strong> <Link href={`/dashboard/admin/bookings/${review.bookingId}`} className="text-primary hover:underline">{review.bookingId}</Link></p>
