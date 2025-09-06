@@ -1212,7 +1212,7 @@
                     "body": "Corps",
                     "subject": "Sujet"
                 },
-                "variablesInfo": "Variables disponibles : {{displayName}}, {{taskTitle}}, {{bookingDate}}",
+                "variablesInfo": "Variables disponibles : {{displayName}}, {{taskTitle}}, {{bookingDate}}.",
                 "saveButton": "Enregistrer le modèle",
                 "toastSuccessTitle": "Modèle enregistré",
                 "toastSuccessDescription": "Le modèle de notification a été mis à jour avec succès."

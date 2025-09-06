@@ -1212,7 +1212,7 @@
                     "body": "Body",
                     "subject": "Subject"
                 },
-                "variablesInfo": "Available variables: {{displayName}}, {{taskTitle}}, {{bookingDate}}",
+                "variablesInfo": "Available variables: {{displayName}}, {{taskTitle}}, {{bookingDate}}.",
                 "saveButton": "Save Template",
                 "toastSuccessTitle": "Template Saved",
                 "toastSuccessDescription": "The notification template has been successfully updated."
