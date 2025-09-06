@@ -1014,5 +1014,73 @@
             "resolved_no_refund": "Resolved (No Refund)",
             "canceled": "Canceled"
         }
+    },
+    "AdminDisputeDetailPage": {
+        "title": "Dispute Details",
+        "backToList": "Back to dispute list",
+        "notFound": "Dispute not found.",
+        "viewProfile": "View profile",
+        "toast": {
+            "assignSuccessTitle": "Agent Assigned",
+            "assignSuccessDescription": "The dispute has been assigned to the moderator.",
+            "statusChangeSuccessTitle": "Status Updated",
+            "statusChangeSuccessDescription": "The dispute status has been successfully updated.",
+            "refundSuccessTitle": "Refund Initiated",
+            "refundSuccessDescription": "The refund process has been started for this dispute."
+        },
+        "cards": {
+            "details": {
+                "title": "Dispute Details",
+                "description": "{type} dispute opened by {user}",
+                "attachments": "Attachments",
+                "bookingId": "Booking ID"
+            },
+            "timeline": {
+                "title": "History",
+                "description": "Chronological log of events for this dispute.",
+                "events": {
+                    "disputeOpened": "Dispute Opened",
+                    "assignedToModerator": "Assigned to Moderator",
+                    "noteAdded": "Internal Note Added",
+                    "disputeResolved": "Dispute Resolved"
+                }
+            },
+            "context": {
+                "title": "Booking Context",
+                "client": "Client",
+                "provider": "Provider"
+            },
+            "moderation": {
+                "title": "Moderation",
+                "description": "Manage the dispute resolution.",
+                "assign": "Assign Moderator",
+                "changeStatus": "Change Status",
+                "triggerRefund": "Trigger Refund",
+                "assignDialog": {
+                    "title": "Assign Moderator",
+                    "description": "Assign this dispute to a moderator for review.",
+                    "selectPlaceholder": "Select a moderator",
+                    "cancel": "Cancel",
+                    "confirm": "Assign"
+                },
+                "statusDialog": {
+                    "title": "Change Dispute Status",
+                    "description": "Update the status of the dispute. The involved parties might be notified.",
+                    "noteLabel": "Resolution Note (visible to parties)",
+                    "notePlaceholder": "Explain the decision...",
+                    "cancel": "Cancel",
+                    "confirm": "Update Status"
+                },
+                "refundDialog": {
+                    "title": "Trigger a Refund",
+                    "description": "Initiate a partial or full refund for the booking associated with this dispute.",
+                    "amountLabel": "Refund Amount (€)",
+                    "noteLabel": "Refund Reason (internal note)",
+                    "notePlaceholder": "e.g., Quality issue, partial service...",
+                    "cancel": "Cancel",
+                    "confirm": "Confirm & Refund"
+                }
+            }
+        }
     }
 }

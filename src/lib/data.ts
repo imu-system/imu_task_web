@@ -1,6 +1,5 @@
 
 
-
 import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
@@ -456,7 +455,7 @@ export const getDisputes = (): Dispute[] => [
         id: 'dispute1',
         bookingId: 'booking1',
         openedById: 'user1',
-        openedBy: users.find(u => u.id === 'user1'),
+        openedBy: users.find(u => u.id === 'user1')!,
         type: DisputeType.quality,
         description: "L'étagère n'est pas droite et semble peu solide. Je ne suis pas satisfait du travail.",
         attachments: ['https://picsum.photos/seed/shelf_dispute/600/400'],
@@ -470,7 +469,7 @@ export const getDisputes = (): Dispute[] => [
         id: 'dispute2',
         bookingId: 'booking2',
         openedById: 'user4',
-        openedBy: users.find(u => u.id === 'user4'),
+        openedBy: users.find(u => u.id === 'user4')!,
         type: DisputeType.no_show,
         description: "Le prestataire ne s'est jamais présenté pour la promenade du chien du matin. J'ai dû trouver une solution d'urgence.",
         attachments: [],
@@ -484,7 +483,7 @@ export const getDisputes = (): Dispute[] => [
         id: 'dispute3',
         bookingId: 'booking3',
         openedById: 'user2',
-        openedBy: users.find(u => u.id === 'user2'),
+        openedBy: users.find(u => u.id === 'user2')!,
         type: DisputeType.other,
         description: "Le client a changé la nature de la mission à mon arrivée, demandant beaucoup plus de travail que prévu pour le même prix. Nous n'avons pas trouvé d'accord.",
         attachments: [],

@@ -1014,5 +1014,73 @@
             "resolved_no_refund": "Résolu (Sans remb.)",
             "canceled": "Annulé"
         }
+    },
+    "AdminDisputeDetailPage": {
+        "title": "Détails du Litige",
+        "backToList": "Retour à la liste des litiges",
+        "notFound": "Litige non trouvé.",
+        "viewProfile": "Voir le profil",
+        "toast": {
+            "assignSuccessTitle": "Agent assigné",
+            "assignSuccessDescription": "Le litige a été assigné au modérateur.",
+            "statusChangeSuccessTitle": "Statut mis à jour",
+            "statusChangeSuccessDescription": "Le statut du litige a été mis à jour avec succès.",
+            "refundSuccessTitle": "Remboursement initié",
+            "refundSuccessDescription": "Le processus de remboursement a été démarré pour ce litige."
+        },
+        "cards": {
+            "details": {
+                "title": "Détails du litige",
+                "description": "Litige de type \"{type}\" ouvert par {user}",
+                "attachments": "Pièces jointes",
+                "bookingId": "ID de la réservation"
+            },
+            "timeline": {
+                "title": "Historique",
+                "description": "Journal chronologique des événements pour ce litige.",
+                "events": {
+                    "disputeOpened": "Litige Ouvert",
+                    "assignedToModerator": "Assigné au Modérateur",
+                    "noteAdded": "Note Interne Ajoutée",
+                    "disputeResolved": "Litige Résolu"
+                }
+            },
+            "context": {
+                "title": "Contexte de la Réservation",
+                "client": "Client",
+                "provider": "Prestataire"
+            },
+            "moderation": {
+                "title": "Modération",
+                "description": "Gérer la résolution du litige.",
+                "assign": "Assigner un modérateur",
+                "changeStatus": "Changer le statut",
+                "triggerRefund": "Déclencher un remboursement",
+                "assignDialog": {
+                    "title": "Assigner un modérateur",
+                    "description": "Assignez ce litige à un modérateur pour examen.",
+                    "selectPlaceholder": "Sélectionnez un modérateur",
+                    "cancel": "Annuler",
+                    "confirm": "Assigner"
+                },
+                "statusDialog": {
+                    "title": "Changer le statut du litige",
+                    "description": "Mettez à jour le statut du litige. Les parties concernées pourraient être notifiées.",
+                    "noteLabel": "Note de résolution (visible par les parties)",
+                    "notePlaceholder": "Expliquez la décision...",
+                    "cancel": "Annuler",
+                    "confirm": "Mettre à jour"
+                },
+                "refundDialog": {
+                    "title": "Déclencher un remboursement",
+                    "description": "Initiez un remboursement partiel ou total pour la réservation associée à ce litige.",
+                    "amountLabel": "Montant à rembourser (€)",
+                    "noteLabel": "Motif du remboursement (note interne)",
+                    "notePlaceholder": "Ex: Problème de qualité, service partiel...",
+                    "cancel": "Annuler",
+                    "confirm": "Confirmer & Rembourser"
+                }
+            }
+        }
     }
 }
