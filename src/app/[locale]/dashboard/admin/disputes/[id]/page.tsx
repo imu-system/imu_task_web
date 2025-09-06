@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2, ArrowLeft, User, Calendar, ShieldAlert, BadgeInfo, FileText, UserCog, MessageSquare, Euro, Check, X, Shield, Clock } from 'lucide-react';
+import { Loader2, ArrowLeft, User, Calendar, ShieldAlert, BadgeAlert, FileText, UserCog, MessageSquare, Euro, Check, X, Shield, Clock } from 'lucide-react';
 import { UserRole, Dispute, DisputeStatus, DisputeType } from '@/lib/types';
 import { useLocale, useTranslations } from 'next-intl';
 import { getDisputeById, users } from '@/lib/data';
@@ -335,3 +335,4 @@ export default function AdminDisputeDetailPage() {
     </div>
   );
 }
+
