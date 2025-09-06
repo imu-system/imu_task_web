@@ -1,6 +1,7 @@
 
 
 
+
 // Types partagés pour le monorepo (générés d'après le schéma Prisma)
 // GitHub Copilot
 
@@ -141,6 +142,12 @@ export enum ThreadStatus {
     open = 'open',
     locked = 'locked',
     archived = 'archived',
+}
+
+export enum PageStatus {
+    draft = 'draft',
+    published = 'published',
+    archived = 'archived'
 }
 
 // Util type pour les DateTime retournés par Prisma (Date ou ISO string)
@@ -545,4 +552,19 @@ export interface AuditLog {
 
     // Relations
     actor?: User | null;
+}
+
+export interface ContentPage {
+    id: string;
+    slug: string;
+    title: Record<string, string>;
+    content: Record<string, string>;
+    status: PageStatus;
+    seoTitle: Record<string, string>;
+    seoDescription: Record<string, string>;
+    isIndexed: boolean;
+    publishedAt?: DateTime | null;
+    
+    createdAt: DateTime;
+    updatedAt: DateTime;
 }

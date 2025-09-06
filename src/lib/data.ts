@@ -1,6 +1,7 @@
 
 
-import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole, Notification, NotificationType, NotificationChannel, DeliveryStatus } from './types';
+
+import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole, Notification, NotificationType, NotificationChannel, DeliveryStatus, ContentPage, PageStatus } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
 
@@ -571,3 +572,44 @@ export const getNotifications = (): Notification[] => [
 export const getNotificationById = (id: string): Notification | undefined => {
     return getNotifications().find(n => n.id === id);
 }
+
+export const getPages = (): ContentPage[] => [
+    {
+        id: 'page1',
+        slug: 'a-propos',
+        title: { fr: 'À Propos de Nous', en: 'About Us' },
+        content: { fr: 'Contenu de la page à propos...', en: 'Content of the about page...' },
+        status: PageStatus.published,
+        seoTitle: { fr: 'À Propos de ImuTask', en: 'About ImuTask' },
+        seoDescription: { fr: 'Découvrez notre mission.', en: 'Discover our mission.' },
+        isIndexed: true,
+        publishedAt: new Date('2023-01-01T12:00:00Z'),
+        createdAt: new Date('2023-01-01T10:00:00Z'),
+        updatedAt: new Date('2023-01-10T14:00:00Z')
+    },
+    {
+        id: 'page2',
+        slug: 'comment-ca-marche',
+        title: { fr: 'Comment ça marche ?', en: 'How it works?' },
+        content: { fr: 'Contenu de la page...', en: 'Content of the page...' },
+        status: PageStatus.published,
+        seoTitle: { fr: 'Comment fonctionne ImuTask', en: 'How ImuTask works' },
+        seoDescription: { fr: 'Guide étape par étape.', en: 'Step-by-step guide.' },
+        isIndexed: true,
+        publishedAt: new Date('2023-01-02T12:00:00Z'),
+        createdAt: new Date('2023-01-02T10:00:00Z'),
+        updatedAt: new Date('2023-01-02T10:00:00Z')
+    },
+    {
+        id: 'page3',
+        slug: 'presse',
+        title: { fr: 'Espace Presse', en: 'Press Area' },
+        content: { fr: 'Contenu de la page presse...', en: 'Content of the press page...' },
+        status: PageStatus.draft,
+        seoTitle: { fr: 'Espace Presse', en: 'Press Area' },
+        seoDescription: { fr: 'Contactez notre équipe de presse.', en: 'Contact our press team.' },
+        isIndexed: false,
+        createdAt: new Date('2023-02-15T09:00:00Z'),
+        updatedAt: new Date('2023-02-20T11:30:00Z')
+    }
+];

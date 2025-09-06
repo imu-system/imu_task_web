@@ -1275,8 +1275,28 @@
     "AdminCmsPage": {
         "pages": {
             "title": "Gestion des Pages",
-            "description": "En construction",
-            "content": "La fonctionnalité pour créer et modifier des pages de contenu statiques ou dynamiques (ex: 'À propos') sera implémentée ici."
+            "description": "Liste de toutes les pages de contenu.",
+            "noPages": "Aucune page créée pour le moment.",
+            "status": {
+                "draft": "Brouillon",
+                "published": "Publiée",
+                "archived": "Archivée"
+            },
+            "table": {
+                "header": {
+                    "title": "Titre",
+                    "slug": "Slug",
+                    "status": "Statut",
+                    "lastModified": "Dernière modif."
+                }
+            },
+            "actions": {
+                "title": "Actions",
+                "create": "Créer une page",
+                "edit": "Modifier",
+                "view": "Voir la page",
+                "delete": "Supprimer"
+            }
         },
         "faq": {
             "title": "Gestion de la FAQ",

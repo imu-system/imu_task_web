@@ -1275,8 +1275,28 @@
     "AdminCmsPage": {
         "pages": {
             "title": "Page Management",
-            "description": "Under Construction",
-            "content": "Functionality for creating and editing static or dynamic content pages (e.g., 'About Us') will be implemented here."
+            "description": "List of all content pages.",
+            "noPages": "No pages created yet.",
+            "status": {
+                "draft": "Draft",
+                "published": "Published",
+                "archived": "Archived"
+            },
+            "table": {
+                "header": {
+                    "title": "Title",
+                    "slug": "Slug",
+                    "status": "Status",
+                    "lastModified": "Last Modified"
+                }
+            },
+            "actions": {
+                "title": "Actions",
+                "create": "Create Page",
+                "edit": "Edit",
+                "view": "View Page",
+                "delete": "Delete"
+            }
         },
         "faq": {
             "title": "FAQ Management",
