@@ -921,5 +921,35 @@
                 "hidden": "Masqué"
             }
         }
+    },
+    "AdminReviewDetailPage": {
+        "title": "Détails de l'Avis",
+        "backToList": "Retour à la liste des avis",
+        "notFound": "Avis non trouvé.",
+        "viewProfile": "Voir le profil",
+        "visibility": {
+            "public": "Public",
+            "hidden": "Masqué"
+        },
+        "cards": {
+            "review": {
+                "title": "Détails de l'Avis",
+                "description": "Avis de {reviewerName} pour {revieweeName}",
+                "bookingId": "ID de la réservation",
+                "createdAt": "Publié le"
+            },
+            "context": {
+                "title": "Contexte",
+                "reviewer": "Évaluateur",
+                "reviewee": "Évalué"
+            },
+            "moderation": {
+                "title": "Modération",
+                "description": "Modérer cet avis.",
+                "hide": "Masquer l'avis",
+                "show": "Rendre l'avis public",
+                "delete": "Supprimer l'avis"
+            }
+        }
     }
 }

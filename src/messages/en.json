@@ -921,5 +921,35 @@
                 "hidden": "Hidden"
             }
         }
+    },
+    "AdminReviewDetailPage": {
+        "title": "Review Details",
+        "backToList": "Back to review list",
+        "notFound": "Review not found.",
+        "viewProfile": "View profile",
+        "visibility": {
+            "public": "Public",
+            "hidden": "Hidden"
+        },
+        "cards": {
+            "review": {
+                "title": "Review Details",
+                "description": "Review from {reviewerName} for {revieweeName}",
+                "bookingId": "Booking ID",
+                "createdAt": "Published on"
+            },
+            "context": {
+                "title": "Context",
+                "reviewer": "Reviewer",
+                "reviewee": "Reviewee"
+            },
+            "moderation": {
+                "title": "Moderation",
+                "description": "Moderate this review.",
+                "hide": "Hide Review",
+                "show": "Make Review Public",
+                "delete": "Delete Review"
+            }
+        }
     }
 }
