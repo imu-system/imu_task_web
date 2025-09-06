@@ -799,8 +799,7 @@
                 "exportDialog": {
                     "title": "Exporter les transactions",
                     "description": "Configurez les options pour votre export comptable.",
-                    "dateFrom": "Du",
-                    "dateTo": "Au",
+                    "dateRange": "Plage de dates",
                     "format": "Format",
                     "includeInvoices": "Inclure les factures (si disponible)",
                     "cancel": "Annuler",
@@ -894,5 +893,7 @@
         "reconciliation": "Réconciliation"
     }
 }
+
+    
 
     

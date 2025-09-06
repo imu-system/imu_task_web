@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState, useMemo } from 'react';
-import { Loader2, Wallet, ExternalLink, MoreHorizontal, Eye, Download, Undo2, X, CalendarIcon } from 'lucide-react';
+import { Loader2, Wallet, ExternalLink, MoreHorizontal, Eye, Download, Undo2, X, CalendarIcon as CalendarIconLucide } from 'lucide-react';
 import { UserRole, PaymentStatus } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -50,8 +50,7 @@ export default function AdminTransactionsPage() {
     const { toast } = useToast();
     
     const [loading, setLoading] = useState(false);
-    const [exportDate, setExportDate] = useState<Date | undefined>(undefined);
-
+    const [exportDateRange, setExportDateRange] = useState<DateRange | undefined>(undefined);
     const [searchTerm, setSearchTerm] = useState('');
     const [statusFilter, setStatusFilter] = useState<PaymentStatus | 'all'>('all');
     const [dateFilter, setDateFilter] = useState<DateRange | undefined>({
@@ -142,33 +141,40 @@ export default function AdminTransactionsPage() {
                                     <AlertDialogDescription>{t('actions.exportDialog.description')}</AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <div className="grid gap-4 py-4">
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div className="space-y-2">
-                                            <Label>{t('actions.exportDialog.dateFrom')}</Label>
-                                            <Popover>
-                                                <PopoverTrigger asChild>
-                                                    <Button variant="outline" className="w-full justify-start">
-                                                        {exportDate ? format(exportDate, 'PPP') : <span>Pick a date</span>}
-                                                    </Button>
-                                                </PopoverTrigger>
-                                                <PopoverContent className="w-auto p-0" align="start">
-                                                    <Calendar mode="single" selected={exportDate} onSelect={setExportDate} />
-                                                </PopoverContent>
-                                            </Popover>
-                                        </div>
-                                        <div className="space-y-2">
-                                            <Label>{t('actions.exportDialog.dateTo')}</Label>
-                                            <Popover>
-                                                <PopoverTrigger asChild>
-                                                    <Button variant="outline" className="w-full justify-start">
-                                                        {exportDate ? format(exportDate, 'PPP') : <span>Pick a date</span>}
-                                                    </Button>
-                                                </PopoverTrigger>
-                                                <PopoverContent className="w-auto p-0" align="start">
-                                                    <Calendar mode="single" selected={exportDate} onSelect={setExportDate} />
-                                                </PopoverContent>
-                                            </Popover>
-                                        </div>
+                                    <div className="space-y-2">
+                                        <Label>{t('actions.exportDialog.dateRange')}</Label>
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                            <Button
+                                                variant={"outline"}
+                                                className="w-full justify-start text-left font-normal"
+                                            >
+                                                <CalendarIconLucide className="mr-2 h-4 w-4" />
+                                                {exportDateRange?.from ? (
+                                                exportDateRange.to ? (
+                                                    <>
+                                                    {format(exportDateRange.from, "LLL dd, y")} -{" "}
+                                                    {format(exportDateRange.to, "LLL dd, y")}
+                                                    </>
+                                                ) : (
+                                                    format(exportDateRange.from, "LLL dd, y")
+                                                )
+                                                ) : (
+                                                <span>{t('filters.pickDate')}</span>
+                                                )}
+                                            </Button>
+                                            </PopoverTrigger>
+                                            <PopoverContent className="w-auto p-0" align="start">
+                                            <Calendar
+                                                initialFocus
+                                                mode="range"
+                                                defaultMonth={exportDateRange?.from}
+                                                selected={exportDateRange}
+                                                onSelect={setExportDateRange}
+                                                numberOfMonths={2}
+                                            />
+                                            </PopoverContent>
+                                        </Popover>
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor="format">{t('actions.exportDialog.format')}</Label>
@@ -219,7 +225,7 @@ export default function AdminTransactionsPage() {
                             variant={"outline"}
                             className="w-[300px] justify-start text-left font-normal"
                         >
-                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            <CalendarIconLucide className="mr-2 h-4 w-4" />
                             {dateFilter?.from ? (
                             dateFilter.to ? (
                                 <>
@@ -355,5 +361,7 @@ export default function AdminTransactionsPage() {
 }
 
 
+
+    
 
     

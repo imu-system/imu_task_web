@@ -799,8 +799,7 @@
                 "exportDialog": {
                     "title": "Export Transactions",
                     "description": "Configure the options for your accounting export.",
-                    "dateFrom": "From",
-                    "dateTo": "To",
+                    "dateRange": "Date range",
                     "format": "Format",
                     "includeInvoices": "Include invoices (if available)",
                     "cancel": "Cancel",
@@ -894,5 +893,7 @@
         "reconciliation": "Reconciliation"
     }
 }
+
+    
 
     
