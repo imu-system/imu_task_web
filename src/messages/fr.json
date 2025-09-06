@@ -804,6 +804,13 @@
                     "cancel": "Annuler",
                     "confirm": "Exporter"
                 }
+            },
+            "filters": {
+                "searchPlaceholder": "Rechercher par ID...",
+                "status": "Statut",
+                "allStatuses": "Tous les statuts",
+                "pickDate": "Choisir une période",
+                "clear": "Effacer"
             }
         },
         "transfers": {

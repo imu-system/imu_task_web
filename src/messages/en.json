@@ -750,7 +750,7 @@
         "transactions": {
             "title": "Transactions",
             "subtitle": "List of all payments from clients.",
-            "currency": "$",
+            "currency": "€",
             "table": {
                 "title": "Transaction History",
                 "description": "Review all payments initiated by clients.",
@@ -804,6 +804,13 @@
                     "cancel": "Cancel",
                     "confirm": "Export"
                 }
+            },
+            "filters": {
+                "searchPlaceholder": "Search by ID...",
+                "status": "Status",
+                "allStatuses": "All Statuses",
+                "pickDate": "Pick a date range",
+                "clear": "Clear"
             }
         },
         "transfers": {
