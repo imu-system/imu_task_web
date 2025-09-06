@@ -417,6 +417,7 @@ export interface Transfer {
 export interface Payout {
     id: string;
     providerId: string;
+    provider?: User;
     payoutId: string;
     amount: number;
     currency: string;
@@ -426,8 +427,6 @@ export interface Payout {
     createdAt: DateTime;
     updatedAt: DateTime;
 
-    // Relations
-    provider?: User;
 }
 
 export interface Review {

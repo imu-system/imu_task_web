@@ -385,5 +385,3 @@ export const getPayouts = (): Payout[] => [
         updatedAt: '2024-08-23T10:00:00Z',
     },
 ];
-
-    
