@@ -34,6 +34,7 @@ import {
   Star,
   BadgeAlert,
   Bell,
+  FileText,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -171,6 +172,14 @@ export function DashboardNav() {
                         <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/notifications')}>
                             <Bell />
                             <span>{t('notifications')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+                 <SidebarMenuItem>
+                    <Link href="/dashboard/admin/cms/pages">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/cms')}>
+                            <FileText />
+                            <span>{t('cms')}</span>
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>

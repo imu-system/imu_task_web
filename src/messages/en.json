@@ -69,7 +69,8 @@
         "payments": "Payments",
         "reviews": "Reviews",
         "disputes": "Disputes",
-        "notifications": "Notifications"
+        "notifications": "Notifications",
+        "cms": "Content (CMS)"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -1262,7 +1263,35 @@
                 }
             }
         }
+    },
+    "AdminCmsLayout": {
+        "title": "Content Management",
+        "subtitle": "Manage all editable content of the platform.",
+        "pages": "Pages",
+        "faq": "FAQ",
+        "policies": "Policies",
+        "posts": "Blog/News"
+    },
+    "AdminCmsPage": {
+        "pages": {
+            "title": "Page Management",
+            "description": "Under Construction",
+            "content": "Functionality for creating and editing static or dynamic content pages (e.g., 'About Us') will be implemented here."
+        },
+        "faq": {
+            "title": "FAQ Management",
+            "description": "Under Construction",
+            "content": "A system for creating, categorizing, and editing Frequently Asked Questions will be implemented here."
+        },
+        "policies": {
+            "title": "Policy Management",
+            "description": "Under Construction",
+            "content": "An editor for the Terms of Service and Privacy Policy pages will be implemented here."
+        },
+        "posts": {
+            "title": "Blog/News Management",
+            "description": "Under Construction",
+            "content": "A system for writing, scheduling, and publishing blog posts or news articles will be implemented here."
+        }
     }
 }
-
-    

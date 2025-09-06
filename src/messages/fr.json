@@ -69,7 +69,8 @@
         "payments": "Paiements",
         "reviews": "Avis",
         "disputes": "Litiges",
-        "notifications": "Notifications"
+        "notifications": "Notifications",
+        "cms": "Contenu (CMS)"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -1262,7 +1263,35 @@
                 }
             }
         }
+    },
+    "AdminCmsLayout": {
+        "title": "Gestion de Contenu",
+        "subtitle": "Gérez tout le contenu éditable de la plateforme.",
+        "pages": "Pages",
+        "faq": "FAQ",
+        "policies": "Politiques",
+        "posts": "Blog/Actus"
+    },
+    "AdminCmsPage": {
+        "pages": {
+            "title": "Gestion des Pages",
+            "description": "En construction",
+            "content": "La fonctionnalité pour créer et modifier des pages de contenu statiques ou dynamiques (ex: 'À propos') sera implémentée ici."
+        },
+        "faq": {
+            "title": "Gestion de la FAQ",
+            "description": "En construction",
+            "content": "Un système pour créer, catégoriser et modifier les questions fréquemment posées sera implémenté ici."
+        },
+        "policies": {
+            "title": "Gestion des Politiques",
+            "description": "En construction",
+            "content": "Un éditeur pour les pages de Conditions d'Utilisation et de Politique de Confidentialité sera implémenté ici."
+        },
+        "posts": {
+            "title": "Gestion du Blog/Actus",
+            "description": "En construction",
+            "content": "Un système pour rédiger, planifier et publier des articles de blog ou des actualités sera implémenté ici."
+        }
     }
 }
-
-    
