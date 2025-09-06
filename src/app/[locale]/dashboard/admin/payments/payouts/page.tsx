@@ -5,13 +5,13 @@ import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState, useMemo } from 'react';
-import { Loader2, Wallet, MoreHorizontal, ExternalLink } from 'lucide-react';
+import { Loader2, Wallet, MoreHorizontal, ExternalLink, Undo2, X } from 'lucide-react';
 import { UserRole, PayoutStatus, type Payout } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { getPayouts } from '@/lib/data';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
@@ -136,6 +136,15 @@ export default function AdminPayoutsPage() {
                                                     {t('actions.viewOnStripe')}
                                                 </a>
                                              </DropdownMenuItem>
+                                             <DropdownMenuSeparator />
+                                             <DropdownMenuItem disabled={payout.status !== PayoutStatus.failed}>
+                                                <Undo2 className="mr-2"/>
+                                                {t('actions.retry')}
+                                             </DropdownMenuItem>
+                                             <DropdownMenuItem disabled={payout.status !== PayoutStatus.pending} className="text-destructive">
+                                                <X className="mr-2"/>
+                                                {t('actions.cancel')}
+                                             </DropdownMenuItem>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
                                 </TableCell>
@@ -148,3 +157,4 @@ export default function AdminPayoutsPage() {
     </div>
   );
 }
+

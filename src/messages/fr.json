@@ -870,7 +870,8 @@
             },
             "actions": {
                 "viewOnStripe": "Voir sur Stripe",
-                "retry": "Réessayer le versement"
+                "retry": "Réessayer le versement",
+                "cancel": "Annuler le versement"
             },
             "filters": {
                 "searchPlaceholder": "Rechercher par ID, prestataire..."

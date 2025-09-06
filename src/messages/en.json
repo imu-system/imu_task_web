@@ -870,7 +870,8 @@
             },
             "actions": {
                 "viewOnStripe": "View on Stripe",
-                "retry": "Retry Payout"
+                "retry": "Retry Payout",
+                "cancel": "Cancel Payout"
             },
             "filters": {
                 "searchPlaceholder": "Search by ID, provider..."
