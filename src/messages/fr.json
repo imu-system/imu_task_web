@@ -1144,7 +1144,7 @@
                     "titlePlaceholder": "Ex: Maintenance importante",
                     "messageLabel": "Message",
                     "messagePlaceholder": "Votre message aux utilisateurs...",
-                    "messageDescription": "Vous pouvez utiliser des variables comme {displayName}."
+                    "messageDescription": "Vous pouvez utiliser des variables pour personnaliser votre message."
                 },
                 "targeting": {
                     "title": "Ciblage",
@@ -1176,9 +1176,28 @@
             "title": "Modèles de Notifications",
             "subtitle": "Gérez les modèles de notifications transactionnelles.",
             "card": {
-                "title": "Éditeur de modèles",
-                "description": "Cette section est dédiée à l'édition des modèles de notifications transactionnelles.",
-                "content": "Les fonctionnalités de gestion des modèles d'e-mail, de push et in-app, avec utilisation de variables et prévisualisation multilingue, seront implémentées ici. Cela permettra une communication cohérente et personnalisée."
+                "title": "Liste des Modèles",
+                "description": "Liste de tous les modèles transactionnels utilisés dans l'application."
+            },
+            "table": {
+                "header": {
+                    "name": "Nom du Modèle",
+                    "type": "Type",
+                    "channels": "Canaux"
+                },
+                "actions": {
+                    "edit": "Modifier"
+                }
+            },
+            "edit": {
+                "title": "Modifier le Modèle",
+                "subtitle": "Modifiez le contenu pour chaque canal et langue.",
+                "backToList": "Retour à la liste des modèles",
+                "card": {
+                    "title": "En construction",
+                    "description": "Cette section est dédiée à l'édition des modèles de notifications transactionnelles.",
+                    "content": "Les fonctionnalités de gestion des modèles d'e-mail, de push et in-app, avec utilisation de variables et prévisualisation multilingue, seront implémentées ici. Cela permettra une communication cohérente et personnalisée."
+                }
             }
         },
         "detail": {
@@ -1210,5 +1229,3 @@
         }
     }
 }
-
-    

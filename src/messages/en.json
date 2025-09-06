@@ -1144,7 +1144,7 @@
                     "titlePlaceholder": "e.g. Important Maintenance",
                     "messageLabel": "Message",
                     "messagePlaceholder": "Your message to users...",
-                    "messageDescription": "You can use variables like {displayName}."
+                    "messageDescription": "You can use variables to personalize your message."
                 },
                 "targeting": {
                     "title": "Targeting",
@@ -1170,13 +1170,32 @@
                     "successTitle": "Broadcast Sent!",
                     "successDescription": "Your message has been successfully sent to the targeted users."
                 }
+            }
+        },
+        "templates": {
+            "title": "Notification Templates",
+            "subtitle": "Manage transactional notification templates.",
+            "card": {
+                "title": "Template List",
+                "description": "List of all transactional templates used in the application."
             },
-            "templates": {
-                "title": "Notification Templates",
-                "subtitle": "Manage transactional notification templates.",
+            "table": {
+                "header": {
+                    "name": "Template Name",
+                    "type": "Type",
+                    "channels": "Channels"
+                },
+                "actions": {
+                    "edit": "Edit"
+                }
+            },
+            "edit": {
+                "title": "Edit Template",
+                "subtitle": "Modify the content for each channel and language.",
+                "backToList": "Back to templates list",
                 "card": {
-                    "title": "Template Editor",
-                    "description": "This section is for editing transactional notification templates.",
+                    "title": "Under Construction",
+                    "description": "This section is dedicated to editing transactional notification templates.",
                     "content": "Functionality to manage email, push, and in-app templates using variables and a multi-language editor will be implemented here. This will allow for consistent and personalized communication."
                 }
             }
@@ -1207,17 +1226,6 @@
                     "resend": "Resend Notification"
                 }
             }
-        },
-        "templates": {
-            "title": "Notification Templates",
-            "subtitle": "Manage transactional notification templates.",
-            "card": {
-                "title": "Template Editor",
-                "description": "This section is for editing transactional notification templates.",
-                "content": "Functionality to manage email, push, and in-app templates using variables and a multi-language editor will be implemented here. This will allow for consistent and personalized communication."
-            }
         }
     }
 }
-
-    
