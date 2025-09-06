@@ -1181,9 +1181,9 @@
             "title": "Notification Templates",
             "subtitle": "Manage transactional notification templates.",
             "card": {
-                "title": "Under Construction",
-                "description": "This section will allow editing notification templates.",
-                "content": "You will be able to edit email, push, and in-app notification templates using variables and a multi-language editor."
+                "title": "Template Editor",
+                "description": "This section is for editing transactional notification templates.",
+                "content": "Functionality to manage email, push, and in-app templates using variables and a multi-language editor will be implemented here. This will allow for consistent and personalized communication."
             }
         },
         "detail": {

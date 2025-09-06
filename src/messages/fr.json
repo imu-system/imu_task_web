@@ -1181,9 +1181,9 @@
             "title": "Modèles de Notifications",
             "subtitle": "Gérez les modèles de notifications transactionnelles.",
             "card": {
-                "title": "En construction",
-                "description": "Cette section permettra d'éditer les modèles de notifications.",
-                "content": "Vous pourrez modifier les modèles d'e-mail, de push et de notifications in-app en utilisant des variables et un éditeur multilingue."
+                "title": "Éditeur de modèles",
+                "description": "Cette section est dédiée à l'édition des modèles de notifications transactionnelles.",
+                "content": "Les fonctionnalités de gestion des modèles d'e-mail, de push et in-app, avec utilisation de variables et prévisualisation multilingue, seront implémentées ici. Cela permettra une communication cohérente et personnalisée."
             }
         },
         "detail": {
