@@ -1190,14 +1190,32 @@
                 }
             },
             "edit": {
-                "title": "Edit Template",
+                "title": "Edit Template: {templateName}",
                 "subtitle": "Modify the content for each channel and language.",
                 "backToList": "Back to templates list",
+                "tabs": {
+                    "inAppPush": "In-App / Push",
+                    "email": "Email"
+                },
                 "card": {
-                    "title": "Under Construction",
-                    "description": "This section is dedicated to editing transactional notification templates.",
-                    "content": "Functionality to manage email, push, and in-app templates using variables and a multi-language editor will be implemented here. This will allow for consistent and personalized communication."
-                }
+                    "inAppPush": {
+                        "title": "In-App & Push Notification",
+                        "description": "This content will be used for mobile push and in-app notifications."
+                    },
+                    "email": {
+                        "title": "Email",
+                        "description": "This content will be used for email notifications. Markdown is supported."
+                    }
+                },
+                "fields": {
+                    "title": "Title",
+                    "body": "Body",
+                    "subject": "Subject"
+                },
+                "variablesInfo": "Available variables: {{displayName}}, {{taskTitle}}, {{bookingDate}}",
+                "saveButton": "Save Template",
+                "toastSuccessTitle": "Template Saved",
+                "toastSuccessDescription": "The notification template has been successfully updated."
             }
         },
         "detail": {

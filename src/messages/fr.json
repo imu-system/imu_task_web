@@ -1190,14 +1190,32 @@
                 }
             },
             "edit": {
-                "title": "Modifier le Modèle",
-                "subtitle": "Modifiez le contenu pour chaque canal et langue.",
+                "title": "Modifier le modèle : {templateName}",
+                "subtitle": "Modifiez le contenu pour chaque canal et chaque langue.",
                 "backToList": "Retour à la liste des modèles",
+                "tabs": {
+                    "inAppPush": "In-App / Push",
+                    "email": "Email"
+                },
                 "card": {
-                    "title": "En construction",
-                    "description": "Cette section est dédiée à l'édition des modèles de notifications transactionnelles.",
-                    "content": "Les fonctionnalités de gestion des modèles d'e-mail, de push et in-app, avec utilisation de variables et prévisualisation multilingue, seront implémentées ici. Cela permettra une communication cohérente et personnalisée."
-                }
+                    "inAppPush": {
+                        "title": "Notification In-App & Push",
+                        "description": "Ce contenu sera utilisé pour les notifications push mobiles et in-app."
+                    },
+                    "email": {
+                        "title": "Email",
+                        "description": "Ce contenu sera utilisé pour les notifications par email. Le format Markdown est supporté."
+                    }
+                },
+                "fields": {
+                    "title": "Titre",
+                    "body": "Corps",
+                    "subject": "Sujet"
+                },
+                "variablesInfo": "Variables disponibles : {{displayName}}, {{taskTitle}}, {{bookingDate}}",
+                "saveButton": "Enregistrer le modèle",
+                "toastSuccessTitle": "Modèle enregistré",
+                "toastSuccessDescription": "Le modèle de notification a été mis à jour avec succès."
             }
         },
         "detail": {
