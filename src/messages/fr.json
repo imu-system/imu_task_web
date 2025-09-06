@@ -749,7 +749,35 @@
     "AdminPaymentsPage": {
         "transactions": {
             "title": "Transactions",
-            "subtitle": "Liste de tous les paiements des clients."
+            "subtitle": "Liste de tous les paiements des clients.",
+            "currency": "€",
+            "table": {
+                "title": "Historique des transactions",
+                "description": "Consultez tous les paiements initiés par les clients.",
+                "header": {
+                    "transactionId": "ID Transaction",
+                    "booking": "Réservation",
+                    "amount": "Montant",
+                    "fees": "Frais",
+                    "status": "Statut",
+                    "date": "Date",
+                    "actions": "Actions"
+                },
+                "feesPlatform": "Plateforme",
+                "feesStripe": "Stripe"
+            },
+            "status": {
+                "requires_action": "Action requise",
+                "authorized": "Autorisé",
+                "captured": "Capturé",
+                "canceled": "Annulé",
+                "failed": "Échoué",
+                "refunded": "Remboursé",
+                "partially_refunded": "Partiellement remboursé"
+            },
+            "actions": {
+                "viewOnStripe": "Voir sur Stripe"
+            }
         },
         "transfers": {
             "title": "Transferts",

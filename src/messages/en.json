@@ -733,7 +733,7 @@
                     "cancel": "Cancel",
                     "save": "Save Note"
                 },
-                 "rescheduleDialog": {
+                "rescheduleDialog": {
                     "title": "Reschedule Booking",
                     "description": "Select a new date and time for the booking. Both parties will be notified.",
                     "startTime": "Start Time",
@@ -749,7 +749,35 @@
     "AdminPaymentsPage": {
         "transactions": {
             "title": "Transactions",
-            "subtitle": "List of all payments from clients."
+            "subtitle": "List of all payments from clients.",
+            "currency": "$",
+            "table": {
+                "title": "Transaction History",
+                "description": "Review all payments initiated by clients.",
+                "header": {
+                    "transactionId": "Transaction ID",
+                    "booking": "Booking",
+                    "amount": "Amount",
+                    "fees": "Fees",
+                    "status": "Status",
+                    "date": "Date",
+                    "actions": "Actions"
+                },
+                "feesPlatform": "Platform",
+                "feesStripe": "Stripe"
+            },
+            "status": {
+                "requires_action": "Action required",
+                "authorized": "Authorized",
+                "captured": "Captured",
+                "canceled": "Canceled",
+                "failed": "Failed",
+                "refunded": "Refunded",
+                "partially_refunded": "Partially Refunded"
+            },
+            "actions": {
+                "viewOnStripe": "View on Stripe"
+            }
         },
         "transfers": {
             "title": "Transfers",
