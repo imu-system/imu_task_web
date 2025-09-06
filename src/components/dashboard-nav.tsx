@@ -30,6 +30,7 @@ import {
   ListOrdered,
   Handshake,
   CalendarCheck,
+  Star,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -143,6 +144,14 @@ export function DashboardNav() {
                         <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/payments')}>
                             <Wallet />
                             <span>{t('payments')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <Link href="/dashboard/admin/reviews">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/reviews')}>
+                            <Star />
+                            <span>{t('reviews')}</span>
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>

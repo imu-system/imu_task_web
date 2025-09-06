@@ -1,6 +1,6 @@
 
 
-import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus } from './types';
+import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
 
@@ -385,3 +385,46 @@ export const getPayouts = (): Payout[] => [
         updatedAt: '2024-08-23T10:00:00Z',
     },
 ];
+
+export const getReviews = (): Review[] => [
+    {
+        id: 'rev1',
+        bookingId: 'booking2',
+        reviewerId: 'user4',
+        reviewer: users.find(u => u.id === 'user4')!,
+        revieweeId: 'user3',
+        reviewee: users.find(u => u.id === 'user3')!,
+        rating: 5,
+        comment: 'Chloé a été fantastique avec mon chien Oscar. Très professionnelle et ponctuelle. Je recommande vivement !',
+        visibility: ReviewVisibility.public,
+        createdAt: new Date('2024-08-21T10:00:00Z'),
+    },
+    {
+        id: 'rev2',
+        bookingId: 'booking2',
+        reviewerId: 'user3',
+        reviewer: users.find(u => u.id === 'user3')!,
+        revieweeId: 'user4',
+        reviewee: users.find(u => u.id === 'user4')!,
+        rating: 5,
+        comment: 'Marc a été un client très agréable, et Oscar est adorable. Mission parfaite.',
+        visibility: ReviewVisibility.public,
+        createdAt: new Date('2024-08-21T11:00:00Z'),
+    },
+    {
+        id: 'rev3',
+        bookingId: 'booking1',
+        reviewerId: 'user1',
+        reviewer: users.find(u => u.id === 'user1')!,
+        revieweeId: 'user2',
+        reviewee: users.find(u => u.id === 'user2')!,
+        rating: 4,
+        comment: "Lucas a bien installé l'étagère, mais il est arrivé un peu en retard.",
+        visibility: ReviewVisibility.public,
+        createdAt: new Date('2024-08-19T14:00:00Z'),
+    }
+];
+
+export const getReviewById = (id: string): Review | undefined => {
+    return getReviews().find(r => r.id === id);
+}

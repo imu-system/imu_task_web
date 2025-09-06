@@ -66,7 +66,8 @@
         "tasks": "Tasks",
         "offers": "Offers",
         "bookings": "Bookings",
-        "payments": "Payments"
+        "payments": "Payments",
+        "reviews": "Reviews"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -892,5 +893,33 @@
         "transfers": "Transfers",
         "payouts": "Payouts",
         "reconciliation": "Reconciliation"
+    },
+    "AdminReviewsPage": {
+        "title": "Review Management",
+        "subtitle": "Moderate all reviews left on the platform.",
+        "table": {
+            "title": "All Reviews",
+            "description": "List of all reviews submitted by users.",
+            "header": {
+                "id": "ID",
+                "booking": "Booking",
+                "reviewer": "Reviewer",
+                "reviewee": "Reviewee",
+                "rating": "Rating",
+                "comment": "Comment",
+                "visibility": "Visibility",
+                "actions": "Actions"
+            },
+            "actions": {
+                "details": "Details",
+                "viewBooking": "View Booking",
+                "viewReviewer": "View Reviewer",
+                "viewReviewee": "View Reviewee"
+            },
+            "visibility": {
+                "public": "Public",
+                "hidden": "Hidden"
+            }
+        }
     }
 }
