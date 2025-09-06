@@ -5,13 +5,33 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
-import { Loader2, Wallet, ExternalLink, MoreHorizontal, Eye } from 'lucide-react';
+import { Loader2, Wallet, ExternalLink, MoreHorizontal, Eye, Download, Undo2 } from 'lucide-react';
 import { UserRole, PaymentStatus } from '@/lib/types';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { format } from 'date-fns';
+
 
 const mockTransactions = [
     { id: 'pi_3PjY3fLqgLzJ7fV01Z6A3f9a', bookingId: 'booking1', amount: 2000, currency: 'eur', feesPlatform: 200, feesStripe: 85, status: PaymentStatus.authorized, createdAt: '2024-08-17T10:00:00Z' },
@@ -28,6 +48,7 @@ export default function AdminTransactionsPage() {
     
     const [transactions, setTransactions] = useState(mockTransactions);
     const [loading, setLoading] = useState(false);
+    const [dateRange, setDateRange] = useState<Date | undefined>(undefined);
 
     useEffect(() => {
         if (!authLoading && (!user || !user.roles?.includes(UserRole.admin))) {
@@ -68,9 +89,70 @@ export default function AdminTransactionsPage() {
         </div>
 
         <Card>
-            <CardHeader>
-                <CardTitle>{t('table.title')}</CardTitle>
-                <CardDescription>{t('table.description')}</CardDescription>
+            <CardHeader className="sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <CardTitle>{t('table.title')}</CardTitle>
+                    <CardDescription>{t('table.description')}</CardDescription>
+                </div>
+                <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                        <Button variant="outline"><Download className="mr-2"/>{t('actions.export')}</Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle>{t('actions.exportDialog.title')}</AlertDialogTitle>
+                            <AlertDialogDescription>{t('actions.exportDialog.description')}</AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <div className="grid gap-4 py-4">
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <Label>{t('actions.exportDialog.dateFrom')}</Label>
+                                    <Popover>
+                                        <PopoverTrigger asChild>
+                                            <Button variant="outline" className="w-full justify-start">
+                                                {dateRange ? format(dateRange, 'PPP') : <span>Pick a date</span>}
+                                            </Button>
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-auto p-0" align="start">
+                                            <Calendar mode="single" selected={dateRange} onSelect={setDateRange} />
+                                        </PopoverContent>
+                                    </Popover>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>{t('actions.exportDialog.dateTo')}</Label>
+                                    <Popover>
+                                        <PopoverTrigger asChild>
+                                            <Button variant="outline" className="w-full justify-start">
+                                                {dateRange ? format(dateRange, 'PPP') : <span>Pick a date</span>}
+                                            </Button>
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-auto p-0" align="start">
+                                            <Calendar mode="single" selected={dateRange} onSelect={setDateRange} />
+                                        </PopoverContent>
+                                    </Popover>
+                                </div>
+                            </div>
+                            <div className="space-y-2">
+                                <Label htmlFor="format">{t('actions.exportDialog.format')}</Label>
+                                <Select defaultValue="csv">
+                                    <SelectTrigger id="format"><SelectValue /></SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="csv">CSV</SelectItem>
+                                        <SelectItem value="pdf">PDF</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div className="flex items-center space-x-2">
+                                <Checkbox id="include-invoices"/>
+                                <Label htmlFor="include-invoices">{t('actions.exportDialog.includeInvoices')}</Label>
+                            </div>
+                        </div>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel>{t('actions.exportDialog.cancel')}</AlertDialogCancel>
+                            <AlertDialogAction>{t('actions.exportDialog.confirm')}</AlertDialogAction>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
             </CardHeader>
             <CardContent>
                 <Table>
@@ -123,6 +205,46 @@ export default function AdminTransactionsPage() {
                                                     {t('actions.viewOnStripe')}
                                                 </Link>
                                              </DropdownMenuItem>
+                                             <DropdownMenuSeparator/>
+                                             <AlertDialog>
+                                                <AlertDialogTrigger asChild>
+                                                    <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                                                        <Undo2 className="mr-2"/>
+                                                        {t('actions.refund')}
+                                                    </DropdownMenuItem>
+                                                </AlertDialogTrigger>
+                                                <AlertDialogContent>
+                                                    <AlertDialogHeader>
+                                                        <AlertDialogTitle>{t('actions.refundDialog.title')}</AlertDialogTitle>
+                                                        <AlertDialogDescription>{t('actions.refundDialog.description', { amount: (tx.amount / 100).toFixed(2) })}</AlertDialogDescription>
+                                                    </AlertDialogHeader>
+                                                    <div className="grid gap-4 py-4">
+                                                        <div className="space-y-2">
+                                                            <Label htmlFor="refund-amount">{t('actions.refundDialog.amountLabel')}</Label>
+                                                            <Input id="refund-amount" type="number" defaultValue={(tx.amount / 100).toFixed(2)} />
+                                                        </div>
+                                                        <div className="space-y-2">
+                                                            <Label htmlFor="refund-reason">{t('actions.refundDialog.reasonLabel')}</Label>
+                                                            <Select defaultValue="client_request">
+                                                                <SelectTrigger id="refund-reason"><SelectValue /></SelectTrigger>
+                                                                <SelectContent>
+                                                                    <SelectItem value="client_request">{t('actions.refundDialog.reasons.clientRequest')}</SelectItem>
+                                                                    <SelectItem value="goodwill">{t('actions.refundDialog.reasons.goodwill')}</SelectItem>
+                                                                    <SelectItem value="dispute">{t('actions.refundDialog.reasons.dispute')}</SelectItem>
+                                                                </SelectContent>
+                                                            </Select>
+                                                        </div>
+                                                         <div className="space-y-2">
+                                                            <Label htmlFor="refund-note">{t('actions.refundDialog.noteLabel')}</Label>
+                                                            <Textarea id="refund-note" placeholder={t('actions.refundDialog.notePlaceholder')} />
+                                                        </div>
+                                                    </div>
+                                                    <AlertDialogFooter>
+                                                        <AlertDialogCancel>{t('actions.refundDialog.cancel')}</AlertDialogCancel>
+                                                        <AlertDialogAction>{t('actions.refundDialog.confirm')}</AlertDialogAction>
+                                                    </AlertDialogFooter>
+                                                </AlertDialogContent>
+                                             </AlertDialog>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
                                 </TableCell>

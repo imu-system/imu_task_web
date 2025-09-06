@@ -776,7 +776,34 @@
                 "partially_refunded": "Partially Refunded"
             },
             "actions": {
-                "viewOnStripe": "View on Stripe"
+                "viewOnStripe": "View on Stripe",
+                "refund": "Refund",
+                "export": "Export",
+                "refundDialog": {
+                    "title": "Process a Refund",
+                    "description": "Initial transaction of {amount}€. You can process a partial or full refund.",
+                    "amountLabel": "Amount to refund (€)",
+                    "reasonLabel": "Reason for refund",
+                    "noteLabel": "Internal note (optional)",
+                    "notePlaceholder": "Details about the refund...",
+                    "cancel": "Cancel",
+                    "confirm": "Confirm Refund",
+                    "reasons": {
+                        "clientRequest": "Client Request",
+                        "goodwill": "Goodwill Gesture",
+                        "dispute": "Dispute Resolution"
+                    }
+                },
+                "exportDialog": {
+                    "title": "Export Transactions",
+                    "description": "Configure the options for your accounting export.",
+                    "dateFrom": "From",
+                    "dateTo": "To",
+                    "format": "Format",
+                    "includeInvoices": "Include invoices (if available)",
+                    "cancel": "Cancel",
+                    "confirm": "Export"
+                }
             }
         },
         "transfers": {
