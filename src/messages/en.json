@@ -1554,6 +1554,14 @@
                     "placeholder": "Leave empty for global rate"
                 }
             },
+            "cities": {
+                "title": "City-specific Commissions",
+                "description": "Define specific rates that will override the global rate for certain cities.",
+                "table": {
+                    "name": "City Name",
+                    "rate": "Commission Rate (%)"
+                }
+            },
             "saveButton": "Save Commissions",
             "toast": {
                 "successTitle": "Commissions Saved",
@@ -1561,7 +1569,7 @@
             }
         },
         "guidance": {
-            "title": "Price Guidance",
+            "title": "Recommended Prices",
             "subtitle": "Help users by providing recommended price ranges.",
             "card": {
                 "title": "Under Construction",

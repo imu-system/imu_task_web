@@ -1554,6 +1554,14 @@
                     "placeholder": "Laisser vide pour global"
                 }
             },
+            "cities": {
+                "title": "Commissions par Ville",
+                "description": "Définissez des taux spécifiques qui remplaceront le taux global pour certaines villes.",
+                "table": {
+                    "name": "Nom de la Ville",
+                    "rate": "Taux de Commission (%)"
+                }
+            },
             "saveButton": "Enregistrer les commissions",
             "toast": {
                 "successTitle": "Commissions Enregistrées",

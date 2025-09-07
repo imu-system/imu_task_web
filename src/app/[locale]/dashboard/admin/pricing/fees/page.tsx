@@ -26,9 +26,16 @@ const feesSchema = z.object({
     categoryId: z.string(),
     rate: z.coerce.number().min(0).max(100).optional(),
   })).optional(),
+  cityOverrides: z.array(z.object({
+      city: z.string(),
+      rate: z.coerce.number().min(0).max(100),
+  })).optional(),
 });
 
 type FeesFormValues = z.infer<typeof feesSchema>;
+
+// Mocking cities for now
+const mockCities = ["Paris", "Lyon", "Marseille"];
 
 export default function AdminFeesPage() {
     const { user, loading: authLoading } = useAuth();
@@ -45,6 +52,7 @@ export default function AdminFeesPage() {
         defaultValues: {
             globalRate: 15, // Mock default value
             categoryOverrides: [],
+            cityOverrides: [],
         },
     });
 
@@ -63,17 +71,27 @@ export default function AdminFeesPage() {
                     globalRate: 15.0,
                     categoryOverrides: [
                         { categoryId: 'cleaning', rate: 20.0 }, // Example override
+                    ],
+                    cityOverrides: [
+                        { city: 'Paris', rate: 18.0 }, // Example city override
                     ]
                 };
 
-                const overrides = fetchedCategories.map(cat => {
+                const categoryOverrides = fetchedCategories.map(cat => {
                     const existingOverride = currentFees.categoryOverrides.find(o => o.categoryId === cat.id);
                     return { categoryId: cat.id, rate: existingOverride?.rate };
                 });
+                
+                const cityOverrides = mockCities.map(city => {
+                    const existingOverride = currentFees.cityOverrides.find(o => o.city === city);
+                    return { city: city, rate: existingOverride?.rate || undefined };
+                });
+
 
                 form.reset({
                     globalRate: currentFees.globalRate,
-                    categoryOverrides: overrides,
+                    categoryOverrides: categoryOverrides,
+                    cityOverrides: cityOverrides as any, // Zod expects number, but we might have undefined
                 });
 
             } catch (error) {
@@ -190,6 +208,48 @@ export default function AdminFeesPage() {
                         </Table>
                     </CardContent>
                 </Card>
+                
+                <Card>
+                    <CardHeader>
+                        <CardTitle>{t('cities.title')}</CardTitle>
+                        <CardDescription>{t('cities.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>{t('cities.table.name')}</TableHead>
+                                    <TableHead className="w-[200px]">{t('cities.table.rate')}</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {mockCities.map((city, index) => (
+                                    <TableRow key={city}>
+                                        <TableCell className="font-medium">{city}</TableCell>
+                                        <TableCell>
+                                             <FormField
+                                                control={form.control}
+                                                name={`cityOverrides.${index}.rate`}
+                                                render={({ field }) => (
+                                                    <FormItem>
+                                                        <div className="relative">
+                                                            <FormControl>
+                                                                <Input type="number" placeholder={t('categories.table.placeholder')} {...field} />
+                                                            </FormControl>
+                                                            <Percent className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                                        </div>
+                                                        <FormMessage/>
+                                                    </FormItem>
+                                                )}
+                                             />
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </CardContent>
+                </Card>
+
 
                 <div className="flex justify-end">
                     <Button type="submit" disabled={isSaving}>
