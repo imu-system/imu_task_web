@@ -1309,7 +1309,8 @@
         },
         "faq": {
             "title": "FAQ Management",
-            "description": "Manage Frequently Asked Questions.",
+            "description": "A system for managing Frequently Asked Questions.\nFunctionality to create categories, add/edit questions and answers, reorder items, and manage translations will be implemented here.",
+            "content": "A system for managing Frequently Asked Questions.\nFunctionality to create categories, add/edit questions and answers, reorder items, and manage translations will be implemented here.",
             "addCategory": "Add Category",
             "addQuestion": "Add Question",
             "actions": {
@@ -1367,11 +1368,30 @@
                     "title": "SEO Settings",
                     "description": "Manage search engine optimization settings for this page."
                 },
-                "saveButton": "Save Changes"
+                "saveDraftButton": "Save Draft",
+                "publishButton": "Publish",
+                "scheduleButton": "Schedule Publication",
+                "history": {
+                    "title": "Publication & History",
+                    "description": "Manage the document's status.",
+                    "status": "Status",
+                    "published": "Published",
+                    "lastSaved": "Last saved:",
+                    "viewHistory": "View History"
+                },
+                "scheduling": {
+                    "title": "Scheduling",
+                    "description": "Set a future publication date.",
+                    "enable": "Schedule publication",
+                    "pickDate": "Pick a date",
+                    "timeLabel": "Time"
+                }
             },
             "toast": {
-                "successTitle": "Policy Saved",
-                "successDescription": "The document has been successfully updated."
+                "saveSuccessTitle": "Draft Saved",
+                "saveSuccessDescription": "The document has been successfully saved as a draft.",
+                "publishSuccessTitle": "Policy Published",
+                "publishSuccessDescription": "The document has been successfully published."
             }
         },
         "posts": {
