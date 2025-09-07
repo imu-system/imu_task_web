@@ -15,21 +15,22 @@ import { useState } from 'react';
 
 const mockPolicyData = {
     terms: {
-        title: { fr: "Conditions Générales d'Utilisation", en: "Terms of Service" },
-        seoTitle: { fr: "Conditions d'Utilisation - ImuTask", en: "Terms of Service - ImuTask" },
-        seoDescription: { fr: "Consultez les conditions d'utilisation de ImuTask.", en: "Read the terms of service for ImuTask." },
-        content: { fr: "Contenu des conditions d'utilisation en français...", en: "Content of the terms of service in English..." },
+        title: { fr: "Conditions Générales d'Utilisation", en: "Terms of Service", jp: "利用規約" },
+        seoTitle: { fr: "Conditions d'Utilisation - ImuTask", en: "Terms of Service - ImuTask", jp: "利用規約 - ImuTask" },
+        seoDescription: { fr: "Consultez les conditions d'utilisation de ImuTask.", en: "Read the terms of service for ImuTask.", jp: "ImuTaskの利用規約をお読みください。" },
+        content: { fr: "Contenu des conditions d'utilisation en français...", en: "Content of the terms of service in English...", jp: "フランス語の利用規約の内容..." },
     },
     privacy: {
-        title: { fr: "Politique de Confidentialité", en: "Privacy Policy" },
-        seoTitle: { fr: "Politique de Confidentialité - ImuTask", en: "Privacy Policy - ImuTask" },
-        seoDescription: { fr: "Notre engagement pour la protection de vos données.", en: "Our commitment to protecting your data." },
-        content: { fr: "Contenu de la politique de confidentialité en français...", en: "Content of the privacy policy in English..." },
+        title: { fr: "Politique de Confidentialité", en: "Privacy Policy", jp: "プライバシーポリシー" },
+        seoTitle: { fr: "Politique de Confidentialité - ImuTask", en: "Privacy Policy - ImuTask", jp: "プライバシーポリシー - ImuTask" },
+        seoDescription: { fr: "Notre engagement pour la protection de vos données.", en: "Our commitment to protecting your data.", jp: "お客様のデータを保護するための当社の取り組み。" },
+        content: { fr: "Contenu de la politique de confidentialité en français...", en: "Content of the privacy policy in English...", jp: "フランス語のプライバシーポリシーの内容..." },
     }
 }
 
 export default function AdminPoliciesPage() {
     const t = useTranslations('AdminCmsPage.policies');
+    const tLang = useTranslations('Languages');
     const { toast } = useToast();
     const [isSaving, setIsSaving] = useState(false);
 
@@ -53,8 +54,9 @@ export default function AdminPoliciesPage() {
             <CardContent className="space-y-8">
                 <Tabs defaultValue="fr" className="w-full">
                     <TabsList>
-                        <TabsTrigger value="fr">Français</TabsTrigger>
-                        <TabsTrigger value="en">English</TabsTrigger>
+                        <TabsTrigger value="fr">{tLang('fr')}</TabsTrigger>
+                        <TabsTrigger value="en">{tLang('en')}</TabsTrigger>
+                        <TabsTrigger value="jp">{tLang('jp')}</TabsTrigger>
                     </TabsList>
                     <TabsContent value="fr" className="space-y-4 pt-4">
                         <div className="space-y-2">
@@ -75,6 +77,17 @@ export default function AdminPoliciesPage() {
                         <div className="space-y-2">
                             <Label htmlFor={`${policyType}-content-en`}>{t('form.fields.content')}</Label>
                             <Textarea id={`${policyType}-content-en`} rows={15} defaultValue={mockPolicyData[policyType].content.en} />
+                            <p className="text-xs text-muted-foreground">{t('form.fields.markdown')}</p>
+                        </div>
+                    </TabsContent>
+                     <TabsContent value="jp" className="space-y-4 pt-4">
+                         <div className="space-y-2">
+                            <Label htmlFor={`${policyType}-title-jp`}>{t('form.fields.pageTitle')}</Label>
+                            <Input id={`${policyType}-title-jp`} defaultValue={mockPolicyData[policyType].title.jp}/>
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor={`${policyType}-content-jp`}>{t('form.fields.content')}</Label>
+                            <Textarea id={`${policyType}-content-jp`} rows={15} defaultValue={mockPolicyData[policyType].content.jp} />
                             <p className="text-xs text-muted-foreground">{t('form.fields.markdown')}</p>
                         </div>
                     </TabsContent>
@@ -101,6 +114,14 @@ export default function AdminPoliciesPage() {
                          <div className="space-y-2">
                             <Label htmlFor={`${policyType}-seo-desc-en`}>{t('form.fields.seoDescription')} (EN)</Label>
                             <Textarea id={`${policyType}-seo-desc-en`} rows={2} defaultValue={mockPolicyData[policyType].seoDescription.en}/>
+                        </div>
+                         <div className="space-y-2">
+                            <Label htmlFor={`${policyType}-seo-title-jp`}>{t('form.fields.seoTitle')} (JP)</Label>
+                            <Input id={`${policyType}-seo-title-jp`} defaultValue={mockPolicyData[policyType].seoTitle.jp}/>
+                        </div>
+                         <div className="space-y-2">
+                            <Label htmlFor={`${policyType}-seo-desc-jp`}>{t('form.fields.seoDescription')} (JP)</Label>
+                            <Textarea id={`${policyType}-seo-desc-jp`} rows={2} defaultValue={mockPolicyData[policyType].seoDescription.jp}/>
                         </div>
                     </div>
                 </div>

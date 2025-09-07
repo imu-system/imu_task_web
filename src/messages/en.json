@@ -51,6 +51,11 @@
         "fr": "Français",
         "en": "English"
     },
+    "Languages": {
+        "fr": "French",
+        "en": "English",
+        "jp": "Japanese"
+    },
     "DashboardNav": {
         "dashboard": "Dashboard",
         "createTask": "Create task",
@@ -264,7 +269,7 @@
         "cardTitle": "Category Details",
         "cardDescription": "Provide the necessary information for the category.",
         "nameLabel": "Name",
-        "namePlaceholderFR": "e.g., Ménage à domicile",
+        "namePlaceholderFR": "e.g., Home Cleaning",
         "namePlaceholderEN": "e.g., Home Cleaning",
         "namePlaceholderJP": "e.g., ホームクリーニング",
         "slugLabel": "Slug",
@@ -288,7 +293,7 @@
             "translations": "Translations",
             "fr": "Français",
             "en": "English",
-            "jp": "日本語"
+            "jp": "Japanese"
         },
         "cardTitleGeneral": "General Details",
         "cardDescriptionGeneral": "Manage general settings of the category.",

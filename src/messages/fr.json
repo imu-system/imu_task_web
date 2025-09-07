@@ -51,6 +51,11 @@
         "fr": "Français",
         "en": "English"
     },
+    "Languages": {
+        "fr": "Français",
+        "en": "Anglais",
+        "jp": "Japonais"
+    },
     "DashboardNav": {
         "dashboard": "Dashboard",
         "createTask": "Créer une mission",
@@ -287,8 +292,8 @@
             "general": "Général",
             "translations": "Traductions",
             "fr": "Français",
-            "en": "English",
-            "jp": "日本語"
+            "en": "Anglais",
+            "jp": "Japonais"
         },
         "cardTitleGeneral": "Détails Généraux",
         "cardDescriptionGeneral": "Gérez les paramètres généraux de la catégorie.",
