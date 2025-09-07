@@ -1309,8 +1309,7 @@
         },
         "faq": {
             "title": "FAQ Management",
-            "description": "A system for managing Frequently Asked Questions.",
-            "content": "Functionality to create categories, add/edit questions and answers, reorder items, and manage translations will be implemented here.",
+            "description": "Manage Frequently Asked Questions.",
             "addCategory": "Add Category",
             "addQuestion": "Add Question",
             "actions": {
@@ -1343,7 +1342,6 @@
         "policies": {
             "title": "Policy Management",
             "description": "Edit legal documents for the platform.",
-            "content": "An editor for the Terms of Service and Privacy Policy pages will be implemented here.",
             "tabs": {
                 "terms": "Terms of Service",
                 "privacy": "Privacy Policy"
@@ -1396,8 +1394,28 @@
         },
         "posts": {
             "title": "Blog/News Management",
-            "description": "Under Construction",
-            "content": "A system for writing, scheduling, and publishing blog posts or news articles will be implemented here."
+            "description": "List of all blog posts and news articles.",
+            "noPosts": "No posts created yet.",
+            "status": {
+                "draft": "Draft",
+                "published": "Published",
+                "archived": "Archived"
+            },
+            "table": {
+                "header": {
+                    "title": "Title",
+                    "author": "Author",
+                    "status": "Status",
+                    "publishedAt": "Published At"
+                }
+            },
+            "actions": {
+                "title": "Actions",
+                "create": "Write Post",
+                "edit": "Edit",
+                "view": "Preview Post",
+                "delete": "Delete"
+            }
         }
     }
 }
