@@ -1415,7 +1415,60 @@
                 "edit": "Edit",
                 "view": "Preview Post",
                 "delete": "Delete"
+            },
+            "edit": {
+                "title": "Edit Post",
+                "subtitle": "Editing post ID: {postId}",
+                "previewButton": "Preview",
+                "saveButton": "Save Changes",
+                "toast": {
+                    "successTitle": "Post Saved",
+                    "successDescription": "The post has been successfully saved.",
+                    "notFoundTitle": "Post Not Found",
+                    "notFoundDescription": "Could not find the requested post."
+                },
+                "languages": {
+                    "fr": "French",
+                    "en": "English",
+                    "jp": "Japanese"
+                },
+                "mainContent": {
+                    "title": "Main Content",
+                    "postTitle": "Post Title",
+                    "content": "Content"
+                },
+                "excerpt": {
+                    "title": "Excerpt",
+                    "label": "Excerpt"
+                },
+                "seo": {
+                    "title": "SEO Settings",
+                    "description": "Configure search engine visibility.",
+                    "slug": "Slug",
+                    "seoTitle": "SEO Title",
+                    "seoDescription": "SEO Description"
+                },
+                "publishing": {
+                    "title": "Publishing",
+                    "status": "Status",
+                    "publishDate": "Publish Date",
+                    "author": "Author",
+                    "indexation": "Allow search engine indexation"
+                },
+                "organization": {
+                    "title": "Organization",
+                    "tags": "Tags",
+                    "tagsPlaceholder": "e.g., news, feature",
+                    "tagsDescription": "Separate tags with a comma."
+                },
+                "featuredImage": {
+                    "title": "Featured Image",
+                    "placeholder": "No image selected",
+                    "button": "Upload Image"
+                }
             }
         }
     }
 }
+
+    

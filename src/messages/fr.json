@@ -1415,7 +1415,60 @@
                 "edit": "Modifier",
                 "view": "Prévisualiser",
                 "delete": "Supprimer"
+            },
+             "edit": {
+                "title": "Modifier l'Article",
+                "subtitle": "Modification de l'article ID : {postId}",
+                "previewButton": "Aperçu",
+                "saveButton": "Enregistrer",
+                "toast": {
+                    "successTitle": "Article Enregistré",
+                    "successDescription": "L'article a été enregistré avec succès.",
+                    "notFoundTitle": "Article Non Trouvé",
+                    "notFoundDescription": "Impossible de trouver l'article demandé."
+                },
+                "languages": {
+                    "fr": "Français",
+                    "en": "Anglais",
+                    "jp": "Japonais"
+                },
+                "mainContent": {
+                    "title": "Contenu Principal",
+                    "postTitle": "Titre de l'article",
+                    "content": "Contenu"
+                },
+                "excerpt": {
+                    "title": "Extrait",
+                    "label": "Extrait"
+                },
+                "seo": {
+                    "title": "Paramètres SEO",
+                    "description": "Configurez la visibilité pour les moteurs de recherche.",
+                    "slug": "Slug",
+                    "seoTitle": "Titre SEO",
+                    "seoDescription": "Description SEO"
+                },
+                "publishing": {
+                    "title": "Publication",
+                    "status": "Statut",
+                    "publishDate": "Date de publication",
+                    "author": "Auteur",
+                    "indexation": "Autoriser l'indexation par les moteurs de recherche"
+                },
+                "organization": {
+                    "title": "Organisation",
+                    "tags": "Étiquettes",
+                    "tagsPlaceholder": "Ex: actu, fonctionnalité",
+                    "tagsDescription": "Séparez les étiquettes par une virgule."
+                },
+                "featuredImage": {
+                    "title": "Image à la Une",
+                    "placeholder": "Aucune image sélectionnée",
+                    "button": "Télécharger une image"
+                }
             }
         }
     }
 }
+
+    
