@@ -1416,7 +1416,7 @@
                 "view": "Prévisualiser",
                 "delete": "Supprimer"
             },
-             "edit": {
+            "edit": {
                 "title": "Modifier l'Article",
                 "subtitle": "Modification de l'article ID : {postId}",
                 "previewButton": "Aperçu",
@@ -1465,6 +1465,10 @@
                     "title": "Image à la Une",
                     "placeholder": "Aucune image sélectionnée",
                     "button": "Télécharger une image"
+                },
+                "status": {
+                    "draft": "Brouillon",
+                    "published": "Publié"
                 }
             },
             "preview": {

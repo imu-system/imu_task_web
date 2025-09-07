@@ -1465,6 +1465,10 @@
                     "title": "Featured Image",
                     "placeholder": "No image selected",
                     "button": "Upload Image"
+                },
+                "status": {
+                    "draft": "Draft",
+                    "published": "Published"
                 }
             },
             "preview": {
