@@ -1466,6 +1466,12 @@
                     "placeholder": "Aucune image sélectionnée",
                     "button": "Télécharger une image"
                 }
+            },
+            "preview": {
+                "title": "Mode Aperçu",
+                "description": "Vous prévisualisez l'article avec l'ID : {postId}",
+                "contentPlaceholder": "L'aperçu en direct du contenu de l'article sera affiché ici.",
+                "backToEdit": "Retour à l'éditeur"
             }
         }
     }

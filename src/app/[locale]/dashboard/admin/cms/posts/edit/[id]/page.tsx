@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Loader2, ArrowLeft, FileText, Calendar as CalendarIcon } from 'lucide-react';
+import { Loader2, ArrowLeft, FileText, Calendar as CalendarIcon, Eye } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
@@ -175,7 +175,12 @@ export default function AdminEditPostPage() {
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
-                        <Button variant="ghost">{t('previewButton')}</Button>
+                        <Button variant="ghost" asChild>
+                            <Link href={`/dashboard/admin/cms/posts/${postId}/preview`} target="_blank">
+                                <Eye className="mr-2"/>
+                                {t('previewButton')}
+                            </Link>
+                        </Button>
                         <Button type="submit" disabled={isSaving}>
                             {isSaving && <Loader2 className="mr-2 animate-spin"/>}
                             {t('saveButton')}

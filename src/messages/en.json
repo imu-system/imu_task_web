@@ -1466,6 +1466,12 @@
                     "placeholder": "No image selected",
                     "button": "Upload Image"
                 }
+            },
+            "preview": {
+                "title": "Preview Mode",
+                "description": "You are previewing the post with ID: {postId}",
+                "contentPlaceholder": "The live preview of the post content will be rendered here.",
+                "backToEdit": "Back to Editor"
             }
         }
     }
