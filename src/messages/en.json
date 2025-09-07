@@ -1540,10 +1540,24 @@
         "fees": {
             "title": "Commission Management",
             "subtitle": "Define the platform's commission rates.",
-            "card": {
-                "title": "Under Construction",
-                "description": "This section is dedicated to managing platform commissions.",
-                "content": "Functionality for defining global, per-category, or per-city commission rates will be implemented here."
+            "global": {
+                "title": "Global Commission",
+                "description": "This rate applies by default to all transactions.",
+                "label": "Global commission rate (%)"
+            },
+            "categories": {
+                "title": "Category-specific Commissions",
+                "description": "Define specific rates that will override the global rate for certain categories.",
+                "table": {
+                    "name": "Category Name",
+                    "rate": "Commission Rate (%)",
+                    "placeholder": "Leave empty for global rate"
+                }
+            },
+            "saveButton": "Save Commissions",
+            "toast": {
+                "successTitle": "Commissions Saved",
+                "successDescription": "The commission rates have been successfully updated."
             }
         },
         "guidance": {

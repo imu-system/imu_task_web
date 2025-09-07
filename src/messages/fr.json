@@ -1540,10 +1540,24 @@
         "fees": {
             "title": "Gestion des Commissions",
             "subtitle": "Définissez les taux de commission de la plateforme.",
-            "card": {
-                "title": "En construction",
-                "description": "Cette section est dédiée à la gestion des commissions de la plateforme.",
-                "content": "Les fonctionnalités pour définir des taux de commission globaux, par catégorie, ou par ville seront implémentées ici."
+            "global": {
+                "title": "Commission Globale",
+                "description": "Ce taux s'applique par défaut à toutes les transactions.",
+                "label": "Taux de commission global (%)"
+            },
+            "categories": {
+                "title": "Commissions par Catégorie",
+                "description": "Définissez des taux spécifiques qui remplaceront le taux global pour certaines catégories.",
+                "table": {
+                    "name": "Nom de la Catégorie",
+                    "rate": "Taux de Commission (%)",
+                    "placeholder": "Laisser vide pour global"
+                }
+            },
+            "saveButton": "Enregistrer les commissions",
+            "toast": {
+                "successTitle": "Commissions Enregistrées",
+                "successDescription": "Les taux de commission ont été mis à jour avec succès."
             }
         },
         "guidance": {
