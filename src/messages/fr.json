@@ -1469,14 +1469,15 @@
             },
             "preview": {
                 "title": "Mode Aperçu",
-                "description": "Vous prévisualisez l'article avec l'ID : {postId}",
-                "contentPlaceholder": "L'aperçu en direct du contenu de l'article sera affiché ici.",
-                "backToEdit": "Retour à l'éditeur"
+                "description": "Vous prévisualisez un brouillon de votre article.",
+                "backToEdit": "Retour à l'éditeur",
+                "publish": "Publier",
+                "notFound": {
+                    "title": "Article non trouvé",
+                    "description": "L'article que vous essayez de prévisualiser n'existe pas ou n'a pas pu être chargé.",
+                    "backToList": "Retour à la liste des articles"
+                }
             }
         }
     }
 }
-
-    
-
-    

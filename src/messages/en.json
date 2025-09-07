@@ -1469,14 +1469,15 @@
             },
             "preview": {
                 "title": "Preview Mode",
-                "description": "You are previewing the post with ID: {postId}",
-                "contentPlaceholder": "The live preview of the post content will be rendered here.",
-                "backToEdit": "Back to Editor"
+                "description": "You are previewing a draft of your post.",
+                "backToEdit": "Back to Editor",
+                "publish": "Publish",
+                "notFound": {
+                    "title": "Post Not Found",
+                    "description": "The post you are trying to preview does not exist or could not be loaded.",
+                    "backToList": "Back to Post List"
+                }
             }
         }
     }
 }
-
-    
-
-    
