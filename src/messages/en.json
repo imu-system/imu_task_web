@@ -1309,9 +1309,13 @@
             "form": {
                 "titleNew": "Create a New Page",
                 "subtitleNew": "Fill in the details to create a new content page.",
+                "titleEdit": "Edit Page",
+                "subtitleEdit": "You are editing the page with ID: {pageId}",
                 "saveButton": "Save Page",
                 "toastSuccessTitle": "Page Created",
                 "toastSuccessDescription": "The new page has been successfully created as a draft.",
+                "toastUpdateSuccessTitle": "Page Updated",
+                "toastUpdateSuccessDescription": "The page has been successfully updated.",
                 "languages": {
                     "fr": "French",
                     "en": "English",
@@ -1518,5 +1522,3 @@
         }
     }
 }
-
-    

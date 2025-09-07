@@ -96,7 +96,7 @@ export default function AdminPagesPage() {
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
                                                 <DropdownMenuItem asChild>
-                                                    <Link href="#">{t('actions.edit')}</Link>
+                                                    <Link href={`/dashboard/admin/cms/pages/edit/${page.id}`}>{t('actions.edit')}</Link>
                                                 </DropdownMenuItem>
                                                 <DropdownMenuItem asChild>
                                                      <Link href={`/${page.slug}`} target="_blank">{t('actions.view')}</Link>
@@ -117,5 +117,3 @@ export default function AdminPagesPage() {
         </Card>
     );
 }
-
-    

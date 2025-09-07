@@ -1309,9 +1309,13 @@
             "form": {
                 "titleNew": "Créer une nouvelle page",
                 "subtitleNew": "Remplissez les détails pour créer une nouvelle page de contenu.",
+                "titleEdit": "Modifier la Page",
+                "subtitleEdit": "Vous modifiez la page avec l'ID : {pageId}",
                 "saveButton": "Enregistrer la page",
                 "toastSuccessTitle": "Page Créée",
                 "toastSuccessDescription": "La nouvelle page a été créée avec succès en tant que brouillon.",
+                "toastUpdateSuccessTitle": "Page mise à jour",
+                "toastUpdateSuccessDescription": "La page a été mise à jour avec succès.",
                 "languages": {
                     "fr": "Français",
                     "en": "Anglais",
@@ -1518,5 +1522,3 @@
         }
     }
 }
-
-    
