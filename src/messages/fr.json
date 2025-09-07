@@ -1309,8 +1309,8 @@
         },
         "faq": {
             "title": "Gestion de la FAQ",
-            "description": "Un système pour gérer les Questions Fréquemment Posées.\nLes fonctionnalités pour créer des catégories, ajouter/modifier des questions et réponses, réorganiser les éléments et gérer les traductions seront implémentées ici.",
-            "content": "Un système pour gérer les Questions Fréquemment Posées.\nLes fonctionnalités pour créer des catégories, ajouter/modifier des questions et réponses, réorganiser les éléments et gérer les traductions seront implémentées ici.",
+            "description": "Un système pour gérer les Questions Fréquemment Posées.",
+            "content": "Les fonctionnalités pour créer des catégories, ajouter/modifier des questions et réponses, réorganiser les éléments et gérer les traductions seront implémentées ici.",
             "addCategory": "Ajouter une catégorie",
             "addQuestion": "Ajouter une question",
             "actions": {

@@ -1309,8 +1309,8 @@
         },
         "faq": {
             "title": "FAQ Management",
-            "description": "A system for managing Frequently Asked Questions.\nFunctionality to create categories, add/edit questions and answers, reorder items, and manage translations will be implemented here.",
-            "content": "A system for managing Frequently Asked Questions.\nFunctionality to create categories, add/edit questions and answers, reorder items, and manage translations will be implemented here.",
+            "description": "A system for managing Frequently Asked Questions.",
+            "content": "Functionality to create categories, add/edit questions and answers, reorder items, and manage translations will be implemented here.",
             "addCategory": "Add Category",
             "addQuestion": "Add Question",
             "actions": {
