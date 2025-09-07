@@ -1305,6 +1305,35 @@
                 "edit": "Modifier",
                 "view": "Voir la page",
                 "delete": "Supprimer"
+            },
+            "form": {
+                "titleNew": "Créer une nouvelle page",
+                "subtitleNew": "Remplissez les détails pour créer une nouvelle page de contenu.",
+                "saveButton": "Enregistrer la page",
+                "toastSuccessTitle": "Page Créée",
+                "toastSuccessDescription": "La nouvelle page a été créée avec succès en tant que brouillon.",
+                "languages": {
+                    "fr": "Français",
+                    "en": "Anglais",
+                    "jp": "Japonais"
+                },
+                "mainContent": {
+                    "title": "Contenu Principal",
+                    "pageTitle": "Titre de la page",
+                    "content": "Contenu"
+                },
+                "seo": {
+                    "title": "Paramètres SEO",
+                    "description": "Configurez la visibilité pour les moteurs de recherche.",
+                    "slug": "Slug",
+                    "seoTitle": "Titre SEO",
+                    "seoDescription": "Description SEO"
+                },
+                "publishing": {
+                    "title": "Publication",
+                    "status": "Statut",
+                    "indexation": "Autoriser l'indexation par les moteurs de recherche"
+                }
             }
         },
         "faq": {
@@ -1489,3 +1518,5 @@
         }
     }
 }
+
+    

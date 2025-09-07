@@ -44,7 +44,7 @@ export default function AdminPagesPage() {
                         <CardDescription>{t('description')}</CardDescription>
                     </div>
                     <Button asChild>
-                        <Link href="#">
+                        <Link href="/dashboard/admin/cms/pages/new">
                              <PlusCircle className="mr-2"/>
                             {t('actions.create')}
                         </Link>
@@ -117,3 +117,5 @@ export default function AdminPagesPage() {
         </Card>
     );
 }
+
+    

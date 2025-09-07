@@ -1305,6 +1305,35 @@
                 "edit": "Edit",
                 "view": "View Page",
                 "delete": "Delete"
+            },
+            "form": {
+                "titleNew": "Create a New Page",
+                "subtitleNew": "Fill in the details to create a new content page.",
+                "saveButton": "Save Page",
+                "toastSuccessTitle": "Page Created",
+                "toastSuccessDescription": "The new page has been successfully created as a draft.",
+                "languages": {
+                    "fr": "French",
+                    "en": "English",
+                    "jp": "Japanese"
+                },
+                "mainContent": {
+                    "title": "Main Content",
+                    "pageTitle": "Page Title",
+                    "content": "Content"
+                },
+                "seo": {
+                    "title": "SEO Settings",
+                    "description": "Configure search engine visibility.",
+                    "slug": "Slug",
+                    "seoTitle": "SEO Title",
+                    "seoDescription": "SEO Description"
+                },
+                "publishing": {
+                    "title": "Publishing",
+                    "status": "Status",
+                    "indexation": "Allow search engine indexation"
+                }
             }
         },
         "faq": {
@@ -1489,3 +1518,5 @@
         }
     }
 }
+
+    
