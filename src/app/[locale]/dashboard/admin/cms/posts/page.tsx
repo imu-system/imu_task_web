@@ -109,7 +109,7 @@ export default function AdminPostsPage() {
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
                                                 <DropdownMenuItem asChild>
-                                                    <Link href="#">{t('actions.edit')}</Link>
+                                                    <Link href={`/dashboard/admin/cms/posts/edit/${post.id}`}>{t('actions.edit')}</Link>
                                                 </DropdownMenuItem>
                                                 <DropdownMenuItem asChild>
                                                      <Link href="#" target="_blank">{t('actions.view')}</Link>
