@@ -1341,9 +1341,11 @@
             },
             "view": {
                 "title": "Aperçu de la Page",
-                "cardTitle": "Mode Aperçu",
-                "cardDescription": "Ceci est un aperçu de la page de contenu. La mise en page peut différer de la page publique finale.",
-                "contentPlaceholder": "Le contenu de la page sera rendu ici..."
+                "backToList": "Retour à la liste des pages",
+                "notFound": "Page non trouvée.",
+                "defaultTitle": "Page sans titre",
+                "contentTitle": "Contenu de la page",
+                "contentPlaceholder": "Cette page n'a pas encore de contenu."
             }
         },
         "faq": {
