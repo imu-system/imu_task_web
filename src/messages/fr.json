@@ -229,6 +229,7 @@
         "quickActionReviews": "Gérer les Avis",
         "quickActionDisputes": "Gérer les Litiges",
         "quickActionNotifications": "Gérer les Notifications",
+        "quickActionCms": "Contenu (CMS)",
         "actionView": "Voir"
     },
     "AdminCategoriesPage": {

@@ -229,6 +229,7 @@
         "quickActionReviews": "Manage Reviews",
         "quickActionDisputes": "Manage Disputes",
         "quickActionNotifications": "Manage Notifications",
+        "quickActionCms": "Content (CMS)",
         "actionView": "View"
     },
     "AdminCategoriesPage": {
