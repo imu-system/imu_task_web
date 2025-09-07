@@ -266,6 +266,7 @@
         "nameLabel": "Nom",
         "namePlaceholderFR": "Ex: Ménage à domicile",
         "namePlaceholderEN": "Ex: Home Cleaning",
+        "namePlaceholderJP": "例：ホームクリーニング",
         "slugLabel": "Slug",
         "slugPlaceholder": "Ex: menage-domicile",
         "descriptionLabel": "Description",
@@ -284,7 +285,10 @@
         "toastUpdateErrorDescription": "Impossible de mettre à jour la catégorie.",
         "tabs": {
             "general": "Général",
-            "translations": "Traductions"
+            "translations": "Traductions",
+            "fr": "Français",
+            "en": "English",
+            "jp": "日本語"
         },
         "cardTitleGeneral": "Détails Généraux",
         "cardDescriptionGeneral": "Gérez les paramètres généraux de la catégorie.",

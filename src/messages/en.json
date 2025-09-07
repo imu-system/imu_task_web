@@ -266,6 +266,7 @@
         "nameLabel": "Name",
         "namePlaceholderFR": "e.g., Ménage à domicile",
         "namePlaceholderEN": "e.g., Home Cleaning",
+        "namePlaceholderJP": "e.g., ホームクリーニング",
         "slugLabel": "Slug",
         "slugPlaceholder": "e.g., home-cleaning",
         "descriptionLabel": "Description",
@@ -284,7 +285,10 @@
         "toastUpdateErrorDescription": "Could not update the category.",
         "tabs": {
             "general": "General",
-            "translations": "Translations"
+            "translations": "Translations",
+            "fr": "Français",
+            "en": "English",
+            "jp": "日本語"
         },
         "cardTitleGeneral": "General Details",
         "cardDescriptionGeneral": "Manage general settings of the category.",

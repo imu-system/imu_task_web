@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useAuth } from '@/hooks/use-auth';
@@ -27,6 +28,8 @@ import {
 } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
 import { createServiceCategory } from '@/lib/data';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
 
 const categoryFormSchema = z.object({
   name: z.object({
@@ -34,7 +37,7 @@ const categoryFormSchema = z.object({
     en: z.string().optional(),
     jp: z.string().optional(),
   }),
-  slug: z.string().min(3, 'Le slug doit contenir au moins 3 caractères.').regex(/^[a-z0-9]+(?:-[a-z0_9]+)*$/, 'Slug invalide (doit être en minuscules, sans espaces, ex: "home-cleaning").'),
+  slug: z.string().min(3, 'Le slug doit contenir au moins 3 caractères.').regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Slug invalide (doit être en minuscules, sans espaces, ex: "home-cleaning").'),
   description: z.object({
       fr: z.string().optional(),
       en: z.string().optional(),
@@ -57,9 +60,9 @@ export default function AdminNewCategoryPage() {
     const form = useForm<CategoryFormValues>({
         resolver: zodResolver(categoryFormSchema),
         defaultValues: {
-            name: { fr: '' },
+            name: { fr: '', en: '', jp: '' },
             slug: '',
-            description: { fr: '' },
+            description: { fr: '', en: '', jp: '' },
             displayOrder: 10,
             isActive: true,
         },
@@ -154,48 +157,121 @@ export default function AdminNewCategoryPage() {
             <CardContent>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <FormField
-                                control={form.control}
-                                name="name.fr"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>{tForm('nameLabel')}</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder={tForm('namePlaceholderFR')} {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="slug"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>{tForm('slugLabel')}</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder={tForm('slugPlaceholder')} {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
+
                         <FormField
                             control={form.control}
-                            name="description.fr"
+                            name="slug"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>{tForm('descriptionLabel')}</FormLabel>
+                                    <FormLabel>{tForm('slugLabel')}</FormLabel>
                                     <FormControl>
-                                        <Textarea placeholder={tForm('descriptionPlaceholder')} {...field} />
+                                        <Input placeholder={tForm('slugPlaceholder')} {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                        <Tabs defaultValue="fr">
+                            <TabsList>
+                                <TabsTrigger value="fr">{tForm('tabs.fr')}</TabsTrigger>
+                                <TabsTrigger value="en">{tForm('tabs.en')}</TabsTrigger>
+                                <TabsTrigger value="jp">{tForm('tabs.jp')}</TabsTrigger>
+                            </TabsList>
+                            <TabsContent value="fr" className="pt-4">
+                                 <div className="space-y-4">
+                                     <FormField
+                                        control={form.control}
+                                        name="name.fr"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>{tForm('nameLabel')}</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder={tForm('namePlaceholderFR')} {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                     <FormField
+                                        control={form.control}
+                                        name="description.fr"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>{tForm('descriptionLabel')}</FormLabel>
+                                                <FormControl>
+                                                    <Textarea placeholder={tForm('descriptionPlaceholder')} {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                 </div>
+                            </TabsContent>
+                             <TabsContent value="en" className="pt-4">
+                                 <div className="space-y-4">
+                                     <FormField
+                                        control={form.control}
+                                        name="name.en"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>{tForm('nameLabel')}</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder={tForm('namePlaceholderEN')} {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                     <FormField
+                                        control={form.control}
+                                        name="description.en"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>{tForm('descriptionLabel')}</FormLabel>
+                                                <FormControl>
+                                                    <Textarea placeholder={tForm('descriptionPlaceholder')} {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                 </div>
+                            </TabsContent>
+                             <TabsContent value="jp" className="pt-4">
+                                 <div className="space-y-4">
+                                     <FormField
+                                        control={form.control}
+                                        name="name.jp"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>{tForm('nameLabel')}</FormLabel>
+                                                <FormControl>
+                                                    <Input placeholder={tForm('namePlaceholderJP')} {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                     <FormField
+                                        control={form.control}
+                                        name="description.jp"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>{tForm('descriptionLabel')}</FormLabel>
+                                                <FormControl>
+                                                    <Textarea placeholder={tForm('descriptionPlaceholder')} {...field} />
+                                                </FormControl>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
+                                 </div>
+                            </TabsContent>
+                        </Tabs>
+
+                        
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
                             <FormField
                                 control={form.control}
                                 name="displayOrder"
@@ -246,5 +322,3 @@ export default function AdminNewCategoryPage() {
     </div>
   );
 }
-
-    
