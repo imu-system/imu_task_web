@@ -75,7 +75,8 @@
         "reviews": "Avis",
         "disputes": "Litiges",
         "notifications": "Notifications",
-        "cms": "Contenu (CMS)"
+        "cms": "Contenu (CMS)",
+        "pricing": "Tarification"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -1495,7 +1496,11 @@
                     "status": "Statut",
                     "publishDate": "Date de publication",
                     "author": "Auteur",
-                    "indexation": "Autoriser l'indexation par les moteurs de recherche"
+                    "indexation": "Autoriser l'indexation par les moteurs de recherche",
+                    "status": {
+                        "draft": "Brouillon",
+                        "published": "Publié"
+                    }
                 },
                 "organization": {
                     "title": "Organisation",
@@ -1507,10 +1512,6 @@
                     "title": "Image à la Une",
                     "placeholder": "Aucune image sélectionnée",
                     "button": "Télécharger une image"
-                },
-                "status": {
-                    "draft": "Brouillon",
-                    "published": "Publié"
                 }
             },
             "preview": {
@@ -1527,6 +1528,40 @@
             "new": {
                 "title": "Rédiger un nouvel article",
                 "subtitle": "Remplissez les champs ci-dessous pour créer un nouvel article de blog."
+            }
+        }
+    },
+    "AdminPricingLayout": {
+        "fees": "Commissions",
+        "guidance": "Tarifs Conseillés",
+        "coupons": "Codes Promo"
+    },
+    "AdminPricingPage": {
+        "fees": {
+            "title": "Gestion des Commissions",
+            "subtitle": "Définissez les taux de commission de la plateforme.",
+            "card": {
+                "title": "En construction",
+                "description": "Cette section est dédiée à la gestion des commissions de la plateforme.",
+                "content": "Les fonctionnalités pour définir des taux de commission globaux, par catégorie, ou par ville seront implémentées ici."
+            }
+        },
+        "guidance": {
+            "title": "Tarifs Conseillés",
+            "subtitle": "Aidez les utilisateurs en fournissant des fourchettes de prix.",
+            "card": {
+                "title": "En construction",
+                "description": "Cette section est dédiée à la gestion des fourchettes de prix conseillés.",
+                "content": "Les fonctionnalités pour définir des prix conseillés par catégorie de service et/ou par ville seront implémentées ici."
+            }
+        },
+        "coupons": {
+            "title": "Gestion des Codes Promo",
+            "subtitle": "Créez et gérez les offres promotionnelles.",
+            "card": {
+                "title": "En construction",
+                "description": "Cette section est dédiée à la gestion des codes promotionnels.",
+                "content": "Les fonctionnalités pour créer des codes promo (montant/pourcentage, conditions, durée de validité, quota d'utilisation) et suivre leur utilisation seront implémentées ici."
             }
         }
     }

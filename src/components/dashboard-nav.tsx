@@ -35,6 +35,7 @@ import {
   BadgeAlert,
   Bell,
   FileText,
+  DollarSign,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -148,6 +149,14 @@ export function DashboardNav() {
                         <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/payments')}>
                             <Wallet />
                             <span>{t('payments')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+                 <SidebarMenuItem>
+                    <Link href="/dashboard/admin/pricing/fees">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/pricing')}>
+                            <DollarSign />
+                            <span>{t('pricing')}</span>
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>

@@ -75,7 +75,8 @@
         "reviews": "Reviews",
         "disputes": "Disputes",
         "notifications": "Notifications",
-        "cms": "Content (CMS)"
+        "cms": "Content (CMS)",
+        "pricing": "Pricing"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -1495,7 +1496,11 @@
                     "status": "Status",
                     "publishDate": "Publish Date",
                     "author": "Author",
-                    "indexation": "Allow search engine indexation"
+                    "indexation": "Allow search engine indexation",
+                    "status": {
+                        "draft": "Draft",
+                        "published": "Published"
+                    }
                 },
                 "organization": {
                     "title": "Organization",
@@ -1507,10 +1512,6 @@
                     "title": "Featured Image",
                     "placeholder": "No image selected",
                     "button": "Upload Image"
-                },
-                "status": {
-                    "draft": "Draft",
-                    "published": "Published"
                 }
             },
             "preview": {
@@ -1527,6 +1528,40 @@
             "new": {
                 "title": "Write a New Post",
                 "subtitle": "Fill in the details below to create a new blog post."
+            }
+        }
+    },
+    "AdminPricingLayout": {
+        "fees": "Commissions",
+        "guidance": "Recommended Prices",
+        "coupons": "Promo Codes"
+    },
+    "AdminPricingPage": {
+        "fees": {
+            "title": "Commission Management",
+            "subtitle": "Define the platform's commission rates.",
+            "card": {
+                "title": "Under Construction",
+                "description": "This section is dedicated to managing platform commissions.",
+                "content": "Functionality for defining global, per-category, or per-city commission rates will be implemented here."
+            }
+        },
+        "guidance": {
+            "title": "Price Guidance",
+            "subtitle": "Help users by providing recommended price ranges.",
+            "card": {
+                "title": "Under Construction",
+                "description": "This section is dedicated to managing recommended price ranges.",
+                "content": "Functionality for setting recommended prices per service category and/or city will be implemented here."
+            }
+        },
+        "coupons": {
+            "title": "Promo Code Management",
+            "subtitle": "Create and manage promotional offers.",
+            "card": {
+                "title": "Under Construction",
+                "description": "This section is dedicated to managing promotional codes.",
+                "content": "Functionality for creating promo codes (amount/percentage, conditions, validity period, usage quota) and tracking their usage will be implemented here."
             }
         }
     }
