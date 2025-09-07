@@ -291,7 +291,7 @@
         "tabs": {
             "general": "General",
             "translations": "Translations",
-            "fr": "Français",
+            "fr": "French",
             "en": "English",
             "jp": "Japanese"
         },
@@ -1476,5 +1476,7 @@
         }
     }
 }
+
+    
 
     
