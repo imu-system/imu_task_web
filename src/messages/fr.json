@@ -1554,6 +1554,14 @@
                     "placeholder": "Laisser vide pour global"
                 }
             },
+             "countries": {
+                "title": "Commissions par Pays",
+                "description": "Définissez des taux spécifiques qui remplaceront le taux global pour certains pays.",
+                "table": {
+                    "name": "Nom du Pays",
+                    "rate": "Taux de Commission (%)"
+                }
+            },
             "cities": {
                 "title": "Commissions par Ville",
                 "description": "Définissez des taux spécifiques qui remplaceront le taux global pour certaines villes.",

@@ -1554,6 +1554,14 @@
                     "placeholder": "Leave empty for global rate"
                 }
             },
+            "countries": {
+                "title": "Country-specific Commissions",
+                "description": "Define specific rates that will override the global rate for certain countries.",
+                "table": {
+                    "name": "Country Name",
+                    "rate": "Commission Rate (%)"
+                }
+            },
             "cities": {
                 "title": "City-specific Commissions",
                 "description": "Define specific rates that will override the global rate for certain cities.",

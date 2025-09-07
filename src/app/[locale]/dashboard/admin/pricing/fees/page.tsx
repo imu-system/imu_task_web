@@ -28,14 +28,23 @@ const feesSchema = z.object({
   })).optional(),
   cityOverrides: z.array(z.object({
       city: z.string(),
-      rate: z.coerce.number().min(0).max(100),
+      rate: z.coerce.number().min(0).max(100).optional(),
+  })).optional(),
+  countryOverrides: z.array(z.object({
+      countryCode: z.string(),
+      rate: z.coerce.number().min(0).max(100).optional(),
   })).optional(),
 });
 
 type FeesFormValues = z.infer<typeof feesSchema>;
 
-// Mocking cities for now
+// Mocking data for now
 const mockCities = ["Paris", "Lyon", "Marseille"];
+const mockCountries = [
+    { code: 'FR', name: 'France' },
+    { code: 'BE', name: 'Belgique' },
+    { code: 'US', name: 'United States' },
+];
 
 export default function AdminFeesPage() {
     const { user, loading: authLoading } = useAuth();
@@ -53,6 +62,7 @@ export default function AdminFeesPage() {
             globalRate: 15, // Mock default value
             categoryOverrides: [],
             cityOverrides: [],
+            countryOverrides: [],
         },
     });
 
@@ -69,12 +79,9 @@ export default function AdminFeesPage() {
                 // Fetch current fee settings (mocked for now)
                 const currentFees = {
                     globalRate: 15.0,
-                    categoryOverrides: [
-                        { categoryId: 'cleaning', rate: 20.0 }, // Example override
-                    ],
-                    cityOverrides: [
-                        { city: 'Paris', rate: 18.0 }, // Example city override
-                    ]
+                    categoryOverrides: [ { categoryId: 'cleaning', rate: 20.0 } ],
+                    cityOverrides: [ { city: 'Paris', rate: 18.0 } ],
+                    countryOverrides: [ { countryCode: 'BE', rate: 12.0 } ],
                 };
 
                 const categoryOverrides = fetchedCategories.map(cat => {
@@ -84,14 +91,19 @@ export default function AdminFeesPage() {
                 
                 const cityOverrides = mockCities.map(city => {
                     const existingOverride = currentFees.cityOverrides.find(o => o.city === city);
-                    return { city: city, rate: existingOverride?.rate || undefined };
+                    return { city: city, rate: existingOverride?.rate };
                 });
 
+                const countryOverrides = mockCountries.map(country => {
+                    const existingOverride = currentFees.countryOverrides.find(o => o.countryCode === country.code);
+                    return { countryCode: country.code, rate: existingOverride?.rate };
+                });
 
                 form.reset({
                     globalRate: currentFees.globalRate,
                     categoryOverrides: categoryOverrides,
-                    cityOverrides: cityOverrides as any, // Zod expects number, but we might have undefined
+                    cityOverrides: cityOverrides,
+                    countryOverrides: countryOverrides,
                 });
 
             } catch (error) {
@@ -189,6 +201,47 @@ export default function AdminFeesPage() {
                                              <FormField
                                                 control={form.control}
                                                 name={`categoryOverrides.${index}.rate`}
+                                                render={({ field }) => (
+                                                    <FormItem>
+                                                        <div className="relative">
+                                                            <FormControl>
+                                                                <Input type="number" placeholder={t('categories.table.placeholder')} {...field} />
+                                                            </FormControl>
+                                                            <Percent className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                                                        </div>
+                                                        <FormMessage/>
+                                                    </FormItem>
+                                                )}
+                                             />
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </CardContent>
+                </Card>
+                
+                <Card>
+                    <CardHeader>
+                        <CardTitle>{t('countries.title')}</CardTitle>
+                        <CardDescription>{t('countries.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>{t('countries.table.name')}</TableHead>
+                                    <TableHead className="w-[200px]">{t('countries.table.rate')}</TableHead>
+                                </TableRow>
+                            </TableHeader>
+                            <TableBody>
+                                {mockCountries.map((country, index) => (
+                                    <TableRow key={country.code}>
+                                        <TableCell className="font-medium">{country.name} ({country.code})</TableCell>
+                                        <TableCell>
+                                             <FormField
+                                                control={form.control}
+                                                name={`countryOverrides.${index}.rate`}
                                                 render={({ field }) => (
                                                     <FormItem>
                                                         <div className="relative">
