@@ -145,7 +145,7 @@ export default function AdminDashboardPage() {
                             <Link href="/dashboard/admin/users"><Users2 className="mr-2"/>{t('quickActionUsers')}</Link>
                         </Button>
                         <Button variant="outline" asChild>
-                           <Link href="/dashboard/admin/services/categories"><PlusCircle className="mr-2"/>{t('quickActionCategory')}</Link>
+                           <Link href="/dashboard/admin/services/categories/new"><PlusCircle className="mr-2"/>{t('quickActionCategory')}</Link>
                         </Button>
                         <Button variant="outline" asChild>
                             <Link href="/dashboard/admin/tasks"><ListOrdered className="mr-2"/>{t('quickActionTasks')}</Link>
