@@ -59,7 +59,7 @@ export default function AdminPostsPage() {
                         <CardDescription>{t('description')}</CardDescription>
                     </div>
                     <Button asChild>
-                        <Link href="#">
+                        <Link href="/dashboard/admin/cms/posts/new">
                              <PlusCircle className="mr-2"/>
                             {t('actions.create')}
                         </Link>
@@ -112,7 +112,7 @@ export default function AdminPostsPage() {
                                                     <Link href={`/dashboard/admin/cms/posts/edit/${post.id}`}>{t('actions.edit')}</Link>
                                                 </DropdownMenuItem>
                                                 <DropdownMenuItem asChild>
-                                                     <Link href="#" target="_blank">{t('actions.view')}</Link>
+                                                     <Link href={`/dashboard/admin/cms/posts/${post.id}/preview`} target="_blank">{t('actions.view')}</Link>
                                                 </DropdownMenuItem>
                                                 <DropdownMenuItem className="text-destructive">
                                                      <Trash2 className="mr-2"/>

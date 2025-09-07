@@ -1481,6 +1481,10 @@
                     "description": "The post you are trying to preview does not exist or could not be loaded.",
                     "backToList": "Back to Post List"
                 }
+            },
+            "new": {
+                "title": "Write a New Post",
+                "subtitle": "Fill in the details below to create a new blog post."
             }
         }
     }

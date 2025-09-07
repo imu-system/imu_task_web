@@ -1481,6 +1481,10 @@
                     "description": "L'article que vous essayez de prévisualiser n'existe pas ou n'a pas pu être chargé.",
                     "backToList": "Retour à la liste des articles"
                 }
+            },
+            "new": {
+                "title": "Rédiger un nouvel article",
+                "subtitle": "Remplissez les champs ci-dessous pour créer un nouvel article de blog."
             }
         }
     }
