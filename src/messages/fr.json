@@ -1,3 +1,4 @@
+
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -1331,8 +1332,38 @@
         },
         "policies": {
             "title": "Gestion des Politiques",
-            "description": "En construction",
-            "content": "Un éditeur pour les pages de Conditions d'Utilisation et de Politique de Confidentialité sera implémenté ici."
+            "description": "Modifiez les documents légaux de la plateforme.",
+            "content": "Un éditeur pour les pages de Conditions d'Utilisation et de Politique de Confidentialité sera implémenté ici.",
+            "tabs": {
+                "terms": "Conditions d'Utilisation",
+                "privacy": "Politique de Confidentialité"
+            },
+            "form": {
+                "terms": {
+                    "title": "Modifier les Conditions d'Utilisation",
+                    "description": "Modifiez le contenu des CGU. Attention, ce sont des documents légaux."
+                },
+                "privacy": {
+                    "title": "Modifier la Politique de Confidentialité",
+                    "description": "Modifiez le contenu de la politique de confidentialité. Attention, ce sont des documents légaux."
+                },
+                "fields": {
+                    "pageTitle": "Titre de la page",
+                    "content": "Contenu",
+                    "seoTitle": "Titre SEO",
+                    "seoDescription": "Description SEO",
+                    "markdown": "Le format Markdown est supporté."
+                },
+                "seo": {
+                    "title": "Paramètres SEO",
+                    "description": "Gérez les paramètres de référencement pour cette page."
+                },
+                "saveButton": "Enregistrer les modifications"
+            },
+            "toast": {
+                "successTitle": "Politique enregistrée",
+                "successDescription": "Le document a été mis à jour avec succès."
+            }
         },
         "posts": {
             "title": "Gestion du Blog/Actus",

@@ -1,3 +1,4 @@
+
 {
     "Header": {
         "features": "Features",
@@ -1331,8 +1332,38 @@
         },
         "policies": {
             "title": "Policy Management",
-            "description": "Under Construction",
-            "content": "An editor for the Terms of Service and Privacy Policy pages will be implemented here."
+            "description": "Edit legal documents for the platform.",
+            "content": "An editor for the Terms of Service and Privacy Policy pages will be implemented here.",
+            "tabs": {
+                "terms": "Terms of Service",
+                "privacy": "Privacy Policy"
+            },
+            "form": {
+                "terms": {
+                    "title": "Edit Terms of Service",
+                    "description": "Modify the content of the Terms of Service. Be careful, these are legal documents."
+                },
+                "privacy": {
+                    "title": "Edit Privacy Policy",
+                    "description": "Modify the content of the Privacy Policy. Be careful, these are legal documents."
+                },
+                "fields": {
+                    "pageTitle": "Page Title",
+                    "content": "Content",
+                    "seoTitle": "SEO Title",
+                    "seoDescription": "SEO Description",
+                    "markdown": "Markdown is supported."
+                },
+                "seo": {
+                    "title": "SEO Settings",
+                    "description": "Manage search engine optimization settings for this page."
+                },
+                "saveButton": "Save Changes"
+            },
+            "toast": {
+                "successTitle": "Policy Saved",
+                "successDescription": "The document has been successfully updated."
+            }
         },
         "posts": {
             "title": "Blog/News Management",
