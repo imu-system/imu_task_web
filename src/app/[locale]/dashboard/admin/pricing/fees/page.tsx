@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
-import { Loader2, Receipt, Percent } from 'lucide-react';
+import { Loader2, Receipt, Percent, PlusCircle } from 'lucide-react';
 import { UserRole, ServiceCategory } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -222,9 +222,15 @@ export default function AdminFeesPage() {
                 </Card>
                 
                 <Card>
-                    <CardHeader>
-                        <CardTitle>{t('countries.title')}</CardTitle>
-                        <CardDescription>{t('countries.description')}</CardDescription>
+                    <CardHeader className="flex flex-row items-start justify-between">
+                        <div>
+                            <CardTitle>{t('countries.title')}</CardTitle>
+                            <CardDescription>{t('countries.description')}</CardDescription>
+                        </div>
+                        <Button variant="outline" size="sm" disabled>
+                            <PlusCircle className="mr-2 h-4 w-4" />
+                            {t('addRule')}
+                        </Button>
                     </CardHeader>
                     <CardContent>
                         <Table>
@@ -263,9 +269,15 @@ export default function AdminFeesPage() {
                 </Card>
                 
                 <Card>
-                    <CardHeader>
-                        <CardTitle>{t('cities.title')}</CardTitle>
-                        <CardDescription>{t('cities.description')}</CardDescription>
+                    <CardHeader className="flex flex-row items-start justify-between">
+                         <div>
+                            <CardTitle>{t('cities.title')}</CardTitle>
+                            <CardDescription>{t('cities.description')}</CardDescription>
+                        </div>
+                         <Button variant="outline" size="sm" disabled>
+                            <PlusCircle className="mr-2 h-4 w-4" />
+                            {t('addRule')}
+                        </Button>
                     </CardHeader>
                     <CardContent>
                         <Table>

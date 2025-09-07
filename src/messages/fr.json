@@ -1493,14 +1493,13 @@
                 },
                 "publishing": {
                     "title": "Publication",
-                    "status": "Statut",
-                    "publishDate": "Date de publication",
-                    "author": "Auteur",
-                    "indexation": "Autoriser l'indexation par les moteurs de recherche",
                     "status": {
                         "draft": "Brouillon",
                         "published": "Publié"
-                    }
+                    },
+                    "publishDate": "Date de publication",
+                    "author": "Auteur",
+                    "indexation": "Autoriser l'indexation par les moteurs de recherche"
                 },
                 "organization": {
                     "title": "Organisation",
@@ -1540,6 +1539,7 @@
         "fees": {
             "title": "Gestion des Commissions",
             "subtitle": "Définissez les taux de commission de la plateforme.",
+            "addRule": "Ajouter une règle",
             "global": {
                 "title": "Commission Globale",
                 "description": "Ce taux s'applique par défaut à toutes les transactions.",
@@ -1554,7 +1554,7 @@
                     "placeholder": "Laisser vide pour global"
                 }
             },
-             "countries": {
+            "countries": {
                 "title": "Commissions par Pays",
                 "description": "Définissez des taux spécifiques qui remplaceront le taux global pour certains pays.",
                 "table": {

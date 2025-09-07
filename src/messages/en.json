@@ -1493,14 +1493,13 @@
                 },
                 "publishing": {
                     "title": "Publishing",
-                    "status": "Status",
-                    "publishDate": "Publish Date",
-                    "author": "Author",
-                    "indexation": "Allow search engine indexation",
                     "status": {
                         "draft": "Draft",
                         "published": "Published"
-                    }
+                    },
+                    "publishDate": "Publish Date",
+                    "author": "Author",
+                    "indexation": "Allow search engine indexation"
                 },
                 "organization": {
                     "title": "Organization",
@@ -1540,6 +1539,7 @@
         "fees": {
             "title": "Commission Management",
             "subtitle": "Define the platform's commission rates.",
+            "addRule": "Add Rule",
             "global": {
                 "title": "Global Commission",
                 "description": "This rate applies by default to all transactions.",
