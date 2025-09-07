@@ -99,7 +99,7 @@ export default function AdminPagesPage() {
                                                     <Link href={`/dashboard/admin/cms/pages/edit/${page.id}`}>{t('actions.edit')}</Link>
                                                 </DropdownMenuItem>
                                                 <DropdownMenuItem asChild>
-                                                     <Link href={`/${page.slug}`} target="_blank">{t('actions.view')}</Link>
+                                                     <Link href={`/dashboard/admin/cms/pages/view/${page.id}`}>{t('actions.view')}</Link>
                                                 </DropdownMenuItem>
                                                 <DropdownMenuItem className="text-destructive">
                                                      <Trash2 className="mr-2"/>

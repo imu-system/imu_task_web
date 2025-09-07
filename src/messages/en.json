@@ -1338,6 +1338,12 @@
                     "status": "Status",
                     "indexation": "Allow search engine indexation"
                 }
+            },
+            "view": {
+                "title": "Page Preview",
+                "cardTitle": "Preview Mode",
+                "cardDescription": "This is a preview of the content page. The layout may differ from the final public page.",
+                "contentPlaceholder": "The content of the page will be rendered here..."
             }
         },
         "faq": {

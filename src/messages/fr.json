@@ -1338,6 +1338,12 @@
                     "status": "Statut",
                     "indexation": "Autoriser l'indexation par les moteurs de recherche"
                 }
+            },
+            "view": {
+                "title": "Aperçu de la Page",
+                "cardTitle": "Mode Aperçu",
+                "cardDescription": "Ceci est un aperçu de la page de contenu. La mise en page peut différer de la page publique finale.",
+                "contentPlaceholder": "Le contenu de la page sera rendu ici..."
             }
         },
         "faq": {
