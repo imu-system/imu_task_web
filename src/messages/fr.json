@@ -1601,10 +1601,56 @@
         "coupons": {
             "title": "Gestion des Codes Promo",
             "subtitle": "Créez et gérez les offres promotionnelles.",
-            "card": {
-                "title": "En construction",
-                "description": "Cette section est dédiée à la gestion des codes promotionnels.",
-                "content": "Les fonctionnalités pour créer des codes promo (montant/pourcentage, conditions, durée de validité, quota d'utilisation) et suivre leur utilisation seront implémentées ici."
+            "createButton": "Créer un coupon",
+            "table": {
+                "title": "Coupons Existants",
+                "description": "Liste de tous les codes promotionnels actifs et inactifs.",
+                "header": {
+                    "code": "Code",
+                    "status": "Statut",
+                    "type": "Type",
+                    "value": "Valeur",
+                    "usage": "Utilisation",
+                    "expiresAt": "Expire le"
+                },
+                "statusActive": "Actif",
+                "statusInactive": "Inactif",
+                "actions": {
+                    "edit": "Modifier",
+                    "delete": "Supprimer"
+                }
+            },
+            "form": {
+                "title": "Créer un Coupon",
+                "description": "Remplissez les détails du nouveau code promotionnel.",
+                "saveButton": "Enregistrer le coupon",
+                "code": {
+                    "label": "Code du Coupon",
+                    "placeholder": "Ex: ETE2024"
+                },
+                "type": {
+                    "label": "Type",
+                    "percentage": "Pourcentage",
+                    "fixed": "Montant Fixe"
+                },
+                "value": {
+                    "label": "Valeur"
+                },
+                "usageLimit": {
+                    "label": "Limite d'utilisation (optionnel)",
+                    "placeholder": "Ex: 100"
+                },
+                "expiresAt": {
+                    "label": "Date d'expiration (optionnel)",
+                    "placeholder": "Choisir une date"
+                },
+                "isActive": {
+                    "label": "Actif"
+                },
+                "toast": {
+                    "successTitle": "Coupon Enregistré",
+                    "successDescription": "Le code promotionnel a été enregistré avec succès."
+                }
             }
         }
     }

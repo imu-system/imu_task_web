@@ -1601,10 +1601,56 @@
         "coupons": {
             "title": "Promo Code Management",
             "subtitle": "Create and manage promotional offers.",
-            "card": {
-                "title": "Under Construction",
-                "description": "This section is dedicated to managing promotional codes.",
-                "content": "Functionality for creating promo codes (amount/percentage, conditions, validity period, usage quota) and tracking their usage will be implemented here."
+            "createButton": "Create Coupon",
+            "table": {
+                "title": "Existing Coupons",
+                "description": "List of all active and inactive promotional codes.",
+                "header": {
+                    "code": "Code",
+                    "status": "Status",
+                    "type": "Type",
+                    "value": "Value",
+                    "usage": "Usage",
+                    "expiresAt": "Expires At"
+                },
+                "statusActive": "Active",
+                "statusInactive": "Inactive",
+                "actions": {
+                    "edit": "Edit",
+                    "delete": "Delete"
+                }
+            },
+            "form": {
+                "title": "Create Coupon",
+                "description": "Fill in the details for the new promotional code.",
+                "saveButton": "Save Coupon",
+                "code": {
+                    "label": "Coupon Code",
+                    "placeholder": "e.g. SUMMER2024"
+                },
+                "type": {
+                    "label": "Type",
+                    "percentage": "Percentage",
+                    "fixed": "Fixed Amount"
+                },
+                "value": {
+                    "label": "Value"
+                },
+                "usageLimit": {
+                    "label": "Usage Limit (optional)",
+                    "placeholder": "e.g. 100"
+                },
+                "expiresAt": {
+                    "label": "Expiration Date (optional)",
+                    "placeholder": "Pick a date"
+                },
+                "isActive": {
+                    "label": "Active"
+                },
+                "toast": {
+                    "successTitle": "Coupon Saved",
+                    "successDescription": "The promotional code has been successfully saved."
+                }
             }
         }
     }
