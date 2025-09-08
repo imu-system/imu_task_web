@@ -1816,13 +1816,22 @@
                 "actor": "Acteur",
                 "action": "Action",
                 "target": "Cible",
-                "details": "Détails"
+                "details": "Détails",
+                "result": "Résultat"
+            },
+            "results": {
+                "success": "Succès",
+                "failure": "Échec"
             }
         },
         "filters": {
-            "searchPlaceholder": "Rechercher par acteur, cible...",
-            "action": "Action",
-            "allActions": "Toutes les actions",
+            "actor": "Acteur",
+            "actorPlaceholder": "Nom de l'acteur...",
+            "targetType": "Type de cible",
+            "targetTypePlaceholder": "Choisir un type",
+            "allTargetTypes": "Tous les types",
+            "dateRange": "Période",
+            "pickDate": "Choisir une période",
             "apply": "Filtrer"
         }
     }

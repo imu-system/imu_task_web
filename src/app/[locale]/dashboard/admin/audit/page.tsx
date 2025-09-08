@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { useRouter, Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
-import { Loader2, History, MoreHorizontal, Eye } from 'lucide-react';
+import { Loader2, History, MoreHorizontal, Eye, Calendar as CalendarIcon, X } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -13,6 +13,11 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { users } from '@/lib/data';
+import { Badge } from '@/components/ui/badge';
+import { DateRange } from 'react-day-picker';
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
+import { Calendar } from '@/components/ui/calendar';
+import { format } from 'date-fns';
 
 const mockAuditLogs = [
     { id: 'log1', actorId: 'user1', actorName: users.find(u=> u.id === 'user1')?.profile?.displayName, action: 'user.login', targetType: 'user', targetId: 'user1', createdAt: new Date('2024-08-27T10:00:00Z'), result: 'success' },
@@ -26,6 +31,8 @@ export default function AdminAuditLogPage() {
     const { user, loading: authLoading } = useAuth();
     const router = useRouter();
     const t = useTranslations('AdminAuditLogPage');
+    const [dateRange, setDateRange] = useState<DateRange | undefined>();
+
 
     useEffect(() => {
         if (!authLoading && (!user || !user.roles?.includes(UserRole.admin))) {
@@ -59,23 +66,65 @@ export default function AdminAuditLogPage() {
                     <CardDescription>{t('table.description')}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <div className="flex flex-col md:flex-row gap-4 mb-4">
-                        <Input 
-                            placeholder={t('filters.searchPlaceholder')}
-                            className="max-w-xs"
-                        />
-                        <Select>
-                            <SelectTrigger className="w-full md:w-[240px]">
-                                <SelectValue placeholder={t('filters.action')} />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="all">{t('filters.allActions')}</SelectItem>
-                                <SelectItem value="user.login">user.login</SelectItem>
-                                <SelectItem value="category.update">category.update</SelectItem>
-                                <SelectItem value="offer.create">offer.create</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <Button variant="outline">{t('filters.apply')}</Button>
+                    <div className="flex flex-wrap items-end gap-4 mb-4">
+                        <div className="grid gap-2">
+                            <label className="text-sm font-medium">{t('filters.actor')}</label>
+                            <Input 
+                                placeholder={t('filters.actorPlaceholder')}
+                                className="w-[200px]"
+                            />
+                        </div>
+                        <div className="grid gap-2">
+                             <label className="text-sm font-medium">{t('filters.targetType')}</label>
+                            <Select>
+                                <SelectTrigger className="w-[180px]">
+                                    <SelectValue placeholder={t('filters.targetTypePlaceholder')} />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="all">{t('filters.allTargetTypes')}</SelectItem>
+                                    <SelectItem value="user">User</SelectItem>
+                                    <SelectItem value="task">Task</SelectItem>
+                                    <SelectItem value="offer">Offer</SelectItem>
+                                    <SelectItem value="booking">Booking</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                         <div className="grid gap-2">
+                            <label className="text-sm font-medium">{t('filters.dateRange')}</label>
+                             <Popover>
+                                <PopoverTrigger asChild>
+                                <Button
+                                    variant={"outline"}
+                                    className="w-[300px] justify-start text-left font-normal"
+                                >
+                                    <CalendarIcon className="mr-2 h-4 w-4" />
+                                    {dateRange?.from ? (
+                                    dateRange.to ? (
+                                        <>
+                                        {format(dateRange.from, "LLL dd, y")} -{" "}
+                                        {format(dateRange.to, "LLL dd, y")}
+                                        </>
+                                    ) : (
+                                        format(dateRange.from, "LLL dd, y")
+                                    )
+                                    ) : (
+                                    <span>{t('filters.pickDate')}</span>
+                                    )}
+                                </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-auto p-0" align="start">
+                                <Calendar
+                                    initialFocus
+                                    mode="range"
+                                    defaultMonth={dateRange?.from}
+                                    selected={dateRange}
+                                    onSelect={setDateRange}
+                                    numberOfMonths={2}
+                                />
+                                </PopoverContent>
+                            </Popover>
+                        </div>
+                        <Button>{t('filters.apply')}</Button>
                     </div>
 
                     <Table>
@@ -85,7 +134,8 @@ export default function AdminAuditLogPage() {
                                 <TableHead>{t('table.header.actor')}</TableHead>
                                 <TableHead>{t('table.header.action')}</TableHead>
                                 <TableHead>{t('table.header.target')}</TableHead>
-                                <TableHead>{t('table.header.details')}</TableHead>
+                                <TableHead>{t('table.header.result')}</TableHead>
+                                <TableHead className="text-right">{t('table.header.details')}</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -101,6 +151,11 @@ export default function AdminAuditLogPage() {
                                         </div>
                                     </TableCell>
                                     <TableCell>
+                                        <Badge variant={log.result === 'success' ? 'default' : 'destructive'}>
+                                            {t(`table.results.${log.result}`)}
+                                        </Badge>
+                                    </TableCell>
+                                    <TableCell className="text-right">
                                         <Button variant="ghost" size="icon">
                                             <MoreHorizontal className="h-4 w-4" />
                                         </Button>
