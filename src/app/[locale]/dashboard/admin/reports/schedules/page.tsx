@@ -53,6 +53,12 @@ export default function AdminReportSchedulesPage() {
         setIsDialogOpen(false);
     };
 
+    const toggleScheduleStatus = (scheduleId: string) => {
+        setSchedules(schedules.map(s => 
+            s.id === scheduleId ? { ...s, isActive: !s.isActive } : s
+        ));
+    };
+
     if (authLoading || !user || !user.roles?.includes(UserRole.admin)) {
         return (
             <div className="flex justify-center items-center h-64">
@@ -171,11 +177,13 @@ export default function AdminReportSchedulesPage() {
                                                         <Edit className="mr-2"/>{t('actions.edit')}
                                                     </Link>
                                                 </DropdownMenuItem>
-                                                {schedule.isActive ? (
-                                                    <DropdownMenuItem><Pause className="mr-2"/>{t('actions.pause')}</DropdownMenuItem>
-                                                ) : (
-                                                    <DropdownMenuItem><Play className="mr-2"/>{t('actions.resume')}</DropdownMenuItem>
-                                                )}
+                                                <DropdownMenuItem onClick={() => toggleScheduleStatus(schedule.id)}>
+                                                    {schedule.isActive ? (
+                                                        <><Pause className="mr-2"/>{t('actions.pause')}</>
+                                                    ) : (
+                                                        <><Play className="mr-2"/>{t('actions.resume')}</>
+                                                    )}
+                                                </DropdownMenuItem>
                                                 <DropdownMenuItem className="text-destructive"><Trash2 className="mr-2"/>{t('actions.delete')}</DropdownMenuItem>
                                             </DropdownMenuContent>
                                         </DropdownMenu>
