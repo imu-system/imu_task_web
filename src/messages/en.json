@@ -1729,6 +1729,50 @@
                 "title": "Under Construction",
                 "description": "This section is dedicated to managing scheduled exports.",
                 "content": "Functionality to create, view, and manage scheduled exports (e.g., daily transaction reports) will be implemented here."
+            },
+            "table": {
+                "title": "Scheduled Exports",
+                "description": "List of all automated data exports.",
+                "header": {
+                    "name": "Report Name",
+                    "format": "Format",
+                    "frequency": "Frequency",
+                    "nextRun": "Next Run",
+                    "status": "Status",
+                    "actions": "Actions"
+                },
+                "statusActive": "Active",
+                "statusPaused": "Paused"
+            },
+            "actions": {
+                "create": "Schedule an Export",
+                "edit": "Edit",
+                "pause": "Pause",
+                "resume": "Resume",
+                "delete": "Delete"
+            },
+            "dialog": {
+                "title": "Schedule a New Export",
+                "description": "Configure the parameters for your automated export.",
+                "nameLabel": "Report Name",
+                "namePlaceholder": "e.g., Monthly Transactions",
+                "formatLabel": "Format",
+                "frequencyLabel": "Frequency",
+                "frequency": {
+                    "daily": "Daily",
+                    "weekly": "Weekly",
+                    "monthly": "Monthly",
+                    "yearly": "Yearly"
+                },
+                "recipientsLabel": "Recipients",
+                "recipientsPlaceholder": "e.g., accounting@example.com",
+                "encryptionLabel": "Password-protect file (encryption)",
+                "cancel": "Cancel",
+                "save": "Save Schedule"
+            },
+            "toast": {
+                "createSuccessTitle": "Export Scheduled",
+                "createSuccessDescription": "The new automated export has been successfully scheduled."
             }
         },
         "charts": {

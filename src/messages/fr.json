@@ -1725,10 +1725,49 @@
         "schedules": {
             "title": "Exports Planifiés",
             "subtitle": "Gérez les exports de données automatisés.",
-            "card": {
-                "title": "En Construction",
-                "description": "Cette section est dédiée à la gestion des exports planifiés.",
-                "content": "Les fonctionnalités pour créer, voir et gérer les exports de données planifiés (ex: rapports de transactions quotidiens) seront implémentées ici."
+            "table": {
+                "title": "Exports Planifiés",
+                "description": "Liste de tous les exports de données automatisés.",
+                "header": {
+                    "name": "Nom du Rapport",
+                    "format": "Format",
+                    "frequency": "Fréquence",
+                    "nextRun": "Prochaine Exécution",
+                    "status": "Statut",
+                    "actions": "Actions"
+                },
+                "statusActive": "Actif",
+                "statusPaused": "En pause"
+            },
+            "actions": {
+                "create": "Planifier un export",
+                "edit": "Modifier",
+                "pause": "Mettre en pause",
+                "resume": "Reprendre",
+                "delete": "Supprimer"
+            },
+            "dialog": {
+                "title": "Planifier un Nouvel Export",
+                "description": "Configurez les paramètres de votre export automatisé.",
+                "nameLabel": "Nom du rapport",
+                "namePlaceholder": "Ex: Transactions Mensuelles",
+                "formatLabel": "Format",
+                "frequencyLabel": "Fréquence",
+                "frequency": {
+                    "daily": "Quotidien",
+                    "weekly": "Hebdomadaire",
+                    "monthly": "Mensuel",
+                    "yearly": "Annuel"
+                },
+                "recipientsLabel": "Destinataires",
+                "recipientsPlaceholder": "Ex: compta@example.com",
+                "encryptionLabel": "Protéger par mot de passe (chiffrement)",
+                "cancel": "Annuler",
+                "save": "Enregistrer la planification"
+            },
+            "toast": {
+                "createSuccessTitle": "Export Planifié",
+                "createSuccessDescription": "Le nouvel export automatisé a été planifié avec succès."
             }
         },
         "charts": {
