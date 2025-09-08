@@ -1730,11 +1730,10 @@
         "kpi": {
             "title": "Reports & Analytics",
             "subtitle": "Analyze platform performance and user behavior.",
-            "card": {
-                "title": "Under Construction",
-                "description": "This section is dedicated to data visualization.",
-                "content": "Advanced data visualizations, including conversion funnels, retention cohorts, and geographical heatmaps, will be implemented here."
-            }
+            "totalRevenue": "Total Revenue",
+            "completedTasks": "Completed Tasks",
+            "totalUsers": "Total Users",
+            "activeBookings": "Active Bookings"
         },
         "schedules": {
             "title": "Scheduled Exports",
@@ -1743,6 +1742,17 @@
                 "title": "Under Construction",
                 "description": "This section is dedicated to managing scheduled exports.",
                 "content": "Functionality to create, view, and manage scheduled exports (e.g., daily transaction reports) will be implemented here."
+            }
+        },
+        "charts": {
+            "newUsers": {
+                "title": "New Users",
+                "description": "Number of new user sign-ups per month.",
+                "legend": "New Users"
+            },
+            "taskStatus": {
+                "title": "Task Status Distribution",
+                "description": "Current breakdown of all tasks by status."
             }
         }
     }
