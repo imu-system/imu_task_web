@@ -77,7 +77,8 @@
         "notifications": "Notifications",
         "cms": "Content (CMS)",
         "pricing": "Pricing",
-        "settings": "Settings"
+        "settings": "Settings",
+        "reports": "Reports & Analytics"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -1718,6 +1719,30 @@
                 "staging": "Staging",
                 "rollout": "Rollout Percentage",
                 "roles": "Target Roles"
+            }
+        }
+    },
+    "AdminReportsLayout": {
+        "kpi": "Reports & KPI",
+        "schedules": "Scheduled Exports"
+    },
+    "AdminReportsPage": {
+        "kpi": {
+            "title": "Reports & Analytics",
+            "subtitle": "Analyze platform performance and user behavior.",
+            "card": {
+                "title": "Under Construction",
+                "description": "This section is dedicated to data visualization.",
+                "content": "Advanced data visualizations, including conversion funnels, retention cohorts, and geographical heatmaps, will be implemented here."
+            }
+        },
+        "schedules": {
+            "title": "Scheduled Exports",
+            "subtitle": "Manage automated data exports.",
+            "card": {
+                "title": "Under Construction",
+                "description": "This section is dedicated to managing scheduled exports.",
+                "content": "Functionality to create, view, and manage scheduled exports (e.g., daily transaction reports) will be implemented here."
             }
         }
     }

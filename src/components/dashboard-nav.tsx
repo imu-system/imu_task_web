@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import { Link, useRouter } from '@/navigation';
@@ -37,6 +36,7 @@ import {
   FileText,
   DollarSign,
   SlidersHorizontal,
+  LineChart,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -94,6 +94,14 @@ export function DashboardNav() {
                         <SidebarMenuButton isActive={pathname === '/dashboard/admin'}>
                             <Shield />
                             <span>{t('admin')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+                 <SidebarMenuItem>
+                    <Link href="/dashboard/admin/reports">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/reports')}>
+                            <LineChart />
+                            <span>{t('reports')}</span>
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>

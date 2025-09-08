@@ -77,7 +77,8 @@
         "notifications": "Notifications",
         "cms": "Contenu (CMS)",
         "pricing": "Tarification",
-        "settings": "Paramètres"
+        "settings": "Paramètres",
+        "reports": "Rapports & Analytics"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -1191,7 +1192,7 @@
                     "sendLater": "Planifier pour plus tard",
                     "dateLabel": "Date",
                     "timeLabel": "Heure",
-                    "datePlaceholder": "Choisissez une date"
+                    "datePlaceholder": "Choisir une date"
                 },
                 "submitButton": "Envoyer la diffusion",
                 "toast": {
@@ -1427,7 +1428,7 @@
             }
         },
         "posts": {
-            "title": "Gestion du Blog/Actus",
+            "title": "Blog/Actus Management",
             "description": "Liste de tous les articles de blog et d'actualités.",
             "noPosts": "Aucun article créé pour le moment.",
             "status": {
@@ -1483,7 +1484,7 @@
                     "seoDescription": "Description SEO"
                 },
                 "publishing": {
-                    "title": "Publication",
+                    "title": "Publishing",
                     "status": {
                         "draft": "Brouillon",
                         "published": "Publié"
@@ -1641,11 +1642,11 @@
                     "label": "Valeur"
                 },
                 "usageLimit": {
-                    "label": "Limite d'utilisation (optionnel)",
+                    "label": "Usage Limit (optionnel)",
                     "placeholder": "Ex: 100"
                 },
                 "expiresAt": {
-                    "label": "Date d'expiration (optionnel)",
+                    "label": "Expiration Date (optionnel)",
                     "placeholder": "Choisir une date"
                 },
                 "isActive": {
@@ -1718,6 +1719,30 @@
                 "staging": "Staging",
                 "rollout": "Pourcentage de déploiement",
                 "roles": "Rôles cibles"
+            }
+        }
+    },
+    "AdminReportsLayout": {
+        "kpi": "Rapports & KPI",
+        "schedules": "Exports Planifiés"
+    },
+    "AdminReportsPage": {
+        "kpi": {
+            "title": "Rapports & Indicateurs Clés",
+            "subtitle": "Analysez la performance de la plateforme et le comportement des utilisateurs.",
+            "card": {
+                "title": "En Construction",
+                "description": "Cette section est dédiée à la visualisation des données.",
+                "content": "Des visualisations de données avancées, incluant des entonnoirs de conversion, des cohortes de rétention et des cartes de chaleur géographiques, seront implémentées ici."
+            }
+        },
+        "schedules": {
+            "title": "Scheduled Exports",
+            "subtitle": "Gérez les exports de données automatisés.",
+            "card": {
+                "title": "En Construction",
+                "description": "Cette section est dédiée à la gestion des exports planifiés.",
+                "content": "Les fonctionnalités pour créer, voir et gérer les exports de données planifiés (ex: rapports de transactions quotidiens) seront implémentées ici."
             }
         }
     }
