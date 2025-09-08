@@ -8,13 +8,20 @@ import { useEffect } from 'react';
 import { Loader2, LineChart, Users, ListOrdered, CalendarCheck, Euro } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from "recharts";
 
 const kpiData = [
   { titleKey: "kpi.totalRevenue", value: "€12,450.00", icon: <Euro /> },
   { titleKey: "kpi.completedTasks", value: "312", icon: <ListOrdered /> },
   { titleKey: "kpi.totalUsers", value: "2,890", icon: <Users /> },
   { titleKey: "kpi.activeBookings", value: "42", icon: <CalendarCheck /> },
+];
+
+const conversionData = [
+  { name: "Publiées", value: 456 },
+  { name: "Offres", value: 380 },
+  { name: "Assignées", value: 212 },
+  { name: "Terminées", value: 187 },
 ];
 
 const newUsersData = [
@@ -28,19 +35,11 @@ const newUsersData = [
   { month: "Aug", users: 62 },
 ];
 
-const taskStatusData = [
-    { name: 'Published', value: 400 },
-    { name: 'Matched', value: 300 },
-    { name: 'Completed', value: 240 },
-    { name: 'Canceled', value: 80 },
-];
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
 export default function AdminReportsPage() {
     const { user, loading: authLoading } = useAuth();
     const router = useRouter();
     const t = useTranslations('AdminReportsPage');
-    const tTaskStatus = useTranslations('AdminTasksPage.status');
 
     useEffect(() => {
         if (!authLoading && (!user || !user.roles?.includes(UserRole.admin))) {
@@ -82,8 +81,8 @@ export default function AdminReportsPage() {
                 ))}
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                 <Card className="lg:col-span-2">
+            <div className="grid gap-8 md:grid-cols-2">
+                 <Card>
                     <CardHeader>
                         <CardTitle>{t('charts.newUsers.title')}</CardTitle>
                         <CardDescription>{t('charts.newUsers.description')}</CardDescription>
@@ -103,20 +102,18 @@ export default function AdminReportsPage() {
 
                  <Card>
                     <CardHeader>
-                        <CardTitle>{t('charts.taskStatus.title')}</CardTitle>
-                         <CardDescription>{t('charts.taskStatus.description')}</CardDescription>
+                        <CardTitle>{t('charts.conversionFunnel.title')}</CardTitle>
+                         <CardDescription>{t('charts.conversionFunnel.description')}</CardDescription>
                     </CardHeader>
-                    <CardContent>
-                        <ResponsiveContainer width="100%" height={350}>
-                            <PieChart>
-                                <Pie data={taskStatusData} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100} label>
-                                    {taskStatusData.map((entry, index) => (
-                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                    ))}
-                                </Pie>
-                                <Tooltip formatter={(value, name) => [value, tTaskStatus(name.toLowerCase() as any)]}/>
-                                <Legend formatter={(value) => tTaskStatus(value.toLowerCase() as any)}/>
-                            </PieChart>
+                    <CardContent className="pl-2">
+                         <ResponsiveContainer width="100%" height={350}>
+                            <BarChart data={conversionData} layout="vertical">
+                                <XAxis type="number" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                <YAxis type="category" dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} />
+                                <Legend />
+                                <Bar dataKey="value" name={t('charts.conversionFunnel.legend')} fill="hsl(var(--primary))" radius={[0, 4, 4, 0]} />
+                            </BarChart>
                         </ResponsiveContainer>
                     </CardContent>
                 </Card>

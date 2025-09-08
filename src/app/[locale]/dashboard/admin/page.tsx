@@ -11,20 +11,13 @@ import { useAuth } from "@/hooks/use-auth";
 import { useRouter, Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
-import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered, Handshake, CalendarCheck, Wallet, Star, Bell, FileText, SlidersHorizontal } from "lucide-react";
+import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered, Handshake, CalendarCheck, Wallet, Star, Bell, FileText, SlidersHorizontal, LineChart } from "lucide-react";
 
 const kpiData = [
   { title: "Revenus (Mensuel)", value: "€4,231.89", change: "+20.1% vs mois dernier", icon: <DollarSign className="h-4 w-4 text-muted-foreground" /> },
   { title: "Utilisateurs Actifs", value: "+2350", change: "+180.1% vs mois dernier", icon: <Users className="h-4 w-4 text-muted-foreground" /> },
   { title: "Missions (Aujourd'hui)", value: "+573", change: "+19% vs hier", icon: <CreditCard className="h-4 w-4 text-muted-foreground" /> },
   { title: "Taux d'acceptation", value: "82.5%", change: "+2.5% vs semaine dernière", icon: <Activity className="h-4 w-4 text-muted-foreground" /> },
-];
-
-const conversionData = [
-  { name: "Published", value: 456 },
-  { name: "Offers", value: 380 },
-  { name: "Matched", value: 212 },
-  { name: "Completed", value: 187 },
 ];
 
 const priorityQueue = [
@@ -71,111 +64,66 @@ export default function AdminDashboardPage() {
             ))}
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
-            <Card className="lg:col-span-3">
-                <CardHeader>
-                    <CardTitle>{t('conversionTitle')}</CardTitle>
-                    <CardDescription>{t('conversionDesc')}</CardDescription>
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <Card className="lg:col-span-2">
+                 <CardHeader>
+                    <CardTitle>{t('priorityQueueTitle')}</CardTitle>
+                    <CardDescription>{t('priorityQueueDesc')}</CardDescription>
                 </CardHeader>
-                <CardContent className="pl-2">
-                     <ResponsiveContainer width="100%" height={350}>
-                        <BarChart data={conversionData}>
-                            <XAxis
-                            dataKey="name"
-                            stroke="#888888"
-                            fontSize={12}
-                            tickLine={false}
-                            axisLine={false}
-                            />
-                            <YAxis
-                            stroke="#888888"
-                            fontSize={12}
-                            tickLine={false}
-                            axisLine={false}
-                            tickFormatter={(value) => `${value}`}
-                            />
-                            <Bar dataKey="value" fill="currentColor" radius={[4, 4, 0, 0]} className="fill-primary" />
-                        </BarChart>
-                    </ResponsiveContainer>
+                <CardContent>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>Type</TableHead>
+                                <TableHead>Utilisateur</TableHead>
+                                <TableHead className="text-right">Action</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                            {priorityQueue.map((item) => (
+                                <TableRow key={item.id}>
+                                    <TableCell>
+                                        <div className="flex items-center gap-2">
+                                            {item.icon}
+                                            <span className="font-medium">{item.type}</span>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell>{item.user}</TableCell>
+                                    <TableCell className="text-right">
+                                            <Button variant="outline" size="sm" asChild>
+                                            <Link href={item.href}><Eye className="h-4 w-4"/></Link>
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
                 </CardContent>
             </Card>
 
-            <div className="lg:col-span-2 space-y-8">
-                <Card>
-                    <CardHeader>
-                        <CardTitle>{t('priorityQueueTitle')}</CardTitle>
-                        <CardDescription>{t('priorityQueueDesc')}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <Table>
-                            <TableHeader>
-                                <TableRow>
-                                    <TableHead>Type</TableHead>
-                                    <TableHead>Utilisateur</TableHead>
-                                    <TableHead className="text-right">Action</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {priorityQueue.map((item) => (
-                                    <TableRow key={item.id}>
-                                        <TableCell>
-                                            <div className="flex items-center gap-2">
-                                                {item.icon}
-                                                <span className="font-medium">{item.type}</span>
-                                            </div>
-                                        </TableCell>
-                                        <TableCell>{item.user}</TableCell>
-                                        <TableCell className="text-right">
-                                             <Button variant="outline" size="sm" asChild>
-                                                <Link href={item.href}><Eye className="h-4 w-4"/></Link>
-                                            </Button>
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </CardContent>
-                </Card>
+            <div className="lg:col-span-1 space-y-8">
                  <Card>
                     <CardHeader>
                         <CardTitle>{t('quickActionsTitle')}</CardTitle>
                     </CardHeader>
                     <CardContent className="grid grid-cols-2 gap-4">
                         <Button variant="outline" asChild>
+                            <Link href="/dashboard/admin/reports"><LineChart className="mr-2"/>{tNav('reports')}</Link>
+                        </Button>
+                        <Button variant="outline" asChild>
                             <Link href="/dashboard/admin/users"><Users2 className="mr-2"/>{tNav('users')}</Link>
                         </Button>
-                        <Button variant="outline" asChild>
-                           <Link href="/dashboard/admin/services/categories"><ListOrdered className="mr-2"/>{tNav('categories')}</Link>
-                        </Button>
-                        <Button variant="outline" asChild>
+                         <Button variant="outline" asChild>
                             <Link href="/dashboard/admin/tasks"><ListOrdered className="mr-2"/>{tNav('tasks')}</Link>
                         </Button>
                         <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/offers"><Handshake className="mr-2"/>{tNav('offers')}</Link>
-                        </Button>
-                        <Button variant="outline" asChild>
                             <Link href="/dashboard/admin/bookings"><CalendarCheck className="mr-2"/>{tNav('bookings')}</Link>
-                        </Button>
-                        <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/payments/transactions"><Wallet className="mr-2"/>{tNav('payments')}</Link>
-                        </Button>
-                        <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/pricing/fees"><DollarSign className="mr-2"/>{tNav('pricing')}</Link>
-                        </Button>
-                        <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/reviews"><Star className="mr-2"/>{tNav('reviews')}</Link>
                         </Button>
                          <Button variant="outline" asChild>
                             <Link href="/dashboard/admin/disputes"><BadgeAlert className="mr-2"/>{tNav('disputes')}</Link>
                         </Button>
                          <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/notifications"><Bell className="mr-2"/>{tNav('notifications')}</Link>
-                        </Button>
-                         <Button variant="outline" asChild>
                             <Link href="/dashboard/admin/cms/pages"><FileText className="mr-2"/>{tNav('cms')}</Link>
-                        </Button>
-                         <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/settings"><SlidersHorizontal className="mr-2"/>{tNav('settings')}</Link>
                         </Button>
                     </CardContent>
                 </Card>

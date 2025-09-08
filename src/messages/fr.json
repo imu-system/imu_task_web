@@ -216,22 +216,9 @@
     },
     "AdminDashboard": {
         "subtitle": "Bienvenue dans votre centre de contrôle.",
-        "conversionTitle": "Entonnoir de conversion",
-        "conversionDesc": "De la publication de la mission à sa finalisation.",
         "priorityQueueTitle": "File d'attente prioritaire",
         "priorityQueueDesc": "Éléments nécessitant votre attention immédiate.",
-        "quickActionsTitle": "Actions Rapides",
-        "quickActionCategory": "Nouvelle Catégorie",
-        "quickActionUsers": "Gérer les utilisateurs",
-        "quickActionTasks": "Gérer les missions",
-        "quickActionOffers": "Gérer les offres",
-        "quickActionBookings": "Gérer les réservations",
-        "quickActionPayments": "Gérer les paiements",
-        "quickActionReviews": "Gérer les Avis",
-        "quickActionDisputes": "Gérer les Litiges",
-        "quickActionNotifications": "Gérer les Notifications",
-        "quickActionCms": "Contenu (CMS)",
-        "actionView": "Voir"
+        "quickActionsTitle": "Actions Rapides"
     },
     "AdminCategoriesPage": {
         "title": "Catégories de services",
@@ -1695,7 +1682,7 @@
         "flags": {
             "card": {
                 "title": "Feature Flags",
-                "description": "Activez ou désactivez des fonctionnalités pour tous les utilisateurs. Les changements prennent effet après le prochain déploiement."
+                "description": "Enable or disable features for all users. Changes take effect after the next deployment."
             },
             "aiSuggestion": {
                 "name": "Suggestion de catégories par IA",
@@ -1750,9 +1737,10 @@
                 "description": "Nombre de nouvelles inscriptions d'utilisateurs par mois.",
                 "legend": "Nouveaux Utilisateurs"
             },
-            "taskStatus": {
-                "title": "Répartition des Statuts de Mission",
-                "description": "Répartition actuelle de toutes les missions par statut."
+            "conversionFunnel": {
+                "title": "Entonnoir de Conversion des Missions",
+                "description": "De la publication de la mission à sa finalisation.",
+                "legend": "Missions"
             }
         }
     }

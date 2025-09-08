@@ -216,22 +216,9 @@
     },
     "AdminDashboard": {
         "subtitle": "Welcome to your control center.",
-        "conversionTitle": "Conversion Funnel",
-        "conversionDesc": "From task publication to completion.",
         "priorityQueueTitle": "Priority Queue",
         "priorityQueueDesc": "Items requiring your immediate attention.",
-        "quickActionsTitle": "Quick Actions",
-        "quickActionCategory": "New Category",
-        "quickActionUsers": "Manage Users",
-        "quickActionTasks": "Manage Tasks",
-        "quickActionOffers": "Manage Offers",
-        "quickActionBookings": "Manage Bookings",
-        "quickActionPayments": "Manage Payments",
-        "quickActionReviews": "Manage Reviews",
-        "quickActionDisputes": "Manage Disputes",
-        "quickActionNotifications": "Manage Notifications",
-        "quickActionCms": "Content (CMS)",
-        "actionView": "View"
+        "quickActionsTitle": "Quick Actions"
     },
     "AdminCategoriesPage": {
         "title": "Service Categories",
@@ -1750,9 +1737,10 @@
                 "description": "Number of new user sign-ups per month.",
                 "legend": "New Users"
             },
-            "taskStatus": {
-                "title": "Task Status Distribution",
-                "description": "Current breakdown of all tasks by status."
+            "conversionFunnel": {
+                "title": "Task Conversion Funnel",
+                "description": "From task publication to completion.",
+                "legend": "Tasks"
             }
         }
     }
