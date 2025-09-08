@@ -1725,6 +1725,8 @@
         "schedules": {
             "title": "Exports Planifiés",
             "subtitle": "Gérez les exports de données automatisés.",
+            "notFound": "Export planifié non trouvé.",
+            "backToList": "Retour à la liste des exports",
             "table": {
                 "title": "Exports Planifiés",
                 "description": "Liste de tous les exports de données automatisés.",
@@ -1767,7 +1769,15 @@
             },
             "toast": {
                 "createSuccessTitle": "Export Planifié",
-                "createSuccessDescription": "Le nouvel export automatisé a été planifié avec succès."
+                "createSuccessDescription": "Le nouvel export automatisé a été planifié avec succès.",
+                "updateSuccessTitle": "Planification Mise à Jour",
+                "updateSuccessDescription": "L'export planifié a été mis à jour avec succès."
+            },
+            "edit": {
+                "title": "Modifier l'Export Planifié",
+                "cardTitle": "Modifier la Planification",
+                "cardDescription": "Modifiez les paramètres de cet export automatisé.",
+                "save": "Enregistrer les modifications"
             }
         },
         "charts": {

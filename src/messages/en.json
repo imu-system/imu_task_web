@@ -1725,11 +1725,8 @@
         "schedules": {
             "title": "Scheduled Exports",
             "subtitle": "Manage automated data exports.",
-            "card": {
-                "title": "Under Construction",
-                "description": "This section is dedicated to managing scheduled exports.",
-                "content": "Functionality to create, view, and manage scheduled exports (e.g., daily transaction reports) will be implemented here."
-            },
+            "notFound": "Scheduled export not found.",
+            "backToList": "Back to scheduled exports list",
             "table": {
                 "title": "Scheduled Exports",
                 "description": "List of all automated data exports.",
@@ -1772,7 +1769,15 @@
             },
             "toast": {
                 "createSuccessTitle": "Export Scheduled",
-                "createSuccessDescription": "The new automated export has been successfully scheduled."
+                "createSuccessDescription": "The new automated export has been successfully scheduled.",
+                "updateSuccessTitle": "Schedule Updated",
+                "updateSuccessDescription": "The scheduled export has been successfully updated."
+            },
+            "edit": {
+                "title": "Edit Scheduled Export",
+                "cardTitle": "Edit Schedule",
+                "cardDescription": "Modify the settings for this automated export.",
+                "save": "Save Changes"
             }
         },
         "charts": {

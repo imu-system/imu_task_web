@@ -2,7 +2,7 @@
 'use client';
 
 import { useAuth } from '@/hooks/use-auth';
-import { useRouter } from '@/navigation';
+import { useRouter, Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Loader2, CalendarClock, PlusCircle, MoreHorizontal, Trash2, Edit, Play, Pause } from 'lucide-react';
@@ -166,7 +166,11 @@ export default function AdminReportSchedulesPage() {
                                                 <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
-                                                <DropdownMenuItem><Edit className="mr-2"/>{t('actions.edit')}</DropdownMenuItem>
+                                                <DropdownMenuItem asChild>
+                                                    <Link href={`/dashboard/admin/reports/schedules/edit/${schedule.id}`}>
+                                                        <Edit className="mr-2"/>{t('actions.edit')}
+                                                    </Link>
+                                                </DropdownMenuItem>
                                                 {schedule.isActive ? (
                                                     <DropdownMenuItem><Pause className="mr-2"/>{t('actions.pause')}</DropdownMenuItem>
                                                 ) : (
