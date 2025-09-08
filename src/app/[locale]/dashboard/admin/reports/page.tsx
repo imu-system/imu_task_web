@@ -4,11 +4,19 @@
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
-import { useEffect } from 'react';
-import { Loader2, LineChart, Users, ListOrdered, CalendarCheck, Euro } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Loader2, LineChart, Users, ListOrdered, CalendarCheck, Euro, Calendar as CalendarIcon, Filter, X } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell } from "recharts";
+import { Button } from '@/components/ui/button';
+import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
+import { Calendar } from '@/components/ui/calendar';
+import { DateRange } from 'react-day-picker';
+import { format } from 'date-fns';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
 
 const kpiData = [
   { titleKey: "kpi.totalRevenue", value: "€12,450.00", icon: <Euro /> },
@@ -40,6 +48,7 @@ export default function AdminReportsPage() {
     const { user, loading: authLoading } = useAuth();
     const router = useRouter();
     const t = useTranslations('AdminReportsPage');
+    const [dateRange, setDateRange] = useState<DateRange | undefined>();
 
     useEffect(() => {
         if (!authLoading && (!user || !user.roles?.includes(UserRole.admin))) {
@@ -66,6 +75,80 @@ export default function AdminReportsPage() {
                 {t('kpi.subtitle')}
                 </p>
             </div>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle>{t('filters.title')}</CardTitle>
+                    <CardDescription>{t('filters.description')}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <div className="flex flex-wrap items-end gap-4">
+                        <div className="grid gap-2">
+                            <label className="text-sm font-medium">{t('filters.dateRange')}</label>
+                             <Popover>
+                                <PopoverTrigger asChild>
+                                <Button
+                                    variant={"outline"}
+                                    className="w-[300px] justify-start text-left font-normal"
+                                >
+                                    <CalendarIcon className="mr-2 h-4 w-4" />
+                                    {dateRange?.from ? (
+                                    dateRange.to ? (
+                                        <>
+                                        {format(dateRange.from, "LLL dd, y")} -{" "}
+                                        {format(dateRange.to, "LLL dd, y")}
+                                        </>
+                                    ) : (
+                                        format(dateRange.from, "LLL dd, y")
+                                    )
+                                    ) : (
+                                    <span>{t('filters.pickDate')}</span>
+                                    )}
+                                </Button>
+                                </PopoverTrigger>
+                                <PopoverContent className="w-auto p-0" align="start">
+                                <Calendar
+                                    initialFocus
+                                    mode="range"
+                                    defaultMonth={dateRange?.from}
+                                    selected={dateRange}
+                                    onSelect={setDateRange}
+                                    numberOfMonths={2}
+                                />
+                                </PopoverContent>
+                            </Popover>
+                        </div>
+                        <div className="grid gap-2">
+                            <label className="text-sm font-medium">{t('filters.category')}</label>
+                            <Select>
+                                <SelectTrigger className="w-[200px]">
+                                    <SelectValue placeholder={t('filters.allCategories')} />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="all">{t('filters.allCategories')}</SelectItem>
+                                    <SelectItem value="gardening">Jardinage</SelectItem>
+                                    <SelectItem value="cleaning">Ménage</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                         <div className="grid gap-2">
+                            <label className="text-sm font-medium">{t('filters.city')}</label>
+                            <Input placeholder="e.g. Paris" className="w-[180px]" />
+                        </div>
+                        <Button>
+                            <Filter className="mr-2 h-4 w-4"/>
+                            {t('filters.apply')}
+                        </Button>
+                         <Button variant="ghost">
+                            <X className="mr-2 h-4 w-4"/>
+                            {t('filters.reset')}
+                        </Button>
+                    </div>
+                </CardContent>
+            </Card>
+
+            <Separator/>
+
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {kpiData.map((kpi, index) => (
@@ -109,9 +192,8 @@ export default function AdminReportsPage() {
                          <ResponsiveContainer width="100%" height={350}>
                             <BarChart data={conversionData} layout="vertical">
                                 <XAxis type="number" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                                <YAxis type="category" dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                <YAxis type="category" dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} width={80} />
                                 <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} />
-                                <Legend />
                                 <Bar dataKey="value" name={t('charts.conversionFunnel.legend')} fill="hsl(var(--primary))" radius={[0, 4, 4, 0]} />
                             </BarChart>
                         </ResponsiveContainer>

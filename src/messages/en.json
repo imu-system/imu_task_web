@@ -1742,6 +1742,17 @@
                 "description": "From task publication to completion.",
                 "legend": "Tasks"
             }
+        },
+        "filters": {
+            "title": "Filters",
+            "description": "Refine the report data below.",
+            "dateRange": "Date Range",
+            "pickDate": "Pick a date range",
+            "category": "Category",
+            "allCategories": "All Categories",
+            "city": "City",
+            "apply": "Apply",
+            "reset": "Reset"
         }
     }
 }

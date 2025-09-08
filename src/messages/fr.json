@@ -1742,6 +1742,17 @@
                 "description": "De la publication de la mission à sa finalisation.",
                 "legend": "Missions"
             }
+        },
+        "filters": {
+            "title": "Filtres",
+            "description": "Affinez les données des rapports ci-dessous.",
+            "dateRange": "Plage de dates",
+            "pickDate": "Choisir une période",
+            "category": "Catégorie",
+            "allCategories": "Toutes les catégories",
+            "city": "Ville",
+            "apply": "Appliquer",
+            "reset": "Réinitialiser"
         }
     }
 }
