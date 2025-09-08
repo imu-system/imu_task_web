@@ -1668,10 +1668,27 @@
     },
     "AdminSettingsPage": {
         "settings": {
-            "card": {
-                "title": "En Construction",
-                "description": "Cette section est destinée à la gestion des paramètres généraux de la plateforme.",
-                "content": "Les fonctionnalités pour définir les limites de taille d'upload, les délais d'annulation, les SLA cibles et le mode maintenance seront implémentées ici."
+            "operational": {
+                "title": "Paramètres Opérationnels",
+                "description": "Ajustez les paramètres de fonctionnement principaux de la plateforme.",
+                "offerExpirationDaysLabel": "Expiration des offres (Jours)",
+                "offerExpirationDaysDesc": "Durée de validité d'une offre.",
+                "cancellationHoursBeforeLabel": "Délai d'annulation (Heures)",
+                "cancellationHoursBeforeDesc": "Temps avant une mission où un utilisateur peut annuler.",
+                "supportSlaHoursLabel": "SLA Support (Heures)",
+                "supportSlaHoursDesc": "Temps cible pour répondre aux tickets de support."
+            },
+            "maintenance": {
+                "title": "Mode Maintenance",
+                "description": "Désactivez temporairement l'accès à la plateforme pour les utilisateurs.",
+                "enableLabel": "Activer le mode maintenance",
+                "enableDesc": "Lorsque activé, les utilisateurs verront le message de maintenance au lieu de l'application.",
+                "messageLabel": "Message de maintenance"
+            },
+            "saveButton": "Enregistrer les paramètres",
+            "toast": {
+                "successTitle": "Paramètres Enregistrés",
+                "successDescription": "Les paramètres de la plateforme ont été mis à jour avec succès."
             }
         },
         "flags": {

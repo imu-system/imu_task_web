@@ -784,7 +784,7 @@
     "AdminPaymentsPage": {
         "transactions": {
             "title": "Transactions",
-            "subtitle": "List of all payments from clients.",
+            "subtitle": "Liste de tous les paiements des clients.",
             "currency": "€",
             "table": {
                 "title": "Transaction History",
@@ -1668,10 +1668,27 @@
     },
     "AdminSettingsPage": {
         "settings": {
-            "card": {
-                "title": "Under Construction",
-                "description": "This section is for managing general platform settings.",
-                "content": "Functionality for setting upload size limits, cancellation deadlines, target SLAs, and maintenance mode will be implemented here."
+            "operational": {
+                "title": "Operational Settings",
+                "description": "Adjust the platform's core operational parameters.",
+                "offerExpirationDaysLabel": "Offer Expiration (Days)",
+                "offerExpirationDaysDesc": "Duration an offer remains valid.",
+                "cancellationHoursBeforeLabel": "Cancellation Deadline (Hours)",
+                "cancellationHoursBeforeDesc": "Time before a task a user can cancel.",
+                "supportSlaHoursLabel": "Support Response SLA (Hours)",
+                "supportSlaHoursDesc": "Target time to respond to support tickets."
+            },
+            "maintenance": {
+                "title": "Maintenance Mode",
+                "description": "Temporarily disable access to the platform for users.",
+                "enableLabel": "Enable Maintenance Mode",
+                "enableDesc": "When enabled, users will see the maintenance message instead of the app.",
+                "messageLabel": "Maintenance Message"
+            },
+            "saveButton": "Save Settings",
+            "toast": {
+                "successTitle": "Settings Saved",
+                "successDescription": "The platform settings have been successfully updated."
             }
         },
         "flags": {
