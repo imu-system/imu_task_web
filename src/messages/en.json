@@ -1693,9 +1693,24 @@
         },
         "flags": {
             "card": {
-                "title": "Under Construction",
-                "description": "This section is for managing feature flags.",
-                "content": "Functionality for enabling/disabling features by environment, percentage rollout, and role-based targeting will be implemented here."
+                "title": "Feature Flags",
+                "description": "Enable or disable features for all users. Changes take effect after the next deployment."
+            },
+            "aiSuggestion": {
+                "name": "AI Category Suggestion",
+                "description": "Enables the AI-powered category suggestion feature on the task creation form."
+            },
+            "newProfilePage": {
+                "name": "New Profile Page Design",
+                "description": "Activates the new, redesigned user profile page."
+            },
+            "providerCalendar": {
+                "name": "Provider Availability Calendar",
+                "description": "Allows providers to set their work availability in a calendar view."
+            },
+            "toast": {
+                "successTitle": "Feature Flags Saved",
+                "successDescription": "Your changes have been saved. They will be applied on the next deployment."
             }
         }
     }

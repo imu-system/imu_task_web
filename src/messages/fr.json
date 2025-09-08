@@ -1693,9 +1693,24 @@
         },
         "flags": {
             "card": {
-                "title": "En Construction",
-                "description": "Cette section est destinée à la gestion des feature flags.",
-                "content": "Les fonctionnalités pour activer/désactiver des features par environnement, le déploiement par pourcentage et le ciblage par rôle seront implémentées ici."
+                "title": "Feature Flags",
+                "description": "Activez ou désactivez des fonctionnalités pour tous les utilisateurs. Les changements prennent effet après le prochain déploiement."
+            },
+            "aiSuggestion": {
+                "name": "Suggestion de catégories par IA",
+                "description": "Active la fonctionnalité de suggestion de catégories par IA sur le formulaire de création de mission."
+            },
+            "newProfilePage": {
+                "name": "Nouveau design de la page profil",
+                "description": "Active la nouvelle page de profil utilisateur redessinée."
+            },
+            "providerCalendar": {
+                "name": "Calendrier de disponibilités prestataire",
+                "description": "Permet aux prestataires de définir leurs disponibilités de travail dans un calendrier."
+            },
+            "toast": {
+                "successTitle": "Feature Flags Enregistrés",
+                "successDescription": "Vos modifications ont été enregistrées. Elles seront appliquées lors du prochain déploiement."
             }
         }
     }
