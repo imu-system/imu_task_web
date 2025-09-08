@@ -1833,6 +1833,15 @@
             "dateRange": "Période",
             "pickDate": "Choisir une période",
             "apply": "Filtrer"
+        },
+        "actions": {
+            "export": "Exporter",
+            "viewChanges": "Voir les changements"
+        },
+        "deltaDialog": {
+            "title": "Comparateur de Modifications",
+            "description": "Cette fonctionnalité affichera les changements 'avant' et 'après' pour cette action. Elle est actuellement en cours de développement.",
+            "close": "Fermer"
         }
     }
 }

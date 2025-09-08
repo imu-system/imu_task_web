@@ -1833,6 +1833,15 @@
             "dateRange": "Date Range",
             "pickDate": "Pick a date range",
             "apply": "Filter"
+        },
+        "actions": {
+            "export": "Export",
+            "viewChanges": "View Changes"
+        },
+        "deltaDialog": {
+            "title": "Change Comparator",
+            "description": "This feature will show the 'before' and 'after' changes for this action. It is currently under development.",
+            "close": "Close"
         }
     }
 }
