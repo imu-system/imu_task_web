@@ -1842,6 +1842,16 @@
             "title": "Comparateur de Modifications",
             "description": "Cette fonctionnalité affichera les changements 'avant' et 'après' pour cette action. Elle est actuellement en cours de développement.",
             "close": "Fermer"
+        },
+        "csv": {
+            "id": "ID",
+            "actorId": "ID Acteur",
+            "actorName": "Nom Acteur",
+            "action": "Action",
+            "targetType": "Type Cible",
+            "targetId": "ID Cible",
+            "createdAt": "Date",
+            "result": "Résultat"
         }
     }
 }

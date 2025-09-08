@@ -1842,6 +1842,16 @@
             "title": "Change Comparator",
             "description": "This feature will show the 'before' and 'after' changes for this action. It is currently under development.",
             "close": "Close"
+        },
+        "csv": {
+            "id": "ID",
+            "actorId": "Actor ID",
+            "actorName": "Actor Name",
+            "action": "Action",
+            "targetType": "Target Type",
+            "targetId": "Target ID",
+            "createdAt": "Created At",
+            "result": "Result"
         }
     }
 }

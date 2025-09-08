@@ -61,6 +61,46 @@ export default function AdminAuditLogPage() {
         }
     }, [user, authLoading, router]);
 
+    const exportToCsv = () => {
+        const headers = [
+            t('csv.id'),
+            t('csv.actorId'),
+            t('csv.actorName'),
+            t('csv.action'),
+            t('csv.targetType'),
+            t('csv.targetId'),
+            t('csv.createdAt'),
+            t('csv.result'),
+        ];
+        const csvRows = [headers.join(',')];
+
+        mockAuditLogs.forEach(log => {
+            const row = [
+                log.id,
+                log.actorId,
+                `"${log.actorName?.replace(/"/g, '""')}"`,
+                log.action,
+                log.targetType,
+                log.targetId,
+                log.createdAt.toISOString(),
+                log.result
+            ];
+            csvRows.push(row.join(','));
+        });
+
+        const csvString = csvRows.join('\n');
+        const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', `audit-log-${new Date().toISOString().split('T')[0]}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
+
     if (authLoading || !user || !user.roles?.includes(UserRole.admin)) {
         return (
             <div className="flex justify-center items-center h-64">
@@ -93,7 +133,7 @@ export default function AdminAuditLogPage() {
                         {t('subtitle')}
                     </p>
                 </div>
-                 <Button variant="outline" disabled>
+                 <Button variant="outline" onClick={exportToCsv}>
                     <Download className="mr-2 h-4 w-4"/>
                     {t('actions.export')}
                 </Button>
