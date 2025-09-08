@@ -2,7 +2,7 @@
 'use client';
 
 import { useAuth } from '@/hooks/use-auth';
-import { useRouter } from '@/navigation';
+import { useRouter, Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Loader2, Ticket, PlusCircle, MoreHorizontal, Trash2, Edit, Calendar as CalendarIcon } from 'lucide-react';
@@ -271,7 +271,11 @@ export default function AdminCouponsPage() {
                                                 <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
-                                                <DropdownMenuItem><Edit className="mr-2"/>{t('table.actions.edit')}</DropdownMenuItem>
+                                                <DropdownMenuItem asChild>
+                                                    <Link href={`/dashboard/admin/pricing/coupons/edit/${coupon.id}`}>
+                                                        <Edit className="mr-2"/>{t('table.actions.edit')}
+                                                    </Link>
+                                                </DropdownMenuItem>
                                                 <DropdownMenuItem className="text-destructive"><Trash2 className="mr-2"/>{t('table.actions.delete')}</DropdownMenuItem>
                                             </DropdownMenuContent>
                                         </DropdownMenu>

@@ -1622,8 +1622,11 @@
             },
             "form": {
                 "title": "Créer un Coupon",
+                "titleEdit": "Modifier le Coupon",
                 "description": "Remplissez les détails du nouveau code promotionnel.",
                 "saveButton": "Enregistrer le coupon",
+                "saveChangesButton": "Enregistrer les modifications",
+                "cancelButton": "Annuler",
                 "code": {
                     "label": "Code du Coupon",
                     "placeholder": "Ex: ETE2024"
@@ -1649,7 +1652,9 @@
                 },
                 "toast": {
                     "successTitle": "Coupon Enregistré",
-                    "successDescription": "Le code promotionnel a été enregistré avec succès."
+                    "successDescription": "Le code promotionnel a été enregistré avec succès.",
+                    "updateSuccessTitle": "Coupon Mis à Jour",
+                    "updateSuccessDescription": "Le code promotionnel a été mis à jour avec succès."
                 }
             }
         }

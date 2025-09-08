@@ -1622,8 +1622,11 @@
             },
             "form": {
                 "title": "Create Coupon",
+                "titleEdit": "Edit Coupon",
                 "description": "Fill in the details for the new promotional code.",
                 "saveButton": "Save Coupon",
+                "saveChangesButton": "Save Changes",
+                "cancelButton": "Cancel",
                 "code": {
                     "label": "Coupon Code",
                     "placeholder": "e.g. SUMMER2024"
@@ -1649,7 +1652,9 @@
                 },
                 "toast": {
                     "successTitle": "Coupon Saved",
-                    "successDescription": "The promotional code has been successfully saved."
+                    "successDescription": "The promotional code has been successfully saved.",
+                    "updateSuccessTitle": "Coupon Updated",
+                    "updateSuccessDescription": "The promotional code has been successfully updated."
                 }
             }
         }
