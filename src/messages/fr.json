@@ -1085,7 +1085,7 @@
                 "title": "Modération",
                 "description": "Gérer la résolution du litige.",
                 "assign": "Assigner un modérateur",
-                "changeStatus": "Change Status",
+                "changeStatus": "Changer le statut",
                 "triggerRefund": "Déclencher un remboursement",
                 "assignDialog": {
                     "title": "Assigner un modérateur",
