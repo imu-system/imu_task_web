@@ -76,7 +76,8 @@
         "disputes": "Disputes",
         "notifications": "Notifications",
         "cms": "Content (CMS)",
-        "pricing": "Pricing"
+        "pricing": "Pricing",
+        "settings": "Settings"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -1656,6 +1657,28 @@
                     "updateSuccessTitle": "Coupon Updated",
                     "updateSuccessDescription": "The promotional code has been successfully updated."
                 }
+            }
+        }
+    },
+    "AdminSettingsLayout": {
+        "title": "Platform Settings",
+        "subtitle": "Manage global settings and feature flags.",
+        "settings": "General",
+        "flags": "Feature Flags"
+    },
+    "AdminSettingsPage": {
+        "settings": {
+            "card": {
+                "title": "Under Construction",
+                "description": "This section is for managing general platform settings.",
+                "content": "Functionality for setting upload size limits, cancellation deadlines, target SLAs, and maintenance mode will be implemented here."
+            }
+        },
+        "flags": {
+            "card": {
+                "title": "Under Construction",
+                "description": "This section is for managing feature flags.",
+                "content": "Functionality for enabling/disabling features by environment, percentage rollout, and role-based targeting will be implemented here."
             }
         }
     }

@@ -36,6 +36,7 @@ import {
   Bell,
   FileText,
   DollarSign,
+  SlidersHorizontal,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -189,6 +190,14 @@ export function DashboardNav() {
                         <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/cms')}>
                             <FileText />
                             <span>{t('cms')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+                 <SidebarMenuItem>
+                    <Link href="/dashboard/admin/settings">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/settings')}>
+                            <SlidersHorizontal />
+                            <span>{t('settings')}</span>
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>

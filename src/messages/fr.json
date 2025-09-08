@@ -76,7 +76,8 @@
         "disputes": "Litiges",
         "notifications": "Notifications",
         "cms": "Contenu (CMS)",
-        "pricing": "Tarification"
+        "pricing": "Tarification",
+        "settings": "Paramètres"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -1084,7 +1085,7 @@
                 "title": "Modération",
                 "description": "Gérer la résolution du litige.",
                 "assign": "Assigner un modérateur",
-                "changeStatus": "Changer le statut",
+                "changeStatus": "Change Status",
                 "triggerRefund": "Déclencher un remboursement",
                 "assignDialog": {
                     "title": "Assigner un modérateur",
@@ -1492,7 +1493,7 @@
                     "indexation": "Autoriser l'indexation par les moteurs de recherche"
                 },
                 "organization": {
-                    "title": "Organisation",
+                    "title": "Organization",
                     "tags": "Étiquettes",
                     "tagsPlaceholder": "Ex: actu, fonctionnalité",
                     "tagsDescription": "Séparez les étiquettes par une virgule."
@@ -1504,7 +1505,7 @@
                 }
             },
             "preview": {
-                "title": "Mode Aperçu",
+                "title": "Preview Mode",
                 "description": "Vous prévisualisez un brouillon de votre article.",
                 "backToEdit": "Retour à l'éditeur",
                 "publish": "Publier",
@@ -1656,6 +1657,28 @@
                     "updateSuccessTitle": "Coupon Mis à Jour",
                     "updateSuccessDescription": "Le code promotionnel a été mis à jour avec succès."
                 }
+            }
+        }
+    },
+    "AdminSettingsLayout": {
+        "title": "Paramètres de la Plateforme",
+        "subtitle": "Gérez les paramètres globaux et les feature flags.",
+        "settings": "Général",
+        "flags": "Feature Flags"
+    },
+    "AdminSettingsPage": {
+        "settings": {
+            "card": {
+                "title": "En Construction",
+                "description": "Cette section est destinée à la gestion des paramètres généraux de la plateforme.",
+                "content": "Les fonctionnalités pour définir les limites de taille d'upload, les délais d'annulation, les SLA cibles et le mode maintenance seront implémentées ici."
+            }
+        },
+        "flags": {
+            "card": {
+                "title": "En Construction",
+                "description": "Cette section est destinée à la gestion des feature flags.",
+                "content": "Les fonctionnalités pour activer/désactiver des features par environnement, le déploiement par pourcentage et le ciblage par rôle seront implémentées ici."
             }
         }
     }
