@@ -4,15 +4,59 @@
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
-import { useEffect } from 'react';
-import { Loader2, Milestone } from 'lucide-react';
-import { UserRole } from '@/lib/types';
+import { useEffect, useState } from 'react';
+import { Loader2, Milestone, Receipt, Percent, PlusCircle } from 'lucide-react';
+import { UserRole, ServiceCategory } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { useToast } from '@/hooks/use-toast';
+import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
+
+
+const guidanceSchema = z.object({
+  categories: z.array(z.object({
+    id: z.string(),
+    recommendedPriceMin: z.coerce.number().int().min(0).optional(),
+    recommendedPriceMax: z.coerce.number().int().min(0).optional(),
+  })).refine(items => {
+    return items.every(item => {
+        if (item.recommendedPriceMin !== undefined && item.recommendedPriceMax !== undefined) {
+            return item.recommendedPriceMax >= item.recommendedPriceMin;
+        }
+        return true;
+    });
+  }, {
+    message: "Le prix maximum doit être supérieur ou égal au prix minimum.",
+    // This path is tricky for arrays. We'll rely on individual field errors for now.
+  })
+});
+
+type GuidanceFormValues = z.infer<typeof guidanceSchema>;
+
 
 export default function AdminGuidancePage() {
     const { user, loading: authLoading } = useAuth();
     const router = useRouter();
     const t = useTranslations('AdminPricingPage.guidance');
+    const { toast } = useToast();
+    
+    const [isLoading, setIsLoading] = useState(true);
+    const [isSaving, setIsSaving] = useState(false);
+    const [categories, setCategories] = useState<ServiceCategory[]>([]);
+
+    const form = useForm<GuidanceFormValues>({
+        resolver: zodResolver(guidanceSchema),
+        defaultValues: {
+            categories: []
+        }
+    });
 
     useEffect(() => {
         if (!authLoading && (!user || !user.roles?.includes(UserRole.admin))) {
@@ -20,7 +64,61 @@ export default function AdminGuidancePage() {
         }
     }, [user, authLoading, router]);
 
-    if (authLoading || !user || !user.roles?.includes(UserRole.admin)) {
+    useEffect(() => {
+        const fetchCategories = async () => {
+            setIsLoading(true);
+            try {
+                const catQuery = query(collection(db, 'serviceCategories'), where('isActive', '==', true));
+                const catSnapshot = await getDocs(catQuery);
+                const fetchedCategories = catSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as ServiceCategory));
+                
+                setCategories(fetchedCategories);
+                form.reset({
+                    categories: fetchedCategories.map(c => ({
+                        id: c.id,
+                        recommendedPriceMin: c.recommendedPriceMin || undefined,
+                        recommendedPriceMax: c.recommendedPriceMax || undefined,
+                    }))
+                });
+
+            } catch (error) {
+                console.error("Error fetching categories:", error);
+                toast({ variant: 'destructive', title: "Erreur", description: "Impossible de charger les catégories de service." });
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchCategories();
+    }, [form, toast]);
+    
+    const onSubmit = async (data: GuidanceFormValues) => {
+        setIsSaving(true);
+        const batch = [];
+        for (const categoryData of data.categories) {
+            const ref = doc(db, 'serviceCategories', categoryData.id);
+            const updatePayload: Partial<ServiceCategory> = {
+                recommendedPriceMin: categoryData.recommendedPriceMin,
+                recommendedPriceMax: categoryData.recommendedPriceMax,
+            };
+            batch.push(updateDoc(ref, updatePayload));
+        }
+
+        try {
+            await Promise.all(batch);
+            toast({
+                title: t('toast.successTitle'),
+                description: t('toast.successDescription'),
+            });
+        } catch (error) {
+            console.error("Error updating price guidance:", error);
+            toast({ variant: 'destructive', title: "Erreur", description: t('toast.errorDescription') });
+        } finally {
+            setIsSaving(false);
+        }
+    };
+
+
+    if (authLoading || isLoading || !user || !user.roles?.includes(UserRole.admin)) {
         return (
             <div className="flex justify-center items-center h-64">
                 <Loader2 className="h-16 w-16 animate-spin text-primary" />
@@ -29,7 +127,8 @@ export default function AdminGuidancePage() {
     }
     
     return (
-        <div className="space-y-8">
+        <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <div>
                 <h1 className="text-3xl font-bold tracking-tight font-headline flex items-center gap-2">
                     <Milestone className="h-8 w-8 text-primary"/>
@@ -46,9 +145,60 @@ export default function AdminGuidancePage() {
                     <CardDescription>{t('card.description')}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <p className="text-sm text-muted-foreground">{t('card.content')}</p>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>{t('table.category')}</TableHead>
+                                <TableHead className="w-[200px]">{t('table.minPrice')}</TableHead>
+                                <TableHead className="w-[200px]">{t('table.maxPrice')}</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                         <TableBody>
+                            {categories.map((category, index) => (
+                                <TableRow key={category.id}>
+                                    <TableCell className="font-medium">{category.name?.fr || category.slug}</TableCell>
+                                    <TableCell>
+                                        <FormField
+                                            control={form.control}
+                                            name={`categories.${index}.recommendedPriceMin`}
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormControl>
+                                                        <Input type="number" placeholder={t('table.pricePlaceholder')} {...field} />
+                                                    </FormControl>
+                                                    <FormMessage/>
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </TableCell>
+                                    <TableCell>
+                                         <FormField
+                                            control={form.control}
+                                            name={`categories.${index}.recommendedPriceMax`}
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormControl>
+                                                        <Input type="number" placeholder={t('table.pricePlaceholder')} {...field} />
+                                                    </FormControl>
+                                                    <FormMessage/>
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
                 </CardContent>
             </Card>
-        </div>
+
+             <div className="flex justify-end">
+                <Button type="submit" disabled={isSaving}>
+                    {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                    {t('saveButton')}
+                </Button>
+            </div>
+        </form>
+        </Form>
     );
 }

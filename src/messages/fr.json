@@ -1580,9 +1580,20 @@
             "title": "Tarifs Conseillés",
             "subtitle": "Aidez les utilisateurs en fournissant des fourchettes de prix.",
             "card": {
-                "title": "En construction",
-                "description": "Cette section est dédiée à la gestion des fourchettes de prix conseillés.",
-                "content": "Les fonctionnalités pour définir des prix conseillés par catégorie de service et/ou par ville seront implémentées ici."
+                "title": "Tarifs conseillés par catégorie",
+                "description": "Ces fourchettes de prix seront indiquées aux utilisateurs lors de la création d'une mission. Les prix sont en centimes (ex: 1500 pour 15,00€)."
+            },
+            "table": {
+                "category": "Catégorie",
+                "minPrice": "Prix Min Conseillé (centimes)",
+                "maxPrice": "Prix Max Conseillé (centimes)",
+                "pricePlaceholder": "Ex: 1500"
+            },
+            "saveButton": "Enregistrer les recommandations",
+            "toast": {
+                "successTitle": "Recommandations enregistrées",
+                "successDescription": "Les fourchettes de prix conseillés ont été mises à jour.",
+                "errorDescription": "Impossible d'enregistrer les tarifs conseillés."
             }
         },
         "coupons": {

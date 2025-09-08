@@ -1580,9 +1580,20 @@
             "title": "Recommended Prices",
             "subtitle": "Help users by providing recommended price ranges.",
             "card": {
-                "title": "Under Construction",
-                "description": "This section is dedicated to managing recommended price ranges.",
-                "content": "Functionality for setting recommended prices per service category and/or city will be implemented here."
+                "title": "Recommended Prices per Category",
+                "description": "These price ranges will be shown to users when creating a task. Prices are in cents (e.g., 1500 for 15.00€)."
+            },
+            "table": {
+                "category": "Category",
+                "minPrice": "Min Recommended Price (cents)",
+                "maxPrice": "Max Recommended Price (cents)",
+                "pricePlaceholder": "e.g., 1500"
+            },
+            "saveButton": "Save Recommendations",
+            "toast": {
+                "successTitle": "Recommendations Saved",
+                "successDescription": "The recommended price ranges have been updated.",
+                "errorDescription": "Could not save the recommended prices."
             }
         },
         "coupons": {
