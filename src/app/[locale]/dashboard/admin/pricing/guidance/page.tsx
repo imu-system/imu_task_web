@@ -19,7 +19,6 @@ import { db } from '@/lib/firebase';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 
-
 const guidanceSchema = z.object({
   categories: z.array(z.object({
     id: z.string(),
@@ -36,10 +35,28 @@ const guidanceSchema = z.object({
     });
   }, {
     message: "Le max doit être >= au min.",
-  })
+  }),
+  countries: z.array(z.object({
+    code: z.string(),
+    recommendedPriceMin: z.coerce.number().int().min(0).optional().or(z.literal('')),
+    recommendedPriceMax: z.coerce.number().int().min(0).optional().or(z.literal('')),
+  })),
+   cities: z.array(z.object({
+    name: z.string(),
+    recommendedPriceMin: z.coerce.number().int().min(0).optional().or(z.literal('')),
+    recommendedPriceMax: z.coerce.number().int().min(0).optional().or(z.literal('')),
+  })),
 });
 
 type GuidanceFormValues = z.infer<typeof guidanceSchema>;
+
+const mockCountries = [
+    { code: 'FR', name: 'France' },
+    { code: 'BE', name: 'Belgique' },
+    { code: 'US', name: 'United States' },
+];
+
+const mockCities = ["Paris", "Lyon", "Marseille"];
 
 
 export default function AdminGuidancePage() {
@@ -55,7 +72,9 @@ export default function AdminGuidancePage() {
     const form = useForm<GuidanceFormValues>({
         resolver: zodResolver(guidanceSchema),
         defaultValues: {
-            categories: []
+            categories: [],
+            countries: mockCountries.map(c => ({ code: c.code, recommendedPriceMin: '', recommendedPriceMax: '' })),
+            cities: mockCities.map(c => ({ name: c, recommendedPriceMin: '', recommendedPriceMax: '' })),
         }
     });
 
@@ -81,7 +100,10 @@ export default function AdminGuidancePage() {
                         id: c.id,
                         recommendedPriceMin: c.recommendedPriceMin || '',
                         recommendedPriceMax: c.recommendedPriceMax || '',
-                    }))
+                    })),
+                    // Reset other fields with their initial mock data structure
+                    countries: mockCountries.map(c => ({ code: c.code, name: c.name, recommendedPriceMin: '', recommendedPriceMax: '' })),
+                    cities: mockCities.map(c => ({ name: c, recommendedPriceMin: '', recommendedPriceMax: '' })),
                 });
 
             } catch (error) {
@@ -96,7 +118,9 @@ export default function AdminGuidancePage() {
     
     const onSubmit = async (data: GuidanceFormValues) => {
         setIsSaving(true);
-        const updatePromises: Promise<void>[] = [];
+        console.log("Saving guidance data:", data);
+
+        const categoryUpdatePromises: Promise<void>[] = [];
 
         for (const categoryData of data.categories) {
             const ref = doc(db, 'serviceCategories', categoryData.id);
@@ -107,11 +131,11 @@ export default function AdminGuidancePage() {
                 recommendedPriceMin: minPrice,
                 recommendedPriceMax: maxPrice,
             };
-            updatePromises.push(updateDoc(ref, updatePayload));
+            categoryUpdatePromises.push(updateDoc(ref, updatePayload));
         }
 
         try {
-            await Promise.all(updatePromises);
+            await Promise.all(categoryUpdatePromises);
             toast({
                 title: t('toast.successTitle'),
                 description: t('toast.successDescription'),
@@ -148,8 +172,8 @@ export default function AdminGuidancePage() {
 
             <Card>
                 <CardHeader>
-                    <CardTitle>{t('card.title')}</CardTitle>
-                    <CardDescription>{t('card.description')}</CardDescription>
+                    <CardTitle>{t('card.category.title')}</CardTitle>
+                    <CardDescription>{t('card.category.description')}</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Table>
@@ -198,6 +222,69 @@ export default function AdminGuidancePage() {
                     </Table>
                 </CardContent>
             </Card>
+
+             <Card>
+                <CardHeader>
+                    <CardTitle>{t('card.country.title')}</CardTitle>
+                    <CardDescription>{t('card.country.description')}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>{t('table.country')}</TableHead>
+                                <TableHead className="w-[200px]">{t('table.minPrice')}</TableHead>
+                                <TableHead className="w-[200px]">{t('table.maxPrice')}</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                         <TableBody>
+                            {mockCountries.map((country, index) => (
+                                <TableRow key={country.code}>
+                                    <TableCell className="font-medium">{country.name}</TableCell>
+                                    <TableCell>
+                                        <FormField control={form.control} name={`countries.${index}.recommendedPriceMin`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder={t('table.pricePlaceholder')} {...field} /></FormControl><FormMessage/></FormItem>)} />
+                                    </TableCell>
+                                    <TableCell>
+                                         <FormField control={form.control} name={`countries.${index}.recommendedPriceMax`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder={t('table.pricePlaceholder')} {...field} /></FormControl><FormMessage/></FormItem>)} />
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </CardContent>
+            </Card>
+
+             <Card>
+                <CardHeader>
+                    <CardTitle>{t('card.city.title')}</CardTitle>
+                    <CardDescription>{t('card.city.description')}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Table>
+                        <TableHeader>
+                            <TableRow>
+                                <TableHead>{t('table.city')}</TableHead>
+                                <TableHead className="w-[200px]">{t('table.minPrice')}</TableHead>
+                                <TableHead className="w-[200px]">{t('table.maxPrice')}</TableHead>
+                            </TableRow>
+                        </TableHeader>
+                         <TableBody>
+                            {mockCities.map((city, index) => (
+                                <TableRow key={city}>
+                                    <TableCell className="font-medium">{city}</TableCell>
+                                    <TableCell>
+                                        <FormField control={form.control} name={`cities.${index}.recommendedPriceMin`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder={t('table.pricePlaceholder')} {...field} /></FormControl><FormMessage/></FormItem>)} />
+                                    </TableCell>
+                                    <TableCell>
+                                         <FormField control={form.control} name={`cities.${index}.recommendedPriceMax`} render={({ field }) => (<FormItem><FormControl><Input type="number" placeholder={t('table.pricePlaceholder')} {...field} /></FormControl><FormMessage/></FormItem>)} />
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </CardContent>
+            </Card>
+
 
              <div className="flex justify-end">
                 <Button type="submit" disabled={isSaving}>

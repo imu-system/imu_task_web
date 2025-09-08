@@ -1580,11 +1580,23 @@
             "title": "Tarifs Conseillés",
             "subtitle": "Aidez les utilisateurs en fournissant des fourchettes de prix.",
             "card": {
-                "title": "Tarifs conseillés par catégorie",
-                "description": "Ces fourchettes de prix seront indiquées aux utilisateurs lors de la création d'une mission. Les prix sont en centimes (ex: 1500 pour 15,00€)."
+                "category": {
+                    "title": "Tarifs conseillés par catégorie",
+                    "description": "Ces fourchettes de prix seront indiquées aux utilisateurs lors de la création d'une mission. Les prix sont en centimes (ex: 1500 pour 15,00€)."
+                },
+                "country": {
+                    "title": "Tarifs conseillés par pays",
+                    "description": "Supplantez les recommandations par catégorie pour des pays spécifiques."
+                },
+                "city": {
+                    "title": "Tarifs conseillés par ville",
+                    "description": "Supplantez les recommandations par catégorie et par pays pour des villes spécifiques."
+                }
             },
             "table": {
                 "category": "Catégorie",
+                "country": "Pays",
+                "city": "Ville",
                 "minPrice": "Prix Min Conseillé (centimes)",
                 "maxPrice": "Prix Max Conseillé (centimes)",
                 "pricePlaceholder": "Ex: 1500"

@@ -1580,11 +1580,23 @@
             "title": "Recommended Prices",
             "subtitle": "Help users by providing recommended price ranges.",
             "card": {
-                "title": "Recommended Prices per Category",
-                "description": "These price ranges will be shown to users when creating a task. Prices are in cents (e.g., 1500 for 15.00€)."
+                "category": {
+                    "title": "Recommended Prices per Category",
+                    "description": "These price ranges will be shown to users when creating a task. Prices are in cents (e.g., 1500 for 15.00€)."
+                },
+                "country": {
+                    "title": "Recommended Prices per Country",
+                    "description": "Override category recommendations for specific countries."
+                },
+                "city": {
+                    "title": "Recommended Prices per City",
+                    "description": "Override category and country recommendations for specific cities."
+                }
             },
             "table": {
                 "category": "Category",
+                "country": "Country",
+                "city": "City",
                 "minPrice": "Min Recommended Price (cents)",
                 "maxPrice": "Max Recommended Price (cents)",
                 "pricePlaceholder": "e.g., 1500"
