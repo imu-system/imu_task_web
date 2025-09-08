@@ -220,9 +220,7 @@
         "priorityQueueDesc": "Items requiring your immediate attention.",
         "quickActionsTitle": "Quick Actions",
         "quickActionCategory": "New Category",
-        "quickActionAnnouncement": "System Announcement",
         "quickActionUsers": "Manage Users",
-        "quickActionExport": "Accounting Export",
         "quickActionTasks": "Manage Tasks",
         "quickActionOffers": "Manage Offers",
         "quickActionBookings": "Manage Bookings",
@@ -1274,14 +1272,6 @@
                 }
             }
         }
-    },
-    "AdminCmsLayout": {
-        "title": "Content Management",
-        "subtitle": "Manage all editable content of the platform.",
-        "pages": "Pages",
-        "faq": "FAQ",
-        "policies": "Policies",
-        "posts": "Blog/News"
     },
     "AdminCmsPage": {
         "pages": {
