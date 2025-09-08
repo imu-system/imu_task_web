@@ -1711,6 +1711,13 @@
             "toast": {
                 "successTitle": "Feature Flags Saved",
                 "successDescription": "Your changes have been saved. They will be applied on the next deployment."
+            },
+            "targeting": {
+                "environment": "Environment",
+                "production": "Production",
+                "staging": "Staging",
+                "rollout": "Rollout Percentage",
+                "roles": "Target Roles"
             }
         }
     }

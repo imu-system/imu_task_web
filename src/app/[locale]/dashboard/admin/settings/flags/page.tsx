@@ -13,6 +13,9 @@ import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/hooks/use-toast';
+import { Slider } from '@/components/ui/slider';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select';
 
 // Mock data for feature flags
 const mockFlags = [
@@ -36,10 +39,13 @@ const mockFlags = [
   },
 ];
 
+const availableRoles = [UserRole.client, UserRole.provider];
+
 export default function AdminFlagsPage() {
     const { user, loading: authLoading } = useAuth();
     const router = useRouter();
     const t = useTranslations('AdminSettingsPage');
+    const tUsers = useTranslations('AdminUsersPage');
     const { toast } = useToast();
     const [flags, setFlags] = useState(mockFlags);
     const [isSaving, setIsSaving] = useState(false);
@@ -84,24 +90,54 @@ export default function AdminFlagsPage() {
                     <CardTitle>{t('flags.card.title')}</CardTitle>
                     <CardDescription>{t('flags.card.description')}</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                    {flags.map((flag, index) => (
-                        <React.Fragment key={flag.id}>
-                            <div className="flex items-center justify-between space-x-2">
-                                <Label htmlFor={flag.id} className="flex flex-col space-y-1">
-                                    <span>{t(flag.nameKey as any)}</span>
-                                    <span className="font-normal leading-snug text-muted-foreground">
-                                        {t(flag.descriptionKey as any)}
-                                    </span>
-                                </Label>
+                <CardContent className="space-y-8">
+                    {flags.map((flag) => (
+                        <Card key={flag.id} className="p-6">
+                           <div className="flex items-start justify-between gap-4">
+                                <div className="flex-1 space-y-1">
+                                    <h3 className="font-semibold">{t(flag.nameKey as any)}</h3>
+                                    <p className="text-sm text-muted-foreground">{t(flag.descriptionKey as any)}</p>
+                                </div>
                                 <Switch
                                     id={flag.id}
                                     checked={flag.isActive}
                                     onCheckedChange={(checked) => handleFlagToggle(flag.id, checked)}
+                                    aria-label={`Toggle ${t(flag.nameKey as any)}`}
                                 />
-                            </div>
-                            {index < flags.length - 1 && <Separator />}
-                        </React.Fragment>
+                           </div>
+                           <div className={`mt-4 space-y-6 transition-opacity ${flag.isActive ? 'opacity-100' : 'opacity-50 pointer-events-none'}`}>
+                                <Separator/>
+                                <div className="space-y-2">
+                                    <Label>{t('flags.targeting.environment')}</Label>
+                                    <Select defaultValue="production" disabled>
+                                        <SelectTrigger className="w-[180px]">
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="production">{t('flags.targeting.production')}</SelectItem>
+                                            <SelectItem value="staging">{t('flags.targeting.staging')}</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>{t('flags.targeting.rollout')} : 100%</Label>
+                                    <Slider defaultValue={[100]} max={100} step={1} disabled />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>{t('flags.targeting.roles')}</Label>
+                                    <div className="flex gap-4">
+                                        {availableRoles.map(role => (
+                                            <div key={role} className="flex items-center space-x-2">
+                                                <Checkbox id={`${flag.id}-${role}`} checked disabled/>
+                                                <label htmlFor={`${flag.id}-${role}`} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+                                                    {tUsers(`roles.${role}`)}
+                                                </label>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                           </div>
+                        </Card>
                     ))}
                 </CardContent>
              </Card>

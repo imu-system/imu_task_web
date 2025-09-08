@@ -1711,6 +1711,13 @@
             "toast": {
                 "successTitle": "Feature Flags Enregistrés",
                 "successDescription": "Vos modifications ont été enregistrées. Elles seront appliquées lors du prochain déploiement."
+            },
+            "targeting": {
+                "environment": "Environnement",
+                "production": "Production",
+                "staging": "Staging",
+                "rollout": "Pourcentage de déploiement",
+                "roles": "Rôles cibles"
             }
         }
     }
