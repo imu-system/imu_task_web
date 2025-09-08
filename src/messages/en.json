@@ -78,7 +78,8 @@
         "cms": "Content (CMS)",
         "pricing": "Pricing",
         "settings": "Settings",
-        "reports": "Reports & Analytics"
+        "reports": "Reports & Analytics",
+        "auditLog": "Audit Log"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -1802,6 +1803,27 @@
             "city": "City",
             "apply": "Apply",
             "reset": "Reset"
+        }
+    },
+    "AdminAuditLogPage": {
+        "title": "Audit Log",
+        "subtitle": "Track all administrative and critical actions on the platform.",
+        "table": {
+            "title": "Activity Log",
+            "description": "List of recorded actions.",
+            "header": {
+                "date": "Date",
+                "actor": "Actor",
+                "action": "Action",
+                "target": "Target",
+                "details": "Details"
+            }
+        },
+        "filters": {
+            "searchPlaceholder": "Search by actor, target...",
+            "action": "Action",
+            "allActions": "All Actions",
+            "apply": "Filter"
         }
     }
 }

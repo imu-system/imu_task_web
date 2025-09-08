@@ -78,7 +78,8 @@
         "cms": "Contenu (CMS)",
         "pricing": "Tarification",
         "settings": "Paramètres",
-        "reports": "Rapports & Analytics"
+        "reports": "Rapports & Analytics",
+        "auditLog": "Journal d'audit"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -1415,7 +1416,7 @@
             }
         },
         "posts": {
-            "title": "Blog/Actus Management",
+            "title": "Gestion du Blog/Actus",
             "description": "Liste de tous les articles de blog et d'actualités.",
             "noPosts": "Aucun article créé pour le moment.",
             "status": {
@@ -1471,7 +1472,7 @@
                     "seoDescription": "Description SEO"
                 },
                 "publishing": {
-                    "title": "Publishing",
+                    "title": "Publication",
                     "status": {
                         "draft": "Brouillon",
                         "published": "Publié"
@@ -1481,7 +1482,7 @@
                     "indexation": "Autoriser l'indexation par les moteurs de recherche"
                 },
                 "organization": {
-                    "title": "Organization",
+                    "title": "Organisation",
                     "tags": "Étiquettes",
                     "tagsPlaceholder": "Ex: actu, fonctionnalité",
                     "tagsDescription": "Séparez les étiquettes par une virgule."
@@ -1493,7 +1494,7 @@
                 }
             },
             "preview": {
-                "title": "Preview Mode",
+                "title": "Mode Prévisualisation",
                 "description": "Vous prévisualisez un brouillon de votre article.",
                 "backToEdit": "Retour à l'éditeur",
                 "publish": "Publier",
@@ -1802,6 +1803,27 @@
             "city": "Ville",
             "apply": "Appliquer",
             "reset": "Réinitialiser"
+        }
+    },
+    "AdminAuditLogPage": {
+        "title": "Journal d'Audit",
+        "subtitle": "Suivez toutes les actions administratives et critiques sur la plateforme.",
+        "table": {
+            "title": "Journal d'Activité",
+            "description": "Liste des actions enregistrées.",
+            "header": {
+                "date": "Date",
+                "actor": "Acteur",
+                "action": "Action",
+                "target": "Cible",
+                "details": "Détails"
+            }
+        },
+        "filters": {
+            "searchPlaceholder": "Rechercher par acteur, cible...",
+            "action": "Action",
+            "allActions": "Toutes les actions",
+            "apply": "Filtrer"
         }
     }
 }

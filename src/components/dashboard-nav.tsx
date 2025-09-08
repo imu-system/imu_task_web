@@ -37,6 +37,7 @@ import {
   DollarSign,
   SlidersHorizontal,
   LineChart,
+  History,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -206,6 +207,14 @@ export function DashboardNav() {
                         <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/settings')}>
                             <SlidersHorizontal />
                             <span>{t('settings')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <Link href="/dashboard/admin/audit">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/audit')}>
+                            <History />
+                            <span>{t('auditLog')}</span>
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>
