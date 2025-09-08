@@ -5,7 +5,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
-import { Loader2, Milestone, Receipt, Percent, PlusCircle } from 'lucide-react';
+import { Loader2, Milestone } from 'lucide-react';
 import { UserRole, ServiceCategory } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -23,18 +23,19 @@ import { Form, FormControl, FormField, FormItem, FormMessage } from '@/component
 const guidanceSchema = z.object({
   categories: z.array(z.object({
     id: z.string(),
-    recommendedPriceMin: z.coerce.number().int().min(0).optional(),
-    recommendedPriceMax: z.coerce.number().int().min(0).optional(),
+    recommendedPriceMin: z.coerce.number().int().min(0, "Doit être >= 0").optional().or(z.literal('')),
+    recommendedPriceMax: z.coerce.number().int().min(0, "Doit être >= 0").optional().or(z.literal('')),
   })).refine(items => {
     return items.every(item => {
-        if (item.recommendedPriceMin !== undefined && item.recommendedPriceMax !== undefined) {
-            return item.recommendedPriceMax >= item.recommendedPriceMin;
+        const min = item.recommendedPriceMin === '' ? undefined : Number(item.recommendedPriceMin);
+        const max = item.recommendedPriceMax === '' ? undefined : Number(item.recommendedPriceMax);
+        if (min !== undefined && max !== undefined) {
+            return max >= min;
         }
         return true;
     });
   }, {
-    message: "Le prix maximum doit être supérieur ou égal au prix minimum.",
-    // This path is tricky for arrays. We'll rely on individual field errors for now.
+    message: "Le max doit être >= au min.",
   })
 });
 
@@ -72,12 +73,14 @@ export default function AdminGuidancePage() {
                 const catSnapshot = await getDocs(catQuery);
                 const fetchedCategories = catSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as ServiceCategory));
                 
-                setCategories(fetchedCategories);
+                const sortedCategories = fetchedCategories.sort((a,b) => a.displayOrder - b.displayOrder);
+                setCategories(sortedCategories);
+
                 form.reset({
-                    categories: fetchedCategories.map(c => ({
+                    categories: sortedCategories.map(c => ({
                         id: c.id,
-                        recommendedPriceMin: c.recommendedPriceMin || undefined,
-                        recommendedPriceMax: c.recommendedPriceMax || undefined,
+                        recommendedPriceMin: c.recommendedPriceMin || '',
+                        recommendedPriceMax: c.recommendedPriceMax || '',
                     }))
                 });
 
@@ -93,18 +96,22 @@ export default function AdminGuidancePage() {
     
     const onSubmit = async (data: GuidanceFormValues) => {
         setIsSaving(true);
-        const batch = [];
+        const updatePromises: Promise<void>[] = [];
+
         for (const categoryData of data.categories) {
             const ref = doc(db, 'serviceCategories', categoryData.id);
+            const minPrice = categoryData.recommendedPriceMin === '' ? null : Number(categoryData.recommendedPriceMin);
+            const maxPrice = categoryData.recommendedPriceMax === '' ? null : Number(categoryData.recommendedPriceMax);
+
             const updatePayload: Partial<ServiceCategory> = {
-                recommendedPriceMin: categoryData.recommendedPriceMin,
-                recommendedPriceMax: categoryData.recommendedPriceMax,
+                recommendedPriceMin: minPrice,
+                recommendedPriceMax: maxPrice,
             };
-            batch.push(updateDoc(ref, updatePayload));
+            updatePromises.push(updateDoc(ref, updatePayload));
         }
 
         try {
-            await Promise.all(batch);
+            await Promise.all(updatePromises);
             toast({
                 title: t('toast.successTitle'),
                 description: t('toast.successDescription'),
