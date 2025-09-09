@@ -1810,42 +1810,42 @@
         }
     },
     "AdminAuditLogPage": {
-        "title": "Audit Log",
-        "subtitle": "Track all administrative and critical actions on the platform.",
+        "title": "Journal d'Audit",
+        "subtitle": "Suivez toutes les actions administratives et critiques sur la plateforme.",
         "table": {
-            "title": "Activity Log",
-            "description": "List of recorded actions.",
+            "title": "Journal d'Activité",
+            "description": "Liste des actions enregistrées.",
             "header": {
                 "date": "Date",
-                "actor": "Actor",
+                "actor": "Acteur",
                 "action": "Action",
-                "target": "Target",
-                "details": "Details",
-                "result": "Result"
+                "target": "Cible",
+                "details": "Détails",
+                "result": "Résultat"
             },
             "results": {
-                "success": "Success",
-                "failure": "Failure"
+                "success": "Succès",
+                "failure": "Échec"
             }
         },
         "filters": {
-            "actor": "Actor",
-            "actorPlaceholder": "Actor name...",
-            "targetType": "Target Type",
-            "targetTypePlaceholder": "Choose a type",
-            "allTargetTypes": "All types",
-            "dateRange": "Period",
-            "pickDate": "Pick a date range",
-            "apply": "Filter"
+            "actor": "Acteur",
+            "actorPlaceholder": "Nom de l'acteur...",
+            "targetType": "Type de cible",
+            "targetTypePlaceholder": "Choisir un type",
+            "allTargetTypes": "Tous les types",
+            "dateRange": "Période",
+            "pickDate": "Choisir une période",
+            "apply": "Filtrer"
         },
         "actions": {
-            "export": "Export",
-            "viewChanges": "View Changes"
+            "export": "Exporter",
+            "viewChanges": "Voir les changements"
         },
         "deltaDialog": {
-            "title": "Modification Comparator",
-            "description": "This feature will display the 'before' and 'after' changes for this action. It is currently under development.",
-            "close": "Close"
+            "title": "Comparateur de Modifications",
+            "description": "Cette fonctionnalité affichera les changements 'avant' et 'après' pour cette action. Elle est actuellement en cours de développement.",
+            "close": "Fermer"
         },
         "csv": {
             "id": "ID",
