@@ -11,7 +11,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useRouter, Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
-import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered, Handshake, CalendarCheck, Wallet, Star, Bell, FileText, SlidersHorizontal, LineChart } from "lucide-react";
+import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered, Handshake, CalendarCheck, Wallet, Star, Bell, FileText, SlidersHorizontal, LineChart, History, Shield, ShieldCheck, LayoutList } from "lucide-react";
 
 const kpiData = [
   { title: "Revenus (Mensuel)", value: "€4,231.89", change: "+20.1% vs mois dernier", icon: <DollarSign className="h-4 w-4 text-muted-foreground" /> },
@@ -107,24 +107,21 @@ export default function AdminDashboardPage() {
                         <CardTitle>{t('quickActionsTitle')}</CardTitle>
                     </CardHeader>
                     <CardContent className="grid grid-cols-2 gap-4">
-                        <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/reports"><LineChart className="mr-2"/>{tNav('reports')}</Link>
-                        </Button>
-                        <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/users"><Users2 className="mr-2"/>{tNav('users')}</Link>
-                        </Button>
-                         <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/tasks"><ListOrdered className="mr-2"/>{tNav('tasks')}</Link>
-                        </Button>
-                        <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/bookings"><CalendarCheck className="mr-2"/>{tNav('bookings')}</Link>
-                        </Button>
-                         <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/disputes"><BadgeAlert className="mr-2"/>{tNav('disputes')}</Link>
-                        </Button>
-                         <Button variant="outline" asChild>
-                            <Link href="/dashboard/admin/cms/pages"><FileText className="mr-2"/>{tNav('cms')}</Link>
-                        </Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/reports"><LineChart className="mr-2"/>{tNav('reports')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/users"><Users2 className="mr-2"/>{tNav('users')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/services/categories"><LayoutList className="mr-2"/>{tNav('categories')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/tasks"><ListOrdered className="mr-2"/>{tNav('tasks')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/offers"><Handshake className="mr-2"/>{tNav('offers')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/bookings"><CalendarCheck className="mr-2"/>{tNav('bookings')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/kyc"><ShieldCheck className="mr-2"/>{tNav('kycVerification')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/payments/transactions"><Wallet className="mr-2"/>{tNav('payments')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/pricing/fees"><DollarSign className="mr-2"/>{tNav('pricing')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/reviews"><Star className="mr-2"/>{tNav('reviews')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/disputes"><BadgeAlert className="mr-2"/>{tNav('disputes')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/notifications"><Bell className="mr-2"/>{tNav('notifications')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/cms/pages"><FileText className="mr-2"/>{tNav('cms')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/settings"><SlidersHorizontal className="mr-2"/>{tNav('settings')}</Link></Button>
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/audit"><History className="mr-2"/>{tNav('auditLog')}</Link></Button>
                     </CardContent>
                 </Card>
             </div>
