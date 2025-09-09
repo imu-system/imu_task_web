@@ -49,7 +49,8 @@
     "LanguageSwitcher": {
         "changeLanguage": "Change language",
         "fr": "Français",
-        "en": "English"
+        "en": "English",
+        "jp": "Japanese"
     },
     "Languages": {
         "fr": "French",
@@ -1513,172 +1514,172 @@
     },
     "AdminPricingLayout": {
         "fees": "Commissions",
-        "guidance": "Recommended Prices",
-        "coupons": "Promo Codes"
+        "guidance": "Tarifs Conseillés",
+        "coupons": "Codes Promo"
     },
     "AdminPricingPage": {
         "fees": {
-            "title": "Commission Management",
-            "subtitle": "Define the platform's commission rates.",
-            "addRule": "Add Rule",
+            "title": "Gestion des Commissions",
+            "subtitle": "Définissez les taux de commission de la plateforme.",
+            "addRule": "Ajouter une règle",
             "global": {
-                "title": "Global Commission",
-                "description": "This rate applies by default to all transactions.",
-                "label": "Global commission rate (%)"
+                "title": "Commission Globale",
+                "description": "Ce taux s'applique par défaut à toutes les transactions.",
+                "label": "Taux de commission global (%)"
             },
             "categories": {
-                "title": "Category-specific Commissions",
-                "description": "Define specific rates that will override the global rate for certain categories.",
+                "title": "Commissions par Catégorie",
+                "description": "Définissez des taux spécifiques qui remplaceront le taux global pour certaines catégories.",
                 "table": {
-                    "name": "Category Name",
-                    "rate": "Commission Rate (%)",
-                    "placeholder": "Leave empty for global rate"
+                    "name": "Nom de la Catégorie",
+                    "rate": "Taux de Commission (%)",
+                    "placeholder": "Laisser vide pour global"
                 }
             },
             "countries": {
-                "title": "Country-specific Commissions",
-                "description": "Define specific rates that will override the global rate for certain countries.",
+                "title": "Commissions par Pays",
+                "description": "Définissez des taux spécifiques qui remplaceront le taux global pour certains pays.",
                 "table": {
-                    "name": "Country Name",
-                    "rate": "Commission Rate (%)"
+                    "name": "Nom du Pays",
+                    "rate": "Taux de Commission (%)"
                 }
             },
             "cities": {
-                "title": "City-specific Commissions",
-                "description": "Define specific rates that will override the global rate for certain cities.",
+                "title": "Commissions par Ville",
+                "description": "Définissez des taux spécifiques qui remplaceront le taux global pour certaines villes.",
                 "table": {
-                    "name": "City Name",
-                    "rate": "Commission Rate (%)"
+                    "name": "Nom de la Ville",
+                    "rate": "Taux de Commission (%)"
                 }
             },
-            "saveButton": "Save Commissions",
+            "saveButton": "Enregistrer les commissions",
             "toast": {
-                "successTitle": "Commissions Saved",
-                "successDescription": "The commission rates have been successfully updated."
+                "successTitle": "Commissions Enregistrées",
+                "successDescription": "Les taux de commission ont été mis à jour avec succès."
             }
         },
         "guidance": {
-            "title": "Recommended Prices",
-            "subtitle": "Help users by providing recommended price ranges.",
+            "title": "Tarifs Conseillés",
+            "subtitle": "Aidez les utilisateurs en fournissant des fourchettes de prix.",
             "card": {
                 "category": {
-                    "title": "Recommended Prices per Category",
-                    "description": "These price ranges will be shown to users when creating a task. Prices are in cents (e.g., 1500 for 15.00€)."
+                    "title": "Tarifs conseillés par catégorie",
+                    "description": "Ces fourchettes de prix seront indiquées aux utilisateurs lors de la création d'une mission. Les prix sont en centimes (ex: 1500 pour 15,00€)."
                 },
                 "country": {
-                    "title": "Recommended Prices per Country",
-                    "description": "Override category recommendations for specific countries."
+                    "title": "Tarifs conseillés par pays",
+                    "description": "Supplantez les recommandations par catégorie pour des pays spécifiques."
                 },
                 "city": {
-                    "title": "Recommended Prices per City",
-                    "description": "Override category and country recommendations for specific cities."
+                    "title": "Tarifs conseillés par ville",
+                    "description": "Supplantez les recommandations par catégorie et par pays pour des villes spécifiques."
                 }
             },
             "table": {
-                "category": "Category",
-                "country": "Country",
-                "city": "City",
-                "minPrice": "Min Recommended Price (cents)",
-                "maxPrice": "Max Recommended Price (cents)",
-                "pricePlaceholder": "e.g., 1500"
+                "category": "Catégorie",
+                "country": "Pays",
+                "city": "Ville",
+                "minPrice": "Prix Min Conseillé (centimes)",
+                "maxPrice": "Prix Max Conseillé (centimes)",
+                "pricePlaceholder": "Ex: 1500"
             },
-            "saveButton": "Save Recommendations",
+            "saveButton": "Enregistrer les recommandations",
             "toast": {
-                "successTitle": "Recommendations Saved",
-                "successDescription": "The recommended price ranges have been updated.",
-                "errorDescription": "Could not save the recommended prices."
+                "successTitle": "Recommandations enregistrées",
+                "successDescription": "Les fourchettes de prix conseillés ont été mises à jour.",
+                "errorDescription": "Impossible d'enregistrer les tarifs conseillés."
             }
         },
         "coupons": {
-            "title": "Promo Code Management",
-            "subtitle": "Create and manage promotional offers.",
-            "createButton": "Create Coupon",
+            "title": "Gestion des Codes Promo",
+            "subtitle": "Créez et gérez les offres promotionnelles.",
+            "createButton": "Créer un coupon",
             "table": {
-                "title": "Existing Coupons",
-                "description": "List of all active and inactive promotional codes.",
+                "title": "Coupons Existants",
+                "description": "Liste de tous les codes promotionnels actifs et inactifs.",
                 "header": {
                     "code": "Code",
-                    "status": "Status",
+                    "status": "Statut",
                     "type": "Type",
-                    "value": "Value",
-                    "usage": "Usage",
-                    "expiresAt": "Expires At"
+                    "value": "Valeur",
+                    "usage": "Utilisation",
+                    "expiresAt": "Expire le"
                 },
-                "statusActive": "Active",
-                "statusInactive": "Inactive",
+                "statusActive": "Actif",
+                "statusInactive": "Inactif",
                 "actions": {
-                    "edit": "Edit",
-                    "delete": "Delete"
+                    "edit": "Modifier",
+                    "delete": "Supprimer"
                 }
             },
             "form": {
-                "title": "Create Coupon",
-                "titleEdit": "Edit Coupon",
-                "description": "Fill in the details for the new promotional code.",
-                "saveButton": "Save Coupon",
-                "saveChangesButton": "Save Changes",
-                "cancelButton": "Cancel",
+                "title": "Créer un Coupon",
+                "titleEdit": "Modifier le Coupon",
+                "description": "Remplissez les détails du nouveau code promotionnel.",
+                "saveButton": "Enregistrer le coupon",
+                "saveChangesButton": "Enregistrer les modifications",
+                "cancelButton": "Annuler",
                 "code": {
-                    "label": "Coupon Code",
-                    "placeholder": "e.g. SUMMER2024"
+                    "label": "Code du Coupon",
+                    "placeholder": "Ex: ETE2024"
                 },
                 "type": {
                     "label": "Type",
-                    "percentage": "Percentage",
-                    "fixed": "Fixed Amount"
+                    "percentage": "Pourcentage",
+                    "fixed": "Montant Fixe"
                 },
                 "value": {
-                    "label": "Value"
+                    "label": "Valeur"
                 },
                 "usageLimit": {
-                    "label": "Usage Limit (optional)",
-                    "placeholder": "e.g. 100"
+                    "label": "Limite d'utilisation (optionnel)",
+                    "placeholder": "Ex: 100"
                 },
                 "expiresAt": {
-                    "label": "Expiration Date (optional)",
-                    "placeholder": "Pick a date"
+                    "label": "Date d'expiration (optionnel)",
+                    "placeholder": "Choisir une date"
                 },
                 "isActive": {
-                    "label": "Active"
+                    "label": "Actif"
                 },
                 "toast": {
-                    "successTitle": "Coupon Saved",
-                    "successDescription": "The promotional code has been successfully saved.",
-                    "updateSuccessTitle": "Coupon Updated",
-                    "updateSuccessDescription": "The promotional code has been successfully updated."
+                    "successTitle": "Coupon Enregistré",
+                    "successDescription": "Le code promotionnel a été enregistré avec succès.",
+                    "updateSuccessTitle": "Coupon Mis à Jour",
+                    "updateSuccessDescription": "Le code promotionnel a été mis à jour avec succès."
                 }
             }
         }
     },
     "AdminSettingsLayout": {
-        "title": "Platform Settings",
-        "subtitle": "Manage global settings and feature flags.",
-        "settings": "General",
+        "title": "Paramètres de la Plateforme",
+        "subtitle": "Gérez les paramètres globaux et les feature flags.",
+        "settings": "Général",
         "flags": "Feature Flags"
     },
     "AdminSettingsPage": {
         "settings": {
             "operational": {
-                "title": "Operational Settings",
-                "description": "Adjust the platform's core operational parameters.",
-                "offerExpirationDaysLabel": "Offer Expiration (Days)",
-                "offerExpirationDaysDesc": "Duration an offer remains valid.",
-                "cancellationHoursBeforeLabel": "Cancellation Deadline (Hours)",
-                "cancellationHoursBeforeDesc": "Time before a task a user can cancel.",
-                "supportSlaHoursLabel": "Support Response SLA (Hours)",
-                "supportSlaHoursDesc": "Target time to respond to support tickets."
+                "title": "Paramètres Opérationnels",
+                "description": "Ajustez les paramètres de fonctionnement principaux de la plateforme.",
+                "offerExpirationDaysLabel": "Expiration des offres (Jours)",
+                "offerExpirationDaysDesc": "Durée de validité d'une offre.",
+                "cancellationHoursBeforeLabel": "Délai d'annulation (Heures)",
+                "cancellationHoursBeforeDesc": "Temps avant une mission où un utilisateur peut annuler.",
+                "supportSlaHoursLabel": "SLA Support (Heures)",
+                "supportSlaHoursDesc": "Temps cible pour répondre aux tickets de support."
             },
             "maintenance": {
-                "title": "Maintenance Mode",
-                "description": "Temporarily disable access to the platform for users.",
-                "enableLabel": "Enable Maintenance Mode",
-                "enableDesc": "When enabled, users will see the maintenance message instead of the app.",
-                "messageLabel": "Maintenance Message"
+                "title": "Mode Maintenance",
+                "description": "Désactivez temporairement l'accès à la plateforme pour les utilisateurs.",
+                "enableLabel": "Activer le mode maintenance",
+                "enableDesc": "Lorsque activé, les utilisateurs verront le message de maintenance au lieu de l'application.",
+                "messageLabel": "Message de maintenance"
             },
-            "saveButton": "Save Settings",
+            "saveButton": "Enregistrer les paramètres",
             "toast": {
-                "successTitle": "Settings Saved",
-                "successDescription": "The platform settings have been successfully updated."
+                "successTitle": "Paramètres Enregistrés",
+                "successDescription": "Les paramètres de la plateforme ont été mis à jour avec succès."
             }
         },
         "flags": {
@@ -1687,190 +1688,195 @@
                 "description": "Enable or disable features for all users. Changes take effect after the next deployment."
             },
             "aiSuggestion": {
-                "name": "AI Category Suggestion",
-                "description": "Enables the AI-powered category suggestion feature on the task creation form."
+                "name": "Suggestion de catégories par IA",
+                "description": "Active la fonctionnalité de suggestion de catégories par IA sur le formulaire de création de mission."
             },
             "newProfilePage": {
-                "name": "New Profile Page Design",
-                "description": "Activates the new, redesigned user profile page."
+                "name": "Nouveau design de la page profil",
+                "description": "Active la nouvelle page de profil utilisateur redessinée."
             },
             "providerCalendar": {
-                "name": "Provider Availability Calendar",
-                "description": "Allows providers to set their work availability in a calendar view."
+                "name": "Calendrier de disponibilités prestataire",
+                "description": "Permet aux prestataires de définir leurs disponibilités de travail dans un calendrier."
             },
             "toast": {
-                "successTitle": "Feature Flags Saved",
-                "successDescription": "Your changes have been saved. They will be applied on the next deployment."
+                "successTitle": "Feature Flags Enregistrés",
+                "successDescription": "Vos modifications ont été enregistrées. Elles seront appliquées lors du prochain déploiement."
             },
             "targeting": {
-                "environment": "Environment",
+                "environment": "Environnement",
                 "production": "Production",
                 "staging": "Staging",
-                "rollout": "Rollout Percentage",
-                "roles": "Target Roles"
+                "rollout": "Pourcentage de déploiement",
+                "roles": "Rôles cibles"
             }
         }
     },
     "AdminReportsLayout": {
-        "kpi": "Reports & KPI",
-        "schedules": "Scheduled Exports"
+        "kpi": "Rapports & KPI",
+        "schedules": "Exports Planifiés"
     },
     "AdminReportsPage": {
         "kpi": {
-            "title": "Reports & Analytics",
-            "subtitle": "Analyze platform performance and user behavior.",
-            "totalRevenue": "Total Revenue",
-            "completedTasks": "Completed Tasks",
-            "totalUsers": "Total Users",
-            "activeBookings": "Active Bookings"
+            "title": "Rapports & Indicateurs Clés",
+            "subtitle": "Analysez la performance de la plateforme et le comportement des utilisateurs.",
+            "totalRevenue": "Revenu Total",
+            "completedTasks": "Missions Terminées",
+            "totalUsers": "Utilisateurs Totaux",
+            "activeBookings": "Réservations Actives"
         },
         "schedules": {
-            "title": "Scheduled Exports",
-            "subtitle": "Manage automated data exports.",
-            "notFound": "Scheduled export not found.",
-            "backToList": "Back to scheduled exports list",
+            "title": "Exports Planifiés",
+            "subtitle": "Gérez les exports de données automatisés.",
+            "notFound": "Export planifié non trouvé.",
+            "backToList": "Retour à la liste des exports",
             "table": {
-                "title": "Scheduled Exports",
-                "description": "List of all automated data exports.",
+                "title": "Exports Planifiés",
+                "description": "Liste de tous les exports de données automatisés.",
                 "header": {
-                    "name": "Report Name",
+                    "name": "Nom du Rapport",
                     "format": "Format",
-                    "frequency": "Frequency",
-                    "nextRun": "Next Run",
-                    "status": "Status",
+                    "frequency": "Fréquence",
+                    "nextRun": "Prochaine Exécution",
+                    "status": "Statut",
                     "actions": "Actions"
                 },
-                "statusActive": "Active",
-                "statusPaused": "Paused"
+                "statusActive": "Actif",
+                "statusPaused": "En pause"
             },
             "actions": {
-                "create": "Schedule an Export",
-                "edit": "Edit",
-                "pause": "Pause",
-                "resume": "Resume",
-                "delete": "Delete"
+                "create": "Planifier un export",
+                "edit": "Modifier",
+                "pause": "Mettre en pause",
+                "resume": "Reprendre",
+                "delete": "Supprimer"
             },
             "dialog": {
-                "title": "Schedule a New Export",
-                "description": "Configure the parameters for your automated export.",
-                "nameLabel": "Report Name",
-                "namePlaceholder": "e.g., Monthly Transactions",
+                "title": "Planifier un Nouvel Export",
+                "description": "Configurez les paramètres de votre export automatisé.",
+                "nameLabel": "Nom du rapport",
+                "namePlaceholder": "Ex: Transactions Mensuelles",
                 "formatLabel": "Format",
-                "frequencyLabel": "Frequency",
+                "frequencyLabel": "Fréquence",
                 "frequency": {
-                    "daily": "Daily",
-                    "weekly": "Weekly",
-                    "monthly": "Monthly",
-                    "yearly": "Yearly"
+                    "daily": "Quotidien",
+                    "weekly": "Hebdomadaire",
+                    "monthly": "Mensuel",
+                    "yearly": "Annuel"
                 },
-                "recipientsLabel": "Recipients",
-                "recipientsPlaceholder": "e.g., accounting@example.com",
-                "encryptionLabel": "Password-protect file (encryption)",
-                "cancel": "Cancel",
-                "save": "Save Schedule"
+                "recipientsLabel": "Destinataires",
+                "recipientsPlaceholder": "Ex: compta@example.com",
+                "encryptionLabel": "Protéger par mot de passe (chiffrement)",
+                "cancel": "Annuler",
+                "save": "Enregistrer la planification"
             },
             "toast": {
-                "createSuccessTitle": "Export Scheduled",
-                "createSuccessDescription": "The new automated export has been successfully scheduled.",
-                "updateSuccessTitle": "Schedule Updated",
-                "updateSuccessDescription": "The scheduled export has been successfully updated."
+                "createSuccessTitle": "Export Planifié",
+                "createSuccessDescription": "Le nouvel export automatisé a été planifié avec succès.",
+                "updateSuccessTitle": "Planification Mise à Jour",
+                "updateSuccessDescription": "L'export planifié a été mis à jour avec succès."
             },
             "edit": {
-                "title": "Edit Scheduled Export",
-                "cardTitle": "Edit Schedule",
-                "cardDescription": "Modify the settings for this automated export.",
-                "save": "Save Changes"
+                "title": "Modifier l'Export Planifié",
+                "cardTitle": "Modifier la Planification",
+                "cardDescription": "Modifiez les paramètres de cet export automatisé.",
+                "save": "Enregistrer les modifications"
             }
         },
         "charts": {
             "newUsers": {
-                "title": "New Users",
-                "description": "Number of new user sign-ups per month.",
-                "legend": "New Users"
+                "title": "Nouveaux Utilisateurs",
+                "description": "Nombre de nouvelles inscriptions d'utilisateurs par mois.",
+                "legend": "Nouveaux Utilisateurs"
             },
             "conversionFunnel": {
-                "title": "Task Conversion Funnel",
-                "description": "From task publication to completion.",
-                "legend": "Tasks"
+                "title": "Entonnoir de Conversion des Missions",
+                "description": "De la publication de la mission à sa finalisation.",
+                "legend": "Missions"
             }
         },
         "filters": {
-            "title": "Filters",
-            "description": "Refine the report data below.",
-            "dateRange": "Date Range",
-            "pickDate": "Pick a date range",
-            "category": "Category",
-            "allCategories": "All Categories",
-            "city": "City",
-            "apply": "Apply",
-            "reset": "Reset"
+            "title": "Filtres",
+            "description": "Affinez les données des rapports ci-dessous.",
+            "dateRange": "Plage de dates",
+            "pickDate": "Choisir une période",
+            "category": "Catégorie",
+            "allCategories": "Toutes les catégories",
+            "city": "Ville",
+            "apply": "Appliquer",
+            "reset": "Réinitialiser"
         }
     },
     "AdminAuditLogPage": {
-        "title": "Audit Log",
-        "subtitle": "Track all administrative and critical actions on the platform.",
+        "title": "Journal d'Audit",
+        "subtitle": "Suivez toutes les actions administratives et critiques sur la plateforme.",
         "table": {
-            "title": "Activity Log",
-            "description": "List of recorded actions.",
+            "title": "Journal d'Activité",
+            "description": "Liste des actions enregistrées.",
             "header": {
                 "date": "Date",
-                "actor": "Actor",
+                "actor": "Acteur",
                 "action": "Action",
-                "target": "Target",
-                "details": "Details",
-                "result": "Result"
+                "target": "Cible",
+                "details": "Détails",
+                "result": "Résultat"
             },
             "results": {
-                "success": "Success",
-                "failure": "Failure"
+                "success": "Succès",
+                "failure": "Échec"
             }
         },
         "filters": {
-            "actor": "Actor",
-            "actorPlaceholder": "Actor name...",
-            "targetType": "Target Type",
-            "targetTypePlaceholder": "Select a type",
-            "allTargetTypes": "All Types",
-            "dateRange": "Date Range",
-            "pickDate": "Pick a date range",
-            "apply": "Filter"
+            "actor": "Acteur",
+            "actorPlaceholder": "Nom de l'acteur...",
+            "targetType": "Type de cible",
+            "targetTypePlaceholder": "Choisir un type",
+            "allTargetTypes": "Tous les types",
+            "dateRange": "Période",
+            "pickDate": "Choisir une période",
+            "apply": "Filtrer"
         },
         "actions": {
-            "export": "Export",
-            "viewChanges": "View Changes"
+            "export": "Exporter",
+            "viewChanges": "Voir les changements"
         },
         "deltaDialog": {
-            "title": "Change Comparator",
-            "description": "This feature will show the 'before' and 'after' changes for this action. It is currently under development.",
-            "close": "Close"
+            "title": "Comparateur de Modifications",
+            "description": "Cette fonctionnalité affichera les changements 'avant' et 'après' pour cette action. Elle est actuellement en cours de développement.",
+            "close": "Fermer"
         },
         "csv": {
             "id": "ID",
-            "actorId": "Actor ID",
-            "actorName": "Actor Name",
+            "actorId": "ID Acteur",
+            "actorName": "Nom Acteur",
             "action": "Action",
-            "targetType": "Target Type",
-            "targetId": "Target ID",
-            "createdAt": "Created At",
-            "result": "Result"
+            "targetType": "Type Cible",
+            "targetId": "ID Cible",
+            "createdAt": "Date",
+            "result": "Résultat"
         }
     },
     "AdminI18nLayout": {
-        "title": "Translations Management",
-        "subtitle": "Manage the application's translations.",
-        "keys": "Keys",
+        "title": "Gestion des Traductions",
+        "subtitle": "Gérez les traductions de l'application.",
+        "keys": "Clés",
         "io": "Import/Export"
     },
     "AdminI18nPage": {
         "keys": {
-            "title": "Translation Keys Editor",
-            "description": "Edit translation keys for all supported languages.",
-            "content": "This interface will allow editing all translation keys (fr, en, jp...) in a table, detecting missing keys, and validating them. It is currently under development."
+            "title": "Éditeur de Clés de Traduction",
+            "description": "Modifiez les clés de traduction pour toutes les langues supportées.",
+            "content": "Cette interface permettra de modifier toutes les clés de traduction (fr, en, jp...) dans un tableau, de détecter les clés manquantes et de les valider. Elle est actuellement en cours de développement.",
+            "saveButton": "Enregistrer les modifications",
+            "toast": {
+                "saveSuccessTitle": "Traductions enregistrées",
+                "saveSuccessDescription": "Les fichiers de traduction ont été mis à jour avec succès."
+            }
         },
         "io": {
             "title": "Import / Export",
-            "description": "Import and export translation files.",
-            "content": "This interface will allow importing JSON files to add/update translations, exporting all keys for a locale, and checking for placeholder mismatches. It is currently under development."
+            "description": "Importez et exportez les fichiers de traduction.",
+            "content": "Cette interface permettra d'importer des fichiers JSON pour ajouter/mettre à jour les traductions, d'exporter toutes les clés pour une locale, et de vérifier les incohérences de placeholders. Elle est actuellement en cours de développement."
         }
     }
 }

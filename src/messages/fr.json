@@ -49,7 +49,8 @@
     "LanguageSwitcher": {
         "changeLanguage": "Changer de langue",
         "fr": "Français",
-        "en": "English"
+        "en": "English",
+        "jp": "Japonais"
     },
     "Languages": {
         "fr": "Français",
@@ -1865,7 +1866,12 @@
         "keys": {
             "title": "Éditeur de Clés de Traduction",
             "description": "Modifiez les clés de traduction pour toutes les langues supportées.",
-            "content": "Cette interface permettra de modifier toutes les clés de traduction (fr, en, jp...) dans un tableau, de détecter les clés manquantes et de les valider. Elle est actuellement en cours de développement."
+            "content": "Cette interface permettra de modifier toutes les clés de traduction (fr, en, jp...) dans un tableau, de détecter les clés manquantes et de les valider. Elle est actuellement en cours de développement.",
+            "saveButton": "Enregistrer les modifications",
+            "toast": {
+                "saveSuccessTitle": "Traductions enregistrées",
+                "saveSuccessDescription": "Les fichiers de traduction ont été mis à jour avec succès."
+            }
         },
         "io": {
             "title": "Import / Export",

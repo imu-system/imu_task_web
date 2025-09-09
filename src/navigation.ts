@@ -1,7 +1,7 @@
 
 import {createLocalizedPathnamesNavigation} from 'next-intl/navigation';
 
-export const locales = ['en', 'fr'] as const;
+export const locales = ['en', 'fr', 'jp'] as const;
 export type Locale = (typeof locales)[number];
 
 // The `pathnames` object holds pairs of internal
@@ -13,11 +13,13 @@ export const pathnames = {
   '/dashboard': '/dashboard',
   '/sign-in': {
     en: '/sign-in',
-    fr: '/connexion'
+    fr: '/connexion',
+    jp: '/sign-in',
   },
   '/sign-up': {
     en: '/sign-up',
-    fr: '/inscription'
+    fr: '/inscription',
+    jp: '/sign-up',
   },
   '/dashboard/profile': '/dashboard/profile',
   '/legal/terms': '/legal/terms',
@@ -26,7 +28,8 @@ export const pathnames = {
   // specify each external path per locale.
   '/about': {
     en: '/about',
-    fr: '/a-propos'
+    fr: '/a-propos',
+    jp: '/about',
   },
 
 };
