@@ -79,6 +79,7 @@ export default function AdminKeysPage() {
             const keys = key.split('.');
             let current = newTranslations[lang];
             for (let i = 0; i < keys.length - 1; i++) {
+                current[keys[i]] = current[keys[i]] || {};
                 current = current[keys[i]];
             }
             current[keys[keys.length - 1]] = value;
@@ -107,13 +108,13 @@ export default function AdminKeysPage() {
                 {Object.entries(groupedKeys).map(([groupName, keys]) => (
                      <Card key={groupName}>
                         <AccordionItem value={groupName} className="border-b-0">
-                            <AccordionTrigger className="p-6">
-                                <h3 className="text-lg font-semibold">{groupName}</h3>
+                            <AccordionTrigger className="p-6 text-lg font-semibold hover:no-underline">
+                                {groupName}
                             </AccordionTrigger>
-                            <AccordionContent className="px-6">
+                            <AccordionContent className="px-6 pb-6">
                                 <div className="space-y-6">
                                     {keys.map(key => (
-                                        <div key={key} className="space-y-2 p-4 border rounded-lg">
+                                        <div key={key} className="space-y-2 p-4 border rounded-lg bg-background/50">
                                             <Label htmlFor={`key-${key}`} className="font-mono text-sm text-muted-foreground">{key}</Label>
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                                 <div className="space-y-1">
@@ -140,4 +141,3 @@ export default function AdminKeysPage() {
         </div>
     );
 }
-

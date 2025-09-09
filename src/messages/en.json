@@ -1867,10 +1867,10 @@
             "title": "Éditeur de Clés de Traduction",
             "description": "Modifiez les clés de traduction pour toutes les langues supportées.",
             "content": "Cette interface permettra de modifier toutes les clés de traduction (fr, en, jp...) dans un tableau, de détecter les clés manquantes et de les valider. Elle est actuellement en cours de développement.",
-            "saveButton": "Enregistrer les modifications",
+            "saveButton": "Save Changes",
             "toast": {
-                "saveSuccessTitle": "Traductions enregistrées",
-                "saveSuccessDescription": "Les fichiers de traduction ont été mis à jour avec succès."
+                "saveSuccessTitle": "Translations saved",
+                "saveSuccessDescription": "The translation files have been successfully updated."
             }
         },
         "io": {
