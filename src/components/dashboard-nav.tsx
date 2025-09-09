@@ -1,4 +1,5 @@
 
+      
 'use client';
 
 import { Link, useRouter } from '@/navigation';
@@ -39,6 +40,7 @@ import {
   LineChart,
   History,
   Languages,
+  LifeBuoy,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -187,6 +189,14 @@ export function DashboardNav() {
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <Link href="/dashboard/admin/support/tickets">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/support')}>
+                            <LifeBuoy />
+                            <span>{t('support')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
                  <SidebarMenuItem>
                     <Link href="/dashboard/admin/notifications">
                         <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/notifications')}>
@@ -251,3 +261,5 @@ export function DashboardNav() {
     </Sidebar>
   );
 }
+
+    

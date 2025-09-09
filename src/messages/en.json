@@ -1,4 +1,5 @@
 
+      
 {
     "Header": {
         "features": "Features",
@@ -75,6 +76,7 @@
         "payments": "Payments",
         "reviews": "Reviews",
         "disputes": "Disputes",
+        "support": "Support",
         "notifications": "Notifications",
         "cms": "Content (CMS)",
         "translations": "Translations",
@@ -1900,5 +1902,32 @@
                 }
             }
         }
+    },
+    "AdminSupportLayout": {
+        "title": "Support Center",
+        "subtitle": "Manage user requests and support tickets.",
+        "tickets": "Tickets",
+        "canned": "Canned Responses"
+    },
+    "AdminSupportPage": {
+        "tickets": {
+            "title": "Support Tickets",
+            "description": "View and manage all user support tickets.",
+            "table": {
+                "id": "ID",
+                "subject": "Subject",
+                "user": "User",
+                "status": "Status",
+                "priority": "Priority",
+                "agent": "Agent"
+            }
+        },
+        "canned": {
+            "title": "Canned Responses",
+            "description": "Manage response templates to speed up support.",
+            "content": "This section will allow you to create, edit, and delete predefined responses for common questions. You will be able to categorize them and use variables for personalization."
+        }
     }
 }
+
+    

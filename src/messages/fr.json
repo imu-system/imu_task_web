@@ -1,4 +1,5 @@
 
+      
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -75,6 +76,7 @@
         "payments": "Paiements",
         "reviews": "Avis",
         "disputes": "Litiges",
+        "support": "Support",
         "notifications": "Notifications",
         "cms": "Contenu (CMS)",
         "translations": "Traductions",
@@ -1766,7 +1768,7 @@
                 },
                 "recipientsLabel": "Destinataires",
                 "recipientsPlaceholder": "Ex: compta@example.com",
-                "encryptionLabel": "Protéger par mot de passe (chiffrement)",
+                "encryptionLabel": "Password protect (chiffrement)",
                 "cancel": "Annuler",
                 "save": "Enregistrer la planification"
             },
@@ -1900,5 +1902,32 @@
                 }
             }
         }
+    },
+    "AdminSupportLayout": {
+        "title": "Centre de Support",
+        "subtitle": "Gérez les demandes des utilisateurs et les tickets de support.",
+        "tickets": "Tickets",
+        "canned": "Réponses rapides"
+    },
+    "AdminSupportPage": {
+        "tickets": {
+            "title": "Tickets de Support",
+            "description": "Consultez et gérez tous les tickets de support des utilisateurs.",
+            "table": {
+                "id": "ID",
+                "subject": "Sujet",
+                "user": "Utilisateur",
+                "status": "Statut",
+                "priority": "Priorité",
+                "agent": "Agent"
+            }
+        },
+        "canned": {
+            "title": "Réponses Rapides",
+            "description": "Gérez les modèles de réponses pour accélérer le support.",
+            "content": "Cette section permettra de créer, modifier et supprimer des réponses prédéfinies pour les questions courantes. Vous pourrez les catégoriser et utiliser des variables pour la personnalisation."
+        }
     }
 }
+
+    
