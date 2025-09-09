@@ -76,6 +76,7 @@
         "disputes": "Litiges",
         "notifications": "Notifications",
         "cms": "Contenu (CMS)",
+        "translations": "Traductions",
         "pricing": "Tarification",
         "settings": "Paramètres",
         "reports": "Rapports & Analytics",
@@ -1074,7 +1075,7 @@
                 "title": "Modération",
                 "description": "Gérer la résolution du litige.",
                 "assign": "Assigner un modérateur",
-                "changeStatus": "Change Status",
+                "changeStatus": "Changer le statut",
                 "triggerRefund": "Déclencher un remboursement",
                 "assignDialog": {
                     "title": "Assigner un modérateur",
@@ -1453,7 +1454,7 @@
                 "languages": {
                     "fr": "Français",
                     "en": "Anglais",
-                    "jp": "Japanese"
+                    "jp": "Japonais"
                 },
                 "mainContent": {
                     "title": "Contenu Principal",
@@ -1852,6 +1853,24 @@
             "targetId": "ID Cible",
             "createdAt": "Date",
             "result": "Résultat"
+        }
+    },
+    "AdminI18nLayout": {
+        "title": "Gestion des Traductions",
+        "subtitle": "Gérez les traductions de l'application.",
+        "keys": "Clés",
+        "io": "Import/Export"
+    },
+    "AdminI18nPage": {
+        "keys": {
+            "title": "Éditeur de Clés de Traduction",
+            "description": "Modifiez les clés de traduction pour toutes les langues supportées.",
+            "content": "Cette interface permettra de modifier toutes les clés de traduction (fr, en, jp...) dans un tableau, de détecter les clés manquantes et de les valider. Elle est actuellement en cours de développement."
+        },
+        "io": {
+            "title": "Import / Export",
+            "description": "Importez et exportez les fichiers de traduction.",
+            "content": "Cette interface permettra d'importer des fichiers JSON pour ajouter/mettre à jour les traductions, d'exporter toutes les clés pour une locale, et de vérifier les incohérences de placeholders. Elle est actuellement en cours de développement."
         }
     }
 }

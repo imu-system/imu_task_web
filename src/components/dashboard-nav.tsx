@@ -38,6 +38,7 @@ import {
   SlidersHorizontal,
   LineChart,
   History,
+  Languages,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -199,6 +200,14 @@ export function DashboardNav() {
                         <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/cms')}>
                             <FileText />
                             <span>{t('cms')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+                  <SidebarMenuItem>
+                    <Link href="/dashboard/admin/i18n/keys">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/i18n')}>
+                            <Languages />
+                            <span>{t('translations')}</span>
                         </SidebarMenuButton>
                     </Link>
                  </SidebarMenuItem>

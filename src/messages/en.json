@@ -76,6 +76,7 @@
         "disputes": "Disputes",
         "notifications": "Notifications",
         "cms": "Content (CMS)",
+        "translations": "Translations",
         "pricing": "Pricing",
         "settings": "Settings",
         "reports": "Reports & Analytics",
@@ -773,7 +774,7 @@
     "AdminPaymentsPage": {
         "transactions": {
             "title": "Transactions",
-            "subtitle": "Liste de tous les paiements des clients.",
+            "subtitle": "List of all payments from clients.",
             "currency": "€",
             "table": {
                 "title": "Transaction History",
@@ -1852,6 +1853,24 @@
             "targetId": "Target ID",
             "createdAt": "Created At",
             "result": "Result"
+        }
+    },
+    "AdminI18nLayout": {
+        "title": "Translations Management",
+        "subtitle": "Manage the application's translations.",
+        "keys": "Keys",
+        "io": "Import/Export"
+    },
+    "AdminI18nPage": {
+        "keys": {
+            "title": "Translation Keys Editor",
+            "description": "Edit translation keys for all supported languages.",
+            "content": "This interface will allow editing all translation keys (fr, en, jp...) in a table, detecting missing keys, and validating them. It is currently under development."
+        },
+        "io": {
+            "title": "Import / Export",
+            "description": "Import and export translation files.",
+            "content": "This interface will allow importing JSON files to add/update translations, exporting all keys for a locale, and checking for placeholder mismatches. It is currently under development."
         }
     }
 }
