@@ -1866,7 +1866,6 @@
         "keys": {
             "title": "Éditeur de Clés de Traduction",
             "description": "Modifiez les clés de traduction pour toutes les langues supportées.",
-            "content": "Cette interface permettra de modifier toutes les clés de traduction (fr, en, jp...) dans un tableau, de détecter les clés manquantes et de les valider. Elle est actuellement en cours de développement.",
             "saveButton": "Enregistrer les modifications",
             "toast": {
                 "saveSuccessTitle": "Traductions enregistrées",
@@ -1876,7 +1875,29 @@
         "io": {
             "title": "Import / Export",
             "description": "Importez et exportez les fichiers de traduction.",
-            "content": "Cette interface permettra d'importer des fichiers JSON pour ajouter/mettre à jour les traductions, d'exporter toutes les clés pour une locale, et de vérifier les incohérences de placeholders. Elle est actuellement en cours de développement."
+            "import": {
+                "title": "Importer les traductions",
+                "description": "Téléversez un fichier JSON pour une langue spécifique. Les clés existantes seront mises à jour.",
+                "localeLabel": "Langue à importer",
+                "fileLabel": "Fichier JSON",
+                "button": "Importer le fichier"
+            },
+            "export": {
+                "title": "Exporter les traductions",
+                "description": "Téléchargez un fichier JSON contenant toutes les clés de traduction pour une langue spécifique.",
+                "localeLabel": "Langue à exporter",
+                "button": "Exporter le fichier"
+            },
+            "toast": {
+                "noFile": {
+                    "title": "Aucun fichier sélectionné",
+                    "description": "Veuillez sélectionner un fichier JSON à importer."
+                },
+                "importSuccess": {
+                    "title": "Importation en cours",
+                    "description": "Le fichier pour la langue '{locale}' sera traité. (Simulation)"
+                }
+            }
         }
     }
 }

@@ -77,5 +77,34 @@
         "settings": "設定",
         "reports": "レポート＆分析",
         "auditLog": "監査ログ"
+    },
+    "AdminI18nPage": {
+        "io": {
+            "title": "インポート/エクスポート",
+            "description": "翻訳ファイルをインポートおよびエクスポートします。",
+            "import": {
+                "title": "翻訳をインポート",
+                "description": "特定の言語のJSONファイルをアップロードします。既存のキーは更新されます。",
+                "localeLabel": "インポートする言語",
+                "fileLabel": "JSON ファイル",
+                "button": "ファイルをインポート"
+            },
+            "export": {
+                "title": "翻訳をエクスポート",
+                "description": "特定の言語のすべての翻訳キーを含むJSONファイルをダウンロードします。",
+                "localeLabel": "エクスポートする言語",
+                "button": "ファイルをエクスポート"
+            },
+            "toast": {
+                "noFile": {
+                    "title": "ファイルが選択されていません",
+                    "description": "インポートするJSONファイルを選択してください。"
+                },
+                "importSuccess": {
+                    "title": "インポート処理中",
+                    "description": "言語 '{locale}' のファイルが処理されます。(シミュレーション)"
+                }
+            }
+        }
     }
 }

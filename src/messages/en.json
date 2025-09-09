@@ -1652,34 +1652,34 @@
         }
     },
     "AdminSettingsLayout": {
-        "title": "Paramètres de la Plateforme",
-        "subtitle": "Gérez les paramètres globaux et les feature flags.",
-        "settings": "Général",
+        "title": "Platform Settings",
+        "subtitle": "Manage global settings and feature flags.",
+        "settings": "General",
         "flags": "Feature Flags"
     },
     "AdminSettingsPage": {
         "settings": {
             "operational": {
-                "title": "Paramètres Opérationnels",
-                "description": "Ajustez les paramètres de fonctionnement principaux de la plateforme.",
-                "offerExpirationDaysLabel": "Expiration des offres (Jours)",
-                "offerExpirationDaysDesc": "Durée de validité d'une offre.",
-                "cancellationHoursBeforeLabel": "Délai d'annulation (Heures)",
-                "cancellationHoursBeforeDesc": "Temps avant une mission où un utilisateur peut annuler.",
-                "supportSlaHoursLabel": "SLA Support (Heures)",
-                "supportSlaHoursDesc": "Temps cible pour répondre aux tickets de support."
+                "title": "Operational Settings",
+                "description": "Adjust the main operational parameters of the platform.",
+                "offerExpirationDaysLabel": "Offer Expiration (Days)",
+                "offerExpirationDaysDesc": "Validity duration of an offer.",
+                "cancellationHoursBeforeLabel": "Cancellation Deadline (Hours)",
+                "cancellationHoursBeforeDesc": "Time before a mission when a user can cancel.",
+                "supportSlaHoursLabel": "Support SLA (Hours)",
+                "supportSlaHoursDesc": "Target time to respond to support tickets."
             },
             "maintenance": {
-                "title": "Mode Maintenance",
-                "description": "Désactivez temporairement l'accès à la plateforme pour les utilisateurs.",
-                "enableLabel": "Activer le mode maintenance",
-                "enableDesc": "Lorsque activé, les utilisateurs verront le message de maintenance au lieu de l'application.",
-                "messageLabel": "Message de maintenance"
+                "title": "Maintenance Mode",
+                "description": "Temporarily disable platform access for users.",
+                "enableLabel": "Enable maintenance mode",
+                "enableDesc": "When enabled, users will see the maintenance message instead of the app.",
+                "messageLabel": "Maintenance message"
             },
-            "saveButton": "Enregistrer les paramètres",
+            "saveButton": "Save Settings",
             "toast": {
-                "successTitle": "Paramètres Enregistrés",
-                "successDescription": "Les paramètres de la plateforme ont été mis à jour avec succès."
+                "successTitle": "Settings Saved",
+                "successDescription": "The platform settings have been successfully updated."
             }
         },
         "flags": {
@@ -1688,185 +1688,184 @@
                 "description": "Enable or disable features for all users. Changes take effect after the next deployment."
             },
             "aiSuggestion": {
-                "name": "Suggestion de catégories par IA",
-                "description": "Active la fonctionnalité de suggestion de catégories par IA sur le formulaire de création de mission."
+                "name": "AI Category Suggestion",
+                "description": "Enables the AI-powered category suggestion feature on the task creation form."
             },
             "newProfilePage": {
-                "name": "Nouveau design de la page profil",
-                "description": "Active la nouvelle page de profil utilisateur redessinée."
+                "name": "New Profile Page Design",
+                "description": "Enables the new redesigned user profile page."
             },
             "providerCalendar": {
-                "name": "Calendrier de disponibilités prestataire",
-                "description": "Permet aux prestataires de définir leurs disponibilités de travail dans un calendrier."
+                "name": "Provider Availability Calendar",
+                "description": "Allows providers to set their work availability in a calendar."
             },
             "toast": {
-                "successTitle": "Feature Flags Enregistrés",
-                "successDescription": "Vos modifications ont été enregistrées. Elles seront appliquées lors du prochain déploiement."
+                "successTitle": "Feature Flags Saved",
+                "successDescription": "Your changes have been saved. They will be applied on the next deployment."
             },
             "targeting": {
-                "environment": "Environnement",
+                "environment": "Environment",
                 "production": "Production",
                 "staging": "Staging",
-                "rollout": "Pourcentage de déploiement",
-                "roles": "Rôles cibles"
+                "rollout": "Rollout Percentage",
+                "roles": "Target Roles"
             }
         }
     },
     "AdminReportsLayout": {
-        "kpi": "Rapports & KPI",
-        "schedules": "Exports Planifiés"
+        "kpi": "Reports & KPI",
+        "schedules": "Scheduled Exports"
     },
     "AdminReportsPage": {
         "kpi": {
-            "title": "Rapports & Indicateurs Clés",
-            "subtitle": "Analysez la performance de la plateforme et le comportement des utilisateurs.",
-            "totalRevenue": "Revenu Total",
-            "completedTasks": "Missions Terminées",
-            "totalUsers": "Utilisateurs Totaux",
-            "activeBookings": "Réservations Actives"
+            "title": "Reports & Key Indicators",
+            "subtitle": "Analyze platform performance and user behavior.",
+            "totalRevenue": "Total Revenue",
+            "completedTasks": "Completed Tasks",
+            "totalUsers": "Total Users",
+            "activeBookings": "Active Bookings"
         },
         "schedules": {
-            "title": "Exports Planifiés",
-            "subtitle": "Gérez les exports de données automatisés.",
-            "notFound": "Export planifié non trouvé.",
-            "backToList": "Retour à la liste des exports",
+            "title": "Scheduled Exports",
+            "subtitle": "Manage automated data exports.",
+            "notFound": "Scheduled export not found.",
+            "backToList": "Back to export list",
             "table": {
-                "title": "Exports Planifiés",
-                "description": "Liste de tous les exports de données automatisés.",
+                "title": "Scheduled Exports",
+                "description": "List of all automated data exports.",
                 "header": {
-                    "name": "Nom du Rapport",
+                    "name": "Report Name",
                     "format": "Format",
-                    "frequency": "Fréquence",
-                    "nextRun": "Prochaine Exécution",
-                    "status": "Statut",
+                    "frequency": "Frequency",
+                    "nextRun": "Next Run",
+                    "status": "Status",
                     "actions": "Actions"
                 },
-                "statusActive": "Actif",
-                "statusPaused": "En pause"
+                "statusActive": "Active",
+                "statusPaused": "Paused"
             },
             "actions": {
-                "create": "Planifier un export",
-                "edit": "Modifier",
-                "pause": "Mettre en pause",
-                "resume": "Reprendre",
-                "delete": "Supprimer"
+                "create": "Schedule an export",
+                "edit": "Edit",
+                "pause": "Pause",
+                "resume": "Resume",
+                "delete": "Delete"
             },
             "dialog": {
-                "title": "Planifier un Nouvel Export",
-                "description": "Configurez les paramètres de votre export automatisé.",
-                "nameLabel": "Nom du rapport",
-                "namePlaceholder": "Ex: Transactions Mensuelles",
+                "title": "Schedule a New Export",
+                "description": "Configure the settings for your automated export.",
+                "nameLabel": "Report name",
+                "namePlaceholder": "Ex: Monthly Transactions",
                 "formatLabel": "Format",
-                "frequencyLabel": "Fréquence",
+                "frequencyLabel": "Frequency",
                 "frequency": {
-                    "daily": "Quotidien",
-                    "weekly": "Hebdomadaire",
-                    "monthly": "Mensuel",
-                    "yearly": "Annuel"
+                    "daily": "Daily",
+                    "weekly": "Weekly",
+                    "monthly": "Monthly",
+                    "yearly": "Yearly"
                 },
-                "recipientsLabel": "Destinataires",
-                "recipientsPlaceholder": "Ex: compta@example.com",
-                "encryptionLabel": "Protéger par mot de passe (chiffrement)",
-                "cancel": "Annuler",
-                "save": "Enregistrer la planification"
+                "recipientsLabel": "Recipients",
+                "recipientsPlaceholder": "Ex: accounting@example.com",
+                "encryptionLabel": "Password protect (encryption)",
+                "cancel": "Cancel",
+                "save": "Save schedule"
             },
             "toast": {
-                "createSuccessTitle": "Export Planifié",
-                "createSuccessDescription": "Le nouvel export automatisé a été planifié avec succès.",
-                "updateSuccessTitle": "Planification Mise à Jour",
-                "updateSuccessDescription": "L'export planifié a été mis à jour avec succès."
+                "createSuccessTitle": "Export Scheduled",
+                "createSuccessDescription": "The new automated export has been successfully scheduled.",
+                "updateSuccessTitle": "Schedule Updated",
+                "updateSuccessDescription": "The scheduled export has been successfully updated."
             },
             "edit": {
-                "title": "Modifier l'Export Planifié",
-                "cardTitle": "Modifier la Planification",
-                "cardDescription": "Modifiez les paramètres de cet export automatisé.",
-                "save": "Enregistrer les modifications"
+                "title": "Edit Scheduled Export",
+                "cardTitle": "Edit Schedule",
+                "cardDescription": "Modify the settings for this automated export.",
+                "save": "Save Changes"
             }
         },
         "charts": {
             "newUsers": {
-                "title": "Nouveaux Utilisateurs",
-                "description": "Nombre de nouvelles inscriptions d'utilisateurs par mois.",
-                "legend": "Nouveaux Utilisateurs"
+                "title": "New Users",
+                "description": "Number of new user registrations per month.",
+                "legend": "New Users"
             },
             "conversionFunnel": {
-                "title": "Entonnoir de Conversion des Missions",
-                "description": "De la publication de la mission à sa finalisation.",
-                "legend": "Missions"
+                "title": "Task Conversion Funnel",
+                "description": "From task publication to completion.",
+                "legend": "Tasks"
             }
         },
         "filters": {
-            "title": "Filtres",
-            "description": "Affinez les données des rapports ci-dessous.",
-            "dateRange": "Plage de dates",
-            "pickDate": "Choisir une période",
-            "category": "Catégorie",
-            "allCategories": "Toutes les catégories",
-            "city": "Ville",
-            "apply": "Appliquer",
-            "reset": "Réinitialiser"
+            "title": "Filters",
+            "description": "Refine the data in the reports below.",
+            "dateRange": "Date range",
+            "pickDate": "Pick a date range",
+            "category": "Category",
+            "allCategories": "All categories",
+            "city": "City",
+            "apply": "Apply",
+            "reset": "Reset"
         }
     },
     "AdminAuditLogPage": {
-        "title": "Journal d'Audit",
-        "subtitle": "Suivez toutes les actions administratives et critiques sur la plateforme.",
+        "title": "Audit Log",
+        "subtitle": "Track all administrative and critical actions on the platform.",
         "table": {
-            "title": "Journal d'Activité",
-            "description": "Liste des actions enregistrées.",
+            "title": "Activity Log",
+            "description": "List of recorded actions.",
             "header": {
                 "date": "Date",
-                "actor": "Acteur",
+                "actor": "Actor",
                 "action": "Action",
-                "target": "Cible",
-                "details": "Détails",
-                "result": "Résultat"
+                "target": "Target",
+                "details": "Details",
+                "result": "Result"
             },
             "results": {
-                "success": "Succès",
-                "failure": "Échec"
+                "success": "Success",
+                "failure": "Failure"
             }
         },
         "filters": {
-            "actor": "Acteur",
-            "actorPlaceholder": "Nom de l'acteur...",
-            "targetType": "Type de cible",
-            "targetTypePlaceholder": "Choisir un type",
-            "allTargetTypes": "Tous les types",
-            "dateRange": "Période",
-            "pickDate": "Choisir une période",
-            "apply": "Filtrer"
+            "actor": "Actor",
+            "actorPlaceholder": "Actor name...",
+            "targetType": "Target Type",
+            "targetTypePlaceholder": "Choose a type",
+            "allTargetTypes": "All types",
+            "dateRange": "Period",
+            "pickDate": "Pick a date range",
+            "apply": "Filter"
         },
         "actions": {
-            "export": "Exporter",
-            "viewChanges": "Voir les changements"
+            "export": "Export",
+            "viewChanges": "View Changes"
         },
         "deltaDialog": {
-            "title": "Comparateur de Modifications",
-            "description": "Cette fonctionnalité affichera les changements 'avant' et 'après' pour cette action. Elle est actuellement en cours de développement.",
-            "close": "Fermer"
+            "title": "Modification Comparator",
+            "description": "This feature will display the 'before' and 'after' changes for this action. It is currently under development.",
+            "close": "Close"
         },
         "csv": {
             "id": "ID",
-            "actorId": "ID Acteur",
-            "actorName": "Nom Acteur",
+            "actorId": "Actor ID",
+            "actorName": "Actor Name",
             "action": "Action",
-            "targetType": "Type Cible",
-            "targetId": "ID Cible",
+            "targetType": "Target Type",
+            "targetId": "Target ID",
             "createdAt": "Date",
-            "result": "Résultat"
+            "result": "Result"
         }
     },
     "AdminI18nLayout": {
-        "title": "Gestion des Traductions",
-        "subtitle": "Gérez les traductions de l'application.",
-        "keys": "Clés",
+        "title": "Translation Management",
+        "subtitle": "Manage the application's translations.",
+        "keys": "Keys",
         "io": "Import/Export"
     },
     "AdminI18nPage": {
         "keys": {
-            "title": "Éditeur de Clés de Traduction",
-            "description": "Modifiez les clés de traduction pour toutes les langues supportées.",
-            "content": "Cette interface permettra de modifier toutes les clés de traduction (fr, en, jp...) dans un tableau, de détecter les clés manquantes et de les valider. Elle est actuellement en cours de développement.",
+            "title": "Translation Key Editor",
+            "description": "Modify translation keys for all supported languages.",
             "saveButton": "Save Changes",
             "toast": {
                 "saveSuccessTitle": "Translations saved",
@@ -1875,8 +1874,30 @@
         },
         "io": {
             "title": "Import / Export",
-            "description": "Importez et exportez les fichiers de traduction.",
-            "content": "Cette interface permettra d'importer des fichiers JSON pour ajouter/mettre à jour les traductions, d'exporter toutes les clés pour une locale, et de vérifier les incohérences de placeholders. Elle est actuellement en cours de développement."
+            "description": "Import and export translation files.",
+            "import": {
+                "title": "Import Translations",
+                "description": "Upload a JSON file for a specific language. Existing keys will be updated.",
+                "localeLabel": "Language to import",
+                "fileLabel": "JSON File",
+                "button": "Import File"
+            },
+            "export": {
+                "title": "Export Translations",
+                "description": "Download a JSON file containing all translation keys for a specific language.",
+                "localeLabel": "Language to export",
+                "button": "Export File"
+            },
+            "toast": {
+                "noFile": {
+                    "title": "No file selected",
+                    "description": "Please select a JSON file to import."
+                },
+                "importSuccess": {
+                    "title": "Import in progress",
+                    "description": "The file for the '{locale}' language will be processed. (Simulation)"
+                }
+            }
         }
     }
 }
