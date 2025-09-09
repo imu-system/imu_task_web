@@ -1,5 +1,4 @@
 
-      
 {
     "Header": {
         "features": "Features",
@@ -1849,13 +1848,13 @@
         },
         "csv": {
             "id": "ID",
-            "actorId": "Actor ID",
-            "actorName": "Actor Name",
+            "actorId": "ID Acteur",
+            "actorName": "Nom Acteur",
             "action": "Action",
-            "targetType": "Target Type",
-            "targetId": "Target ID",
+            "targetType": "Type Cible",
+            "targetId": "ID Cible",
             "createdAt": "Date",
-            "result": "Result"
+            "result": "Résultat"
         }
     },
     "AdminI18nLayout": {
@@ -1925,9 +1924,30 @@
         "canned": {
             "title": "Canned Responses",
             "description": "Manage response templates to speed up support.",
-            "content": "This section will allow you to create, edit, and delete predefined responses for common questions. You will be able to categorize them and use variables for personalization."
+            "content": "This section will allow you to create, edit, and delete predefined responses for common questions. You will be able to categorize them and use variables for personalization.",
+            "actions": {
+                "create": "Add Response",
+                "edit": "Edit",
+                "delete": "Delete"
+            },
+            "table": {
+                "shortcut": "Shortcut",
+                "content": "Content",
+                "actions": "Actions"
+            },
+            "dialog": {
+                "createTitle": "Create New Canned Response",
+                "createDescription": "Write a response template for future use.",
+                "editTitle": "Edit Canned Response",
+                "editDescription": "Update the shortcut or content of this response.",
+                "shortcutLabel": "Shortcut",
+                "shortcutPlaceholder": "e.g., #greeting",
+                "contentLabel": "Response Content",
+                "contentPlaceholder": "Hello {{user.name}},...",
+                "variablesInfo": "Use variables like {{user.name}} for personalization.",
+                "cancel": "Cancel",
+                "save": "Save"
+            }
         }
     }
 }
-
-    

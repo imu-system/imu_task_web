@@ -1,5 +1,4 @@
 
-      
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -1925,9 +1924,30 @@
         "canned": {
             "title": "Réponses Rapides",
             "description": "Gérez les modèles de réponses pour accélérer le support.",
-            "content": "Cette section permettra de créer, modifier et supprimer des réponses prédéfinies pour les questions courantes. Vous pourrez les catégoriser et utiliser des variables pour la personnalisation."
+            "content": "Cette section permettra de créer, modifier et supprimer des réponses prédéfinies pour les questions courantes. Vous pourrez les catégoriser et utiliser des variables pour la personnalisation.",
+            "actions": {
+                "create": "Ajouter une réponse",
+                "edit": "Modifier",
+                "delete": "Supprimer"
+            },
+            "table": {
+                "shortcut": "Raccourci",
+                "content": "Contenu",
+                "actions": "Actions"
+            },
+            "dialog": {
+                "createTitle": "Créer une nouvelle réponse rapide",
+                "createDescription": "Rédigez un modèle de réponse pour une utilisation future.",
+                "editTitle": "Modifier la réponse rapide",
+                "editDescription": "Mettez à jour le raccourci ou le contenu de cette réponse.",
+                "shortcutLabel": "Raccourci",
+                "shortcutPlaceholder": "Ex: #salutation",
+                "contentLabel": "Contenu de la réponse",
+                "contentPlaceholder": "Bonjour {{user.name}},...",
+                "variablesInfo": "Utilisez des variables comme {{user.name}} pour la personnalisation.",
+                "cancel": "Annuler",
+                "save": "Enregistrer"
+            }
         }
     }
 }
-
-    
