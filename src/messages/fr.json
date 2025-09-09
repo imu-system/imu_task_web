@@ -1870,7 +1870,8 @@
             "toast": {
                 "saveSuccessTitle": "Traductions enregistrées",
                 "saveSuccessDescription": "Les fichiers de traduction ont été mis à jour avec succès."
-            }
+            },
+            "missingKey": "Traduction manquante"
         },
         "io": {
             "title": "Import / Export",

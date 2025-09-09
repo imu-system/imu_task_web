@@ -64,13 +64,13 @@ export default function AdminKeysPage() {
     const groupedKeys = groupKeys(allKeys);
 
 
-    const getValue = (lang: 'fr' | 'en' | 'jp', key: string) => {
+    const getValue = (lang: 'fr' | 'en' | 'jp', key: string): string => {
         const keys = key.split('.');
         let current: any = translations[lang];
         for (const k of keys) {
             current = current?.[k];
         }
-        return current || '';
+        return current ?? '';
     }
 
     const handleChange = (lang: 'fr' | 'en' | 'jp', key: string, value: string) => {
@@ -113,25 +113,31 @@ export default function AdminKeysPage() {
                             </AccordionTrigger>
                             <AccordionContent className="px-6 pb-6">
                                 <div className="space-y-6">
-                                    {keys.map(key => (
+                                    {keys.map(key => {
+                                        const frValue = getValue('fr', key);
+                                        const enValue = getValue('en', key);
+                                        const jpValue = getValue('jp', key);
+
+                                        return (
                                         <div key={key} className="space-y-2 p-4 border rounded-lg bg-background/50">
                                             <Label htmlFor={`key-${key}`} className="font-mono text-sm text-muted-foreground">{key}</Label>
                                             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                                 <div className="space-y-1">
                                                     <Label htmlFor={`fr-${key}`}>FR</Label>
-                                                    <Input id={`fr-${key}`} value={getValue('fr', key)} onChange={(e) => handleChange('fr', key, e.target.value)} />
+                                                    <Input id={`fr-${key}`} value={frValue} onChange={(e) => handleChange('fr', key, e.target.value)} className={!frValue ? "border-yellow-400" : ""} placeholder={!frValue ? t('missingKey') : ''}/>
                                                 </div>
                                                 <div className="space-y-1">
                                                      <Label htmlFor={`en-${key}`}>EN</Label>
-                                                    <Input id={`en-${key}`} value={getValue('en', key)} onChange={(e) => handleChange('en', key, e.target.value)} />
+                                                    <Input id={`en-${key}`} value={enValue} onChange={(e) => handleChange('en', key, e.target.value)} className={!enValue ? "border-yellow-400" : ""} placeholder={!enValue ? t('missingKey') : ''}/>
                                                 </div>
                                                 <div className="space-y-1">
                                                      <Label htmlFor={`jp-${key}`}>JP</Label>
-                                                    <Input id={`jp-${key}`} value={getValue('jp', key)} onChange={(e) => handleChange('jp', key, e.target.value)} />
+                                                    <Input id={`jp-${key}`} value={jpValue} onChange={(e) => handleChange('jp', key, e.target.value)} className={!jpValue ? "border-yellow-400" : ""} placeholder={!jpValue ? t('missingKey') : ''}/>
                                                 </div>
                                             </div>
                                         </div>
-                                    ))}
+                                    )})
+                                    }
                                 </div>
                             </AccordionContent>
                         </AccordionItem>
