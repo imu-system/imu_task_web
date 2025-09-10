@@ -1956,7 +1956,7 @@
                 "shortcutLabel": "Shortcut",
                 "shortcutPlaceholder": "e.g., #greeting",
                 "contentLabel": "Response Content",
-                "contentPlaceholder": "Hello {{user.name}},...",
+                "contentPlaceholder": "Hello '{'{user.name}'}',...",
                 "variablesInfo": "Use variables like '{'{user.name}'}' for personalization.",
                 "cancel": "Cancel",
                 "save": "Save"
@@ -2036,7 +2036,18 @@
         "reports": {
             "title": "User Reports",
             "description": "Review reports submitted by users about content or other users.",
-            "content": "This section will display a queue of user-submitted reports for your review and action."
+            "table": {
+                "type": "Type",
+                "content": "Reported Content",
+                "reporter": "Reported by",
+                "reason": "Reason",
+                "date": "Date",
+                "actions": {
+                    "view": "View Content",
+                    "dismiss": "Dismiss Report",
+                    "takeAction": "Take Action"
+                }
+            }
         },
         "content": {
             "title": "Flagged Content",

@@ -1956,7 +1956,7 @@
                 "shortcutLabel": "Raccourci",
                 "shortcutPlaceholder": "Ex: #salutation",
                 "contentLabel": "Contenu de la réponse",
-                "contentPlaceholder": "Bonjour {{user.name}},...",
+                "contentPlaceholder": "Bonjour '{'{user.name}'}',...",
                 "variablesInfo": "Utilisez des variables comme '{'{user.name}'}' pour la personnalisation.",
                 "cancel": "Annuler",
                 "save": "Enregistrer"
@@ -2036,7 +2036,18 @@
         "reports": {
             "title": "Signalements des Utilisateurs",
             "description": "Examinez les signalements soumis par les utilisateurs concernant du contenu ou d'autres utilisateurs.",
-            "content": "Cette section affichera une file d'attente des signalements soumis par les utilisateurs pour votre examen et action."
+            "table": {
+                "type": "Type",
+                "content": "Contenu signalé",
+                "reporter": "Signalé par",
+                "reason": "Motif",
+                "date": "Date",
+                "actions": {
+                    "view": "Voir le contenu",
+                    "dismiss": "Ignorer le signalement",
+                    "takeAction": "Prendre une action"
+                }
+            }
         },
         "content": {
             "title": "Contenu Marqué",
