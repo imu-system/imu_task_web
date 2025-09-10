@@ -2056,9 +2056,62 @@
         },
         "viewReport": {
             "title": "Review Report",
-            "cardTitle": "Report Details",
-            "cardDescription": "Review the report and take appropriate action.",
-            "contentPlaceholder": "The detailed view for this report is under construction. It will display the reported content (e.g., a user's profile, a task's description) and provide specific moderation actions."
+            "backToList": "Back to reports",
+            "notFound": "Report not found",
+            "cards": {
+                "content": {
+                    "title": "Reported Content",
+                    "description": "Content of type '{type}': '{content}'",
+                    "viewFull": "View full content"
+                },
+                "report": {
+                    "title": "Report Details",
+                    "reason": "Reason",
+                    "reporter": "Reported by",
+                    "date": "Date"
+                },
+                "reportedUser": {
+                    "title": "Reported User",
+                    "viewProfile": "View profile"
+                },
+                "actions": {
+                    "title": "Moderation Actions",
+                    "description": "Make a decision regarding this report.",
+                    "hideContent": "Hide Content",
+                    "warnUser": "Warn User",
+                    "suspendUser": "Suspend User",
+                    "dismiss": "Dismiss Report",
+                    "dialogs": {
+                        "cancel": "Cancel",
+                        "hide": {
+                            "title": "Hide content?",
+                            "description": "This action will make the reported content invisible to the public. The user will be notified. Are you sure?",
+                            "confirm": "Yes, hide"
+                        },
+                        "warn": {
+                            "title": "Send a warning",
+                            "description": "Compose a warning message to be sent to the user.",
+                            "messageLabel": "Warning message",
+                            "messagePlaceholder": "Your content was reported because...",
+                            "confirm": "Send Warning"
+                        },
+                        "suspend": {
+                            "title": "Suspend user?",
+                            "description": "This action will prevent the user from logging in for a specified duration. You will be redirected to their profile to complete the suspension.",
+                            "confirm": "Proceed to Suspension"
+                        },
+                        "dismiss": {
+                            "title": "Dismiss report?",
+                            "description": "This action will close the report without taking action against the content or user. Use this if the report is unfounded.",
+                            "confirm": "Yes, dismiss"
+                        }
+                    }
+                }
+            },
+            "toast": {
+                "successTitle": "Action performed",
+                "successDescription": "The action '{action}' has been successfully logged."
+            }
         }
     }
 }

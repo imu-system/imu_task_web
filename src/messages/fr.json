@@ -2056,9 +2056,62 @@
         },
         "viewReport": {
             "title": "Examiner le Signalement",
-            "cardTitle": "Détails du Signalement",
-            "cardDescription": "Examinez le signalement et prenez les mesures appropriées.",
-            "contentPlaceholder": "La vue détaillée de ce signalement est en cours de construction. Elle affichera le contenu signalé (par exemple, un profil d'utilisateur, la description d'une tâche) et fournira des actions de modération spécifiques."
+            "backToList": "Retour aux signalements",
+            "notFound": "Signalement non trouvé",
+            "cards": {
+                "content": {
+                    "title": "Contenu Signalé",
+                    "description": "Contenu de type '{type}' : '{content}'",
+                    "viewFull": "Voir le contenu complet"
+                },
+                "report": {
+                    "title": "Détails du Signalement",
+                    "reason": "Motif",
+                    "reporter": "Signalé par",
+                    "date": "Date"
+                },
+                "reportedUser": {
+                    "title": "Utilisateur Signalé",
+                    "viewProfile": "Voir le profil"
+                },
+                "actions": {
+                    "title": "Actions de Modération",
+                    "description": "Prenez une décision concernant ce signalement.",
+                    "hideContent": "Masquer le contenu",
+                    "warnUser": "Avertir l'utilisateur",
+                    "suspendUser": "Suspendre l'utilisateur",
+                    "dismiss": "Ignorer le signalement",
+                    "dialogs": {
+                        "cancel": "Annuler",
+                        "hide": {
+                            "title": "Masquer le contenu ?",
+                            "description": "Cette action rendra le contenu signalé invisible publiquement. L'utilisateur sera notifié. Êtes-vous sûr ?",
+                            "confirm": "Oui, masquer"
+                        },
+                        "warn": {
+                            "title": "Envoyer un avertissement",
+                            "description": "Rédigez un message d'avertissement qui sera envoyé à l'utilisateur.",
+                            "messageLabel": "Message d'avertissement",
+                            "messagePlaceholder": "Votre contenu a été signalé car...",
+                            "confirm": "Envoyer l'avertissement"
+                        },
+                        "suspend": {
+                            "title": "Suspendre l'utilisateur ?",
+                            "description": "Cette action empêchera l'utilisateur de se connecter pour une durée déterminée. Vous serez redirigé vers son profil pour compléter la suspension.",
+                            "confirm": "Procéder à la suspension"
+                        },
+                        "dismiss": {
+                            "title": "Ignorer le signalement ?",
+                            "description": "Cette action fermera le signalement sans prendre de mesure contre le contenu ou l'utilisateur. Utilisez cette option si le signalement est infondé.",
+                            "confirm": "Oui, ignorer"
+                        }
+                    }
+                }
+            },
+            "toast": {
+                "successTitle": "Action effectuée",
+                "successDescription": "L'action '{action}' a été enregistrée avec succès."
+            }
         }
     }
 }
