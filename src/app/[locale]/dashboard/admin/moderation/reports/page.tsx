@@ -65,9 +65,11 @@ export default function AdminModerationReportsPage() {
                                             <Button variant="ghost" size="icon"><MoreHorizontal/></Button>
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent align="end">
-                                            <DropdownMenuItem>
-                                                <Eye className="mr-2"/>
-                                                {t('table.actions.view')}
+                                            <DropdownMenuItem asChild>
+                                                <Link href={report.link}>
+                                                    <Eye className="mr-2"/>
+                                                    {t('table.actions.view')}
+                                                </Link>
                                             </DropdownMenuItem>
                                              <DropdownMenuItem>
                                                 <ShieldOff className="mr-2"/>
