@@ -21,6 +21,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Link } from '@/navigation';
 
 const mockWebhooks = [
     { id: 'wh_1', url: 'https://api.example.com/stripe-events', events: ['payment.succeeded', 'payment.failed'], status: 'active' },
@@ -119,12 +120,14 @@ export default function AdminWebhooksPage() {
                                                 <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
-                                                <DropdownMenuItem>
-                                                    <Edit className="mr-2"/>{t('actions.edit')}
+                                                <DropdownMenuItem asChild>
+                                                    <Link href={`/dashboard/admin/integrations/webhooks/edit/${webhook.id}`}>
+                                                        <Edit className="mr-2"/>{t('actions.edit')}
+                                                    </Link>
                                                 </DropdownMenuItem>
                                                  <DropdownMenuItem>
                                                     <RefreshCw className="mr-2"/>{t('actions.resend')}
-                                                </DropdownMenuItem>
+                                                 </DropdownMenuItem>
                                                 <DropdownMenuItem className="text-destructive">
                                                     <Trash2 className="mr-2"/>{t('actions.delete')}
                                                 </DropdownMenuItem>

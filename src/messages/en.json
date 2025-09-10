@@ -2230,6 +2230,19 @@
                 "eventsLabel": "Events to listen to",
                 "cancel": "Cancel",
                 "save": "Save Webhook"
+            },
+            "edit": {
+                "title": "Edit Webhook",
+                "cardTitle": "Webhook Details",
+                "urlLabel": "Endpoint URL",
+                "secretLabel": "Signing Secret",
+                "eventsLabel": "Subscribed Events",
+                "cancel": "Cancel",
+                "save": "Save Changes",
+                "toast": {
+                    "updateSuccessTitle": "Webhook Updated",
+                    "updateSuccessDescription": "The webhook configuration has been successfully updated."
+                }
             }
         }
     }
