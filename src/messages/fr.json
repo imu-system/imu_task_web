@@ -1956,7 +1956,7 @@
                 "shortcutPlaceholder": "Ex: #salutation",
                 "contentLabel": "Contenu de la réponse",
                 "contentPlaceholder": "Bonjour {{user.name}},...",
-                "variablesInfo": "Utilisez des variables comme {{user.name}} pour la personnalisation.",
+                "variablesInfo": "Utilisez des variables comme '{'{user.name}'}' pour la personnalisation.",
                 "cancel": "Annuler",
                 "save": "Enregistrer"
             },

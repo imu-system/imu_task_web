@@ -1956,7 +1956,7 @@
                 "shortcutPlaceholder": "e.g., #greeting",
                 "contentLabel": "Response Content",
                 "contentPlaceholder": "Hello {{user.name}},...",
-                "variablesInfo": "Use variables like {{user.name}} for personalization.",
+                "variablesInfo": "Use variables like '{'{user.name}'}' for personalization.",
                 "cancel": "Cancel",
                 "save": "Save"
             },
