@@ -1918,7 +1918,19 @@
                 "user": "Utilisateur",
                 "status": "Statut",
                 "priority": "Priorité",
-                "agent": "Agent"
+                "agent": "Agent",
+                "actions": "Actions"
+            },
+            "actions": {
+                "view": "Voir",
+                "create": "Nouveau Ticket"
+            },
+            "filters": {
+                "searchPlaceholder": "Rechercher par sujet, ID...",
+                "status": "Statut",
+                "allStatuses": "Tous les statuts",
+                "priority": "Priorité",
+                "allPriorities": "Toutes les priorités"
             }
         },
         "canned": {
@@ -1947,6 +1959,41 @@
                 "variablesInfo": "Utilisez des variables comme {{user.name}} pour la personnalisation.",
                 "cancel": "Annuler",
                 "save": "Enregistrer"
+            }
+        },
+        "ticketDetail": {
+            "backToList": "Retour à la liste des tickets",
+            "notFound": "Ticket non trouvé.",
+            "cards": {
+                "conversation": {
+                    "title": "Conversation"
+                },
+                "response": {
+                    "title": "Répondre",
+                    "description": "Rédigez votre réponse ou utilisez un modèle.",
+                    "cannedPlaceholder": "Utiliser une réponse rapide...",
+                    "canned": {
+                        "greeting": "Salutation",
+                        "kycRejection": "Rejet KYC",
+                        "refundOk": "Confirmation de remboursement"
+                    },
+                    "textAreaPlaceholder": "Votre réponse...",
+                    "attachFile": "Joindre un fichier",
+                    "send": "Envoyer la réponse"
+                },
+                "details": {
+                    "title": "Détails du Ticket",
+                    "status": "Statut",
+                    "priority": "Priorité",
+                    "agent": "Agent assigné",
+                    "tags": "Tags",
+                    "tagsPlaceholder": "Ex: paiement, bug"
+                },
+                "context": {
+                    "title": "Contexte",
+                    "viewUser": "Voir le profil utilisateur",
+                    "viewBooking": "Voir la réservation"
+                }
             }
         }
     }

@@ -654,7 +654,7 @@
                 },
                 "adjustExpirationDialog": {
                     "title": "Adjust Expiration Date",
-                    "description": "Select a new expiration date for this offer. This will notify the provider.",
+                    "description": "Select a new expiration date for this offer. The provider will be notified.",
                     "justificationLabel": "Reason for adjustment (optional, for audit log)",
                     "cancel": "Cancel",
                     "confirm": "Confirm & Adjust"
@@ -1918,7 +1918,19 @@
                 "user": "User",
                 "status": "Status",
                 "priority": "Priority",
-                "agent": "Agent"
+                "agent": "Agent",
+                "actions": "Actions"
+            },
+            "actions": {
+                "view": "View",
+                "create": "New Ticket"
+            },
+            "filters": {
+                "searchPlaceholder": "Search by subject, ID...",
+                "status": "Status",
+                "allStatuses": "All Statuses",
+                "priority": "Priority",
+                "allPriorities": "All Priorities"
             }
         },
         "canned": {
@@ -1947,6 +1959,41 @@
                 "variablesInfo": "Use variables like {{user.name}} for personalization.",
                 "cancel": "Cancel",
                 "save": "Save"
+            }
+        },
+        "ticketDetail": {
+            "backToList": "Back to ticket list",
+            "notFound": "Ticket not found.",
+            "cards": {
+                "conversation": {
+                    "title": "Conversation"
+                },
+                "response": {
+                    "title": "Respond",
+                    "description": "Write your response or use a template.",
+                    "cannedPlaceholder": "Use a canned response...",
+                    "canned": {
+                        "greeting": "Greeting",
+                        "kycRejection": "KYC Rejection",
+                        "refundOk": "Refund Confirmation"
+                    },
+                    "textAreaPlaceholder": "Your response...",
+                    "attachFile": "Attach File",
+                    "send": "Send Response"
+                },
+                "details": {
+                    "title": "Ticket Details",
+                    "status": "Status",
+                    "priority": "Priority",
+                    "agent": "Assigned Agent",
+                    "tags": "Tags",
+                    "tagsPlaceholder": "e.g., payment, bug"
+                },
+                "context": {
+                    "title": "Context",
+                    "viewUser": "View user profile",
+                    "viewBooking": "View booking"
+                }
             }
         }
     }
