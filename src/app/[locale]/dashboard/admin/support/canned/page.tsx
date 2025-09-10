@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { MoreHorizontal, PlusCircle, Trash2 } from 'lucide-react';
+import { MoreHorizontal, PlusCircle, Trash2, Edit } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -24,6 +24,7 @@ import {
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { Link } from '@/navigation';
 
 const mockCannedResponses = [
     { id: 'canned1', shortcut: 'salutation', content: "Bonjour {{user.name}},\n\nMerci d'avoir contacté le support ImuTask.\n\nCordialement," },
@@ -94,7 +95,12 @@ export default function AdminCannedResponsesPage() {
                                                 <Button variant="ghost" size="icon"><MoreHorizontal /></Button>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent align="end">
-                                                <DropdownMenuItem>{t('actions.edit')}</DropdownMenuItem>
+                                                <DropdownMenuItem asChild>
+                                                    <Link href={`/dashboard/admin/support/canned/edit/${response.id}`}>
+                                                        <Edit className="mr-2 h-4 w-4"/>
+                                                        {t('actions.edit')}
+                                                    </Link>
+                                                </DropdownMenuItem>
                                                 <DropdownMenuItem className="text-destructive">
                                                     <Trash2 className="mr-2"/>
                                                     {t('actions.delete')}

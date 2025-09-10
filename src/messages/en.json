@@ -1959,6 +1959,13 @@
                 "variablesInfo": "Use variables like {{user.name}} for personalization.",
                 "cancel": "Cancel",
                 "save": "Save"
+            },
+            "form": {
+                "cardTitle": "Response Details"
+            },
+            "toast": {
+                "updateSuccessTitle": "Response Updated",
+                "updateSuccessDescription": "The canned response has been successfully updated."
             }
         },
         "ticketDetail": {

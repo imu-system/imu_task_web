@@ -1959,6 +1959,13 @@
                 "variablesInfo": "Utilisez des variables comme {{user.name}} pour la personnalisation.",
                 "cancel": "Annuler",
                 "save": "Enregistrer"
+            },
+            "form": {
+                "cardTitle": "Détails de la réponse"
+            },
+            "toast": {
+                "updateSuccessTitle": "Réponse mise à jour",
+                "updateSuccessDescription": "La réponse rapide a été mise à jour avec succès."
             }
         },
         "ticketDetail": {
