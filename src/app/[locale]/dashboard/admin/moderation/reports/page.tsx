@@ -9,6 +9,17 @@ import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal, User, FileText, MessageSquare, Eye, ShieldOff, AlertTriangle } from 'lucide-react';
 import { Link } from '@/navigation';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 const mockReports = [
     { id: 'rep1', type: 'Utilisateur', content: 'John Smith', reporter: 'Anne-Marie Dupont', reason: 'Contenu inapproprié dans la bio', date: '2024-10-26T10:00:00Z', link: '/dashboard/admin/users/usr_3' },
@@ -60,27 +71,43 @@ export default function AdminModerationReportsPage() {
                                 <TableCell>{report.reason}</TableCell>
                                 <TableCell>{new Date(report.date).toLocaleDateString()}</TableCell>
                                 <TableCell className="text-right">
-                                    <DropdownMenu>
-                                        <DropdownMenuTrigger asChild>
-                                            <Button variant="ghost" size="icon"><MoreHorizontal/></Button>
-                                        </DropdownMenuTrigger>
-                                        <DropdownMenuContent align="end">
-                                            <DropdownMenuItem asChild>
-                                                <Link href={`/dashboard/admin/moderation/reports/view/${report.id}`}>
-                                                    <Eye className="mr-2"/>
-                                                    {t('table.actions.view')}
-                                                </Link>
-                                            </DropdownMenuItem>
-                                             <DropdownMenuItem>
-                                                <ShieldOff className="mr-2"/>
-                                                {t('table.actions.dismiss')}
-                                             </DropdownMenuItem>
-                                             <DropdownMenuItem className="text-destructive">
-                                                <AlertTriangle className="mr-2"/>
-                                                {t('table.actions.takeAction')}
-                                             </DropdownMenuItem>
-                                        </DropdownMenuContent>
-                                    </DropdownMenu>
+                                    <AlertDialog>
+                                        <DropdownMenu>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon"><MoreHorizontal/></Button>
+                                            </DropdownMenuTrigger>
+                                            <DropdownMenuContent align="end">
+                                                <DropdownMenuItem asChild>
+                                                    <Link href={`/dashboard/admin/moderation/reports/view/${report.id}`}>
+                                                        <Eye className="mr-2"/>
+                                                        {t('table.actions.view')}
+                                                    </Link>
+                                                </DropdownMenuItem>
+                                                <AlertDialogTrigger asChild>
+                                                    <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                                                        <ShieldOff className="mr-2"/>
+                                                        {t('table.actions.dismiss')}
+                                                    </DropdownMenuItem>
+                                                </AlertDialogTrigger>
+                                                 <DropdownMenuItem className="text-destructive">
+                                                    <AlertTriangle className="mr-2"/>
+                                                    {t('table.actions.takeAction')}
+                                                 </DropdownMenuItem>
+                                            </DropdownMenuContent>
+                                        </DropdownMenu>
+                                        <AlertDialogContent>
+                                            <AlertDialogHeader>
+                                                <AlertDialogTitle>{t('viewReport.cards.actions.dialogs.dismiss.title')}</AlertDialogTitle>
+                                                <AlertDialogDescription>
+                                                    {t('viewReport.cards.actions.dialogs.dismiss.description')}
+                                                </AlertDialogDescription>
+                                            </AlertDialogHeader>
+                                            <AlertDialogFooter>
+                                                <AlertDialogCancel>{t('viewReport.cards.actions.dialogs.cancel')}</AlertDialogCancel>
+                                                <AlertDialogAction>{t('viewReport.cards.actions.dialogs.dismiss.confirm')}</AlertDialogAction>
+                                            </AlertDialogFooter>
+                                        </AlertDialogContent>
+                                    </AlertDialog>
                                 </TableCell>
                             </TableRow>
                         ))}
