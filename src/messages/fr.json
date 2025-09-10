@@ -2029,7 +2029,8 @@
         "title": "Modération",
         "subtitle": "Gérez les signalements et le contenu de la plateforme.",
         "reports": "Signalements",
-        "flaggedContent": "Contenu Marqué"
+        "flaggedContent": "Contenu Marqué",
+        "watchlist": "Watchlist"
     },
     "AdminModerationPage": {
         "reports": {
@@ -2069,6 +2070,32 @@
                     "review": "Examiner",
                     "dismiss": "Ignorer"
                 }
+            }
+        },
+        "watchlist": {
+            "title": "Liste de Surveillance",
+            "description": "Liste des utilisateurs sous surveillance pour des problèmes répétés ou sensibles.",
+            "table": {
+                "user": "Utilisateur",
+                "reason": "Motif de l'ajout",
+                "risk": "Niveau de Risque",
+                "addedBy": "Ajouté par",
+                "date": "Date d'ajout"
+            },
+            "riskLevels": {
+                "low": "Faible",
+                "medium": "Moyen",
+                "high": "Élevé"
+            },
+            "actions": {
+                "viewProfile": "Voir le profil",
+                "remove": "Retirer de la liste"
+            },
+            "dialog": {
+                "title": "Retirer de la liste de surveillance ?",
+                "description": "Êtes-vous sûr de vouloir retirer {name} de la liste de surveillance ?",
+                "cancel": "Annuler",
+                "confirm": "Oui, retirer"
             }
         },
         "viewReport": {

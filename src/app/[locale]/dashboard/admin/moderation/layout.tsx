@@ -17,6 +17,7 @@ export default function AdminModerationLayout({
     const navLinks = [
         { href: '/dashboard/admin/moderation/reports', label: t('reports') },
         { href: '/dashboard/admin/moderation/content', label: t('flaggedContent') },
+        { href: '/dashboard/admin/moderation/watchlist', label: t('watchlist') },
     ];
     
     const activeTab = navLinks.find(link => pathname.startsWith(link.href))?.href ?? navLinks[0].href;

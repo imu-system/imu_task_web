@@ -2029,7 +2029,8 @@
         "title": "Moderation",
         "subtitle": "Manage reports and platform content.",
         "reports": "Reports",
-        "flaggedContent": "Flagged Content"
+        "flaggedContent": "Flagged Content",
+        "watchlist": "Watchlist"
     },
     "AdminModerationPage": {
         "reports": {
@@ -2069,6 +2070,32 @@
                     "review": "Review",
                     "dismiss": "Dismiss"
                 }
+            }
+        },
+        "watchlist": {
+            "title": "User Watchlist",
+            "description": "List of users under surveillance for repeated or sensitive issues.",
+            "table": {
+                "user": "User",
+                "reason": "Reason for addition",
+                "risk": "Risk Level",
+                "addedBy": "Added By",
+                "date": "Date Added"
+            },
+            "riskLevels": {
+                "low": "Low",
+                "medium": "Medium",
+                "high": "High"
+            },
+            "actions": {
+                "viewProfile": "View Profile",
+                "remove": "Remove from Watchlist"
+            },
+            "dialog": {
+                "title": "Remove from Watchlist?",
+                "description": "Are you sure you want to remove {name} from the watchlist?",
+                "cancel": "Cancel",
+                "confirm": "Yes, remove"
             }
         },
         "viewReport": {
