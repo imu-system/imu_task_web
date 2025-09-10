@@ -76,6 +76,7 @@
         "reviews": "Reviews",
         "disputes": "Disputes",
         "support": "Support",
+        "moderation": "Moderation",
         "notifications": "Notifications",
         "cms": "Content (CMS)",
         "translations": "Translations",
@@ -1232,7 +1233,7 @@
                     "body": "Body",
                     "subject": "Subject"
                 },
-                "variablesInfo": "Available variables: {{displayName}}, {{taskTitle}}, {{bookingDate}}.",
+                "variablesInfo": "Available variables: '{'{displayName}'}', '{'{taskTitle}'}', '{'{bookingDate}'}'.",
                 "saveButton": "Save Template",
                 "toastSuccessTitle": "Template Saved",
                 "toastSuccessDescription": "The notification template has been successfully updated."
@@ -2023,6 +2024,24 @@
                 "createSuccessTitle": "Ticket Created",
                 "createSuccessDescription": "The new support ticket has been created successfully."
             }
+        }
+    },
+    "AdminModerationLayout": {
+        "title": "Moderation",
+        "subtitle": "Manage reports and platform content.",
+        "reports": "Reports",
+        "flaggedContent": "Flagged Content"
+    },
+    "AdminModerationPage": {
+        "reports": {
+            "title": "User Reports",
+            "description": "Review reports submitted by users about content or other users.",
+            "content": "This section will display a queue of user-submitted reports for your review and action."
+        },
+        "content": {
+            "title": "Flagged Content",
+            "description": "Review content automatically flagged by the system.",
+            "content": "This section will display content (messages, profiles, tasks) that has been automatically flagged by AI or rules for review."
         }
     }
 }

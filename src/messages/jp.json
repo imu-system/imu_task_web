@@ -70,6 +70,8 @@
         "payments": "支払い",
         "reviews": "レビュー",
         "disputes": "紛争",
+        "support": "サポート",
+        "moderation": "モデレーション",
         "notifications": "通知",
         "cms": "コンテンツ (CMS)",
         "translations": "翻訳",
@@ -134,6 +136,24 @@
                 "updateSuccessTitle": "応答が更新されました",
                 "updateSuccessDescription": "定型応答が正常に更新されました。"
             }
+        }
+    },
+    "AdminModerationLayout": {
+        "title": "モデレーション",
+        "subtitle": "レポートとプラットフォームのコンテンツを管理します。",
+        "reports": "レポート",
+        "flaggedContent": "フラグ付きコンテンツ"
+    },
+    "AdminModerationPage": {
+        "reports": {
+            "title": "ユーザーレポート",
+            "description": "コンテンツや他のユーザーに関するユーザーからのレポートを確認します。",
+            "content": "このセクションには、レビューとアクションのためにユーザーから送信されたレポートのキューが表示されます。"
+        },
+        "content": {
+            "title": "フラグ付きコンテンツ",
+            "description": "システムによって自動的にフラグが立てられたコンテンツを確認します。",
+            "content": "このセクションには、AIまたはルールによってレビューのために自動的にフラグが立てられたコンテンツ（メッセージ、プロフィール、タスク）が表示されます。"
         }
     }
 }
