@@ -75,6 +75,7 @@
         "notifications": "通知",
         "cms": "コンテンツ (CMS)",
         "translations": "翻訳",
+        "integrations": "統合",
         "pricing": "価格設定",
         "settings": "設定",
         "reports": "レポート＆分析",
@@ -171,5 +172,11 @@
             "cardDescription": "レポートを確認し、適切な措置を講じてください。",
             "contentPlaceholder": "このレポートの詳細ビューは現在作成中です。報告されたコンテンツ（例：ユーザーのプロフィール、タスクの説明）を表示し、特定のモデレーションアクションを提供します。"
         }
+    },
+    "AdminIntegrationsLayout": {
+        "title": "統合",
+        "subtitle": "外部サービスを接続して管理します。",
+        "connectors": "コネクタ",
+        "webhooks": "Webhook"
     }
 }

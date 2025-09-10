@@ -80,6 +80,7 @@
         "notifications": "Notifications",
         "cms": "Contenu (CMS)",
         "translations": "Traductions",
+        "integrations": "Intégrations",
         "pricing": "Tarification",
         "settings": "Paramètres",
         "reports": "Rapports & Analytics",
@@ -1994,7 +1995,7 @@
                     "priority": "Priorité",
                     "agent": "Agent assigné",
                     "tags": "Tags",
-                    "tagsPlaceholder": "Ex: paiement, bug"
+                    "tagsPlaceholder": "e.g., payment, bug"
                 },
                 "context": {
                     "title": "Contexte",
@@ -2163,6 +2164,42 @@
                 "successTitle": "Action effectuée",
                 "successDescription": "L'action '{action}' a été enregistrée avec succès."
             }
+        }
+    },
+    "AdminIntegrationsLayout": {
+        "title": "Intégrations",
+        "subtitle": "Connectez et gérez les services externes.",
+        "connectors": "Connecteurs",
+        "webhooks": "Webhooks"
+    },
+    "AdminIntegrationsPage": {
+        "connectors": {
+            "stripe": {
+                "title": "Stripe",
+                "description": "Gérez votre intégration Stripe pour les paiements.",
+                "publicKeyLabel": "Clé Publiable",
+                "secretKeyLabel": "Clé Secrète",
+                "webhookSecretLabel": "Secret de signature du Webhook"
+            },
+            "email": {
+                "title": "Email (SMTP)",
+                "description": "Configurez votre serveur SMTP pour l'envoi d'emails transactionnels.",
+                "smtpHost": "Hôte SMTP",
+                "smtpPort": "Port SMTP",
+                "smtpUser": "Utilisateur SMTP",
+                "smtpPassword": "Mot de passe SMTP"
+            },
+            "saveButton": "Enregistrer les Configurations",
+            "toast": {
+                "saveSuccessTitle": "Configurations Enregistrées",
+                "saveSuccessDescription": "Vos paramètres d'intégration ont été mis à jour."
+            }
+        },
+        "webhooks": {
+            "title": "Endpoints Webhooks",
+            "description": "Gérez les webhooks entrants des services externes.",
+            "createButton": "Ajouter un Webhook",
+            "wip": "La gestion des webhooks est en cours de développement."
         }
     }
 }

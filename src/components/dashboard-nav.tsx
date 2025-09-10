@@ -42,6 +42,7 @@ import {
   Languages,
   LifeBuoy,
   ShieldAlert as ModerationIcon,
+  Plug,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -231,6 +232,14 @@ export function DashboardNav() {
                     </Link>
                  </SidebarMenuItem>
                  <SidebarMenuItem>
+                    <Link href="/dashboard/admin/integrations">
+                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/integrations')}>
+                            <Plug />
+                            <span>{t('integrations')}</span>
+                        </SidebarMenuButton>
+                    </Link>
+                 </SidebarMenuItem>
+                 <SidebarMenuItem>
                     <Link href="/dashboard/admin/settings">
                         <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/settings')}>
                             <SlidersHorizontal />
@@ -270,5 +279,3 @@ export function DashboardNav() {
     </Sidebar>
   );
 }
-
-    

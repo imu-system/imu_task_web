@@ -80,6 +80,7 @@
         "notifications": "Notifications",
         "cms": "Content (CMS)",
         "translations": "Translations",
+        "integrations": "Integrations",
         "pricing": "Pricing",
         "settings": "Settings",
         "reports": "Reports & Analytics",
@@ -2163,6 +2164,42 @@
                 "successTitle": "Action performed",
                 "successDescription": "The action '{action}' has been successfully logged."
             }
+        }
+    },
+    "AdminIntegrationsLayout": {
+        "title": "Integrations",
+        "subtitle": "Connect and manage external services.",
+        "connectors": "Connectors",
+        "webhooks": "Webhooks"
+    },
+    "AdminIntegrationsPage": {
+        "connectors": {
+            "stripe": {
+                "title": "Stripe",
+                "description": "Manage your Stripe integration for payments.",
+                "publicKeyLabel": "Publishable Key",
+                "secretKeyLabel": "Secret Key",
+                "webhookSecretLabel": "Webhook Signing Secret"
+            },
+            "email": {
+                "title": "Email (SMTP)",
+                "description": "Configure your SMTP server for sending transactional emails.",
+                "smtpHost": "SMTP Host",
+                "smtpPort": "SMTP Port",
+                "smtpUser": "SMTP Username",
+                "smtpPassword": "SMTP Password"
+            },
+            "saveButton": "Save Configurations",
+            "toast": {
+                "saveSuccessTitle": "Configurations Saved",
+                "saveSuccessDescription": "Your integration settings have been updated."
+            }
+        },
+        "webhooks": {
+            "title": "Webhook Endpoints",
+            "description": "Manage incoming webhooks from external services.",
+            "createButton": "Add Webhook",
+            "wip": "Webhook management is a work in progress."
         }
     }
 }
