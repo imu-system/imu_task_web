@@ -1233,7 +1233,7 @@
                     "body": "Body",
                     "subject": "Subject"
                 },
-                "variablesInfo": "Available variables: '{'{displayName}'}', '{'{taskTitle}'}', '{'{bookingDate}'}'.",
+                "variablesInfo": "Available variables: '{displayName}', '{taskTitle}', '{bookingDate}'.",
                 "saveButton": "Save Template",
                 "toastSuccessTitle": "Template Saved",
                 "toastSuccessDescription": "The notification template has been successfully updated."
@@ -2053,6 +2053,12 @@
             "title": "Flagged Content",
             "description": "Review content automatically flagged by the system.",
             "content": "This section will display content (messages, profiles, tasks) that has been automatically flagged by AI or rules for review."
+        },
+        "viewReport": {
+            "title": "Review Report",
+            "cardTitle": "Report Details",
+            "cardDescription": "Review the report and take appropriate action.",
+            "contentPlaceholder": "The detailed view for this report is under construction. It will display the reported content (e.g., a user's profile, a task's description) and provide specific moderation actions."
         }
     }
 }

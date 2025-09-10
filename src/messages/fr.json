@@ -1233,7 +1233,7 @@
                     "body": "Corps",
                     "subject": "Sujet"
                 },
-                "variablesInfo": "Variables disponibles : '{'{displayName}'}', '{'{taskTitle}'}', '{'{bookingDate}'}'.",
+                "variablesInfo": "Variables disponibles : '{displayName}', '{taskTitle}', '{bookingDate}'.",
                 "saveButton": "Enregistrer le modèle",
                 "toastSuccessTitle": "Modèle enregistré",
                 "toastSuccessDescription": "Le modèle de notification a été mis à jour avec succès."
@@ -2053,6 +2053,12 @@
             "title": "Contenu Marqué",
             "description": "Examinez le contenu automatiquement marqué par le système.",
             "content": "Cette section affichera le contenu (messages, profils, missions) qui a été automatiquement marqué par l'IA ou des règles pour examen."
+        },
+        "viewReport": {
+            "title": "Examiner le Signalement",
+            "cardTitle": "Détails du Signalement",
+            "cardDescription": "Examinez le signalement et prenez les mesures appropriées.",
+            "contentPlaceholder": "La vue détaillée de ce signalement est en cours de construction. Elle affichera le contenu signalé (par exemple, un profil d'utilisateur, la description d'une tâche) et fournira des actions de modération spécifiques."
         }
     }
 }

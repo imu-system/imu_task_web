@@ -66,7 +66,7 @@ export default function AdminModerationReportsPage() {
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent align="end">
                                             <DropdownMenuItem asChild>
-                                                <Link href={report.link}>
+                                                <Link href={`/dashboard/admin/moderation/reports/view/${report.id}`}>
                                                     <Eye className="mr-2"/>
                                                     {t('table.actions.view')}
                                                 </Link>
@@ -74,11 +74,11 @@ export default function AdminModerationReportsPage() {
                                              <DropdownMenuItem>
                                                 <ShieldOff className="mr-2"/>
                                                 {t('table.actions.dismiss')}
-                                            </DropdownMenuItem>
+                                             </DropdownMenuItem>
                                              <DropdownMenuItem className="text-destructive">
                                                 <AlertTriangle className="mr-2"/>
                                                 {t('table.actions.takeAction')}
-                                            </DropdownMenuItem>
+                                             </DropdownMenuItem>
                                         </DropdownMenuContent>
                                     </DropdownMenu>
                                 </TableCell>
