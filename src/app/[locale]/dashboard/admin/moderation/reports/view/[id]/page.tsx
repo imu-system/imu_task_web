@@ -1,11 +1,11 @@
-
 'use client';
 
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
-import { Link, useParams } from '@/navigation';
+import { Link } from '@/navigation';
+import { useParams } from 'next/navigation';
 
 export default function AdminViewReportPage() {
     const t = useTranslations('AdminModerationPage.viewReport');
