@@ -1,5 +1,4 @@
 
-      
 'use client';
 
 import { Link, useRouter } from '@/navigation';
@@ -14,6 +13,9 @@ import {
   SidebarMenuButton,
   SidebarFooter,
   SidebarSeparator,
+  SidebarGroup,
+  SidebarGroupLabel,
+  useSidebar,
 } from '@/components/ui/sidebar';
 import {
   BookMarked,
@@ -93,169 +95,182 @@ export function DashboardNav() {
           ))}
         </SidebarMenu>
         {isAdmin && (
-            <SidebarMenu>
+            <SidebarGroup>
                 <SidebarSeparator className="my-2"/>
-                 <SidebarMenuItem>
-                    <Link href="/dashboard/admin">
-                        <SidebarMenuButton isActive={pathname === '/dashboard/admin'}>
-                            <Shield />
-                            <span>{t('admin')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                 <SidebarMenuItem>
-                    <Link href="/dashboard/admin/reports">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/reports')}>
-                            <LineChart />
-                            <span>{t('reports')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                 <SidebarMenuItem>
-                    <Link href="/dashboard/admin/users">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/users')}>
-                            <Users />
-                            <span>{t('users')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                 <SidebarMenuItem>
-                    <Link href="/dashboard/admin/services/categories">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/services')}>
-                            <LayoutList />
-                            <span>{t('categories')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                 <SidebarMenuItem>
-                    <Link href="/dashboard/admin/tasks">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/tasks')}>
-                            <ListOrdered />
-                            <span>{t('tasks')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                 <SidebarMenuItem>
-                    <Link href="/dashboard/admin/offers">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/offers')}>
-                            <Handshake />
-                            <span>{t('offers')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                 <SidebarMenuItem>
-                    <Link href="/dashboard/admin/bookings">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/bookings')}>
-                            <CalendarCheck />
-                            <span>{t('bookings')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                 <SidebarMenuItem>
-                    <Link href="/dashboard/admin/kyc">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/kyc')}>
-                            <ShieldCheck />
-                            <span>{t('kycVerification')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <Link href="/dashboard/admin/payments/transactions">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/payments')}>
-                            <Wallet />
-                            <span>{t('payments')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                 <SidebarMenuItem>
-                    <Link href="/dashboard/admin/pricing/fees">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/pricing')}>
-                            <DollarSign />
-                            <span>{t('pricing')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <Link href="/dashboard/admin/reviews">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/reviews')}>
-                            <Star />
-                            <span>{t('reviews')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <Link href="/dashboard/admin/disputes">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/disputes')}>
-                            <BadgeAlert />
-                            <span>{t('disputes')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <Link href="/dashboard/admin/support/tickets">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/support')}>
-                            <LifeBuoy />
-                            <span>{t('support')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <Link href="/dashboard/admin/moderation/reports">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/moderation')}>
-                            <ModerationIcon />
-                            <span>{t('moderation')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                 <SidebarMenuItem>
-                    <Link href="/dashboard/admin/notifications">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/notifications')}>
-                            <Bell />
-                            <span>{t('notifications')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                 <SidebarMenuItem>
-                    <Link href="/dashboard/admin/cms/pages">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/cms')}>
-                            <FileText />
-                            <span>{t('cms')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <Link href="/dashboard/admin/i18n/keys">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/i18n')}>
-                            <Languages />
-                            <span>{t('translations')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                 <SidebarMenuItem>
-                    <Link href="/dashboard/admin/integrations">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/integrations')}>
-                            <Plug />
-                            <span>{t('integrations')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                 <SidebarMenuItem>
-                    <Link href="/dashboard/admin/settings">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/settings')}>
-                            <SlidersHorizontal />
-                            <span>{t('settings')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-                  <SidebarMenuItem>
-                    <Link href="/dashboard/admin/audit">
-                        <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/audit')}>
-                            <History />
-                            <span>{t('auditLog')}</span>
-                        </SidebarMenuButton>
-                    </Link>
-                 </SidebarMenuItem>
-            </SidebarMenu>
+                <SidebarGroupLabel>{t('admin')}</SidebarGroupLabel>
+                 <SidebarMenu>
+                    <SidebarMenuItem>
+                        <Link href="/dashboard/admin">
+                            <SidebarMenuButton isActive={pathname === '/dashboard/admin'}>
+                                <Shield />
+                                <span>{t('dashboard')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+
+                    <SidebarGroupLabel className="mt-4">{t('adminNav.community')}</SidebarGroupLabel>
+                    <SidebarMenuItem>
+                        <Link href="/dashboard/admin/users">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/users')}>
+                                <Users />
+                                <span>{t('users')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <Link href="/dashboard/admin/tasks">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/tasks')}>
+                                <ListOrdered />
+                                <span>{t('tasks')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <Link href="/dashboard/admin/offers">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/offers')}>
+                                <Handshake />
+                                <span>{t('offers')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <Link href="/dashboard/admin/bookings">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/bookings')}>
+                                <CalendarCheck />
+                                <span>{t('bookings')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <Link href="/dashboard/admin/reviews">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/reviews')}>
+                                <Star />
+                                <span>{t('reviews')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+
+                    <SidebarGroupLabel className="mt-4">{t('adminNav.moderation')}</SidebarGroupLabel>
+                     <SidebarMenuItem>
+                        <Link href="/dashboard/admin/moderation/reports">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/moderation')}>
+                                <ModerationIcon />
+                                <span>{t('moderation')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                     </SidebarMenuItem>
+                      <SidebarMenuItem>
+                        <Link href="/dashboard/admin/kyc">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/kyc')}>
+                                <ShieldCheck />
+                                <span>{t('kycVerification')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                     </SidebarMenuItem>
+                     <SidebarMenuItem>
+                        <Link href="/dashboard/admin/disputes">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/disputes')}>
+                                <BadgeAlert />
+                                <span>{t('disputes')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                     </SidebarMenuItem>
+                     <SidebarMenuItem>
+                        <Link href="/dashboard/admin/support/tickets">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/support')}>
+                                <LifeBuoy />
+                                <span>{t('support')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                     </SidebarMenuItem>
+                     
+                    <SidebarGroupLabel className="mt-4">{t('adminNav.platform')}</SidebarGroupLabel>
+                    <SidebarMenuItem>
+                        <Link href="/dashboard/admin/services/categories">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/services')}>
+                                <LayoutList />
+                                <span>{t('categories')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+                     <SidebarMenuItem>
+                        <Link href="/dashboard/admin/cms/pages">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/cms')}>
+                                <FileText />
+                                <span>{t('cms')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <Link href="/dashboard/admin/notifications">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/notifications')}>
+                                <Bell />
+                                <span>{t('notifications')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+                     <SidebarMenuItem>
+                        <Link href="/dashboard/admin/i18n/keys">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/i18n')}>
+                                <Languages />
+                                <span>{t('translations')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+
+                    <SidebarGroupLabel className="mt-4">{t('adminNav.finance')}</SidebarGroupLabel>
+                      <SidebarMenuItem>
+                        <Link href="/dashboard/admin/payments/transactions">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/payments')}>
+                                <Wallet />
+                                <span>{t('payments')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <Link href="/dashboard/admin/pricing/fees">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/pricing')}>
+                                <DollarSign />
+                                <span>{t('pricing')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <Link href="/dashboard/admin/reports">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/reports')}>
+                                <LineChart />
+                                <span>{t('reports')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+
+                    <SidebarGroupLabel className="mt-4">{t('adminNav.config')}</SidebarGroupLabel>
+                    <SidebarMenuItem>
+                        <Link href="/dashboard/admin/integrations">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/integrations')}>
+                                <Plug />
+                                <span>{t('integrations')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <Link href="/dashboard/admin/settings">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/settings')}>
+                                <SlidersHorizontal />
+                                <span>{t('settings')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                        <Link href="/dashboard/admin/audit">
+                            <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/audit')}>
+                                <History />
+                                <span>{t('auditLog')}</span>
+                            </SidebarMenuButton>
+                        </Link>
+                    </SidebarMenuItem>
+                 </SidebarMenu>
+            </SidebarGroup>
         )}
       </SidebarContent>
       <SidebarFooter className='mt-auto'>

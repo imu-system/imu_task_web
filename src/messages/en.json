@@ -84,7 +84,14 @@
         "pricing": "Pricing",
         "settings": "Settings",
         "reports": "Reports & Analytics",
-        "auditLog": "Audit Log"
+        "auditLog": "Audit Log",
+        "adminNav": {
+            "community": "Community",
+            "moderation": "Trust & Safety",
+            "platform": "Platform",
+            "finance": "Finance & Reports",
+            "config": "Configuration"
+        }
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -2044,7 +2051,7 @@
                 "reason": "Reason",
                 "date": "Date",
                 "actions": {
-                    "view": "View Content",
+                    "view": "View",
                     "dismiss": "Dismiss Report",
                     "takeAction": "Take Action"
                 }

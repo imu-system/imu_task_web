@@ -84,7 +84,14 @@
         "pricing": "Tarification",
         "settings": "Paramètres",
         "reports": "Rapports & Analytics",
-        "auditLog": "Journal d'audit"
+        "auditLog": "Journal d'audit",
+        "adminNav": {
+            "community": "Communauté",
+            "moderation": "Confiance & Sécurité",
+            "platform": "Plateforme",
+            "finance": "Finance & Rapports",
+            "config": "Configuration"
+        }
     },
     "DashboardPage": {
         "title": "Missions disponibles",

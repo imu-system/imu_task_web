@@ -79,7 +79,14 @@
         "pricing": "価格設定",
         "settings": "設定",
         "reports": "レポート＆分析",
-        "auditLog": "監査ログ"
+        "auditLog": "監査ログ",
+        "adminNav": {
+            "community": "コミュニティ",
+            "moderation": "信頼と安全",
+            "platform": "プラットフォーム",
+            "finance": "財務とレポート",
+            "config": "設定"
+        }
     },
     "AdminI18nPage": {
         "io": {
