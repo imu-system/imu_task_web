@@ -72,7 +72,6 @@
         "tasks": "Tasks",
         "offers": "Offers",
         "bookings": "Bookings",
-        "payments": "Payments",
         "reviews": "Reviews",
         "disputes": "Disputes",
         "support": "Support",
@@ -2200,6 +2199,11 @@
             "toast": {
                 "saveSuccessTitle": "Configurations Saved",
                 "saveSuccessDescription": "Your integration settings have been updated."
+            },
+            "validation": {
+                "stripePk": "Invalid Stripe publishable key format.",
+                "stripeSk": "Invalid Stripe secret key format.",
+                "stripeWebhook": "Invalid Stripe webhook secret format."
             }
         },
         "webhooks": {

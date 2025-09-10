@@ -185,5 +185,40 @@
         "subtitle": "外部サービスを接続して管理します。",
         "connectors": "コネクタ",
         "webhooks": "Webhook"
+    },
+    "AdminIntegrationsPage": {
+        "connectors": {
+            "stripe": {
+                "title": "Stripe",
+                "description": "支払いのためのStripe統合を管理します。",
+                "publicKeyLabel": "公開可能キー",
+                "secretKeyLabel": "シークレットキー",
+                "webhookSecretLabel": "Webhook署名シークレット"
+            },
+            "email": {
+                "title": "メール (SMTP)",
+                "description": "トランザクションメールを送信するためのSMTPサーバーを構成します。",
+                "smtpHost": "SMTPホスト",
+                "smtpPort": "SMTPポート",
+                "smtpUser": "SMTPユーザー名",
+                "smtpPassword": "SMTPパスワード"
+            },
+            "saveButton": "構成を保存",
+            "toast": {
+                "saveSuccessTitle": "構成が保存されました",
+                "saveSuccessDescription": "統合設定が更新されました。"
+            },
+             "validation": {
+                "stripePk": "無効なStripe公開可能キーの形式です。",
+                "stripeSk": "無効なStripeシークレットキーの形式です。",
+                "stripeWebhook": "無効なStripe Webhookシークレットの形式です。"
+            }
+        },
+        "webhooks": {
+            "title": "Webhookエンドポイント",
+            "description": "外部サービスからの受信Webhookを管理します。",
+            "createButton": "Webhookを追加",
+            "wip": "Webhook管理は現在開発中です。"
+        }
     }
 }
