@@ -2098,6 +2098,8 @@
                     "warnUser": "Avertir l'utilisateur",
                     "suspendUser": "Suspendre l'utilisateur",
                     "dismiss": "Ignorer le signalement",
+                    "requireKyc": "Exiger un KYC supplémentaire",
+                    "addToWatchlist": "Ajouter à la watchlist",
                     "dialogs": {
                         "cancel": "Annuler",
                         "hide": {
@@ -2121,6 +2123,11 @@
                             "title": "Ignorer le signalement ?",
                             "description": "Cette action fermera le signalement sans prendre de mesure contre le contenu ou l'utilisateur. Utilisez cette option si le signalement est infondé.",
                             "confirm": "Oui, ignorer"
+                        },
+                        "kyc": {
+                            "title": "Exiger un KYC supplémentaire ?",
+                            "description": "Ceci forcera l'utilisateur à compléter une étape de vérification d'identité supplémentaire avant de pouvoir continuer. Êtes-vous sûr ?",
+                            "confirm": "Oui, exiger KYC"
                         }
                     }
                 }

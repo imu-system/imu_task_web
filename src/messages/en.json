@@ -2098,6 +2098,8 @@
                     "warnUser": "Warn User",
                     "suspendUser": "Suspend User",
                     "dismiss": "Dismiss Report",
+                    "requireKyc": "Require Additional KYC",
+                    "addToWatchlist": "Add to Watchlist",
                     "dialogs": {
                         "cancel": "Cancel",
                         "hide": {
@@ -2121,6 +2123,11 @@
                             "title": "Dismiss report?",
                             "description": "This action will close the report without taking action against the content or user. Use this if the report is unfounded.",
                             "confirm": "Yes, dismiss"
+                        },
+                        "kyc": {
+                            "title": "Require Additional KYC?",
+                            "description": "This will force the user to complete an additional identity verification step before they can continue. Are you sure?",
+                            "confirm": "Yes, require KYC"
                         }
                     }
                 }

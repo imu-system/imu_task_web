@@ -4,7 +4,7 @@
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, Loader2, User, Shield, AlertTriangle, EyeOff, ShieldOff, MessageSquare } from 'lucide-react';
+import { ArrowLeft, Loader2, User, Shield, AlertTriangle, EyeOff, ShieldOff, MessageSquare, FileUp, UserPlus } from 'lucide-react';
 import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
@@ -80,7 +80,9 @@ export default function AdminViewReportPage() {
             title: t('toast.successTitle'),
             description: t('toast.successDescription', { action }),
         });
-        router.push('/dashboard/admin/moderation/reports');
+        if(action !== 'added to watchlist') {
+            router.push('/dashboard/admin/moderation/reports');
+        }
     }
 
     if (loading) {
@@ -225,6 +227,24 @@ export default function AdminViewReportPage() {
                                     </AlertDialogFooter>
                                 </AlertDialogContent>
                             </AlertDialog>
+                             <AlertDialog>
+                                <AlertDialogTrigger asChild>
+                                    <Button variant="outline"><FileUp className="mr-2"/>{t('cards.actions.requireKyc')}</Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogTitle>{t('cards.actions.dialogs.kyc.title')}</AlertDialogTitle>
+                                    <AlertDialogDescription>{t('cards.actions.dialogs.kyc.description')}</AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogCancel>{t('cards.actions.dialogs.cancel')}</AlertDialogCancel>
+                                    <AlertDialogAction onClick={() => handleAction('KYC required')}>{t('cards.actions.dialogs.kyc.confirm')}</AlertDialogAction>
+                                </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
+                             <Button variant="outline" onClick={() => handleAction('added to watchlist')}>
+                                <UserPlus className="mr-2"/>{t('cards.actions.addToWatchlist')}
+                            </Button>
                             <Separator className="my-2" />
                             <AlertDialog>
                                 <AlertDialogTrigger asChild>
