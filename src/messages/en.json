@@ -2047,6 +2047,14 @@
                     "dismiss": "Dismiss Report",
                     "takeAction": "Take Action"
                 }
+            },
+            "dialogs": {
+                "dismiss": {
+                    "title": "Dismiss report?",
+                    "description": "This action will close the report without taking action. Use this if the report is unfounded.",
+                    "cancel": "Cancel",
+                    "confirm": "Yes, dismiss"
+                }
             }
         },
         "content": {

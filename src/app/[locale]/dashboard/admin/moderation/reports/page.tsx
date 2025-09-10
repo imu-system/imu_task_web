@@ -97,14 +97,14 @@ export default function AdminModerationReportsPage() {
                                         </DropdownMenu>
                                         <AlertDialogContent>
                                             <AlertDialogHeader>
-                                                <AlertDialogTitle>{t('viewReport.cards.actions.dialogs.dismiss.title')}</AlertDialogTitle>
+                                                <AlertDialogTitle>{t('dialogs.dismiss.title')}</AlertDialogTitle>
                                                 <AlertDialogDescription>
-                                                    {t('viewReport.cards.actions.dialogs.dismiss.description')}
+                                                    {t('dialogs.dismiss.description')}
                                                 </AlertDialogDescription>
                                             </AlertDialogHeader>
                                             <AlertDialogFooter>
-                                                <AlertDialogCancel>{t('viewReport.cards.actions.dialogs.cancel')}</AlertDialogCancel>
-                                                <AlertDialogAction>{t('viewReport.cards.actions.dialogs.dismiss.confirm')}</AlertDialogAction>
+                                                <AlertDialogCancel>{t('dialogs.dismiss.cancel')}</AlertDialogCancel>
+                                                <AlertDialogAction>{t('dialogs.dismiss.confirm')}</AlertDialogAction>
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
                                     </AlertDialog>

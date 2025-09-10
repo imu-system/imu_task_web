@@ -2047,6 +2047,14 @@
                     "dismiss": "Ignorer le signalement",
                     "takeAction": "Prendre une action"
                 }
+            },
+            "dialogs": {
+                "dismiss": {
+                    "title": "Ignorer le signalement ?",
+                    "description": "Cette action fermera le signalement sans prendre de mesure. Utilisez cette option si le signalement est infondé.",
+                    "cancel": "Annuler",
+                    "confirm": "Oui, ignorer"
+                }
             }
         },
         "content": {
