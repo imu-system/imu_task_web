@@ -2058,8 +2058,18 @@
         },
         "content": {
             "title": "Contenu Marqué",
-            "description": "Examinez le contenu automatiquement marqué par le système.",
-            "content": "Cette section affichera le contenu (messages, profils, missions) qui a été automatiquement marqué par l'IA ou des règles pour examen. Aucun contenu marqué pour le moment."
+            "description": "Examinez le contenu automatiquement marqué par le système pour violation des politiques.",
+            "table": {
+                "type": "Type",
+                "content": "Contenu / Lien",
+                "reason": "Motif du marquage",
+                "date": "Date",
+                "actions": {
+                    "title": "Actions",
+                    "review": "Examiner",
+                    "dismiss": "Ignorer"
+                }
+            }
         },
         "viewReport": {
             "title": "Examiner le Signalement",

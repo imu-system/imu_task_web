@@ -2058,8 +2058,18 @@
         },
         "content": {
             "title": "Flagged Content",
-            "description": "Review content automatically flagged by the system.",
-            "content": "This section will display content (messages, profiles, tasks) that has been automatically flagged by AI or rules for review. No content flagged at this time."
+            "description": "Review content automatically flagged by the system for policy violations.",
+            "table": {
+                "type": "Type",
+                "content": "Content / Link",
+                "reason": "Reason for flag",
+                "date": "Date",
+                "actions": {
+                    "title": "Actions",
+                    "review": "Review",
+                    "dismiss": "Dismiss"
+                }
+            }
         },
         "viewReport": {
             "title": "Review Report",
