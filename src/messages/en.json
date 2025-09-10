@@ -1995,6 +1995,27 @@
                     "viewBooking": "View booking"
                 }
             }
+        },
+        "newTicket": {
+            "title": "New Support Ticket",
+            "card": {
+                "title": "Ticket Details",
+                "description": "Create a ticket manually for a user.",
+                "userLabel": "Concerned User",
+                "userPlaceholder": "Search by email or user ID...",
+                "subjectLabel": "Subject",
+                "subjectPlaceholder": "e.g., Login issue",
+                "messageLabel": "Initial Message",
+                "messagePlaceholder": "Describe the user's issue...",
+                "priorityLabel": "Priority",
+                "agentLabel": "Assign to",
+                "cancel": "Cancel",
+                "create": "Create Ticket"
+            },
+            "toast": {
+                "createSuccessTitle": "Ticket Created",
+                "createSuccessDescription": "The new support ticket has been created successfully."
+            }
         }
     }
 }

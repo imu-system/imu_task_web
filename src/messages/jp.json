@@ -106,5 +106,28 @@
                 }
             }
         }
+    },
+    "AdminSupportPage": {
+        "newTicket": {
+            "title": "新しいサポートチケット",
+            "card": {
+                "title": "チケット詳細",
+                "description": "ユーザーのために手動でチケットを作成します。",
+                "userLabel": "関係するユーザー",
+                "userPlaceholder": "メールアドレスまたはユーザーIDで検索...",
+                "subjectLabel": "件名",
+                "subjectPlaceholder": "例：ログインの問題",
+                "messageLabel": "最初のメッセージ",
+                "messagePlaceholder": "ユーザーの問題を説明してください...",
+                "priorityLabel": "優先度",
+                "agentLabel": "担当者",
+                "cancel": "キャンセル",
+                "create": "チケットを作成"
+            },
+            "toast": {
+                "createSuccessTitle": "チケットが作成されました",
+                "createSuccessDescription": "新しいサポートチケットが正常に作成されました。"
+            }
+        }
     }
 }

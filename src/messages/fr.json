@@ -1995,6 +1995,27 @@
                     "viewBooking": "Voir la réservation"
                 }
             }
+        },
+        "newTicket": {
+            "title": "Nouveau Ticket de Support",
+            "card": {
+                "title": "Détails du Ticket",
+                "description": "Créez un ticket manuellement pour un utilisateur.",
+                "userLabel": "Utilisateur concerné",
+                "userPlaceholder": "Rechercher par e-mail ou ID utilisateur...",
+                "subjectLabel": "Sujet",
+                "subjectPlaceholder": "Ex: Problème de connexion",
+                "messageLabel": "Message initial",
+                "messagePlaceholder": "Décrivez le problème de l'utilisateur...",
+                "priorityLabel": "Priorité",
+                "agentLabel": "Assigner à",
+                "cancel": "Annuler",
+                "create": "Créer le Ticket"
+            },
+            "toast": {
+                "createSuccessTitle": "Ticket Créé",
+                "createSuccessDescription": "Le nouveau ticket de support a été créé avec succès."
+            }
         }
     }
 }

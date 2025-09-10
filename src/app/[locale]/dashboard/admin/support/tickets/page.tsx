@@ -32,7 +32,7 @@ export default function AdminTicketsPage() {
                             <CardDescription>{t('description')}</CardDescription>
                         </div>
                         <Button asChild>
-                            <Link href="#">
+                            <Link href="/dashboard/admin/support/tickets/new">
                                 <PlusCircle className="mr-2"/>{t('actions.create')}
                             </Link>
                         </Button>
