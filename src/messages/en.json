@@ -2210,7 +2210,27 @@
             "title": "Webhook Endpoints",
             "description": "Manage incoming webhooks from external services.",
             "createButton": "Add Webhook",
-            "wip": "Webhook management is a work in progress."
+            "table": {
+                "url": "Endpoint URL",
+                "events": "Subscribed Events",
+                "status": "Status"
+            },
+            "actions": {
+                "edit": "Edit",
+                "resend": "Retry Failures",
+                "delete": "Delete"
+            },
+            "dialog": {
+                "title": "Create a New Webhook",
+                "description": "Declare a new endpoint to receive platform events.",
+                "urlLabel": "Endpoint URL",
+                "secretLabel": "Signing Secret",
+                "secretPlaceholder": "Leave blank to generate automatically",
+                "secretDescription": "The secret will be used to sign event payloads.",
+                "eventsLabel": "Events to listen to",
+                "cancel": "Cancel",
+                "save": "Save Webhook"
+            }
         }
     }
 }

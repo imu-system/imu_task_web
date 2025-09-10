@@ -2211,7 +2211,27 @@
             "title": "Endpoints Webhooks",
             "description": "Gérez les webhooks entrants des services externes.",
             "createButton": "Ajouter un Webhook",
-            "wip": "La gestion des webhooks est en cours de développement."
+            "table": {
+                "url": "URL de l'Endpoint",
+                "events": "Événements souscrits",
+                "status": "Statut"
+            },
+            "actions": {
+                "edit": "Modifier",
+                "resend": "Retenter les échecs",
+                "delete": "Supprimer"
+            },
+            "dialog": {
+                "title": "Créer un nouveau Webhook",
+                "description": "Déclarez un nouvel endpoint pour recevoir les événements de la plateforme.",
+                "urlLabel": "URL de l'Endpoint",
+                "secretLabel": "Secret de Signature",
+                "secretPlaceholder": "Laissez vide pour générer automatiquement",
+                "secretDescription": "Le secret sera utilisé pour signer les charges utiles des événements.",
+                "eventsLabel": "Événements à écouter",
+                "cancel": "Annuler",
+                "save": "Enregistrer le Webhook"
+            }
         }
     }
 }
