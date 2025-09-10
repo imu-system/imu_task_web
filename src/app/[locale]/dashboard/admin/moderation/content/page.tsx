@@ -14,7 +14,9 @@ export default function AdminModerationContentPage() {
                 <CardDescription>{t('description')}</CardDescription>
             </CardHeader>
             <CardContent>
-                <p className="text-sm text-muted-foreground">{t('content')}</p>
+                <div className="text-center py-12">
+                    <p className="text-muted-foreground">{t('content')}</p>
+                </div>
             </CardContent>
         </Card>
     );

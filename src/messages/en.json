@@ -1233,7 +1233,7 @@
                     "body": "Body",
                     "subject": "Subject"
                 },
-                "variablesInfo": "Available variables: '{displayName}', '{taskTitle}', '{bookingDate}'.",
+                "variablesInfo": "Available variables: '{'{user.name}'}', '{'{taskTitle}'}', '{'{bookingDate}'}'.",
                 "saveButton": "Save Template",
                 "toastSuccessTitle": "Template Saved",
                 "toastSuccessDescription": "The notification template has been successfully updated."
@@ -1937,7 +1937,6 @@
         "canned": {
             "title": "Canned Responses",
             "description": "Manage response templates to speed up support.",
-            "content": "This section will allow you to create, edit, and delete predefined responses for common questions. You will be able to categorize them and use variables for personalization.",
             "actions": {
                 "create": "Add Response",
                 "edit": "Edit",
@@ -2060,7 +2059,7 @@
         "content": {
             "title": "Flagged Content",
             "description": "Review content automatically flagged by the system.",
-            "content": "This section will display content (messages, profiles, tasks) that has been automatically flagged by AI or rules for review."
+            "content": "This section will display content (messages, profiles, tasks) that has been automatically flagged by AI or rules for review. No content flagged at this time."
         },
         "viewReport": {
             "title": "Review Report",

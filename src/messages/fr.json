@@ -1233,7 +1233,7 @@
                     "body": "Corps",
                     "subject": "Sujet"
                 },
-                "variablesInfo": "Variables disponibles : '{displayName}', '{taskTitle}', '{bookingDate}'.",
+                "variablesInfo": "Variables disponibles : '{'{user.name}'}', '{'{taskTitle}'}', '{'{bookingDate}'}'.",
                 "saveButton": "Enregistrer le modèle",
                 "toastSuccessTitle": "Modèle enregistré",
                 "toastSuccessDescription": "Le modèle de notification a été mis à jour avec succès."
@@ -1937,7 +1937,6 @@
         "canned": {
             "title": "Réponses Rapides",
             "description": "Gérez les modèles de réponses pour accélérer le support.",
-            "content": "Cette section permettra de créer, modifier et supprimer des réponses prédéfinies pour les questions courantes. Vous pourrez les catégoriser et utiliser des variables pour la personnalisation.",
             "actions": {
                 "create": "Ajouter une réponse",
                 "edit": "Modifier",
@@ -2007,7 +2006,7 @@
         "newTicket": {
             "title": "Nouveau Ticket de Support",
             "card": {
-                "title": "Ticket Détails",
+                "title": "Détails du Ticket",
                 "description": "Créez un ticket manuellement pour un utilisateur.",
                 "userLabel": "Utilisateur concerné",
                 "userPlaceholder": "Rechercher par e-mail ou ID utilisateur...",
@@ -2060,7 +2059,7 @@
         "content": {
             "title": "Contenu Marqué",
             "description": "Examinez le contenu automatiquement marqué par le système.",
-            "content": "Cette section affichera le contenu (messages, profils, missions) qui a été automatiquement marqué par l'IA ou des règles pour examen."
+            "content": "Cette section affichera le contenu (messages, profils, missions) qui a été automatiquement marqué par l'IA ou des règles pour examen. Aucun contenu marqué pour le moment."
         },
         "viewReport": {
             "title": "Examiner le Signalement",
