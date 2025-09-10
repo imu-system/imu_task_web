@@ -2038,7 +2038,7 @@
         "subtitle": "Gérez les signalements et le contenu de la plateforme.",
         "reports": "Signalements",
         "flaggedContent": "Contenu Marqué",
-        "watchlist": "Watchlist"
+        "watchlist": "Liste de Surveillance"
     },
     "AdminModerationPage": {
         "reports": {
@@ -2195,6 +2195,16 @@
                 "smtpPort": "Port SMTP",
                 "smtpUser": "Utilisateur SMTP",
                 "smtpPassword": "Mot de passe SMTP"
+            },
+            "push": {
+                "title": "Notifications Push",
+                "description": "Configurez les services pour l'envoi de notifications push mobiles.",
+                "fcmServerKeyLabel": "Clé Serveur Firebase Cloud Messaging (FCM)"
+            },
+            "analytics": {
+                "title": "Analytics",
+                "description": "Connectez les services d'analyse pour suivre le comportement des utilisateurs.",
+                "gaMeasurementIdLabel": "ID de Mesure Google Analytics"
             },
             "saveButton": "Enregistrer les Configurations",
             "toast": {

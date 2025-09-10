@@ -21,6 +21,8 @@ const integrationsSchema = z.object({
     smtpPort: z.coerce.number().optional(),
     smtpUser: z.string().optional(),
     smtpPass: z.string().optional(),
+    fcmServerKey: z.string().optional(),
+    gaMeasurementId: z.string().optional(),
 });
 
 type IntegrationsFormValues = z.infer<typeof integrationsSchema>;
@@ -39,6 +41,8 @@ export default function AdminConnectorsPage() {
             smtpHost: '',
             smtpUser: '',
             smtpPass: '',
+            fcmServerKey: '',
+            gaMeasurementId: '',
         }
     });
 
@@ -150,6 +154,46 @@ export default function AdminConnectorsPage() {
                     </CardContent>
                 </Card>
                 
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>{t('push.title')}</CardTitle>
+                        <CardDescription>{t('push.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <FormField
+                            control={form.control}
+                            name="fcmServerKey"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>{t('push.fcmServerKeyLabel')}</FormLabel>
+                                    <FormControl><Input type="password" placeholder="AAAA..." {...field} /></FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </CardContent>
+                </Card>
+
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>{t('analytics.title')}</CardTitle>
+                        <CardDescription>{t('analytics.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <FormField
+                            control={form.control}
+                            name="gaMeasurementId"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>{t('analytics.gaMeasurementIdLabel')}</FormLabel>
+                                    <FormControl><Input placeholder="G-..." {...field} /></FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </CardContent>
+                </Card>
+
                 <div className="flex justify-end">
                     <Button type="submit" disabled={isSaving}>
                         {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}

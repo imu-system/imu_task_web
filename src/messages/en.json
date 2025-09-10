@@ -2195,6 +2195,16 @@
                 "smtpUser": "SMTP Username",
                 "smtpPassword": "SMTP Password"
             },
+            "push": {
+                "title": "Push Notifications",
+                "description": "Configure services for sending mobile push notifications.",
+                "fcmServerKeyLabel": "Firebase Cloud Messaging (FCM) Server Key"
+            },
+            "analytics": {
+                "title": "Analytics",
+                "description": "Connect analytics services to track user behavior.",
+                "gaMeasurementIdLabel": "Google Analytics Measurement ID"
+            },
             "saveButton": "Save Configurations",
             "toast": {
                 "saveSuccessTitle": "Configurations Saved",
