@@ -213,7 +213,7 @@ export function CreateTaskForm() {
                         className="cursor-pointer"
                         onClick={() => form.setValue('categoryId', cat.id, { shouldValidate: true })}
                     >
-                        {cat.slug}
+                        {cat.name.fr || cat.slug}
                     </Badge>
                     ))}
                 </div>
@@ -231,13 +231,13 @@ export function CreateTaskForm() {
               <Select onValueChange={field.onChange} defaultValue={field.value} disabled={isLoadingCategories}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder={isLoadingCategories ? "Chargement..." : t('categoryPlaceholder')} />
+                    <SelectValue placeholder={isLoadingCategories ? t('categoryLoading') : t('categoryPlaceholder')} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
                   {taskCategories.map((cat) => (
                     <SelectItem key={cat.id} value={cat.id}>
-                      {cat.slug}
+                      {cat.name.fr || cat.slug}
                     </SelectItem>
                   ))}
                 </SelectContent>

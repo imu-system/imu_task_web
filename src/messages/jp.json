@@ -60,361 +60,43 @@
         "wallet": "ウォレット",
         "profile": "プロフィール",
         "logout": "ログアウト",
-        "admin": "管理",
-        "kycVerification": "KYC認証",
-        "users": "ユーザー",
-        "categories": "カテゴリ",
-        "tasks": "タスク",
-        "offers": "オファー",
-        "bookings": "予約",
-        "payments": "支払い",
-        "reviews": "レビュー",
-        "disputes": "紛争",
-        "support": "サポート",
-        "moderation": "モデレーション",
-        "notifications": "通知",
-        "cms": "コンテンツ (CMS)",
-        "translations": "翻訳",
-        "integrations": "統合",
-        "pricing": "価格設定",
-        "settings": "設定",
-        "reports": "レポート＆分析",
-        "auditLog": "監査ログ",
-        "adminNav": {
-            "community": "コミュニティ",
-            "moderation": "信頼と安全",
-            "platform": "プラットフォーム",
-            "finance": "財務とレポート",
-            "config": "設定"
-        }
+        "admin": "管理"
     },
-    "AdminDashboard": {
-        "clientProviderChart": {
-            "title": "新規クライアント vs. アクティブなプロバイダー",
-            "description": "新規クライアントとアクティブなプロバイダーの月次推移。",
-            "clients": "新規クライアント",
-            "providers": "アクティブなプロバイダー"
-        }
+    "DashboardPage": {
+        "title": "利用可能なタスク",
+        "subtitle": "近くであなたに合ったタスクを見つけましょう。",
+        "createTask": "タスクを作成",
+        "noTasks": "現在利用可能なタスクはありません。"
     },
-    "AdminI18nPage": {
-        "io": {
-            "title": "インポート/エクスポート",
-            "description": "翻訳ファイルをインポートおよびエクスポートします。",
-            "import": {
-                "title": "翻訳をインポート",
-                "description": "特定の言語のJSONファイルをアップロードします。既存のキーは更新されます。",
-                "localeLabel": "インポートする言語",
-                "fileLabel": "JSON ファイル",
-                "button": "ファイルをインポート"
-            },
-            "export": {
-                "title": "翻訳をエクスポート",
-                "description": "特定の言語のすべての翻訳キーを含むJSONファイルをダウンロードします。",
-                "localeLabel": "エクスポートする言語",
-                "button": "ファイルをエクスポート"
-            },
-            "toast": {
-                "noFile": {
-                    "title": "ファイルが選択されていません",
-                    "description": "インポートするJSONファイルを選択してください。"
-                },
-                "importSuccess": {
-                    "title": "インポート処理中",
-                    "description": "言語 '{locale}' のファイルが処理されます。(シミュレーション)"
-                }
-            }
-        }
+    "NewTaskPage": {
+        "title": "新しいタスクを作成",
+        "subtitle": "すぐに助けを見つけるために、以下の詳細を記入してください。"
     },
-    "AdminSupportPage": {
-        "newTicket": {
-            "title": "新しいサポートチケット",
-            "card": {
-                "title": "チケット詳細",
-                "description": "ユーザーのために手動でチケットを作成します。",
-                "userLabel": "関係するユーザー",
-                "userPlaceholder": "メールアドレスまたはユーザーIDで検索...",
-                "subjectLabel": "件名",
-                "subjectPlaceholder": "例：ログインの問題",
-                "messageLabel": "最初のメッセージ",
-                "messagePlaceholder": "ユーザーの問題を説明してください...",
-                "priorityLabel": "優先度",
-                "agentLabel": "担当者",
-                "cancel": "キャンセル",
-                "create": "チケットを作成"
-            },
-            "toast": {
-                "createSuccessTitle": "チケットが作成されました",
-                "createSuccessDescription": "新しいサポートチケットが正常に作成されました。"
-            }
-        },
-        "canned": {
-            "toast": {
-                "updateSuccessTitle": "応答が更新されました",
-                "updateSuccessDescription": "定型応答が正常に更新されました。"
-            }
-        }
+    "TaskCard": {
+        "viewTask": "タスクを表示",
+        "reviews": "({count}件のレビュー)"
     },
-    "AdminModerationLayout": {
-        "title": "モデレーション",
-        "subtitle": "レポートとプラットフォームのコンテンツを管理します。",
-        "reports": "レポート",
-        "flaggedContent": "フラグ付きコンテンツ"
-    },
-    "AdminModerationPage": {
-        "reports": {
-            "title": "ユーザーレポート",
-            "description": "コンテンツや他のユーザーに関するユーザーからのレポートを確認します。",
-            "content": "このセクションには、レビューとアクションのためにユーザーから送信されたレポートのキューが表示されます。"
-        },
-        "content": {
-            "title": "フラグ付きコンテンツ",
-            "description": "システムによってポリシー違反のために自動的にフラグが立てられたコンテンツを確認します。",
-            "table": {
-                "type": "タイプ",
-                "content": "コンテンツ / リンク",
-                "reason": "フラグの理由",
-                "date": "日付",
-                "actions": {
-                    "title": "アクション",
-                    "review": "レビュー",
-                    "dismiss": "却下"
-                }
-            }
-        },
-        "viewReport": {
-            "title": "レポートの確認",
-            "cardTitle": "レポートの詳細",
-            "cardDescription": "レポートを確認し、適切な措置を講じてください。",
-            "contentPlaceholder": "このレポートの詳細ビューは現在作成中です。報告されたコンテンツ（例：ユーザーのプロフィール、タスクの説明）を表示し、特定のモデレーションアクションを提供します。"
-        }
-    },
-    "AdminIntegrationsLayout": {
-        "title": "統合",
-        "subtitle": "外部サービスを接続して管理します。",
-        "connectors": "コネクタ",
-        "webhooks": "Webhook"
-    },
-    "AdminIntegrationsPage": {
-        "connectors": {
-            "stripe": {
-                "title": "Stripe",
-                "description": "支払いのためのStripe統合を管理します。",
-                "publicKeyLabel": "公開可能キー",
-                "secretKeyLabel": "シークレットキー",
-                "webhookSecretLabel": "Webhook署名シークレット"
-            },
-            "email": {
-                "title": "メール (SMTP)",
-                "description": "トランザクションメールを送信するためのSMTPサーバーを構成します。",
-                "smtpHost": "SMTPホスト",
-                "smtpPort": "SMTPポート",
-                "smtpUser": "SMTPユーザー名",
-                "smtpPassword": "SMTPパスワード"
-            },
-            "push": {
-                "title": "Push Notifications",
-                "description": "Configure services for sending mobile push notifications.",
-                "fcmServerKeyLabel": "Firebase Cloud Messaging (FCM) Server Key"
-            },
-            "analytics": {
-                "title": "Analytics",
-                "description": "Connect analytics services to track user behavior.",
-                "gaMeasurementIdLabel": "Google Analytics Measurement ID"
-            },
-            "saveButton": "構成を保存",
-            "toast": {
-                "saveSuccessTitle": "構成が保存されました",
-                "saveSuccessDescription": "統合設定が更新されました。"
-            },
-             "validation": {
-                "stripePk": "無効なStripe公開可能キーの形式です。",
-                "stripeSk": "無効なStripeシークレットキーの形式です。",
-                "stripeWebhook": "無効なStripe Webhookシークレットの形式です。"
-            }
-        },
-        "webhooks": {
-            "title": "Webhookエンドポイント",
-            "description": "外部サービスからの受信Webhookを管理します。",
-            "createButton": "Webhookを追加",
-            "wip": "Webhook管理は現在開発中です。"
-        }
-    },
-    "AdminSettingsLayout": {
-        "sla": "SLA"
-    },
-    "AdminSettingsPage": {
-        "sla": {
-            "title": "SLA設定",
-            "description": "プラットフォームの主要なプロセスの目標解決時間を定義します。",
-            "kycReviewHours": {
-                "label": "KYCレビュー（時間）",
-                "description": "モデレーターがKYC提出をレビューするための時間制限。"
-            },
-            "disputeResponseHours": {
-                "label": "紛争解決（時間）",
-                "description": "モデレーターが紛争を解決するための時間制限。"
-            },
-            "supportTicketResponseHours": {
-                "label": "サポートチケット応答（時間）",
-                "description": "サポートチケットへの最初の応答の時間制限。"
-            },
-            "saveButton": "SLA設定を保存",
-            "toast": {
-                "successTitle": "SLA設定が保存されました",
-                "successDescription": "SLA目標が正常に更新されました。"
-            }
-        }
-    },
-    "AdminReportsLayout": {
-        "kpi": "レポート＆KPI",
-        "availability": "可用性",
-        "schedules": "スケジュール済みエクスポート"
-    },
-    "AdminReportsPage": {
-        "kpi": {
-            "title": "レポート＆主要指標",
-            "subtitle": "プラットフォームのパフォーマンスとユーザーの行動を分析します。",
-            "totalRevenue": "総収益",
-            "completedTasks": "完了したタスク",
-            "totalUsers": "総ユーザー数",
-            "activeBookings": "アクティブな予約"
-        },
-        "schedules": {
-            "title": "スケジュール済みエクスポート",
-            "subtitle": "自動データエクスポートを管理します。",
-            "table": {
-                "title": "スケジュール済みエクスポート",
-                "description": "すべての自動データエクスポートのリスト。",
-                "header": {
-                    "name": "レポート名",
-                    "format": "フォーマット",
-                    "frequency": "頻度",
-                    "nextRun": "次回実行",
-                    "status": "ステータス",
-                    "actions": "アクション"
-                },
-                "statusActive": "アクティブ",
-                "statusPaused": "一時停止中"
-            },
-            "actions": {
-                "create": "エクスポートをスケジュール",
-                "edit": "編集",
-                "pause": "一時停止",
-                "resume": "再開",
-                "delete": "削除"
-            },
-            "dialog": {
-                "title": "新しいエクスポートをスケジュール",
-                "description": "自動エクスポートの設定を構成します。",
-                "nameLabel": "レポート名",
-                "namePlaceholder": "例：月次トランザクション",
-                "formatLabel": "フォーマット",
-                "frequencyLabel": "頻度",
-                "frequency": {
-                    "daily": "毎日",
-                    "weekly": "毎週",
-                    "monthly": "毎月",
-                    "yearly": "毎年"
-                },
-                "recipientsLabel": "受信者",
-                "recipientsPlaceholder": "例：accounting@example.com",
-                "encryptionLabel": "パスワード保護（暗号化）",
-                "cancel": "キャンセル",
-                "save": "スケジュールを保存"
-            },
-            "toast": {
-                "createSuccessTitle": "エクスポートがスケジュールされました",
-                "createSuccessDescription": "新しい自動エクスポートが正常にスケジュールされました。",
-                "updateSuccessTitle": "スケジュールが更新されました",
-                "updateSuccessDescription": "スケジュールされたエクスポートが正常に更新されました。"
-            },
-            "edit": {
-                "title": "スケジュール済みエクスポートを編集",
-                "cardTitle": "スケジュールを編集",
-                "cardDescription": "この自動エクスポートの設定を変更します。",
-                "save": "変更を保存"
-            }
-        },
-        "charts": {
-            "gmv": {
-                "title": "GMVの推移",
-                "description": "日次での商品総売上。",
-                "legendGardening": "ガーデニング",
-                "legendShopping": "買い物",
-                "legendHandyman": "便利屋"
-            },
-            "newUsers": {
-                "title": "新規ユーザー",
-                "description": "月ごとの新規ユーザー登録数。",
-                "legend": "新規ユーザー"
-            },
-            "conversionFunnel": {
-                "title": "タスク変換ファネル",
-                "description": "タスクの公開から完了まで。",
-                "legend": "タスク"
-            },
-            "revenueBreakdown": {
-                "title": "収益内訳 (GMV)",
-                "description": "月次の商品総売上の内訳。",
-                "legendProviderNet": "プロバイダー純収益",
-                "legendPlatformFees": "プラットフォーム手数料",
-                "legendStripeFees": "Stripe手数料"
-            },
-            "aov": {
-                "title": "平均注文額 (AOV)",
-                "description": "完了した予約の平均価値の推移。",
-                "legend": "AOV"
-            },
-            "fillRate": {
-                "title": "カテゴリ別フィルレート",
-                "description": "予約された公開タスクの割合。",
-                "legend": "フィルレート"
-            },
-            "offerDistribution": {
-                "title": "タスクごとのオファー分布",
-                "description": "受信したオファー数に基づくタスクの数。",
-                "legend": "タスク"
-            },
-            "timeToMatch": {
-                "title": "マッチング時間",
-                "description": "最初のオファーと予約までの平均時間。",
-                "legendT1": "最初のオファーまでの時間 (h)",
-                "legendT2": "予約までの時間 (h)"
-            },
-            "providerUtilization": {
-                "title": "プロバイダー稼働率",
-                "description": "申告された利用可能時間に対する予約時間の割合。",
-                "legend": "稼働率"
-            },
-            "cityBalance": {
-                "title": "都市別の供給/需要バランス",
-                "description": "都市ごとの公開タスク数 vs アクティブなプロバイダー数。",
-                "legendTasks": "タスク（需要）",
-                "legendProviders": "プロバイダー（供給）"
-            }
-        },
-        "filters": {
-            "title": "フィルター",
-            "description": "以下のレポートのデータを絞り込みます。",
-            "dateRange": "日付範囲",
-            "pickDate": "日付範囲を選択",
-            "category": "カテゴリ",
-            "allCategories": "すべてのカテゴリ",
-            "city": "都市",
-            "apply": "適用",
-            "reset": "リセット"
-        },
-        "availability": {
-            "title": "可用性分析",
-            "subtitle": "プロバイダーの供給とタスクの需要のバランスを分析します。",
-            "heatmap": {
-                "title": "時間別カバレッジ（24時間）",
-                "description": "1日の各時間における利用可能なプロバイダーと公開されたタスクの比較。",
-                "providers": "利用可能なプロバイダー",
-                "tasks": "公開されたタスク"
-            }
-        }
+    "CreateTaskForm": {
+        "taskTitleLabel": "タスクのタイトル",
+        "taskTitlePlaceholder": "例：芝刈り",
+        "descriptionLabel": "詳細な説明",
+        "descriptionPlaceholder": "必要なことを正確に説明してください...",
+        "descriptionHelp": "詳細であるほど、より関連性の高いオファーを受け取ることができます。",
+        "suggestCategoriesButton": "AIでカテゴリを提案",
+        "suggestionsLabel": "提案：",
+        "categoryLabel": "カテゴリ",
+        "categoryPlaceholder": "カテゴリを選択",
+        "categoryLoading": "読み込み中...",
+        "locationLabel": "タスクの場所",
+        "locationPlaceholder": "住所、市",
+        "datetimeLabel": "日時",
+        "datetimePlaceholder": "日付を選択",
+        "budgetLabel": "あなたの予算（€）",
+        "budgetHelp": "これはプロバイダーに提供される金額です。",
+        "submitButton": "タスクを公開",
+        "toastSuccessTitle": "タスクが作成されました！",
+        "toastSuccessDescription": "あなたのタスクは正常に公開されました。",
+        "toastErrorTitle": "エラー",
+        "toastErrorDescription": "カテゴリの提案中にエラーが発生しました。"
     }
 }
-
-    
