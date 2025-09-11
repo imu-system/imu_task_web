@@ -27,7 +27,7 @@ import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Calendar } from './ui/calendar';
 import { CalendarIcon, Loader2, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { format } from 'date-fns';
+import { format, setHours, setMinutes } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { Badge } from './ui/badge';
 import { useState, useEffect } from 'react';
@@ -47,10 +47,16 @@ const formSchema = z.object({
   description: z.string().min(20, 'La description doit faire au moins 20 caractères.'),
   categoryId: z.string({ required_error: 'Veuillez sélectionner une catégorie.' }),
   addressId: z.string({ required_error: 'Veuillez sélectionner une adresse.' }),
-  date: z.date({
-    required_error: 'Veuillez sélectionner une date et une heure.',
+  timeWindowStart: z.date({
+    required_error: 'Veuillez sélectionner une date et une heure de début.',
+  }),
+  timeWindowEnd: z.date({
+    required_error: 'Veuillez sélectionner une date et une heure de fin.',
   }),
   price: z.coerce.number().min(5, 'Le prix doit être d\'au moins 5€.'),
+}).refine(data => data.timeWindowEnd > data.timeWindowStart, {
+    message: "L'heure de fin doit être après l'heure de début.",
+    path: ['timeWindowEnd'],
 });
 
 const mockAddresses = [
@@ -119,6 +125,7 @@ export function CreateTaskForm() {
         // We pass the full formatted address string for now
         await createTask({
             ...values,
+            date: values.timeWindowStart, // Keep 'date' as the primary start time for now as per data model
             clientId: user.uid,
             location: fullAddress?.formatted || '',
         });
@@ -282,46 +289,79 @@ export function CreateTaskForm() {
                 </FormItem>
               )}
             />
+            <div/>
+        </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <FormField
-            control={form.control}
-            name="date"
-            render={({ field }) => (
-                <FormItem className="flex flex-col">
-                <FormLabel>{t('datetimeLabel')}</FormLabel>
-                <Popover>
-                    <PopoverTrigger asChild>
-                    <FormControl>
-                        <Button
-                        variant={'outline'}
-                        className={cn(
-                            'w-full pl-3 text-left font-normal',
-                            !field.value && 'text-muted-foreground'
-                        )}
-                        >
-                        {field.value ? (
-                            format(field.value, 'PPP à HH:mm', { locale: fr })
-                        ) : (
-                            <span>{t('datetimePlaceholder')}</span>
-                        )}
-                        <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                        </Button>
-                    </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        disabled={(date) => date < new Date() || date < new Date("1900-01-01")}
-                        initialFocus
-                        locale={fr}
-                    />
-                    </PopoverContent>
-                </Popover>
-                <FormMessage />
-                </FormItem>
-            )}
+                control={form.control}
+                name="timeWindowStart"
+                render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                    <FormLabel>{t('startTimeLabel')}</FormLabel>
+                     <div className="flex gap-2">
+                        <Popover>
+                            <PopoverTrigger asChild>
+                            <FormControl>
+                                <Button variant={'outline'} className={cn('w-[240px] pl-3 text-left font-normal', !field.value && 'text-muted-foreground' )}>
+                                {field.value ? format(field.value, 'PPP', { locale: fr }) : <span>{t('datePlaceholder')}</span>}
+                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                </Button>
+                            </FormControl>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-0" align="start">
+                                <Calendar mode="single" selected={field.value} onSelect={field.onChange} disabled={(date) => date < new Date() || date < new Date('1900-01-01')} initialFocus locale={fr}/>
+                            </PopoverContent>
+                        </Popover>
+                        <Input 
+                            type="time" 
+                            className="w-[120px]"
+                            onChange={e => {
+                                const [hours, minutes] = e.target.value.split(':').map(Number);
+                                const newDate = setMinutes(setHours(field.value || new Date(), hours), minutes);
+                                field.onChange(newDate);
+                            }}
+                            defaultValue={field.value ? format(field.value, 'HH:mm') : ''}
+                        />
+                     </div>
+                    <FormMessage />
+                    </FormItem>
+                )}
+            />
+             <FormField
+                control={form.control}
+                name="timeWindowEnd"
+                render={({ field }) => (
+                    <FormItem className="flex flex-col">
+                    <FormLabel>{t('endTimeLabel')}</FormLabel>
+                     <div className="flex gap-2">
+                        <Popover>
+                            <PopoverTrigger asChild>
+                            <FormControl>
+                                <Button variant={'outline'} className={cn('w-[240px] pl-3 text-left font-normal', !field.value && 'text-muted-foreground' )}>
+                                {field.value ? format(field.value, 'PPP', { locale: fr }) : <span>{t('datePlaceholder')}</span>}
+                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                </Button>
+                            </FormControl>
+                            </PopoverTrigger>
+                            <PopoverContent className="w-auto p-0" align="start">
+                                <Calendar mode="single" selected={field.value} onSelect={field.onChange} disabled={(date) => date < new Date() || date < new Date('1900-01-01')} initialFocus locale={fr}/>
+                            </PopoverContent>
+                        </Popover>
+                         <Input 
+                            type="time" 
+                            className="w-[120px]"
+                             onChange={e => {
+                                const [hours, minutes] = e.target.value.split(':').map(Number);
+                                const newDate = setMinutes(setHours(field.value || new Date(), hours), minutes);
+                                field.onChange(newDate);
+                            }}
+                            defaultValue={field.value ? format(field.value, 'HH:mm') : ''}
+                        />
+                     </div>
+                    <FormMessage />
+                    </FormItem>
+                )}
             />
         </div>
 
