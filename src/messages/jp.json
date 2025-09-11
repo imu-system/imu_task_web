@@ -327,6 +327,12 @@
             }
         },
         "charts": {
+            "gmv": {
+                "title": "GMVの推移",
+                "description": "日次での商品総売上。",
+                "legendMissions": "ミッション",
+                "legendServices": "サービス"
+            },
             "newUsers": {
                 "title": "新規ユーザー",
                 "description": "月ごとの新規ユーザー登録数。",

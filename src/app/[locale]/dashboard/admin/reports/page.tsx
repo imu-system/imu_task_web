@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { Loader2, LineChart, Users, ListOrdered, CalendarCheck, Euro, Calendar as CalendarIcon, Filter, X } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, AreaChart, Area } from "recharts";
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
@@ -41,6 +41,16 @@ const newUsersData = [
   { month: "Jun", users: 55 },
   { month: "Jul", users: 40 },
   { month: "Aug", users: 62 },
+];
+
+const gmvData = [
+    { date: '2024-08-01', missions: 400, services: 240 },
+    { date: '2024-08-02', missions: 300, services: 139 },
+    { date: '2024-08-03', missions: 200, services: 980 },
+    { date: '2024-08-04', missions: 278, services: 390 },
+    { date: '2024-08-05', missions: 189, services: 480 },
+    { date: '2024-08-06', missions: 239, services: 380 },
+    { date: '2024-08-07', missions: 349, services: 430 },
 ];
 
 
@@ -162,6 +172,37 @@ export default function AdminReportsPage() {
                         </CardContent>
                     </Card>
                 ))}
+            </div>
+
+            <div className="grid gap-8 grid-cols-1">
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>{t('charts.gmv.title')}</CardTitle>
+                        <CardDescription>{t('charts.gmv.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <ResponsiveContainer width="100%" height={350}>
+                            <AreaChart data={gmvData}>
+                                <defs>
+                                    <linearGradient id="colorMissions" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.8}/>
+                                        <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0}/>
+                                    </linearGradient>
+                                     <linearGradient id="colorServices" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="hsl(var(--secondary))" stopOpacity={0.8}/>
+                                        <stop offset="95%" stopColor="hsl(var(--secondary))" stopOpacity={0}/>
+                                    </linearGradient>
+                                </defs>
+                                <XAxis dataKey="date" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(str) => new Date(str).toLocaleDateString('fr-FR', { month:'short', day:'numeric'})}/>
+                                <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `€${value}`} />
+                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} formatter={(value) => `${value}€`}/>
+                                <Legend/>
+                                <Area type="monotone" dataKey="missions" name={t('charts.gmv.legendMissions')} stroke="hsl(var(--primary))" fillOpacity={1} fill="url(#colorMissions)" />
+                                <Area type="monotone" dataKey="services" name={t('charts.gmv.legendServices')} stroke="hsl(var(--secondary))" fillOpacity={1} fill="url(#colorServices)" />
+                            </AreaChart>
+                        </ResponsiveContainer>
+                    </CardContent>
+                </Card>
             </div>
 
             <div className="grid gap-8 md:grid-cols-2">

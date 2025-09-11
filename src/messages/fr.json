@@ -1826,6 +1826,12 @@
             }
         },
         "charts": {
+            "gmv": {
+                "title": "Évolution du GMV",
+                "description": "Gross Merchandise Value par jour.",
+                "legendMissions": "Missions",
+                "legendServices": "Services"
+            },
             "newUsers": {
                 "title": "Nouveaux Utilisateurs",
                 "description": "Nombre de nouvelles inscriptions d'utilisateurs par mois.",
