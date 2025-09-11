@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Features",
@@ -105,7 +104,8 @@
         "subtitle": "Fill in the details below to find help quickly."
     },
     "TaskCard": {
-        "viewTask": "View task"
+        "viewTask": "View task",
+        "reviews": "({count} reviews)"
     },
     "TaskCategories": {
         "shopping": "Shopping",
@@ -1763,6 +1763,7 @@
     },
     "AdminReportsLayout": {
         "kpi": "Reports & KPI",
+        "availability": "Availability",
         "schedules": "Scheduled Exports"
     },
     "AdminReportsPage": {
@@ -1878,6 +1879,16 @@
             "city": "City",
             "apply": "Apply",
             "reset": "Reset"
+        },
+        "availability": {
+            "title": "Availability Analysis",
+            "subtitle": "Analyze the balance between provider supply and task demand.",
+            "heatmap": {
+                "title": "Hourly Coverage (24h)",
+                "description": "Comparison of available providers versus published tasks for each hour of the day.",
+                "providers": "Available Providers",
+                "tasks": "Published Tasks"
+            }
         }
     }
 }

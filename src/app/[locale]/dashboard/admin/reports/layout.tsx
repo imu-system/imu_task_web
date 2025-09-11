@@ -15,6 +15,7 @@ export default function AdminReportsLayout({
 
     const navLinks = [
         { href: '/dashboard/admin/reports', label: t('kpi') },
+        { href: '/dashboard/admin/reports/availability', label: t('availability') },
         { href: '/dashboard/admin/reports/schedules', label: t('schedules') },
     ];
     

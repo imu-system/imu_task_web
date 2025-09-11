@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -105,7 +104,8 @@
         "subtitle": "Remplissez les détails ci-dessous pour trouver de l'aide rapidement."
     },
     "TaskCard": {
-        "viewTask": "Voir la mission"
+        "viewTask": "Voir la mission",
+        "reviews": "({count} avis)"
     },
     "TaskCategories": {
         "shopping": "Courses",
@@ -1763,6 +1763,7 @@
     },
     "AdminReportsLayout": {
         "kpi": "Rapports & KPI",
+        "availability": "Disponibilité",
         "schedules": "Exports Planifiés"
     },
     "AdminReportsPage": {
@@ -1878,6 +1879,16 @@
             "city": "Ville",
             "apply": "Appliquer",
             "reset": "Réinitialiser"
+        },
+        "availability": {
+            "title": "Analyse de la Disponibilité",
+            "subtitle": "Analysez l'équilibre entre l'offre de prestataires et la demande de missions.",
+            "heatmap": {
+                "title": "Couverture Horaire (24h)",
+                "description": "Comparaison des prestataires disponibles par rapport aux missions publiées pour chaque heure de la journée.",
+                "providers": "Prestataires Disponibles",
+                "tasks": "Missions Publiées"
+            }
         }
     }
 }

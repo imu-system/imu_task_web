@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "特徴",
@@ -268,6 +267,7 @@
     },
     "AdminReportsLayout": {
         "kpi": "レポート＆KPI",
+        "availability": "可用性",
         "schedules": "スケジュール済みエクスポート"
     },
     "AdminReportsPage": {
@@ -381,6 +381,16 @@
             "city": "都市",
             "apply": "適用",
             "reset": "リセット"
+        },
+        "availability": {
+            "title": "可用性分析",
+            "subtitle": "プロバイダーの供給とタスクの需要のバランスを分析します。",
+            "heatmap": {
+                "title": "時間別カバレッジ（24時間）",
+                "description": "1日の各時間における利用可能なプロバイダーと公開されたタスクの比較。",
+                "providers": "利用可能なプロバイダー",
+                "tasks": "公開されたタスク"
+            }
         }
     }
 }
