@@ -330,8 +330,9 @@
             "gmv": {
                 "title": "GMVの推移",
                 "description": "日次での商品総売上。",
-                "legendMissions": "ミッション",
-                "legendServices": "サービス"
+                "legendGardening": "ガーデニング",
+                "legendShopping": "買い物",
+                "legendHandyman": "便利屋"
             },
             "newUsers": {
                 "title": "新規ユーザー",
@@ -354,6 +355,11 @@
                 "title": "平均注文額 (AOV)",
                 "description": "完了した予約の平均価値の推移。",
                 "legend": "AOV"
+            },
+            "fillRate": {
+                "title": "カテゴリ別フィルレート",
+                "description": "予約された公開タスクの割合。",
+                "legend": "フィルレート"
             }
         },
         "filters": {

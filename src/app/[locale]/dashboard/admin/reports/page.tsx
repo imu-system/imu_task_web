@@ -71,6 +71,14 @@ const aovData = [
     { month: "Jun", aov: 28.00 },
 ];
 
+const fillRateData = [
+    { category: "Jardinage", fillRate: 85 },
+    { category: "Courses", fillRate: 92 },
+    { category: "Bricolage", fillRate: 78 },
+    { category: "Ménage", fillRate: 88 },
+    { category: "Aide admin", fillRate: 72 },
+];
+
 
 export default function AdminReportsPage() {
     const { user, loading: authLoading } = useAuth();
@@ -246,19 +254,18 @@ export default function AdminReportsPage() {
                         </ResponsiveContainer>
                     </CardContent>
                 </Card>
-
                  <Card>
                     <CardHeader>
-                        <CardTitle>{t('charts.conversionFunnel.title')}</CardTitle>
-                         <CardDescription>{t('charts.conversionFunnel.description')}</CardDescription>
+                        <CardTitle>{t('charts.fillRate.title')}</CardTitle>
+                         <CardDescription>{t('charts.fillRate.description')}</CardDescription>
                     </CardHeader>
                     <CardContent className="pl-2">
                          <ResponsiveContainer width="100%" height={350}>
-                            <BarChart data={conversionData} layout="vertical">
-                                <XAxis type="number" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
-                                <YAxis type="category" dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} width={80} />
-                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} />
-                                <Bar dataKey="value" name={t('charts.conversionFunnel.legend')} fill="hsl(var(--primary))" radius={[0, 4, 4, 0]} />
+                            <BarChart data={fillRateData}>
+                                <XAxis type="category" dataKey="category" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                <YAxis type="number" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}%`} />
+                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} formatter={(value) => `${value}%`} />
+                                <Bar dataKey="fillRate" name={t('charts.fillRate.legend')} fill="hsl(var(--chart-4))" radius={[4, 4, 0, 0]} />
                             </BarChart>
                         </ResponsiveContainer>
                     </CardContent>
@@ -298,6 +305,22 @@ export default function AdminReportsPage() {
                                 <Legend />
                                 <Line type="monotone" dataKey="aov" name={t('charts.aov.legend')} stroke="hsl(var(--primary))" strokeWidth={2} dot={{ r: 4, fill: "hsl(var(--primary))" }} activeDot={{ r: 6 }}/>
                             </LineChart>
+                        </ResponsiveContainer>
+                    </CardContent>
+                </Card>
+                 <Card className="md:col-span-2">
+                    <CardHeader>
+                        <CardTitle>{t('charts.conversionFunnel.title')}</CardTitle>
+                         <CardDescription>{t('charts.conversionFunnel.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="pl-2">
+                         <ResponsiveContainer width="100%" height={350}>
+                            <BarChart data={conversionData} layout="vertical">
+                                <XAxis type="number" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                <YAxis type="category" dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} width={80} />
+                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} />
+                                <Bar dataKey="value" name={t('charts.conversionFunnel.legend')} fill="hsl(var(--primary))" radius={[0, 4, 4, 0]} />
+                            </BarChart>
                         </ResponsiveContainer>
                     </CardContent>
                 </Card>
