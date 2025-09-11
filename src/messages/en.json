@@ -1745,6 +1745,12 @@
             "toast": {
                 "successTitle": "SLA Settings Saved",
                 "successDescription": "The SLA targets have been successfully updated."
+            },
+            "reporting": {
+                "title": "Reporting & Alerts",
+                "description": "Monitor SLA compliance and configure alerts.",
+                "content": "Breaches of these SLAs will be highlighted in the reports section. In the future, you will be able to configure automated reminders and escalations here.",
+                "link": "Go to Reports"
             }
         }
     },

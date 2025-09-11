@@ -2,7 +2,7 @@
 'use client';
 
 import { useAuth } from '@/hooks/use-auth';
-import { useRouter } from '@/navigation';
+import { useRouter, Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { Loader2 } from 'lucide-react';
@@ -135,6 +135,20 @@ export default function AdminSlaPage() {
                         </div>
                     </CardContent>
                 </Card>
+
+                <Card>
+                    <CardHeader>
+                        <CardTitle>{t('reporting.title')}</CardTitle>
+                        <CardDescription>{t('reporting.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <p className="text-sm text-muted-foreground">{t('reporting.content')}</p>
+                        <Button asChild variant="secondary">
+                            <Link href="/dashboard/admin/reports">{t('reporting.link')}</Link>
+                        </Button>
+                    </CardContent>
+                </Card>
+
                 <div className="flex justify-end">
                     <Button type="submit" disabled={isSaving}>
                         {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
@@ -145,4 +159,3 @@ export default function AdminSlaPage() {
         </Form>
     );
 }
-

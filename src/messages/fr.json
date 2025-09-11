@@ -1745,6 +1745,12 @@
             "toast": {
                 "successTitle": "SLA Enregistrés",
                 "successDescription": "Les objectifs de SLA ont été mis à jour avec succès."
+            },
+            "reporting": {
+                "title": "Rapports & Alertes",
+                "description": "Surveillez le respect des SLA et configurez des alertes.",
+                "content": "Les manquements à ces SLA seront mis en évidence dans la section des rapports. À l'avenir, vous pourrez configurer ici des rappels et des escalades automatiques.",
+                "link": "Aller aux Rapports"
             }
         }
     },
