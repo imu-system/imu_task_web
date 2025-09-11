@@ -256,5 +256,98 @@
                 "successDescription": "SLA目標が正常に更新されました。"
             }
         }
+    },
+    "AdminReportsLayout": {
+        "kpi": "レポート＆KPI",
+        "schedules": "スケジュール済みエクスポート"
+    },
+    "AdminReportsPage": {
+        "kpi": {
+            "title": "レポート＆主要指標",
+            "subtitle": "プラットフォームのパフォーマンスとユーザーの行動を分析します。",
+            "totalRevenue": "総収益",
+            "completedTasks": "完了したタスク",
+            "totalUsers": "総ユーザー数",
+            "activeBookings": "アクティブな予約"
+        },
+        "schedules": {
+            "title": "スケジュール済みエクスポート",
+            "subtitle": "自動データエクスポートを管理します。",
+            "table": {
+                "title": "スケジュール済みエクスポート",
+                "description": "すべての自動データエクスポートのリスト。",
+                "header": {
+                    "name": "レポート名",
+                    "format": "フォーマット",
+                    "frequency": "頻度",
+                    "nextRun": "次回実行",
+                    "status": "ステータス",
+                    "actions": "アクション"
+                },
+                "statusActive": "アクティブ",
+                "statusPaused": "一時停止中"
+            },
+            "actions": {
+                "create": "エクスポートをスケジュール",
+                "edit": "編集",
+                "pause": "一時停止",
+                "resume": "再開",
+                "delete": "削除"
+            },
+            "dialog": {
+                "title": "新しいエクスポートをスケジュール",
+                "description": "自動エクスポートの設定を構成します。",
+                "nameLabel": "レポート名",
+                "namePlaceholder": "例：月次トランザクション",
+                "formatLabel": "フォーマット",
+                "frequencyLabel": "頻度",
+                "frequency": {
+                    "daily": "毎日",
+                    "weekly": "毎週",
+                    "monthly": "毎月",
+                    "yearly": "毎年"
+                },
+                "recipientsLabel": "受信者",
+                "recipientsPlaceholder": "例：accounting@example.com",
+                "encryptionLabel": "パスワード保護（暗号化）",
+                "cancel": "キャンセル",
+                "save": "スケジュールを保存"
+            },
+            "toast": {
+                "createSuccessTitle": "エクスポートがスケジュールされました",
+                "createSuccessDescription": "新しい自動エクスポートが正常にスケジュールされました。",
+                "updateSuccessTitle": "スケジュールが更新されました",
+                "updateSuccessDescription": "スケジュールされたエクスポートが正常に更新されました。"
+            },
+            "edit": {
+                "title": "スケジュール済みエクスポートを編集",
+                "cardTitle": "スケジュールを編集",
+                "cardDescription": "この自動エクスポートの設定を変更します。",
+                "save": "変更を保存"
+            }
+        },
+        "charts": {
+            "newUsers": {
+                "title": "新規ユーザー",
+                "description": "月ごとの新規ユーザー登録数。",
+                "legend": "新規ユーザー"
+            },
+            "conversionFunnel": {
+                "title": "タスク変換ファネル",
+                "description": "タスクの公開から完了まで。",
+                "legend": "タスク"
+            }
+        },
+        "filters": {
+            "title": "フィルター",
+            "description": "以下のレポートのデータを絞り込みます。",
+            "dateRange": "日付範囲",
+            "pickDate": "日付範囲を選択",
+            "category": "カテゴリ",
+            "allCategories": "すべてのカテゴリ",
+            "city": "都市",
+            "apply": "適用",
+            "reset": "リセット"
+        }
     }
 }

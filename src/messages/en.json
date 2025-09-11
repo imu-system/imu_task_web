@@ -1662,35 +1662,35 @@
         }
     },
     "AdminSettingsLayout": {
-        "title": "Platform Settings",
-        "subtitle": "Manage global settings and feature flags.",
-        "settings": "General",
+        "title": "Paramètres de la Plateforme",
+        "subtitle": "Gérez les paramètres globaux et les feature flags.",
+        "settings": "Général",
         "flags": "Feature Flags",
         "sla": "SLA"
     },
     "AdminSettingsPage": {
         "settings": {
             "operational": {
-                "title": "Operational Settings",
-                "description": "Adjust the main operational parameters of the platform.",
-                "offerExpirationDaysLabel": "Offer Expiration (Days)",
-                "offerExpirationDaysDesc": "Validity duration of an offer.",
-                "cancellationHoursBeforeLabel": "Cancellation Deadline (Hours)",
-                "cancellationHoursBeforeDesc": "Time before a mission when a user can cancel.",
-                "supportSlaHoursLabel": "Support SLA (Hours)",
-                "supportSlaHoursDesc": "Target time to respond to support tickets."
+                "title": "Paramètres Opérationnels",
+                "description": "Ajustez les paramètres de fonctionnement principaux de la plateforme.",
+                "offerExpirationDaysLabel": "Expiration des offres (Jours)",
+                "offerExpirationDaysDesc": "Durée de validité d'une offre.",
+                "cancellationHoursBeforeLabel": "Délai d'annulation (Heures)",
+                "cancellationHoursBeforeDesc": "Temps avant une mission où un utilisateur peut annuler.",
+                "supportSlaHoursLabel": "SLA Support (Heures)",
+                "supportSlaHoursDesc": "Temps cible pour répondre aux tickets de support."
             },
             "maintenance": {
-                "title": "Maintenance Mode",
-                "description": "Temporarily disable platform access for users.",
-                "enableLabel": "Enable maintenance mode",
-                "enableDesc": "When enabled, users will see the maintenance message instead of the app.",
-                "messageLabel": "Maintenance message"
+                "title": "Mode Maintenance",
+                "description": "Désactivez temporairement l'accès à la plateforme pour les utilisateurs.",
+                "enableLabel": "Activer le mode maintenance",
+                "enableDesc": "Lorsque activé, les utilisateurs verront le message de maintenance au lieu de l'application.",
+                "messageLabel": "Message de maintenance"
             },
-            "saveButton": "Save Settings",
+            "saveButton": "Enregistrer les paramètres",
             "toast": {
-                "successTitle": "Settings Saved",
-                "successDescription": "The platform settings have been successfully updated."
+                "successTitle": "Paramètres Enregistrés",
+                "successDescription": "Les paramètres de la plateforme ont été mis à jour avec succès."
             }
         },
         "flags": {
@@ -1699,154 +1699,154 @@
                 "description": "Enable or disable features for all users. Changes take effect after the next deployment."
             },
             "aiSuggestion": {
-                "name": "AI Category Suggestion",
-                "description": "Enables the AI-powered category suggestion feature on the task creation form."
+                "name": "Suggestion de catégories par IA",
+                "description": "Active la fonctionnalité de suggestion de catégories par IA sur le formulaire de création de mission."
             },
             "newProfilePage": {
-                "name": "New Profile Page Design",
-                "description": "Enables the new redesigned user profile page."
+                "name": "Nouveau design de la page profil",
+                "description": "Active la nouvelle page de profil utilisateur redessinée."
             },
             "providerCalendar": {
-                "name": "Provider Availability Calendar",
-                "description": "Allows providers to set their work availability in a calendar."
+                "name": "Calendrier de disponibilités prestataire",
+                "description": "Permet aux prestataires de définir leurs disponibilités de travail dans un calendrier."
             },
             "toast": {
-                "successTitle": "Feature Flags Saved",
-                "successDescription": "Your changes have been saved. They will be applied on the next deployment."
+                "successTitle": "Feature Flags Enregistrés",
+                "successDescription": "Vos modifications ont été enregistrées. Elles seront appliquées lors du prochain déploiement."
             },
             "targeting": {
-                "environment": "Environment",
+                "environment": "Environnement",
                 "production": "Production",
                 "staging": "Staging",
-                "rollout": "Rollout Percentage",
-                "roles": "Target Roles"
+                "rollout": "Pourcentage de déploiement",
+                "roles": "Rôles cibles"
             }
         },
         "sla": {
-            "title": "SLA Configuration",
-            "description": "Define the target resolution times for key platform processes.",
+            "title": "Configuration des SLA",
+            "description": "Définissez les temps de résolution cibles pour les processus clés de la plateforme.",
             "kycReviewHours": {
-                "label": "KYC Review (Hours)",
-                "description": "Time limit for a moderator to review a KYC submission."
+                "label": "Examen KYC (Heures)",
+                "description": "Temps limite pour qu'un modérateur examine une soumission KYC."
             },
             "disputeResponseHours": {
-                "label": "Dispute Resolution (Hours)",
-                "description": "Time limit for a moderator to resolve a dispute."
+                "label": "Résolution de Litige (Heures)",
+                "description": "Temps limite pour qu'un modérateur résolve un litige."
             },
             "supportTicketResponseHours": {
-                "label": "Support Ticket Response (Hours)",
-                "description": "Time limit for the first response to a support ticket."
+                "label": "Réponse Ticket Support (Heures)",
+                "description": "Temps limite pour la première réponse à un ticket de support."
             },
             "offerResponseHours": {
-                "label": "Offer Response (Hours)",
-                "description": "Time limit for a client to respond to a new offer."
+                "label": "Réponse aux Offres (Heures)",
+                "description": "Délai pour qu'un client réponde à une nouvelle offre."
             },
-            "saveButton": "Save SLA Settings",
+            "saveButton": "Enregistrer les SLA",
             "toast": {
-                "successTitle": "SLA Settings Saved",
-                "successDescription": "The SLA targets have been successfully updated."
+                "successTitle": "SLA Enregistrés",
+                "successDescription": "Les objectifs de SLA ont été mis à jour avec succès."
             },
             "reporting": {
-                "title": "Reporting & Alerts",
-                "description": "Monitor SLA compliance and configure alerts.",
-                "content": "Breaches of these SLAs will be highlighted in the reports section. In the future, you will be able to configure automated reminders and escalations here.",
-                "link": "Go to Reports"
+                "title": "Rapports & Alertes",
+                "description": "Surveillez le respect des SLA et configurez des alertes.",
+                "content": "Les manquements à ces SLA seront mis en évidence dans la section des rapports. À l'avenir, vous pourrez configurer ici des rappels et des escalades automatiques.",
+                "link": "Aller aux Rapports"
             }
         }
     },
     "AdminReportsLayout": {
-        "kpi": "Reports & KPI",
-        "schedules": "Scheduled Exports"
+        "kpi": "Rapports & KPI",
+        "schedules": "Exports Planifiés"
     },
     "AdminReportsPage": {
         "kpi": {
-            "title": "Reports & Key Indicators",
-            "subtitle": "Analyze platform performance and user behavior.",
-            "totalRevenue": "Total Revenue",
-            "completedTasks": "Completed Tasks",
-            "totalUsers": "Total Users",
-            "activeBookings": "Active Bookings"
+            "title": "Rapports & Indicateurs Clés",
+            "subtitle": "Analysez la performance de la plateforme et le comportement des utilisateurs.",
+            "totalRevenue": "Revenu Total",
+            "completedTasks": "Missions Terminées",
+            "totalUsers": "Utilisateurs Totaux",
+            "activeBookings": "Réservations Actives"
         },
         "schedules": {
-            "title": "Scheduled Exports",
-            "subtitle": "Manage automated data exports.",
-            "notFound": "Scheduled export not found.",
-            "backToList": "Back to export list",
+            "title": "Exports Planifiés",
+            "subtitle": "Gérez les exports de données automatisés.",
+            "notFound": "Export planifié non trouvé.",
+            "backToList": "Retour à la liste des exports",
             "table": {
-                "title": "Scheduled Exports",
-                "description": "List of all automated data exports.",
+                "title": "Exports Planifiés",
+                "description": "Liste de tous les exports de données automatisés.",
                 "header": {
-                    "name": "Report Name",
+                    "name": "Nom du Rapport",
                     "format": "Format",
-                    "frequency": "Frequency",
-                    "nextRun": "Next Run",
-                    "status": "Status",
+                    "frequency": "Fréquence",
+                    "nextRun": "Prochaine Exécution",
+                    "status": "Statut",
                     "actions": "Actions"
                 },
-                "statusActive": "Active",
-                "statusPaused": "Paused"
+                "statusActive": "Actif",
+                "statusPaused": "En pause"
             },
             "actions": {
-                "create": "Schedule an export",
-                "edit": "Edit",
-                "pause": "Pause",
-                "resume": "Resume",
-                "delete": "Delete"
+                "create": "Planifier un export",
+                "edit": "Modifier",
+                "pause": "Mettre en pause",
+                "resume": "Reprendre",
+                "delete": "Supprimer"
             },
             "dialog": {
-                "title": "Schedule a New Export",
-                "description": "Configure the settings for your automated export.",
-                "nameLabel": "Report name",
-                "namePlaceholder": "Ex: Monthly Transactions",
+                "title": "Planifier un Nouvel Export",
+                "description": "Configurez les paramètres de votre export automatisé.",
+                "nameLabel": "Nom du rapport",
+                "namePlaceholder": "Ex: Transactions Mensuelles",
                 "formatLabel": "Format",
-                "frequencyLabel": "Frequency",
+                "frequencyLabel": "Fréquence",
                 "frequency": {
-                    "daily": "Daily",
-                    "weekly": "Weekly",
-                    "monthly": "Monthly",
-                    "yearly": "Yearly"
+                    "daily": "Quotidien",
+                    "weekly": "Hebdomadaire",
+                    "monthly": "Mensuel",
+                    "yearly": "Annuel"
                 },
-                "recipientsLabel": "Recipients",
-                "recipientsPlaceholder": "Ex: accounting@example.com",
-                "encryptionLabel": "Password protect (encryption)",
-                "cancel": "Cancel",
-                "save": "Save schedule"
+                "recipientsLabel": "Destinataires",
+                "recipientsPlaceholder": "Ex: compta@example.com",
+                "encryptionLabel": "Password protect (chiffrement)",
+                "cancel": "Annuler",
+                "save": "Enregistrer la planification"
             },
             "toast": {
-                "createSuccessTitle": "Export Scheduled",
-                "createSuccessDescription": "The new automated export has been successfully scheduled.",
-                "updateSuccessTitle": "Schedule Updated",
-                "updateSuccessDescription": "The scheduled export has been successfully updated."
+                "createSuccessTitle": "Export Planifié",
+                "createSuccessDescription": "Le nouvel export automatisé a été planifié avec succès.",
+                "updateSuccessTitle": "Planification Mise à Jour",
+                "updateSuccessDescription": "L'export planifié a été mis à jour avec succès."
             },
             "edit": {
-                "title": "Edit Scheduled Export",
-                "cardTitle": "Edit Schedule",
-                "cardDescription": "Modify the settings for this automated export.",
-                "save": "Save Changes"
+                "title": "Modifier l'Export Planifié",
+                "cardTitle": "Modifier la Planification",
+                "cardDescription": "Modifiez les paramètres de cet export automatisé.",
+                "save": "Enregistrer les modifications"
             }
         },
         "charts": {
             "newUsers": {
-                "title": "New Users",
-                "description": "Number of new user registrations per month.",
-                "legend": "New Users"
+                "title": "Nouveaux Utilisateurs",
+                "description": "Nombre de nouvelles inscriptions d'utilisateurs par mois.",
+                "legend": "Nouveaux Utilisateurs"
             },
             "conversionFunnel": {
-                "title": "Task Conversion Funnel",
-                "description": "From task publication to completion.",
-                "legend": "Tasks"
+                "title": "Entonnoir de Conversion des Missions",
+                "description": "De la publication de la mission à sa finalisation.",
+                "legend": "Missions"
             }
         },
         "filters": {
-            "title": "Filters",
-            "description": "Refine the data in the reports below.",
-            "dateRange": "Date range",
-            "pickDate": "Pick a date range",
-            "category": "Category",
-            "allCategories": "All categories",
-            "city": "City",
-            "apply": "Apply",
-            "reset": "Reset"
+            "title": "Filtres",
+            "description": "Affinez les données des rapports ci-dessous.",
+            "dateRange": "Plage de dates",
+            "pickDate": "Choisir une période",
+            "category": "Catégorie",
+            "allCategories": "Toutes les catégories",
+            "city": "Ville",
+            "apply": "Appliquer",
+            "reset": "Réinitialiser"
         }
     },
     "AdminAuditLogPage": {
@@ -1899,392 +1899,392 @@
         }
     },
     "AdminI18nLayout": {
-        "title": "Translation Management",
-        "subtitle": "Manage the application's translations.",
-        "keys": "Keys",
+        "title": "Gestion des Traductions",
+        "subtitle": "Gérez les traductions de l'application.",
+        "keys": "Clés",
         "io": "Import/Export"
     },
     "AdminI18nPage": {
         "keys": {
-            "title": "Translation Key Editor",
-            "description": "Modify translation keys for all supported languages.",
-            "saveButton": "Save Changes",
+            "title": "Éditeur de Clés de Traduction",
+            "description": "Modifiez les clés de traduction pour toutes les langues supportées.",
+            "saveButton": "Enregistrer les modifications",
             "toast": {
-                "saveSuccessTitle": "Translations saved",
-                "saveSuccessDescription": "The translation files have been successfully updated."
+                "saveSuccessTitle": "Traductions enregistrées",
+                "saveSuccessDescription": "Les fichiers de traduction ont été mis à jour avec succès."
             },
-            "missingKey": "Missing translation"
+            "missingKey": "Traduction manquante"
         },
         "io": {
             "title": "Import / Export",
-            "description": "Import and export translation files.",
+            "description": "Importez et exportez les fichiers de traduction.",
             "import": {
-                "title": "Import Translations",
-                "description": "Upload a JSON file for a specific language. Existing keys will be updated.",
-                "localeLabel": "Language to import",
-                "fileLabel": "JSON File",
-                "button": "Import File"
+                "title": "Importer les traductions",
+                "description": "Téléversez un fichier JSON pour une langue spécifique. Les clés existantes seront mises à jour.",
+                "localeLabel": "Langue à importer",
+                "fileLabel": "Fichier JSON",
+                "button": "Importer le fichier"
             },
             "export": {
-                "title": "Export Translations",
-                "description": "Download a JSON file containing all translation keys for a specific language.",
-                "localeLabel": "Language to export",
-                "button": "Export File"
+                "title": "Exporter les traductions",
+                "description": "Téléchargez un fichier JSON contenant toutes les clés de traduction pour une langue spécifique.",
+                "localeLabel": "Langue à exporter",
+                "button": "Exporter le fichier"
             },
             "toast": {
                 "noFile": {
-                    "title": "No file selected",
-                    "description": "Please select a JSON file to import."
+                    "title": "Aucun fichier sélectionné",
+                    "description": "Veuillez sélectionner un fichier JSON à importer."
                 },
                 "importSuccess": {
-                    "title": "Import in progress",
-                    "description": "The file for the '{locale}' language will be processed. (Simulation)"
+                    "title": "Importation en cours",
+                    "description": "Le fichier pour la langue '{locale}' sera traité. (Simulation)"
                 }
             }
         }
     },
     "AdminSupportLayout": {
-        "title": "Support Center",
-        "subtitle": "Manage user requests and support tickets.",
+        "title": "Centre de Support",
+        "subtitle": "Gérez les demandes des utilisateurs et les tickets de support.",
         "tickets": "Tickets",
-        "canned": "Canned Responses"
+        "canned": "Réponses rapides"
     },
     "AdminSupportPage": {
         "tickets": {
-            "title": "Support Tickets",
-            "description": "View and manage all user support tickets.",
+            "title": "Tickets de Support",
+            "description": "Consultez et gérez tous les tickets de support des utilisateurs.",
             "table": {
                 "id": "ID",
-                "subject": "Subject",
-                "user": "User",
-                "status": "Status",
-                "priority": "Priority",
+                "subject": "Sujet",
+                "user": "Utilisateur",
+                "status": "Statut",
+                "priority": "Priorité",
                 "agent": "Agent",
                 "actions": "Actions"
             },
             "actions": {
-                "view": "View",
-                "create": "New Ticket"
+                "view": "Voir",
+                "create": "Nouveau Ticket"
             },
             "filters": {
-                "searchPlaceholder": "Search by subject, ID...",
-                "status": "Status",
-                "allStatuses": "All Statuses",
-                "priority": "Priority",
-                "allPriorities": "All Priorities"
+                "searchPlaceholder": "Rechercher par sujet, ID...",
+                "status": "Statut",
+                "allStatuses": "Tous les statuts",
+                "priority": "Priorité",
+                "allPriorities": "Toutes les priorités"
             }
         },
         "canned": {
-            "title": "Canned Responses",
-            "description": "Manage response templates to speed up support.",
+            "title": "Réponses Rapides",
+            "description": "Gérez les modèles de réponses pour accélérer le support.",
             "actions": {
-                "create": "Add Response",
-                "edit": "Edit",
-                "delete": "Delete"
+                "create": "Ajouter une réponse",
+                "edit": "Modifier",
+                "delete": "Supprimer"
             },
             "table": {
-                "shortcut": "Shortcut",
-                "content": "Content",
+                "shortcut": "Raccourci",
+                "content": "Contenu",
                 "actions": "Actions"
             },
             "dialog": {
-                "createTitle": "Create New Canned Response",
-                "createDescription": "Write a response template for future use.",
-                "editTitle": "Edit Canned Response",
-                "editDescription": "Update the shortcut or content of this response.",
-                "shortcutLabel": "Shortcut",
-                "shortcutPlaceholder": "e.g., #greeting",
-                "contentLabel": "Response Content",
-                "contentPlaceholder": "Hello '{'{user.name}'}',...",
-                "variablesInfo": "Use variables like '{'{user.name}'}' for personalization.",
-                "cancel": "Cancel",
-                "save": "Save"
+                "createTitle": "Créer une nouvelle réponse rapide",
+                "createDescription": "Rédigez un modèle de réponse pour une utilisation future.",
+                "editTitle": "Modifier la réponse rapide",
+                "editDescription": "Mettez à jour le raccourci ou le contenu de cette réponse.",
+                "shortcutLabel": "Raccourci",
+                "shortcutPlaceholder": "Ex: #salutation",
+                "contentLabel": "Contenu de la réponse",
+                "contentPlaceholder": "Bonjour '{'{user.name}'}',...",
+                "variablesInfo": "Utilisez des variables comme '{'{user.name}'}' pour la personnalisation.",
+                "cancel": "Annuler",
+                "save": "Enregistrer"
             },
             "form": {
-                "cardTitle": "Response Details"
+                "cardTitle": "Détails de la réponse"
             },
             "toast": {
-                "updateSuccessTitle": "Response Updated",
-                "updateSuccessDescription": "The canned response has been successfully updated."
+                "updateSuccessTitle": "Réponse mise à jour",
+                "updateSuccessDescription": "La réponse rapide a été mise à jour avec succès."
             }
         },
         "ticketDetail": {
-            "backToList": "Back to ticket list",
-            "notFound": "Ticket not found.",
+            "backToList": "Retour à la liste des tickets",
+            "notFound": "Ticket non trouvé.",
             "cards": {
                 "conversation": {
                     "title": "Conversation"
                 },
                 "response": {
-                    "title": "Respond",
-                    "description": "Write your response or use a template.",
-                    "cannedPlaceholder": "Use a canned response...",
+                    "title": "Répondre",
+                    "description": "Rédigez votre réponse ou utilisez un modèle.",
+                    "cannedPlaceholder": "Utiliser une réponse rapide...",
                     "canned": {
-                        "greeting": "Greeting",
-                        "kycRejection": "KYC Rejection",
-                        "refundOk": "Refund Confirmation"
+                        "greeting": "Salutation",
+                        "kycRejection": "Rejet KYC",
+                        "refundOk": "Confirmation de remboursement"
                     },
-                    "textAreaPlaceholder": "Your response...",
-                    "attachFile": "Attach File",
-                    "send": "Send Response"
+                    "textAreaPlaceholder": "Votre réponse...",
+                    "attachFile": "Joindre un fichier",
+                    "send": "Envoyer la réponse"
                 },
                 "details": {
-                    "title": "Ticket Details",
-                    "status": "Status",
-                    "priority": "Priority",
-                    "agent": "Assigned Agent",
+                    "title": "Détails du Ticket",
+                    "status": "Statut",
+                    "priority": "Priorité",
+                    "agent": "Agent assigné",
                     "tags": "Tags",
                     "tagsPlaceholder": "e.g., payment, bug"
                 },
                 "context": {
-                    "title": "Context",
-                    "viewUser": "View user profile",
-                    "viewBooking": "View booking"
+                    "title": "Contexte",
+                    "viewUser": "Voir le profil utilisateur",
+                    "viewBooking": "Voir la réservation"
                 }
             }
         },
         "newTicket": {
-            "title": "New Support Ticket",
+            "title": "Nouveau Ticket de Support",
             "card": {
-                "title": "Ticket Details",
-                "description": "Create a ticket manually for a user.",
-                "userLabel": "Concerned User",
-                "userPlaceholder": "Search by email or user ID...",
-                "subjectLabel": "Subject",
-                "subjectPlaceholder": "e.g., Login issue",
-                "messageLabel": "Initial Message",
-                "messagePlaceholder": "Describe the user's issue...",
-                "priorityLabel": "Priority",
-                "agentLabel": "Assign to",
-                "cancel": "Cancel",
-                "create": "Create Ticket"
+                "title": "Détails du Ticket",
+                "description": "Créez un ticket manuellement pour un utilisateur.",
+                "userLabel": "Utilisateur concerné",
+                "userPlaceholder": "Rechercher par e-mail ou ID utilisateur...",
+                "subjectLabel": "Sujet",
+                "subjectPlaceholder": "Ex: Problème de connexion",
+                "messageLabel": "Message initial",
+                "messagePlaceholder": "Décrivez le problème de l'utilisateur...",
+                "priorityLabel": "Priorité",
+                "agentLabel": "Assigner à",
+                "cancel": "Annuler",
+                "create": "Créer le Ticket"
             },
             "toast": {
-                "createSuccessTitle": "Ticket Created",
-                "createSuccessDescription": "The new support ticket has been created successfully."
+                "createSuccessTitle": "Ticket Créé",
+                "createSuccessDescription": "Le nouveau ticket de support a été créé avec succès."
             }
         }
     },
     "AdminModerationLayout": {
-        "title": "Moderation",
-        "subtitle": "Manage reports and platform content.",
-        "reports": "Reports",
-        "flaggedContent": "Flagged Content",
-        "watchlist": "Watchlist"
+        "title": "Modération",
+        "subtitle": "Gérez les signalements et le contenu de la plateforme.",
+        "reports": "Signalements",
+        "flaggedContent": "Contenu Marqué",
+        "watchlist": "Liste de Surveillance"
     },
     "AdminModerationPage": {
         "reports": {
-            "title": "User Reports",
-            "description": "Review reports submitted by users about content or other users.",
+            "title": "Signalements des Utilisateurs",
+            "description": "Examinez les signalements soumis par les utilisateurs concernant du contenu ou d'autres utilisateurs.",
             "table": {
                 "type": "Type",
-                "content": "Reported Content",
-                "reporter": "Reported by",
-                "reason": "Reason",
+                "content": "Contenu signalé",
+                "reporter": "Signalé par",
+                "reason": "Motif",
                 "date": "Date",
                 "actions": {
-                    "view": "View",
-                    "dismiss": "Dismiss Report",
-                    "takeAction": "Take Action"
+                    "view": "Voir",
+                    "dismiss": "Ignorer le signalement",
+                    "takeAction": "Prendre une action"
                 }
             },
             "dialogs": {
                 "dismiss": {
-                    "title": "Dismiss report?",
-                    "description": "This action will close the report without taking action. Use this if the report is unfounded.",
-                    "cancel": "Cancel",
-                    "confirm": "Yes, dismiss"
+                    "title": "Ignorer le signalement ?",
+                    "description": "Cette action fermera le signalement sans prendre de mesure. Utilisez cette option si le signalement est infondé.",
+                    "cancel": "Annuler",
+                    "confirm": "Oui, ignorer"
                 }
             }
         },
         "content": {
-            "title": "Flagged Content",
-            "description": "Review content automatically flagged by the system for policy violations.",
+            "title": "Contenu Marqué",
+            "description": "Examinez le contenu automatiquement marqué par le système pour violation des politiques.",
             "table": {
                 "type": "Type",
-                "content": "Content / Link",
-                "reason": "Reason for flag",
+                "content": "Contenu / Lien",
+                "reason": "Motif du marquage",
                 "date": "Date",
                 "actions": {
                     "title": "Actions",
-                    "review": "Review",
-                    "dismiss": "Dismiss"
+                    "review": "Examiner",
+                    "dismiss": "Ignorer"
                 }
             }
         },
         "watchlist": {
-            "title": "User Watchlist",
-            "description": "List of users under surveillance for repeated or sensitive issues.",
+            "title": "Liste de Surveillance",
+            "description": "Liste des utilisateurs sous surveillance pour des problèmes répétés ou sensibles.",
             "table": {
-                "user": "User",
-                "reason": "Reason for addition",
-                "risk": "Risk Level",
-                "addedBy": "Added By",
-                "date": "Date Added"
+                "user": "Utilisateur",
+                "reason": "Motif de l'ajout",
+                "risk": "Niveau de Risque",
+                "addedBy": "Ajouté par",
+                "date": "Date d'ajout"
             },
             "riskLevels": {
-                "low": "Low",
-                "medium": "Medium",
-                "high": "High"
+                "low": "Faible",
+                "medium": "Moyen",
+                "high": "Élevé"
             },
             "actions": {
-                "viewProfile": "View Profile",
-                "remove": "Remove from Watchlist"
+                "viewProfile": "Voir le profil",
+                "remove": "Retirer de la liste"
             },
             "dialog": {
-                "title": "Remove from Watchlist?",
-                "description": "Are you sure you want to remove {name} from the watchlist?",
-                "cancel": "Cancel",
-                "confirm": "Yes, remove"
+                "title": "Retirer de la liste de surveillance ?",
+                "description": "Êtes-vous sûr de vouloir retirer {name} de la liste de surveillance ?",
+                "cancel": "Annuler",
+                "confirm": "Oui, retirer"
             }
         },
         "viewReport": {
-            "title": "Review Report",
-            "backToList": "Back to reports",
-            "notFound": "Report not found",
+            "title": "Examiner le Signalement",
+            "backToList": "Retour aux signalements",
+            "notFound": "Signalement non trouvé",
             "cards": {
                 "content": {
-                    "title": "Reported Content",
-                    "description": "Content of type '{type}': '{content}'",
-                    "viewFull": "View full content"
+                    "title": "Contenu Signalé",
+                    "description": "Contenu de type '{type}' : '{content}'",
+                    "viewFull": "Voir le contenu complet"
                 },
                 "report": {
-                    "title": "Report Details",
-                    "reason": "Reason",
-                    "reporter": "Reported by",
+                    "title": "Détails du Signalement",
+                    "reason": "Motif",
+                    "reporter": "Signalé par",
                     "date": "Date"
                 },
                 "reportedUser": {
-                    "title": "Reported User",
-                    "viewProfile": "View profile"
+                    "title": "Utilisateur Signalé",
+                    "viewProfile": "Voir le profil"
                 },
                 "actions": {
-                    "title": "Moderation Actions",
-                    "description": "Make a decision regarding this report.",
-                    "hideContent": "Hide Content",
-                    "warnUser": "Warn User",
-                    "suspendUser": "Suspend User",
-                    "dismiss": "Dismiss Report",
-                    "requireKyc": "Require Additional KYC",
-                    "addToWatchlist": "Add to Watchlist",
+                    "title": "Actions de Modération",
+                    "description": "Prenez une décision concernant ce signalement.",
+                    "hideContent": "Masquer le contenu",
+                    "warnUser": "Avertir l'utilisateur",
+                    "suspendUser": "Suspendre l'utilisateur",
+                    "dismiss": "Ignorer le signalement",
+                    "requireKyc": "Exiger un KYC supplémentaire",
+                    "addToWatchlist": "Ajouter à la watchlist",
                     "dialogs": {
-                        "cancel": "Cancel",
+                        "cancel": "Annuler",
                         "hide": {
-                            "title": "Hide content?",
-                            "description": "This action will make the reported content invisible to the public. The user will be notified. Are you sure?",
-                            "confirm": "Yes, hide"
+                            "title": "Masquer le contenu ?",
+                            "description": "Cette action rendra le contenu signalé invisible publiquement. L'utilisateur sera notifié. Êtes-vous sûr ?",
+                            "confirm": "Oui, masquer"
                         },
                         "warn": {
-                            "title": "Send a warning",
-                            "description": "Compose a warning message to be sent to the user.",
-                            "messageLabel": "Warning message",
-                            "messagePlaceholder": "Your content was reported because...",
-                            "confirm": "Send Warning"
+                            "title": "Envoyer un avertissement",
+                            "description": "Rédigez un message d'avertissement qui sera envoyé à l'utilisateur.",
+                            "messageLabel": "Message d'avertissement",
+                            "messagePlaceholder": "Votre contenu a été signalé car...",
+                            "confirm": "Envoyer l'avertissement"
                         },
                         "suspend": {
-                            "title": "Suspend user?",
-                            "description": "This action will prevent the user from logging in for a specified duration. You will be redirected to their profile to complete the suspension.",
-                            "confirm": "Proceed to Suspension"
+                            "title": "Suspendre l'utilisateur ?",
+                            "description": "Cette action empêchera l'utilisateur de se connecter pour une durée déterminée. Vous serez redirigé vers son profil pour compléter la suspension.",
+                            "confirm": "Procéder à la suspension"
                         },
                         "dismiss": {
-                            "title": "Dismiss report?",
-                            "description": "This action will close the report without taking action against the content or user. Use this if the report is unfounded.",
-                            "confirm": "Yes, dismiss"
+                            "title": "Ignorer le signalement ?",
+                            "description": "Cette action fermera le signalement sans prendre de mesure contre le contenu ou l'utilisateur. Utilisez cette option si le signalement est infondé.",
+                            "confirm": "Oui, ignorer"
                         },
                         "kyc": {
-                            "title": "Require Additional KYC?",
-                            "description": "This will force the user to complete an additional identity verification step before they can continue. Are you sure?",
-                            "confirm": "Yes, require KYC"
+                            "title": "Exiger un KYC supplémentaire ?",
+                            "description": "Ceci forcera l'utilisateur à compléter une étape de vérification d'identité supplémentaire avant de pouvoir continuer. Êtes-vous sûr ?",
+                            "confirm": "Oui, exiger KYC"
                         }
                     }
                 }
             },
             "toast": {
-                "successTitle": "Action performed",
-                "successDescription": "The action '{action}' has been successfully logged."
+                "successTitle": "Action effectuée",
+                "successDescription": "L'action '{action}' a été enregistrée avec succès."
             }
         }
     },
     "AdminIntegrationsLayout": {
-        "title": "Integrations",
-        "subtitle": "Connect and manage external services.",
-        "connectors": "Connectors",
+        "title": "Intégrations",
+        "subtitle": "Connectez et gérez les services externes.",
+        "connectors": "Connecteurs",
         "webhooks": "Webhooks"
     },
     "AdminIntegrationsPage": {
         "connectors": {
             "stripe": {
                 "title": "Stripe",
-                "description": "Manage your Stripe integration for payments.",
-                "publicKeyLabel": "Publishable Key",
-                "secretKeyLabel": "Secret Key",
-                "webhookSecretLabel": "Webhook Signing Secret"
+                "description": "Gérez votre intégration Stripe pour les paiements.",
+                "publicKeyLabel": "Clé Publiable",
+                "secretKeyLabel": "Clé Secrète",
+                "webhookSecretLabel": "Secret de signature du Webhook"
             },
             "email": {
                 "title": "Email (SMTP)",
-                "description": "Configure your SMTP server for sending transactional emails.",
-                "smtpHost": "SMTP Host",
-                "smtpPort": "SMTP Port",
-                "smtpUser": "SMTP Username",
-                "smtpPassword": "SMTP Password"
+                "description": "Configurez votre serveur SMTP pour l'envoi d'emails transactionnels.",
+                "smtpHost": "Hôte SMTP",
+                "smtpPort": "Port SMTP",
+                "smtpUser": "Utilisateur SMTP",
+                "smtpPassword": "Mot de passe SMTP"
             },
             "push": {
-                "title": "Push Notifications",
-                "description": "Configure services for sending mobile push notifications.",
-                "fcmServerKeyLabel": "Firebase Cloud Messaging (FCM) Server Key"
+                "title": "Notifications Push",
+                "description": "Configurez les services pour l'envoi de notifications push mobiles.",
+                "fcmServerKeyLabel": "Clé Serveur Firebase Cloud Messaging (FCM)"
             },
             "analytics": {
                 "title": "Analytics",
-                "description": "Connect analytics services to track user behavior.",
-                "gaMeasurementIdLabel": "Google Analytics Measurement ID"
+                "description": "Connectez les services d'analyse pour suivre le comportement des utilisateurs.",
+                "gaMeasurementIdLabel": "ID de Mesure Google Analytics"
             },
-            "saveButton": "Save Configurations",
+            "saveButton": "Enregistrer les Configurations",
             "toast": {
-                "saveSuccessTitle": "Configurations Saved",
-                "saveSuccessDescription": "Your integration settings have been updated."
+                "saveSuccessTitle": "Configurations Enregistrées",
+                "saveSuccessDescription": "Vos paramètres d'intégration ont été mis à jour."
             },
             "validation": {
-                "stripePk": "Invalid Stripe publishable key format.",
-                "stripeSk": "Invalid Stripe secret key format.",
-                "stripeWebhook": "Invalid Stripe webhook secret format."
+                "stripePk": "Format de clé publiable Stripe invalide.",
+                "stripeSk": "Format de clé secrète Stripe invalide.",
+                "stripeWebhook": "Format de secret de webhook Stripe invalide."
             }
         },
         "webhooks": {
-            "title": "Webhook Endpoints",
-            "description": "Manage incoming webhooks from external services.",
-            "createButton": "Add Webhook",
+            "title": "Endpoints Webhooks",
+            "description": "Gérez les webhooks entrants des services externes.",
+            "createButton": "Ajouter un Webhook",
             "table": {
-                "url": "Endpoint URL",
-                "events": "Subscribed Events",
-                "status": "Status"
+                "url": "URL de l'Endpoint",
+                "events": "Événements souscrits",
+                "status": "Statut"
             },
             "actions": {
-                "edit": "Edit",
-                "resend": "Retry Failures",
-                "delete": "Delete"
+                "edit": "Modifier",
+                "resend": "Retenter les échecs",
+                "delete": "Supprimer"
             },
             "dialog": {
-                "title": "Create a New Webhook",
-                "description": "Declare a new endpoint to receive platform events.",
-                "urlLabel": "Endpoint URL",
-                "secretLabel": "Signing Secret",
-                "secretPlaceholder": "Leave blank to generate automatically",
-                "secretDescription": "The secret will be used to sign event payloads.",
-                "eventsLabel": "Events to listen to",
-                "cancel": "Cancel",
-                "save": "Save Webhook"
+                "title": "Créer un nouveau Webhook",
+                "description": "Déclarez un nouvel endpoint pour recevoir les événements de la plateforme.",
+                "urlLabel": "URL de l'Endpoint",
+                "secretLabel": "Secret de Signature",
+                "secretPlaceholder": "Laissez vide pour générer automatiquement",
+                "secretDescription": "Le secret sera utilisé pour signer les charges utiles des événements.",
+                "eventsLabel": "Événements à écouter",
+                "cancel": "Annuler",
+                "save": "Enregistrer le Webhook"
             },
             "edit": {
-                "title": "Edit Webhook",
-                "cardTitle": "Webhook Details",
-                "urlLabel": "Endpoint URL",
-                "secretLabel": "Signing Secret",
-                "eventsLabel": "Subscribed Events",
-                "cancel": "Cancel",
-                "save": "Save Changes",
+                "title": "Modifier le Webhook",
+                "cardTitle": "Détails du Webhook",
+                "urlLabel": "URL de l'Endpoint",
+                "secretLabel": "Secret de Signature",
+                "eventsLabel": "Événements Souscrits",
+                "cancel": "Annuler",
+                "save": "Enregistrer les modifications",
                 "toast": {
-                    "updateSuccessTitle": "Webhook Updated",
-                    "updateSuccessDescription": "The webhook configuration has been successfully updated."
+                    "updateSuccessTitle": "Webhook Mis à Jour",
+                    "updateSuccessDescription": "La configuration du webhook a été mise à jour avec succès."
                 }
             }
         }
