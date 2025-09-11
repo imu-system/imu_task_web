@@ -1,6 +1,7 @@
 
 
 
+
 import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole, Notification, NotificationType, NotificationChannel, DeliveryStatus, ContentPage, PageStatus } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
@@ -223,7 +224,7 @@ export const getTasks = (): Task[] => [
   },
 ];
 
-export async function createTask(taskData: Omit<Task, 'id' | 'client' | 'status' | 'createdAt' | 'updatedAt' | 'addressId' | 'latitude' | 'longitude' | 'timeWindowStart' | 'timeWindowEnd' | 'attachments' | 'visibility' | 'category'>) {
+export async function createTask(taskData: Omit<Task, 'id' | 'client' | 'status' | 'createdAt' | 'updatedAt' | 'addressId' | 'latitude' | 'longitude' | 'timeWindowStart' | 'timeWindowEnd' | 'attachments' | 'visibility' | 'category'> & {addressId: string}) {
     const docRef = await addDoc(collection(db, "tasks"), {
         ...taskData,
         timeWindowStart: taskData.date,
@@ -233,7 +234,6 @@ export async function createTask(taskData: Omit<Task, 'id' | 'client' | 'status'
         attachments: [],
         latitude: 0, // Placeholder
         longitude: 0, // Placeholder
-        addressId: '', // Placeholder
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
     });

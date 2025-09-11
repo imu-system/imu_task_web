@@ -97,7 +97,7 @@
         "categoryPlaceholder": "Choisissez une catégorie",
         "categoryLoading": "Chargement...",
         "locationLabel": "Lieu de la mission",
-        "locationPlaceholder": "Adresse, Ville",
+        "locationPlaceholder": "Choisissez une adresse enregistrée",
         "datetimeLabel": "Date et heure",
         "datetimePlaceholder": "Choisissez une date",
         "budgetLabel": "Votre budget (en €)",

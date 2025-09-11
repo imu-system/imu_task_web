@@ -46,12 +46,17 @@ const formSchema = z.object({
   title: z.string().min(5, 'Le titre doit faire au moins 5 caractères.'),
   description: z.string().min(20, 'La description doit faire au moins 20 caractères.'),
   categoryId: z.string({ required_error: 'Veuillez sélectionner une catégorie.' }),
-  location: z.string().min(3, 'Veuillez indiquer un lieu.'),
+  addressId: z.string({ required_error: 'Veuillez sélectionner une adresse.' }),
   date: z.date({
     required_error: 'Veuillez sélectionner une date et une heure.',
   }),
   price: z.coerce.number().min(5, 'Le prix doit être d\'au moins 5€.'),
 });
+
+const mockAddresses = [
+    { id: '1', label: 'Maison', formatted: '123 Rue Principale, 75001 Paris, France', isDefault: true },
+    { id: '2', label: 'Travail', formatted: '456 Avenue des Champs-Élysées, 75008 Paris, France', isDefault: false },
+];
 
 export function CreateTaskForm() {
   const [taskCategories, setTaskCategories] = useState<ServiceCategory[]>([]);
@@ -90,7 +95,7 @@ export function CreateTaskForm() {
     defaultValues: {
       title: '',
       description: '',
-      location: '',
+      addressId: mockAddresses.find(a => a.isDefault)?.id || '',
       price: 20,
     },
   });
@@ -107,10 +112,15 @@ export function CreateTaskForm() {
         return;
     }
     setIsSubmitting(true);
+
+    const fullAddress = mockAddresses.find(a => a.id === values.addressId);
+
     try {
+        // We pass the full formatted address string for now
         await createTask({
             ...values,
             clientId: user.uid,
+            location: fullAddress?.formatted || '',
         });
         toast({
             title: t('toastSuccessTitle'),
@@ -249,17 +259,28 @@ export function CreateTaskForm() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <FormField
-            control={form.control}
-            name="location"
-            render={({ field }) => (
+              control={form.control}
+              name="addressId"
+              render={({ field }) => (
                 <FormItem>
-                <FormLabel>{t('locationLabel')}</FormLabel>
-                <FormControl>
-                    <Input placeholder={t('locationPlaceholder')} {...field} />
-                </FormControl>
-                <FormMessage />
+                  <FormLabel>{t('locationLabel')}</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder={t('locationPlaceholder')} />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {mockAddresses.map((address) => (
+                        <SelectItem key={address.id} value={address.id}>
+                          {address.label} - {address.formatted}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
                 </FormItem>
-            )}
+              )}
             />
 
             <FormField

@@ -97,7 +97,7 @@
         "categoryPlaceholder": "Choose a category",
         "categoryLoading": "Loading...",
         "locationLabel": "Task location",
-        "locationPlaceholder": "Address, City",
+        "locationPlaceholder": "Choose a saved address",
         "datetimeLabel": "Date and time",
         "datetimePlaceholder": "Choose a date",
         "budgetLabel": "Your budget (in €)",

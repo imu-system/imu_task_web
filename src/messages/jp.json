@@ -88,7 +88,7 @@
         "categoryPlaceholder": "カテゴリを選択",
         "categoryLoading": "読み込み中...",
         "locationLabel": "タスクの場所",
-        "locationPlaceholder": "住所、市",
+        "locationPlaceholder": "保存された住所を選択",
         "datetimeLabel": "日時",
         "datetimePlaceholder": "日付を選択",
         "budgetLabel": "あなたの予算（€）",
