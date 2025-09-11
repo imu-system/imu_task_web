@@ -44,13 +44,13 @@ const newUsersData = [
 ];
 
 const gmvData = [
-    { date: '2024-08-01', missions: 400, services: 240 },
-    { date: '2024-08-02', missions: 300, services: 139 },
-    { date: '2024-08-03', missions: 200, services: 980 },
-    { date: '2024-08-04', missions: 278, services: 390 },
-    { date: '2024-08-05', missions: 189, services: 480 },
-    { date: '2024-08-06', missions: 239, services: 380 },
-    { date: '2024-08-07', missions: 349, services: 430 },
+    { date: '2024-08-01', gardening: 120, shopping: 200, handyman: 80 },
+    { date: '2024-08-02', gardening: 90, shopping: 150, handyman: 110 },
+    { date: '2024-08-03', gardening: 150, shopping: 220, handyman: 90 },
+    { date: '2024-08-04', gardening: 180, shopping: 250, handyman: 120 },
+    { date: '2024-08-05', gardening: 130, shopping: 180, handyman: 100 },
+    { date: '2024-08-06', gardening: 200, shopping: 300, handyman: 150 },
+    { date: '2024-08-07', gardening: 220, shopping: 320, handyman: 160 },
 ];
 
 
@@ -184,21 +184,26 @@ export default function AdminReportsPage() {
                         <ResponsiveContainer width="100%" height={350}>
                             <AreaChart data={gmvData}>
                                 <defs>
-                                    <linearGradient id="colorMissions" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor="hsl(var(--primary))" stopOpacity={0.8}/>
-                                        <stop offset="95%" stopColor="hsl(var(--primary))" stopOpacity={0}/>
+                                    <linearGradient id="colorGardening" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="hsl(var(--chart-1))" stopOpacity={0.8}/>
+                                        <stop offset="95%" stopColor="hsl(var(--chart-1))" stopOpacity={0}/>
                                     </linearGradient>
-                                     <linearGradient id="colorServices" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor="hsl(var(--secondary))" stopOpacity={0.8}/>
-                                        <stop offset="95%" stopColor="hsl(var(--secondary))" stopOpacity={0}/>
+                                     <linearGradient id="colorShopping" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="hsl(var(--chart-2))" stopOpacity={0.8}/>
+                                        <stop offset="95%" stopColor="hsl(var(--chart-2))" stopOpacity={0}/>
+                                    </linearGradient>
+                                     <linearGradient id="colorHandyman" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="5%" stopColor="hsl(var(--chart-3))" stopOpacity={0.8}/>
+                                        <stop offset="95%" stopColor="hsl(var(--chart-3))" stopOpacity={0}/>
                                     </linearGradient>
                                 </defs>
                                 <XAxis dataKey="date" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(str) => new Date(str).toLocaleDateString('fr-FR', { month:'short', day:'numeric'})}/>
                                 <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `€${value}`} />
                                 <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} formatter={(value) => `${value}€`}/>
                                 <Legend/>
-                                <Area type="monotone" dataKey="missions" name={t('charts.gmv.legendMissions')} stroke="hsl(var(--primary))" fillOpacity={1} fill="url(#colorMissions)" />
-                                <Area type="monotone" dataKey="services" name={t('charts.gmv.legendServices')} stroke="hsl(var(--secondary))" fillOpacity={1} fill="url(#colorServices)" />
+                                <Area type="monotone" dataKey="gardening" name={t('charts.gmv.legendGardening')} stackId="1" stroke="hsl(var(--chart-1))" fill="url(#colorGardening)" />
+                                <Area type="monotone" dataKey="shopping" name={t('charts.gmv.legendShopping')} stackId="1" stroke="hsl(var(--chart-2))" fill="url(#colorShopping)" />
+                                <Area type="monotone" dataKey="handyman" name={t('charts.gmv.legendHandyman')} stackId="1" stroke="hsl(var(--chart-3))" fill="url(#colorHandyman)" />
                             </AreaChart>
                         </ResponsiveContainer>
                     </CardContent>

@@ -1828,9 +1828,10 @@
         "charts": {
             "gmv": {
                 "title": "Évolution du GMV",
-                "description": "Gross Merchandise Value par jour.",
-                "legendMissions": "Missions",
-                "legendServices": "Services"
+                "description": "Volume d'affaires brut par jour.",
+                "legendGardening": "Jardinage",
+                "legendShopping": "Courses",
+                "legendHandyman": "Bricolage"
             },
             "newUsers": {
                 "title": "Nouveaux Utilisateurs",

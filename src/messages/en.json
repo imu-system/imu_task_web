@@ -1829,8 +1829,9 @@
             "gmv": {
                 "title": "GMV Evolution",
                 "description": "Gross Merchandise Value per day.",
-                "legendMissions": "Missions",
-                "legendServices": "Services"
+                "legendGardening": "Gardening",
+                "legendShopping": "Shopping",
+                "legendHandyman": "Handyman"
             },
             "newUsers": {
                 "title": "New Users",
