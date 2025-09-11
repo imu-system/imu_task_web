@@ -342,6 +342,13 @@
                 "title": "タスク変換ファネル",
                 "description": "タスクの公開から完了まで。",
                 "legend": "タスク"
+            },
+            "revenueBreakdown": {
+                "title": "収益内訳 (GMV)",
+                "description": "月次の商品総売上の内訳。",
+                "legendProviderNet": "プロバイダー純収益",
+                "legendPlatformFees": "プラットフォーム手数料",
+                "legendStripeFees": "Stripe手数料"
             }
         },
         "filters": {

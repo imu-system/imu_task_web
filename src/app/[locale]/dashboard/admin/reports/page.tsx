@@ -53,6 +53,15 @@ const gmvData = [
     { date: '2024-08-07', gardening: 220, shopping: 320, handyman: 160 },
 ];
 
+const revenueBreakdownData = [
+  { name: 'Jan', providerNet: 1890, platformFees: 210, stripeFees: 100 },
+  { name: 'Fév', providerNet: 2390, platformFees: 240, stripeFees: 120 },
+  { name: 'Mar', providerNet: 2000, platformFees: 290, stripeFees: 130 },
+  { name: 'Avr', providerNet: 2780, platformFees: 310, stripeFees: 140 },
+  { name: 'Mai', providerNet: 3190, platformFees: 350, stripeFees: 150 },
+  { name: 'Jui', providerNet: 3490, platformFees: 400, stripeFees: 160 },
+];
+
 
 export default function AdminReportsPage() {
     const { user, loading: authLoading } = useAuth();
@@ -241,6 +250,26 @@ export default function AdminReportsPage() {
                                 <YAxis type="category" dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} width={80} />
                                 <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} />
                                 <Bar dataKey="value" name={t('charts.conversionFunnel.legend')} fill="hsl(var(--primary))" radius={[0, 4, 4, 0]} />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </CardContent>
+                </Card>
+
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>{t('charts.revenueBreakdown.title')}</CardTitle>
+                        <CardDescription>{t('charts.revenueBreakdown.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <ResponsiveContainer width="100%" height={350}>
+                            <BarChart data={revenueBreakdownData} stackOffset="sign">
+                                <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `€${value}`} />
+                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} formatter={(value) => `${value}€`}/>
+                                <Legend />
+                                <Bar dataKey="providerNet" name={t('charts.revenueBreakdown.legendProviderNet')} stackId="a" fill="hsl(var(--chart-2))" radius={[0, 0, 0, 0]}/>
+                                <Bar dataKey="platformFees" name={t('charts.revenueBreakdown.legendPlatformFees')} stackId="a" fill="hsl(var(--chart-1))" />
+                                <Bar dataKey="stripeFees" name={t('charts.revenueBreakdown.legendStripeFees')} stackId="a" fill="hsl(var(--chart-5))" radius={[4, 4, 0, 0]}/>
                             </BarChart>
                         </ResponsiveContainer>
                     </CardContent>

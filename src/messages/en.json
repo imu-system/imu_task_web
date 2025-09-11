@@ -1842,6 +1842,13 @@
                 "title": "Task Conversion Funnel",
                 "description": "From task publication to completion.",
                 "legend": "Tasks"
+            },
+            "revenueBreakdown": {
+                "title": "Revenue Breakdown (GMV)",
+                "description": "Monthly breakdown of Gross Merchandise Value.",
+                "legendProviderNet": "Provider Net Revenue",
+                "legendPlatformFees": "Platform Fees",
+                "legendStripeFees": "Stripe Fees"
             }
         },
         "filters": {
