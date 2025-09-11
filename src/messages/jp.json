@@ -92,12 +92,17 @@
         "startTimeLabel": "開始時間",
         "endTimeLabel": "終了時間",
         "datePlaceholder": "日付を選択",
-        "budgetLabel": "あなたの予算（€）",
+        "budgetLabel": "提示価格（€）",
         "budgetHelp": "これはプロバイダーに提供される金額です。",
         "submitButton": "タスクを公開",
         "toastSuccessTitle": "タスクが作成されました！",
         "toastSuccessDescription": "あなたのタスクは正常に公開されました。",
         "toastErrorTitle": "エラー",
-        "toastErrorDescription": "カテゴリの提案中にエラーが発生しました。"
+        "toastErrorDescription": "カテゴリの提案中にエラーが発生しました。",
+        "durationLabel": "推定時間（分）",
+        "durationPlaceholder": "例: 60",
+        "durationHelp": "タスクにかかる時間を推定してください。",
+        "attachmentsLabel": "添付ファイル",
+        "attachmentsPlaceholder": "ここをクリックまたはドラッグ＆ドロップしてファイルを追加"
     }
 }

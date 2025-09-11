@@ -25,7 +25,7 @@ import {
 } from '@/components/ui/select';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { Calendar } from './ui/calendar';
-import { CalendarIcon, Loader2, Sparkles } from 'lucide-react';
+import { CalendarIcon, Loader2, Sparkles, Paperclip } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { format, setHours, setMinutes } from 'date-fns';
 import { fr } from 'date-fns/locale';
@@ -53,7 +53,9 @@ const formSchema = z.object({
   timeWindowEnd: z.date({
     required_error: 'Veuillez sélectionner une date et une heure de fin.',
   }),
-  price: z.coerce.number().min(5, 'Le prix doit être d\'au moins 5€.'),
+  priceOffered: z.coerce.number().min(5, 'Le prix doit être d\'au moins 5€.'),
+  estimatedDurationMin: z.coerce.number().int().min(0, "La durée doit être positive.").optional(),
+  attachments: z.any().optional(),
 }).refine(data => data.timeWindowEnd > data.timeWindowStart, {
     message: "L'heure de fin doit être après l'heure de début.",
     path: ['timeWindowEnd'],
@@ -102,7 +104,8 @@ export function CreateTaskForm() {
       title: '',
       description: '',
       addressId: mockAddresses.find(a => a.isDefault)?.id || '',
-      price: 20,
+      priceOffered: 20,
+      estimatedDurationMin: 60,
     },
   });
 
@@ -125,6 +128,7 @@ export function CreateTaskForm() {
         // We pass the full formatted address string for now
         await createTask({
             ...values,
+            price: values.priceOffered,
             date: values.timeWindowStart, // Keep 'date' as the primary start time for now as per data model
             clientId: user.uid,
             location: fullAddress?.formatted || '',
@@ -264,34 +268,31 @@ export function CreateTaskForm() {
           )}
         />
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <FormField
-              control={form.control}
-              name="addressId"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('locationLabel')}</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder={t('locationPlaceholder')} />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {mockAddresses.map((address) => (
-                        <SelectItem key={address.id} value={address.id}>
-                          {address.label} - {address.formatted}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div/>
-        </div>
-
+        <FormField
+          control={form.control}
+          name="addressId"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t('locationLabel')}</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t('locationPlaceholder')} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {mockAddresses.map((address) => (
+                    <SelectItem key={address.id} value={address.id}>
+                      {address.label} - {address.formatted}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <FormField
                 control={form.control}
@@ -303,7 +304,7 @@ export function CreateTaskForm() {
                         <Popover>
                             <PopoverTrigger asChild>
                             <FormControl>
-                                <Button variant={'outline'} className={cn('w-[240px] pl-3 text-left font-normal', !field.value && 'text-muted-foreground' )}>
+                                <Button variant={'outline'} className={cn('w-full justify-start text-left font-normal', !field.value && 'text-muted-foreground' )}>
                                 {field.value ? format(field.value, 'PPP', { locale: fr }) : <span>{t('datePlaceholder')}</span>}
                                 <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                 </Button>
@@ -338,7 +339,7 @@ export function CreateTaskForm() {
                         <Popover>
                             <PopoverTrigger asChild>
                             <FormControl>
-                                <Button variant={'outline'} className={cn('w-[240px] pl-3 text-left font-normal', !field.value && 'text-muted-foreground' )}>
+                                <Button variant={'outline'} className={cn('w-full justify-start text-left font-normal', !field.value && 'text-muted-foreground' )}>
                                 {field.value ? format(field.value, 'PPP', { locale: fr }) : <span>{t('datePlaceholder')}</span>}
                                 <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
                                 </Button>
@@ -365,22 +366,59 @@ export function CreateTaskForm() {
             />
         </div>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <FormField
+              control={form.control}
+              name="priceOffered"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t('budgetLabel')}</FormLabel>
+                  <FormControl>
+                    <Input type="number" {...field} />
+                  </FormControl>
+                  <FormDescription>
+                    {t('budgetHelp')}
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+             <FormField
+              control={form.control}
+              name="estimatedDurationMin"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t('durationLabel')}</FormLabel>
+                  <FormControl>
+                    <Input type="number" placeholder={t('durationPlaceholder')} {...field} />
+                  </FormControl>
+                   <FormDescription>
+                    {t('durationHelp')}
+                  </FormDescription>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+        </div>
+
         <FormField
-          control={form.control}
-          name="price"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t('budgetLabel')}</FormLabel>
-              <FormControl>
-                <Input type="number" {...field} />
-              </FormControl>
-              <FormDescription>
-                {t('budgetHelp')}
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
+            control={form.control}
+            name="attachments"
+            render={({ field }) => (
+                <FormItem>
+                    <FormLabel>{t('attachmentsLabel')}</FormLabel>
+                    <FormControl>
+                        <div className="relative border-2 border-dashed border-muted-foreground/50 rounded-lg p-6 text-center cursor-pointer hover:bg-muted/50">
+                            <Paperclip className="mx-auto h-8 w-8 text-muted-foreground"/>
+                            <p className="mt-2 text-sm text-muted-foreground">{t('attachmentsPlaceholder')}</p>
+                            <Input type="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" multiple onChange={(e) => field.onChange(e.target.files)} />
+                        </div>
+                    </FormControl>
+                    <FormMessage />
+                </FormItem>
+            )}
         />
+
 
         <Button type="submit" size="lg" disabled={isSubmitting}>
             {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
