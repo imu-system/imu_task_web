@@ -385,6 +385,12 @@
                 "title": "プロバイダー稼働率",
                 "description": "申告された利用可能時間に対する予約時間の割合。",
                 "legend": "稼働率"
+            },
+            "cityBalance": {
+                "title": "都市別の供給/需要バランス",
+                "description": "都市ごとの公開タスク数 vs アクティブなプロバイダー数。",
+                "legendTasks": "タスク（需要）",
+                "legendProviders": "プロバイダー（供給）"
             }
         },
         "filters": {
@@ -410,3 +416,5 @@
         }
     }
 }
+
+    

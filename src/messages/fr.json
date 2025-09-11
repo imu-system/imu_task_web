@@ -1883,6 +1883,12 @@
                 "title": "Utilisation des Prestataires",
                 "description": "Pourcentage d'heures réservées par rapport aux heures disponibles déclarées.",
                 "legend": "Taux d'utilisation"
+            },
+            "cityBalance": {
+                "title": "Équilibre Offre / Demande par Ville",
+                "description": "Nombre de missions publiées vs prestataires actifs par ville.",
+                "legendTasks": "Missions (Demande)",
+                "legendProviders": "Prestataires (Offre)"
             }
         },
         "filters": {
@@ -1908,3 +1914,5 @@
         }
     }
 }
+
+    

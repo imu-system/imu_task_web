@@ -1883,6 +1883,12 @@
                 "title": "Provider Utilization",
                 "description": "Percentage of booked hours over declared available hours.",
                 "legend": "Utilization"
+            },
+            "cityBalance": {
+                "title": "Supply / Demand Balance by City",
+                "description": "Number of published tasks vs. active providers per city.",
+                "legendTasks": "Tasks (Demand)",
+                "legendProviders": "Providers (Supply)"
             }
         },
         "filters": {
@@ -1908,3 +1914,5 @@
         }
     }
 }
+
+    

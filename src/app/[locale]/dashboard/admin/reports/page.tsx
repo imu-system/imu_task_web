@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { Loader2, LineChart as LineChartIcon, Users, ListOrdered, CalendarCheck, Euro, Calendar as CalendarIcon, Filter, X } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, AreaChart, Area, LineChart, Line } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, AreaChart, Area, LineChart, Line } from "recharts";
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
@@ -100,6 +100,14 @@ const providerUtilizationData = [
     { name: "Marie C.", utilization: 60 },
     { name: "Ahmed B.", utilization: 45 },
     { name: "Sophie D.", utilization: 82 },
+];
+
+const cityBalanceData = [
+  { city: "Paris", tasks: 120, providers: 80 },
+  { city: "Lyon", tasks: 90, providers: 110 },
+  { city: "Marseille", tasks: 75, providers: 60 },
+  { city: "Lille", tasks: 50, providers: 70 },
+  { city: "Bordeaux", tasks: 60, providers: 50 },
 ];
 
 
@@ -385,6 +393,25 @@ export default function AdminReportsPage() {
                     </CardContent>
                 </Card>
 
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>{t('charts.cityBalance.title')}</CardTitle>
+                        <CardDescription>{t('charts.cityBalance.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <ResponsiveContainer width="100%" height={350}>
+                             <BarChart data={cityBalanceData}>
+                                <XAxis dataKey="city" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} />
+                                <Legend />
+                                <Bar dataKey="tasks" name={t('charts.cityBalance.legendTasks')} fill="hsl(var(--chart-2))" radius={[4, 4, 0, 0]} />
+                                <Bar dataKey="providers" name={t('charts.cityBalance.legendProviders')} fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </CardContent>
+                </Card>
+
                  <Card className="md:col-span-2">
                     <CardHeader>
                         <CardTitle>{t('charts.conversionFunnel.title')}</CardTitle>
@@ -408,3 +435,4 @@ export default function AdminReportsPage() {
     );
 }
 
+    
