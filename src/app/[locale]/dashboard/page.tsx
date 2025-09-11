@@ -4,7 +4,7 @@
 import TaskCard from '@/components/task-card';
 import { Button } from '@/components/ui/button';
 import { db } from '@/lib/firebase';
-import { Task } from '@/lib/types';
+import { Task, TaskStatus } from '@/lib/types';
 import { collection, onSnapshot, query, where, doc, getDoc, Timestamp } from 'firebase/firestore';
 import { PlusCircle, Loader2 } from 'lucide-react';
 import { Link } from '@/navigation';
@@ -25,7 +25,7 @@ export default function DashboardPage() {
         return;
     };
 
-    const q = query(collection(db, 'tasks'), where('status', '==', 'open'));
+    const q = query(collection(db, 'tasks'), where('status', '==', TaskStatus.published));
     
     const unsubscribe = onSnapshot(q, async (querySnapshot) => {
       setLoading(true);
@@ -50,12 +50,15 @@ export default function DashboardPage() {
           }
         }
         
-        const date = (taskData.date as Timestamp)?.toDate ? (taskData.date as Timestamp).toDate() : new Date();
+        const timeWindowStart = (taskData.timeWindowStart as Timestamp)?.toDate ? (taskData.timeWindowStart as Timestamp).toDate() : new Date();
+        const timeWindowEnd = (taskData.timeWindowEnd as Timestamp)?.toDate ? (taskData.timeWindowEnd as Timestamp).toDate() : new Date();
+
 
         tasksData.push({
           id: taskDoc.id,
           ...taskData,
-          date: date,
+          timeWindowStart: timeWindowStart,
+          timeWindowEnd: timeWindowEnd,
           client: clientData ? { id: clientData.id, email: clientData.email, profile: { displayName: clientData.displayName, photoUrl: clientData.photoURL || `https://i.pravatar.cc/150?u=${clientData.id}` }} : null,
         } as Task);
       }

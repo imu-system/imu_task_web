@@ -4,7 +4,7 @@
 import TaskCard from '@/components/task-card';
 import { Button } from '@/components/ui/button';
 import { db } from '@/lib/firebase';
-import { Task } from '@/lib/types';
+import { Task, TaskStatus } from '@/lib/types';
 import { collection, onSnapshot, query, where, doc, getDoc, Timestamp } from 'firebase/firestore';
 import { PlusCircle, Loader2 } from 'lucide-react';
 import { Link } from '@/navigation';
@@ -25,7 +25,7 @@ export default function DashboardTasksPage() {
         return;
     };
 
-    const q = query(collection(db, 'tasks'), where('status', '==', 'open'));
+    const q = query(collection(db, 'tasks'), where('status', '==', TaskStatus.published));
     
     const unsubscribe = onSnapshot(q, async (querySnapshot) => {
       setLoading(true);
@@ -110,4 +110,3 @@ export default function DashboardTasksPage() {
     </div>
   );
 }
-
