@@ -374,6 +374,12 @@
                 "title": "タスクごとのオファー分布",
                 "description": "受信したオファー数に基づくタスクの数。",
                 "legend": "タスク"
+            },
+            "timeToMatch": {
+                "title": "マッチング時間",
+                "description": "最初のオファーと予約までの平均時間。",
+                "legendT1": "最初のオファーまでの時間 (h)",
+                "legendT2": "予約までの時間 (h)"
             }
         },
         "filters": {

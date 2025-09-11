@@ -1872,6 +1872,12 @@
                 "title": "Offer Distribution per Task",
                 "description": "Number of tasks based on the number of offers received.",
                 "legend": "Tasks"
+            },
+            "timeToMatch": {
+                "title": "Time to Match",
+                "description": "Average time in hours to first offer and to booking.",
+                "legendT1": "Time to First Offer (h)",
+                "legendT2": "Time to Booking (h)"
             }
         },
         "filters": {

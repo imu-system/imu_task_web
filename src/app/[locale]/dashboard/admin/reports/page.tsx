@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useAuth } from '@/hooks/use-auth';
@@ -8,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { Loader2, LineChart as LineChartIcon, Users, ListOrdered, CalendarCheck, Euro, Calendar as CalendarIcon, Filter, X } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, AreaChart, Area, Line, LineChart } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, AreaChart, Area, LineChart, Line } from "recharts";
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
@@ -84,6 +85,13 @@ const offerDistributionData = [
   { name: '1 offre', tasks: 120 },
   { name: '2 offres', tasks: 80 },
   { name: '3+ offres', tasks: 45 },
+];
+
+const timeToMatchData = [
+    { category: 'Jardinage', t1: 4.5, t2: 18 },
+    { category: 'Courses', t1: 1.2, t2: 6 },
+    { category: 'Bricolage', t1: 8.0, t2: 24 },
+    { category: 'Ménage', t1: 3.0, t2: 12 },
 ];
 
 
@@ -328,6 +336,25 @@ export default function AdminReportsPage() {
                                 <YAxis type="number" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
                                 <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} />
                                 <Bar dataKey="tasks" name={t('charts.offerDistribution.legend')} fill="hsl(var(--chart-3))" radius={[4, 4, 0, 0]} />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </CardContent>
+                </Card>
+
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>{t('charts.timeToMatch.title')}</CardTitle>
+                        <CardDescription>{t('charts.timeToMatch.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <ResponsiveContainer width="100%" height={350}>
+                            <BarChart data={timeToMatchData}>
+                                <XAxis dataKey="category" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}h`} />
+                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} formatter={(value) => `${value}h`} />
+                                <Legend />
+                                <Bar dataKey="t1" name={t('charts.timeToMatch.legendT1')} fill="hsl(var(--chart-2))" radius={[4, 4, 0, 0]} />
+                                <Bar dataKey="t2" name={t('charts.timeToMatch.legendT2')} fill="hsl(var(--chart-5))" radius={[4, 4, 0, 0]} />
                             </BarChart>
                         </ResponsiveContainer>
                     </CardContent>

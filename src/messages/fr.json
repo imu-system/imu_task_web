@@ -1872,6 +1872,12 @@
                 "title": "Distribution des Offres par Mission",
                 "description": "Nombre de missions en fonction du nombre d'offres reçues.",
                 "legend": "Missions"
+            },
+            "timeToMatch": {
+                "title": "Temps de Mise en Relation",
+                "description": "Temps moyen en heures pour la première offre et pour la réservation.",
+                "legendT1": "Temps 1ère offre (h)",
+                "legendT2": "Temps booking (h)"
             }
         },
         "filters": {
