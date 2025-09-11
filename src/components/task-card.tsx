@@ -46,7 +46,7 @@ type TaskCardProps = {
 };
 
 export default function TaskCard({ task }: TaskCardProps) {
-  const { title, client, categoryId, location, date, price, id } = task;
+  const { title, client, categoryId, location, timeWindowStart, priceOffered, id } = task;
   const [category, setCategory] = useState<ServiceCategory | null>(null);
   const locale = useLocale();
   const t = useTranslations('TaskCard');
@@ -84,7 +84,7 @@ export default function TaskCard({ task }: TaskCardProps) {
                 {categoryIcon}
                 <span>{categoryLabel}</span>
             </Badge>
-            <span className="text-xl font-bold text-primary">{price}€</span>
+            <span className="text-xl font-bold text-primary">{priceOffered}€</span>
         </div>
         <CardTitle className="pt-2 font-headline">{title}</CardTitle>
       </CardHeader>
@@ -96,7 +96,7 @@ export default function TaskCard({ task }: TaskCardProps) {
           </div>
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4" />
-            <span>{new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(date))}</span>
+            <span>{new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(timeWindowStart))}</span>
           </div>
         </div>
       </CardContent>
