@@ -369,6 +369,11 @@
                 "title": "カテゴリ別フィルレート",
                 "description": "予約された公開タスクの割合。",
                 "legend": "フィルレート"
+            },
+            "offerDistribution": {
+                "title": "タスクごとのオファー分布",
+                "description": "受信したオファー数に基づくタスクの数。",
+                "legend": "タスク"
             }
         },
         "filters": {

@@ -1867,6 +1867,11 @@
                 "title": "Taux de Remplissage par Catégorie",
                 "description": "Pourcentage de missions publiées qui sont réservées.",
                 "legend": "Taux de Remplissage"
+            },
+            "offerDistribution": {
+                "title": "Distribution des Offres par Mission",
+                "description": "Nombre de missions en fonction du nombre d'offres reçues.",
+                "legend": "Missions"
             }
         },
         "filters": {

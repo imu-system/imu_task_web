@@ -1867,6 +1867,11 @@
                 "title": "Fill Rate by Category",
                 "description": "Percentage of published tasks that are booked.",
                 "legend": "Fill Rate"
+            },
+            "offerDistribution": {
+                "title": "Offer Distribution per Task",
+                "description": "Number of tasks based on the number of offers received.",
+                "legend": "Tasks"
             }
         },
         "filters": {

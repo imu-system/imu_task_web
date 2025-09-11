@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { Loader2, LineChart as LineChartIcon, Users, ListOrdered, CalendarCheck, Euro, Calendar as CalendarIcon, Filter, X } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, AreaChart, Area, LineChart } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, AreaChart, Area, Line, LineChart } from "recharts";
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
@@ -77,6 +77,13 @@ const fillRateData = [
     { category: "Bricolage", fillRate: 78 },
     { category: "Ménage", fillRate: 88 },
     { category: "Aide admin", fillRate: 72 },
+];
+
+const offerDistributionData = [
+  { name: '0 offres', tasks: 50 },
+  { name: '1 offre', tasks: 120 },
+  { name: '2 offres', tasks: 80 },
+  { name: '3+ offres', tasks: 45 },
 ];
 
 
@@ -303,11 +310,29 @@ export default function AdminReportsPage() {
                                 <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `€${value}`} />
                                 <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} formatter={(value) => `${(value as number).toFixed(2)}€`}/>
                                 <Legend />
-                                <LineChartIcon type="monotone" dataKey="aov" name={t('charts.aov.legend')} stroke="hsl(var(--primary))" strokeWidth={2} dot={{ r: 4, fill: "hsl(var(--primary))" }} activeDot={{ r: 6 }}/>
+                                <Line type="monotone" dataKey="aov" name={t('charts.aov.legend')} stroke="hsl(var(--primary))" strokeWidth={2} dot={{ r: 4, fill: "hsl(var(--primary))" }} activeDot={{ r: 6 }}/>
                             </LineChart>
                         </ResponsiveContainer>
                     </CardContent>
                 </Card>
+                
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>{t('charts.offerDistribution.title')}</CardTitle>
+                         <CardDescription>{t('charts.offerDistribution.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="pl-2">
+                         <ResponsiveContainer width="100%" height={350}>
+                            <BarChart data={offerDistributionData}>
+                                <XAxis type="category" dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                <YAxis type="number" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} />
+                                <Bar dataKey="tasks" name={t('charts.offerDistribution.legend')} fill="hsl(var(--chart-3))" radius={[4, 4, 0, 0]} />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </CardContent>
+                </Card>
+
                  <Card className="md:col-span-2">
                     <CardHeader>
                         <CardTitle>{t('charts.conversionFunnel.title')}</CardTitle>
