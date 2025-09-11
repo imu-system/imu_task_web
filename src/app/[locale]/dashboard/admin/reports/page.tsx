@@ -5,10 +5,10 @@ import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
-import { Loader2, LineChart, Users, ListOrdered, CalendarCheck, Euro, Calendar as CalendarIcon, Filter, X } from 'lucide-react';
+import { Loader2, LineChart as LineChartIcon, Users, ListOrdered, CalendarCheck, Euro, Calendar as CalendarIcon, Filter, X } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, AreaChart, Area, Line } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, AreaChart, Area, LineChart } from "recharts";
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
@@ -104,7 +104,7 @@ export default function AdminReportsPage() {
         <div className="space-y-8">
             <div>
                 <h1 className="text-3xl font-bold tracking-tight font-headline flex items-center gap-2">
-                    <LineChart className="h-8 w-8 text-primary"/>
+                    <LineChartIcon className="h-8 w-8 text-primary"/>
                     {t('kpi.title')}
                 </h1>
                 <p className="text-muted-foreground">
@@ -301,9 +301,9 @@ export default function AdminReportsPage() {
                             <LineChart data={aovData}>
                                 <XAxis dataKey="month" stroke="#888888" fontSize={12} tickLine={false} axisLine={false}/>
                                 <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `€${value}`} />
-                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} formatter={(value) => `${value.toFixed(2)}€`}/>
+                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} formatter={(value) => `${(value as number).toFixed(2)}€`}/>
                                 <Legend />
-                                <Line type="monotone" dataKey="aov" name={t('charts.aov.legend')} stroke="hsl(var(--primary))" strokeWidth={2} dot={{ r: 4, fill: "hsl(var(--primary))" }} activeDot={{ r: 6 }}/>
+                                <LineChartIcon type="monotone" dataKey="aov" name={t('charts.aov.legend')} stroke="hsl(var(--primary))" strokeWidth={2} dot={{ r: 4, fill: "hsl(var(--primary))" }} activeDot={{ r: 6 }}/>
                             </LineChart>
                         </ResponsiveContainer>
                     </CardContent>
