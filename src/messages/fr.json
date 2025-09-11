@@ -1737,6 +1737,10 @@
                 "label": "Réponse Ticket Support (Heures)",
                 "description": "Temps limite pour la première réponse à un ticket de support."
             },
+            "offerResponseHours": {
+                "label": "Réponse aux Offres (Heures)",
+                "description": "Délai pour qu'un client réponde à une nouvelle offre."
+            },
             "saveButton": "Enregistrer les SLA",
             "toast": {
                 "successTitle": "SLA Enregistrés",

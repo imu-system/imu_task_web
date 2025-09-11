@@ -20,6 +20,7 @@ const slaSchema = z.object({
   kycReviewHours: z.coerce.number().int().min(1, "Doit être d'au moins 1 heure."),
   disputeResponseHours: z.coerce.number().int().min(1, "Doit être d'au moins 1 heure."),
   supportTicketResponseHours: z.coerce.number().int().min(1, "Doit être d'au moins 1 heure."),
+  offerResponseHours: z.coerce.number().int().min(1, "Doit être d'au moins 1 heure."),
 });
 
 type SlaFormValues = z.infer<typeof slaSchema>;
@@ -39,6 +40,7 @@ export default function AdminSlaPage() {
             kycReviewHours: 24,
             disputeResponseHours: 48,
             supportTicketResponseHours: 8,
+            offerResponseHours: 48,
         },
     });
 
@@ -81,7 +83,7 @@ export default function AdminSlaPage() {
                         <CardDescription>{t('description')}</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-8">
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                             <FormField
                                 control={form.control}
                                 name="kycReviewHours"
@@ -118,6 +120,18 @@ export default function AdminSlaPage() {
                                     </FormItem>
                                 )}
                             />
+                             <FormField
+                                control={form.control}
+                                name="offerResponseHours"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>{t('offerResponseHours.label')}</FormLabel>
+                                        <FormControl><Input type="number" {...field} /></FormControl>
+                                        <FormDescription>{t('offerResponseHours.description')}</FormDescription>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
                         </div>
                     </CardContent>
                 </Card>
@@ -131,3 +145,4 @@ export default function AdminSlaPage() {
         </Form>
     );
 }
+
