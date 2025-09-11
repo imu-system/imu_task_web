@@ -63,7 +63,7 @@ export function DashboardNav() {
   const navItems = [
     { href: '/dashboard', icon: <LayoutGrid />, label: t('dashboard'), exact: true },
     { href: '/dashboard/tasks/new', icon: <PlusCircle />, label: t('createTask') },
-    { href: '/dashboard/bookings', icon: <BookMarked />, label: t('myTasks') },
+    { href: '/dashboard/tasks', icon: <BookMarked />, label: t('myTasks') },
     { href: '/dashboard/messages', icon: <MessageSquare />, label: t('messages') },
     { href: '/dashboard/wallet', icon: <Wallet />, label: t('wallet') },
   ];
