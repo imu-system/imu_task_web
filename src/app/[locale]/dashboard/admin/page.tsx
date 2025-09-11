@@ -2,7 +2,7 @@
 
 'use client';
 
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, LineChart, Line, Legend, Tooltip } from "recharts";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
@@ -11,7 +11,7 @@ import { useAuth } from "@/hooks/use-auth";
 import { useRouter, Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
-import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered, Handshake, CalendarCheck, Wallet, Star, Bell, FileText, SlidersHorizontal, LineChart, History, Shield, ShieldCheck, LayoutList } from "lucide-react";
+import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered, Handshake, CalendarCheck, Wallet, Star, Bell, FileText, SlidersHorizontal, LineChart as LineChartIcon, History, Shield, ShieldCheck, LayoutList } from "lucide-react";
 
 const kpiData = [
   { title: "Revenus (Mensuel)", value: "€4,231.89", change: "+20.1% vs mois dernier", icon: <DollarSign className="h-4 w-4 text-muted-foreground" /> },
@@ -24,6 +24,16 @@ const priorityQueue = [
     { id: 'KYC001', type: 'KYC en attente', user: 'Jean Dupont', date: '2023-10-26', icon: <ShieldQuestion className="h-5 w-5 text-yellow-500"/>, href: '/dashboard/admin/kyc'},
     { id: 'DIS042', type: 'Litige ouvert', user: 'Marie Curie', date: '2023-10-25', icon: <BadgeAlert className="h-5 w-5 text-red-500"/>, href: '/dashboard/admin/disputes'},
     { id: 'PAY314', type: 'Paiement en échec', user: 'Pierre Martin', date: '2023-10-25', icon: <CreditCard className="h-5 w-5 text-blue-500"/>, href: '#'},
+];
+
+const clientProviderData = [
+  { month: "Jan", clients: 40, providers: 24 },
+  { month: "Feb", clients: 30, providers: 22 },
+  { month: "Mar", clients: 20, providers: 49 },
+  { month: "Apr", clients: 27, providers: 38 },
+  { month: "May", clients: 18, providers: 48 },
+  { month: "Jun", clients: 23, providers: 34 },
+  { month: "Jul", clients: 34, providers: 44 },
 ];
 
 export default function AdminDashboardPage() {
@@ -67,6 +77,24 @@ export default function AdminDashboardPage() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             <Card className="lg:col-span-2">
                  <CardHeader>
+                    <CardTitle>{t('clientProviderChart.title')}</CardTitle>
+                    <CardDescription>{t('clientProviderChart.description')}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                     <ResponsiveContainer width="100%" height={350}>
+                        <LineChart data={clientProviderData}>
+                            <XAxis dataKey="month" stroke="#888888" fontSize={12} tickLine={false} axisLine={false}/>
+                            <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false}/>
+                            <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} />
+                            <Legend />
+                            <Line type="monotone" dataKey="clients" name={t('clientProviderChart.clients')} stroke="hsl(var(--chart-2))" />
+                            <Line type="monotone" dataKey="providers" name={t('clientProviderChart.providers')} stroke="hsl(var(--chart-1))" />
+                        </LineChart>
+                    </ResponsiveContainer>
+                </CardContent>
+            </Card>
+             <Card className="lg:col-span-1">
+                <CardHeader>
                     <CardTitle>{t('priorityQueueTitle')}</CardTitle>
                     <CardDescription>{t('priorityQueueDesc')}</CardDescription>
                 </CardHeader>
@@ -100,14 +128,15 @@ export default function AdminDashboardPage() {
                     </Table>
                 </CardContent>
             </Card>
+        </div>
 
-            <div className="lg:col-span-1 space-y-8">
+         <div className="lg:col-span-1">
                  <Card>
                     <CardHeader>
                         <CardTitle>{t('quickActionsTitle')}</CardTitle>
                     </CardHeader>
-                    <CardContent className="grid grid-cols-2 gap-4">
-                        <Button variant="outline" asChild><Link href="/dashboard/admin/reports"><LineChart className="mr-2"/>{tNav('reports')}</Link></Button>
+                    <CardContent className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                        <Button variant="outline" asChild><Link href="/dashboard/admin/reports"><LineChartIcon className="mr-2"/>{tNav('reports')}</Link></Button>
                         <Button variant="outline" asChild><Link href="/dashboard/admin/users"><Users2 className="mr-2"/>{tNav('users')}</Link></Button>
                         <Button variant="outline" asChild><Link href="/dashboard/admin/services/categories"><LayoutList className="mr-2"/>{tNav('categories')}</Link></Button>
                         <Button variant="outline" asChild><Link href="/dashboard/admin/tasks"><ListOrdered className="mr-2"/>{tNav('tasks')}</Link></Button>
@@ -125,7 +154,6 @@ export default function AdminDashboardPage() {
                     </CardContent>
                 </Card>
             </div>
-        </div>
     </div>
   );
 }

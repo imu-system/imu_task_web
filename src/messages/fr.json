@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -231,7 +232,13 @@
         "subtitle": "Bienvenue dans votre centre de contrôle.",
         "priorityQueueTitle": "File d'attente prioritaire",
         "priorityQueueDesc": "Éléments nécessitant votre attention immédiate.",
-        "quickActionsTitle": "Actions Rapides"
+        "quickActionsTitle": "Actions Rapides",
+        "clientProviderChart": {
+            "title": "Nouveaux Clients vs. Prestataires Actifs",
+            "description": "Évolution mensuelle des nouveaux clients et des prestataires actifs.",
+            "clients": "Nouveaux Clients",
+            "providers": "Prestataires Actifs"
+        }
     },
     "AdminCategoriesPage": {
         "title": "Catégories de services",

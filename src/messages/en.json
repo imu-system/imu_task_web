@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Features",
@@ -231,7 +232,13 @@
         "subtitle": "Welcome to your control center.",
         "priorityQueueTitle": "Priority Queue",
         "priorityQueueDesc": "Items requiring your immediate attention.",
-        "quickActionsTitle": "Quick Actions"
+        "quickActionsTitle": "Quick Actions",
+        "clientProviderChart": {
+            "title": "New Clients vs. Active Providers",
+            "description": "Monthly evolution of new clients and active providers.",
+            "clients": "New Clients",
+            "providers": "Active Providers"
+        }
     },
     "AdminCategoriesPage": {
         "title": "Service Categories",
