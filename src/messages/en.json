@@ -1664,7 +1664,8 @@
         "title": "Platform Settings",
         "subtitle": "Manage global settings and feature flags.",
         "settings": "General",
-        "flags": "Feature Flags"
+        "flags": "Feature Flags",
+        "sla": "SLA"
     },
     "AdminSettingsPage": {
         "settings": {
@@ -1718,6 +1719,27 @@
                 "staging": "Staging",
                 "rollout": "Rollout Percentage",
                 "roles": "Target Roles"
+            }
+        },
+        "sla": {
+            "title": "SLA Configuration",
+            "description": "Define the target resolution times for key platform processes.",
+            "kycReviewHours": {
+                "label": "KYC Review (Hours)",
+                "description": "Time limit for a moderator to review a KYC submission."
+            },
+            "disputeResponseHours": {
+                "label": "Dispute Resolution (Hours)",
+                "description": "Time limit for a moderator to resolve a dispute."
+            },
+            "supportTicketResponseHours": {
+                "label": "Support Ticket Response (Hours)",
+                "description": "Time limit for the first response to a support ticket."
+            },
+            "saveButton": "Save SLA Settings",
+            "toast": {
+                "successTitle": "SLA Settings Saved",
+                "successDescription": "The SLA targets have been successfully updated."
             }
         }
     },

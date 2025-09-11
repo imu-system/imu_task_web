@@ -1665,7 +1665,8 @@
         "title": "Paramètres de la Plateforme",
         "subtitle": "Gérez les paramètres globaux et les feature flags.",
         "settings": "Général",
-        "flags": "Feature Flags"
+        "flags": "Feature Flags",
+        "sla": "SLA"
     },
     "AdminSettingsPage": {
         "settings": {
@@ -1719,6 +1720,27 @@
                 "staging": "Staging",
                 "rollout": "Pourcentage de déploiement",
                 "roles": "Rôles cibles"
+            }
+        },
+        "sla": {
+            "title": "Configuration des SLA",
+            "description": "Définissez les temps de résolution cibles pour les processus clés de la plateforme.",
+            "kycReviewHours": {
+                "label": "Examen KYC (Heures)",
+                "description": "Temps limite pour qu'un modérateur examine une soumission KYC."
+            },
+            "disputeResponseHours": {
+                "label": "Résolution de Litige (Heures)",
+                "description": "Temps limite pour qu'un modérateur résolve un litige."
+            },
+            "supportTicketResponseHours": {
+                "label": "Réponse Ticket Support (Heures)",
+                "description": "Temps limite pour la première réponse à un ticket de support."
+            },
+            "saveButton": "Enregistrer les SLA",
+            "toast": {
+                "successTitle": "SLA Enregistrés",
+                "successDescription": "Les objectifs de SLA ont été mis à jour avec succès."
             }
         }
     },

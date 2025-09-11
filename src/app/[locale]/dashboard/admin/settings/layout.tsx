@@ -4,7 +4,7 @@
 import { usePathname, Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { SlidersHorizontal, Flag } from 'lucide-react';
+import { SlidersHorizontal, Flag, Timer } from 'lucide-react';
 
 export default function AdminSettingsLayout({
     children,
@@ -17,6 +17,7 @@ export default function AdminSettingsLayout({
     const navLinks = [
         { href: '/dashboard/admin/settings', label: t('settings'), icon: <SlidersHorizontal/> },
         { href: '/dashboard/admin/settings/flags', label: t('flags'), icon: <Flag/> },
+        { href: '/dashboard/admin/settings/sla', label: t('sla'), icon: <Timer/> },
     ];
     
     const activeTab = navLinks.find(link => pathname.startsWith(link.href))?.href ?? navLinks[0].href;

@@ -230,5 +230,31 @@
             "createButton": "Webhookを追加",
             "wip": "Webhook管理は現在開発中です。"
         }
+    },
+    "AdminSettingsLayout": {
+        "sla": "SLA"
+    },
+    "AdminSettingsPage": {
+        "sla": {
+            "title": "SLA設定",
+            "description": "プラットフォームの主要なプロセスの目標解決時間を定義します。",
+            "kycReviewHours": {
+                "label": "KYCレビュー（時間）",
+                "description": "モデレーターがKYC提出をレビューするための時間制限。"
+            },
+            "disputeResponseHours": {
+                "label": "紛争解決（時間）",
+                "description": "モデレーターが紛争を解決するための時間制限。"
+            },
+            "supportTicketResponseHours": {
+                "label": "サポートチケット応答（時間）",
+                "description": "サポートチケットへの最初の応答の時間制限。"
+            },
+            "saveButton": "SLA設定を保存",
+            "toast": {
+                "successTitle": "SLA設定が保存されました",
+                "successDescription": "SLA目標が正常に更新されました。"
+            }
+        }
     }
 }
