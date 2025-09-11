@@ -1755,8 +1755,8 @@
         }
     },
     "AdminReportsLayout": {
-        "kpi": "Rapports & KPI",
-        "schedules": "Exports Planifiés"
+        "kpi": "Reports & KPI",
+        "schedules": "Scheduled Exports"
     },
     "AdminReportsPage": {
         "kpi": {
@@ -1849,6 +1849,11 @@
                 "legendProviderNet": "Provider Net Revenue",
                 "legendPlatformFees": "Platform Fees",
                 "legendStripeFees": "Stripe Fees"
+            },
+            "aov": {
+                "title": "Average Order Value (AOV)",
+                "description": "Average value of a completed booking over time.",
+                "legend": "AOV"
             }
         },
         "filters": {

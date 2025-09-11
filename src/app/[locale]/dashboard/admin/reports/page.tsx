@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { Loader2, LineChart, Users, ListOrdered, CalendarCheck, Euro, Calendar as CalendarIcon, Filter, X } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, AreaChart, Area } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, AreaChart, Area, Line } from "recharts";
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
@@ -60,6 +60,15 @@ const revenueBreakdownData = [
   { name: 'Avr', providerNet: 2780, platformFees: 310, stripeFees: 140 },
   { name: 'Mai', providerNet: 3190, platformFees: 350, stripeFees: 150 },
   { name: 'Jui', providerNet: 3490, platformFees: 400, stripeFees: 160 },
+];
+
+const aovData = [
+    { month: "Jan", aov: 22.50 },
+    { month: "Feb", aov: 24.00 },
+    { month: "Mar", aov: 23.00 },
+    { month: "Apr", aov: 25.50 },
+    { month: "May", aov: 26.00 },
+    { month: "Jun", aov: 28.00 },
 ];
 
 
@@ -271,6 +280,24 @@ export default function AdminReportsPage() {
                                 <Bar dataKey="platformFees" name={t('charts.revenueBreakdown.legendPlatformFees')} stackId="a" fill="hsl(var(--chart-1))" />
                                 <Bar dataKey="stripeFees" name={t('charts.revenueBreakdown.legendStripeFees')} stackId="a" fill="hsl(var(--chart-5))" radius={[4, 4, 0, 0]}/>
                             </BarChart>
+                        </ResponsiveContainer>
+                    </CardContent>
+                </Card>
+                
+                <Card>
+                    <CardHeader>
+                        <CardTitle>{t('charts.aov.title')}</CardTitle>
+                        <CardDescription>{t('charts.aov.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <ResponsiveContainer width="100%" height={350}>
+                            <LineChart data={aovData}>
+                                <XAxis dataKey="month" stroke="#888888" fontSize={12} tickLine={false} axisLine={false}/>
+                                <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `€${value}`} />
+                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} formatter={(value) => `${value.toFixed(2)}€`}/>
+                                <Legend />
+                                <Line type="monotone" dataKey="aov" name={t('charts.aov.legend')} stroke="hsl(var(--primary))" strokeWidth={2} dot={{ r: 4, fill: "hsl(var(--primary))" }} activeDot={{ r: 6 }}/>
+                            </LineChart>
                         </ResponsiveContainer>
                     </CardContent>
                 </Card>

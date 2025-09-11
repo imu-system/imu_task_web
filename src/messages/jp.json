@@ -349,6 +349,11 @@
                 "legendProviderNet": "プロバイダー純収益",
                 "legendPlatformFees": "プラットフォーム手数料",
                 "legendStripeFees": "Stripe手数料"
+            },
+            "aov": {
+                "title": "平均注文額 (AOV)",
+                "description": "完了した予約の平均価値の推移。",
+                "legend": "AOV"
             }
         },
         "filters": {

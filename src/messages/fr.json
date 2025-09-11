@@ -1849,6 +1849,11 @@
                 "legendProviderNet": "Revenu Net Prestataire",
                 "legendPlatformFees": "Commission Plateforme",
                 "legendStripeFees": "Frais Stripe"
+            },
+            "aov": {
+                "title": "Panier Moyen (AOV)",
+                "description": "Évolution de la valeur moyenne d'une réservation terminée.",
+                "legend": "AOV"
             }
         },
         "filters": {
