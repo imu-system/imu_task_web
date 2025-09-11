@@ -94,6 +94,14 @@ const timeToMatchData = [
     { category: 'Ménage', t1: 3.0, t2: 12 },
 ];
 
+const providerUtilizationData = [
+    { name: "Lucas B.", utilization: 75 },
+    { name: "Chloé P.", utilization: 90 },
+    { name: "Marie C.", utilization: 60 },
+    { name: "Ahmed B.", utilization: 45 },
+    { name: "Sophie D.", utilization: 82 },
+];
+
 
 export default function AdminReportsPage() {
     const { user, loading: authLoading } = useAuth();
@@ -360,6 +368,23 @@ export default function AdminReportsPage() {
                     </CardContent>
                 </Card>
 
+                 <Card>
+                    <CardHeader>
+                        <CardTitle>{t('charts.providerUtilization.title')}</CardTitle>
+                        <CardDescription>{t('charts.providerUtilization.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <ResponsiveContainer width="100%" height={350}>
+                            <BarChart data={providerUtilizationData}>
+                                <XAxis dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false} />
+                                <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}%`} />
+                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} formatter={(value) => `${value}%`} />
+                                <Bar dataKey="utilization" name={t('charts.providerUtilization.legend')} fill="hsl(var(--chart-1))" radius={[4, 4, 0, 0]} />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </CardContent>
+                </Card>
+
                  <Card className="md:col-span-2">
                     <CardHeader>
                         <CardTitle>{t('charts.conversionFunnel.title')}</CardTitle>
@@ -382,3 +407,4 @@ export default function AdminReportsPage() {
         </div>
     );
 }
+

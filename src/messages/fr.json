@@ -1878,6 +1878,11 @@
                 "description": "Temps moyen en heures pour la première offre et pour la réservation.",
                 "legendT1": "Temps 1ère offre (h)",
                 "legendT2": "Temps booking (h)"
+            },
+            "providerUtilization": {
+                "title": "Utilisation des Prestataires",
+                "description": "Pourcentage d'heures réservées par rapport aux heures disponibles déclarées.",
+                "legend": "Taux d'utilisation"
             }
         },
         "filters": {

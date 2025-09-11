@@ -1878,6 +1878,11 @@
                 "description": "Average time in hours to first offer and to booking.",
                 "legendT1": "Time to First Offer (h)",
                 "legendT2": "Time to Booking (h)"
+            },
+            "providerUtilization": {
+                "title": "Provider Utilization",
+                "description": "Percentage of booked hours over declared available hours.",
+                "legend": "Utilization"
             }
         },
         "filters": {

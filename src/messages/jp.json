@@ -380,6 +380,11 @@
                 "description": "最初のオファーと予約までの平均時間。",
                 "legendT1": "最初のオファーまでの時間 (h)",
                 "legendT2": "予約までの時間 (h)"
+            },
+            "providerUtilization": {
+                "title": "プロバイダー稼働率",
+                "description": "申告された利用可能時間に対する予約時間の割合。",
+                "legend": "稼働率"
             }
         },
         "filters": {
