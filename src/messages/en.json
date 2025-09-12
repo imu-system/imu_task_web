@@ -91,7 +91,7 @@
         }
     },
     "MyTasksPage": {
-        "title": "My Tasks",
+        "title": "My Requests",
         "subtitle": "Manage the tasks you have created.",
         "createTask": "Create new task",
         "noTasks": "You haven't created any tasks yet.",
@@ -208,7 +208,8 @@
             "title": "Actions",
             "edit": "Edit Task",
             "cancel": "Cancel Task",
-            "receipt": "View Receipt"
+            "receipt": "View Receipt",
+            "reportProblem": "Report a Problem"
         },
         "messaging": {
             "title": "Messaging",
@@ -273,6 +274,25 @@
         "cancelDialogTitle": "Are you sure you want to cancel this task?",
         "cancelDialogDescription": "This action cannot be undone. All offers will be declined and the task will be removed from the marketplace.",
         "cancelDialogCancel": "Go back",
-        "cancelDialogConfirm": "Yes, cancel task"
+        "cancelDialogConfirm": "Yes, cancel task",
+        "reportProblem": {
+            "title": "Report a Problem",
+            "description": "If you've encountered an issue with this task, please let us know.",
+            "reasonLabel": "Reason for reporting",
+            "reasonPlaceholder": "Select a reason",
+            "reasons": {
+                "noShow": "The provider did not show up",
+                "quality": "The work was not done correctly",
+                "delay": "The provider was significantly late",
+                "other": "Other"
+            },
+            "commentLabel": "Details",
+            "commentPlaceholder": "Please provide as much detail as possible...",
+            "attachmentsLabel": "Add attachments",
+            "attachmentsButton": "Upload photos or documents",
+            "submitButton": "Submit Report",
+            "toastSuccessTitle": "Report Sent",
+            "toastSuccessDescription": "Your report has been submitted and our team will review it shortly."
+        }
     }
 }

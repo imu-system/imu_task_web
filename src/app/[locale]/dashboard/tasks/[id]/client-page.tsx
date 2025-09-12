@@ -22,6 +22,8 @@ import {
   Trash2,
   Receipt,
   Loader2,
+  ShieldAlert,
+  Paperclip,
 } from 'lucide-react';
 import {
   AlertDialog,
@@ -41,6 +43,9 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useToast } from '@/hooks/use-toast';
 import TaskStatusTimeline from '@/components/task-status-timeline';
 import { useState } from 'react';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 
 const OfferCard = ({ offer, onAccept }: { offer: Offer, onAccept: (offer: Offer) => void }) => {
   const { toast } = useToast();
@@ -105,6 +110,7 @@ export default function TaskDetailClientPage({ task: initialTask, offers: initia
   const locale = useLocale();
   const [task, setTask] = useState(initialTask);
   const [offers, setOffers] = useState(initialOffers);
+  const { toast } = useToast();
 
   const isMatched = task.status === TaskStatus.matched || task.status === TaskStatus.in_progress || task.status === TaskStatus.completed;
 
@@ -116,6 +122,13 @@ export default function TaskDetailClientPage({ task: initialTask, offers: initia
         o.id === acceptedOffer.id ? {...o, status: 'accepted'} : {...o, status: 'declined'}
       )
     )
+  }
+
+  const handleReportProblem = () => {
+    toast({
+      title: tActions('reportProblem.toastSuccessTitle'),
+      description: tActions('reportProblem.toastSuccessDescription'),
+    });
   }
 
   return (
@@ -204,6 +217,52 @@ export default function TaskDetailClientPage({ task: initialTask, offers: initia
               <Button variant="outline" disabled={task.status !== TaskStatus.completed}>
                 <Receipt className="mr-2" />{t('actions.receipt')}
               </Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button variant="outline">
+                    <ShieldAlert className="mr-2"/>{t('actions.reportProblem')}
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                      <AlertDialogTitle>{tActions('reportProblem.title')}</AlertDialogTitle>
+                      <AlertDialogDescription>{tActions('reportProblem.description')}</AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <div className="space-y-4 py-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="reason">{tActions('reportProblem.reasonLabel')}</Label>
+                      <Select>
+                        <SelectTrigger id="reason">
+                          <SelectValue placeholder={tActions('reportProblem.reasonPlaceholder')} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="no_show">{tActions('reportProblem.reasons.noShow')}</SelectItem>
+                          <SelectItem value="quality">{tActions('reportProblem.reasons.quality')}</SelectItem>
+                          <SelectItem value="delay">{tActions('reportProblem.reasons.delay')}</SelectItem>
+                          <SelectItem value="other">{tActions('reportProblem.reasons.other')}</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="comment">{tActions('reportProblem.commentLabel')}</Label>
+                      <Textarea id="comment" placeholder={tActions('reportProblem.commentPlaceholder')} />
+                    </div>
+                     <div className="space-y-2">
+                      <Label htmlFor="attachments">{tActions('reportProblem.attachmentsLabel')}</Label>
+                      <Button variant="outline" asChild className="w-full">
+                        <label>
+                          <Paperclip className="mr-2"/>{tActions('reportProblem.attachmentsButton')}
+                          <input type="file" className="sr-only"/>
+                        </label>
+                      </Button>
+                    </div>
+                  </div>
+                  <AlertDialogFooter>
+                      <AlertDialogCancel>{tActions('cancelDialogCancel')}</AlertDialogCancel>
+                      <AlertDialogAction onClick={handleReportProblem}>{tActions('reportProblem.submitButton')}</AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
             </CardContent>
           </Card>
            <Card>
@@ -256,4 +315,3 @@ export default function TaskDetailClientPage({ task: initialTask, offers: initia
     </div>
   );
 }
-

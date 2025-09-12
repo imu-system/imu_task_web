@@ -208,7 +208,8 @@
             "title": "Actions",
             "edit": "Modifier la mission",
             "cancel": "Annuler la mission",
-            "receipt": "Voir le reçu"
+            "receipt": "Voir le reçu",
+            "reportProblem": "Signaler un problème"
         },
         "messaging": {
             "title": "Messagerie",
@@ -273,6 +274,25 @@
         "cancelDialogTitle": "Êtes-vous sûr de vouloir annuler cette mission ?",
         "cancelDialogDescription": "Cette action est irréversible. Toutes les offres seront refusées et la mission sera retirée du marché.",
         "cancelDialogCancel": "Retour",
-        "cancelDialogConfirm": "Oui, annuler la mission"
+        "cancelDialogConfirm": "Oui, annuler la mission",
+        "reportProblem": {
+            "title": "Signaler un problème",
+            "description": "Si vous avez rencontré un problème avec cette mission, veuillez nous en informer.",
+            "reasonLabel": "Raison du signalement",
+            "reasonPlaceholder": "Sélectionnez une raison",
+            "reasons": {
+                "noShow": "Le prestataire ne s'est pas présenté",
+                "quality": "Le travail n'a pas été fait correctement",
+                "delay": "Le prestataire était très en retard",
+                "other": "Autre"
+            },
+            "commentLabel": "Détails",
+            "commentPlaceholder": "Veuillez fournir autant de détails que possible...",
+            "attachmentsLabel": "Ajouter des pièces jointes",
+            "attachmentsButton": "Télécharger des photos ou documents",
+            "submitButton": "Envoyer le signalement",
+            "toastSuccessTitle": "Signalement envoyé",
+            "toastSuccessDescription": "Votre signalement a été envoyé et notre équipe l'examinera sous peu."
+        }
     }
 }
