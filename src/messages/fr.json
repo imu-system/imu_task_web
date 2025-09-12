@@ -120,8 +120,9 @@
         "toastNotFoundDescription": "La mission demandée n'a pas pu être trouvée ou vous n'avez pas la permission de la modifier."
     },
     "TaskCard": {
-        "viewTask": "Voir la mission",
-        "reviews": "({count} avis)"
+        "viewTask": "Voir",
+        "reviews": "({count} avis)",
+        "makeOffer": "Faire une offre"
     },
     "TaskCategories": {
         "shopping": "Courses",
@@ -196,7 +197,9 @@
         "priceLabel": "Votre prix (€)",
         "messageLabel": "Votre message",
         "messagePlaceholder": "Présentez-vous et expliquez pourquoi vous êtes la bonne personne pour cette mission.",
-        "submit": "Envoyer mon offre"
+        "submit": "Envoyer mon offre",
+        "toastSuccessTitle": "Offre envoyée !",
+        "toastSuccessDescription": "Votre offre a bien été transmise au client."
     },
     "TaskDetailPage": {
         "offersReceived": "Offres reçues ({count})",
@@ -345,6 +348,14 @@
                 "view": "Voir"
             },
             "noOffers": "Vous n'avez pas encore envoyé d'offres."
+        },
+        "tabs": {
+            "list": "Liste",
+            "calendar": "Calendrier"
+        },
+        "calendarView": {
+            "title": "Vue Calendrier",
+            "description": "Visualisez les missions disponibles sur un calendrier."
         }
     }
 }

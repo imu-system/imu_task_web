@@ -7,8 +7,8 @@ import { getOffers, getTasks } from '@/lib/data';
 import { Offer, Task, TaskStatus, UserRole } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState, useMemo } from 'react';
-import { Loader2, Briefcase, LayoutGrid, List } from 'lucide-react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Loader2, Briefcase, LayoutGrid, List, Calendar as CalendarIcon } from 'lucide-react';
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -16,6 +16,8 @@ import { Link } from '@/navigation';
 import { Input } from '@/components/ui/input';
 import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
 import TaskListCard from '@/components/task-list-card';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Calendar } from '@/components/ui/calendar';
 
 export default function ProviderOffersPage() {
     const t = useTranslations('ProviderOffersPage');
@@ -26,6 +28,7 @@ export default function ProviderOffersPage() {
     const [loading, setLoading] = useState(true);
     const [view, setView] = useState<'grid' | 'list'>('grid');
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
 
     const isProvider = user?.roles.includes(UserRole.provider);
 
@@ -53,7 +56,18 @@ export default function ProviderOffersPage() {
         task.description.toLowerCase().includes(searchTerm.toLowerCase())
         );
     }, [recommendedTasks, searchTerm]);
-
+    
+    const tasksByDay = useMemo(() => {
+        const tasksMap: { [key: string]: Task[] } = {};
+        recommendedTasks.forEach(task => {
+            const date = new Date(task.timeWindowStart).toDateString();
+            if (!tasksMap[date]) {
+                tasksMap[date] = [];
+            }
+            tasksMap[date].push(task);
+        });
+        return tasksMap;
+    }, [recommendedTasks]);
 
     if (loading) {
         return <div className="flex h-64 items-center justify-center"><Loader2 className="h-16 w-16 animate-spin text-primary" /></div>;
@@ -68,6 +82,32 @@ export default function ProviderOffersPage() {
             </div>
         )
     }
+    
+    const DayWithTasks = ({ date }: { date: Date }) => {
+        const dateString = date.toDateString();
+        const tasksForDay = tasksByDay[dateString];
+
+        if (tasksForDay) {
+            return (
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger className="w-full h-full flex items-center justify-center">
+                            <div className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-primary"></div>
+                            {date.getDate()}
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <div className="p-1 space-y-1">
+                                {tasksForDay.map(task => (
+                                    <p key={task.id} className="text-xs">{task.title}</p>
+                                ))}
+                            </div>
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+            )
+        }
+        return date.getDate();
+    }
 
     return (
         <div className="space-y-8">
@@ -79,66 +119,93 @@ export default function ProviderOffersPage() {
                 <p className="text-muted-foreground">{t('subtitle')}</p>
             </div>
             
-            <div className="space-y-4">
-                <h2 className="text-2xl font-bold font-headline">{t('recommendedTasks.title')}</h2>
-                
-                <div className="flex flex-col md:flex-row gap-4 justify-between">
-                    <Input 
-                        placeholder={tTasks('searchPlaceholder')}
-                        className="max-w-sm"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                    <div className="flex items-center gap-2">
-                        <TooltipProvider>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                            <Button variant={view === 'grid' ? 'default' : 'outline'} size="icon" onClick={() => setView('grid')}>
-                                <LayoutGrid className="h-4 w-4" />
-                                <span className="sr-only">{tTasks('viewGrid')}</span>
-                            </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                            <p>{tTasks('viewGrid')}</p>
-                            </TooltipContent>
-                        </Tooltip>
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                            <Button variant={view === 'list' ? 'default' : 'outline'} size="icon" onClick={() => setView('list')}>
-                                <List className="h-4 w-4" />
-                                <span className="sr-only">{tTasks('viewList')}</span>
-                            </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                            <p>{tTasks('viewList')}</p>
-                            </TooltipContent>
-                        </Tooltip>
-                        </TooltipProvider>
-                    </div>
-                </div>
-
-                {filteredTasks.length > 0 ? (
-                    <>
-                        {view === 'grid' ? (
-                            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                                {filteredTasks.map(task => (
-                                    <TaskCard key={task.id} task={task} />
-                                ))}
+            <Tabs defaultValue="list">
+                <TabsList className="grid w-full grid-cols-2">
+                    <TabsTrigger value="list">{t('tabs.list')}</TabsTrigger>
+                    <TabsTrigger value="calendar">{t('tabs.calendar')}</TabsTrigger>
+                </TabsList>
+                 <TabsContent value="list">
+                    <div className="space-y-4 pt-4">
+                        <h2 className="text-2xl font-bold font-headline">{t('recommendedTasks.title')}</h2>
+                        
+                        <div className="flex flex-col md:flex-row gap-4 justify-between">
+                            <Input 
+                                placeholder={tTasks('searchPlaceholder')}
+                                className="max-w-sm"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                            <div className="flex items-center gap-2">
+                                <TooltipProvider>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                    <Button variant={view === 'grid' ? 'default' : 'outline'} size="icon" onClick={() => setView('grid')}>
+                                        <LayoutGrid className="h-4 w-4" />
+                                        <span className="sr-only">{tTasks('viewGrid')}</span>
+                                    </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                    <p>{tTasks('viewGrid')}</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                    <Button variant={view === 'list' ? 'default' : 'outline'} size="icon" onClick={() => setView('list')}>
+                                        <List className="h-4 w-4" />
+                                        <span className="sr-only">{tTasks('viewList')}</span>
+                                    </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                    <p>{tTasks('viewList')}</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                                </TooltipProvider>
                             </div>
+                        </div>
+
+                        {filteredTasks.length > 0 ? (
+                            <>
+                                {view === 'grid' ? (
+                                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                                        {filteredTasks.map(task => (
+                                            <TaskCard key={task.id} task={task} />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <div className="space-y-4">
+                                        {filteredTasks.map(task => (
+                                            <TaskListCard key={task.id} task={task} />
+                                        ))}
+                                    </div>
+                                )}
+                            </>
                         ) : (
-                            <div className="space-y-4">
-                                {filteredTasks.map(task => (
-                                    <TaskListCard key={task.id} task={task} />
-                                ))}
+                            <div className="text-center py-12 rounded-lg border bg-card">
+                                <p className="text-muted-foreground">{searchTerm ? tTasks('noSearchResults') : t('recommendedTasks.noTasks')}</p>
                             </div>
                         )}
-                    </>
-                ) : (
-                     <div className="text-center py-12 rounded-lg border bg-card">
-                        <p className="text-muted-foreground">{searchTerm ? tTasks('noSearchResults') : t('recommendedTasks.noTasks')}</p>
                     </div>
-                )}
-            </div>
+                 </TabsContent>
+                 <TabsContent value="calendar">
+                     <Card>
+                        <CardHeader>
+                            <CardTitle>{t('calendarView.title')}</CardTitle>
+                            <CardDescription>{t('calendarView.description')}</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                             <Calendar
+                                mode="single"
+                                selected={selectedDate}
+                                onSelect={setSelectedDate}
+                                className="rounded-md border"
+                                components={{
+                                    Day: DayWithTasks
+                                }}
+                            />
+                        </CardContent>
+                    </Card>
+                 </TabsContent>
+            </Tabs>
 
             <Card>
                 <CardHeader>

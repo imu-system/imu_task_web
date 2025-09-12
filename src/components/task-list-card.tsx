@@ -9,13 +9,13 @@ import {
 import { type Task, TaskStatus } from '@/lib/types';
 import {
   Calendar,
-  MapPin,
-  HelpCircle,
   Eye,
 } from 'lucide-react';
 import { Link } from '@/navigation';
 import { Button } from './ui/button';
 import { useTranslations, useLocale } from 'next-intl';
+import { Dialog, DialogTrigger, DialogContent } from './ui/dialog';
+import { OfferForm } from './offer-form';
 
 type TaskListCardProps = {
   task: Task;
@@ -35,6 +35,7 @@ export default function TaskListCard({ task }: TaskListCardProps) {
   const { title, category, timeWindowStart, priceOffered, id, status } = task;
   const locale = useLocale();
   const t = useTranslations('MyTasksPage');
+  const tCard = useTranslations('TaskCard');
   const tStatus = useTranslations('TaskStatusTimeline');
 
   const categoryLabel = category?.name?.[locale as keyof typeof category.name] || category?.slug || 'Catégorie';
@@ -44,9 +45,11 @@ export default function TaskListCard({ task }: TaskListCardProps) {
       <CardContent className="p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
-                <Badge variant={getStatusVariant(status)}>
-                    {tStatus(status as any)}
-                </Badge>
+                { tStatus(status as any) ? (
+                    <Badge variant={getStatusVariant(status)}>
+                        {tStatus(status as any)}
+                    </Badge>
+                ) : null}
                 <Badge variant="outline">{categoryLabel}</Badge>
             </div>
             <p className="font-semibold text-lg">{title}</p>
@@ -61,12 +64,22 @@ export default function TaskListCard({ task }: TaskListCardProps) {
             <div className="text-lg font-bold text-primary text-left md:text-right">
                 {priceOffered}€
             </div>
-            <Button asChild size="sm">
-                <Link href={`/dashboard/tasks/${id}`}>
-                    <Eye className="mr-2"/>
-                    {t('view')}
-                </Link>
-            </Button>
+            <div className="flex gap-2">
+                <Button asChild variant="outline" size="sm">
+                    <Link href={`/dashboard/tasks/${id}`}>
+                        <Eye className="mr-2"/>
+                        {t('view')}
+                    </Link>
+                </Button>
+                 <Dialog>
+                    <DialogTrigger asChild>
+                        <Button size="sm">{tCard('makeOffer')}</Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <OfferForm task={task}/>
+                    </DialogContent>
+                </Dialog>
+            </div>
         </div>
       </CardContent>
     </Card>

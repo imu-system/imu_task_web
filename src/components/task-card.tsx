@@ -21,11 +21,14 @@ import {
   Wrench,
   PawPrint,
   HelpCircle,
+  Eye,
 } from 'lucide-react';
 import { Link } from '@/navigation';
 import { Button } from './ui/button';
 import { useTranslations, useLocale } from 'next-intl';
 import { ReactNode } from 'react';
+import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
+import { OfferForm } from './offer-form';
 
 const categoryIcons: Record<string, ReactNode> = {
   groceries: <ShoppingBasket className="h-4 w-4" />,
@@ -88,9 +91,22 @@ export default function TaskCard({ task }: TaskCardProps) {
           </Avatar>
           <span className="text-sm font-medium">{clientName}</span>
         </div>
-        <Button asChild>
-          <Link href={`/dashboard/tasks/${id}`}>{t('viewTask')}</Link>
-        </Button>
+        <div className="flex gap-2">
+           <Button asChild variant="outline" size="sm">
+              <Link href={`/dashboard/tasks/${id}`}>
+                <Eye className="mr-2"/>
+                {t('viewTask')}
+              </Link>
+          </Button>
+          <Dialog>
+              <DialogTrigger asChild>
+                  <Button size="sm">{t('makeOffer')}</Button>
+              </DialogTrigger>
+              <DialogContent>
+                  <OfferForm task={task}/>
+              </DialogContent>
+          </Dialog>
+        </div>
       </CardFooter>
     </Card>
   );

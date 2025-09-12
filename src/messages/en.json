@@ -120,8 +120,9 @@
         "toastNotFoundDescription": "The requested task could not be found or you don't have permission to edit it."
     },
     "TaskCard": {
-        "viewTask": "View task",
-        "reviews": "({count} reviews)"
+        "viewTask": "View",
+        "reviews": "({count} reviews)",
+        "makeOffer": "Make Offer"
     },
     "TaskCategories": {
         "shopping": "Shopping",
@@ -196,7 +197,9 @@
         "priceLabel": "Your price (€)",
         "messageLabel": "Your message",
         "messagePlaceholder": "Introduce yourself and explain why you're the right person for this task.",
-        "submit": "Send my offer"
+        "submit": "Send my offer",
+        "toastSuccessTitle": "Offer Sent!",
+        "toastSuccessDescription": "Your offer has been sent to the client."
     },
     "TaskDetailPage": {
         "offersReceived": "Offers received ({count})",
@@ -345,6 +348,14 @@
                 "view": "View"
             },
             "noOffers": "You have not sent any offers yet."
+        },
+        "tabs": {
+            "list": "List",
+            "calendar": "Calendar"
+        },
+        "calendarView": {
+            "title": "Calendar View",
+            "description": "See available tasks on a calendar."
         }
     }
 }
