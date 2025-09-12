@@ -355,7 +355,9 @@
         },
         "calendarView": {
             "title": "Calendar View",
-            "description": "See available tasks on a calendar."
+            "description": "See available tasks on a calendar.",
+            "tasksFor": "Tasks for {date}",
+            "noTasksForDay": "No tasks available for this day."
         }
     }
 }

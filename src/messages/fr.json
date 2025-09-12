@@ -355,7 +355,9 @@
         },
         "calendarView": {
             "title": "Vue Calendrier",
-            "description": "Visualisez les missions disponibles sur un calendrier."
+            "description": "Visualisez les missions disponibles sur un calendrier.",
+            "tasksFor": "Missions pour le {date}",
+            "noTasksForDay": "Aucune mission disponible pour ce jour."
         }
     }
 }

@@ -18,6 +18,7 @@ import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/comp
 import TaskListCard from '@/components/task-list-card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Calendar } from '@/components/ui/calendar';
+import TaskCalendarCard from '@/components/task-calendar-card';
 
 export default function ProviderOffersPage() {
     const t = useTranslations('ProviderOffersPage');
@@ -68,6 +69,11 @@ export default function ProviderOffersPage() {
         });
         return tasksMap;
     }, [recommendedTasks]);
+    
+    const tasksForSelectedDay = useMemo(() => {
+        if (!selectedDate) return [];
+        return tasksByDay[selectedDate.toDateString()] || [];
+    }, [selectedDate, tasksByDay]);
 
     if (loading) {
         return <div className="flex h-64 items-center justify-center"><Loader2 className="h-16 w-16 animate-spin text-primary" /></div>;
@@ -192,16 +198,28 @@ export default function ProviderOffersPage() {
                             <CardTitle>{t('calendarView.title')}</CardTitle>
                             <CardDescription>{t('calendarView.description')}</CardDescription>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-8">
                              <Calendar
                                 mode="single"
                                 selected={selectedDate}
                                 onSelect={setSelectedDate}
-                                className="rounded-md border"
+                                className="rounded-md border p-0"
                                 components={{
                                     Day: DayWithTasks
                                 }}
                             />
+                            <div className="space-y-4">
+                                <h3 className="font-semibold text-lg">{t('calendarView.tasksFor', { date: selectedDate ? selectedDate.toLocaleDateString() : '...' })}</h3>
+                                {tasksForSelectedDay.length > 0 ? (
+                                    <div className="space-y-2">
+                                        {tasksForSelectedDay.map(task => (
+                                            <TaskCalendarCard key={task.id} task={task} />
+                                        ))}
+                                    </div>
+                                ) : (
+                                    <p className="text-sm text-muted-foreground pt-4">{t('calendarView.noTasksForDay')}</p>
+                                )}
+                            </div>
                         </CardContent>
                     </Card>
                  </TabsContent>
