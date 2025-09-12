@@ -11,6 +11,7 @@ import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/hooks/use-auth';
+import { getTasks } from '@/lib/data';
 
 export default function DashboardPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -24,52 +25,12 @@ export default function DashboardPage() {
       return;
     }
 
-    const q = query(collection(db, 'tasks'), where('status', '==', TaskStatus.published));
-    
-    const unsubscribe = onSnapshot(q, async (querySnapshot) => {
-      setLoading(true);
-      const tasksData: Task[] = [];
-      
-      // Caching fetched documents
-      const cache = new Map<string, any>();
-      const getCachedDoc = async (collectionName: string, id: string) => {
-        const key = `${collectionName}:${id}`;
-        if (cache.has(key)) {
-          return cache.get(key);
-        }
-        const docRef = doc(db, collectionName, id);
-        const docSnap = await getDoc(docRef);
-        const data = docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } : null;
-        cache.set(key, data);
-        return data;
-      };
+    // Using mock data as Firestore is empty for now
+    setLoading(true);
+    const mockTasks = getTasks().filter(t => t.status === TaskStatus.published);
+    setTasks(mockTasks);
+    setLoading(false);
 
-      for (const taskDoc of querySnapshot.docs) {
-        const taskData = taskDoc.data();
-        
-        const client = await getCachedDoc('users', taskData.clientId);
-        const category = await getCachedDoc('serviceCategories', taskData.categoryId);
-        const address = await getCachedDoc('addresses', taskData.addressId);
-        
-        tasksData.push({
-          id: taskDoc.id,
-          ...taskData,
-          timeWindowStart: (taskData.timeWindowStart as Timestamp)?.toDate(),
-          timeWindowEnd: (taskData.timeWindowEnd as Timestamp)?.toDate(),
-          client: client ? { id: client.id, email: client.email, profile: { displayName: client.displayName, photoUrl: client.photoURL || `https://i.pravatar.cc/150?u=${client.id}` }} : null,
-          category: category as ServiceCategory | null,
-          address: address as Address | null,
-        } as Task);
-      }
-      
-      setTasks(tasksData);
-      setLoading(false);
-    }, (error) => {
-      console.error("Error fetching tasks: ", error);
-      setLoading(false);
-    });
-
-    return () => unsubscribe();
   }, [user]);
 
   return (
