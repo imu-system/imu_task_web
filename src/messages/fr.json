@@ -300,10 +300,19 @@
         "title": "Trouver un prestataire",
         "subtitle": "Parcourez les profils et trouvez la personne idéale pour votre mission.",
         "filters": {
-            "keywordPlaceholder": "Rechercher par mot-clé (ex: jardinier, courses...)",
-            "categoryPlaceholder": "Toutes catégories",
+            "keywordLabel": "Mot-clé ou compétence",
+            "keywordPlaceholder": "Ex: jardinier, courses, bricolage...",
+            "addressLabel": "Lieu",
+            "addressPlaceholder": "Entrez une ville ou une adresse",
+            "distanceLabel": "Distance",
+            "availabilityLabel": "Disponibilité",
             "availabilityPlaceholder": "Toutes disponibilités",
-            "refineSearch": "Affiner la recherche"
+            "categoryLabel": "Catégorie",
+            "categoryPlaceholder": "Toutes catégories",
+            "priceLabel": "Tarif horaire (€)",
+            "minPricePlaceholder": "Min",
+            "maxPricePlaceholder": "Max",
+            "searchButton": "Rechercher des prestataires"
         }
     },
     "ProviderCard": {

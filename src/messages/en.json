@@ -300,10 +300,19 @@
         "title": "Find a Provider",
         "subtitle": "Browse profiles and find the perfect person for your task.",
         "filters": {
-            "keywordPlaceholder": "Search by keyword (e.g. gardener, shopping...)",
-            "categoryPlaceholder": "All categories",
+            "keywordLabel": "Keyword or skill",
+            "keywordPlaceholder": "E.g. gardener, shopping, handyman...",
+            "addressLabel": "Location",
+            "addressPlaceholder": "Enter a city or address",
+            "distanceLabel": "Distance",
+            "availabilityLabel": "Availability",
             "availabilityPlaceholder": "All availabilities",
-            "refineSearch": "Refine Search"
+            "categoryLabel": "Category",
+            "categoryPlaceholder": "All categories",
+            "priceLabel": "Hourly rate (€)",
+            "minPricePlaceholder": "Min",
+            "maxPricePlaceholder": "Max",
+            "searchButton": "Search Providers"
         }
     },
     "ProviderCard": {
