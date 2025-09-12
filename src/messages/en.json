@@ -312,7 +312,9 @@
             "priceLabel": "Hourly rate (€)",
             "minPricePlaceholder": "Min",
             "maxPricePlaceholder": "Max",
-            "searchButton": "Search Providers"
+            "searchButton": "Search",
+            "moreFilters": "More Filters",
+            "hideFilters": "Hide Filters"
         }
     },
     "ProviderCard": {

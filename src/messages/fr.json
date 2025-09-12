@@ -312,7 +312,9 @@
             "priceLabel": "Tarif horaire (€)",
             "minPricePlaceholder": "Min",
             "maxPricePlaceholder": "Max",
-            "searchButton": "Rechercher des prestataires"
+            "searchButton": "Rechercher",
+            "moreFilters": "Plus de filtres",
+            "hideFilters": "Masquer les filtres"
         }
     },
     "ProviderCard": {
