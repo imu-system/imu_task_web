@@ -268,7 +268,11 @@
         "in_progress": "En cours",
         "completed": "Terminée",
         "canceled": "Mission annulée"
+    },
+    "TaskActions": {
+        "cancelDialogTitle": "Êtes-vous sûr de vouloir annuler cette mission ?",
+        "cancelDialogDescription": "Cette action est irréversible. Toutes les offres seront refusées et la mission sera retirée du marché.",
+        "cancelDialogCancel": "Retour",
+        "cancelDialogConfirm": "Oui, annuler la mission"
     }
 }
-
-    

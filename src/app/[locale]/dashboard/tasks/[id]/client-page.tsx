@@ -21,23 +21,42 @@ import {
   Edit,
   Trash2,
   Receipt,
+  Loader2,
 } from 'lucide-react';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { type Offer, type Task, TaskStatus } from '@/lib/types';
 import { useLocale, useTranslations } from 'next-intl';
 import { useToast } from '@/hooks/use-toast';
 import TaskStatusTimeline from '@/components/task-status-timeline';
+import { useState } from 'react';
 
-const OfferCard = ({ offer }: { offer: Offer }) => {
+const OfferCard = ({ offer, onAccept }: { offer: Offer, onAccept: (offer: Offer) => void }) => {
   const { toast } = useToast();
   const t = useTranslations('OfferCard');
+  const [isAccepting, setIsAccepting] = useState(false);
 
-  const handleAccept = () => {
+  const handleAccept = async () => {
+    setIsAccepting(true);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
     toast({
         title: t('toastAcceptTitle'),
         description: t('toastAcceptDescription', { name: offer.provider.profile?.displayName }),
     });
+    onAccept(offer);
+    setIsAccepting(false);
   }
 
   return (
@@ -65,7 +84,10 @@ const OfferCard = ({ offer }: { offer: Offer }) => {
           {offer.message}
         </p>
         <div className="flex gap-2 pt-2">
-          <Button size="sm" onClick={handleAccept}>{t('accept')}</Button>
+          <Button size="sm" onClick={handleAccept} disabled={isAccepting}>
+            {isAccepting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
+            {t('accept')}
+          </Button>
           <Button size="sm" variant="ghost">
             <MessageSquare className="mr-2 h-4 w-4" />
             {t('contact')}
@@ -77,11 +99,24 @@ const OfferCard = ({ offer }: { offer: Offer }) => {
 };
 
 
-export default function TaskDetailClientPage({ task, offers }: { task: Task, offers: Offer[] }) {
+export default function TaskDetailClientPage({ task: initialTask, offers: initialOffers }: { task: Task, offers: Offer[] }) {
   const t = useTranslations('TaskDetailPage');
+  const tActions = useTranslations('TaskActions');
   const locale = useLocale();
+  const [task, setTask] = useState(initialTask);
+  const [offers, setOffers] = useState(initialOffers);
 
   const isMatched = task.status === TaskStatus.matched || task.status === TaskStatus.in_progress || task.status === TaskStatus.completed;
+
+  const handleOfferAccepted = (acceptedOffer: Offer) => {
+    // Visually update the UI to reflect the new state
+    setTask(currentTask => ({...currentTask, status: TaskStatus.matched}));
+    setOffers(currentOffers => 
+      currentOffers.map(o => 
+        o.id === acceptedOffer.id ? {...o, status: 'accepted'} : {...o, status: 'declined'}
+      )
+    )
+  }
 
   return (
     <div className="max-w-6xl mx-auto space-y-8">
@@ -120,7 +155,7 @@ export default function TaskDetailClientPage({ task, offers }: { task: Task, off
             {offers.length > 0 ? (
               <div className="space-y-4">
                 {offers.map((offer) => (
-                  <OfferCard key={offer.id} offer={offer} />
+                  <OfferCard key={offer.id} offer={offer} onAccept={handleOfferAccepted}/>
                 ))}
               </div>
             ) : (
@@ -147,9 +182,24 @@ export default function TaskDetailClientPage({ task, offers }: { task: Task, off
                   <Edit className="mr-2" />{t('actions.edit')}
                 </Link>
               </Button>
-              <Button variant="destructive" disabled={isMatched}>
-                <Trash2 className="mr-2" />{t('actions.cancel')}
-              </Button>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                    <Button variant="destructive" disabled={isMatched}>
+                        <Trash2 className="mr-2" />{t('actions.cancel')}
+                    </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>{tActions('cancelDialogTitle')}</AlertDialogTitle>
+                        <AlertDialogDescription>{tActions('cancelDialogDescription')}</AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>{tActions('cancelDialogCancel')}</AlertDialogCancel>
+                        <AlertDialogAction>{tActions('cancelDialogConfirm')}</AlertDialogAction>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+
               <Separator />
               <Button variant="outline" disabled={task.status !== TaskStatus.completed}>
                 <Receipt className="mr-2" />{t('actions.receipt')}
@@ -206,3 +256,4 @@ export default function TaskDetailClientPage({ task, offers }: { task: Task, off
     </div>
   );
 }
+

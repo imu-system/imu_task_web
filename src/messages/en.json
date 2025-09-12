@@ -268,7 +268,11 @@
         "in_progress": "In Progress",
         "completed": "Completed",
         "canceled": "Task Canceled"
+    },
+    "TaskActions": {
+        "cancelDialogTitle": "Are you sure you want to cancel this task?",
+        "cancelDialogDescription": "This action cannot be undone. All offers will be declined and the task will be removed from the marketplace.",
+        "cancelDialogCancel": "Go back",
+        "cancelDialogConfirm": "Yes, cancel task"
     }
 }
-
-    
