@@ -19,6 +19,8 @@ import TaskListCard from '@/components/task-list-card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Calendar } from '@/components/ui/calendar';
 import TaskCalendarCard from '@/components/task-calendar-card';
+import { DayProps } from 'react-day-picker';
+import { cn } from '@/lib/utils';
 
 export default function ProviderOffersPage() {
     const t = useTranslations('ProviderOffersPage');
@@ -89,17 +91,20 @@ export default function ProviderOffersPage() {
         )
     }
     
-    const DayWithTasks = ({ date }: { date: Date }) => {
+    const DayWithTasks = (props: DayProps) => {
+        const { date } = props;
         const dateString = date.toDateString();
         const tasksForDay = tasksByDay[dateString];
 
-        if (tasksForDay) {
+        if (tasksForDay && tasksForDay.length > 0) {
             return (
                 <TooltipProvider>
                     <Tooltip>
-                        <TooltipTrigger className="w-full h-full flex items-center justify-center">
-                            <div className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-primary"></div>
-                            {date.getDate()}
+                        <TooltipTrigger asChild>
+                             <div className={cn("relative flex h-9 w-9 items-center justify-center p-0", props.className)}>
+                                {date.getDate()}
+                                <div className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-primary"></div>
+                            </div>
                         </TooltipTrigger>
                         <TooltipContent>
                             <div className="p-1 space-y-1">
@@ -112,7 +117,7 @@ export default function ProviderOffersPage() {
                 </TooltipProvider>
             )
         }
-        return date.getDate();
+        return <div className={cn("flex h-9 w-9 items-center justify-center p-0", props.className)}>{date.getDate()}</div>;
     }
 
     return (
