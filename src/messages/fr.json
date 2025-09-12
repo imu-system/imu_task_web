@@ -181,15 +181,24 @@
         "submit": "Envoyer mon offre"
     },
     "TaskDetailPage": {
-        "clientView": "Vue Client",
-        "providerView": "Vue Prestataire",
         "offersReceived": "Offres reçues ({count})",
         "noOffers": "Vous n'avez pas encore reçu d'offres pour cette mission.",
         "budget": "Budget du client",
         "client": "Client",
         "memberSince": "Membre depuis {year}",
         "identityVerified": "Identité vérifiée",
-        "paymentVerified": "Paiement vérifié"
+        "paymentVerified": "Paiement vérifié",
+        "actions": {
+            "title": "Actions",
+            "edit": "Modifier la mission",
+            "cancel": "Annuler la mission",
+            "receipt": "Voir le reçu"
+        },
+        "messaging": {
+            "title": "Messagerie",
+            "contactProvider": "Contacter le prestataire",
+            "notMatched": "La messagerie sera disponible une fois que vous aurez accepté une offre."
+        }
     },
     "ProfilePage": {
         "title": "Profil & Paramètres",
@@ -236,5 +245,12 @@
     "ImpersonationBanner": {
         "impersonateWarning": "Vous usurpez actuellement l'identité de {email}.",
         "stopImpersonation": "Arrêter l'usurpation"
+    },
+    "TaskStatusTimeline": {
+        "published": "Publiée",
+        "matched": "Assignée",
+        "in_progress": "En cours",
+        "completed": "Terminée",
+        "canceled": "Mission annulée"
     }
 }

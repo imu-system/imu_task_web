@@ -18,18 +18,17 @@ import {
   Star,
   MessageSquare,
   UserCheck,
+  Edit,
+  Trash2,
+  Receipt,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { Textarea } from '@/components/ui/textarea';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { type Offer } from '@/lib/types';
-import { Switch } from '@/components/ui/switch';
-import { useState } from 'react';
+import { type Offer, TaskStatus } from '@/lib/types';
 import { useLocale } from 'next-intl';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslations } from 'next-intl';
+import TaskStatusTimeline from '@/components/task-status-timeline';
 
 const OfferCard = ({ offer }: { offer: Offer }) => {
   const { toast } = useToast();
@@ -89,8 +88,11 @@ export default function TaskDetailPage() {
     notFound();
   }
 
+  const isMatched = task.status === TaskStatus.matched || task.status === TaskStatus.in_progress || task.status === TaskStatus.completed;
+
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto space-y-8">
+        <TaskStatusTimeline currentStatus={task.status} />
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-6">
           <Card>
@@ -141,6 +143,38 @@ export default function TaskDetailPage() {
               <span className="text-4xl font-bold text-primary">{task.priceOffered}€</span>
               <CardDescription>{t('budget')}</CardDescription>
             </CardHeader>
+          </Card>
+           <Card>
+            <CardHeader>
+              <CardTitle>{t('actions.title')}</CardTitle>
+            </CardHeader>
+            <CardContent className="grid grid-cols-1 gap-2">
+              <Button variant="outline" disabled={isMatched}>
+                <Edit className="mr-2" />{t('actions.edit')}
+              </Button>
+              <Button variant="destructive" disabled={isMatched}>
+                <Trash2 className="mr-2" />{t('actions.cancel')}
+              </Button>
+              <Separator />
+              <Button variant="outline" disabled={task.status !== TaskStatus.completed}>
+                <Receipt className="mr-2" />{t('actions.receipt')}
+              </Button>
+            </CardContent>
+          </Card>
+           <Card>
+            <CardHeader>
+              <CardTitle>{t('messaging.title')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {isMatched ? (
+                <Button className="w-full">
+                  <MessageSquare className="mr-2"/>
+                  {t('messaging.contactProvider')}
+                </Button>
+              ) : (
+                <p className="text-sm text-muted-foreground text-center">{t('messaging.notMatched')}</p>
+              )}
+            </CardContent>
           </Card>
           <Card>
             <CardHeader>

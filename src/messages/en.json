@@ -181,15 +181,24 @@
         "submit": "Send my offer"
     },
     "TaskDetailPage": {
-        "clientView": "Client view",
-        "providerView": "Provider view",
         "offersReceived": "Offers received ({count})",
         "noOffers": "You haven't received any offers for this task yet.",
         "budget": "Client budget",
         "client": "Client",
         "memberSince": "Member since {year}",
         "identityVerified": "Identity verified",
-        "paymentVerified": "Payment verified"
+        "paymentVerified": "Payment verified",
+        "actions": {
+            "title": "Actions",
+            "edit": "Edit Task",
+            "cancel": "Cancel Task",
+            "receipt": "View Receipt"
+        },
+        "messaging": {
+            "title": "Messaging",
+            "contactProvider": "Contact Provider",
+            "notMatched": "Messaging will be available once you accept an offer."
+        }
     },
     "ProfilePage": {
         "title": "Profile & Settings",
@@ -236,5 +245,12 @@
     "ImpersonationBanner": {
         "impersonateWarning": "You are currently impersonating {email}.",
         "stopImpersonation": "Stop impersonation"
+    },
+    "TaskStatusTimeline": {
+        "published": "Published",
+        "matched": "Matched",
+        "in_progress": "In Progress",
+        "completed": "Completed",
+        "canceled": "Task Canceled"
     }
 }
