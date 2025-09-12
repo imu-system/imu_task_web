@@ -61,7 +61,8 @@
         "profile": "Profile",
         "logout": "Log out",
         "admin": "Admin",
-        "findProvider": "Find a provider"
+        "findProvider": "Find a provider",
+        "findTask": "Find a task"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -322,5 +323,28 @@
         "noBio": "This provider does not have a bio yet.",
         "viewProfile": "View Profile",
         "contact": "Contact"
+    },
+    "ProviderOffersPage": {
+        "title": "Tasks & Offers",
+        "subtitle": "Find tasks and manage your offers.",
+        "notProvider": {
+            "title": "This section is for providers.",
+            "description": "To offer your services, please complete your provider profile.",
+            "button": "Go to Profile"
+        },
+        "recommendedTasks": {
+            "title": "Recommended Tasks",
+            "noTasks": "No recommended tasks at the moment."
+        },
+        "sentOffers": {
+            "title": "My Sent Offers",
+            "table": {
+                "task": "Task",
+                "yourPrice": "Your Price",
+                "status": "Status",
+                "view": "View"
+            },
+            "noOffers": "You have not sent any offers yet."
+        }
     }
 }

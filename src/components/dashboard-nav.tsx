@@ -46,6 +46,7 @@ import {
   ShieldAlert as ModerationIcon,
   Plug,
   Search,
+  Briefcase,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -65,6 +66,7 @@ export function DashboardNav() {
     { href: '/dashboard', icon: <LayoutGrid />, label: t('dashboard'), exact: true },
     { href: '/dashboard/tasks/new', icon: <PlusCircle />, label: t('createTask') },
     { href: '/dashboard/search', icon: <Search />, label: t('findProvider') },
+    { href: '/dashboard/offers', icon: <Briefcase />, label: t('findTask') },
     { href: '/dashboard/tasks', icon: <BookMarked />, label: t('myTasks') },
     { href: '/dashboard/messages', icon: <MessageSquare />, label: t('messages') },
     { href: '/dashboard/wallet', icon: <Wallet />, label: t('wallet') },

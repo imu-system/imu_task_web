@@ -61,7 +61,8 @@
         "profile": "Profil",
         "logout": "Se déconnecter",
         "admin": "Admin",
-        "findProvider": "Trouver un prestataire"
+        "findProvider": "Trouver un prestataire",
+        "findTask": "Trouver une mission"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -322,5 +323,28 @@
         "noBio": "Ce prestataire n'a pas encore de biographie.",
         "viewProfile": "Voir le profil",
         "contact": "Contacter"
+    },
+    "ProviderOffersPage": {
+        "title": "Missions & Offres",
+        "subtitle": "Trouvez des missions et gérez vos offres.",
+        "notProvider": {
+            "title": "Cette section est réservée aux prestataires.",
+            "description": "Pour proposer vos services, veuillez compléter votre profil de prestataire.",
+            "button": "Aller au profil"
+        },
+        "recommendedTasks": {
+            "title": "Missions recommandées",
+            "noTasks": "Aucune mission recommandée pour le moment."
+        },
+        "sentOffers": {
+            "title": "Mes offres envoyées",
+            "table": {
+                "task": "Mission",
+                "yourPrice": "Votre prix",
+                "status": "Statut",
+                "view": "Voir"
+            },
+            "noOffers": "Vous n'avez pas encore envoyé d'offres."
+        }
     }
 }
