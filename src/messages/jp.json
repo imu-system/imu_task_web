@@ -104,5 +104,9 @@
         "durationHelp": "タスクにかかる時間を推定してください。",
         "attachmentsLabel": "添付ファイル",
         "attachmentsPlaceholder": "ここをクリックまたはドラッグ＆ドロップしてファイルを追加"
+    },
+    "ImpersonationBanner": {
+        "impersonateWarning": "現在、{email}になりすましています。",
+        "stopImpersonation": "なりすましを停止"
     }
 }

@@ -203,5 +203,9 @@
         "addressPlaceholder": "Start typing your address...",
         "cancel": "Cancel",
         "save": "Save Address"
+    },
+    "ImpersonationBanner": {
+        "impersonateWarning": "You are currently impersonating {email}.",
+        "stopImpersonation": "Stop impersonation"
     }
 }

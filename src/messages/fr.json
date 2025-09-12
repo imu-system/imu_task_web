@@ -203,5 +203,9 @@
         "addressPlaceholder": "Commencez à taper votre adresse...",
         "cancel": "Annuler",
         "save": "Enregistrer l'adresse"
+    },
+    "ImpersonationBanner": {
+        "impersonateWarning": "Vous usurpez actuellement l'identité de {email}.",
+        "stopImpersonation": "Arrêter l'usurpation"
     }
 }

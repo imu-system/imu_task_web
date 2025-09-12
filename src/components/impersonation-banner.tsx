@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 
 export default function ImpersonationBanner() {
   const { impersonatingUser, stopImpersonation } = useAuth();
-  const t = useTranslations('AdminUserDetailPage');
+  const t = useTranslations('ImpersonationBanner');
 
   if (!impersonatingUser) {
     return null;
@@ -18,7 +18,7 @@ export default function ImpersonationBanner() {
     <div className="bg-yellow-500 text-yellow-900 py-2 px-4 flex items-center justify-center gap-4 text-sm z-50 relative">
       <AlertCircle className="h-5 w-5" />
       <p>
-        {t('cards.actions.impersonateWarning.text', { email: impersonatingUser.email })}
+        {t('impersonateWarning', { email: impersonatingUser.email })}
       </p>
       <Button
         variant="ghost"
@@ -26,10 +26,8 @@ export default function ImpersonationBanner() {
         onClick={stopImpersonation}
         className="text-current hover:bg-yellow-400/50 hover:text-yellow-900"
       >
-        {t('cards.actions.impersonateWarning.stop')}
+        {t('stopImpersonation')}
       </Button>
     </div>
   );
 }
-
-    
