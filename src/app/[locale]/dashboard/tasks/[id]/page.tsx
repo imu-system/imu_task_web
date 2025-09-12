@@ -1,3 +1,4 @@
+
 'use client';
 
 import { getOffersForTask } from '@/lib/data';
@@ -30,7 +31,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import { useToast } from '@/hooks/use-toast';
 import TaskStatusTimeline from '@/components/task-status-timeline';
 import { useEffect, useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 
 const OfferCard = ({ offer }: { offer: Offer }) => {
@@ -96,7 +97,15 @@ export default function TaskDetailPage() {
         const taskSnap = await getDoc(taskRef);
 
         if (taskSnap.exists()) {
-            setTask({ id: taskSnap.id, ...taskSnap.data() } as Task);
+            const taskData = { id: taskSnap.id, ...taskSnap.data() } as Task;
+            // Convert Firestore Timestamps to JS Dates
+            if (taskData.timeWindowStart instanceof Timestamp) {
+                taskData.timeWindowStart = taskData.timeWindowStart.toDate();
+            }
+             if (taskData.timeWindowEnd instanceof Timestamp) {
+                taskData.timeWindowEnd = taskData.timeWindowEnd.toDate();
+            }
+            setTask(taskData);
         } else {
             setTask(null);
         }
