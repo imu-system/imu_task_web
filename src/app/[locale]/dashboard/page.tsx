@@ -4,7 +4,7 @@
 import TaskCard from '@/components/task-card';
 import { Button } from '@/components/ui/button';
 import { db } from '@/lib/firebase';
-import { Task, TaskStatus } from '@/lib/types';
+import { Address, ServiceCategory, Task, TaskStatus } from '@/lib/types';
 import { collection, onSnapshot, query, where, doc, getDoc, Timestamp } from 'firebase/firestore';
 import { PlusCircle, Loader2 } from 'lucide-react';
 import { Link } from '@/navigation';
@@ -19,11 +19,10 @@ export default function DashboardPage() {
   const { user } = useAuth();
 
   useEffect(() => {
-    // We don't fetch tasks until the user is loaded
     if (!user) {
-        setLoading(true);
-        return;
-    };
+      setLoading(true);
+      return;
+    }
 
     const q = query(collection(db, 'tasks'), where('status', '==', TaskStatus.published));
     
@@ -31,35 +30,35 @@ export default function DashboardPage() {
       setLoading(true);
       const tasksData: Task[] = [];
       
-      const userPromises = new Map<string, Promise<any>>();
-      const getUser = (userId: string) => {
-        if (!userPromises.has(userId)) {
-          userPromises.set(userId, getDoc(doc(db, 'users', userId)));
+      // Caching fetched documents
+      const cache = new Map<string, any>();
+      const getCachedDoc = async (collectionName: string, id: string) => {
+        const key = `${collectionName}:${id}`;
+        if (cache.has(key)) {
+          return cache.get(key);
         }
-        return userPromises.get(userId)!;
-      }
+        const docRef = doc(db, collectionName, id);
+        const docSnap = await getDoc(docRef);
+        const data = docSnap.exists() ? { id: docSnap.id, ...docSnap.data() } : null;
+        cache.set(key, data);
+        return data;
+      };
 
       for (const taskDoc of querySnapshot.docs) {
         const taskData = taskDoc.data();
         
-        let clientData: any = null;
-        if (taskData.clientId) {
-          const userDoc = await getUser(taskData.clientId);
-          if (userDoc.exists()) {
-            clientData = { id: userDoc.id, ...userDoc.data() };
-          }
-        }
+        const client = await getCachedDoc('users', taskData.clientId);
+        const category = await getCachedDoc('serviceCategories', taskData.categoryId);
+        const address = await getCachedDoc('addresses', taskData.addressId);
         
-        const timeWindowStart = (taskData.timeWindowStart as Timestamp)?.toDate ? (taskData.timeWindowStart as Timestamp).toDate() : new Date();
-        const timeWindowEnd = (taskData.timeWindowEnd as Timestamp)?.toDate ? (taskData.timeWindowEnd as Timestamp).toDate() : new Date();
-
-
         tasksData.push({
           id: taskDoc.id,
           ...taskData,
-          timeWindowStart: timeWindowStart,
-          timeWindowEnd: timeWindowEnd,
-          client: clientData ? { id: clientData.id, email: clientData.email, profile: { displayName: clientData.displayName, photoUrl: clientData.photoURL || `https://i.pravatar.cc/150?u=${clientData.id}` }} : null,
+          timeWindowStart: (taskData.timeWindowStart as Timestamp)?.toDate(),
+          timeWindowEnd: (taskData.timeWindowEnd as Timestamp)?.toDate(),
+          client: client ? { id: client.id, email: client.email, profile: { displayName: client.displayName, photoUrl: client.photoURL || `https://i.pravatar.cc/150?u=${client.id}` }} : null,
+          category: category as ServiceCategory | null,
+          address: address as Address | null,
         } as Task);
       }
       

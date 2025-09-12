@@ -38,20 +38,20 @@ const OfferCard = ({ offer }: { offer: Offer }) => {
   const handleAccept = () => {
     toast({
         title: t('toastAcceptTitle'),
-        description: t('toastAcceptDescription', { name: offer.provider.name }),
+        description: t('toastAcceptDescription', { name: offer.provider.profile?.displayName }),
     });
   }
 
   return (
     <div className="flex items-start gap-4 rounded-lg border p-4">
       <Avatar>
-        <AvatarImage src={offer.provider.avatarUrl} />
-        <AvatarFallback>{offer.provider.name.charAt(0)}</AvatarFallback>
+        <AvatarImage src={offer.provider.profile?.photoUrl} />
+        <AvatarFallback>{offer.provider.profile?.displayName.charAt(0)}</AvatarFallback>
       </Avatar>
       <div className="flex-1 space-y-2">
         <div className="flex items-center justify-between">
           <div>
-            <p className="font-semibold">{offer.provider.name}</p>
+            <p className="font-semibold">{offer.provider.profile?.displayName}</p>
             <div className="flex items-center gap-0.5 text-yellow-500">
                 <Star className='h-4 w-4 fill-current' />
                 <Star className='h-4 w-4 fill-current' />
@@ -61,7 +61,7 @@ const OfferCard = ({ offer }: { offer: Offer }) => {
                 <span className="text-xs text-muted-foreground ml-1">{t('reviews', { count: 12 })}</span>
             </div>
           </div>
-          <p className="text-lg font-bold text-primary">{offer.price}€</p>
+          <p className="text-lg font-bold text-primary">{offer.proposedPrice}€</p>
         </div>
         <p className="text-sm text-muted-foreground bg-accent/20 p-3 rounded-md">
           {offer.message}
@@ -137,13 +137,13 @@ export default function TaskDetailPage() {
           <Card>
             <CardHeader>
               <Badge variant="secondary" className="w-fit mb-2">
-                {task.category}
+                {task.category?.name[locale] || task.categoryId}
               </Badge>
               <CardTitle className="text-3xl font-headline">{task.title}</CardTitle>
               <div className="flex flex-wrap gap-x-4 gap-y-2 text-muted-foreground pt-2">
                 <div className="flex items-center gap-2">
                   <MapPin className="h-4 w-4" />
-                  <span>{task.location}</span>
+                  <span>{task.address?.formatted || task.location}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
@@ -151,7 +151,7 @@ export default function TaskDetailPage() {
                     {new Intl.DateTimeFormat(locale, {
                       dateStyle: 'long',
                       timeStyle: 'short',
-                    }).format(task.date)}
+                    }).format(task.timeWindowStart)}
                   </span>
                 </div>
               </div>
@@ -183,7 +183,7 @@ export default function TaskDetailPage() {
         <div className="space-y-6">
           <Card>
             <CardHeader className="text-center">
-              <span className="text-4xl font-bold text-primary">{task.price}€</span>
+              <span className="text-4xl font-bold text-primary">{task.priceOffered}€</span>
               <CardDescription>{t('budget')}</CardDescription>
             </CardHeader>
           </Card>
@@ -194,13 +194,13 @@ export default function TaskDetailPage() {
             <CardContent className="space-y-4">
               <div className="flex items-center gap-3">
                 <Avatar className="h-12 w-12">
-                  <AvatarImage src={task.client.avatarUrl} />
+                  <AvatarImage src={task.client?.profile?.photoUrl || undefined} />
                   <AvatarFallback>
-                    {task.client.name.charAt(0)}
+                    {task.client?.profile?.displayName.charAt(0)}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="font-semibold">{task.client.name}</p>
+                  <p className="font-semibold">{task.client?.profile?.displayName}</p>
                   <p className="text-sm text-muted-foreground">{t('memberSince', { year: 2023 })}</p>
                 </div>
               </div>

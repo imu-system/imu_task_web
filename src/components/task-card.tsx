@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { type Task, type ServiceCategory } from '@/lib/types';
+import { type Task } from '@/lib/types';
 import {
   Calendar,
   MapPin,
@@ -25,15 +25,13 @@ import {
 import { Link } from '@/navigation';
 import { Button } from './ui/button';
 import { useTranslations, useLocale } from 'next-intl';
-import { ReactNode, useState, useEffect } from 'react';
-import { db } from '@/lib/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { ReactNode } from 'react';
 
 const categoryIcons: Record<string, ReactNode> = {
   groceries: <ShoppingBasket className="h-4 w-4" />,
   gardening: <Spade className="h-4 w-4" />,
   cleaning: <SparklesIcon className="h-4 w-4" />,
-  'digital-assistance': <HelpCircle className="h-4 w-4" />, // Assuming 'digital-assistance' slug
+  'digital-assistance': <HelpCircle className="h-4 w-4" />,
   'admin-help': <Briefcase className="h-4 w-4" />,
   handyman: <Wrench className="h-4 w-4" />,
   'pet-care': <PawPrint className="h-4 w-4" />,
@@ -46,35 +44,17 @@ type TaskCardProps = {
 };
 
 export default function TaskCard({ task }: TaskCardProps) {
-  const { title, client, categoryId, location, timeWindowStart, priceOffered, id } = task;
-  const [category, setCategory] = useState<ServiceCategory | null>(null);
+  const { title, client, category, address, timeWindowStart, priceOffered, id } = task;
   const locale = useLocale();
   const t = useTranslations('TaskCard');
-  
-  useEffect(() => {
-    const fetchCategory = async () => {
-      if (categoryId) {
-        const docRef = doc(db, "serviceCategories", categoryId);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-          setCategory(docSnap.data() as ServiceCategory);
-        } else {
-          console.log("No such category!");
-        }
-      }
-    };
-
-    fetchCategory();
-  }, [categoryId]);
-
 
   const clientName = client?.profile?.displayName || 'Utilisateur';
   const clientAvatarUrl = client?.profile?.photoUrl;
   const clientFallback = clientName ? clientName.charAt(0) : 'U';
   
-  const categoryLabel = category?.slug || 'Catégorie';
-  const categoryIcon = category ? (categoryIcons[category.id] || categoryIcons.default) : categoryIcons.default;
-
+  const categoryLabel = category?.name?.[locale as keyof typeof category.name] || category?.slug || 'Catégorie';
+  const categoryIcon = category?.icon ? (categoryIcons[category.icon] || categoryIcons.default) : categoryIcons.default;
+  const locationLabel = address?.city || task.location;
 
   return (
     <Card className="flex flex-col h-full">
@@ -92,7 +72,7 @@ export default function TaskCard({ task }: TaskCardProps) {
         <div className="space-y-2 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
             <MapPin className="h-4 w-4" />
-            <span>{location}</span>
+            <span>{locationLabel}</span>
           </div>
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4" />

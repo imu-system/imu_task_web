@@ -3,6 +3,7 @@
 
 
 
+
 // Types partagés pour le monorepo (générés d'après le schéma Prisma)
 // GitHub Copilot
 
@@ -299,9 +300,9 @@ export interface Task {
     updatedAt: DateTime;
 
     // Relations
-    client?: User;
-    category?: ServiceCategory;
-    address?: Address;
+    client?: User | null;
+    category?: ServiceCategory | null;
+    address?: Address | null;
     offers?: Offer[];
     booking?: Booking | null;
     threads?: Thread[];
