@@ -1,9 +1,13 @@
+
 'use server';
 
 import {
   suggestTaskCategories as suggestTaskCategoriesFlow,
   type SuggestTaskCategoriesInput,
 } from '@/ai/flows/automated-task-categorization';
+import { db } from '@/lib/firebase';
+import { Task } from '@/lib/types';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { z } from 'zod';
 import { ZodError } from 'zod';
 

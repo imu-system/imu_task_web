@@ -11,7 +11,6 @@ import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/hooks/use-auth';
-import { getTasks } from '@/lib/data';
 
 export default function DashboardTasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -25,12 +24,61 @@ export default function DashboardTasksPage() {
       return;
     }
     
-    // Using mock data and filtering by current user
     setLoading(true);
-    const userTasks = getTasks().filter(t => t.clientId === user.uid);
-    setTasks(userTasks);
-    setLoading(false);
+    const q = query(collection(db, 'tasks'), where('clientId', '==', user.uid));
+    
+    const unsubscribe = onSnapshot(q, async (querySnapshot) => {
+        const tasksData: Task[] = [];
+        for (const taskDoc of querySnapshot.docs) {
+            const taskData = { id: taskDoc.id, ...taskDoc.data() } as Task;
+            
+            // Convert Timestamps
+            if (taskData.timeWindowStart instanceof Timestamp) {
+                taskData.timeWindowStart = taskData.timeWindowStart.toDate();
+            }
+            if (taskData.timeWindowEnd instanceof Timestamp) {
+                taskData.timeWindowEnd = taskData.timeWindowEnd.toDate();
+            }
 
+            // Fetch related data
+            if (taskData.categoryId) {
+                const categoryRef = doc(db, 'serviceCategories', taskData.categoryId);
+                const categorySnap = await getDoc(categoryRef);
+                if (categorySnap.exists()) {
+                    taskData.category = categorySnap.data() as ServiceCategory;
+                }
+            }
+            if (taskData.addressId) {
+                 const addressRef = doc(db, 'addresses', taskData.addressId);
+                 const addressSnap = await getDoc(addressRef);
+                 if (addressSnap.exists()) {
+                     taskData.address = addressSnap.data() as Address;
+                 }
+            }
+             if (taskData.clientId) {
+                const clientRef = doc(db, 'users', taskData.clientId);
+                const clientSnap = await getDoc(clientRef);
+                if (clientSnap.exists()) {
+                     const profileRef = doc(db, 'profiles', taskData.clientId);
+                     const profileSnap = await getDoc(profileRef);
+                     taskData.client = {
+                         id: clientSnap.id,
+                         ...clientSnap.data(),
+                         profile: profileSnap.exists() ? profileSnap.data() : undefined
+                     } as any;
+                }
+            }
+
+            tasksData.push(taskData);
+        }
+        setTasks(tasksData);
+        setLoading(false);
+    }, (error) => {
+        console.error("Error fetching tasks: ", error);
+        setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, [user]);
 
   return (
