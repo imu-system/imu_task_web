@@ -66,7 +66,29 @@
         "title": "Available tasks",
         "subtitle": "Find a task that suits you near you.",
         "createTask": "Create task",
-        "noTasks": "No tasks available at the moment."
+        "noTasks": "No tasks available at the moment.",
+        "welcome": "Welcome back, {name}!",
+        "welcomeSubtitle": "Here's what's happening today.",
+        "kpi": {
+            "activeTasks": "Active Tasks",
+            "pendingOffers": "Pending Offers",
+            "completedMissions": "Completed Missions",
+            "walletBalance": "Wallet Balance"
+        },
+        "recommendedTasks": {
+            "title": "Recommended for you"
+        },
+        "upcomingBookings": {
+            "title": "Upcoming Bookings",
+            "description": "Your next scheduled missions.",
+            "noBookings": "No upcoming bookings."
+        },
+        "recentNotifications": {
+            "title": "Recent Notifications",
+            "description": "Stay up to date.",
+            "noNotifications": "No new notifications.",
+            "viewAll": "View all notifications"
+        }
     },
     "NewTaskPage": {
         "title": "Create a new task",

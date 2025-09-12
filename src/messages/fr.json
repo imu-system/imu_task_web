@@ -66,7 +66,29 @@
         "title": "Missions disponibles",
         "subtitle": "Trouvez une mission qui vous correspond près de chez vous.",
         "createTask": "Créer une mission",
-        "noTasks": "Aucune mission disponible pour le moment."
+        "noTasks": "Aucune mission disponible pour le moment.",
+        "welcome": "Bon retour, {name} !",
+        "welcomeSubtitle": "Voici ce qui se passe aujourd'hui.",
+        "kpi": {
+            "activeTasks": "Missions actives",
+            "pendingOffers": "Offres en attente",
+            "completedMissions": "Missions terminées",
+            "walletBalance": "Solde du portefeuille"
+        },
+        "recommendedTasks": {
+            "title": "Recommandé pour vous"
+        },
+        "upcomingBookings": {
+            "title": "Réservations à venir",
+            "description": "Vos prochaines missions planifiées.",
+            "noBookings": "Aucune réservation à venir."
+        },
+        "recentNotifications": {
+            "title": "Notifications récentes",
+            "description": "Restez à jour.",
+            "noNotifications": "Aucune nouvelle notification.",
+            "viewAll": "Voir toutes les notifications"
+        }
     },
     "NewTaskPage": {
         "title": "Créer une nouvelle mission",

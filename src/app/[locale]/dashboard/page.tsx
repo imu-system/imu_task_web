@@ -3,15 +3,16 @@
 
 import TaskCard from '@/components/task-card';
 import { Button } from '@/components/ui/button';
-import { db } from '@/lib/firebase';
-import { Address, ServiceCategory, Task, TaskStatus } from '@/lib/types';
-import { collection, onSnapshot, query, where, doc, getDoc, Timestamp } from 'firebase/firestore';
-import { PlusCircle, Loader2 } from 'lucide-react';
+import { useAuth } from '@/hooks/use-auth';
+import { getTasks } from '@/lib/data';
+import { Task, TaskStatus } from '@/lib/types';
+import { BookMarked, Handshake, LayoutGrid, Loader2, PlusCircle, UserCheck } from 'lucide-react';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
-import { useAuth } from '@/hooks/use-auth';
-import { getTasks } from '@/lib/data';
+import { KpiCard } from '@/components/dashboard/kpi-card';
+import { UpcomingBookings } from '@/components/dashboard/upcoming-bookings';
+import { RecentNotifications } from '@/components/dashboard/recent-notifications';
 
 export default function DashboardPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -25,24 +26,28 @@ export default function DashboardPage() {
       return;
     }
 
-    // Using mock data as Firestore is empty for now
     setLoading(true);
     const mockTasks = getTasks().filter(t => t.status === TaskStatus.published);
     setTasks(mockTasks);
     setLoading(false);
-
   }, [user]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <Loader2 className="h-16 w-16 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight font-headline">
-            {t('title')}
+            {t('welcome', { name: user?.profile?.displayName || user?.email })}
           </h1>
-          <p className="text-muted-foreground">
-            {t('subtitle')}
-          </p>
+          <p className="text-muted-foreground">{t('welcomeSubtitle')}</p>
         </div>
         <Button asChild>
           <Link href="/dashboard/tasks/new">
@@ -51,22 +56,36 @@ export default function DashboardPage() {
           </Link>
         </Button>
       </div>
-      
-      {loading ? (
-        <div className="flex justify-center items-center h-64">
-          <Loader2 className="h-16 w-16 animate-spin text-primary" />
+
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <KpiCard title={t('kpi.activeTasks')} value="3" icon={<BookMarked />} />
+        <KpiCard title={t('kpi.pendingOffers')} value="5" icon={<Handshake />} />
+        <KpiCard title={t('kpi.completedMissions')} value="12" icon={<UserCheck />} />
+        <KpiCard title={t('kpi.walletBalance')} value="€125.50" icon={<LayoutGrid />} />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        <div className="lg:col-span-2 space-y-6">
+           <h2 className="text-2xl font-bold tracking-tight font-headline">
+                {t('recommendedTasks.title')}
+            </h2>
+            {tasks.length > 0 ? (
+                 <div className="grid gap-6 md:grid-cols-2">
+                    {tasks.slice(0, 2).map((task) => (
+                        <TaskCard key={task.id} task={task} />
+                    ))}
+                </div>
+            ) : (
+                <div className="text-center py-12 rounded-lg bg-card border">
+                    <p className="text-muted-foreground">{t('noTasks')}</p>
+                </div>
+            )}
         </div>
-      ) : tasks.length === 0 ? (
-         <div className="text-center py-12">
-            <p className="text-muted-foreground">{t('noTasks')}</p>
+        <div className="space-y-8">
+            <UpcomingBookings />
+            <RecentNotifications />
         </div>
-      ) : (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {tasks.map((task) => (
-            <TaskCard key={task.id} task={task} />
-          ))}
-        </div>
-      )}
+      </div>
     </div>
   );
 }
