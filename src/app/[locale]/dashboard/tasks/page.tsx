@@ -16,7 +16,7 @@ import { getTasks } from '@/lib/data';
 export default function DashboardTasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
-  const t = useTranslations('DashboardPage');
+  const t = useTranslations('MyTasksPage');
   const { user } = useAuth();
 
   useEffect(() => {
@@ -25,10 +25,10 @@ export default function DashboardTasksPage() {
       return;
     }
     
-    // Using mock data as Firestore is empty for now
+    // Using mock data and filtering by current user
     setLoading(true);
-    const mockTasks = getTasks().filter(t => t.status === TaskStatus.published);
-    setTasks(mockTasks);
+    const userTasks = getTasks().filter(t => t.clientId === user.uid);
+    setTasks(userTasks);
     setLoading(false);
 
   }, [user]);
@@ -57,8 +57,11 @@ export default function DashboardTasksPage() {
           <Loader2 className="h-16 w-16 animate-spin text-primary" />
         </div>
       ) : tasks.length === 0 ? (
-         <div className="text-center py-12">
+         <div className="text-center py-12 rounded-lg border bg-card">
             <p className="text-muted-foreground">{t('noTasks')}</p>
+             <Button asChild variant="link">
+              <Link href="/dashboard/tasks/new">{t('createFirstTask')}</Link>
+            </Button>
         </div>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

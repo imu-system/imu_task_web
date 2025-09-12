@@ -90,6 +90,13 @@
             "viewAll": "Voir toutes les notifications"
         }
     },
+    "MyTasksPage": {
+        "title": "Mes demandes",
+        "subtitle": "Gérez les missions que vous avez créées.",
+        "createTask": "Créer une nouvelle mission",
+        "noTasks": "Vous n'avez pas encore créé de mission.",
+        "createFirstTask": "Créer votre première mission"
+    },
     "NewTaskPage": {
         "title": "Créer une nouvelle mission",
         "subtitle": "Remplissez les détails ci-dessous pour trouver de l'aide rapidement."

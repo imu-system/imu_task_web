@@ -78,35 +78,6 @@ const OfferCard = ({ offer }: { offer: Offer }) => {
   );
 };
 
-const OfferForm = () => {
-  const t = useTranslations('OfferForm');
-
-  return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{t('title')}</CardTitle>
-        <CardDescription>
-          {t('description')}
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="price">{t('priceLabel')}</Label>
-          <Input id="price" type="number" placeholder="25" />
-        </div>
-        <div className="space-y-2">
-          <Label htmlFor="message">{t('messageLabel')}</Label>
-          <Textarea
-            id="message"
-            placeholder={t('messagePlaceholder')}
-          />
-        </div>
-        <Button className="w-full">{t('submit')}</Button>
-      </CardContent>
-    </Card>
-  );
-};
-
 export default function TaskDetailPage() {
   const { id } = useParams<{ id: string }>();
   const task = getTasks().find((t) => t.id === id);
@@ -114,30 +85,18 @@ export default function TaskDetailPage() {
   const t = useTranslations('TaskDetailPage');
   const locale = useLocale();
 
-  // Mock current user role for demonstration
-  const [isClientView, setIsClientView] = useState(true);
-
   if (!task) {
     notFound();
   }
 
   return (
     <div className="max-w-6xl mx-auto">
-      <div className="flex items-center space-x-2 text-sm mb-4">
-        <Label htmlFor="role-switch">{t('clientView')}</Label>
-        <Switch
-          id="role-switch"
-          checked={!isClientView}
-          onCheckedChange={() => setIsClientView(!isClientView)}
-        />
-        <Label htmlFor="role-switch">{t('providerView')}</Label>
-      </div>
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-6">
           <Card>
             <CardHeader>
               <Badge variant="secondary" className="w-fit mb-2">
-                {task.category?.name[locale] || task.categoryId}
+                {task.category?.name[locale as 'fr' | 'en'] || task.categoryId}
               </Badge>
               <CardTitle className="text-3xl font-headline">{task.title}</CardTitle>
               <div className="flex flex-wrap gap-x-4 gap-y-2 text-muted-foreground pt-2">
@@ -161,24 +120,20 @@ export default function TaskDetailPage() {
             </CardContent>
           </Card>
 
-          {isClientView ? (
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold font-headline">{t('offersReceived', { count: offers.length })}</h2>
-              {offers.length > 0 ? (
-                <div className="space-y-4">
-                  {offers.map((offer) => (
-                    <OfferCard key={offer.id} offer={offer} />
-                  ))}
-                </div>
-              ) : (
-                <Card className="text-center p-8">
-                  <p className="text-muted-foreground">{t('noOffers')}</p>
-                </Card>
-              )}
-            </div>
-          ) : (
-            <OfferForm />
-          )}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold font-headline">{t('offersReceived', { count: offers.length })}</h2>
+            {offers.length > 0 ? (
+              <div className="space-y-4">
+                {offers.map((offer) => (
+                  <OfferCard key={offer.id} offer={offer} />
+                ))}
+              </div>
+            ) : (
+              <Card className="text-center p-8">
+                <p className="text-muted-foreground">{t('noOffers')}</p>
+              </Card>
+            )}
+          </div>
         </div>
         <div className="space-y-6">
           <Card>

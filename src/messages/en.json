@@ -90,6 +90,13 @@
             "viewAll": "View all notifications"
         }
     },
+    "MyTasksPage": {
+        "title": "My Tasks",
+        "subtitle": "Manage the tasks you have created.",
+        "createTask": "Create new task",
+        "noTasks": "You haven't created any tasks yet.",
+        "createFirstTask": "Create your first task"
+    },
     "NewTaskPage": {
         "title": "Create a new task",
         "subtitle": "Fill in the details below to find help quickly."
