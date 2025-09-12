@@ -6,20 +6,26 @@ import { useAuth } from '@/hooks/use-auth';
 import { getOffers, getTasks } from '@/lib/data';
 import { Offer, Task, TaskStatus, UserRole } from '@/lib/types';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
-import { Loader2, Briefcase } from 'lucide-react';
+import { useEffect, useState, useMemo } from 'react';
+import { Loader2, Briefcase, LayoutGrid, List } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/navigation';
+import { Input } from '@/components/ui/input';
+import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
+import TaskListCard from '@/components/task-list-card';
 
 export default function ProviderOffersPage() {
     const t = useTranslations('ProviderOffersPage');
+    const tTasks = useTranslations('MyTasksPage');
     const { user } = useAuth();
     const [recommendedTasks, setRecommendedTasks] = useState<Task[]>([]);
     const [sentOffers, setSentOffers] = useState<Offer[]>([]);
     const [loading, setLoading] = useState(true);
+    const [view, setView] = useState<'grid' | 'list'>('grid');
+    const [searchTerm, setSearchTerm] = useState('');
 
     const isProvider = user?.roles.includes(UserRole.provider);
 
@@ -40,6 +46,14 @@ export default function ProviderOffersPage() {
             setLoading(false);
         }
     }, [user, isProvider]);
+    
+    const filteredTasks = useMemo(() => {
+        return recommendedTasks.filter(task => 
+        task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        task.description.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+    }, [recommendedTasks, searchTerm]);
+
 
     if (loading) {
         return <div className="flex h-64 items-center justify-center"><Loader2 className="h-16 w-16 animate-spin text-primary" /></div>;
@@ -67,14 +81,62 @@ export default function ProviderOffersPage() {
             
             <div className="space-y-4">
                 <h2 className="text-2xl font-bold font-headline">{t('recommendedTasks.title')}</h2>
-                {recommendedTasks.length > 0 ? (
-                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                        {recommendedTasks.map(task => (
-                            <TaskCard key={task.id} task={task} />
-                        ))}
+                
+                <div className="flex flex-col md:flex-row gap-4 justify-between">
+                    <Input 
+                        placeholder={tTasks('searchPlaceholder')}
+                        className="max-w-sm"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <div className="flex items-center gap-2">
+                        <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                            <Button variant={view === 'grid' ? 'default' : 'outline'} size="icon" onClick={() => setView('grid')}>
+                                <LayoutGrid className="h-4 w-4" />
+                                <span className="sr-only">{tTasks('viewGrid')}</span>
+                            </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                            <p>{tTasks('viewGrid')}</p>
+                            </TooltipContent>
+                        </Tooltip>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                            <Button variant={view === 'list' ? 'default' : 'outline'} size="icon" onClick={() => setView('list')}>
+                                <List className="h-4 w-4" />
+                                <span className="sr-only">{tTasks('viewList')}</span>
+                            </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                            <p>{tTasks('viewList')}</p>
+                            </TooltipContent>
+                        </Tooltip>
+                        </TooltipProvider>
                     </div>
+                </div>
+
+                {filteredTasks.length > 0 ? (
+                    <>
+                        {view === 'grid' ? (
+                            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                                {filteredTasks.map(task => (
+                                    <TaskCard key={task.id} task={task} />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="space-y-4">
+                                {filteredTasks.map(task => (
+                                    <TaskListCard key={task.id} task={task} />
+                                ))}
+                            </div>
+                        )}
+                    </>
                 ) : (
-                    <p className="text-muted-foreground">{t('recommendedTasks.noTasks')}</p>
+                     <div className="text-center py-12 rounded-lg border bg-card">
+                        <p className="text-muted-foreground">{searchTerm ? tTasks('noSearchResults') : t('recommendedTasks.noTasks')}</p>
+                    </div>
                 )}
             </div>
 
