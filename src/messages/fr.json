@@ -349,9 +349,21 @@
                 "task": "Mission",
                 "yourPrice": "Votre prix",
                 "status": "Statut",
-                "view": "Voir"
+                "viewTask": "Voir la mission",
+                "editOffer": "Modifier l'offre",
+                "withdrawOffer": "Retirer l'offre"
             },
-            "noOffers": "Vous n'avez pas encore envoyé d'offres."
+            "noOffers": "Vous n'avez pas encore envoyé d'offres.",
+            "dialog": {
+                "withdrawTitle": "Retirer l'offre",
+                "withdrawDescription": "Êtes-vous sûr de vouloir retirer votre offre pour cette mission ? Cette action est irréversible.",
+                "cancel": "Annuler",
+                "confirm": "Oui, retirer"
+            },
+            "toast": {
+                "withdrawSuccessTitle": "Offre retirée",
+                "withdrawSuccessDescription": "Votre offre a été retirée avec succès."
+            }
         },
         "tabs": {
             "list": "Liste",
@@ -365,3 +377,5 @@
         }
     }
 }
+
+    

@@ -349,9 +349,21 @@
                 "task": "Task",
                 "yourPrice": "Your Price",
                 "status": "Status",
-                "view": "View"
+                "viewTask": "View Task",
+                "editOffer": "Edit Offer",
+                "withdrawOffer": "Withdraw Offer"
             },
-            "noOffers": "You have not sent any offers yet."
+            "noOffers": "You have not sent any offers yet.",
+            "dialog": {
+                "withdrawTitle": "Withdraw Offer",
+                "withdrawDescription": "Are you sure you want to withdraw your offer for this task? This action cannot be undone.",
+                "cancel": "Cancel",
+                "confirm": "Yes, withdraw"
+            },
+            "toast": {
+                "withdrawSuccessTitle": "Offer Withdrawn",
+                "withdrawSuccessDescription": "Your offer has been successfully withdrawn."
+            }
         },
         "tabs": {
             "list": "List",
@@ -365,3 +377,5 @@
         }
     }
 }
+
+    

@@ -4,10 +4,10 @@
 import TaskCard from '@/components/task-card';
 import { useAuth } from '@/hooks/use-auth';
 import { getOffers, getTasks } from '@/lib/data';
-import { Offer, Task, TaskStatus, UserRole } from '@/lib/types';
+import { Offer, Task, TaskStatus, UserRole, OfferStatus } from '@/lib/types';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState, useMemo } from 'react';
-import { Loader2, Briefcase, LayoutGrid, List, Calendar as CalendarIcon } from 'lucide-react';
+import { Loader2, Briefcase, LayoutGrid, List, Calendar as CalendarIcon, MoreHorizontal, Edit, Trash2, Eye } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
@@ -21,6 +21,12 @@ import { Calendar } from '@/components/ui/calendar';
 import TaskCalendarCard from '@/components/task-calendar-card';
 import { DayProps } from 'react-day-picker';
 import { cn } from '@/lib/utils';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
+import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from '@/components/ui/alert-dialog';
+import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog';
+import { OfferForm } from '@/components/offer-form';
+import { useToast } from '@/hooks/use-toast';
+
 
 export default function ProviderOffersPage() {
     const t = useTranslations('ProviderOffersPage');
@@ -32,6 +38,7 @@ export default function ProviderOffersPage() {
     const [view, setView] = useState<'grid' | 'list'>('grid');
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
+    const { toast } = useToast();
 
     const isProvider = user?.roles.includes(UserRole.provider);
 
@@ -77,6 +84,16 @@ export default function ProviderOffersPage() {
         return tasksByDay[selectedDate.toDateString()] || [];
     }, [selectedDate, tasksByDay]);
 
+    const handleWithdrawOffer = async (offerId: string) => {
+        console.log(`Withdrawing offer ${offerId}`);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        setSentOffers(prev => prev.map(o => o.id === offerId ? {...o, status: OfferStatus.withdrawn } : o));
+        toast({
+            title: t('sentOffers.toast.withdrawSuccessTitle'),
+            description: t('sentOffers.toast.withdrawSuccessDescription'),
+        });
+    }
+
     if (loading) {
         return <div className="flex h-64 items-center justify-center"><Loader2 className="h-16 w-16 animate-spin text-primary" /></div>;
     }
@@ -91,20 +108,24 @@ export default function ProviderOffersPage() {
         )
     }
     
-    const DayWithTasks = (props: DayProps) => {
-        const { date } = props;
+    const DayWithTasks = (dayProps: DayProps) => {
+        const { date } = dayProps;
         const dateString = date.toDateString();
         const tasksForDay = tasksByDay[dateString];
+
+        const day = (
+            <div className={cn("relative flex h-9 w-9 items-center justify-center p-0", dayProps.className)}>
+                {date.getDate()}
+                {tasksForDay && tasksForDay.length > 0 && <div className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-primary"></div>}
+            </div>
+        );
 
         if (tasksForDay && tasksForDay.length > 0) {
             return (
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                             <div className={cn("relative flex h-9 w-9 items-center justify-center p-0", props.className)}>
-                                {date.getDate()}
-                                <div className="absolute bottom-1 w-1.5 h-1.5 rounded-full bg-primary"></div>
-                            </div>
+                             {day}
                         </TooltipTrigger>
                         <TooltipContent>
                             <div className="p-1 space-y-1">
@@ -117,7 +138,7 @@ export default function ProviderOffersPage() {
                 </TooltipProvider>
             )
         }
-        return <div className={cn("flex h-9 w-9 items-center justify-center p-0", props.className)}>{date.getDate()}</div>;
+        return day;
     }
 
     return (
@@ -250,11 +271,53 @@ export default function ProviderOffersPage() {
                                     <TableRow key={offer.id}>
                                         <TableCell className="font-medium">{offer.task?.title}</TableCell>
                                         <TableCell>{offer.proposedPrice}€</TableCell>
-                                        <TableCell><Badge>{offer.status}</Badge></TableCell>
+                                        <TableCell><Badge variant={offer.status === 'accepted' ? 'default' : 'secondary'}>{offer.status}</Badge></TableCell>
                                         <TableCell className="text-right">
-                                            <Button variant="outline" size="sm" asChild>
-                                                <Link href={`/dashboard/tasks/${offer.taskId}`}>{t('sentOffers.table.view')}</Link>
-                                            </Button>
+                                            <AlertDialog>
+                                                <Dialog>
+                                                    <DropdownMenu>
+                                                        <DropdownMenuTrigger asChild>
+                                                            <Button variant="ghost" size="icon">
+                                                                <MoreHorizontal className="h-4 w-4" />
+                                                            </Button>
+                                                        </DropdownMenuTrigger>
+                                                        <DropdownMenuContent>
+                                                            <DropdownMenuItem asChild>
+                                                                <Link href={`/dashboard/tasks/${offer.taskId}`}>
+                                                                    <Eye className="mr-2 h-4 w-4" />
+                                                                    {t('sentOffers.table.viewTask')}
+                                                                </Link>
+                                                            </DropdownMenuItem>
+                                                            <DropdownMenuSeparator />
+                                                            <DialogTrigger asChild>
+                                                                <DropdownMenuItem disabled={offer.status !== OfferStatus.pending}>
+                                                                    <Edit className="mr-2 h-4 w-4" />
+                                                                    {t('sentOffers.table.editOffer')}
+                                                                </DropdownMenuItem>
+                                                            </DialogTrigger>
+                                                            <AlertDialogTrigger asChild>
+                                                                <DropdownMenuItem className="text-destructive" disabled={offer.status !== OfferStatus.pending}>
+                                                                    <Trash2 className="mr-2 h-4 w-4" />
+                                                                    {t('sentOffers.table.withdrawOffer')}
+                                                                </DropdownMenuItem>
+                                                            </AlertDialogTrigger>
+                                                        </DropdownMenuContent>
+                                                    </DropdownMenu>
+                                                    <DialogContent>
+                                                        {offer.task && <OfferForm task={offer.task} />}
+                                                    </DialogContent>
+                                                </Dialog>
+                                                <AlertDialogContent>
+                                                    <AlertDialogHeader>
+                                                        <AlertDialogTitle>{t('sentOffers.dialog.withdrawTitle')}</AlertDialogTitle>
+                                                        <AlertDialogDescription>{t('sentOffers.dialog.withdrawDescription')}</AlertDialogDescription>
+                                                    </AlertDialogHeader>
+                                                    <AlertDialogFooter>
+                                                        <AlertDialogCancel>{t('sentOffers.dialog.cancel')}</AlertDialogCancel>
+                                                        <AlertDialogAction onClick={() => handleWithdrawOffer(offer.id)}>{t('sentOffers.dialog.confirm')}</AlertDialogAction>
+                                                    </AlertDialogFooter>
+                                                </AlertDialogContent>
+                                            </AlertDialog>
                                         </TableCell>
                                     </TableRow>
                                 ))
@@ -270,3 +333,5 @@ export default function ProviderOffersPage() {
         </div>
     )
 }
+
+    
