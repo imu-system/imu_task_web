@@ -220,6 +220,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const userDocRef = doc(db, 'users', firebaseUser.uid);
       
       const roles = [UserRole.client];
+      // Special rule for the admin user for demo purposes
       if (firebaseUser.email === 'nathan.imogo@outlook.fr') {
           roles.push(UserRole.admin);
       }
