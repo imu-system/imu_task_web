@@ -60,7 +60,8 @@
         "wallet": "Wallet",
         "profile": "Profile",
         "logout": "Log out",
-        "admin": "Admin"
+        "admin": "Admin",
+        "findProvider": "Find a provider"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -294,5 +295,21 @@
             "toastSuccessTitle": "Report Sent",
             "toastSuccessDescription": "Your report has been submitted and our team will review it shortly."
         }
+    },
+    "SearchPage": {
+        "title": "Find a Provider",
+        "subtitle": "Browse profiles and find the perfect person for your task.",
+        "filters": {
+            "keywordPlaceholder": "Search by keyword (e.g. gardener, shopping...)",
+            "categoryPlaceholder": "All categories",
+            "availabilityPlaceholder": "All availabilities",
+            "refineSearch": "Refine Search"
+        }
+    },
+    "ProviderCard": {
+        "reviews": "reviews",
+        "noBio": "This provider does not have a bio yet.",
+        "viewProfile": "View Profile",
+        "contact": "Contact"
     }
 }

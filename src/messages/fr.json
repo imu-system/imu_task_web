@@ -60,7 +60,8 @@
         "wallet": "Portefeuille",
         "profile": "Profil",
         "logout": "Se déconnecter",
-        "admin": "Admin"
+        "admin": "Admin",
+        "findProvider": "Trouver un prestataire"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -294,5 +295,21 @@
             "toastSuccessTitle": "Signalement envoyé",
             "toastSuccessDescription": "Votre signalement a été envoyé et notre équipe l'examinera sous peu."
         }
+    },
+    "SearchPage": {
+        "title": "Trouver un prestataire",
+        "subtitle": "Parcourez les profils et trouvez la personne idéale pour votre mission.",
+        "filters": {
+            "keywordPlaceholder": "Rechercher par mot-clé (ex: jardinier, courses...)",
+            "categoryPlaceholder": "Toutes catégories",
+            "availabilityPlaceholder": "Toutes disponibilités",
+            "refineSearch": "Affiner la recherche"
+        }
+    },
+    "ProviderCard": {
+        "reviews": "avis",
+        "noBio": "Ce prestataire n'a pas encore de biographie.",
+        "viewProfile": "Voir le profil",
+        "contact": "Contacter"
     }
 }
