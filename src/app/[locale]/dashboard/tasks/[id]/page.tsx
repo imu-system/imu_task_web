@@ -1,6 +1,6 @@
 'use client';
 
-import { getOffersForTask, getTasks } from '@/lib/data';
+import { getOffersForTask } from '@/lib/data';
 import { notFound, useParams } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -21,14 +21,17 @@ import {
   Edit,
   Trash2,
   Receipt,
+  Loader2,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { type Offer, TaskStatus } from '@/lib/types';
-import { useLocale } from 'next-intl';
+import { type Offer, Task, TaskStatus } from '@/lib/types';
+import { useLocale, useTranslations } from 'next-intl';
 import { useToast } from '@/hooks/use-toast';
-import { useTranslations } from 'next-intl';
 import TaskStatusTimeline from '@/components/task-status-timeline';
+import { useEffect, useState } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 const OfferCard = ({ offer }: { offer: Offer }) => {
   const { toast } = useToast();
@@ -79,10 +82,36 @@ const OfferCard = ({ offer }: { offer: Offer }) => {
 
 export default function TaskDetailPage() {
   const { id } = useParams<{ id: string }>();
-  const task = getTasks().find((t) => t.id === id);
+  const [task, setTask] = useState<Task | null>(null);
+  const [loading, setLoading] = useState(true);
   const offers = getOffersForTask(id);
   const t = useTranslations('TaskDetailPage');
   const locale = useLocale();
+
+  useEffect(() => {
+    if (!id) return;
+    setLoading(true);
+    const fetchTask = async () => {
+        const taskRef = doc(db, 'tasks', id);
+        const taskSnap = await getDoc(taskRef);
+
+        if (taskSnap.exists()) {
+            setTask({ id: taskSnap.id, ...taskSnap.data() } as Task);
+        } else {
+            setTask(null);
+        }
+        setLoading(false);
+    }
+    fetchTask();
+  }, [id]);
+
+  if (loading) {
+      return (
+        <div className="flex justify-center items-center h-64">
+            <Loader2 className="h-16 w-16 animate-spin text-primary" />
+        </div>
+      )
+  }
 
   if (!task) {
     notFound();
@@ -112,7 +141,7 @@ export default function TaskDetailPage() {
                     {new Intl.DateTimeFormat(locale, {
                       dateStyle: 'long',
                       timeStyle: 'short',
-                    }).format(task.timeWindowStart)}
+                    }).format(new Date(task.timeWindowStart))}
                   </span>
                 </div>
               </div>
