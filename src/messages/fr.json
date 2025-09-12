@@ -106,6 +106,17 @@
         "title": "Créer une nouvelle mission",
         "subtitle": "Remplissez les détails ci-dessous pour trouver de l'aide rapidement."
     },
+    "EditTaskPage": {
+        "title": "Modifier la mission",
+        "subtitle": "Mettez à jour les détails de votre mission ci-dessous.",
+        "submitButton": "Enregistrer les modifications",
+        "toastSuccessTitle": "Mission mise à jour",
+        "toastSuccessDescription": "Votre mission a été mise à jour avec succès.",
+        "toastErrorTitle": "Erreur",
+        "toastErrorDescription": "Une erreur est survenue lors de la mise à jour de la mission.",
+        "toastNotFoundTitle": "Mission non trouvée",
+        "toastNotFoundDescription": "La mission demandée n'a pas pu être trouvée ou vous n'avez pas la permission de la modifier."
+    },
     "TaskCard": {
         "viewTask": "Voir la mission",
         "reviews": "({count} avis)"
@@ -259,3 +270,5 @@
         "canceled": "Mission annulée"
     }
 }
+
+    

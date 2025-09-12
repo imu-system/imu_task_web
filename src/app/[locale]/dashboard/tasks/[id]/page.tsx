@@ -2,7 +2,7 @@
 'use client';
 
 import { getOffersForTask } from '@/lib/data';
-import { notFound, useParams } from 'next/navigation';
+import { notFound, useParams, Link } from '@/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import {
@@ -150,7 +150,7 @@ export default function TaskDetailPage() {
                     {new Intl.DateTimeFormat(locale, {
                       dateStyle: 'long',
                       timeStyle: 'short',
-                    }).format(new Date(task.timeWindowStart))}
+                    }).format(task.timeWindowStart as Date)}
                   </span>
                 </div>
               </div>
@@ -187,8 +187,10 @@ export default function TaskDetailPage() {
               <CardTitle>{t('actions.title')}</CardTitle>
             </CardHeader>
             <CardContent className="grid grid-cols-1 gap-2">
-              <Button variant="outline" disabled={isMatched}>
-                <Edit className="mr-2" />{t('actions.edit')}
+              <Button asChild variant="outline" disabled={isMatched}>
+                <Link href={`/dashboard/tasks/${task.id}/edit`}>
+                  <Edit className="mr-2" />{t('actions.edit')}
+                </Link>
               </Button>
               <Button variant="destructive" disabled={isMatched}>
                 <Trash2 className="mr-2" />{t('actions.cancel')}
@@ -249,3 +251,5 @@ export default function TaskDetailPage() {
     </div>
   );
 }
+
+    

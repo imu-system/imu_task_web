@@ -106,6 +106,17 @@
         "title": "Create a new task",
         "subtitle": "Fill in the details below to find help quickly."
     },
+    "EditTaskPage": {
+        "title": "Edit Task",
+        "subtitle": "Update the details of your task below.",
+        "submitButton": "Save Changes",
+        "toastSuccessTitle": "Task Updated",
+        "toastSuccessDescription": "Your task has been successfully updated.",
+        "toastErrorTitle": "Error",
+        "toastErrorDescription": "An error occurred while updating the task.",
+        "toastNotFoundTitle": "Task Not Found",
+        "toastNotFoundDescription": "The requested task could not be found or you don't have permission to edit it."
+    },
     "TaskCard": {
         "viewTask": "View task",
         "reviews": "({count} reviews)"
@@ -259,3 +270,5 @@
         "canceled": "Task Canceled"
     }
 }
+
+    
