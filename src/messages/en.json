@@ -62,7 +62,8 @@
         "logout": "Log out",
         "admin": "Admin",
         "findProvider": "Find a provider",
-        "findTask": "Find a task"
+        "findTask": "Find a task",
+        "myBookings": "My Bookings"
     },
     "DashboardPage": {
         "title": "Available tasks",
@@ -375,7 +376,90 @@
             "tasksFor": "Tasks for {date}",
             "noTasksForDay": "No tasks available for this day."
         }
+    },
+    "MyBookingsPage": {
+        "title": "My Bookings",
+        "subtitle": "Track your scheduled and past missions.",
+        "table": {
+            "title": "Booking History",
+            "description": "A list of all your missions, whether you are the client or the provider.",
+            "task": "Task",
+            "client": "Client",
+            "provider": "Provider",
+            "amount": "Amount",
+            "status": "Status",
+            "actions": "Actions",
+            "details": "Details"
+        },
+        "status": {
+            "scheduled": "Scheduled",
+            "in_progress": "In Progress",
+            "completed": "Completed",
+            "no_show_client": "Client No-Show",
+            "no_show_provider": "Provider No-Show",
+            "canceled": "Canceled"
+        },
+        "statusVariants": {
+            "scheduled": "secondary",
+            "in_progress": "secondary",
+            "completed": "default",
+            "no_show_client": "destructive",
+            "no_show_provider": "destructive",
+            "canceled": "destructive"
+        }
+    },
+    "BookingDetailPage": {
+        "title": "Booking Details",
+        "notFound": "Booking not found.",
+        "backToList": "Back to bookings list",
+        "viewProfile": "View profile",
+        "cards": {
+            "summary": {
+                "title": "Mission Summary",
+                "description": "Details of the mission \"{taskTitle}\".",
+                "client": "Client",
+                "provider": "Provider",
+                "amount": "Agreed Amount",
+                "date": "Scheduled Date"
+            },
+            "timeline": {
+                "title": "Timeline",
+                "description": "History of the booking's key events.",
+                "events": {
+                    "offerAccepted": "Offer Accepted",
+                    "offerAcceptedDesc": "The client has accepted the provider's offer.",
+                    "paymentAuthorized": "Payment Authorized",
+                    "paymentAuthorizedDesc": "The client's payment has been pre-authorized and is held securely.",
+                    "bookingConfirmed": "Booking Confirmed",
+                    "bookingConfirmedDesc": "The mission is officially scheduled.",
+                    "taskCompleted": "Task Completed",
+                    "taskCompletedDesc": "The task has been marked as completed by the client."
+                }
+            },
+            "actions": {
+                "title": "Actions",
+                "description": "Manage the booking.",
+                "confirmCompletion": "Confirm Completion",
+                "reschedule": "Request Reschedule",
+                "cancel": "Cancel Booking",
+                "openDispute": "Open a Dispute",
+                "rescheduleDialog": {
+                    "title": "Request a Reschedule",
+                    "description": "Propose a new date and time for this mission. The other party will have to approve.",
+                    "startTime": "New start time",
+                    "endTime": "New end time",
+                    "cancel": "Cancel",
+                    "confirm": "Send Request"
+                },
+                "cancelDialog": {
+                    "title": "Are you sure you want to cancel?",
+                    "description": "This action cannot be undone. Penalties may apply according to our terms of service.",
+                    "reasonLabel": "Reason for cancellation",
+                    "reasonPlaceholder": "Please specify the reason for cancellation...",
+                    "cancel": "Cancel",
+                    "confirm": "Confirm Cancellation"
+                }
+            }
+        }
     }
 }
-
-    

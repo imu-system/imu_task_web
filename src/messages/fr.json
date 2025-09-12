@@ -62,7 +62,8 @@
         "logout": "Se déconnecter",
         "admin": "Admin",
         "findProvider": "Trouver un prestataire",
-        "findTask": "Trouver une mission"
+        "findTask": "Trouver une mission",
+        "myBookings": "Mes Réservations"
     },
     "DashboardPage": {
         "title": "Missions disponibles",
@@ -375,7 +376,90 @@
             "tasksFor": "Missions pour le {date}",
             "noTasksForDay": "Aucune mission disponible pour ce jour."
         }
+    },
+    "MyBookingsPage": {
+        "title": "Mes Réservations",
+        "subtitle": "Suivez vos missions planifiées et passées.",
+        "table": {
+            "title": "Historique des réservations",
+            "description": "Une liste de toutes vos missions, que vous soyez client ou prestataire.",
+            "task": "Mission",
+            "client": "Client",
+            "provider": "Prestataire",
+            "amount": "Montant",
+            "status": "Statut",
+            "actions": "Actions",
+            "details": "Détails"
+        },
+        "status": {
+            "scheduled": "Planifiée",
+            "in_progress": "En cours",
+            "completed": "Terminée",
+            "no_show_client": "Client absent",
+            "no_show_provider": "Prestataire absent",
+            "canceled": "Annulée"
+        },
+        "statusVariants": {
+            "scheduled": "secondary",
+            "in_progress": "secondary",
+            "completed": "default",
+            "no_show_client": "destructive",
+            "no_show_provider": "destructive",
+            "canceled": "destructive"
+        }
+    },
+    "BookingDetailPage": {
+        "title": "Détails de la réservation",
+        "notFound": "Réservation non trouvée.",
+        "backToList": "Retour à la liste des réservations",
+        "viewProfile": "Voir le profil",
+        "cards": {
+            "summary": {
+                "title": "Résumé de la mission",
+                "description": "Détails de la mission \"{taskTitle}\".",
+                "client": "Client",
+                "provider": "Prestataire",
+                "amount": "Montant convenu",
+                "date": "Date planifiée"
+            },
+            "timeline": {
+                "title": "Chronologie",
+                "description": "Historique des événements clés de la réservation.",
+                "events": {
+                    "offerAccepted": "Offre acceptée",
+                    "offerAcceptedDesc": "Le client a accepté l'offre du prestataire.",
+                    "paymentAuthorized": "Paiement autorisé",
+                    "paymentAuthorizedDesc": "Le paiement du client a été pré-autorisé et est conservé en toute sécurité.",
+                    "bookingConfirmed": "Réservation confirmée",
+                    "bookingConfirmedDesc": "La mission est officiellement planifiée.",
+                    "taskCompleted": "Mission terminée",
+                    "taskCompletedDesc": "La mission a été marquée comme terminée par le client."
+                }
+            },
+            "actions": {
+                "title": "Actions",
+                "description": "Gérez la réservation.",
+                "confirmCompletion": "Confirmer la réalisation",
+                "reschedule": "Demander une reprogrammation",
+                "cancel": "Annuler la réservation",
+                "openDispute": "Ouvrir un litige",
+                "rescheduleDialog": {
+                    "title": "Demander une reprogrammation",
+                    "description": "Proposez une nouvelle date et heure pour cette mission. L'autre partie devra approuver.",
+                    "startTime": "Nouvelle heure de début",
+                    "endTime": "Nouvelle heure de fin",
+                    "cancel": "Annuler",
+                    "confirm": "Envoyer la demande"
+                },
+                "cancelDialog": {
+                    "title": "Êtes-vous sûr de vouloir annuler ?",
+                    "description": "Cette action est irréversible. Des pénalités peuvent s'appliquer selon nos conditions de service.",
+                    "reasonLabel": "Raison de l'annulation",
+                    "reasonPlaceholder": "Veuillez préciser la raison de l'annulation...",
+                    "cancel": "Annuler",
+                    "confirm": "Confirmer l'annulation"
+                }
+            }
+        }
     }
 }
-
-    
