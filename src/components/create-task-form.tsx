@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useForm, Controller } from 'react-hook-form';
@@ -39,7 +38,7 @@ import { useTranslations } from 'next-intl';
 import { createTask } from '@/lib/data';
 import { useAuth } from '@/hooks/use-auth';
 import { useRouter } from '@/navigation';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 
 const formSchema = z.object({
@@ -78,24 +77,24 @@ export function CreateTaskForm() {
   const router = useRouter();
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const q = query(collection(db, 'serviceCategories'), where('isActive', '==', true));
-        const querySnapshot = await getDocs(q);
+    setIsLoadingCategories(true);
+    const q = query(collection(db, 'serviceCategories'), where('isActive', '==', true));
+    
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
         const categories = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as ServiceCategory));
         setTaskCategories(categories);
-      } catch (error) {
+        setIsLoadingCategories(false);
+    }, (error) => {
         console.error("Error fetching categories:", error);
         toast({
-          variant: 'destructive',
-          title: t('toastErrorTitle'),
-          description: "Impossible de charger les catégories.",
+            variant: 'destructive',
+            title: t('toastErrorTitle'),
+            description: "Impossible de charger les catégories.",
         });
-      } finally {
         setIsLoadingCategories(false);
-      }
-    };
-    fetchCategories();
+    });
+
+    return () => unsubscribe();
   }, [toast, t]);
 
   const form = useForm<z.infer<typeof formSchema>>({
