@@ -95,7 +95,12 @@
         "subtitle": "Manage the tasks you have created.",
         "createTask": "Create new task",
         "noTasks": "You haven't created any tasks yet.",
-        "createFirstTask": "Create your first task"
+        "createFirstTask": "Create your first task",
+        "searchPlaceholder": "Search in your tasks...",
+        "viewGrid": "Grid view",
+        "viewList": "List view",
+        "noSearchResults": "No results for your search.",
+        "view": "View"
     },
     "NewTaskPage": {
         "title": "Create a new task",

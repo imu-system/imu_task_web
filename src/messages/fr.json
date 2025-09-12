@@ -95,7 +95,12 @@
         "subtitle": "Gérez les missions que vous avez créées.",
         "createTask": "Créer une nouvelle mission",
         "noTasks": "Vous n'avez pas encore créé de mission.",
-        "createFirstTask": "Créer votre première mission"
+        "createFirstTask": "Créer votre première mission",
+        "searchPlaceholder": "Rechercher dans vos missions...",
+        "viewGrid": "Vue grille",
+        "viewList": "Vue liste",
+        "noSearchResults": "Aucun résultat pour votre recherche.",
+        "view": "Voir"
     },
     "NewTaskPage": {
         "title": "Créer une nouvelle mission",
