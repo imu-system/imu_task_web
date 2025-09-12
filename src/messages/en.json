@@ -120,7 +120,7 @@
         "toastNotFoundDescription": "The requested task could not be found or you don't have permission to edit it."
     },
     "TaskCard": {
-        "viewTask": "View",
+        "viewTask": "Details",
         "reviews": "({count} reviews)",
         "makeOffer": "Make Offer"
     },
@@ -220,6 +220,10 @@
             "title": "Messaging",
             "contactProvider": "Contact Provider",
             "notMatched": "Messaging will be available once you accept an offer."
+        },
+        "providerActions": {
+            "title": "Your Actions",
+            "makeOffer": "Make an Offer"
         }
     },
     "ProfilePage": {

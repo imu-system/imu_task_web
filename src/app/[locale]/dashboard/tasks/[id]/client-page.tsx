@@ -38,7 +38,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { type Offer, type Task, TaskStatus } from '@/lib/types';
+import { type Offer, type Task, TaskStatus, UserRole } from '@/lib/types';
 import { useLocale, useTranslations } from 'next-intl';
 import { useToast } from '@/hooks/use-toast';
 import TaskStatusTimeline from '@/components/task-status-timeline';
@@ -46,6 +46,9 @@ import { useState } from 'react';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { useAuth } from '@/hooks/use-auth';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
+import { OfferForm } from '@/components/offer-form';
 
 const OfferCard = ({ offer, onAccept }: { offer: Offer, onAccept: (offer: Offer) => void }) => {
   const { toast } = useToast();
@@ -103,8 +106,50 @@ const OfferCard = ({ offer, onAccept }: { offer: Offer, onAccept: (offer: Offer)
   );
 };
 
+const ProviderActions = ({ task }: { task: Task }) => {
+    const t = useTranslations('TaskDetailPage');
+    return (
+        <Card>
+            <CardHeader>
+                <CardTitle>{t('providerActions.title')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button className="w-full" size="lg">{t('providerActions.makeOffer')}</Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <OfferForm task={task} />
+                    </DialogContent>
+                </Dialog>
+            </CardContent>
+        </Card>
+    )
+}
+
+const ClientActions = ({ offers, onAccept }: { offers: Offer[], onAccept: (offer: Offer) => void }) => {
+    const t = useTranslations('TaskDetailPage');
+    return (
+        <div className="space-y-4">
+            <h2 className="text-2xl font-bold font-headline">{t('offersReceived', { count: offers.length })}</h2>
+            {offers.length > 0 ? (
+                <div className="space-y-4">
+                    {offers.map((offer) => (
+                        <OfferCard key={offer.id} offer={offer} onAccept={onAccept}/>
+                    ))}
+                </div>
+            ) : (
+                <Card className="text-center p-8">
+                    <p className="text-muted-foreground">{t('noOffers')}</p>
+                </Card>
+            )}
+        </div>
+    )
+}
+
 
 export default function TaskDetailClientPage({ task: initialTask, offers: initialOffers }: { task: Task, offers: Offer[] }) {
+  const { user } = useAuth();
   const t = useTranslations('TaskDetailPage');
   const tActions = useTranslations('TaskActions');
   const locale = useLocale();
@@ -112,6 +157,8 @@ export default function TaskDetailClientPage({ task: initialTask, offers: initia
   const [offers, setOffers] = useState(initialOffers);
   const { toast } = useToast();
 
+  const isClient = user?.uid === task.clientId;
+  const isProvider = user?.roles.includes(UserRole.provider);
   const isMatched = task.status === TaskStatus.matched || task.status === TaskStatus.in_progress || task.status === TaskStatus.completed;
 
   const handleOfferAccepted = (acceptedOffer: Offer) => {
@@ -163,20 +210,9 @@ export default function TaskDetailClientPage({ task: initialTask, offers: initia
             </CardContent>
           </Card>
 
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold font-headline">{t('offersReceived', { count: offers.length })}</h2>
-            {offers.length > 0 ? (
-              <div className="space-y-4">
-                {offers.map((offer) => (
-                  <OfferCard key={offer.id} offer={offer} onAccept={handleOfferAccepted}/>
-                ))}
-              </div>
-            ) : (
-              <Card className="text-center p-8">
-                <p className="text-muted-foreground">{t('noOffers')}</p>
-              </Card>
-            )}
-          </div>
+          {isClient ? <ClientActions offers={offers} onAccept={handleOfferAccepted} /> : null}
+          {!isClient && isProvider ? <ProviderActions task={task}/> : null}
+          
         </div>
         <div className="space-y-6">
           <Card>
@@ -185,101 +221,101 @@ export default function TaskDetailClientPage({ task: initialTask, offers: initia
               <CardDescription>{t('budget')}</CardDescription>
             </CardHeader>
           </Card>
-           <Card>
-            <CardHeader>
-              <CardTitle>{t('actions.title')}</CardTitle>
-            </CardHeader>
-            <CardContent className="grid grid-cols-1 gap-2">
-              <Button asChild variant="outline" disabled={isMatched}>
-                <Link href={`/dashboard/tasks/${task.id}/edit`}>
-                  <Edit className="mr-2" />{t('actions.edit')}
-                </Link>
-              </Button>
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                    <Button variant="destructive" disabled={isMatched}>
-                        <Trash2 className="mr-2" />{t('actions.cancel')}
+           {isClient && (
+            <Card>
+                <CardHeader>
+                <CardTitle>{t('actions.title')}</CardTitle>
+                </CardHeader>
+                <CardContent className="grid grid-cols-1 gap-2">
+                <Button asChild variant="outline" disabled={isMatched}>
+                    <Link href={`/dashboard/tasks/${task.id}/edit`}>
+                    <Edit className="mr-2" />{t('actions.edit')}
+                    </Link>
+                </Button>
+                <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                        <Button variant="destructive" disabled={isMatched}>
+                            <Trash2 className="mr-2" />{t('actions.cancel')}
+                        </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle>{tActions('cancelDialogTitle')}</AlertDialogTitle>
+                            <AlertDialogDescription>{tActions('cancelDialogDescription')}</AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel>{tActions('cancelDialogCancel')}</AlertDialogCancel>
+                            <AlertDialogAction>{tActions('cancelDialogConfirm')}</AlertDialogAction>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
+
+                <Separator />
+                <Button variant="outline" disabled={task.status !== TaskStatus.completed}>
+                    <Receipt className="mr-2" />{t('actions.receipt')}
+                </Button>
+                <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                    <Button variant="outline">
+                        <ShieldAlert className="mr-2"/>{t('actions.reportProblem')}
                     </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle>{tActions('cancelDialogTitle')}</AlertDialogTitle>
-                        <AlertDialogDescription>{tActions('cancelDialogDescription')}</AlertDialogDescription>
+                        <AlertDialogTitle>{tActions('reportProblem.title')}</AlertDialogTitle>
+                        <AlertDialogDescription>{tActions('reportProblem.description')}</AlertDialogDescription>
                     </AlertDialogHeader>
+                    <div className="space-y-4 py-4">
+                        <div className="space-y-2">
+                        <Label htmlFor="reason">{tActions('reportProblem.reasonLabel')}</Label>
+                        <Select>
+                            <SelectTrigger id="reason">
+                            <SelectValue placeholder={tActions('reportProblem.reasonPlaceholder')} />
+                            </SelectTrigger>
+                            <SelectContent>
+                            <SelectItem value="no_show">{tActions('reportProblem.reasons.noShow')}</SelectItem>
+                            <SelectItem value="quality">{tActions('reportProblem.reasons.quality')}</SelectItem>
+                            <SelectItem value="delay">{tActions('reportProblem.reasons.delay')}</SelectItem>
+                            <SelectItem value="other">{tActions('reportProblem.reasons.other')}</SelectItem>
+                            </SelectContent>
+                        </Select>
+                        </div>
+                        <div className="space-y-2">
+                        <Label htmlFor="comment">{tActions('reportProblem.commentLabel')}</Label>
+                        <Textarea id="comment" placeholder={tActions('reportProblem.commentPlaceholder')} />
+                        </div>
+                        <div className="space-y-2">
+                        <Label htmlFor="attachments">{tActions('reportProblem.attachmentsLabel')}</Label>
+                        <Button variant="outline" asChild className="w-full">
+                            <label>
+                            <Paperclip className="mr-2"/>{tActions('reportProblem.attachmentsButton')}
+                            <input type="file" className="sr-only"/>
+                            </label>
+                        </Button>
+                        </div>
+                    </div>
                     <AlertDialogFooter>
                         <AlertDialogCancel>{tActions('cancelDialogCancel')}</AlertDialogCancel>
-                        <AlertDialogAction>{tActions('cancelDialogConfirm')}</AlertDialogAction>
+                        <AlertDialogAction onClick={handleReportProblem}>{tActions('reportProblem.submitButton')}</AlertDialogAction>
                     </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-
-              <Separator />
-              <Button variant="outline" disabled={task.status !== TaskStatus.completed}>
-                <Receipt className="mr-2" />{t('actions.receipt')}
-              </Button>
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button variant="outline">
-                    <ShieldAlert className="mr-2"/>{t('actions.reportProblem')}
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                      <AlertDialogTitle>{tActions('reportProblem.title')}</AlertDialogTitle>
-                      <AlertDialogDescription>{tActions('reportProblem.description')}</AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <div className="space-y-4 py-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="reason">{tActions('reportProblem.reasonLabel')}</Label>
-                      <Select>
-                        <SelectTrigger id="reason">
-                          <SelectValue placeholder={tActions('reportProblem.reasonPlaceholder')} />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="no_show">{tActions('reportProblem.reasons.noShow')}</SelectItem>
-                          <SelectItem value="quality">{tActions('reportProblem.reasons.quality')}</SelectItem>
-                          <SelectItem value="delay">{tActions('reportProblem.reasons.delay')}</SelectItem>
-                          <SelectItem value="other">{tActions('reportProblem.reasons.other')}</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="comment">{tActions('reportProblem.commentLabel')}</Label>
-                      <Textarea id="comment" placeholder={tActions('reportProblem.commentPlaceholder')} />
-                    </div>
-                     <div className="space-y-2">
-                      <Label htmlFor="attachments">{tActions('reportProblem.attachmentsLabel')}</Label>
-                      <Button variant="outline" asChild className="w-full">
-                        <label>
-                          <Paperclip className="mr-2"/>{tActions('reportProblem.attachmentsButton')}
-                          <input type="file" className="sr-only"/>
-                        </label>
-                      </Button>
-                    </div>
-                  </div>
-                  <AlertDialogFooter>
-                      <AlertDialogCancel>{tActions('cancelDialogCancel')}</AlertDialogCancel>
-                      <AlertDialogAction onClick={handleReportProblem}>{tActions('reportProblem.submitButton')}</AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
-            </CardContent>
-          </Card>
-           <Card>
-            <CardHeader>
-              <CardTitle>{t('messaging.title')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              {isMatched ? (
-                <Button className="w-full">
-                  <MessageSquare className="mr-2"/>
-                  {t('messaging.contactProvider')}
-                </Button>
-              ) : (
-                <p className="text-sm text-muted-foreground text-center">{t('messaging.notMatched')}</p>
-              )}
-            </CardContent>
-          </Card>
+                    </AlertDialogContent>
+                </AlertDialog>
+                </CardContent>
+            </Card>
+           )}
+           {isClient && isMatched && (
+                <Card>
+                    <CardHeader>
+                    <CardTitle>{t('messaging.title')}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                    <Button className="w-full">
+                        <MessageSquare className="mr-2"/>
+                        {t('messaging.contactProvider')}
+                    </Button>
+                    </CardContent>
+                </Card>
+           )}
           <Card>
             <CardHeader>
               <CardTitle>{t('client')}</CardTitle>

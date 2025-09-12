@@ -120,7 +120,7 @@
         "toastNotFoundDescription": "La mission demandée n'a pas pu être trouvée ou vous n'avez pas la permission de la modifier."
     },
     "TaskCard": {
-        "viewTask": "Voir",
+        "viewTask": "Détails",
         "reviews": "({count} avis)",
         "makeOffer": "Faire une offre"
     },
@@ -220,6 +220,10 @@
             "title": "Messagerie",
             "contactProvider": "Contacter le prestataire",
             "notMatched": "La messagerie sera disponible une fois que vous aurez accepté une offre."
+        },
+        "providerActions": {
+            "title": "Vos actions",
+            "makeOffer": "Faire une offre"
         }
     },
     "ProfilePage": {
