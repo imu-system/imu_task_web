@@ -108,5 +108,9 @@
     "ImpersonationBanner": {
         "impersonateWarning": "現在、{email}になりすましています。",
         "stopImpersonation": "なりすましを停止"
+    },
+    "ThreadPage": {
+        "task": "タスク",
+        "placeholder": "メッセージを入力してください..."
     }
 }
