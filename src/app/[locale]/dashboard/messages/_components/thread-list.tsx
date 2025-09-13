@@ -8,19 +8,21 @@ import { getThreadsForUser } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { Link, usePathname } from '@/navigation';
 import { Search } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const mockThreads = getThreadsForUser('user1'); // Assuming current user is user1 for now
 
 export function ThreadList() {
   const { user } = useAuth();
   const pathname = usePathname();
+  const t = useTranslations('DashboardNav');
 
   if (!user) return null;
 
   return (
     <div className="w-full md:w-80 border-r flex flex-col">
       <div className="p-4 border-b">
-        <h2 className="text-xl font-bold font-headline">Messages</h2>
+        <h2 className="text-xl font-bold font-headline">{t('messages')}</h2>
         <div className="relative mt-4">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input placeholder="Rechercher..." className="pl-10" />
