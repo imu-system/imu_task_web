@@ -117,13 +117,15 @@ export default function ThreadPage() {
             )
         })}
       </main>
-      <footer className="p-4 border-t">
-        <div className="relative">
-            <Input placeholder={t('placeholder')} className="pr-24"/>
-            <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
-                <Button variant="ghost" size="icon"><Paperclip/></Button>
-                <Button><Send/></Button>
-            </div>
+      <footer className="p-4 border-t bg-background">
+        <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon">
+                <Paperclip/>
+            </Button>
+            <Input placeholder={t('placeholder')} className="flex-1" />
+            <Button>
+                <Send/>
+            </Button>
         </div>
       </footer>
     </div>
