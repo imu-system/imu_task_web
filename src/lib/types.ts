@@ -4,6 +4,7 @@
 
 
 
+
 // Types partagés pour le monorepo (générés d'après le schéma Prisma)
 // GitHub Copilot
 
@@ -138,6 +139,8 @@ export enum MessageType {
     system = 'system',
     image = 'image',
     file = 'file',
+    audio = 'audio',
+    transcript = 'transcript',
 }
 
 export enum ThreadStatus {
@@ -145,6 +148,14 @@ export enum ThreadStatus {
     locked = 'locked',
     archived = 'archived',
 }
+
+export enum AttachmentKind {
+    image = 'image',
+    video = 'video',
+    audio = 'audio',
+    file = 'file',
+}
+
 
 export enum PageStatus {
     draft = 'draft',
@@ -357,33 +368,59 @@ export interface Booking {
 
 export interface Thread {
     id: string;
-    taskId: string;
-    lastMessageAt?: DateTime | null;
+    taskId?: string;
+    participants: string[];
+    lastMessageAt: DateTime;
     status: ThreadStatus;
-
     createdAt: DateTime;
     updatedAt: DateTime;
 
-    // Relations
+    // Relations (for frontend convenience)
     task?: Task;
-    participants?: User[];
-    messages?: Message[];
+    participantsData?: User[];
+    lastMessage?: Message;
 }
 
 export interface Message {
     id: string;
     threadId: string;
     senderId: string;
-    body: string;
-    attachments: string[];
+    body?: string;
     type: MessageType;
+    attachments?: Attachment[];
     sentAt: DateTime;
-    readAt?: DateTime | null;
+    deliveredAt?: DateTime;
+    readAt?: DateTime;
+    metadata?: any; // Json for language, transcriptionId, moderation flags
 
-    // Relations
+    // Relations (for frontend convenience)
     thread?: Thread;
     sender?: User;
 }
+
+export interface Attachment {
+    id: string;
+    url: string;
+    kind: AttachmentKind;
+    filename?: string;
+    size: number;
+    mimeType: string;
+    uploadedBy: string;
+    uploadedAt: DateTime;
+}
+
+export interface CallSession {
+    id: string;
+    threadId: string;
+    participants: string[];
+    startedAt?: DateTime;
+    endedAt?: DateTime;
+    durationSec?: number;
+    recordingUrl?: string | null;
+    transcriptId?: string | null;
+    metadata: { turnServersUsed?: boolean, quality?: string };
+}
+
 
 export interface Transaction {
     id: string;

@@ -1,6 +1,7 @@
 
 
-import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole, Notification, NotificationType, NotificationChannel, DeliveryStatus, ContentPage, PageStatus, Thread, ThreadStatus, Message, MessageType } from './types';
+
+import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole, Notification, NotificationType, NotificationChannel, DeliveryStatus, ContentPage, PageStatus, Thread, ThreadStatus, Message, MessageType, AttachmentKind } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
 
@@ -613,16 +614,43 @@ const mockMessages: Message[] = [
 ];
 
 const mockThreads: Thread[] = [
-    { id: 'thread1', taskId: 'task2', participants: [users.find(u => u.id === 'user1')!, users.find(u => u.id === 'user2')!], lastMessage: mockMessages.find(m => m.id === 'msg3')!, lastMessageAt: new Date('2024-08-27T10:06:00Z'), status: ThreadStatus.open, createdAt: new Date(), updatedAt: new Date(), task: getTasks().find(t => t.id === 'task2')! },
-    { id: 'thread2', taskId: 'task1', participants: [users.find(u => u.id === 'user1')!, users.find(u => u.id === 'user3')!], lastMessage: mockMessages.find(m => m.id === 'msg4')!, lastMessageAt: new Date('2024-08-26T18:00:00Z'), status: ThreadStatus.open, createdAt: new Date(), updatedAt: new Date(), task: getTasks().find(t => t.id === 'task1')! },
+    { 
+        id: 'thread1', 
+        taskId: 'task2', 
+        participants: ['user1', 'user2'],
+        participantsData: [users.find(u => u.id === 'user1')!, users.find(u => u.id === 'user2')!], 
+        lastMessage: mockMessages.find(m => m.id === 'msg3')!, 
+        lastMessageAt: new Date('2024-08-27T10:06:00Z'), 
+        status: ThreadStatus.open, 
+        createdAt: new Date(), 
+        updatedAt: new Date(), 
+        task: getTasks().find(t => t.id === 'task2')! 
+    },
+    { 
+        id: 'thread2', 
+        taskId: 'task1', 
+        participants: ['user1', 'user3'],
+        participantsData: [users.find(u => u.id === 'user1')!, users.find(u => u.id === 'user3')!], 
+        lastMessage: mockMessages.find(m => m.id === 'msg4')!, 
+        lastMessageAt: new Date('2024-08-26T18:00:00Z'), 
+        status: ThreadStatus.open, 
+        createdAt: new Date(), 
+        updatedAt: new Date(), 
+        task: getTasks().find(t => t.id === 'task1')! 
+    },
 ];
 
 export const getThreadsForUser = (userId: string): Thread[] => {
-    return mockThreads.filter(t => t.participants?.some(p => p.id === userId));
+    return mockThreads.filter(t => t.participants?.some(id => id === userId));
 }
 
 export const getThreadById = (threadId: string): Thread | undefined => {
-    return mockThreads.find(t => t.id === threadId);
+    const thread = mockThreads.find(t => t.id === threadId);
+    if (thread) {
+        // Populate participantsData if not already
+        thread.participantsData = thread.participants.map(id => users.find(u => u.id === id)).filter(Boolean) as User[];
+    }
+    return thread;
 }
 
 export const getMessagesForThread = (threadId: string): Message[] => {

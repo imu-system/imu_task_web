@@ -57,13 +57,13 @@ export default function ThreadPage() {
     return null;
   }
   
-  const otherParticipant = thread.participants?.find(p => p.id !== user.uid);
+  const otherParticipant = thread.participantsData?.find(p => p.id !== user.uid);
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full bg-background">
       <header className="flex items-center justify-between gap-4 p-2 border-b">
         <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon" asChild>
+            <Button variant="ghost" size="icon" asChild className="md:hidden">
                 <Link href="/dashboard/messages">
                     <ArrowLeft/>
                 </Link>
@@ -78,8 +78,10 @@ export default function ThreadPage() {
             </div>
         </div>
         <div className="flex items-center gap-1">
-            <Button variant="ghost" size="icon">
-                <Phone />
+            <Button variant="ghost" size="icon" asChild>
+                <Link href={`/dashboard/messages/${threadId}/call`}>
+                    <Phone />
+                </Link>
             </Button>
             <Button variant="ghost" size="icon">
                 <Bell />

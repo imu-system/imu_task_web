@@ -20,7 +20,7 @@ export function ThreadList() {
   if (!user) return null;
 
   return (
-    <div className="w-full md:w-80 border-r flex flex-col">
+    <div className="hidden md:flex w-full md:w-80 border-r flex-col bg-background">
       <div className="p-4 border-b">
         <h2 className="text-xl font-bold font-headline">{t('messages')}</h2>
         <div className="relative mt-4">
@@ -31,7 +31,7 @@ export function ThreadList() {
       <div className="flex-1 overflow-y-auto">
         <nav className="p-2 space-y-1">
           {mockThreads.map((thread) => {
-            const otherParticipant = thread.participants?.find(p => p.id !== user.uid);
+            const otherParticipant = thread.participantsData?.find(p => p.id !== user.uid);
             const isActive = pathname.includes(thread.id);
             return (
               <Link
