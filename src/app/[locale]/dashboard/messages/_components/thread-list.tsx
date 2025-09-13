@@ -5,17 +5,26 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/hooks/use-auth';
 import { getThreadsForUser } from '@/lib/data';
+import { Thread } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { Link, usePathname } from '@/navigation';
 import { Search } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
 
-const mockThreads = getThreadsForUser('user1'); // Assuming current user is user1 for now
 
 export function ThreadList() {
   const { user } = useAuth();
   const pathname = usePathname();
   const t = useTranslations('DashboardNav');
+  const [threads, setThreads] = useState<Thread[]>([]);
+
+  useEffect(() => {
+    if (user) {
+        const userThreads = getThreadsForUser(user.uid);
+        setThreads(userThreads);
+    }
+  }, [user]);
 
   if (!user) return null;
 
@@ -30,7 +39,7 @@ export function ThreadList() {
       </div>
       <div className="flex-1 overflow-y-auto">
         <nav className="p-2 space-y-1">
-          {mockThreads.map((thread) => {
+          {threads.map((thread) => {
             const otherParticipant = thread.participantsData?.find(p => p.id !== user.uid);
             const isActive = pathname.includes(thread.id);
             return (
