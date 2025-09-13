@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -466,10 +465,5 @@
     "MessagesPage": {
         "title": "Sélectionnez une conversation",
         "description": "Choisissez une conversation dans la liste pour commencer à échanger."
-    },
-    "ThreadPage": {
-        "task": "Mission",
-        "placeholder": "Écrivez votre message..."
     }
 }
-

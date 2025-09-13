@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Features",
@@ -466,10 +465,5 @@
     "MessagesPage": {
         "title": "Select a conversation",
         "description": "Choose a conversation from the list to start messaging."
-    },
-    "ThreadPage": {
-        "task": "Task",
-        "placeholder": "Type your message..."
     }
 }
-
