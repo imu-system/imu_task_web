@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useAuth } from '@/hooks/use-auth';
@@ -17,22 +16,22 @@ import { Input } from '@/components/ui/input';
 
 const mockBookings: Booking[] = getBookings();
 
-export default function AdminBookingsPage() {
+export default function MyBookingsPage() {
     const { user, loading: authLoading } = useAuth();
     const router = useRouter();
-    const t = useTranslations('AdminBookingsPage');
+    const t = useTranslations('MyBookingsPage');
     
     const [bookings, setBookings] = useState<Booking[]>(mockBookings);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        if (!authLoading && (!user || !user.roles?.includes(UserRole.admin))) {
-            router.push('/dashboard');
+        if (!authLoading && !user) {
+            router.push('/sign-in');
         }
     }, [user, authLoading, router]);
 
 
-    if (authLoading || loading || !user || !user.roles?.includes(UserRole.admin)) {
+    if (authLoading || loading || !user) {
         return (
             <div className="flex justify-center items-center h-64">
                 <Loader2 className="h-16 w-16 animate-spin text-primary" />
@@ -66,24 +65,20 @@ export default function AdminBookingsPage() {
                 {t('subtitle')}
                 </p>
             </div>
-             <div className="w-full md:w-1/3">
-                <Input placeholder={t('searchPlaceholder')} />
-            </div>
         </div>
 
        <Card>
             <CardHeader>
-                <CardTitle>{t('tableTitle')}</CardTitle>
-                <CardDescription>{t('tableDescription')}</CardDescription>
+                <CardTitle>{t('table.title')}</CardTitle>
+                <CardDescription>{t('table.description')}</CardDescription>
             </CardHeader>
             <CardContent>
                 <Table>
                     <TableHeader>
                         <TableRow>
-                            <TableHead>{t('table.id')}</TableHead>
                             <TableHead>{t('table.task')}</TableHead>
                             <TableHead>{t('table.client')}</TableHead>
-                             <TableHead>{t('table.provider')}</TableHead>
+                            <TableHead>{t('table.provider')}</TableHead>
                             <TableHead>{t('table.amount')}</TableHead>
                             <TableHead>{t('table.status')}</TableHead>
                             <TableHead><span className="sr-only">{t('table.actions')}</span></TableHead>
@@ -93,10 +88,7 @@ export default function AdminBookingsPage() {
                         {bookings.map((booking) => (
                             <TableRow key={booking.id}>
                                 <TableCell>
-                                    <div className="font-mono text-xs text-muted-foreground">{booking.id.substring(0,6)}...</div>
-                                </TableCell>
-                                <TableCell>
-                                    <Link href={`/dashboard/admin/tasks/${booking.taskId}`} className="font-medium hover:underline">
+                                    <Link href={`/dashboard/tasks/${booking.taskId}`} className="font-medium hover:underline">
                                         {booking.task?.title}
                                     </Link>
                                     <div className="text-sm text-muted-foreground font-mono">{booking.taskId.substring(0,6)}...</div>
@@ -127,9 +119,9 @@ export default function AdminBookingsPage() {
                                 </TableCell>
                                 <TableCell className="text-right">
                                     <Button asChild variant="outline" size="sm">
-                                        <Link href={`/dashboard/admin/bookings/${booking.id}`}>
+                                        <Link href={`/dashboard/bookings/${booking.id}`}>
                                             <Eye className="mr-2 h-4 w-4" />
-                                            {t('details')}
+                                            {t('table.details')}
                                         </Link>
                                     </Button>
                                 </TableCell>
@@ -142,5 +134,3 @@ export default function AdminBookingsPage() {
     </div>
   );
 }
-
-    
