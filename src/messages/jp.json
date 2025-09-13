@@ -112,5 +112,9 @@
     "ThreadPage": {
         "task": "タスク",
         "placeholder": "メッセージを入力してください..."
+    },
+    "CallPage": {
+        "calling": "通話中..."
     }
 }
+

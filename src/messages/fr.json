@@ -469,5 +469,9 @@
     "ThreadPage": {
         "task": "Mission",
         "placeholder": "Écrivez votre message..."
+    },
+    "CallPage": {
+        "calling": "Appel en cours..."
     }
 }
+

@@ -469,5 +469,9 @@
     "ThreadPage": {
         "task": "Task",
         "placeholder": "Type your message..."
+    },
+    "CallPage": {
+        "calling": "Calling..."
     }
 }
+
