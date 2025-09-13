@@ -11,7 +11,30 @@ import { Link } from '@/navigation';
 import { Send, Paperclip, ArrowLeft, Phone, Bell, MoreVertical } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import { Separator } from '@/components/ui/separator';
+
+function isSameDay(date1: Date, date2: Date) {
+  return date1.getFullYear() === date2.getFullYear() &&
+         date1.getMonth() === date2.getMonth() &&
+         date1.getDate() === date2.getDate();
+}
+
+const DateSeparator = ({ date }: { date: Date }) => {
+    return (
+        <div className="relative my-4">
+            <div className="absolute inset-0 flex items-center">
+                <Separator />
+            </div>
+            <div className="relative flex justify-center">
+                <span className="bg-background px-2 text-xs text-muted-foreground">
+                    {date.toLocaleDateString([], { year: 'numeric', month: 'long', day: 'numeric' })}
+                </span>
+            </div>
+        </div>
+    );
+};
+
 
 export default function ThreadPage() {
   const { threadId } = useParams<{ threadId: string }>();
@@ -66,24 +89,31 @@ export default function ThreadPage() {
             </Button>
         </div>
       </header>
-      <main className="flex-1 overflow-y-auto p-6 space-y-6">
-        {messages.map(message => {
+      <main className="flex-1 overflow-y-auto p-6 space-y-4">
+        {messages.map((message, index) => {
             const isSender = message.senderId === user.uid;
+            const currentMessageDate = new Date(message.sentAt);
+            const prevMessageDate = index > 0 ? new Date(messages[index - 1].sentAt) : null;
+            const showDateSeparator = !prevMessageDate || !isSameDay(currentMessageDate, prevMessageDate);
+
             return (
-                 <div key={message.id} className={`flex items-end gap-2 ${isSender ? 'justify-end' : ''}`}>
-                    {!isSender && (
-                        <Avatar className="h-8 w-8">
-                            <AvatarImage src={otherParticipant?.profile?.photoUrl || undefined}/>
-                            <AvatarFallback>{otherParticipant?.profile?.displayName.charAt(0)}</AvatarFallback>
-                        </Avatar>
-                    )}
-                    <div className={`max-w-xs md:max-w-md p-3 rounded-lg ${isSender ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
-                        <p>{message.body}</p>
-                        <p className={`text-xs mt-1 ${isSender ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
-                            {new Date(message.sentAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                        </p>
+                 <Fragment key={message.id}>
+                    {showDateSeparator && <DateSeparator date={currentMessageDate} />}
+                    <div className={`flex items-end gap-2 ${isSender ? 'justify-end' : ''}`}>
+                        {!isSender && (
+                            <Avatar className="h-8 w-8">
+                                <AvatarImage src={otherParticipant?.profile?.photoUrl || undefined}/>
+                                <AvatarFallback>{otherParticipant?.profile?.displayName.charAt(0)}</AvatarFallback>
+                            </Avatar>
+                        )}
+                        <div className={`max-w-xs md:max-w-md p-3 rounded-lg ${isSender ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
+                            <p>{message.body}</p>
+                            <p className={`text-xs mt-1 ${isSender ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
+                                {new Date(message.sentAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                            </p>
+                        </div>
                     </div>
-                 </div>
+                </Fragment>
             )
         })}
       </main>
@@ -99,4 +129,3 @@ export default function ThreadPage() {
     </div>
   );
 }
-
