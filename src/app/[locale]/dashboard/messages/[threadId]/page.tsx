@@ -7,7 +7,8 @@ import { Input } from '@/components/ui/input';
 import { useAuth } from '@/hooks/use-auth';
 import { getMessagesForThread, getThreadById } from '@/lib/data';
 import { Message, Thread } from '@/lib/types';
-import { Send, Paperclip } from 'lucide-react';
+import { Link } from '@/navigation';
+import { Send, Paperclip, ArrowLeft, Phone, Bell, MoreVertical } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -37,14 +38,32 @@ export default function ThreadPage() {
 
   return (
     <div className="flex flex-col h-full">
-      <header className="flex items-center gap-4 p-4 border-b">
-        <Avatar>
-            <AvatarImage src={otherParticipant?.profile?.photoUrl || undefined}/>
-            <AvatarFallback>{otherParticipant?.profile?.displayName.charAt(0)}</AvatarFallback>
-        </Avatar>
-        <div>
-            <p className="font-semibold">{otherParticipant?.profile?.displayName}</p>
-            <p className="text-sm text-muted-foreground">{t('task')}: {thread.task?.title}</p>
+      <header className="flex items-center justify-between gap-4 p-2 border-b">
+        <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" asChild>
+                <Link href="/dashboard/messages">
+                    <ArrowLeft/>
+                </Link>
+            </Button>
+            <Avatar>
+                <AvatarImage src={otherParticipant?.profile?.photoUrl || undefined}/>
+                <AvatarFallback>{otherParticipant?.profile?.displayName.charAt(0)}</AvatarFallback>
+            </Avatar>
+            <div>
+                <p className="font-semibold">{otherParticipant?.profile?.displayName}</p>
+                <p className="text-sm text-muted-foreground">{t('task')}: {thread.task?.title}</p>
+            </div>
+        </div>
+        <div className="flex items-center gap-1">
+            <Button variant="ghost" size="icon">
+                <Phone />
+            </Button>
+            <Button variant="ghost" size="icon">
+                <Bell />
+            </Button>
+             <Button variant="ghost" size="icon">
+                <MoreVertical />
+            </Button>
         </div>
       </header>
       <main className="flex-1 overflow-y-auto p-6 space-y-6">
