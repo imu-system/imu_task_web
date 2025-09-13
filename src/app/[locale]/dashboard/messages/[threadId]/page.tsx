@@ -8,7 +8,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { getMessagesForThread, getThreadById } from '@/lib/data';
 import { Message, Thread } from '@/lib/types';
 import { Link } from '@/navigation';
-import { Send, Paperclip, ArrowLeft, Phone, Bell, MoreVertical } from 'lucide-react';
+import { Send, Paperclip, ArrowLeft, Phone, Bell, MoreVertical, Smile, Mic } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
@@ -122,7 +122,13 @@ export default function ThreadPage() {
             <Button variant="ghost" size="icon">
                 <Paperclip/>
             </Button>
+             <Button variant="ghost" size="icon">
+                <Smile/>
+            </Button>
             <Input placeholder={t('placeholder')} className="flex-1" />
+             <Button variant="ghost" size="icon">
+                <Mic/>
+            </Button>
             <Button>
                 <Send/>
             </Button>
