@@ -502,7 +502,9 @@
         "placeholder": "Type your message..."
     },
     "CallPage": {
-        "calling": "Calling..."
+        "ringing": "Ringing...",
+        "callInProgress": "Call in progress",
+        "recordingConsent": "Recording is active. Consent from all participants is required."
     },
     "AttachmentPreview": {
         "addAsEvidence": "Add as evidence",

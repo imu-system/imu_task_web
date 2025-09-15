@@ -21,8 +21,8 @@
         "title": "ImuTask",
         "subtitle": "Vos besoins, leur mission.",
         "description": "Connecter les générations pour des services du quotidien, en toute simplicité, fiabilité et sécurité.",
-        "findHelp": "Se connecter",
-        "offerServices": "S'inscrire",
+        "signIn": "Se connecter",
+        "signUp": "S'inscrire",
         "whyChoose": "Pourquoi choisir ImuTask ?",
         "feature1Title": "Entraide Intergénérationnelle",
         "feature1Desc": "Créez des liens uniques en aidant ou en recevant de l'aide de personnes de votre communauté.",
@@ -502,7 +502,9 @@
         "placeholder": "Écrivez votre message..."
     },
     "CallPage": {
-        "calling": "Appel en cours..."
+        "ringing": "Appel...",
+        "callInProgress": "Appel en cours",
+        "recordingConsent": "L'enregistrement est actif. Le consentement de tous les participants est requis."
     },
     "AttachmentPreview": {
         "addAsEvidence": "Ajouter comme preuve",

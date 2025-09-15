@@ -122,7 +122,9 @@
         "placeholder": "メッセージを入力してください..."
     },
     "CallPage": {
-        "calling": "通話中..."
+        "ringing": "呼び出し中...",
+        "callInProgress": "通話中",
+        "recordingConsent": "録音が有効です。すべての参加者の同意が必要です。"
     },
     "AttachmentPreview": {
         "addAsEvidence": "証拠として追加",
