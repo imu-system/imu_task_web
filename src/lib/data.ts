@@ -1,4 +1,5 @@
 
+
 import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole, Notification, NotificationType, NotificationChannel, DeliveryStatus, ContentPage, PageStatus, Thread, ThreadStatus, Message, MessageType, Attachment, AttachmentKind } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
@@ -680,7 +681,7 @@ const mockThreads: Thread[] = [
     { 
         id: 'thread3', 
         taskId: 'task4', 
-        participants: ['user4', 'user1'], // Changed user2 to user1
+        participants: ['user4', 'user1'], 
         participantsData: [users.find(u => u.id === 'user4')!, users.find(u => u.id === 'user1')!], 
         lastMessage: mockMessages.find(m => m.id === 'msg8')!, 
         lastMessageAt: new Date('2024-08-19T15:05:00Z'), 
@@ -717,5 +718,6 @@ export const getThreadById = (threadId: string): Thread | undefined => {
 export const getMessagesForThread = (threadId: string): Message[] => {
     return mockMessages.filter(m => m.threadId === threadId).sort((a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime());
 }
+
 
 
