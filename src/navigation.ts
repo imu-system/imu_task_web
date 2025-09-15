@@ -16,7 +16,7 @@ export const pathnames = {
     fr: '/connexion',
     jp: '/sign-in',
   },
-  '/inscription': {
+  '/sign-up': {
     en: '/sign-up',
     fr: '/inscription',
     jp: '/sign-up',
