@@ -606,13 +606,13 @@ export const getPages = (): ContentPage[] => [
 
 const mockMessages: Message[] = [
     { id: 'msg1', threadId: 'thread1', senderId: 'user2', body: 'Bonjour, je suis intéressé par votre mission de jardinage. Je suis disponible demain.', type: MessageType.text, sentAt: new Date('2024-08-27T10:00:00Z') },
-    { id: 'msg2', threadId: 'thread1', senderId: 'user1', body: 'Bonjour Lucas, merci pour votre message. Demain 14h vous conviendrait ?', type: MessageType.text, sentAt: new Date('2024-08-27T10:05:00Z') },
+    { id: 'msg2', threadId: 'thread1', senderId: 'user4', body: 'Bonjour Lucas, merci pour votre message. Demain 14h vous conviendrait ?', type: MessageType.text, sentAt: new Date('2024-08-27T10:05:00Z') },
     { id: 'msg3', threadId: 'thread1', senderId: 'user2', body: 'Parfait pour moi !', type: MessageType.text, sentAt: new Date('2024-08-27T10:06:00Z') },
     { id: 'msg4', threadId: 'thread2', senderId: 'user3', body: 'Salut Anne-Marie, je viens de voir votre mission pour les courses. Je peux m\'en occuper sans problème.', type: MessageType.text, sentAt: new Date('2024-08-26T18:00:00Z') },
     { 
         id: 'msg5', 
         threadId: 'thread1', 
-        senderId: 'user1', 
+        senderId: 'user4', 
         type: MessageType.image,
         body: 'Voici une photo du jardin actuel.',
         attachments: [{
@@ -622,7 +622,7 @@ const mockMessages: Message[] = [
             filename: 'jardin_actuel.jpg',
             size: 123456,
             mimeType: 'image/jpeg',
-            uploadedBy: 'user1',
+            uploadedBy: 'user4',
             uploadedAt: new Date('2024-08-27T10:07:00Z')
         }],
         sentAt: new Date('2024-08-27T10:07:00Z') 
@@ -680,8 +680,8 @@ const mockThreads: Thread[] = [
     { 
         id: 'thread3', 
         taskId: 'task4', 
-        participants: ['user4', 'user2'],
-        participantsData: [users.find(u => u.id === 'user4')!, users.find(u => u.id === 'user2')!], 
+        participants: ['user4', 'user1'], // Changed user2 to user1
+        participantsData: [users.find(u => u.id === 'user4')!, users.find(u => u.id === 'user1')!], 
         lastMessage: mockMessages.find(m => m.id === 'msg8')!, 
         lastMessageAt: new Date('2024-08-19T15:05:00Z'), 
         status: ThreadStatus.archived, 
@@ -717,4 +717,5 @@ export const getThreadById = (threadId: string): Thread | undefined => {
 export const getMessagesForThread = (threadId: string): Message[] => {
     return mockMessages.filter(m => m.threadId === threadId).sort((a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime());
 }
+
 
