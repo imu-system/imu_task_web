@@ -99,7 +99,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         if (!userDoc.exists()) {
              const batch = writeBatch(db);
 
-            const newUserDoc = {
+            const newUserDocData = {
                 email: firebaseUser.email,
                 roles: [UserRole.client],
                 status: 'active',
@@ -107,8 +107,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 createdAt: serverTimestamp(),
                 updatedAt: serverTimestamp(),
             };
-            batch.set(userDocRef, newUserDoc);
-            userData = newUserDoc as User;
+            batch.set(userDocRef, newUserDocData);
+            
+            userData = {
+                id: firebaseUser.uid,
+                ...newUserDocData
+            } as User;
 
             const newProfileDoc = {
                 userId: firebaseUser.uid,
@@ -191,7 +195,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
               uid: targetUser.id,
               email: targetUser.email,
               displayName: targetUser.displayName,
-              photoURL: `https://i.pravatar.cc/150?u=${targetUser.id}`,
+              photoURL: `https://i.pravatar.cc/150?u=${'targetUser.id'}`,
               roles: targetUser.roles,
               status: targetUser.status,
               KYCStatus: targetUser.kycStatus,
