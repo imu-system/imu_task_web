@@ -23,7 +23,7 @@ import { doc, setDoc, getDoc, getFirestore, serverTimestamp, writeBatch } from '
 import { auth, db } from '@/lib/firebase';
 import { useRouter } from '@/navigation';
 import { z } from 'zod';
-import { type Profile, UserRole, type User } from '@/lib/types';
+import { type Profile, UserRole, type User, UserStatus, KYCStatus } from '@/lib/types';
 
 export const signUpSchema = z.object({
   name: z.string().min(2, "Le nom est requis"),
@@ -49,7 +49,10 @@ export type SignInFormValues = z.infer<typeof signInSchema>;
 export type ProfileFormValues = z.infer<typeof profileSchema>;
 
 
-export interface AuthUser extends FirebaseUser, Omit<User, 'id' | 'createdAt' | 'updatedAt' | 'profile'> {
+export interface AuthUser extends FirebaseUser {
+    roles: UserRole[];
+    status: UserStatus;
+    KYCStatus: KYCStatus;
     profile: Profile | null;
 }
 
@@ -138,7 +141,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
         const authUser: AuthUser = {
             ...firebaseUser,
-            ...(userData || { email: firebaseUser.email, roles: [], status: 'active', KYCStatus: 'not_required' }),
+            roles: userData?.roles || [],
+            status: userData?.status || UserStatus.active,
+            KYCStatus: userData?.KYCStatus || KYCStatus.not_required,
             profile: profileData,
         };
 
@@ -151,10 +156,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setError("Impossible de récupérer les données utilisateur. Veuillez vérifier votre connexion.");
         return { 
             ...firebaseUser,
-            email: firebaseUser.email!,
             roles: [], 
-            status: 'active', 
-            KYCStatus: 'not_required',
+            status: UserStatus.active, 
+            KYCStatus: KYCStatus.not_required,
             profile: null 
         };
     }
@@ -183,6 +187,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           setOriginalAdmin(user);
           // We need to create a complete AuthUser object for the target
            const impersonatedAuthUser: AuthUser = {
+              ...user, // Start with admin's firebase user object to have all methods
               uid: targetUser.id,
               email: targetUser.email,
               displayName: targetUser.displayName,
@@ -191,15 +196,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
               status: targetUser.status,
               KYCStatus: targetUser.kycStatus,
               profile: targetUser.profile,
-              // Add mock Firebase User properties as they don't exist on the simple mock object
-              providerData: user.providerData, 
-              isAnonymous: false,
-              tenantId: null,
-              delete: async () => console.log("Delete called on impersonated user"),
-              getIdToken: async () => 'mock-token',
-              getIdTokenResult: async () => ({ token: 'mock-token' } as any),
-              reload: async () => console.log("Reload called on impersonated user"),
-              toJSON: () => ({ uid: targetUser.id, email: targetUser.email }),
           };
           setUser(impersonatedAuthUser);
       }
