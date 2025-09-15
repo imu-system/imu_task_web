@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -505,6 +506,7 @@
     },
     "AttachmentPreview": {
         "addAsEvidence": "Ajouter comme preuve",
-        "delete": "Supprimer"
+        "delete": "Supprimer",
+        "open": "Ouvrir"
     }
 }

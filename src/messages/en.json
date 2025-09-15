@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Features",
@@ -505,6 +506,7 @@
     },
     "AttachmentPreview": {
         "addAsEvidence": "Add as evidence",
-        "delete": "Delete"
+        "delete": "Delete",
+        "open": "Open"
     }
 }
