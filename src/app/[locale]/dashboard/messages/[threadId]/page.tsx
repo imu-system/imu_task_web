@@ -119,18 +119,23 @@ export default function ThreadPage() {
             )
         })}
       </main>
-      <footer className="p-4 border-t bg-background">
+      <footer className="p-4 border-t bg-background space-y-3">
+        <div className="flex justify-start gap-2">
+            <Button variant="outline" size="sm">Ok ✔</Button>
+            <Button variant="outline" size="sm">Merci 🙏</Button>
+            <Button variant="outline" size="sm">RDV demain ?</Button>
+        </div>
         <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon">
                 <Plus/>
             </Button>
             <Button variant="ghost" size="icon">
-                <Paperclip/>
-            </Button>
-             <Button variant="ghost" size="icon">
                 <Smile/>
             </Button>
             <Input placeholder={t('placeholder')} className="flex-1" />
+            <Button variant="ghost" size="icon">
+                <Paperclip/>
+            </Button>
              <Button variant="ghost" size="icon">
                 <Mic/>
             </Button>
