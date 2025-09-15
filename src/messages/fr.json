@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -476,5 +477,9 @@
     },
     "CallPage": {
         "calling": "Appel en cours..."
+    },
+    "AttachmentPreview": {
+        "addAsEvidence": "Ajouter comme preuve",
+        "delete": "Supprimer"
     }
 }

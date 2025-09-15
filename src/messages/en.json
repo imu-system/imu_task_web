@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Features",
@@ -476,5 +477,9 @@
     },
     "CallPage": {
         "calling": "Calling..."
+    },
+    "AttachmentPreview": {
+        "addAsEvidence": "Add as evidence",
+        "delete": "Delete"
     }
 }

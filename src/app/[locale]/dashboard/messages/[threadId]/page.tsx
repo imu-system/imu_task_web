@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -6,13 +7,14 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/hooks/use-auth';
 import { getMessagesForThread, getThreadById } from '@/lib/data';
-import { Message, Thread } from '@/lib/types';
+import { Attachment, AttachmentKind, Message, Thread } from '@/lib/types';
 import { Link } from '@/navigation';
-import { Send, Paperclip, ArrowLeft, Phone, Bell, MoreVertical, Smile, Mic, Plus } from 'lucide-react';
+import { Send, Paperclip, ArrowLeft, Phone, Bell, MoreVertical, Smile, Mic, Plus, FileText, Download, Play, ShieldAlert, Trash2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
 import { Separator } from '@/components/ui/separator';
+import Image from 'next/image';
 
 function isSameDay(date1: Date, date2: Date) {
   return date1.getFullYear() === date2.getFullYear() &&
@@ -34,6 +36,62 @@ const DateSeparator = ({ date }: { date: Date }) => {
         </div>
     );
 };
+
+const AttachmentPreview = ({ attachment }: { attachment: Attachment }) => {
+    const t = useTranslations('AttachmentPreview');
+
+    if (attachment.kind === AttachmentKind.image) {
+        return (
+            <div className="mt-2 space-y-2">
+                <Image src={attachment.url} alt={attachment.filename || 'Image attachment'} width={200} height={150} className="rounded-lg object-cover" data-ai-hint="attached image"/>
+                <div className="flex gap-2">
+                    <Button variant="outline" size="sm"><ShieldAlert className="mr-2 h-4 w-4"/>{t('addAsEvidence')}</Button>
+                    <Button variant="destructive-outline" size="sm"><Trash2 className="mr-2 h-4 w-4"/>{t('delete')}</Button>
+                </div>
+            </div>
+        )
+    }
+
+    if (attachment.kind === AttachmentKind.audio) {
+        return (
+            <div className="mt-2 space-y-2">
+                <div className="flex items-center gap-2 p-2 border rounded-lg">
+                    <Button variant="ghost" size="icon"><Play/></Button>
+                    <div className="flex-1">
+                        <p className="text-sm font-medium">{attachment.filename}</p>
+                        <p className="text-xs text-muted-foreground">00:45</p>
+                    </div>
+                </div>
+                 <div className="flex gap-2">
+                    <Button variant="outline" size="sm"><ShieldAlert className="mr-2 h-4 w-4"/>{t('addAsEvidence')}</Button>
+                    <Button variant="destructive-outline" size="sm"><Trash2 className="mr-2 h-4 w-4"/>{t('delete')}</Button>
+                </div>
+            </div>
+        )
+    }
+    
+     if (attachment.kind === AttachmentKind.file) {
+        return (
+            <div className="mt-2">
+                <div className="flex items-center gap-2 p-3 border rounded-lg bg-background">
+                    <FileText className="h-6 w-6 text-muted-foreground"/>
+                    <div className="flex-1">
+                        <p className="text-sm font-medium">{attachment.filename}</p>
+                        <p className="text-xs text-muted-foreground">{(attachment.size / 1024).toFixed(1)} KB</p>
+                    </div>
+                    <Button variant="ghost" size="icon" asChild>
+                        <a href={attachment.url} download>
+                            <Download/>
+                        </a>
+                    </Button>
+                </div>
+            </div>
+        )
+    }
+
+
+    return null;
+}
 
 
 export default function ThreadPage() {
@@ -109,7 +167,8 @@ export default function ThreadPage() {
                             </Avatar>
                         )}
                         <div className={`max-w-xs md:max-w-md p-3 rounded-lg ${isSender ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
-                            <p>{message.body}</p>
+                            {message.body && <p>{message.body}</p>}
+                            {message.attachments?.map((att, i) => <AttachmentPreview key={i} attachment={att} />)}
                             <p className={`text-xs mt-1 ${isSender ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
                                 {new Date(message.sentAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </p>
@@ -147,3 +206,4 @@ export default function ThreadPage() {
     </div>
   );
 }
+
