@@ -54,7 +54,7 @@ export default function SignUpPage() {
         <CardTitle className="text-2xl">{t('title')}</CardTitle>
         <CardDescription>
           {t('orSignIn')}{' '}
-          <Link href="/sign-in" className="font-medium text-primary hover:underline">
+          <Link href="/connexion" className="font-medium text-primary hover:underline">
             {t('signInLink')}
           </Link>
         </CardDescription>
