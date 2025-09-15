@@ -60,7 +60,14 @@
         "wallet": "ウォレット",
         "profile": "プロフィール",
         "logout": "ログアウト",
-        "admin": "管理"
+        "admin": "管理",
+        "adminNav": {
+            "community": "コミュニティ",
+            "moderation": "モデレーション",
+            "platform": "プラットフォーム",
+            "finance": "ファイナンス",
+            "config": "設定"
+        }
     },
     "DashboardPage": {
         "title": "利用可能なタスク",
@@ -117,4 +124,3 @@
         "calling": "通話中..."
     }
 }
-

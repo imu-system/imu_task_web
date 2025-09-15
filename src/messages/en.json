@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Features",
@@ -21,8 +20,8 @@
         "title": "ImuTask",
         "subtitle": "Your needs, their mission.",
         "description": "Connecting generations for everyday services, with simplicity, reliability, and security.",
-        "findHelp": "Find Help",
-        "offerServices": "Offer My Services",
+        "findHelp": "Sign In",
+        "offerServices": "Sign Up",
         "whyChoose": "Why choose ImuTask?",
         "feature1Title": "Intergenerational Mutual Aid",
         "feature1Desc": "Create unique bonds by helping or receiving help from people in your community.",
@@ -64,7 +63,33 @@
         "admin": "Admin",
         "findProvider": "Find a provider",
         "findTask": "Find a task",
-        "myBookings": "My Bookings"
+        "myBookings": "My Bookings",
+        "users": "Users",
+        "tasks": "Tasks",
+        "offers": "Offers",
+        "bookings": "Bookings",
+        "reviews": "Reviews",
+        "moderation": "Moderation",
+        "kycVerification": "KYC Verification",
+        "disputes": "Disputes",
+        "support": "Support",
+        "categories": "Categories",
+        "cms": "CMS",
+        "notifications": "Notifications",
+        "translations": "Translations",
+        "payments": "Payments",
+        "pricing": "Pricing",
+        "reports": "Reports",
+        "integrations": "Integrations",
+        "settings": "Settings",
+        "auditLog": "Audit Log",
+        "adminNav": {
+            "community": "Community",
+            "moderation": "Moderation",
+            "platform": "Platform",
+            "finance": "Finance",
+            "config": "Configuration"
+        }
     },
     "DashboardPage": {
         "title": "Available tasks",

@@ -110,9 +110,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             batch.set(userDocRef, newUserDocData);
             
             userData = {
-                id: firebaseUser.uid,
-                ...newUserDocData
-            } as User;
+              id: firebaseUser.uid,
+              ...newUserDocData
+            } as unknown as User;
 
             const newProfileDoc = {
                 userId: firebaseUser.uid,
@@ -128,7 +128,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 updatedAt: serverTimestamp(),
             };
             batch.set(profileDocRef, newProfileDoc);
-            profileData = newProfileDoc as Profile;
+            profileData = newProfileDoc as unknown as Profile;
 
             await batch.commit();
         }

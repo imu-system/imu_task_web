@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -21,8 +20,8 @@
         "title": "ImuTask",
         "subtitle": "Vos besoins, leur mission.",
         "description": "Connecter les générations pour des services du quotidien, en toute simplicité, fiabilité et sécurité.",
-        "findHelp": "Trouver de l'aide",
-        "offerServices": "Proposer mes services",
+        "findHelp": "Se connecter",
+        "offerServices": "S'inscrire",
         "whyChoose": "Pourquoi choisir ImuTask ?",
         "feature1Title": "Entraide Intergénérationnelle",
         "feature1Desc": "Créez des liens uniques en aidant ou en recevant de l'aide de personnes de votre communauté.",
@@ -64,7 +63,33 @@
         "admin": "Admin",
         "findProvider": "Trouver un prestataire",
         "findTask": "Trouver une mission",
-        "myBookings": "Mes Réservations"
+        "myBookings": "Mes Réservations",
+        "users": "Utilisateurs",
+        "tasks": "Missions",
+        "offers": "Offres",
+        "bookings": "Réservations",
+        "reviews": "Avis",
+        "moderation": "Modération",
+        "kycVerification": "Vérification KYC",
+        "disputes": "Litiges",
+        "support": "Support",
+        "categories": "Catégories",
+        "cms": "CMS",
+        "notifications": "Notifications",
+        "translations": "Traductions",
+        "payments": "Paiements",
+        "pricing": "Tarification",
+        "reports": "Rapports",
+        "integrations": "Intégrations",
+        "settings": "Paramètres",
+        "auditLog": "Logs d'audit",
+        "adminNav": {
+            "community": "Communauté",
+            "moderation": "Modération",
+            "platform": "Plateforme",
+            "finance": "Finance",
+            "config": "Configuration"
+        }
     },
     "DashboardPage": {
         "title": "Missions disponibles",
