@@ -1,8 +1,4 @@
 
-
-
-
-
 import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole, Notification, NotificationType, NotificationChannel, DeliveryStatus, ContentPage, PageStatus, Thread, ThreadStatus, Message, MessageType, Attachment, AttachmentKind } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
@@ -15,12 +11,12 @@ export const users: User[] = [
     profile: {
       displayName: 'Anne-Marie Dupont',
       photoUrl: 'https://picsum.photos/id/1027/100/100',
-      userId: '',
-      languages: [],
-      averageRating: 0,
-      reviewsCount: 0,
-      skills: [],
-      verifiedBadges: [],
+      userId: 'user1',
+      languages: ['Français'],
+      averageRating: 4.5,
+      reviewsCount: 12,
+      skills: ['Organisation'],
+      verifiedBadges: ['ID Verified'],
       createdAt: '',
       updatedAt: ''
     },
@@ -36,12 +32,12 @@ export const users: User[] = [
     profile: {
       displayName: 'Lucas Bernard',
       photoUrl: 'https://picsum.photos/id/1005/100/100',
-      userId: '',
-      languages: [],
-      averageRating: 0,
-      reviewsCount: 0,
-      skills: [],
-      verifiedBadges: [],
+      userId: 'user2',
+      languages: ['Français', 'Anglais'],
+      averageRating: 4.8,
+      reviewsCount: 25,
+      skills: ['Jardinage', 'Bricolage'],
+      verifiedBadges: ['ID Verified', 'Payment Verified'],
       createdAt: '',
       updatedAt: ''
     },
@@ -57,12 +53,12 @@ export const users: User[] = [
     profile: {
       displayName: 'Chloé Petit',
       photoUrl: 'https://picsum.photos/id/1011/100/100',
-      userId: '',
-      languages: [],
-      averageRating: 0,
-      reviewsCount: 0,
-      skills: [],
-      verifiedBadges: [],
+      userId: 'user3',
+      languages: ['Français'],
+      averageRating: 4.9,
+      reviewsCount: 38,
+      skills: ['Courses', 'Ménage'],
+      verifiedBadges: ['ID Verified', 'Payment Verified'],
       createdAt: '',
       updatedAt: ''
     },
@@ -78,12 +74,12 @@ export const users: User[] = [
     profile: {
       displayName: 'Marc Dubois',
       photoUrl: 'https://picsum.photos/id/1012/100/100',
-      userId: '',
-      languages: [],
-      averageRating: 0,
-      reviewsCount: 0,
+      userId: 'user4',
+      languages: ['Français'],
+      averageRating: 4.2,
+      reviewsCount: 5,
       skills: [],
-      verifiedBadges: [],
+      verifiedBadges: ['ID Verified'],
       createdAt: '',
       updatedAt: ''
     },
@@ -97,10 +93,10 @@ export const users: User[] = [
     id: 'user5',
     email: 'moderator.emma@email.com',
     profile: {
-      displayName: 'Emma Moreau',
+      displayName: 'Emma Moreau (Support)',
       photoUrl: 'https://picsum.photos/id/1015/100/100',
-      userId: '',
-      languages: [],
+      userId: 'user5',
+      languages: ['Français', 'Anglais'],
       averageRating: 0,
       reviewsCount: 0,
       skills: [],
@@ -618,6 +614,7 @@ const mockMessages: Message[] = [
         threadId: 'thread1', 
         senderId: 'user1', 
         type: MessageType.image,
+        body: 'Voici une photo du jardin actuel.',
         attachments: [{
             id: 'att1',
             url: 'https://picsum.photos/seed/garden1/400/300',
@@ -647,15 +644,20 @@ const mockMessages: Message[] = [
             uploadedAt: new Date('2024-08-27T10:08:00Z')
         }],
         sentAt: new Date('2024-08-27T10:08:00Z')
-    }
+    },
+    { id: 'msg7', threadId: 'thread3', senderId: 'user2', body: "Bonjour Marc, je suis disponible pour promener Oscar. J'adore les chiens !", type: MessageType.text, sentAt: new Date('2024-08-19T15:00:00Z') },
+    { id: 'msg8', threadId: 'thread3', senderId: 'user4', body: "Super ! On peut s'appeler pour en discuter ?", type: MessageType.text, sentAt: new Date('2024-08-19T15:05:00Z') },
+    { id: 'msg9', threadId: 'thread4', senderId: 'user1', body: "Bonjour, je n'arrive pas à ajouter une nouvelle adresse sur mon profil.", type: MessageType.text, sentAt: new Date('2024-08-28T09:00:00Z') },
+    { id: 'msg10', threadId: 'thread4', senderId: 'user5', body: "Bonjour Anne-Marie, je suis Emma du support. Pouvez-vous me décrire l'erreur que vous rencontrez ?", type: MessageType.text, sentAt: new Date('2024-08-28T09:02:00Z') },
+
 ];
 
 const mockThreads: Thread[] = [
     { 
         id: 'thread1', 
         taskId: 'task2', 
-        participants: ['user1', 'user2'],
-        participantsData: [users.find(u => u.id === 'user1')!, users.find(u => u.id === 'user2')!], 
+        participants: ['user4', 'user2'],
+        participantsData: [users.find(u => u.id === 'user4')!, users.find(u => u.id === 'user2')!], 
         lastMessage: mockMessages.find(m => m.id === 'msg6')!, 
         lastMessageAt: new Date('2024-08-27T10:08:00Z'), 
         status: ThreadStatus.open, 
@@ -675,10 +677,32 @@ const mockThreads: Thread[] = [
         updatedAt: new Date(), 
         task: getTasks().find(t => t.id === 'task1')! 
     },
+    { 
+        id: 'thread3', 
+        taskId: 'task4', 
+        participants: ['user4', 'user2'],
+        participantsData: [users.find(u => u.id === 'user4')!, users.find(u => u.id === 'user2')!], 
+        lastMessage: mockMessages.find(m => m.id === 'msg8')!, 
+        lastMessageAt: new Date('2024-08-19T15:05:00Z'), 
+        status: ThreadStatus.archived, 
+        createdAt: new Date(), 
+        updatedAt: new Date(), 
+        task: getTasks().find(t => t.id === 'task4')! 
+    },
+     { 
+        id: 'thread4', 
+        participants: ['user1', 'user5'],
+        participantsData: [users.find(u => u.id === 'user1')!, users.find(u => u.id === 'user5')!], 
+        lastMessage: mockMessages.find(m => m.id === 'msg10')!, 
+        lastMessageAt: new Date('2024-08-28T09:02:00Z'), 
+        status: ThreadStatus.open, 
+        createdAt: new Date(), 
+        updatedAt: new Date(), 
+    },
 ];
 
 export const getThreadsForUser = (userId: string): Thread[] => {
-    return mockThreads.filter(t => t.participants?.some(id => id === userId));
+    return mockThreads.filter(t => t.participants?.some(id => id === userId)).sort((a, b) => new Date(b.lastMessageAt).getTime() - new Date(a.lastMessageAt).getTime());
 }
 
 export const getThreadById = (threadId: string): Thread | undefined => {
@@ -691,6 +715,6 @@ export const getThreadById = (threadId: string): Thread | undefined => {
 }
 
 export const getMessagesForThread = (threadId: string): Message[] => {
-    return mockMessages.filter(m => m.threadId === threadId);
+    return mockMessages.filter(m => m.threadId === threadId).sort((a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime());
 }
 
