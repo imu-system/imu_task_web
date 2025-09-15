@@ -16,6 +16,8 @@ import {
   signOut as firebaseSignOut,
   AuthError,
   updateProfile,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from 'firebase/auth';
 import { doc, setDoc, getDoc, getFirestore, serverTimestamp, writeBatch } from 'firebase/firestore';
 import { auth, db } from '@/lib/firebase';
@@ -60,6 +62,7 @@ interface AuthContextType {
   setError: (error: string | null) => void;
   signIn: (data: SignInFormValues) => Promise<void>;
   signUp: (data: SignUpFormValues) => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
   impersonatingUser: AuthUser | null;
   startImpersonation: (targetUser: any) => void;
@@ -87,7 +90,41 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         const profileDoc = await getDoc(profileDocRef);
         
         let userData = userDoc.exists() ? (userDoc.data() as User) : null;
-        const profileData = profileDoc.exists() ? (profileDoc.data() as Profile) : null;
+        let profileData = profileDoc.exists() ? (profileDoc.data() as Profile) : null;
+        
+        // If the user doc doesn't exist, it's a first-time sign-in (e.g., via Google)
+        if (!userDoc.exists()) {
+             const batch = writeBatch(db);
+
+            const newUserDoc = {
+                email: firebaseUser.email,
+                roles: [UserRole.client],
+                status: 'active',
+                KYCStatus: 'not_required',
+                createdAt: serverTimestamp(),
+                updatedAt: serverTimestamp(),
+            };
+            batch.set(userDocRef, newUserDoc);
+            userData = newUserDoc as User;
+
+            const newProfileDoc = {
+                userId: firebaseUser.uid,
+                displayName: firebaseUser.displayName || 'Utilisateur',
+                photoUrl: firebaseUser.photoURL || '',
+                bio: '',
+                languages: ['fr'],
+                averageRating: 0,
+                reviewsCount: 0,
+                skills: [],
+                verifiedBadges: [],
+                createdAt: serverTimestamp(),
+                updatedAt: serverTimestamp(),
+            };
+            batch.set(profileDocRef, newProfileDoc);
+            profileData = newProfileDoc as Profile;
+
+            await batch.commit();
+        }
         
          if (userData && firebaseUser.email === 'nathan.imogo@outlook.fr' && !userData.roles.includes(UserRole.admin)) {
             userData.roles.push(UserRole.admin);
@@ -110,7 +147,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         }
         return authUser;
     } catch (err) {
-        console.error("Failed to fetch user data:", err);
+        console.error("Failed to fetch/create user data:", err);
         setError("Impossible de récupérer les données utilisateur. Veuillez vérifier votre connexion.");
         return { 
             ...firebaseUser,
@@ -186,6 +223,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             return 'Cette adresse e-mail est déjà utilisée.';
         case 'auth/invalid-email':
             return 'Adresse e-mail invalide.';
+        case 'auth/popup-closed-by-user':
+            return 'La fenêtre de connexion a été fermée.';
         default:
             return 'Une erreur d\'authentification est survenue.';
     }
@@ -201,6 +240,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setError(handleAuthError(err as AuthError));
     } finally {
       setLoading(false);
+    }
+  };
+
+  const signInWithGoogle = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+        const provider = new GoogleAuthProvider();
+        await signInWithPopup(auth, provider);
+        router.push('/dashboard');
+    } catch (err) {
+        setError(handleAuthError(err as AuthError));
+    } finally {
+        setLoading(false);
     }
   };
 
@@ -269,7 +322,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, profileLoading, error, setError, signIn, signUp, signOut, impersonatingUser, startImpersonation, stopImpersonation }}>
+    <AuthContext.Provider value={{ user, loading, profileLoading, error, setError, signIn, signUp, signInWithGoogle, signOut, impersonatingUser, startImpersonation, stopImpersonation }}>
       {children}
     </AuthContext.Provider>
   );

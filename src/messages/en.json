@@ -171,7 +171,9 @@
         "passwordLabel": "Password",
         "forgotPasswordLink": "Forgot password?",
         "submitButton": "Sign in",
-        "errorTitle": "Authentication Error"
+        "errorTitle": "Authentication Error",
+        "continueWithGoogle": "Continue with Google",
+        "orContinueWith": "Or continue with"
     },
     "SignUpPage": {
         "title": "Create your ImuTask account",
@@ -183,7 +185,9 @@
         "submitButton": "Create account",
         "termsPrefix": "By creating an account, you agree to our",
         "termsLink": "Terms of Service",
-        "errorTitle": "Registration Error"
+        "errorTitle": "Registration Error",
+        "continueWithGoogle": "Continue with Google",
+        "orContinueWith": "Or continue with"
     },
     "OfferCard": {
         "toastAcceptTitle": "Offer accepted!",
@@ -474,4 +478,3 @@
         "calling": "Calling..."
     }
 }
-
