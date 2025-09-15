@@ -16,7 +16,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 
 const categories = [
@@ -40,6 +40,7 @@ const categories = [
 
 export default function Home() {
   const t = useTranslations('HomePage');
+  const tHeader = useTranslations('Header');
   
   const features = [
     {
@@ -76,10 +77,10 @@ export default function Home() {
               </p>
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                 <Button asChild size="lg">
-                  <Link href="/dashboard">{t('findHelp')}</Link>
+                  <Link href="/sign-up">{tHeader('signUp')}</Link>
                 </Button>
                 <Button asChild variant="secondary" size="lg">
-                  <Link href="/dashboard">{t('offerServices')}</Link>
+                  <Link href="/sign-in">{tHeader('signIn')}</Link>
                 </Button>
               </div>
             </div>
