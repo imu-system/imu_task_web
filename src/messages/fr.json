@@ -531,5 +531,8 @@
             "warn": "Avertir",
             "suspend": "Suspendre"
         }
+    },
+    "OfflineBanner": {
+        "offlineMessage": "⚠️ Vous êtes hors ligne — tentative de reconnexion…"
     }
 }

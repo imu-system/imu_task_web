@@ -151,5 +151,8 @@
             "warn": "警告",
             "suspend": "停止"
         }
+    },
+    "OfflineBanner": {
+        "offlineMessage": "⚠️ 現在オフラインです。再接続を試みています..."
     }
 }

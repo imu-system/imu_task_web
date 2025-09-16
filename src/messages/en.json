@@ -531,5 +531,8 @@
             "warn": "Warn",
             "suspend": "Suspend"
         }
+    },
+    "OfflineBanner": {
+        "offlineMessage": "You are currently offline. Attempting to reconnect..."
     }
 }
