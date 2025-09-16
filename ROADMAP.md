@@ -1,5 +1,52 @@
 # Feuille de Route de Développement pour ImuTask
 
+## **Étape Prioritaire : Connexion du Profil Utilisateur à Firebase**
+
+**Objectif :** Rendre le profil utilisateur dynamique en le connectant à Firestore pour la persistance des données et à Firebase Storage pour le téléversement de fichiers (photo de profil, documents KYC).
+
+---
+
+### **1. Sauvegarde des Informations du Profil**
+
+**Fichiers concernés :** `src/app/[locale]/dashboard/profile/edit/page.tsx`, `src/hooks/use-auth.tsx`
+
+1.  **Logique d'envoi du formulaire :**
+    *   [ ] Dans la fonction `onSubmit` de la page `edit/page.tsx`, remplacer la simulation (`console.log`) par un appel à une fonction `updateUserProfile`.
+    *   [ ] Cette fonction `updateUserProfile` prendra les données du formulaire et utilisera la fonction `updateDoc` de Firestore pour mettre à jour le document de l'utilisateur dans la collection `profiles` (ex: `doc(db, 'profiles', user.uid)`).
+    *   [ ] Assurer la gestion des états de chargement (`isSaving`) et des erreurs (via `try/catch` et `toast`).
+
+2.  **Gestion de la photo de profil :**
+    *   [ ] Au changement du fichier de photo (`<Input type="file" />`), déclencher une fonction d'upload.
+    *   [ ] **Logique d'upload :**
+        *   Créer une référence dans Firebase Storage (ex: `storageRef = ref(storage, `users/${user.uid}/profile.jpg`)`).
+        *   Utiliser `uploadBytes` pour téléverser le fichier.
+        *   Après l'upload, récupérer l'URL de téléchargement avec `getDownloadURL`.
+        *   Mettre à jour le champ `photoUrl` dans le document `profiles` de l'utilisateur avec cette nouvelle URL.
+        *   Afficher un aperçu de l'image sélectionnée avant l'upload pour une meilleure expérience utilisateur.
+
+3.  **Mise à jour du hook `useAuth` :**
+    *   [ ] Modifier le hook `useAuth` pour qu'il écoute en temps réel les changements sur le document `profiles` de l'utilisateur (avec `onSnapshot`).
+    *   [ ] Ainsi, toute modification effectuée (via le formulaire ou un autre processus) sera immédiatement répercutée dans l'interface sans nécessiter de rechargement.
+
+---
+
+### **2. Implémentation de la Page de Vérification (KYC)**
+
+**Fichiers concernés :** `src/app/[locale]/dashboard/profile/kyc/page.tsx`
+
+1.  **Logique d'Upload des Documents :**
+    *   [ ] Pour chaque champ de fichier (`Carte d'identité`, `Selfie`, `Justificatif`), créer une fonction d'upload distincte.
+    *   [ ] La logique sera similaire à celle de la photo de profil, mais les fichiers seront stockés dans un sous-dossier dédié (ex: `users/${user.uid}/kyc_documents/identity_front.pdf`).
+    *   [ ] Afficher une barre de progression pendant le téléversement de chaque fichier pour informer l'utilisateur.
+
+2.  **Gestion des Statuts et de l'Historique :**
+    *   [ ] Créer une sous-collection `kyc_attempts` dans le document `users/{userId}` pour stocker l'historique de chaque tentative de vérification.
+    *   [ ] Lorsqu'un utilisateur soumet ses documents, créer un nouveau document dans `kyc_attempts` avec les URLs des fichiers et le statut `pending`.
+    *   [ ] Le statut `KYCStatus` sur le document `users` principal sera mis à jour en `pending`.
+    *   [ ] La page KYC lira l'historique depuis cette sous-collection pour afficher les tentatives passées.
+
+---
+
 ## Feuille de Route pour la Messagerie
 
 Ce document décrit les étapes planifiées pour construire une fonctionnalité de messagerie complète et robuste pour ImuTask.
@@ -79,11 +126,11 @@ _Les étapes suivantes du document original de la feuille de route pour ImuTask 
 
 2.  **Création des collections `users` et `profiles` :**
     *   [ ] À l'inscription, créer un document dans `users` avec les informations de base (`email`, `roles`, `status`, `createdAt`, etc.).
-    *   [ ] Simultanément, créer un document lié dans une nouvelle collection `profiles` avec `userId`, `displayName`, et des valeurs par défaut pour `averageRating: 0`, `reviewsCount: 0`, `languages: ['fr']`, etc.
+    *   [ ] Simultanément, créer un document lié dans une nouvelle collection `profiles` avec `userId`, `displayName`, et des valeurs par défaut pour `averageRating: 0`, `reviewsCount: 0`, `languages: ['fr']`, `serviceRadiusKm: 10`, etc.
     *   [ ] Mettre à jour le hook `useAuth` pour qu'il retourne non seulement l'objet `User` de Firebase Auth, mais aussi le profil Firestore.
 
 3.  **Page de Profil Utilisateur :**
-    *   [ ] Créer une page `/dashboard/profile/edit` permettant à l'utilisateur de modifier son `displayName`, `bio`, `photoUrl`, `languages` et `skills`.
+    *   [ ] Créer une page `/dashboard/profile/edit` permettant à l'utilisateur de modifier son `displayName`, `bio`, `photoUrl`, `languages`, `skills`, et `serviceRadiusKm`.
     *   [ ] Afficher les informations non modifiables comme l'email, la note moyenne et le nombre d'avis.
 
 ---
@@ -195,3 +242,5 @@ _Les étapes suivantes du document original de la feuille de route pour ImuTask 
     *   [ ] Permettre aux prestataires de définir leurs horaires de travail récurrents sur leur profil.
     *   [ ] Permettre de définir des exceptions (jours de congé).
     *   [ ] Utiliser ces informations pour filtrer les prestataires ou suggérer des créneaux.
+    
+    
