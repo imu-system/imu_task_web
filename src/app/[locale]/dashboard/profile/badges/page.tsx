@@ -2,20 +2,35 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/navigation';
-import { ArrowLeft, Award, CheckCircle, Heart, Medal, ShieldCheck, Sparkles, Star } from 'lucide-react';
+import { ArrowLeft, Award, CheckCircle, Heart, Medal, ShieldCheck, Sparkles, Star, Share2, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Separator } from '@/components/ui/separator';
 
 const mockBadges = [
     { id: 'first_mission', icon: <Award/>, titleKey: 'badges.firstMission.title', descriptionKey: 'badges.firstMission.description', unlocked: true },
     { id: 'verified', icon: <ShieldCheck/>, titleKey: 'badges.verified.title', descriptionKey: 'badges.verified.description', unlocked: true },
-    { id: 'super_provider', icon: <Star/>, titleKey: 'badges.superProvider.title', descriptionKey: 'badges.superProvider.description', unlocked: false },
-    { id: 'community_helper', icon: <Heart/>, titleKey: 'badges.communityHelper.title', descriptionKey: 'badges.communityHelper.description', unlocked: true },
+    { id: 'top_rated', icon: <Star/>, titleKey: 'badges.topRated.title', descriptionKey: 'badges.topRated.description', unlocked: true },
+    { id: 'community_helper', icon: <Heart/>, titleKey: 'badges.communityHelper.title', descriptionKey: 'badges.communityHelper.description', unlocked: false },
     { id: 'profil_complete', icon: <CheckCircle/>, titleKey: 'badges.profileComplete.title', descriptionKey: 'badges.profileComplete.description', unlocked: true },
     { id: 'pioneer', icon: <Sparkles/>, titleKey: 'badges.pioneer.title', descriptionKey: 'badges.pioneer.description', unlocked: false },
 ];
+
+const mockHistory = [
+    { id: 'h1', date: '12 sept.', title: 'Nettoyage de printemps', rating: 5 },
+    { id: 'h2', date: '10 sept.', title: 'Aide aux courses', rating: 4 },
+    { id: 'h3', date: '05 sept.', title: 'Assistance numérique', rating: 5 },
+];
+
+const StarRating = ({ rating }: { rating: number }) => (
+    <div className="flex items-center gap-0.5">
+        {[...Array(5)].map((_, i) => (
+            <Star key={i} className={cn("h-4 w-4", i < rating ? "fill-yellow-400 text-yellow-400" : "fill-muted text-muted-foreground")} />
+        ))}
+    </div>
+)
 
 export default function BadgesPage() {
     const t = useTranslations('BadgesPage');
@@ -60,8 +75,41 @@ export default function BadgesPage() {
                 </CardContent>
             </Card>
 
+             <Card>
+                <CardHeader>
+                    <CardTitle>{t('history.title')}</CardTitle>
+                    <CardDescription>{t('history.description')}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <ul className="space-y-4">
+                        {mockHistory.map((item, index) => (
+                             <li key={item.id}>
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-2 bg-muted rounded-full">
+                                            <MessageCircle className="h-5 w-5 text-muted-foreground"/>
+                                        </div>
+                                        <div>
+                                            <p className="font-semibold">{item.title}</p>
+                                            <p className="text-sm text-muted-foreground">{item.date}</p>
+                                        </div>
+                                    </div>
+                                    <StarRating rating={item.rating} />
+                                </div>
+                                {index < mockHistory.length - 1 && <Separator className="mt-4"/>}
+                            </li>
+                        ))}
+                    </ul>
+                </CardContent>
+            </Card>
+            
+            <div className="flex justify-center">
+                <Button size="lg">
+                    <Share2 className="mr-2"/>
+                    {t('shareProfile')}
+                </Button>
+            </div>
+
         </div>
     )
 }
-
-    

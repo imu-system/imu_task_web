@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "特徴",
@@ -272,6 +271,11 @@
         "subtitle": "ロック解除したバッジはこちらです。",
         "cardTitle": "私のバッジ",
         "cardDescription": "バッジはプラットフォームでのあなたの活動と信頼性を報酬します。",
+        "history": {
+            "title": "ミッション履歴",
+            "description": "あなたの最後の完了したミッション。"
+        },
+        "shareProfile": "プロフィールを共有",
         "badges": {
             "firstMission": {
                 "title": "最初のミッション",
@@ -296,6 +300,10 @@
             "pioneer": {
                 "title": "パイオニア",
                 "description": "最初の年に参加しました。"
+            },
+            "topRated": {
+                "title": "トップ評価",
+                "description": "平均評価4.8以上"
             }
         }
     },
@@ -348,6 +356,6 @@
         "submitButton": "検証のために送信"
     }
 }
-
     
+
 

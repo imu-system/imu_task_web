@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Features",
@@ -311,6 +310,11 @@
         "subtitle": "Here are the badges you have unlocked.",
         "cardTitle": "My Badges",
         "cardDescription": "Badges reward your activity and reliability on the platform.",
+        "history": {
+            "title": "Mission History",
+            "description": "Your last completed missions."
+        },
+        "shareProfile": "Share Profile",
         "badges": {
             "firstMission": {
                 "title": "First Mission",
@@ -335,6 +339,10 @@
             "pioneer": {
                 "title": "Pioneer",
                 "description": "Joined in the first year."
+            },
+            "topRated": {
+                "title": "Top Rated",
+                "description": "Average rating above 4.8"
             }
         }
     },
@@ -732,4 +740,5 @@
 }
 
     
+
 

@@ -310,6 +310,11 @@
         "subtitle": "Voici les badges que vous avez débloqués.",
         "cardTitle": "Mes Badges",
         "cardDescription": "Les badges récompensent votre activité et votre fiabilité sur la plateforme.",
+        "history": {
+            "title": "Historique des missions",
+            "description": "Vos dernières missions terminées."
+        },
+        "shareProfile": "Partager le profil",
         "badges": {
             "firstMission": {
                 "title": "Première Mission",
@@ -334,6 +339,10 @@
             "pioneer": {
                 "title": "Pionnier",
                 "description": "Avoir rejoint la plateforme la première année."
+            },
+            "topRated": {
+                "title": "Top Noté",
+                "description": "Note moyenne supérieure à 4.8"
             }
         }
     },
