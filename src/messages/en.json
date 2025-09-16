@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Features",
@@ -21,8 +20,8 @@
         "title": "ImuTask",
         "subtitle": "Your needs, their mission.",
         "description": "Connecting generations for everyday services, with simplicity, reliability, and security.",
-        "findHelp": "Sign In",
-        "offerServices": "Sign Up",
+        "signIn": "Sign In",
+        "signUp": "Sign Up",
         "whyChoose": "Why choose ImuTask?",
         "feature1Title": "Intergenerational Mutual Aid",
         "feature1Desc": "Create unique bonds by helping or receiving help from people in your community.",
@@ -510,5 +509,18 @@
         "addAsEvidence": "Add as evidence",
         "delete": "Delete",
         "open": "Open"
+    },
+    "ThreadRightPanel": {
+        "timeline": {
+            "title": "Timeline"
+        },
+        "evidence": {
+            "title": "Evidence"
+        },
+        "actions": {
+            "title": "Quick Actions",
+            "openDispute": "Open a dispute",
+            "createTask": "Create a task"
+        }
     }
 }

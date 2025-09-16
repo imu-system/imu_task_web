@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "特徴",
@@ -130,5 +129,18 @@
         "addAsEvidence": "証拠として追加",
         "delete": "削除",
         "open": "開く"
+    },
+    "ThreadRightPanel": {
+        "timeline": {
+            "title": "タイムライン"
+        },
+        "evidence": {
+            "title": "証拠"
+        },
+        "actions": {
+            "title": "クイックアクション",
+            "openDispute": "紛争を開始",
+            "createTask": "タスクを作成"
+        }
     }
 }

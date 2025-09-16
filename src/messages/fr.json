@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -510,5 +509,18 @@
         "addAsEvidence": "Ajouter comme preuve",
         "delete": "Supprimer",
         "open": "Ouvrir"
+    },
+    "ThreadRightPanel": {
+        "timeline": {
+            "title": "Chronologie"
+        },
+        "evidence": {
+            "title": "Preuves"
+        },
+        "actions": {
+            "title": "Actions Rapides",
+            "openDispute": "Ouvrir un litige",
+            "createTask": "Créer une tâche"
+        }
     }
 }
