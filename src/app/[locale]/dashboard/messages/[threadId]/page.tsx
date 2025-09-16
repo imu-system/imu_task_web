@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/hooks/use-auth';
 import { getThreadById } from '@/lib/data';
-import { Attachment, AttachmentKind, Message, Thread } from '@/lib/types';
+import { Attachment, AttachmentKind, Message, MessageType, Thread } from '@/lib/types';
 import { Link } from '@/navigation';
 import { Send, Paperclip, ArrowLeft, Phone, Bell, MoreVertical, Smile, Mic, Plus, FileText, Download, Play, ShieldAlert, Trash2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -16,7 +16,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import AttachmentPreview from '@/components/attachment-preview';
-import { collection, onSnapshot, orderBy, query, Timestamp } from 'firebase/firestore';
+import { collection, onSnapshot, orderBy, query, Timestamp, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 
 function isSameDay(date1: Date, date2: Date) {
@@ -48,6 +48,7 @@ export default function ThreadPage() {
   
   const [thread, setThread] = useState<Thread | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
+  const [newMessage, setNewMessage] = useState('');
 
   useEffect(() => {
     // Fetch thread details (non-real-time for now)
@@ -76,6 +77,26 @@ export default function ThreadPage() {
 
     return () => unsubscribe();
   }, [threadId]);
+  
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user || !newMessage.trim()) return;
+
+    try {
+        const messagesCol = collection(db, 'threads', threadId, 'messages');
+        await addDoc(messagesCol, {
+            senderId: user.uid,
+            body: newMessage,
+            type: MessageType.text,
+            sentAt: serverTimestamp(),
+        });
+        setNewMessage('');
+    } catch (error) {
+        console.error("Error sending message:", error);
+        // Here you would show a toast to the user
+    }
+  };
+
 
   if (!thread || !user) {
     return null;
@@ -150,24 +171,29 @@ export default function ThreadPage() {
             <Button variant="outline" size="sm">Merci 🙏</Button>
             <Button variant="outline" size="sm">RDV demain ?</Button>
         </div>
-        <div className="flex items-center gap-2">
-            <Button variant="ghost" size="icon">
+        <form onSubmit={handleSendMessage} className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" type="button">
                 <Plus/>
             </Button>
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" type="button">
                 <Smile/>
             </Button>
-            <Input placeholder={t('placeholder')} className="flex-1" />
-            <Button variant="ghost" size="icon">
+            <Input 
+                placeholder={t('placeholder')} 
+                className="flex-1" 
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+            />
+            <Button variant="ghost" size="icon" type="button">
                 <Paperclip/>
             </Button>
-             <Button variant="ghost" size="icon">
+             <Button variant="ghost" size="icon" type="button">
                 <Mic/>
             </Button>
-            <Button>
+            <Button type="submit" disabled={!newMessage.trim()}>
                 <Send/>
             </Button>
-        </div>
+        </form>
       </footer>
     </div>
   );
