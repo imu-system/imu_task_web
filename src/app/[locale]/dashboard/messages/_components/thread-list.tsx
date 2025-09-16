@@ -45,11 +45,11 @@ export function ThreadList() {
             return (
               <Link
                 key={thread.id}
-                ref={`/dashboard/messages/${thread.id}`}
+                href={`/dashboard/messages/${thread.id}`}
                 className={cn(
                   'flex items-start gap-3 p-3 rounded-lg hover:bg-muted',
                   isActive && 'bg-muted'
-                )} href={'/'}>
+                )}>
                 <div className="relative">
                     <Avatar>
                       <AvatarImage src={otherParticipant?.profile?.photoUrl || undefined} />
