@@ -31,7 +31,7 @@ export default function AttachmentPreview({ attachment, threadId, onRemove, isSt
     };
 
     const handleRemove = () => {
-        if(onRemove) {
+        if(onRemove && attachment.id) {
             onRemove(attachment.id);
         }
     }
@@ -40,7 +40,7 @@ export default function AttachmentPreview({ attachment, threadId, onRemove, isSt
     if (attachment.kind === AttachmentKind.image) {
         return (
             <div className="mt-2 space-y-2">
-                <Image src={attachment.url} alt={attachment.filename || 'Image attachment'} width={200} height={150} className="rounded-lg object-cover" data-ai-hint="attached image"/>
+                <Image src={attachment.url || '/placeholder.svg'} alt={attachment.filename || 'Image attachment'} width={200} height={150} className="rounded-lg object-cover" data-ai-hint="attached image"/>
                 <div className="flex gap-2">
                     <Button variant="outline" size="sm" className="bg-background/80 hover:bg-background text-foreground text-xs h-7" onClick={handleAddAsEvidence} disabled={isStaged}>
                         <ShieldAlert className="mr-2 h-3 w-3"/>{t('addAsEvidence')}
@@ -81,19 +81,31 @@ export default function AttachmentPreview({ attachment, threadId, onRemove, isSt
     
      if (attachment.kind === AttachmentKind.file) {
         return (
-            <div className="mt-2">
+            <div className="mt-2 space-y-2">
                 <div className="flex items-center gap-2 p-3 border rounded-lg bg-background/80">
                     <FileText className="h-6 w-6 text-muted-foreground"/>
                     <div className="flex-1">
                         <p className="text-sm font-medium">{attachment.filename}</p>
                         <p className="text-xs text-muted-foreground">{(attachment.size / 1024).toFixed(1)} KB</p>
                     </div>
-                    <Button variant="ghost" size="icon" asChild>
-                        <a href={attachment.url} download>
-                            <Download/>
-                            <span className="sr-only">{t('open')}</span>
-                        </a>
+                    {!isStaged && (
+                        <Button variant="ghost" size="icon" asChild>
+                            <a href={attachment.url} download>
+                                <Download/>
+                                <span className="sr-only">{t('open')}</span>
+                            </a>
+                        </Button>
+                    )}
+                </div>
+                 <div className="flex gap-2 mt-2">
+                    <Button variant="outline" size="sm" className="bg-background/80 hover:bg-background text-foreground text-xs h-7" onClick={handleAddAsEvidence} disabled={isStaged}>
+                        <ShieldAlert className="mr-2 h-3 w-3"/>{t('addAsEvidence')}
                     </Button>
+                    {isStaged && onRemove && (
+                         <Button variant="destructive-outline" size="sm" className="bg-background/80 hover:bg-background text-xs h-7" onClick={handleRemove}>
+                            <Trash2 className="mr-2 h-3 w-3"/>{t('delete')}
+                        </Button>
+                    )}
                 </div>
             </div>
         )

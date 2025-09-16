@@ -103,11 +103,19 @@ export default function ThreadPage() {
 
       const messagesCol = collection(db, 'threads', threadId, 'messages');
       const newMessageRef = doc(messagesCol);
+
+      let messageType = MessageType.text;
+      if (attachments.length > 0) {
+        if (attachments[0].kind === AttachmentKind.image) messageType = MessageType.image;
+        else if (attachments[0].kind === AttachmentKind.audio) messageType = MessageType.audio;
+        else messageType = MessageType.file;
+      }
+
       batch.set(newMessageRef, {
         senderId: user.uid,
         body: messageContent,
         attachments: attachments,
-        type: attachments.length > 0 && attachments[0].kind === 'image' ? MessageType.image : MessageType.text,
+        type: messageType,
         sentAt: serverTimestamp(),
       });
       
