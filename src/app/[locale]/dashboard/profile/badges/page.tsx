@@ -62,12 +62,12 @@ export default function BadgesPage() {
                 </CardHeader>
                 <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {mockBadges.map(badge => (
-                        <div key={badge.id} className={cn("flex items-center gap-4 p-4 rounded-lg border", !badge.unlocked && "opacity-50")}>
-                            <div className={cn("p-3 rounded-full", badge.unlocked ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground")}>
-                                {badge.icon}
+                        <div key={badge.id} className={cn("flex flex-col items-center text-center gap-4 p-6 rounded-lg border", !badge.unlocked && "opacity-50 bg-muted/50")}>
+                            <div className={cn("p-4 rounded-full", badge.unlocked ? "bg-primary/10 text-primary" : "bg-muted-foreground/10 text-muted-foreground")}>
+                                {React.cloneElement(badge.icon, { className: 'h-8 w-8' })}
                             </div>
-                            <div>
-                                <h3 className="font-semibold">{t(badge.titleKey as any)}</h3>
+                            <div className="space-y-1">
+                                <h3 className="font-semibold text-lg">{t(badge.titleKey as any)}</h3>
                                 <p className="text-xs text-muted-foreground">{t(badge.descriptionKey as any)}</p>
                             </div>
                         </div>
