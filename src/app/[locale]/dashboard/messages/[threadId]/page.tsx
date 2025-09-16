@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -12,7 +11,7 @@ import { Link } from '@/navigation';
 import { Send, Paperclip, ArrowLeft, Phone, Bell, MoreVertical, Smile, Mic, Plus, FileText, Download, Play, ShieldAlert, Trash2, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, useRef } from 'react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import AttachmentPreview from '@/components/attachment-preview';
@@ -52,6 +51,7 @@ export default function ThreadPage() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
 
   useEffect(() => {
@@ -135,7 +135,15 @@ export default function ThreadPage() {
   const handleQuickReply = async (message: string) => {
     if (isSending) return;
     await sendMessage(message);
-  }
+  };
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      console.log('Fichier sélectionné:', file.name);
+      // La logique d'upload sera ajoutée ici
+    }
+  };
 
 
   if (!thread || !user) {
@@ -225,7 +233,13 @@ export default function ThreadPage() {
                 onChange={(e) => setNewMessage(e.target.value)}
                 disabled={isSending}
             />
-            <Button variant="ghost" size="icon" type="button">
+            <input 
+                type="file" 
+                ref={fileInputRef} 
+                onChange={handleFileSelect}
+                className="hidden"
+            />
+            <Button variant="ghost" size="icon" type="button" onClick={() => fileInputRef.current?.click()}>
                 <Paperclip/>
             </Button>
              <Button variant="ghost" size="icon" type="button">
