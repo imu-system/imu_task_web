@@ -298,7 +298,56 @@
                 "description": "最初の年に参加しました。"
             }
         }
+    },
+    "KycPage": {
+        "title": "本人確認（KYC）",
+        "subtitle": "アカウントを保護し、すべての機能にアクセスするために本人確認を行ってください。",
+        "card": {
+            "title": "なぜ本人確認が必要なのですか？",
+            "description": "本人確認（KYC）は、以下の目的のための重要なセキュリティステップです：",
+            "item1": "詐欺からコミュニティを保護する。",
+            "item2": "プロバイダーの金融取引（引き出し）を可能にする。",
+            "item3": "メンバー間の信頼を高める。"
+        },
+        "startVerification": "確認を開始",
+        "status": {
+            "verified": {
+                "title": "本人確認済みです",
+                "description": "ありがとうございます！すべてのプラットフォーム機能にアクセスできます。"
+            },
+            "pending": {
+                "title": "確認中です",
+                "description": "あなたの書類は審査中です。通常、数時間かかります。"
+            },
+            "rejected": {
+                "title": "確認に失敗しました",
+                "description": "書類の審査中に問題が発生しました。もう一度お試しください。"
+            }
+        },
+        "toast": {
+            "title": "リダイレクト中...",
+            "description": "確認パートナーにリダイレクトされます。"
+        },
+        "documents": {
+            "title": "必要な書類",
+            "description": "以下の書類をアップロードしてください。",
+            "idCard": "IDカード（表/裏）",
+            "selfie": "セルフィー",
+            "proofOfAddress": "住所証明",
+            "upload": "アップロード",
+            "takePicture": "写真を撮る"
+        },
+        "history": {
+            "title": "確認履歴"
+        },
+        "stripe": {
+            "title": "支払い情報",
+            "description": "安全なパートナーであるStripeを介して銀行情報を追加し、支払いを受け取ります。",
+            "button": "Stripeで支払いを設定する"
+        },
+        "submitButton": "検証のために送信"
     }
 }
 
     
+

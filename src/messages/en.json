@@ -709,8 +709,27 @@
         "toast": {
             "title": "Redirecting...",
             "description": "You will be redirected to our verification partner."
-        }
+        },
+        "documents": {
+            "title": "Required Documents",
+            "description": "Please upload the following documents.",
+            "idCard": "ID Card (front/back)",
+            "selfie": "Selfie",
+            "proofOfAddress": "Proof of Address",
+            "upload": "Upload",
+            "takePicture": "Take Picture"
+        },
+        "history": {
+            "title": "Verification History"
+        },
+        "stripe": {
+            "title": "Payment Information",
+            "description": "Add your bank details via our secure partner Stripe to receive your payments.",
+            "button": "Configure payments with Stripe"
+        },
+        "submitButton": "Submit for validation"
     }
 }
 
     
+

@@ -708,8 +708,24 @@
         "toast": {
             "title": "Redirection en cours...",
             "description": "Vous allez être redirigé vers notre partenaire de vérification."
-        }
+        },
+        "documents": {
+            "title": "Documents Requis",
+            "description": "Veuillez téléverser les documents suivants.",
+            "idCard": "Carte d'identité (recto/verso)",
+            "selfie": "Selfie",
+            "proofOfAddress": "Justificatif de domicile",
+            "upload": "Téléverser",
+            "takePicture": "Prendre une photo"
+        },
+        "history": {
+            "title": "Historique de la vérification"
+        },
+        "stripe": {
+            "title": "Coordonnées de paiement",
+            "description": "Ajoutez vos coordonnées bancaires via notre partenaire sécurisé Stripe pour recevoir vos paiements.",
+            "button": "Configurer les paiements avec Stripe"
+        },
+        "submitButton": "Soumettre pour validation"
     }
 }
-
-    

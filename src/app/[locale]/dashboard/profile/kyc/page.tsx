@@ -4,13 +4,19 @@
 import { useAuth } from "@/hooks/use-auth";
 import { KYCStatus } from "@/lib/types";
 import { useTranslations } from "next-intl";
-import { Loader2, ShieldCheck, CheckCircle, Clock, AlertCircle, ArrowLeft } from 'lucide-react';
+import { Loader2, ShieldCheck, CheckCircle, Clock, AlertCircle, ArrowLeft, Camera, Upload } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { Separator } from "@/components/ui/separator";
+
+const mockHistory = [
+    { event: 'Selfie validé', date: '12/09/2024', status: 'success' },
+    { event: 'Document ID rejeté (flou)', date: '13/09/2024', status: 'failed' },
+    { event: 'Nouveaux documents soumis', date: '14/09/2024', status: 'pending' },
+];
 
 export default function KycPage() {
     const { user, loading } = useAuth();
@@ -35,7 +41,8 @@ export default function KycPage() {
     }
 
     const StatusDisplay = () => {
-        switch (user.KYCStatus) {
+        const kycStatus = KYCStatus.pending; // Forcing pending for demo
+        switch (kycStatus) {
             case KYCStatus.verified:
                 return (
                     <div className="text-center p-6 bg-green-100/50 rounded-lg border border-green-200 text-green-800">
@@ -46,10 +53,12 @@ export default function KycPage() {
                 )
             case KYCStatus.pending:
                  return (
-                    <div className="text-center p-6 bg-yellow-100/50 rounded-lg border border-yellow-200 text-yellow-800">
-                        <Clock className="h-12 w-12 mx-auto" />
-                        <h3 className="text-xl font-bold mt-4">{t('status.pending.title')}</h3>
-                        <p className="mt-2">{t('status.pending.description')}</p>
+                    <div className="text-center p-4 bg-yellow-100/50 rounded-lg border border-yellow-200 text-yellow-800 flex items-center justify-center gap-2">
+                        <Clock className="h-6 w-6" />
+                        <div>
+                            <h3 className="text-lg font-bold">{t('status.pending.title')}</h3>
+                            <p className="text-sm">{t('status.pending.description')}</p>
+                        </div>
                     </div>
                 )
             case KYCStatus.rejected:
@@ -58,21 +67,16 @@ export default function KycPage() {
                         <AlertCircle className="h-12 w-12 mx-auto" />
                         <h3 className="text-xl font-bold mt-4">{t('status.rejected.title')}</h3>
                         <p className="mt-2">{t('status.rejected.description')}</p>
-                        <Button onClick={handleStartVerification} className="mt-4">{t('startVerification')}</Button>
                     </div>
                 )
             default:
-                return (
-                    <Button onClick={handleStartVerification} size="lg" className="w-full">
-                        {t('startVerification')}
-                    </Button>
-                )
+                return null;
         }
     }
 
 
     return (
-        <div className="max-w-2xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
                 <Button variant="outline" size="icon" asChild>
                     <Link href="/dashboard/profile">
@@ -90,21 +94,68 @@ export default function KycPage() {
                 </div>
             </div>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>{t('card.title')}</CardTitle>
-                    <CardDescription>{t('card.description')}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <ul className="list-disc list-inside space-y-2 text-muted-foreground">
-                        <li>{t('card.item1')}</li>
-                        <li>{t('card.item2')}</li>
-                        <li>{t('card.item3')}</li>
-                    </ul>
-                    <Separator />
-                    <StatusDisplay />
-                </CardContent>
-            </Card>
+            <StatusDisplay />
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="space-y-8">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>{t('documents.title')}</CardTitle>
+                            <CardDescription>{t('documents.description')}</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="flex items-center justify-between p-3 border rounded-lg">
+                                <span className="font-medium">{t('documents.idCard')}</span>
+                                <Button variant="outline" size="sm"><Upload className="mr-2"/>{t('documents.upload')}</Button>
+                            </div>
+                            <div className="flex items-center justify-between p-3 border rounded-lg">
+                                <span className="font-medium">{t('documents.selfie')}</span>
+                                <Button variant="outline" size="sm"><Camera className="mr-2"/>{t('documents.takePicture')}</Button>
+                            </div>
+                            <div className="flex items-center justify-between p-3 border rounded-lg">
+                                <span className="font-medium">{t('documents.proofOfAddress')}</span>
+                                <Button variant="outline" size="sm"><Upload className="mr-2"/>{t('documents.upload')}</Button>
+                            </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>{t('stripe.title')}</CardTitle>
+                            <CardDescription>{t('stripe.description')}</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                             <Button className="w-full" disabled>{t('stripe.button')}</Button>
+                        </CardContent>
+                    </Card>
+                </div>
+                
+                <div className="space-y-8">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>{t('history.title')}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <ul className="space-y-4">
+                                {mockHistory.map((item, index) => (
+                                    <li key={index} className="flex items-center gap-3">
+                                        <div className={`h-8 w-8 rounded-full flex items-center justify-center ${item.status === 'success' ? 'bg-green-100' : item.status === 'failed' ? 'bg-red-100' : 'bg-gray-100'}`}>
+                                            {item.status === 'success' && <CheckCircle className="h-5 w-5 text-green-600"/>}
+                                            {item.status === 'failed' && <AlertCircle className="h-5 w-5 text-red-600"/>}
+                                            {item.status === 'pending' && <Clock className="h-5 w-5 text-gray-600"/>}
+                                        </div>
+                                        <div className="flex-1">
+                                            <p className="text-sm font-medium">{item.event}</p>
+                                            <p className="text-xs text-muted-foreground">{item.date}</p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </CardContent>
+                    </Card>
+                    <Button size="lg" className="w-full">{t('submitButton')}</Button>
+                </div>
+            </div>
         </div>
     )
 }
