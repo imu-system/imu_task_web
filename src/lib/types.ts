@@ -1,4 +1,5 @@
 
+
 // Types partagés pour le monorepo (générés d'après le schéma Prisma)
 // GitHub Copilot
 
@@ -402,6 +403,9 @@ export interface Attachment {
     mimeType: string;
     uploadedBy: string;
     uploadedAt: DateTime;
+    // Local state for upload progress
+    progress?: number;
+    error?: string;
 }
 
 export interface CallSession {

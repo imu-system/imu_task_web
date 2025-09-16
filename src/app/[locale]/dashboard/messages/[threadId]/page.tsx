@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -16,8 +17,11 @@ import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import AttachmentPreview from '@/components/attachment-preview';
 import { collection, onSnapshot, orderBy, query, Timestamp, addDoc, serverTimestamp, writeBatch, doc } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import { db, storage } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { Progress } from '@/components/ui/progress';
+
 
 function isSameDay(date1: Date, date2: Date) {
   return date1.getFullYear() === date2.getFullYear() &&
@@ -40,6 +44,13 @@ const DateSeparator = ({ date }: { date: Date }) => {
     );
 };
 
+const getAttachmentKind = (fileType: string): AttachmentKind => {
+    if (fileType.startsWith('image/')) return AttachmentKind.image;
+    if (fileType.startsWith('audio/')) return AttachmentKind.audio;
+    if (fileType.startsWith('video/')) return AttachmentKind.video;
+    return AttachmentKind.file;
+}
+
 
 export default function ThreadPage() {
   const { threadId } = useParams<{ threadId: string }>();
@@ -52,6 +63,7 @@ export default function ThreadPage() {
   const [newMessage, setNewMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [stagedAttachments, setStagedAttachments] = useState<Attachment[]>([]);
 
 
   useEffect(() => {
@@ -82,8 +94,8 @@ export default function ThreadPage() {
     return () => unsubscribe();
   }, [threadId]);
 
-  const sendMessage = async (messageContent: string) => {
-    if (!user || !messageContent.trim()) return;
+  const sendMessage = async (messageContent: string, attachments: Omit<Attachment, 'id' | 'uploadedBy' | 'uploadedAt'>[] = []) => {
+    if (!user || (!messageContent.trim() && attachments.length === 0)) return;
 
     setIsSending(true);
     try {
@@ -94,14 +106,20 @@ export default function ThreadPage() {
       batch.set(newMessageRef, {
         senderId: user.uid,
         body: messageContent,
-        type: MessageType.text,
+        attachments: attachments,
+        type: attachments.length > 0 && attachments[0].kind === 'image' ? MessageType.image : MessageType.text,
         sentAt: serverTimestamp(),
       });
       
       const threadRef = doc(db, 'threads', threadId);
+      let lastMessageBody = messageContent;
+      if (!lastMessageBody && attachments.length > 0) {
+          lastMessageBody = `Pièce jointe : ${attachments[0].filename}`;
+      }
+
       batch.update(threadRef, {
         lastMessage: {
-          body: messageContent,
+          body: lastMessageBody,
           senderId: user.uid,
         },
         lastMessageAt: serverTimestamp(),
@@ -124,11 +142,16 @@ export default function ThreadPage() {
   
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newMessage.trim() || isSending) return;
+    if (!newMessage.trim() && stagedAttachments.length === 0 || isSending) return;
 
-    const success = await sendMessage(newMessage);
+    const finalAttachments = stagedAttachments
+        .filter(att => att.url) // Only send fully uploaded attachments
+        .map(({ progress, error, ...rest}) => rest); // Remove local state fields
+
+    const success = await sendMessage(newMessage, finalAttachments);
     if (success) {
       setNewMessage('');
+      setStagedAttachments([]);
     }
   };
 
@@ -138,12 +161,61 @@ export default function ThreadPage() {
   };
 
   const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      console.log('Fichier sélectionné:', file.name);
-      // La logique d'upload sera ajoutée ici
+    const files = event.target.files;
+    if (!files || !user) return;
+    
+    Array.from(files).forEach(file => {
+        const fileId = doc(collection(db, 'threads')).id; // Generate a unique ID for the attachment
+        const filePath = `threads/${threadId}/${fileId}-${file.name}`;
+        const storageRef = ref(storage, filePath);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+
+        const newAttachment: Attachment = {
+            id: fileId,
+            filename: file.name,
+            size: file.size,
+            mimeType: file.type,
+            kind: getAttachmentKind(file.type),
+            url: '', // Will be filled on completion
+            progress: 0,
+            uploadedBy: user.uid,
+            uploadedAt: new Date(),
+        };
+
+        setStagedAttachments(prev => [...prev, newAttachment]);
+
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                setStagedAttachments(prev => prev.map(att => 
+                    att.id === fileId ? { ...att, progress } : att
+                ));
+            },
+            (error) => {
+                console.error("Upload failed:", error);
+                setStagedAttachments(prev => prev.map(att => 
+                    att.id === fileId ? { ...att, error: 'Upload Failed' } : att
+                ));
+            },
+            async () => {
+                const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                setStagedAttachments(prev => prev.map(att => 
+                    att.id === fileId ? { ...att, url: downloadURL, progress: 100 } : att
+                ));
+            }
+        );
+    });
+
+    // Reset file input
+    if(fileInputRef.current) {
+        fileInputRef.current.value = '';
     }
   };
+
+  const removeStagedAttachment = (id: string) => {
+      // TODO: Cancel upload if in progress
+      setStagedAttachments(prev => prev.filter(att => att.id !== id));
+  }
 
 
   if (!thread || !user) {
@@ -214,6 +286,27 @@ export default function ThreadPage() {
         })}
       </main>
       <footer className="p-4 border-t bg-background space-y-3">
+        {stagedAttachments.length > 0 && (
+            <div className="space-y-2">
+                {stagedAttachments.map(att => (
+                    <div key={att.id} className="p-2 border rounded-lg">
+                        <div className="flex items-center justify-between">
+                            <p className="text-sm font-medium truncate flex-1">{att.filename}</p>
+                            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => removeStagedAttachment(att.id)}>
+                                <Trash2 className="h-4 w-4"/>
+                            </Button>
+                        </div>
+                        {att.progress !== undefined && att.progress < 100 && (
+                            <Progress value={att.progress} className="h-2 mt-1" />
+                        )}
+                         {att.error && (
+                            <p className="text-xs text-destructive mt-1">{att.error}</p>
+                        )}
+                    </div>
+                ))}
+            </div>
+        )}
+
         <div className="flex justify-start gap-2">
             <Button variant="outline" size="sm" onClick={() => handleQuickReply('Ok ✔')} disabled={isSending}>Ok ✔</Button>
             <Button variant="outline" size="sm" onClick={() => handleQuickReply('Merci 🙏')} disabled={isSending}>Merci 🙏</Button>
@@ -238,6 +331,7 @@ export default function ThreadPage() {
                 ref={fileInputRef} 
                 onChange={handleFileSelect}
                 className="hidden"
+                multiple
             />
             <Button variant="ghost" size="icon" type="button" onClick={() => fileInputRef.current?.click()}>
                 <Paperclip/>
@@ -245,7 +339,7 @@ export default function ThreadPage() {
              <Button variant="ghost" size="icon" type="button">
                 <Mic/>
             </Button>
-            <Button type="submit" disabled={!newMessage.trim() || isSending}>
+            <Button type="submit" disabled={(!newMessage.trim() && stagedAttachments.length === 0) || isSending}>
                 {isSending ? <Loader2 className="animate-spin" /> : <Send/>}
             </Button>
         </form>
