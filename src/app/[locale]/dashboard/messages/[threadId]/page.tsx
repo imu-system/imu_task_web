@@ -16,7 +16,7 @@ import { Fragment, useEffect, useState } from 'react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import AttachmentPreview from '@/components/attachment-preview';
-import { collection, onSnapshot, orderBy, query, Timestamp, addDoc, serverTimestamp } from 'firebase/firestore';
+import { collection, onSnapshot, orderBy, query, Timestamp, addDoc, serverTimestamp, writeBatch, doc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 
 function isSameDay(date1: Date, date2: Date) {
@@ -69,7 +69,7 @@ export default function ThreadPage() {
             return {
                 id: doc.id,
                 ...data,
-                sentAt: (data.sentAt as Timestamp).toDate(),
+                sentAt: (data.sentAt as Timestamp)?.toDate ? (data.sentAt as Timestamp).toDate() : new Date(),
             } as Message;
         });
         setMessages(messagesData);
@@ -83,13 +83,29 @@ export default function ThreadPage() {
     if (!user || !newMessage.trim()) return;
 
     try {
+        const batch = writeBatch(db);
+
+        // 1. Create the new message document
         const messagesCol = collection(db, 'threads', threadId, 'messages');
-        await addDoc(messagesCol, {
+        const newMessageRef = doc(messagesCol); // Create a new doc ref without data first
+        batch.set(newMessageRef, {
             senderId: user.uid,
             body: newMessage,
             type: MessageType.text,
             sentAt: serverTimestamp(),
         });
+        
+        // 2. Update the parent thread document
+        const threadRef = doc(db, 'threads', threadId);
+        batch.update(threadRef, {
+            lastMessage: {
+                body: newMessage,
+                senderId: user.uid,
+            },
+            lastMessageAt: serverTimestamp(),
+        });
+
+        await batch.commit();
         setNewMessage('');
     } catch (error) {
         console.error("Error sending message:", error);
