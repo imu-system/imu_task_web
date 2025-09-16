@@ -14,7 +14,7 @@ import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck } from "lucide-react";
+import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -39,6 +39,7 @@ export default function ProfilePage() {
   const { toast } = useToast();
   const [isSaving, setIsSaving] = useState(false);
   const [isAddressFormOpen, setIsAddressFormOpen] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const t = useTranslations('ProfilePage');
 
   const { register, handleSubmit, formState: { errors, isDirty }, reset } = useForm<ProfileFormValues>({
@@ -82,6 +83,7 @@ export default function ProfilePage() {
         title: t('toastSuccessTitle'),
         description: t('toastSuccessDescription'),
       });
+      setIsEditing(false); // Go back to view mode on successful save
     } catch (error) {
       console.error("Error updating profile:", error);
       toast({
@@ -101,6 +103,79 @@ export default function ProfilePage() {
         </div>
     )
   }
+  
+  if (isEditing) {
+    return (
+        <div className="space-y-8 max-w-4xl mx-auto">
+             <div>
+                <h1 className="text-3xl font-bold tracking-tight font-headline">
+                {t('editProfile')}
+                </h1>
+                <p className="text-muted-foreground">
+                {t('personalInfoDesc')}
+                </p>
+            </div>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('personalInfo')}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                
+                 <div className="space-y-2">
+                    <Label htmlFor="displayName">{t('fullName')}</Label>
+                    <Input id="displayName" {...register('displayName')} />
+                    {errors.displayName && <p className="text-xs text-destructive mt-1">{errors.displayName.message}</p>}
+                </div>
+                 <div className="space-y-2">
+                    <Label htmlFor="email">{t('emailAddress')}</Label>
+                    <Input id="email" type="email" defaultValue={user.email || ''} disabled />
+                </div>
+                
+                <div className="space-y-2">
+                    <Label htmlFor="bio">{t('bio')}</Label>
+                    <Textarea id="bio" placeholder={t('bioPlaceholder')} {...register('bio')} />
+                    {errors.bio && <p className="text-xs text-destructive mt-1">{errors.bio.message}</p>}
+                </div>
+                
+                <Separator />
+                
+                <div className="space-y-4">
+                    <h3 className="text-lg font-medium">{t('providerInfo')}</h3>
+                     <div className="space-y-2">
+                        <Label htmlFor="languages">{t('languages')}</Label>
+                        <Input 
+                            id="languages" 
+                            {...register('languages')} 
+                            placeholder={t('languagesPlaceholder')} 
+                        />
+                         <p className="text-xs text-muted-foreground">{t('commaSeparated')}</p>
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="skills">{t('skills')}</Label>
+                        <Input 
+                            id="skills" 
+                            {...register('skills')} 
+                            placeholder={t('skillsPlaceholder')}
+                        />
+                        <p className="text-xs text-muted-foreground">{t('commaSeparated')}</p>
+                    </div>
+                </div>
+
+                <div className="flex justify-end gap-2">
+                    <Button type="button" variant="ghost" onClick={() => setIsEditing(false)}>{t('addressForm.cancel')}</Button>
+                    <Button type="submit" disabled={isSaving || !isDirty}>
+                        {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                        {t('saveChanges')}
+                    </Button>
+                </div>
+              </CardContent>
+            </Card>
+        </form>
+      </div>
+    );
+  }
+
 
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
@@ -116,12 +191,23 @@ export default function ProfilePage() {
       <Card>
           <CardContent className="p-6">
               <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-                    <Avatar className="h-28 w-28">
-                        <AvatarImage src={user.profile?.photoUrl || undefined} />
-                        <AvatarFallback className="text-3xl">{user.profile?.displayName?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}</AvatarFallback>
-                    </Avatar>
-                    <div className="space-y-2">
-                        <CardTitle className="text-3xl">{user.profile?.displayName}</CardTitle>
+                    <div className="relative">
+                        <Avatar className="h-28 w-28">
+                            <AvatarImage src={user.profile?.photoUrl || undefined} />
+                            <AvatarFallback className="text-3xl">{user.profile?.displayName?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}</AvatarFallback>
+                        </Avatar>
+                        <Button variant="outline" size="icon" className="absolute -bottom-2 -right-2 rounded-full border-2 border-background">
+                            <Camera className="h-4 w-4"/>
+                        </Button>
+                    </div>
+                    <div className="flex-1 space-y-2">
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                            <CardTitle className="text-3xl">{user.profile?.displayName}</CardTitle>
+                            <Button onClick={() => setIsEditing(true)}>
+                                <Edit className="mr-2 h-4 w-4"/>
+                                {t('editProfile')}
+                            </Button>
+                        </div>
                         <p className="text-muted-foreground">{user.profile?.bio || t('noBio')}</p>
                         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-sm text-muted-foreground pt-2">
                              {user.profile?.languages && user.profile.languages.length > 0 && (
@@ -175,65 +261,6 @@ export default function ProfilePage() {
                 </CardContent>
             </Card>
         </div>
-
-
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-            <Card>
-              <CardHeader>
-                <CardTitle>{t('editProfile')}</CardTitle>
-                <CardDescription>{t('personalInfoDesc')}</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                
-                 <div className="space-y-2">
-                    <Label htmlFor="displayName">{t('fullName')}</Label>
-                    <Input id="displayName" {...register('displayName')} />
-                    {errors.displayName && <p className="text-xs text-destructive mt-1">{errors.displayName.message}</p>}
-                </div>
-                 <div className="space-y-2">
-                    <Label htmlFor="email">{t('emailAddress')}</Label>
-                    <Input id="email" type="email" defaultValue={user.email || ''} disabled />
-                </div>
-                
-                <div className="space-y-2">
-                    <Label htmlFor="bio">{t('bio')}</Label>
-                    <Textarea id="bio" placeholder={t('bioPlaceholder')} {...register('bio')} />
-                    {errors.bio && <p className="text-xs text-destructive mt-1">{errors.bio.message}</p>}
-                </div>
-                
-                <Separator />
-                
-                <div className="space-y-4">
-                    <h3 className="text-lg font-medium">{t('providerInfo')}</h3>
-                     <div className="space-y-2">
-                        <Label htmlFor="languages">{t('languages')}</Label>
-                        <Input 
-                            id="languages" 
-                            {...register('languages')} 
-                            placeholder={t('languagesPlaceholder')} 
-                        />
-                         <p className="text-xs text-muted-foreground">{t('commaSeparated')}</p>
-                    </div>
-                    <div className="space-y-2">
-                        <Label htmlFor="skills">{t('skills')}</Label>
-                        <Input 
-                            id="skills" 
-                            {...register('skills')} 
-                            placeholder={t('skillsPlaceholder')}
-                        />
-                        <p className="text-xs text-muted-foreground">{t('commaSeparated')}</p>
-                    </div>
-                </div>
-
-                <div className="flex justify-end">
-                    <Button type="submit" disabled={isSaving || !isDirty}>
-                        {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                        {t('saveChanges')}
-                    </Button>
-                </div>
-              </CardContent>
-            </Card>
-        </form>
 
         <Card>
             <CardHeader>
@@ -294,3 +321,4 @@ export default function ProfilePage() {
     </div>
   );
 }
+
