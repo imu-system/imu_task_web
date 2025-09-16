@@ -4,13 +4,14 @@
 import { useAuth } from "@/hooks/use-auth";
 import { KYCStatus } from "@/lib/types";
 import { useTranslations } from "next-intl";
-import { Loader2, ShieldCheck, CheckCircle, Clock, AlertCircle, ArrowLeft, Camera, Upload } from 'lucide-react';
+import { Loader2, ShieldCheck, CheckCircle, Clock, AlertCircle, ArrowLeft, Camera, Upload, X } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@/navigation";
 import { useToast } from "@/hooks/use-toast";
 import { Separator } from "@/components/ui/separator";
+import { useState } from "react";
 
 const mockHistory = [
     { event: 'Selfie validé', date: '12/09/2024', status: 'success' },
@@ -22,6 +23,10 @@ export default function KycPage() {
     const { user, loading } = useAuth();
     const t = useTranslations('KycPage');
     const { toast } = useToast();
+    
+    const [idFile, setIdFile] = useState<File | null>(null);
+    const [selfieFile, setSelfieFile] = useState<File | null>(null);
+    const [proofFile, setProofFile] = useState<File | null>(null);
 
     if (loading || !user) {
         return (
@@ -31,14 +36,33 @@ export default function KycPage() {
         );
     }
     
-    const handleStartVerification = () => {
-        // In a real app, this would redirect to a third-party KYC provider
-        // or open a modal with the verification flow.
-        toast({
-            title: t('toast.title'),
-            description: t('toast.description'),
-        })
-    }
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, setter: React.Dispatch<React.SetStateAction<File | null>>) => {
+        if (e.target.files && e.target.files.length > 0) {
+            setter(e.target.files[0]);
+        }
+    };
+    
+    const FileUploadRow = ({ label, file, setFile, icon }: { label: string, file: File | null, setFile: React.Dispatch<React.SetStateAction<File | null>>, icon: React.ReactNode }) => (
+        <div className="flex items-center justify-between p-3 border rounded-lg">
+            <div className="flex-1 space-y-1">
+                <span className="font-medium">{label}</span>
+                {file && <p className="text-xs text-muted-foreground">{file.name}</p>}
+            </div>
+            {file ? (
+                 <Button variant="ghost" size="icon" onClick={() => setFile(null)} aria-label="Remove file">
+                    <X className="h-4 w-4 text-destructive" />
+                </Button>
+            ) : (
+                <Button variant="outline" size="sm" asChild>
+                    <label>
+                        {icon}
+                        {label === t('documents.idCard') || label === t('documents.proofOfAddress') ? t('documents.upload') : t('documents.takePicture')}
+                        <input type="file" className="sr-only" onChange={(e) => handleFileChange(e, setFile)} />
+                    </label>
+                </Button>
+            )}
+        </div>
+    );
 
     const StatusDisplay = () => {
         const kycStatus = KYCStatus.pending; // Forcing pending for demo
@@ -104,18 +128,9 @@ export default function KycPage() {
                             <CardDescription>{t('documents.description')}</CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-4">
-                            <div className="flex items-center justify-between p-3 border rounded-lg">
-                                <span className="font-medium">{t('documents.idCard')}</span>
-                                <Button variant="outline" size="sm"><Upload className="mr-2"/>{t('documents.upload')}</Button>
-                            </div>
-                            <div className="flex items-center justify-between p-3 border rounded-lg">
-                                <span className="font-medium">{t('documents.selfie')}</span>
-                                <Button variant="outline" size="sm"><Camera className="mr-2"/>{t('documents.takePicture')}</Button>
-                            </div>
-                            <div className="flex items-center justify-between p-3 border rounded-lg">
-                                <span className="font-medium">{t('documents.proofOfAddress')}</span>
-                                <Button variant="outline" size="sm"><Upload className="mr-2"/>{t('documents.upload')}</Button>
-                            </div>
+                           <FileUploadRow label={t('documents.idCard')} file={idFile} setFile={setIdFile} icon={<Upload className="mr-2"/>}/>
+                           <FileUploadRow label={t('documents.selfie')} file={selfieFile} setFile={setSelfieFile} icon={<Camera className="mr-2"/>}/>
+                           <FileUploadRow label={t('documents.proofOfAddress')} file={proofFile} setFile={setProofFile} icon={<Upload className="mr-2"/>}/>
                         </CardContent>
                     </Card>
 
