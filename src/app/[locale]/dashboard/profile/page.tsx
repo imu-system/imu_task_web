@@ -126,6 +126,18 @@ export default function ProfilePage() {
               </CardHeader>
               <CardContent className="space-y-6">
                 
+                <div className="flex items-center gap-6">
+                    <Avatar className="h-24 w-24">
+                        <AvatarImage src={user.profile?.photoUrl || undefined} />
+                        <AvatarFallback className="text-3xl">{user.profile?.displayName?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}</AvatarFallback>
+                    </Avatar>
+                    <div className="space-y-2">
+                        <Label htmlFor="photo">{t('changePhoto')}</Label>
+                        <Input id="photo" type="file" />
+                        <p className="text-xs text-muted-foreground">PNG, JPG, GIF jusqu'à 10MB.</p>
+                    </div>
+                </div>
+                
                  <div className="space-y-2">
                     <Label htmlFor="displayName">{t('fullName')}</Label>
                     <Input id="displayName" {...register('displayName')} />
@@ -210,8 +222,9 @@ export default function ProfilePage() {
                             <AvatarImage src={user.profile?.photoUrl || undefined} />
                             <AvatarFallback className="text-3xl">{user.profile?.displayName?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}</AvatarFallback>
                         </Avatar>
-                        <Button variant="outline" size="icon" className="absolute -bottom-2 -right-2 rounded-full border-2 border-background">
+                        <Button variant="outline" size="icon" className="absolute -bottom-2 -right-2 rounded-full border-2 border-background" onClick={() => setIsEditing(true)}>
                             <Camera className="h-4 w-4"/>
+                            <span className="sr-only">{t('changePhoto')}</span>
                         </Button>
                     </div>
                     <div className="flex-1 space-y-2">
