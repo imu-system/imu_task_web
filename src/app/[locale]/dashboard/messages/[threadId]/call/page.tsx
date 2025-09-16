@@ -10,6 +10,7 @@ import { Mic, MicOff, PhoneOff, Video, VideoOff, Square, AlertTriangle } from 'l
 import { useTranslations } from 'next-intl';
 import { useParams, useRouter } from '@/navigation';
 import { useEffect, useState, useRef } from 'react';
+import { WebRTCService } from '@/lib/webrtc';
 
 export default function CallPage() {
     const { threadId } = useParams<{ threadId: string }>();
@@ -20,27 +21,60 @@ export default function CallPage() {
     const [thread, setThread] = useState<Thread | null>(null);
     const [isMuted, setIsMuted] = useState(false);
     const [isRecording, setIsRecording] = useState(false);
-    const [callStatus, setCallStatus] = useState<'ringing' | 'active'>('ringing');
+    const [callStatus, setCallStatus] = useState<'connecting' | 'active'>('connecting');
     const [callDuration, setCallDuration] = useState(0);
 
     const localVideoRef = useRef<HTMLVideoElement>(null);
     const remoteVideoRef = useRef<HTMLVideoElement>(null);
+    const webRTCService = useRef<WebRTCService | null>(null);
+    const localStreamRef = useRef<MediaStream | null>(null);
 
     useEffect(() => {
         const fetchedThread = getThreadById(threadId);
         if (fetchedThread) {
-        setThread(fetchedThread);
+            setThread(fetchedThread);
         }
     }, [threadId]);
 
-    useEffect(() => {
-        // Simulate call connection
-        const connectTimer = setTimeout(() => {
-            setCallStatus('active');
-        }, 3000);
+     useEffect(() => {
+        if (!user || !thread) return;
 
-        return () => clearTimeout(connectTimer);
-    }, []);
+        const onRemoteStream = (stream: MediaStream) => {
+            if (remoteVideoRef.current) {
+                remoteVideoRef.current.srcObject = stream;
+            }
+            setCallStatus('active');
+        };
+
+        const service = new WebRTCService(threadId, onRemoteStream);
+        webRTCService.current = service;
+
+        const startCallFlow = async () => {
+            try {
+                const localStream = await service.getMedia();
+                localStreamRef.current = localStream;
+                if (localVideoRef.current) {
+                    localVideoRef.current.srcObject = localStream;
+                }
+                
+                // For simplicity, we assume this user is always the caller.
+                // A real-world app would need to check if a call offer already exists.
+                await service.startCall();
+
+            } catch (error) {
+                console.error("Error starting call flow:", error);
+                // Handle error (e.g., show a toast to the user)
+                router.back();
+            }
+        };
+
+        startCallFlow();
+
+        return () => {
+            webRTCService.current?.hangUp();
+        };
+    }, [user, thread, threadId, router]);
+
 
     useEffect(() => {
         let interval: NodeJS.Timeout;
@@ -52,16 +86,27 @@ export default function CallPage() {
         return () => clearInterval(interval);
     }, [callStatus]);
 
-
-    const otherParticipant = thread?.participants?.find(p => p.id !== user?.uid);
+    const otherParticipant = thread?.participantsData?.find(p => p.id !== user?.uid);
 
     if (!thread || !user) {
         return null; // Or a loading state
     }
     
     const handleEndCall = () => {
-        // Logic to end the call
+        webRTCService.current?.hangUp();
         router.back();
+    }
+
+    const handleToggleMute = () => {
+        setIsMuted(prev => {
+            const newMutedState = !prev;
+            if (localStreamRef.current) {
+                localStreamRef.current.getAudioTracks().forEach(track => {
+                    track.enabled = !newMutedState;
+                });
+            }
+            return newMutedState;
+        });
     }
 
     const formatDuration = (seconds: number) => {
@@ -96,7 +141,7 @@ export default function CallPage() {
                         {otherParticipant?.profile?.displayName}
                     </h2>
                     <p className="text-white/80">
-                        {callStatus === 'ringing' ? t('ringing') : t('callInProgress')}
+                        {callStatus === 'connecting' ? t('ringing') : t('callInProgress')}
                     </p>
                 </div>
             </div>
@@ -114,7 +159,7 @@ export default function CallPage() {
                         variant={isMuted ? "secondary" : "outline"} 
                         size="icon" 
                         className="h-14 w-14 rounded-full bg-white/20 border-none hover:bg-white/30 text-white"
-                        onClick={() => setIsMuted(!isMuted)}
+                        onClick={handleToggleMute}
                     >
                         {isMuted ? <MicOff /> : <Mic />}
                     </Button>
