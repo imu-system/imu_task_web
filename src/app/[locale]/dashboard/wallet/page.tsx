@@ -49,8 +49,8 @@ export default function WalletPage() {
 
                     <div className="flex justify-center gap-4">
                         {isProvider && (
-                            <Button asChild size="lg" disabled={user.KYCStatus !== 'verified'}>
-                                <Link href="/dashboard/wallet/payouts">{t('balance.withdraw')}</Link>
+                            <Button asChild size="lg">
+                                <Link href="/dashboard/wallet/withdraw">{t('balance.withdraw')}</Link>
                             </Button>
                         )}
                         {isClient && (
@@ -60,6 +60,11 @@ export default function WalletPage() {
                             </Button>
                         )}
                     </div>
+                     {isProvider && user.KYCStatus !== 'verified' && (
+                        <p className="text-center text-xs text-amber-600 mt-4">
+                           {t('payoutsPageKycRequired')}
+                        </p>
+                    )}
                 </CardContent>
             </Card>
 
@@ -86,6 +91,11 @@ export default function WalletPage() {
             <div className="text-center">
                 <Button variant="link" asChild>
                     <Link href="/dashboard/wallet/transactions">{t('viewTransactions')}</Link>
+                </Button>
+            </div>
+             <div className="text-center">
+                <Button variant="link" asChild>
+                    <Link href="/dashboard/wallet/payouts">{t('viewPayouts')}</Link>
                 </Button>
             </div>
         </div>

@@ -185,7 +185,9 @@
             "earnedThisMonth": "今月の収益合計",
             "paidThisMonth": "今月の支払い合計"
         },
-        "viewTransactions": "すべての取引を表示"
+        "viewTransactions": "すべての取引を表示",
+        "viewPayouts": "引き出し履歴を表示",
+        "payoutsPageKycRequired": "引き出しを行うには本人確認が必要です。"
     },
     "PayoutsPage": {
         "title": "引き出し",
@@ -241,6 +243,25 @@
             "title": "利用可能なアクション",
             "downloadInvoice": "請求書をダウンロード (PDF)",
             "requestRefund": "返金をリクエスト"
+        }
+    },
+    "WithdrawPage": {
+        "title": "引き出しを開始",
+        "availableBalance": "利用可能な残高",
+        "form": {
+            "amountLabel": "引き出し額",
+            "methodLabel": "方法",
+            "accountLabel": "アカウント",
+            "confirmButton": "引き出しを確定"
+        },
+        "kyc": {
+            "title": "KYCが必要です",
+            "description": "引き出しを行うには、本人確認が必要です。",
+            "link": "本人確認を行う"
+        },
+        "toast": {
+            "successTitle": "引き出し開始",
+            "successDescription": "引き出しリクエストが送信され、処理中です。"
         }
     }
 }

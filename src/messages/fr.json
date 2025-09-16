@@ -558,7 +558,9 @@
             "earnedThisMonth": "Total gagné ce mois-ci",
             "paidThisMonth": "Total payé ce mois-ci"
         },
-        "viewTransactions": "Voir toutes les transactions"
+        "viewTransactions": "Voir toutes les transactions",
+        "viewPayouts": "Voir l'historique des retraits",
+        "payoutsPageKycRequired": "La vérification de votre identité est requise pour effectuer un retrait."
     },
     "PayoutsPage": {
         "title": "Retraits",
@@ -614,6 +616,25 @@
             "title": "Actions disponibles",
             "downloadInvoice": "Télécharger la facture (PDF)",
             "requestRefund": "Demander un remboursement"
+        }
+    },
+    "WithdrawPage": {
+        "title": "Initier un Retrait",
+        "availableBalance": "Solde Disponible",
+        "form": {
+            "amountLabel": "Montant à retirer",
+            "methodLabel": "Méthode",
+            "accountLabel": "Compte",
+            "confirmButton": "Confirmer le Retrait"
+        },
+        "kyc": {
+            "title": "KYC Requis",
+            "description": "Votre identité doit être vérifiée avant de pouvoir effectuer un retrait.",
+            "link": "Vérifiez votre identité"
+        },
+        "toast": {
+            "successTitle": "Retrait Initié",
+            "successDescription": "Votre demande de retrait a été soumise et est en cours de traitement."
         }
     }
 }
