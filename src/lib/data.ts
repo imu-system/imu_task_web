@@ -670,7 +670,7 @@ const mockMessages: Message[] = [
 
 ];
 
-const mockThreads: Thread[] = [
+export var mockThreads: Thread[] = [
     { 
         id: 'thread1', 
         taskId: 'task2', 
@@ -718,6 +718,7 @@ const mockThreads: Thread[] = [
         updatedAt: new Date(), 
     },
 ];
+
 
 export const getThreadsForUser = (userId: string): Thread[] => {
     return mockThreads.filter(t => t.participants?.some(id => id === userId)).sort((a, b) => new Date(b.lastMessageAt).getTime() - new Date(a.lastMessageAt).getTime());

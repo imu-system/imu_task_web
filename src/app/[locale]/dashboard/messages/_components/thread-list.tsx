@@ -4,13 +4,13 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/hooks/use-auth';
-import { getThreadsForUser } from '@/lib/data';
 import { Thread } from '@/lib/types';
+import { mockThreads } from '@/lib/data';
 import { cn } from '@/lib/utils';
 import { Link, usePathname } from '@/navigation';
 import { Search, SlidersHorizontal } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 
@@ -19,14 +19,7 @@ export function ThreadList() {
   const { user } = useAuth();
   const pathname = usePathname();
   const t = useTranslations('DashboardNav');
-  const [threads, setThreads] = useState<Thread[]>([]);
-
-  useEffect(() => {
-    if (user) {
-        const userThreads = getThreadsForUser(user.uid);
-        setThreads(userThreads);
-    }
-  }, [user]);
+  const [threads, setThreads] = useState<Thread[]>(mockThreads);
 
   if (!user) return null;
 
@@ -52,12 +45,11 @@ export function ThreadList() {
             return (
               <Link
                 key={thread.id}
-                href={`/dashboard/messages/${thread.id}`}
+                ref={`/dashboard/messages/${thread.id}`}
                 className={cn(
                   'flex items-start gap-3 p-3 rounded-lg hover:bg-muted',
                   isActive && 'bg-muted'
-                )}
-              >
+                )} href={'/'}>
                 <div className="relative">
                     <Avatar>
                       <AvatarImage src={otherParticipant?.profile?.photoUrl || undefined} />
