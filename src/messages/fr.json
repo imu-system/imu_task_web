@@ -186,6 +186,8 @@
         "durationLabel": "Durée estimée (en minutes)",
         "durationPlaceholder": "Ex: 60",
         "durationHelp": "Estimez combien de temps la mission devrait prendre.",
+        "providersLabel": "Nombre de prestataires",
+        "providersHelp": "Pour les missions nécessitant plusieurs personnes (ex: déménagement).",
         "attachmentsLabel": "Pièces jointes",
         "attachmentsPlaceholder": "Cliquez ou glissez-déposez des fichiers ici"
     },

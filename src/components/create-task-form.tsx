@@ -54,6 +54,7 @@ const formSchema = z.object({
   }),
   priceOffered: z.coerce.number().min(5, 'Le prix doit être d\'au moins 5€.'),
   estimatedDurationMin: z.coerce.number().int().min(0, "La durée doit être positive.").optional(),
+  numberOfProvidersRequired: z.coerce.number().int().min(1, "Il faut au moins 1 prestataire.").default(1),
   attachments: z.any().optional(),
 }).refine(data => data.timeWindowEnd > data.timeWindowStart, {
     message: "L'heure de fin doit être après l'heure de début.",
@@ -105,6 +106,7 @@ export function CreateTaskForm() {
       addressId: mockAddresses.find(a => a.isDefault)?.id || '',
       priceOffered: 20,
       estimatedDurationMin: 60,
+      numberOfProvidersRequired: 1,
     },
   });
 
@@ -399,6 +401,23 @@ export function CreateTaskForm() {
               )}
             />
         </div>
+        
+        <FormField
+            control={form.control}
+            name="numberOfProvidersRequired"
+            render={({ field }) => (
+                <FormItem>
+                    <FormLabel>{t('providersLabel')}</FormLabel>
+                    <FormControl>
+                        <Input type="number" min="1" {...field} />
+                    </FormControl>
+                    <FormDescription>
+                        {t('providersHelp')}
+                    </FormDescription>
+                    <FormMessage />
+                </FormItem>
+            )}
+        />
 
         <FormField
             control={form.control}

@@ -217,7 +217,7 @@ export const getTasks = (): Task[] => [
   },
 ];
 
-export async function createTask(taskData: Omit<Task, 'id' | 'client' | 'status' | 'createdAt' | 'updatedAt' | 'latitude' | 'longitude' | 'attachments' | 'visibility' | 'category'>) {
+export async function createTask(taskData: Omit<Task, 'id' | 'client' | 'status' | 'createdAt' | 'updatedAt' | 'latitude' | 'longitude' | 'attachments' | 'visibility' | 'category' | 'bookings'>) {
     const docRef = await addDoc(collection(db, "tasks"), {
         ...taskData,
         status: 'published',
@@ -736,6 +736,7 @@ export const getThreadById = (threadId: string): Thread | undefined => {
 export const getMessagesForThread = (threadId: string): Message[] => {
     return mockMessages.filter(m => m.threadId === threadId).sort((a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime());
 }
+
 
 
 

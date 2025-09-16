@@ -109,6 +109,8 @@
         "durationLabel": "推定時間（分）",
         "durationPlaceholder": "例: 60",
         "durationHelp": "タスクにかかる時間を推定してください。",
+        "providersLabel": "プロバイダーの数",
+        "providersHelp": "複数の人が必要なタスクの場合（例：引っ越し）。",
         "attachmentsLabel": "添付ファイル",
         "attachmentsPlaceholder": "ここをクリックまたはドラッグ＆ドロップしてファイルを追加"
     },

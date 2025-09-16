@@ -186,6 +186,8 @@
         "durationLabel": "Estimated duration (in minutes)",
         "durationPlaceholder": "e.g. 60",
         "durationHelp": "Estimate how long the task should take.",
+        "providersLabel": "Number of Providers",
+        "providersHelp": "For tasks that require multiple people (e.g. moving).",
         "attachmentsLabel": "Attachments",
         "attachmentsPlaceholder": "Click or drag & drop files here"
     },
