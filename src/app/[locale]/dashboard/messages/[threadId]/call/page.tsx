@@ -5,18 +5,23 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/use-auth';
 import { getThreadById } from '@/lib/data';
-import { Thread } from '@/lib/types';
+import { AttachmentKind, MessageType, Thread } from '@/lib/types';
 import { Mic, MicOff, PhoneOff, Video, VideoOff, Square, AlertTriangle } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useParams, useRouter } from '@/navigation';
 import { useEffect, useState, useRef } from 'react';
 import { WebRTCService } from '@/lib/webrtc';
+import { db, storage } from '@/lib/firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { useToast } from '@/hooks/use-toast';
 
 export default function CallPage() {
     const { threadId } = useParams<{ threadId: string }>();
     const { user } = useAuth();
     const router = useRouter();
     const t = useTranslations('CallPage');
+    const { toast } = useToast();
     
     const [thread, setThread] = useState<Thread | null>(null);
     const [isMuted, setIsMuted] = useState(false);
@@ -95,9 +100,29 @@ export default function CallPage() {
         return null; // Or a loading state
     }
     
+    const addRecordingMessage = async (downloadURL: string, duration: number) => {
+        const messagesCol = collection(db, 'threads', threadId, 'messages');
+        await addDoc(messagesCol, {
+            senderId: 'system',
+            type: MessageType.audio,
+            body: `Enregistrement de l'appel (${formatDuration(duration)})`,
+            attachments: [{
+                id: `rec_${Date.now()}`,
+                url: downloadURL,
+                kind: AttachmentKind.audio,
+                filename: `recording-${Date.now()}.webm`,
+                size: 0, // Size is unknown without more complex logic
+                mimeType: 'audio/webm',
+                uploadedBy: 'system',
+                uploadedAt: new Date(),
+            }],
+            sentAt: serverTimestamp(),
+        });
+    };
+
     const handleEndCall = () => {
         if (isRecording) {
-            stopRecording();
+            stopRecording(true); // Stop recording and upload on hang-up
         }
         webRTCService.current?.hangUp();
         router.back();
@@ -116,15 +141,18 @@ export default function CallPage() {
     }
 
     const startRecording = () => {
-        if (!localStreamRef.current) return;
+        if (!localStreamRef.current || callStatus !== 'active') return;
         
         recordedChunksRef.current = [];
+        
+        const remoteAudioStream = remoteVideoRef.current?.srcObject instanceof MediaStream ? remoteVideoRef.current.srcObject.getAudioTracks() : [];
+        
         const combinedStream = new MediaStream([
             ...localStreamRef.current.getAudioTracks(),
-            ...(remoteVideoRef.current?.srcObject instanceof MediaStream ? remoteVideoRef.current.srcObject.getAudioTracks() : [])
+            ...remoteAudioStream
         ]);
 
-        mediaRecorderRef.current = new MediaRecorder(combinedStream);
+        mediaRecorderRef.current = new MediaRecorder(combinedStream, { mimeType: 'audio/webm' });
 
         mediaRecorderRef.current.ondataavailable = (event) => {
             if (event.data.size > 0) {
@@ -132,18 +160,35 @@ export default function CallPage() {
             }
         };
 
-        mediaRecorderRef.current.onstop = () => {
-            const blob = new Blob(recordedChunksRef.current, { type: 'audio/webm' });
-            // In the next step, we will upload this blob.
-            console.log("Recording stopped, blob created:", blob);
+        mediaRecorderRef.current.onstop = async () => {
+            const audioBlob = new Blob(recordedChunksRef.current, { type: 'audio/webm' });
+            if (audioBlob.size === 0) return;
+
+            const fileName = `recording_${threadId}_${Date.now()}.webm`;
+            const storageRef = ref(storage, `threads/${threadId}/recordings/${fileName}`);
+
+            try {
+                toast({ title: "Téléversement de l'enregistrement..." });
+                const snapshot = await uploadBytes(storageRef, audioBlob);
+                const downloadURL = await getDownloadURL(snapshot.ref);
+                
+                await addRecordingMessage(downloadURL, callDuration);
+
+                toast({ title: "Enregistrement sauvegardé", description: "L'enregistrement de l'appel a été ajouté à la conversation." });
+            } catch (error) {
+                console.error("Upload failed:", error);
+                toast({ variant: 'destructive', title: "Échec du téléversement", description: "L'enregistrement n'a pas pu être sauvegardé." });
+            }
         };
 
         mediaRecorderRef.current.start();
         setIsRecording(true);
     };
 
-    const stopRecording = () => {
-        mediaRecorderRef.current?.stop();
+    const stopRecording = (uploadOnStop = false) => {
+        if (mediaRecorderRef.current?.state === 'recording') {
+            mediaRecorderRef.current.stop();
+        }
         setIsRecording(false);
     };
 
