@@ -170,5 +170,21 @@
     },
     "OfflineBanner": {
         "offlineMessage": "⚠️ 現在オフラインです。再接続を試みています..."
+    },
+    "WalletPage": {
+        "title": "ウォレット",
+        "subtitle": "残高を確認し、取引を管理します。",
+        "balance": {
+            "title": "残高",
+            "current": "現在の残高",
+            "withdraw": "引き出しを行う",
+            "viewInvoices": "請求書を表示"
+        },
+        "summary": {
+            "title": "クイックサマリー",
+            "earnedThisMonth": "今月の収益合計",
+            "paidThisMonth": "今月の支払い合計"
+        },
+        "viewTransactions": "すべての取引を表示"
     }
 }

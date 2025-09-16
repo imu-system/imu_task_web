@@ -543,5 +543,21 @@
     },
     "OfflineBanner": {
         "offlineMessage": "⚠️ Vous êtes hors ligne — tentative de reconnexion…"
+    },
+    "WalletPage": {
+        "title": "Portefeuille",
+        "subtitle": "Consultez votre solde et gérez vos transactions.",
+        "balance": {
+            "title": "Solde",
+            "current": "Solde actuel",
+            "withdraw": "Effectuer un retrait",
+            "viewInvoices": "Voir mes factures"
+        },
+        "summary": {
+            "title": "Résumé rapide",
+            "earnedThisMonth": "Total gagné ce mois-ci",
+            "paidThisMonth": "Total payé ce mois-ci"
+        },
+        "viewTransactions": "Voir toutes les transactions"
     }
 }
