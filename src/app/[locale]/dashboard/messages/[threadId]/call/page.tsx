@@ -28,6 +28,9 @@ export default function CallPage() {
     const remoteVideoRef = useRef<HTMLVideoElement>(null);
     const webRTCService = useRef<WebRTCService | null>(null);
     const localStreamRef = useRef<MediaStream | null>(null);
+    
+    const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+    const recordedChunksRef = useRef<Blob[]>([]);
 
     useEffect(() => {
         const fetchedThread = getThreadById(threadId);
@@ -93,6 +96,9 @@ export default function CallPage() {
     }
     
     const handleEndCall = () => {
+        if (isRecording) {
+            stopRecording();
+        }
         webRTCService.current?.hangUp();
         router.back();
     }
@@ -108,6 +114,46 @@ export default function CallPage() {
             return newMutedState;
         });
     }
+
+    const startRecording = () => {
+        if (!localStreamRef.current) return;
+        
+        recordedChunksRef.current = [];
+        const combinedStream = new MediaStream([
+            ...localStreamRef.current.getAudioTracks(),
+            ...(remoteVideoRef.current?.srcObject instanceof MediaStream ? remoteVideoRef.current.srcObject.getAudioTracks() : [])
+        ]);
+
+        mediaRecorderRef.current = new MediaRecorder(combinedStream);
+
+        mediaRecorderRef.current.ondataavailable = (event) => {
+            if (event.data.size > 0) {
+                recordedChunksRef.current.push(event.data);
+            }
+        };
+
+        mediaRecorderRef.current.onstop = () => {
+            const blob = new Blob(recordedChunksRef.current, { type: 'audio/webm' });
+            // In the next step, we will upload this blob.
+            console.log("Recording stopped, blob created:", blob);
+        };
+
+        mediaRecorderRef.current.start();
+        setIsRecording(true);
+    };
+
+    const stopRecording = () => {
+        mediaRecorderRef.current?.stop();
+        setIsRecording(false);
+    };
+
+    const handleToggleRecording = () => {
+        if (isRecording) {
+            stopRecording();
+        } else {
+            startRecording();
+        }
+    };
 
     const formatDuration = (seconds: number) => {
         const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
@@ -168,7 +214,7 @@ export default function CallPage() {
                         variant={isRecording ? "destructive" : "outline"} 
                         size="icon" 
                         className="h-14 w-14 rounded-full bg-white/20 border-none hover:bg-white/30 text-white"
-                        onClick={() => setIsRecording(!isRecording)}
+                        onClick={handleToggleRecording}
                         disabled={callStatus !== 'active'}
                     >
                         <Square className="h-5 w-5"/>
