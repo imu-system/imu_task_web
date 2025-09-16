@@ -35,9 +35,11 @@ export default function BalanceCard({ isProvider, isClient, kycStatus }: Balance
                         </Button>
                     )}
                     {isClient && (
-                        <Button size="lg" variant="outline">
-                            <FileText className="mr-2"/>
-                            {t('balance.viewInvoices')}
+                        <Button asChild size="lg" variant="outline">
+                            <Link href="/dashboard/wallet/transactions">
+                                <FileText className="mr-2"/>
+                                {t('balance.viewInvoices')}
+                            </Link>
                         </Button>
                     )}
                 </div>
