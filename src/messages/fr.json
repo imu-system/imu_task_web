@@ -689,6 +689,46 @@
             "successDescription": "Votre demande de retrait a été soumise et est en cours de traitement."
         }
     },
+    "BadgesPage": {
+        "subtitle": "Voici les badges que vous avez débloqués.",
+        "cardTitle": "Mes Badges",
+        "cardDescription": "Les badges récompensent votre activité et votre fiabilité sur la plateforme.",
+        "history": {
+            "title": "Historique des missions",
+            "description": "Vos dernières missions terminées."
+        },
+        "shareProfile": "Partager le profil",
+        "badges": {
+            "firstMission": {
+                "title": "Première Mission",
+                "description": "Avoir terminé votre première mission."
+            },
+            "verified": {
+                "title": "Vérifié",
+                "description": "Identité vérifiée avec succès."
+            },
+            "superProvider": {
+                "title": "Super Prestataire",
+                "description": "Moyenne de 5 étoiles sur 10 missions."
+            },
+            "communityHelper": {
+                "title": "Pilier de la Communauté",
+                "description": "Avoir terminé 25 missions."
+            },
+            "profileComplete": {
+                "title": "Profil Complet",
+                "description": "Avoir rempli toutes les informations du profil."
+            },
+            "pioneer": {
+                "title": "Pionnier",
+                "description": "Avoir rejoint la plateforme la première année."
+            },
+            "topRated": {
+                "title": "Top Noté",
+                "description": "Note moyenne supérieure à 4.8"
+            }
+        }
+    },
     "KycPage": {
         "title": "Vérification d'Identité (KYC)",
         "subtitle": "Confirmez votre identité pour sécuriser votre compte et accéder à toutes les fonctionnalités.",
@@ -736,5 +776,12 @@
             "button": "Configurer les paiements avec Stripe"
         },
         "submitButton": "Soumettre pour validation"
+    },
+    "Languages": {
+        "fr": "Français",
+        "en": "Anglais",
+        "es": "Espagnol",
+        "de": "Allemand",
+        "it": "Italien"
     }
 }

@@ -324,9 +324,9 @@
                 "title": "Verified",
                 "description": "Identity successfully verified."
             },
-            "topRated": {
-                "title": "Top Rated",
-                "description": "Average rating above 4.8"
+            "superProvider": {
+                "title": "Super Provider",
+                "description": "Average rating of 5 stars over 10 missions."
             },
             "communityHelper": {
                 "title": "Community Helper",
@@ -339,6 +339,10 @@
             "pioneer": {
                 "title": "Pioneer",
                 "description": "Joined in the first year."
+            },
+            "topRated": {
+                "title": "Top Rated",
+                "description": "Average rating above 4.8"
             }
         }
     },
@@ -685,6 +689,46 @@
             "successDescription": "Your withdrawal request has been submitted and is being processed."
         }
     },
+    "BadgesPage": {
+        "subtitle": "Here are the badges you have unlocked.",
+        "cardTitle": "My Badges",
+        "cardDescription": "Badges reward your activity and reliability on the platform.",
+        "history": {
+            "title": "Mission History",
+            "description": "Your last completed missions."
+        },
+        "shareProfile": "Share Profile",
+        "badges": {
+            "firstMission": {
+                "title": "First Mission",
+                "description": "Completed your first mission."
+            },
+            "verified": {
+                "title": "Verified",
+                "description": "Identity successfully verified."
+            },
+            "superProvider": {
+                "title": "Super Provider",
+                "description": "Average rating of 5 stars over 10 missions."
+            },
+            "communityHelper": {
+                "title": "Community Helper",
+                "description": "Completed 25 missions."
+            },
+            "profileComplete": {
+                "title": "Complete Profile",
+                "description": "Filled out all profile information."
+            },
+            "pioneer": {
+                "title": "Pioneer",
+                "description": "Joined in the first year."
+            },
+            "topRated": {
+                "title": "Top Rated",
+                "description": "Average rating above 4.8"
+            }
+        }
+    },
     "KycPage": {
         "title": "Identity Verification (KYC)",
         "subtitle": "Confirm your identity to secure your account and access all features.",
@@ -732,9 +776,12 @@
             "button": "Configure payments with Stripe"
         },
         "submitButton": "Submit for validation"
+    },
+    "Languages": {
+        "fr": "French",
+        "en": "English",
+        "es": "Spanish",
+        "de": "German",
+        "it": "Italian"
     }
 }
-
-    
-
-    

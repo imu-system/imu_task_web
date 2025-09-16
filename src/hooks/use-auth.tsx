@@ -39,7 +39,7 @@ export const signInSchema = z.object({
 export const profileSchema = z.object({
   displayName: z.string().min(2, "Le nom est requis."),
   bio: z.string().max(500, "La biographie ne peut pas dépasser 500 caractères.").optional(),
-  languages: z.union([z.string(), z.array(z.string())]).optional(),
+  languages: z.array(z.string()).optional(),
   skills: z.union([z.string(), z.array(z.string())]).optional(),
   serviceRadiusKm: z.coerce.number().min(0, "Le rayon doit être positif.").optional(),
 });
