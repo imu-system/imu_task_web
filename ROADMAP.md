@@ -12,7 +12,7 @@
 
 1.  **Logique d'envoi du formulaire :**
     *   [ ] Dans la fonction `onSubmit` de la page `edit/page.tsx`, remplacer la simulation (`console.log`) par un appel à une fonction `updateUserProfile`.
-    *   [ ] Cette fonction `updateUserProfile` prendra les données du formulaire et utilisera la fonction `updateDoc` de Firestore pour mettre à jour le document de l'utilisateur dans la collection `profiles` (ex: `doc(db, 'profiles', user.uid)`).
+    *   [ ] Cette fonction `updateUserProfile` prendra les données du formulaire (`displayName`, `bio`, `languages`, `skills`, `serviceRadiusKm`) et utilisera la fonction `updateDoc` de Firestore pour mettre à jour le document de l'utilisateur dans la collection `profiles` (ex: `doc(db, 'profiles', user.uid)`).
     *   [ ] Assurer la gestion des états de chargement (`isSaving`) et des erreurs (via `try/catch` et `toast`).
 
 2.  **Gestion de la photo de profil :**
