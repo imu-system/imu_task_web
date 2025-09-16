@@ -1,5 +1,3 @@
-
-
 // Types partagés pour le monorepo (générés d'après le schéma Prisma)
 // GitHub Copilot
 
@@ -408,10 +406,24 @@ export interface Attachment {
     error?: string;
 }
 
+export interface CallSignal {
+    type: 'offer' | 'answer';
+    sdp: string;
+}
+
+export interface IceCandidateSignal {
+    candidate: string;
+    sdpMid: string | null;
+    sdpMLineIndex: number | null;
+}
+
 export interface CallSession {
     id: string;
     threadId: string;
     participants: string[];
+    offer?: CallSignal | null;
+    answer?: CallSignal | null;
+    status: 'pending' | 'active' | 'ended';
     startedAt?: DateTime;
     endedAt?: DateTime;
     durationSec?: number;
