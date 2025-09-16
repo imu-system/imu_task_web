@@ -27,6 +27,7 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { MultiSelect } from '@/components/ui/multi-select';
+import { Slider } from '@/components/ui/slider';
 
 // Helper function to split string by comma and trim whitespace
 const stringToArray = (str: string | undefined | string[]): string[] => {
@@ -220,13 +221,13 @@ export default function ProfileEditPage() {
                                 name="serviceRadiusKm"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>{t('serviceRadius')}</FormLabel>
+                                        <FormLabel>{t('serviceRadius')} : {field.value || 0} km</FormLabel>
                                         <FormControl>
-                                            <Input 
-                                                id="serviceRadiusKm" 
-                                                type="number"
-                                                {...field} 
-                                                placeholder={t('serviceRadiusPlaceholder')}
+                                            <Slider
+                                                defaultValue={[field.value || 0]}
+                                                max={100}
+                                                step={1}
+                                                onValueChange={(value) => field.onChange(value[0])}
                                             />
                                         </FormControl>
                                         <FormMessage />
