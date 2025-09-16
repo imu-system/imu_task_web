@@ -204,7 +204,7 @@ export default function ProfilePage() {
                     <div className="flex-1 space-y-2">
                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                             <CardTitle className="text-3xl">{user.profile?.displayName}</CardTitle>
-                            <div className="flex gap-2">
+                             <div className="flex flex-wrap gap-2">
                                 <Button onClick={() => setIsEditing(true)}>
                                     <Edit className="mr-2 h-4 w-4"/>
                                     {t('editProfile')}
@@ -213,6 +213,12 @@ export default function ProfilePage() {
                                     <Link href="/dashboard/profile/kyc">
                                         <Lock className="mr-2 h-4 w-4"/>
                                         {t('kycVerification')}
+                                    </Link>
+                                </Button>
+                                <Button variant="outline" asChild>
+                                    <Link href="/dashboard/profile/badges">
+                                        <Medal className="mr-2 h-4 w-4"/>
+                                        {t('myBadges')}
                                     </Link>
                                 </Button>
                             </div>
@@ -331,3 +337,4 @@ export default function ProfilePage() {
   );
 }
 
+    

@@ -263,5 +263,41 @@
             "successTitle": "引き出し開始",
             "successDescription": "引き出しリクエストが送信され、処理中です。"
         }
+    },
+    "ProfilePage": {
+        "myBadges": "私のバッジ"
+    },
+    "BadgesPage": {
+        "subtitle": "ロック解除したバッジはこちらです。",
+        "cardTitle": "私のバッジ",
+        "cardDescription": "バッジはプラットフォームでのあなたの活動と信頼性を報酬します。",
+        "badges": {
+            "firstMission": {
+                "title": "最初のミッション",
+                "description": "最初のミッションを完了しました。"
+            },
+            "verified": {
+                "title": "確認済み",
+                "description": "本人確認が正常に完了しました。"
+            },
+            "superProvider": {
+                "title": "スーパープロバイダー",
+                "description": "10件のミッションで平均5つ星。"
+            },
+            "communityHelper": {
+                "title": "コミュニティヘルパー",
+                "description": "25件のミッションを完了しました。"
+            },
+            "profileComplete": {
+                "title": "完全なプロフィール",
+                "description": "すべてのプロフィール情報を入力しました。"
+            },
+            "pioneer": {
+                "title": "パイオニア",
+                "description": "最初の年に参加しました。"
+            }
+        }
     }
 }
+
+    

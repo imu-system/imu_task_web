@@ -266,6 +266,7 @@
         "subtitle": "Manage your personal information and preferences.",
         "editProfile": "Edit Profile",
         "kycVerification": "KYC Verification",
+        "myBadges": "My Badges",
         "personalInfo": "Personal Information",
         "personalInfoDesc": "Update your public information.",
         "changePhoto": "Change Photo",
@@ -300,6 +301,37 @@
             "title": "Add a new address",
             "cancel": "Cancel",
             "save": "Save"
+        }
+    },
+    "BadgesPage": {
+        "subtitle": "Here are the badges you have unlocked.",
+        "cardTitle": "My Badges",
+        "cardDescription": "Badges reward your activity and reliability on the platform.",
+        "badges": {
+            "firstMission": {
+                "title": "First Mission",
+                "description": "Completed your first mission."
+            },
+            "verified": {
+                "title": "Verified",
+                "description": "Identity successfully verified."
+            },
+            "superProvider": {
+                "title": "Super Provider",
+                "description": "5-star average over 10 missions."
+            },
+            "communityHelper": {
+                "title": "Community Helper",
+                "description": "Completed 25 missions."
+            },
+            "profileComplete": {
+                "title": "Complete Profile",
+                "description": "Filled out all profile information."
+            },
+            "pioneer": {
+                "title": "Pioneer",
+                "description": "Joined in the first year."
+            }
         }
     },
     "AddressForm": {
@@ -676,3 +708,5 @@
         }
     }
 }
+
+    

@@ -266,6 +266,7 @@
         "subtitle": "Gérez vos informations personnelles et vos préférences.",
         "editProfile": "Modifier le profil",
         "kycVerification": "Vérification KYC",
+        "myBadges": "Mes Badges",
         "personalInfo": "Informations personnelles",
         "personalInfoDesc": "Mettez à jour vos informations publiques.",
         "changePhoto": "Changer la photo",
@@ -300,6 +301,37 @@
             "title": "Ajouter une nouvelle adresse",
             "cancel": "Annuler",
             "save": "Enregistrer"
+        }
+    },
+    "BadgesPage": {
+        "subtitle": "Voici les badges que vous avez débloqués.",
+        "cardTitle": "Mes Badges",
+        "cardDescription": "Les badges récompensent votre activité et votre fiabilité sur la plateforme.",
+        "badges": {
+            "firstMission": {
+                "title": "Première Mission",
+                "description": "Avoir terminé votre première mission."
+            },
+            "verified": {
+                "title": "Vérifié",
+                "description": "Identité vérifiée avec succès."
+            },
+            "superProvider": {
+                "title": "Super Prestataire",
+                "description": "Moyenne de 5 étoiles sur 10 missions."
+            },
+            "communityHelper": {
+                "title": "Pilier de la Communauté",
+                "description": "Avoir terminé 25 missions."
+            },
+            "profileComplete": {
+                "title": "Profil Complet",
+                "description": "Avoir rempli toutes les informations du profil."
+            },
+            "pioneer": {
+                "title": "Pionnier",
+                "description": "Avoir rejoint la plateforme la première année."
+            }
         }
     },
     "AddressForm": {
@@ -676,3 +708,5 @@
         }
     }
 }
+
+    
