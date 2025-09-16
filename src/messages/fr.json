@@ -301,7 +301,10 @@
             "title": "Ajouter une nouvelle adresse",
             "cancel": "Annuler",
             "save": "Enregistrer"
-        }
+        },
+        "serviceRadius": "Rayon d'intervention",
+        "serviceRadiusPlaceholder": "Ex: 10",
+        "serviceRadiusDisplay": "Rayon de {km} km"
     },
     "BadgesPage": {
         "subtitle": "Voici les badges que vous avez débloqués.",

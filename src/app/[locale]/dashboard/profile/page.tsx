@@ -14,7 +14,7 @@ import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera, Lock } from "lucide-react";
+import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera, Lock, SatelliteDish, UserRound } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -50,6 +50,7 @@ export default function ProfilePage() {
         bio: '',
         languages: [],
         skills: [],
+        serviceRadiusKm: 0,
     }
   });
 
@@ -60,6 +61,7 @@ export default function ProfilePage() {
         bio: user.profile.bio || '',
         languages: user.profile.languages || [],
         skills: user.profile.skills || [],
+        serviceRadiusKm: user.profile.serviceRadiusKm || 0,
       });
     }
   }, [user, reset]);
@@ -78,6 +80,7 @@ export default function ProfilePage() {
         bio: data.bio,
         languages: languagesArray,
         skills: skillsArray,
+        serviceRadiusKm: data.serviceRadiusKm,
         updatedAt: serverTimestamp()
       });
       toast({
@@ -161,6 +164,16 @@ export default function ProfilePage() {
                         />
                         <p className="text-xs text-muted-foreground">{t('commaSeparated')}</p>
                     </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="serviceRadiusKm">{t('serviceRadius')}</Label>
+                        <Input 
+                            id="serviceRadiusKm" 
+                            type="number"
+                            {...register('serviceRadiusKm')} 
+                            placeholder={t('serviceRadiusPlaceholder')}
+                        />
+                         {errors.serviceRadiusKm && <p className="text-xs text-destructive mt-1">{errors.serviceRadiusKm.message}</p>}
+                    </div>
                 </div>
 
                 <div className="flex justify-end gap-2">
@@ -235,6 +248,12 @@ export default function ProfilePage() {
                                 <div className="flex items-center gap-2">
                                     <MapPin className="h-4 w-4"/>
                                     <span>{user.profile.city}</span>
+                                </div>
+                            )}
+                             {user.roles.includes('provider') && user.profile?.serviceRadiusKm && (
+                                <div className="flex items-center gap-2">
+                                    <SatelliteDish className="h-4 w-4"/>
+                                    <span>{t('serviceRadiusDisplay', {km: user.profile.serviceRadiusKm})}</span>
                                 </div>
                             )}
                         </div>
