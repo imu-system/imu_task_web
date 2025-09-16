@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/hooks/use-auth';
-import { getMessagesForThread, getThreadById } from '@/lib/data';
+import { getThreadById } from '@/lib/data';
 import { Attachment, AttachmentKind, Message, Thread } from '@/lib/types';
 import { Link } from '@/navigation';
 import { Send, Paperclip, ArrowLeft, Phone, Bell, MoreVertical, Smile, Mic, Plus, FileText, Download, Play, ShieldAlert, Trash2 } from 'lucide-react';
@@ -16,6 +16,8 @@ import { Fragment, useEffect, useState } from 'react';
 import { Separator } from '@/components/ui/separator';
 import Image from 'next/image';
 import AttachmentPreview from '@/components/attachment-preview';
+import { collection, onSnapshot, orderBy, query, Timestamp } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 function isSameDay(date1: Date, date2: Date) {
   return date1.getFullYear() === date2.getFullYear() &&
@@ -48,12 +50,31 @@ export default function ThreadPage() {
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
+    // Fetch thread details (non-real-time for now)
     const fetchedThread = getThreadById(threadId);
     if (fetchedThread) {
       setThread(fetchedThread);
-      const fetchedMessages = getMessagesForThread(threadId);
-      setMessages(fetchedMessages);
     }
+
+    // Set up real-time listener for messages
+    const messagesQuery = query(
+        collection(db, 'threads', threadId, 'messages'),
+        orderBy('sentAt', 'asc')
+    );
+
+    const unsubscribe = onSnapshot(messagesQuery, (snapshot) => {
+        const messagesData: Message[] = snapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+                id: doc.id,
+                ...data,
+                sentAt: (data.sentAt as Timestamp).toDate(),
+            } as Message;
+        });
+        setMessages(messagesData);
+    });
+
+    return () => unsubscribe();
   }, [threadId]);
 
   if (!thread || !user) {
