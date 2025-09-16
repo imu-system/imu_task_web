@@ -521,6 +521,15 @@
             "title": "Actions Rapides",
             "openDispute": "Ouvrir un litige",
             "createTask": "Créer une tâche"
+        },
+        "moderator": {
+            "title": "Vue Modérateur",
+            "threadId": "ID du Fil",
+            "participants": "Participants",
+            "lastMessage": "Dernier Message",
+            "hide": "Masquer",
+            "warn": "Avertir",
+            "suspend": "Suspendre"
         }
     }
 }

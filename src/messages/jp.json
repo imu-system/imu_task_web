@@ -141,6 +141,15 @@
             "title": "クイックアクション",
             "openDispute": "紛争を開始",
             "createTask": "タスクを作成"
+        },
+        "moderator": {
+            "title": "モデレータービュー",
+            "threadId": "スレッドID",
+            "participants": "参加者",
+            "lastMessage": "最後のメッセージ",
+            "hide": "非表示",
+            "warn": "警告",
+            "suspend": "停止"
         }
     }
 }

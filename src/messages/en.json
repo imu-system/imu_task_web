@@ -521,6 +521,15 @@
             "title": "Quick Actions",
             "openDispute": "Open a dispute",
             "createTask": "Create a task"
+        },
+        "moderator": {
+            "title": "Moderator View",
+            "threadId": "Thread ID",
+            "participants": "Participants",
+            "lastMessage": "Last Message",
+            "hide": "Hide",
+            "warn": "Warn",
+            "suspend": "Suspend"
         }
     }
 }
