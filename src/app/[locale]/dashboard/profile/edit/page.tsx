@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useForm } from 'react-hook-form';
@@ -28,13 +29,7 @@ import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { MultiSelect } from '@/components/ui/multi-select';
 import { Slider } from '@/components/ui/slider';
-
-// Helper function to split string by comma and trim whitespace
-const stringToArray = (str: string | undefined | string[]): string[] => {
-    if (Array.isArray(str)) return str;
-    if (!str) return [];
-    return str.split(',').map(item => item.trim()).filter(Boolean);
-};
+import { TagInput } from '@/components/ui/tag-input';
 
 const availableLanguages = [
     { value: 'fr', label: 'Français' },
@@ -203,14 +198,11 @@ export default function ProfileEditPage() {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel>{t('skills')}</FormLabel>
-                                        <FormControl>
-                                            <Input 
-                                                id="skills" 
-                                                placeholder={t('skillsPlaceholder')}
-                                                defaultValue={Array.isArray(field.value) ? field.value.join(', ') : field.value}
-                                                onChange={(e) => field.onChange(stringToArray(e.target.value))}
-                                            />
-                                        </FormControl>
+                                         <TagInput
+                                            tags={field.value}
+                                            onChange={field.onChange}
+                                            placeholder={t('skillsPlaceholder')}
+                                        />
                                         <p className="text-xs text-muted-foreground">{t('commaSeparated')}</p>
                                         <FormMessage />
                                     </FormItem>
