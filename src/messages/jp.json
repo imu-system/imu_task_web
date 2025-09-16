@@ -122,6 +122,14 @@
         "providersRequired": "{count}人のプロバイダーが必要です",
         "providersNeeded": "{accepted} / {required} プロバイダー"
     },
+    "TaskStatusTimeline": {
+        "published": "公開済み",
+        "partially_matched": "一部割り当て済み",
+        "matched": "割り当て済み",
+        "in_progress": "進行中",
+        "completed": "完了",
+        "canceled": "タスクキャンセル"
+    },
     "ThreadPage": {
         "task": "タスク",
         "placeholder": "メッセージを入力してください..."
