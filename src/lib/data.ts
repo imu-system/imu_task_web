@@ -720,8 +720,52 @@ export var mockThreads: Thread[] = [
 ];
 
 
-export const getThreadsForUser = (userId: string): Thread[] => {
-    return mockThreads.filter(t => t.participants?.some(id => id === userId)).sort((a, b) => new Date(b.lastMessageAt).getTime() - new Date(a.lastMessageAt).getTime());
+export const getThreadsForUser = (userId: string, callback: (threads: Thread[]) => void): Unsubscribe => {
+    const q = query(collection(db, 'threads'), where('participants', 'array-contains', userId));
+    
+    const unsubscribe = onSnapshot(q, async (snapshot) => {
+        const threadsData: Thread[] = await Promise.all(snapshot.docs.map(async (doc) => {
+            const data = doc.data();
+            const lastMessage = data.lastMessage || {};
+            
+            // Populate participantsData
+            const participantsData = await Promise.all(
+                data.participants.map(async (id: string) => {
+                    const userRef = doc(db, 'users', id);
+                    const userSnap = await getDoc(userRef);
+                    return userSnap.exists() ? { id: userSnap.id, ...userSnap.data() } : null;
+                })
+            );
+
+            // Populate task data
+            let taskData = null;
+            if (data.taskId) {
+                const taskRef = doc(db, 'tasks', data.taskId);
+                const taskSnap = await getDoc(taskRef);
+                if (taskSnap.exists()) {
+                    taskData = taskSnap.data();
+                }
+            }
+
+            return {
+                id: doc.id,
+                ...data,
+                participantsData: participantsData.filter(Boolean),
+                task: taskData,
+                lastMessageAt: (data.lastMessageAt as Timestamp)?.toDate ? (data.lastMessageAt as Timestamp).toDate() : new Date(),
+                lastMessage: {
+                    ...lastMessage,
+                    sentAt: (lastMessage.sentAt as Timestamp)?.toDate ? (lastMessage.sentAt as Timestamp).toDate() : new Date(),
+                }
+            } as Thread;
+        }));
+
+        // Sort by most recent message
+        threadsData.sort((a, b) => new Date(b.lastMessageAt).getTime() - new Date(a.lastMessageAt).getTime());
+        callback(threadsData);
+    });
+
+    return unsubscribe;
 }
 
 export const getThreadById = (threadId: string): Thread | undefined => {
@@ -736,6 +780,7 @@ export const getThreadById = (threadId: string): Thread | undefined => {
 export const getMessagesForThread = (threadId: string): Message[] => {
     return mockMessages.filter(m => m.threadId === threadId).sort((a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime());
 }
+
 
 
 
