@@ -94,7 +94,7 @@ export default function ThreadPage() {
     return () => unsubscribe();
   }, [threadId]);
 
-  const sendMessage = async (messageContent: string, attachments: Omit<Attachment, 'id' | 'uploadedBy' | 'uploadedAt'>[] = []) => {
+  const sendMessage = async (messageContent: string, attachments: Omit<Attachment, 'id' | 'uploadedBy' | 'uploadedAt' | 'progress' | 'error'>[] = []) => {
     if (!user || (!messageContent.trim() && attachments.length === 0)) return;
 
     setIsSending(true);
