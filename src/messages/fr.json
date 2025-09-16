@@ -559,5 +559,30 @@
             "paidThisMonth": "Total payé ce mois-ci"
         },
         "viewTransactions": "Voir toutes les transactions"
+    },
+    "PayoutsPage": {
+        "title": "Retraits",
+        "subtitle": "Suivez vos virements et gérez vos paramètres de retrait.",
+        "schedule": {
+            "title": "Prochain virement",
+            "nextPayout": "Prochain virement programmé",
+            "amount": "Montant à verser"
+        },
+        "history": {
+            "title": "Historique des virements",
+            "table": {
+                "date": "Date",
+                "amount": "Montant",
+                "status": "Statut",
+                "provider": "Fournisseur"
+            },
+            "status": {
+                "paid": "Payé",
+                "in_progress": "En cours",
+                "failed": "Échoué"
+            }
+        },
+        "requestPayout": "Demander un retrait",
+        "kycRequired": "La vérification d'identité est requise pour demander un retrait."
     }
 }

@@ -559,5 +559,30 @@
             "paidThisMonth": "Total paid this month"
         },
         "viewTransactions": "View all transactions"
+    },
+    "PayoutsPage": {
+        "title": "Payouts",
+        "subtitle": "Track your payouts and manage your withdrawal settings.",
+        "schedule": {
+            "title": "Next Payout",
+            "nextPayout": "Next scheduled payout",
+            "amount": "Amount to be paid"
+        },
+        "history": {
+            "title": "Payout History",
+            "table": {
+                "date": "Date",
+                "amount": "Amount",
+                "status": "Status",
+                "provider": "Provider"
+            },
+            "status": {
+                "paid": "Paid",
+                "in_progress": "In Progress",
+                "failed": "Failed"
+            }
+        },
+        "requestPayout": "Request a Payout",
+        "kycRequired": "Identity verification is required to request a payout."
     }
 }

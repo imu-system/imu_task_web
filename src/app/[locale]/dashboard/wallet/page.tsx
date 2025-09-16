@@ -49,9 +49,8 @@ export default function WalletPage() {
 
                     <div className="flex justify-center gap-4">
                         {isProvider && (
-                             <Button size="lg" disabled={user.KYCStatus !== 'verified'}>
-                                <ArrowDownCircle className="mr-2"/>
-                                {t('balance.withdraw')}
+                            <Button asChild size="lg" disabled={user.KYCStatus !== 'verified'}>
+                                <Link href="/dashboard/wallet/payouts">{t('balance.withdraw')}</Link>
                             </Button>
                         )}
                         {isClient && (

@@ -186,5 +186,30 @@
             "paidThisMonth": "今月の支払い合計"
         },
         "viewTransactions": "すべての取引を表示"
+    },
+    "PayoutsPage": {
+        "title": "引き出し",
+        "subtitle": "引き出しを追跡し、設定を管理します。",
+        "schedule": {
+            "title": "次の引き出し",
+            "nextPayout": "次の予定されている引き出し",
+            "amount": "支払われる金額"
+        },
+        "history": {
+            "title": "引き出し履歴",
+            "table": {
+                "date": "日付",
+                "amount": "金額",
+                "status": "ステータス",
+                "provider": "プロバイダー"
+            },
+            "status": {
+                "paid": "支払い済み",
+                "in_progress": "処理中",
+                "failed": "失敗"
+            }
+        },
+        "requestPayout": "引き出しをリクエスト",
+        "kycRequired": "引き出しをリクエストするには、本人確認が必要です。"
     }
 }
