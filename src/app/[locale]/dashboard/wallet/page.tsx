@@ -3,12 +3,12 @@
 
 import { useAuth } from '@/hooks/use-auth';
 import { useTranslations } from 'next-intl';
-import { Loader2, Wallet, ArrowDownCircle, FileText } from 'lucide-react';
+import { Loader2, Wallet } from 'lucide-react';
 import { UserRole } from '@/lib/types';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Separator } from '@/components/ui/separator';
 import { Link } from '@/navigation';
+import BalanceCard from '@/components/wallet/balance-card';
+import QuickSummary from '@/components/wallet/quick-summary';
 
 export default function WalletPage() {
     const { user, loading } = useAuth();
@@ -37,56 +37,9 @@ export default function WalletPage() {
                 </p>
             </div>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>{t('balance.title')}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                    <div className="text-center">
-                        <p className="text-sm text-muted-foreground">{t('balance.current')}</p>
-                        <p className="text-5xl font-bold tracking-tight">120,00 €</p>
-                    </div>
+            <BalanceCard isProvider={isProvider} isClient={isClient} kycStatus={user.KYCStatus} />
 
-                    <div className="flex justify-center gap-4">
-                        {isProvider && (
-                            <Button asChild size="lg">
-                                <Link href="/dashboard/wallet/withdraw">{t('balance.withdraw')}</Link>
-                            </Button>
-                        )}
-                        {isClient && (
-                            <Button size="lg" variant="outline">
-                                <FileText className="mr-2"/>
-                                {t('balance.viewInvoices')}
-                            </Button>
-                        )}
-                    </div>
-                     {isProvider && user.KYCStatus !== 'verified' && (
-                        <p className="text-center text-xs text-amber-600 mt-4">
-                           {t('payoutsPageKycRequired')}
-                        </p>
-                    )}
-                </CardContent>
-            </Card>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle>{t('summary.title')}</CardTitle>
-                </CardHeader>
-                <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {isProvider && (
-                        <div className="p-4 bg-muted rounded-lg">
-                            <p className="text-sm text-muted-foreground">{t('summary.earnedThisMonth')}</p>
-                            <p className="text-2xl font-semibold">450,00 €</p>
-                        </div>
-                    )}
-                    {isClient && (
-                         <div className="p-4 bg-muted rounded-lg">
-                            <p className="text-sm text-muted-foreground">{t('summary.paidThisMonth')}</p>
-                            <p className="text-2xl font-semibold">320,00 €</p>
-                        </div>
-                    )}
-                </CardContent>
-            </Card>
+            <QuickSummary isProvider={isProvider} isClient={isClient} />
             
             <div className="text-center">
                 <Button variant="link" asChild>
