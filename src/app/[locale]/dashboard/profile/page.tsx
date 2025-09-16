@@ -14,11 +14,12 @@ import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal } from "lucide-react";
+import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import AddressForm from "@/components/address-form";
+import { Badge } from "@/components/ui/badge";
 
 // Helper function to split string by comma and trim whitespace
 const stringToArray = (str: string | undefined | string[]): string[] => {
@@ -65,7 +66,6 @@ export default function ProfilePage() {
     if (!user) return;
     setIsSaving(true);
     
-    // The form gives us strings, we need to convert them to arrays
     const languagesArray = stringToArray(data.languages as string | string[]);
     const skillsArray = stringToArray(data.skills as string | string[]);
 
@@ -112,53 +112,89 @@ export default function ProfilePage() {
           {t('subtitle')}
         </p>
       </div>
+      
+      <Card>
+          <CardContent className="p-6">
+              <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+                    <Avatar className="h-28 w-28">
+                        <AvatarImage src={user.profile?.photoUrl || undefined} />
+                        <AvatarFallback className="text-3xl">{user.profile?.displayName?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}</AvatarFallback>
+                    </Avatar>
+                    <div className="space-y-2">
+                        <CardTitle className="text-3xl">{user.profile?.displayName}</CardTitle>
+                        <p className="text-muted-foreground">{user.profile?.bio || t('noBio')}</p>
+                        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-sm text-muted-foreground pt-2">
+                             {user.profile?.languages && user.profile.languages.length > 0 && (
+                                <div className="flex items-center gap-2">
+                                    <Languages className="h-4 w-4"/>
+                                    <span>{user.profile.languages.join(', ')}</span>
+                                </div>
+                            )}
+                             {user.profile?.city && (
+                                <div className="flex items-center gap-2">
+                                    <MapPin className="h-4 w-4"/>
+                                    <span>{user.profile.city}</span>
+                                </div>
+                            )}
+                        </div>
+                        <div className="flex flex-wrap gap-2 pt-2 justify-center sm:justify-start">
+                            {user.profile?.verifiedBadges?.map(badge => (
+                                <Badge key={badge} variant="secondary" className="bg-green-100 text-green-800">
+                                    <ShieldCheck className="h-4 w-4 mr-1"/>
+                                    {badge}
+                                </Badge>
+                            ))}
+                            {user.profile?.skills?.map(skill => (
+                                <Badge key={skill}>{skill}</Badge>
+                            ))}
+                        </div>
+                    </div>
+              </div>
+          </CardContent>
+      </Card>
+      
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center md:text-left">
+            <Card>
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                    <CardTitle className="text-sm font-medium">{t('averageRating')}</CardTitle>
+                    <Star className="h-4 w-4 text-muted-foreground"/>
+                </CardHeader>
+                <CardContent>
+                    <div className="text-2xl font-bold">{user.profile?.averageRating.toFixed(1) || 'N/A'}</div>
+                    <p className="text-xs text-muted-foreground">{t('basedOn', {count: user.profile?.reviewsCount || 0})}</p>
+                </CardContent>
+            </Card>
+            <Card>
+                <CardHeader className="flex flex-row items-center justify-between pb-2">
+                    <CardTitle className="text-sm font-medium">{t('completedMissions')}</CardTitle>
+                    <Medal className="h-4 w-4 text-muted-foreground"/>
+                </CardHeader>
+                <CardContent>
+                    <div className="text-2xl font-bold">12</div>
+                    <p className="text-xs text-muted-foreground">{t('totalCompleted')}</p>
+                </CardContent>
+            </Card>
+        </div>
+
+
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
             <Card>
               <CardHeader>
-                <CardTitle>{t('personalInfo')}</CardTitle>
+                <CardTitle>{t('editProfile')}</CardTitle>
                 <CardDescription>{t('personalInfoDesc')}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
-                <div className="flex flex-col sm:flex-row gap-6">
-                    <div className="flex-shrink-0">
-                        <Avatar className="h-24 w-24">
-                            <AvatarImage src={user.profile?.photoUrl || undefined} />
-                            <AvatarFallback>{user.profile?.displayName?.charAt(0).toUpperCase() || user.email?.charAt(0).toUpperCase()}</AvatarFallback>
-                        </Avatar>
-                        <Button type="button" variant="outline" className="mt-2 w-full">{t('changePhoto')}</Button>
-                    </div>
-                    <div className="flex-grow space-y-4">
-                         <div className="space-y-2">
-                            <Label htmlFor="displayName">{t('fullName')}</Label>
-                            <Input id="displayName" {...register('displayName')} />
-                            {errors.displayName && <p className="text-xs text-destructive mt-1">{errors.displayName.message}</p>}
-                        </div>
-                         <div className="space-y-2">
-                            <Label htmlFor="email">{t('emailAddress')}</Label>
-                            <Input id="email" type="email" defaultValue={user.email || ''} disabled />
-                        </div>
-                    </div>
+                
+                 <div className="space-y-2">
+                    <Label htmlFor="displayName">{t('fullName')}</Label>
+                    <Input id="displayName" {...register('displayName')} />
+                    {errors.displayName && <p className="text-xs text-destructive mt-1">{errors.displayName.message}</p>}
+                </div>
+                 <div className="space-y-2">
+                    <Label htmlFor="email">{t('emailAddress')}</Label>
+                    <Input id="email" type="email" defaultValue={user.email || ''} disabled />
                 </div>
                 
-                <Separator />
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center md:text-left">
-                    <div className="p-4 bg-accent/50 rounded-lg">
-                        <div className="flex items-center justify-center md:justify-start gap-2">
-                            <Star className="h-5 w-5 text-yellow-500"/>
-                            <p className="text-lg font-bold">{user.profile?.averageRating.toFixed(1) || '0.0'}</p>
-                        </div>
-                        <p className="text-sm text-muted-foreground">{t('averageRating')}</p>
-                    </div>
-                    <div className="p-4 bg-accent/50 rounded-lg">
-                        <div className="flex items-center justify-center md:justify-start gap-2">
-                            <Medal className="h-5 w-5 text-primary"/>
-                            <p className="text-lg font-bold">{user.profile?.reviewsCount || 0}</p>
-                        </div>
-                         <p className="text-sm text-muted-foreground">{t('reviewsCount')}</p>
-                    </div>
-                </div>
-
                 <div className="space-y-2">
                     <Label htmlFor="bio">{t('bio')}</Label>
                     <Textarea id="bio" placeholder={t('bioPlaceholder')} {...register('bio')} />
@@ -168,7 +204,7 @@ export default function ProfilePage() {
                 <Separator />
                 
                 <div className="space-y-4">
-                    <CardTitle className="text-xl">{t('providerInfo')}</CardTitle>
+                    <h3 className="text-lg font-medium">{t('providerInfo')}</h3>
                      <div className="space-y-2">
                         <Label htmlFor="languages">{t('languages')}</Label>
                         <Input 
@@ -189,15 +225,14 @@ export default function ProfilePage() {
                     </div>
                 </div>
 
+                <div className="flex justify-end">
+                    <Button type="submit" disabled={isSaving || !isDirty}>
+                        {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                        {t('saveChanges')}
+                    </Button>
+                </div>
               </CardContent>
             </Card>
-
-            <div className="flex justify-end">
-                <Button type="submit" disabled={isSaving || !isDirty}>
-                    {isSaving && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                    {t('saveChanges')}
-                </Button>
-            </div>
         </form>
 
         <Card>
@@ -259,5 +294,3 @@ export default function ProfilePage() {
     </div>
   );
 }
-
-    
