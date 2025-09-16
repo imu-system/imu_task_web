@@ -81,49 +81,61 @@ export default function ThreadPage() {
 
     return () => unsubscribe();
   }, [threadId]);
+
+  const sendMessage = async (messageContent: string) => {
+    if (!user || !messageContent.trim()) return;
+
+    setIsSending(true);
+    try {
+      const batch = writeBatch(db);
+
+      const messagesCol = collection(db, 'threads', threadId, 'messages');
+      const newMessageRef = doc(messagesCol);
+      batch.set(newMessageRef, {
+        senderId: user.uid,
+        body: messageContent,
+        type: MessageType.text,
+        sentAt: serverTimestamp(),
+      });
+      
+      const threadRef = doc(db, 'threads', threadId);
+      batch.update(threadRef, {
+        lastMessage: {
+          body: messageContent,
+          senderId: user.uid,
+        },
+        lastMessageAt: serverTimestamp(),
+      });
+
+      await batch.commit();
+      return true;
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast({
+        variant: 'destructive',
+        title: t('toastErrorTitle'),
+        description: t('toastErrorDescription'),
+      });
+      return false;
+    } finally {
+      setIsSending(false);
+    }
+  };
   
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user || !newMessage.trim() || isSending) return;
+    if (!newMessage.trim() || isSending) return;
 
-    setIsSending(true);
-
-    try {
-        const batch = writeBatch(db);
-
-        // 1. Create the new message document
-        const messagesCol = collection(db, 'threads', threadId, 'messages');
-        const newMessageRef = doc(messagesCol); // Create a new doc ref without data first
-        batch.set(newMessageRef, {
-            senderId: user.uid,
-            body: newMessage,
-            type: MessageType.text,
-            sentAt: serverTimestamp(),
-        });
-        
-        // 2. Update the parent thread document
-        const threadRef = doc(db, 'threads', threadId);
-        batch.update(threadRef, {
-            lastMessage: {
-                body: newMessage,
-                senderId: user.uid,
-            },
-            lastMessageAt: serverTimestamp(),
-        });
-
-        await batch.commit();
-        setNewMessage('');
-    } catch (error) {
-        console.error("Error sending message:", error);
-        toast({
-            variant: 'destructive',
-            title: t('toastErrorTitle'),
-            description: t('toastErrorDescription'),
-        });
-    } finally {
-        setIsSending(false);
+    const success = await sendMessage(newMessage);
+    if (success) {
+      setNewMessage('');
     }
   };
+
+  const handleQuickReply = async (message: string) => {
+    if (isSending) return;
+    await sendMessage(message);
+  }
 
 
   if (!thread || !user) {
@@ -195,9 +207,9 @@ export default function ThreadPage() {
       </main>
       <footer className="p-4 border-t bg-background space-y-3">
         <div className="flex justify-start gap-2">
-            <Button variant="outline" size="sm">Ok ✔</Button>
-            <Button variant="outline" size="sm">Merci 🙏</Button>
-            <Button variant="outline" size="sm">RDV demain ?</Button>
+            <Button variant="outline" size="sm" onClick={() => handleQuickReply('Ok ✔')} disabled={isSending}>Ok ✔</Button>
+            <Button variant="outline" size="sm" onClick={() => handleQuickReply('Merci 🙏')} disabled={isSending}>Merci 🙏</Button>
+            <Button variant="outline" size="sm" onClick={() => handleQuickReply('RDV demain ?')} disabled={isSending}>RDV demain ?</Button>
         </div>
         <form onSubmit={handleSendMessage} className="flex items-center gap-2">
             <Button variant="ghost" size="icon" type="button">
