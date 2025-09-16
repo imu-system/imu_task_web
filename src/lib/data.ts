@@ -1,6 +1,6 @@
 
 
-import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole, Notification, NotificationType, NotificationChannel, DeliveryStatus, ContentPage, PageStatus, Thread, ThreadStatus, Message, MessageType, Attachment, AttachmentKind } from './types';
+import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole, Notification, NotificationType, NotificationChannel, DeliveryStatus, ContentPage, PageStatus, Thread, ThreadStatus, Message, MessageType, Attachment, AttachmentKind, Device, DevicePlatform } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
 
@@ -609,11 +609,10 @@ const mockMessages: Message[] = [
     { id: 'msg1', threadId: 'thread1', senderId: 'user2', body: 'Bonjour, je suis intéressé par votre mission de jardinage. Je suis disponible demain.', type: MessageType.text, sentAt: new Date('2024-08-27T10:00:00Z') },
     { id: 'msg2', threadId: 'thread1', senderId: 'user4', body: 'Bonjour Lucas, merci pour votre message. Demain 14h vous conviendrait ?', type: MessageType.text, sentAt: new Date('2024-08-27T10:05:00Z') },
     { id: 'msg3', threadId: 'thread1', senderId: 'user2', body: 'Parfait pour moi !', type: MessageType.text, sentAt: new Date('2024-08-27T10:06:00Z') },
-    { id: 'msg4', threadId: 'thread2', senderId: 'user3', body: 'Salut Anne-Marie, je viens de voir votre mission pour les courses. Je peux m\'en occuper sans problème.', type: MessageType.text, sentAt: new Date('2024-08-26T18:00:00Z') },
     { 
-        id: 'msg5', 
-        threadId: 'thread1', 
-        senderId: 'user4', 
+        id: 'msg4', 
+        threadId: 'thread2', 
+        senderId: 'user3', 
         type: MessageType.image,
         body: 'Voici une photo du jardin actuel.',
         attachments: [{
@@ -623,15 +622,15 @@ const mockMessages: Message[] = [
             filename: 'jardin_actuel.jpg',
             size: 123456,
             mimeType: 'image/jpeg',
-            uploadedBy: 'user4',
+            uploadedBy: 'user3',
             uploadedAt: new Date('2024-08-27T10:07:00Z')
         }],
         sentAt: new Date('2024-08-27T10:07:00Z') 
     },
     {
-        id: 'msg6',
-        threadId: 'thread1',
-        senderId: 'user2',
+        id: 'msg5',
+        threadId: 'thread2',
+        senderId: 'user1',
         body: 'Merci pour la photo. Voici le devis.',
         type: MessageType.file,
         attachments: [{
@@ -641,15 +640,33 @@ const mockMessages: Message[] = [
             filename: 'devis_jardinage.pdf',
             size: 78912,
             mimeType: 'application/pdf',
-            uploadedBy: 'user2',
+            uploadedBy: 'user1',
             uploadedAt: new Date('2024-08-27T10:08:00Z')
         }],
         sentAt: new Date('2024-08-27T10:08:00Z')
     },
-    { id: 'msg7', threadId: 'thread3', senderId: 'user2', body: "Bonjour Marc, je suis disponible pour promener Oscar. J'adore les chiens !", type: MessageType.text, sentAt: new Date('2024-08-19T15:00:00Z') },
-    { id: 'msg8', threadId: 'thread3', senderId: 'user4', body: "Super ! On peut s'appeler pour en discuter ?", type: MessageType.text, sentAt: new Date('2024-08-19T15:05:00Z') },
-    { id: 'msg9', threadId: 'thread4', senderId: 'user1', body: "Bonjour, je n'arrive pas à ajouter une nouvelle adresse sur mon profil.", type: MessageType.text, sentAt: new Date('2024-08-28T09:00:00Z') },
-    { id: 'msg10', threadId: 'thread4', senderId: 'user5', body: "Bonjour Anne-Marie, je suis Emma du support. Pouvez-vous me décrire l'erreur que vous rencontrez ?", type: MessageType.text, sentAt: new Date('2024-08-28T09:02:00Z') },
+    { id: 'msg6', threadId: 'thread3', senderId: 'user2', body: "Bonjour Marc, je suis disponible pour promener Oscar. J'adore les chiens !", type: MessageType.text, sentAt: new Date('2024-08-19T15:00:00Z') },
+    { id: 'msg7', threadId: 'thread3', senderId: 'user4', body: "Super ! On peut s'appeler pour en discuter ?", type: MessageType.text, sentAt: new Date('2024-08-19T15:05:00Z') },
+    { id: 'msg8', threadId: 'thread4', senderId: 'user1', body: "Bonjour, je n'arrive pas à ajouter une nouvelle adresse sur mon profil.", type: MessageType.text, sentAt: new Date('2024-08-28T09:00:00Z') },
+    { id: 'msg9', threadId: 'thread4', senderId: 'user5', body: "Bonjour Anne-Marie, je suis Emma du support. Pouvez-vous me décrire l'erreur que vous rencontrez ?", type: MessageType.text, sentAt: new Date('2024-08-28T09:02:00Z') },
+    {
+        id: 'msg10',
+        threadId: 'thread2',
+        senderId: 'user3',
+        body: 'Audio pour confirmer.',
+        type: MessageType.audio,
+        attachments: [{
+            id: 'att3',
+            url: '#',
+            kind: AttachmentKind.audio,
+            filename: 'confirmation.mp3',
+            size: 54321,
+            mimeType: 'audio/mpeg',
+            uploadedBy: 'user3',
+            uploadedAt: new Date('2024-08-27T10:09:00Z')
+        }],
+        sentAt: new Date('2024-08-27T10:09:00Z')
+    },
 
 ];
 
@@ -659,8 +676,8 @@ const mockThreads: Thread[] = [
         taskId: 'task2', 
         participants: ['user4', 'user2'],
         participantsData: [users.find(u => u.id === 'user4')!, users.find(u => u.id === 'user2')!], 
-        lastMessage: mockMessages.find(m => m.id === 'msg6')!, 
-        lastMessageAt: new Date('2024-08-27T10:08:00Z'), 
+        lastMessage: mockMessages.find(m => m.id === 'msg3')!, 
+        lastMessageAt: new Date('2024-08-27T10:06:00Z'), 
         status: ThreadStatus.open, 
         createdAt: new Date(), 
         updatedAt: new Date(), 
@@ -671,8 +688,8 @@ const mockThreads: Thread[] = [
         taskId: 'task1', 
         participants: ['user1', 'user3'],
         participantsData: [users.find(u => u.id === 'user1')!, users.find(u => u.id === 'user3')!], 
-        lastMessage: mockMessages.find(m => m.id === 'msg4')!, 
-        lastMessageAt: new Date('2024-08-26T18:00:00Z'), 
+        lastMessage: mockMessages.find(m => m.id === 'msg10')!, 
+        lastMessageAt: new Date('2024-08-27T10:09:00Z'), 
         status: ThreadStatus.open, 
         createdAt: new Date(), 
         updatedAt: new Date(), 
@@ -683,7 +700,7 @@ const mockThreads: Thread[] = [
         taskId: 'task4', 
         participants: ['user4', 'user1'], 
         participantsData: [users.find(u => u.id === 'user4')!, users.find(u => u.id === 'user1')!], 
-        lastMessage: mockMessages.find(m => m.id === 'msg8')!, 
+        lastMessage: mockMessages.find(m => m.id === 'msg7')!, 
         lastMessageAt: new Date('2024-08-19T15:05:00Z'), 
         status: ThreadStatus.archived, 
         createdAt: new Date(), 
@@ -694,7 +711,7 @@ const mockThreads: Thread[] = [
         id: 'thread4', 
         participants: ['user1', 'user5'],
         participantsData: [users.find(u => u.id === 'user1')!, users.find(u => u.id === 'user5')!], 
-        lastMessage: mockMessages.find(m => m.id === 'msg10')!, 
+        lastMessage: mockMessages.find(m => m.id === 'msg9')!, 
         lastMessageAt: new Date('2024-08-28T09:02:00Z'), 
         status: ThreadStatus.open, 
         createdAt: new Date(), 
@@ -718,6 +735,7 @@ export const getThreadById = (threadId: string): Thread | undefined => {
 export const getMessagesForThread = (threadId: string): Message[] => {
     return mockMessages.filter(m => m.threadId === threadId).sort((a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime());
 }
+
 
 
 
