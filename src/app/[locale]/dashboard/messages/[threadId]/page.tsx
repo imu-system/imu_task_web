@@ -275,7 +275,7 @@ export default function ThreadPage() {
                         )}
                         <div className={`max-w-xs md:max-w-md p-3 rounded-lg ${isSender ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
                             {message.body && <p>{message.body}</p>}
-                            {message.attachments?.map((att, i) => <AttachmentPreview key={i} attachment={att} />)}
+                            {message.attachments?.map((att, i) => <AttachmentPreview key={i} attachment={att} threadId={threadId}/>)}
                             <p className={`text-xs mt-1 ${isSender ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
                                 {new Date(message.sentAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                             </p>
@@ -290,12 +290,8 @@ export default function ThreadPage() {
             <div className="space-y-2">
                 {stagedAttachments.map(att => (
                     <div key={att.id} className="p-2 border rounded-lg">
-                        <div className="flex items-center justify-between">
-                            <p className="text-sm font-medium truncate flex-1">{att.filename}</p>
-                            <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => removeStagedAttachment(att.id)}>
-                                <Trash2 className="h-4 w-4"/>
-                            </Button>
-                        </div>
+                       <AttachmentPreview attachment={att} threadId={threadId} onRemove={removeStagedAttachment} isStaged={true} />
+
                         {att.progress !== undefined && att.progress < 100 && (
                             <Progress value={att.progress} className="h-2 mt-1" />
                         )}

@@ -6,21 +6,50 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { Button } from './ui/button';
 import { ShieldAlert, Trash2, FileText, Download, Play } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
-export default function AttachmentPreview({ attachment }: { attachment: Attachment }) {
+interface AttachmentPreviewProps {
+    attachment: Attachment;
+    threadId: string;
+    onRemove?: (id: string) => void;
+    isStaged?: boolean;
+}
+
+
+export default function AttachmentPreview({ attachment, threadId, onRemove, isStaged = false }: AttachmentPreviewProps) {
     const t = useTranslations('AttachmentPreview');
+    const { toast } = useToast();
+
+    const handleAddAsEvidence = async () => {
+        // In a real app, this would find the related booking/dispute via threadId
+        // and update it in Firestore with arrayUnion.
+        console.log(`Adding ${attachment.id} as evidence for thread ${threadId}`);
+        toast({
+            title: t('toastSuccessTitle'),
+            description: t('toastSuccessDescription', { filename: attachment.filename }),
+        });
+    };
+
+    const handleRemove = () => {
+        if(onRemove) {
+            onRemove(attachment.id);
+        }
+    }
+
 
     if (attachment.kind === AttachmentKind.image) {
         return (
             <div className="mt-2 space-y-2">
                 <Image src={attachment.url} alt={attachment.filename || 'Image attachment'} width={200} height={150} className="rounded-lg object-cover" data-ai-hint="attached image"/>
                 <div className="flex gap-2">
-                    <Button variant="outline" size="sm" className="bg-background/80 hover:bg-background text-foreground text-xs h-7">
+                    <Button variant="outline" size="sm" className="bg-background/80 hover:bg-background text-foreground text-xs h-7" onClick={handleAddAsEvidence} disabled={isStaged}>
                         <ShieldAlert className="mr-2 h-3 w-3"/>{t('addAsEvidence')}
                     </Button>
-                    <Button variant="destructive-outline" size="sm" className="bg-background/80 hover:bg-background text-xs h-7">
-                        <Trash2 className="mr-2 h-3 w-3"/>{t('delete')}
-                    </Button>
+                    {isStaged && onRemove && (
+                         <Button variant="destructive-outline" size="sm" className="bg-background/80 hover:bg-background text-xs h-7" onClick={handleRemove}>
+                            <Trash2 className="mr-2 h-3 w-3"/>{t('delete')}
+                        </Button>
+                    )}
                 </div>
             </div>
         )
@@ -37,12 +66,14 @@ export default function AttachmentPreview({ attachment }: { attachment: Attachme
                     </div>
                 </div>
                  <div className="flex gap-2">
-                    <Button variant="outline" size="sm" className="bg-background/80 hover:bg-background text-foreground text-xs h-7">
+                    <Button variant="outline" size="sm" className="bg-background/80 hover:bg-background text-foreground text-xs h-7" onClick={handleAddAsEvidence} disabled={isStaged}>
                         <ShieldAlert className="mr-2 h-3 w-3"/>{t('addAsEvidence')}
                     </Button>
-                    <Button variant="destructive-outline" size="sm" className="bg-background/80 hover:bg-background text-xs h-7">
-                        <Trash2 className="mr-2 h-3 w-3"/>{t('delete')}
-                    </Button>
+                    {isStaged && onRemove && (
+                         <Button variant="destructive-outline" size="sm" className="bg-background/80 hover:bg-background text-xs h-7" onClick={handleRemove}>
+                            <Trash2 className="mr-2 h-3 w-3"/>{t('delete')}
+                        </Button>
+                    )}
                 </div>
             </div>
         )

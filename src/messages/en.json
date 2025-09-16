@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Features",
@@ -515,7 +516,9 @@
     "AttachmentPreview": {
         "addAsEvidence": "Add as evidence",
         "delete": "Delete",
-        "open": "Open"
+        "open": "Open",
+        "toastSuccessTitle": "Evidence added",
+        "toastSuccessDescription": "The file '{filename}' has been added as evidence."
     },
     "ThreadRightPanel": {
         "timeline": {

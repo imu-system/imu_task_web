@@ -515,7 +515,9 @@
     "AttachmentPreview": {
         "addAsEvidence": "Ajouter comme preuve",
         "delete": "Supprimer",
-        "open": "Ouvrir"
+        "open": "Ouvrir",
+        "toastSuccessTitle": "Preuve ajoutée",
+        "toastSuccessDescription": "Le fichier '{filename}' a été ajouté comme preuve."
     },
     "ThreadRightPanel": {
         "timeline": {
