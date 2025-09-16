@@ -5,7 +5,8 @@ import { useAuth } from '@/hooks/use-auth';
 import { useTranslations } from 'next-intl';
 import { Loader2, ArrowLeft, Download, ShieldAlert, FileText, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link, useRouter, useParams } from '@/navigation';
+import { Link, useRouter } from '@/navigation';
+import { useParams } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
@@ -110,4 +111,3 @@ export default function TransactionDetailPage() {
         </div>
     );
 }
-
