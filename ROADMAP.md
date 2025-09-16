@@ -1,6 +1,71 @@
-# Feuille de Route de Développement pour ImuTask (Version Complète)
+# Feuille de Route de Développement pour ImuTask
 
-Ce document décrit les étapes planifiées pour construire ImuTask en se basant sur le schéma de données détaillé.
+## Feuille de Route pour la Messagerie
+
+Ce document décrit les étapes planifiées pour construire une fonctionnalité de messagerie complète et robuste pour ImuTask.
+
+---
+
+### **Étape 1 : Connexion Temps Réel et Envoi de Messages**
+
+**Objectif :** Permettre l'envoi et la réception de messages texte en temps réel.
+
+1.  **Connexion à Firestore :**
+    *   [ ] Dans `ThreadList`, remplacer les données fictives (`mockThreads`) par un `onSnapshot` listener de Firestore qui écoute les changements sur la collection `threads` où l'utilisateur courant est participant.
+    *   [ ] Dans `ThreadPage`, faire de même pour la sous-collection `messages` du thread courant, en triant par date d'envoi.
+
+2.  **Envoi de Messages Texte :**
+    *   [ ] Dans `ThreadPage`, implémenter la logique d'envoi dans le pied de page :
+        *   À la soumission, créer un nouveau document dans la sous-collection `messages` de Firestore.
+        *   Mettre à jour le champ `lastMessage` et `lastMessageAt` du document `thread` parent pour rafraîchir la `ThreadList`.
+        *   Gérer l'état de chargement et les erreurs.
+
+3.  **Gestion des "Sujets Rapides" :**
+    *   [ ] Implémenter la logique pour que les boutons "Ok ✔", "Merci 🙏" envoient directement des messages pré-définis.
+
+---
+
+### **Étape 2 : Gestion des Pièces Jointes (Upload & Affichage)**
+
+**Objectif :** Permettre l'envoi et la visualisation de fichiers, images et audio.
+
+1.  **Intégration d'un service de stockage (ex: Firebase Storage) :**
+    *   [ ] Configurer un bucket de stockage.
+    *   [ ] Définir les règles de sécurité pour autoriser les uploads authentifiés.
+
+2.  **Logique d'Upload :**
+    *   [ ] Dans `ThreadPage`, en cliquant sur l'icône `Paperclip`, ouvrir un sélecteur de fichier.
+    *   [ ] Implémenter la fonction d'upload vers Firebase Storage, en affichant un indicateur de progression.
+    *   [ ] Une fois l'upload terminé, récupérer l'URL et les métadonnées (nom, taille, type).
+    *   [ ] Créer le document `Message` dans Firestore avec le `body` (si présent) et les `attachments`.
+
+3.  **Actions sur les Pièces Jointes (dans `AttachmentPreview`) :**
+    *   [ ] **"Ajouter comme preuve"** : Implémenter une fonction qui copie les informations de la pièce jointe vers un champ `evidence` sur le document `Booking` ou `Dispute` associé.
+    *   [ ] **"Supprimer"** : Permettre la suppression d'une pièce jointe *avant* l'envoi du message.
+    *   [ ] **"Télécharger/Ouvrir"** : Assurer que les liens fonctionnent pour tous les types de fichiers.
+
+---
+
+### **Étape 3 : Intégration de la Fonctionnalité d'Appel Audio**
+
+**Objectif :** Permettre aux utilisateurs de démarrer un appel audio sécurisé depuis la messagerie.
+
+1.  **Mise en place d'un service WebRTC (ex: auto-hébergé ou via un tiers comme Twilio) :**
+    *   [ ] Mettre en place la logique de signalisation (échange de métadonnées SDP et ICE) via Firestore ou une autre base de données temps réel.
+
+2.  **Logique d'Appel :**
+    *   [ ] Sur la `CallPage`, utiliser `useEffect` pour initier la connexion WebRTC, accéder au micro et à la caméra.
+    *   [ ] Afficher l'état de l'appel ("Ringing...", "Connected").
+    *   [ ] Gérer la fin de l'appel (nettoyage de la connexion).
+
+3.  **Enregistrement de l'Appel (Fonctionnalité Avancée) :**
+    *   [ ] Si l'enregistrement est activé, capturer les flux audio via la `MediaRecorder API`.
+    *   [ ] À la fin de l'appel, uploader le fichier audio enregistré sur Firebase Storage.
+    *   [ ] Ajouter un message système dans le thread avec un lien vers l'enregistrement.
+
+---
+
+_Les étapes suivantes du document original de la feuille de route pour ImuTask (Authentification, Adresses, etc.) restent valides et peuvent être consultées ci-dessous._
 
 ---
 
