@@ -14,12 +14,13 @@ import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera } from "lucide-react";
+import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera, Lock } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import AddressForm from "@/components/address-form";
 import { Badge } from "@/components/ui/badge";
+import { Link } from "@/navigation";
 
 // Helper function to split string by comma and trim whitespace
 const stringToArray = (str: string | undefined | string[]): string[] => {
@@ -203,10 +204,18 @@ export default function ProfilePage() {
                     <div className="flex-1 space-y-2">
                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                             <CardTitle className="text-3xl">{user.profile?.displayName}</CardTitle>
-                            <Button onClick={() => setIsEditing(true)}>
-                                <Edit className="mr-2 h-4 w-4"/>
-                                {t('editProfile')}
-                            </Button>
+                            <div className="flex gap-2">
+                                <Button onClick={() => setIsEditing(true)}>
+                                    <Edit className="mr-2 h-4 w-4"/>
+                                    {t('editProfile')}
+                                </Button>
+                                <Button variant="outline" asChild>
+                                    <Link href="/dashboard/profile/kyc">
+                                        <Lock className="mr-2 h-4 w-4"/>
+                                        {t('kycVerification')}
+                                    </Link>
+                                </Button>
+                            </div>
                         </div>
                         <p className="text-muted-foreground">{user.profile?.bio || t('noBio')}</p>
                         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-sm text-muted-foreground pt-2">

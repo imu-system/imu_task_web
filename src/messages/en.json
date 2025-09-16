@@ -265,6 +265,7 @@
         "title": "Profile & Settings",
         "subtitle": "Manage your personal information and preferences.",
         "editProfile": "Edit Profile",
+        "kycVerification": "KYC Verification",
         "personalInfo": "Personal Information",
         "personalInfoDesc": "Update your public information.",
         "changePhoto": "Change Photo",
@@ -296,7 +297,9 @@
         "skillsPlaceholder": "e.g. Gardening, DIY",
         "commaSeparated": "Separate with commas",
         "addressForm": {
-            "title": "Add a new address"
+            "title": "Add a new address",
+            "cancel": "Cancel",
+            "save": "Save"
         }
     },
     "AddressForm": {
@@ -640,6 +643,36 @@
         "toast": {
             "successTitle": "Withdrawal Initiated",
             "successDescription": "Your withdrawal request has been submitted and is being processed."
+        }
+    },
+    "KycPage": {
+        "title": "Identity Verification (KYC)",
+        "subtitle": "Confirm your identity to secure your account and access all features.",
+        "card": {
+            "title": "Why verify my identity?",
+            "description": "Identity verification (Know Your Customer) is an essential security step to:",
+            "item1": "Protect the community against fraud.",
+            "item2": "Enable financial transactions (withdrawals) for providers.",
+            "item3": "Increase trust between members."
+        },
+        "startVerification": "Start Verification",
+        "status": {
+            "verified": {
+                "title": "Your identity is verified",
+                "description": "Thank you! You have access to all platform features."
+            },
+            "pending": {
+                "title": "Verification in progress",
+                "description": "Your documents are being reviewed. This usually takes a few hours."
+            },
+            "rejected": {
+                "title": "Verification failed",
+                "description": "A problem occurred while reviewing your documents. Please try again."
+            }
+        },
+        "toast": {
+            "title": "Redirecting...",
+            "description": "You will be redirected to our verification partner."
         }
     }
 }

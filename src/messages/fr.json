@@ -265,6 +265,7 @@
         "title": "Profil & Paramètres",
         "subtitle": "Gérez vos informations personnelles et vos préférences.",
         "editProfile": "Modifier le profil",
+        "kycVerification": "Vérification KYC",
         "personalInfo": "Informations personnelles",
         "personalInfoDesc": "Mettez à jour vos informations publiques.",
         "changePhoto": "Changer la photo",
@@ -296,7 +297,9 @@
         "skillsPlaceholder": "Ex: Jardinage, Bricolage",
         "commaSeparated": "Séparer par des virgules",
         "addressForm": {
-            "title": "Ajouter une nouvelle adresse"
+            "title": "Ajouter une nouvelle adresse",
+            "cancel": "Annuler",
+            "save": "Enregistrer"
         }
     },
     "AddressForm": {
@@ -640,6 +643,36 @@
         "toast": {
             "successTitle": "Retrait Initié",
             "successDescription": "Votre demande de retrait a été soumise et est en cours de traitement."
+        }
+    },
+    "KycPage": {
+        "title": "Vérification d'Identité (KYC)",
+        "subtitle": "Confirmez votre identité pour sécuriser votre compte et accéder à toutes les fonctionnalités.",
+        "card": {
+            "title": "Pourquoi vérifier mon identité ?",
+            "description": "La vérification d'identité (Know Your Customer) est une étape de sécurité essentielle pour :",
+            "item1": "Protéger la communauté contre la fraude.",
+            "item2": "Permettre les transactions financières (retraits) pour les prestataires.",
+            "item3": "Augmenter la confiance entre les membres."
+        },
+        "startVerification": "Démarrer la vérification",
+        "status": {
+            "verified": {
+                "title": "Votre identité est vérifiée",
+                "description": "Merci ! Vous avez accès à toutes les fonctionnalités de la plateforme."
+            },
+            "pending": {
+                "title": "Vérification en cours",
+                "description": "Vos documents sont en cours d'examen. Cela prend généralement quelques heures."
+            },
+            "rejected": {
+                "title": "Vérification échouée",
+                "description": "Un problème est survenu lors de l'examen de vos documents. Veuillez réessayer."
+            }
+        },
+        "toast": {
+            "title": "Redirection en cours...",
+            "description": "Vous allez être redirigé vers notre partenaire de vérification."
         }
     }
 }
