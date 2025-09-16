@@ -584,5 +584,36 @@
         },
         "requestPayout": "Request a Payout",
         "kycRequired": "Identity verification is required to request a payout."
+    },
+    "TransactionsPage": {
+        "title": "Transactions",
+        "subtitle": "View your payment and transaction history.",
+        "table": {
+            "title": "Transaction History",
+            "date": "Date",
+            "description": "Description",
+            "status": "Status",
+            "amount": "Amount",
+            "details": "Details"
+        }
+    },
+    "TransactionDetailPage": {
+        "title": "Transaction #{id}",
+        "backToList": "Back to transactions",
+        "notFound": "Transaction not found.",
+        "status": {
+            "confirmed": "Confirmed"
+        },
+        "details": {
+            "title": "Details",
+            "client": "Client",
+            "provider": "Provider",
+            "service": "Service"
+        },
+        "actions": {
+            "title": "Available Actions",
+            "downloadInvoice": "Download Invoice (PDF)",
+            "requestRefund": "Request a Refund"
+        }
     }
 }

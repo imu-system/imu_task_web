@@ -584,5 +584,36 @@
         },
         "requestPayout": "Demander un retrait",
         "kycRequired": "La vérification d'identité est requise pour demander un retrait."
+    },
+    "TransactionsPage": {
+        "title": "Transactions",
+        "subtitle": "Consultez votre historique de paiements et de transactions.",
+        "table": {
+            "title": "Historique des transactions",
+            "date": "Date",
+            "description": "Description",
+            "status": "Statut",
+            "amount": "Montant",
+            "details": "Détails"
+        }
+    },
+    "TransactionDetailPage": {
+        "title": "Transaction #{id}",
+        "backToList": "Retour aux transactions",
+        "notFound": "Transaction non trouvée.",
+        "status": {
+            "confirmed": "Confirmé"
+        },
+        "details": {
+            "title": "Détails",
+            "client": "Client",
+            "provider": "Prestataire",
+            "service": "Service"
+        },
+        "actions": {
+            "title": "Actions disponibles",
+            "downloadInvoice": "Télécharger la facture (PDF)",
+            "requestRefund": "Demander un remboursement"
+        }
     }
 }

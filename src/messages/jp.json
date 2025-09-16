@@ -211,5 +211,36 @@
         },
         "requestPayout": "引き出しをリクエスト",
         "kycRequired": "引き出しをリクエストするには、本人確認が必要です。"
+    },
+    "TransactionsPage": {
+        "title": "取引",
+        "subtitle": "支払いと取引の履歴を表示します。",
+        "table": {
+            "title": "取引履歴",
+            "date": "日付",
+            "description": "説明",
+            "status": "ステータス",
+            "amount": "金額",
+            "details": "詳細"
+        }
+    },
+    "TransactionDetailPage": {
+        "title": "取引 #{id}",
+        "backToList": "取引一覧に戻る",
+        "notFound": "取引が見つかりません。",
+        "status": {
+            "confirmed": "確認済み"
+        },
+        "details": {
+            "title": "詳細",
+            "client": "クライアント",
+            "provider": "プロバイダー",
+            "service": "サービス"
+        },
+        "actions": {
+            "title": "利用可能なアクション",
+            "downloadInvoice": "請求書をダウンロード (PDF)",
+            "requestRefund": "返金をリクエスト"
+        }
     }
 }
