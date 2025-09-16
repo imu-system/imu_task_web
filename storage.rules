@@ -1,0 +1,19 @@
+
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Autorise la lecture des fichiers par n'importe qui (utile pour afficher les images/fichiers dans le chat)
+    // Pour une sécurité plus stricte en production, vous pourriez vouloir restreindre la lecture aux participants du thread.
+    match /{allPaths=**} {
+      allow read;
+    }
+
+    // Autorise l'écriture (upload) uniquement si l'utilisateur est authentifié.
+    // Cela empêche les uploads anonymes.
+    // Nous pourrions ajouter des règles plus fines plus tard, par exemple, pour limiter la taille des fichiers.
+    match /{allPaths=**} {
+        allow write: if request.auth != null;
+    }
+  }
+}
