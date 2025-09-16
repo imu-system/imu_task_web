@@ -324,9 +324,9 @@
                 "title": "Verified",
                 "description": "Identity successfully verified."
             },
-            "superProvider": {
-                "title": "Super Provider",
-                "description": "5-star average over 10 missions."
+            "topRated": {
+                "title": "Top Rated",
+                "description": "Average rating above 4.8"
             },
             "communityHelper": {
                 "title": "Community Helper",
@@ -339,10 +339,6 @@
             "pioneer": {
                 "title": "Pioneer",
                 "description": "Joined in the first year."
-            },
-            "topRated": {
-                "title": "Top Rated",
-                "description": "Average rating above 4.8"
             }
         }
     },
@@ -741,4 +737,4 @@
 
     
 
-
+    
