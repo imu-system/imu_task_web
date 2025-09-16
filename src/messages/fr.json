@@ -257,7 +257,9 @@
         "providerActions": {
             "title": "Vos actions",
             "makeOffer": "Faire une offre"
-        }
+        },
+        "providersRequired": "{count} prestataires requis",
+        "providersNeeded": "{accepted} / {required} prestataires"
     },
     "ProfilePage": {
         "title": "Profil & Paramètres",
@@ -307,6 +309,7 @@
     },
     "TaskStatusTimeline": {
         "published": "Publiée",
+        "partially_matched": "Partiellement Assignée",
         "matched": "Assignée",
         "in_progress": "En cours",
         "completed": "Terminée",

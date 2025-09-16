@@ -24,6 +24,7 @@ import {
   Loader2,
   ShieldAlert,
   Paperclip,
+  Users,
 } from 'lucide-react';
 import {
   AlertDialog,
@@ -38,7 +39,7 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { type Offer, type Task, TaskStatus, UserRole } from '@/lib/types';
+import { type Offer, type Task, TaskStatus, UserRole, OfferStatus } from '@/lib/types';
 import { useLocale, useTranslations } from 'next-intl';
 import { useToast } from '@/hooks/use-toast';
 import TaskStatusTimeline from '@/components/task-status-timeline';
@@ -50,7 +51,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { OfferForm } from '@/components/offer-form';
 
-const OfferCard = ({ offer, onAccept }: { offer: Offer, onAccept: (offer: Offer) => void }) => {
+const OfferCard = ({ offer, onAccept, disabled }: { offer: Offer, onAccept: (offer: Offer) => void, disabled: boolean }) => {
   const { toast } = useToast();
   const t = useTranslations('OfferCard');
   const [isAccepting, setIsAccepting] = useState(false);
@@ -92,7 +93,7 @@ const OfferCard = ({ offer, onAccept }: { offer: Offer, onAccept: (offer: Offer)
           {offer.message}
         </p>
         <div className="flex gap-2 pt-2">
-          <Button size="sm" onClick={handleAccept} disabled={isAccepting}>
+          <Button size="sm" onClick={handleAccept} disabled={isAccepting || disabled}>
             {isAccepting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
             {t('accept')}
           </Button>
@@ -127,15 +128,25 @@ const ProviderActions = ({ task }: { task: Task }) => {
     )
 }
 
-const ClientActions = ({ offers, onAccept }: { offers: Offer[], onAccept: (offer: Offer) => void }) => {
+const ClientActions = ({ offers, onAccept, task }: { offers: Offer[], onAccept: (offer: Offer) => void, task: Task }) => {
     const t = useTranslations('TaskDetailPage');
+    const acceptedOffersCount = offers.filter(o => o.status === OfferStatus.accepted).length;
+    const requiredProviders = task.numberOfProvidersRequired || 1;
+    const isFullyBooked = acceptedOffersCount >= requiredProviders;
+
     return (
         <div className="space-y-4">
-            <h2 className="text-2xl font-bold font-headline">{t('offersReceived', { count: offers.length })}</h2>
+            <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold font-headline">{t('offersReceived', { count: offers.length })}</h2>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Users className="h-4 w-4"/>
+                    <span>{t('providersNeeded', { accepted: acceptedOffersCount, required: requiredProviders })}</span>
+                </div>
+            </div>
             {offers.length > 0 ? (
                 <div className="space-y-4">
                     {offers.map((offer) => (
-                        <OfferCard key={offer.id} offer={offer} onAccept={onAccept}/>
+                        <OfferCard key={offer.id} offer={offer} onAccept={onAccept} disabled={isFullyBooked || offer.status !== OfferStatus.pending}/>
                     ))}
                 </div>
             ) : (
@@ -162,13 +173,22 @@ export default function TaskDetailClientPage({ task: initialTask, offers: initia
   const isMatched = task.status === TaskStatus.matched || task.status === TaskStatus.in_progress || task.status === TaskStatus.completed;
 
   const handleOfferAccepted = (acceptedOffer: Offer) => {
-    // Visually update the UI to reflect the new state
-    setTask(currentTask => ({...currentTask, status: TaskStatus.matched}));
-    setOffers(currentOffers => 
-      currentOffers.map(o => 
-        o.id === acceptedOffer.id ? {...o, status: 'accepted'} : {...o, status: 'declined'}
-      )
-    )
+    const updatedOffers = offers.map(o => 
+      o.id === acceptedOffer.id ? { ...o, status: OfferStatus.accepted } : o
+    );
+    setOffers(updatedOffers);
+
+    const newAcceptedCount = updatedOffers.filter(o => o.status === OfferStatus.accepted).length;
+    const requiredCount = task.numberOfProvidersRequired || 1;
+
+    let newStatus = task.status;
+    if (newAcceptedCount >= requiredCount) {
+      newStatus = TaskStatus.matched;
+    } else {
+      newStatus = TaskStatus.partially_matched;
+    }
+
+    setTask(currentTask => ({ ...currentTask, status: newStatus }));
   }
 
   const handleReportProblem = () => {
@@ -203,6 +223,12 @@ export default function TaskDetailClientPage({ task: initialTask, offers: initia
                     }).format(new Date(task.timeWindowStart))}
                   </span>
                 </div>
+                 {task.numberOfProvidersRequired && task.numberOfProvidersRequired > 1 && (
+                    <div className="flex items-center gap-2">
+                        <Users className="h-4 w-4" />
+                        <span>{t('providersRequired', { count: task.numberOfProvidersRequired })}</span>
+                    </div>
+                 )}
               </div>
             </CardHeader>
             <CardContent>
@@ -210,7 +236,7 @@ export default function TaskDetailClientPage({ task: initialTask, offers: initia
             </CardContent>
           </Card>
 
-          {isClient ? <ClientActions offers={offers} onAccept={handleOfferAccepted} /> : null}
+          {isClient ? <ClientActions offers={offers} onAccept={handleOfferAccepted} task={task} /> : null}
           {!isClient && isProvider ? <ProviderActions task={task}/> : null}
           
         </div>

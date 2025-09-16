@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 // Types partagés pour le monorepo (générés d'après le schéma Prisma)
 // GitHub Copilot
 
@@ -39,6 +32,7 @@ export enum TaskVisibility {
 export enum TaskStatus {
     draft = 'draft',
     published = 'published',
+    partially_matched = 'partially_matched',
     matched = 'matched',
     in_progress = 'in_progress',
     completed = 'completed',
@@ -318,7 +312,6 @@ export interface Task {
     address?: Address | null;
     offers?: Offer[];
     bookings?: Booking[];
-    threads?: Thread[];
 }
 
 export interface Offer {

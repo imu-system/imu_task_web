@@ -118,6 +118,10 @@
         "impersonateWarning": "現在、{email}になりすましています。",
         "stopImpersonation": "なりすましを停止"
     },
+    "TaskDetailPage": {
+        "providersRequired": "{count}人のプロバイダーが必要です",
+        "providersNeeded": "{accepted} / {required} プロバイダー"
+    },
     "ThreadPage": {
         "task": "タスク",
         "placeholder": "メッセージを入力してください..."

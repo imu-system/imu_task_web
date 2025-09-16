@@ -3,7 +3,7 @@
 
 import { cn } from "@/lib/utils";
 import { TaskStatus } from "@/lib/types";
-import { Check, CircleDot, Hourglass, FileText } from "lucide-react";
+import { Check, CircleDot, Hourglass, FileText, Users } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 interface TaskStatusTimelineProps {
@@ -15,6 +15,7 @@ export default function TaskStatusTimeline({ currentStatus }: TaskStatusTimeline
 
     const statuses = [
         { status: TaskStatus.published, label: t('published'), icon: <FileText/> },
+        { status: TaskStatus.partially_matched, label: t('partially_matched'), icon: <Users/> },
         { status: TaskStatus.matched, label: t('matched'), icon: <Check/> },
         { status: TaskStatus.in_progress, label: t('in_progress'), icon: <Hourglass/> },
         { status: TaskStatus.completed, label: t('completed'), icon: <CircleDot/> },
@@ -27,6 +28,11 @@ export default function TaskStatusTimeline({ currentStatus }: TaskStatusTimeline
         <div className="w-full">
             <div className="flex justify-between items-center">
                 {statuses.map((item, index) => {
+                    // Don't show partially_matched if it's not the current status and we are past it.
+                    if (item.status === TaskStatus.partially_matched && currentStatus !== TaskStatus.partially_matched && currentIndex > index) {
+                        return null;
+                    }
+                    
                     const isActive = isCanceled ? false : index <= currentIndex;
                     const isCurrent = isCanceled ? false : index === currentIndex;
 

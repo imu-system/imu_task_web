@@ -257,7 +257,9 @@
         "providerActions": {
             "title": "Your Actions",
             "makeOffer": "Make an Offer"
-        }
+        },
+        "providersRequired": "{count} providers required",
+        "providersNeeded": "{accepted} / {required} providers"
     },
     "ProfilePage": {
         "title": "Profile & Settings",
@@ -307,6 +309,7 @@
     },
     "TaskStatusTimeline": {
         "published": "Published",
+        "partially_matched": "Partially Matched",
         "matched": "Matched",
         "in_progress": "In Progress",
         "completed": "Completed",
@@ -535,6 +538,6 @@
         }
     },
     "OfflineBanner": {
-        "offlineMessage": "You are currently offline. Attempting to reconnect..."
+        "offlineMessage": "⚠️ You are currently offline. Attempting to reconnect..."
     }
 }
