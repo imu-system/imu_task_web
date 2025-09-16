@@ -132,7 +132,9 @@
     },
     "ThreadPage": {
         "task": "タスク",
-        "placeholder": "メッセージを入力してください..."
+        "placeholder": "メッセージを入力してください...",
+        "toastErrorTitle": "メッセージの送信エラー",
+        "toastErrorDescription": "接続を確認して再試行してください。"
     },
     "CallPage": {
         "ringing": "呼び出し中...",

@@ -9,7 +9,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { getThreadById } from '@/lib/data';
 import { Attachment, AttachmentKind, Message, MessageType, Thread } from '@/lib/types';
 import { Link } from '@/navigation';
-import { Send, Paperclip, ArrowLeft, Phone, Bell, MoreVertical, Smile, Mic, Plus, FileText, Download, Play, ShieldAlert, Trash2 } from 'lucide-react';
+import { Send, Paperclip, ArrowLeft, Phone, Bell, MoreVertical, Smile, Mic, Plus, FileText, Download, Play, ShieldAlert, Trash2, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { Fragment, useEffect, useState } from 'react';
@@ -18,6 +18,7 @@ import Image from 'next/image';
 import AttachmentPreview from '@/components/attachment-preview';
 import { collection, onSnapshot, orderBy, query, Timestamp, addDoc, serverTimestamp, writeBatch, doc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { useToast } from '@/hooks/use-toast';
 
 function isSameDay(date1: Date, date2: Date) {
   return date1.getFullYear() === date2.getFullYear() &&
@@ -45,10 +46,13 @@ export default function ThreadPage() {
   const { threadId } = useParams<{ threadId: string }>();
   const { user } = useAuth();
   const t = useTranslations('ThreadPage');
+  const { toast } = useToast();
   
   const [thread, setThread] = useState<Thread | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
+  const [isSending, setIsSending] = useState(false);
+
 
   useEffect(() => {
     // Fetch thread details (non-real-time for now)
@@ -80,7 +84,9 @@ export default function ThreadPage() {
   
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!user || !newMessage.trim()) return;
+    if (!user || !newMessage.trim() || isSending) return;
+
+    setIsSending(true);
 
     try {
         const batch = writeBatch(db);
@@ -109,7 +115,13 @@ export default function ThreadPage() {
         setNewMessage('');
     } catch (error) {
         console.error("Error sending message:", error);
-        // Here you would show a toast to the user
+        toast({
+            variant: 'destructive',
+            title: t('toastErrorTitle'),
+            description: t('toastErrorDescription'),
+        });
+    } finally {
+        setIsSending(false);
     }
   };
 
@@ -199,6 +211,7 @@ export default function ThreadPage() {
                 className="flex-1" 
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
+                disabled={isSending}
             />
             <Button variant="ghost" size="icon" type="button">
                 <Paperclip/>
@@ -206,8 +219,8 @@ export default function ThreadPage() {
              <Button variant="ghost" size="icon" type="button">
                 <Mic/>
             </Button>
-            <Button type="submit" disabled={!newMessage.trim()}>
-                <Send/>
+            <Button type="submit" disabled={!newMessage.trim() || isSending}>
+                {isSending ? <Loader2 className="animate-spin" /> : <Send/>}
             </Button>
         </form>
       </footer>

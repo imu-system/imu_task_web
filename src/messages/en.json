@@ -503,7 +503,9 @@
     },
     "ThreadPage": {
         "task": "Task",
-        "placeholder": "Type your message..."
+        "placeholder": "Type your message...",
+        "toastErrorTitle": "Error sending message",
+        "toastErrorDescription": "Please check your connection and try again."
     },
     "CallPage": {
         "ringing": "Ringing...",
