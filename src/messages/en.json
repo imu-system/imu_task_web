@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Features",
@@ -910,7 +911,138 @@
             "saveSuccessDescription": "Your notification preferences have been updated."
         }
     },
+    "AdminNotificationsLayout": {
+        "history": "History",
+        "broadcast": "Broadcast",
+        "templates": "Templates"
+    },
     "AdminNotificationsPage": {
+        "history": {
+            "title": "Notification History",
+            "subtitle": "Monitor all notifications sent by the system.",
+            "card": {
+                "title": "History",
+                "description": "A list of all notifications sent to users."
+            },
+            "filters": {
+                "searchPlaceholder": "Search by recipient...",
+                "type": "Notification type",
+                "allTypes": "All types",
+                "status": "Status",
+                "allStatuses": "All statuses"
+            },
+            "table": {
+                "user": "User",
+                "type": "Type",
+                "channel": "Channel",
+                "status": "Status",
+                "date": "Date",
+                "viewDetails": "View details"
+            },
+            "types": {
+                "task_offer_received": "New Offer",
+                "offer_accepted": "Offer Accepted",
+                "booking_scheduled": "Booking Scheduled",
+                "booking_reminder": "Booking Reminder",
+                "payment_action_required": "Payment Action Required",
+                "dispute_update": "Dispute Update"
+            },
+            "channels": {
+                "in_app": "In-App",
+                "push": "Push",
+                "email": "Email"
+            },
+            "statuses": {
+                "queued": "Queued",
+                "sent": "Sent",
+                "failed": "Failed"
+            }
+        },
+        "broadcast": {
+            "title": "Send Broadcast Notification",
+            "subtitle": "Communicate with specific user segments.",
+            "form": {
+                "content": {
+                    "title": "Message Content",
+                    "description": "Compose the message to be sent.",
+                    "titleLabel": "Title",
+                    "titlePlaceholder": "Important Announcement",
+                    "messageLabel": "Message",
+                    "messagePlaceholder": "Your message here...",
+                    "messageDescription": "Variables like {{displayName}} are allowed."
+                },
+                "targeting": {
+                    "title": "Targeting",
+                    "description": "Choose who will receive this notification.",
+                    "rolesLabel": "User Roles",
+                    "citiesLabel": "Target Cities (optional)",
+                    "citiesPlaceholder": "Paris, Lyon, Marseille",
+                    "citiesDescription": "Leave empty to target all cities. Separate with commas."
+                },
+                "sending": {
+                    "title": "Sending & Scheduling",
+                    "description": "Configure how and when the notification will be sent.",
+                    "channelsLabel": "Delivery Channels",
+                    "sendOptionLabel": "Send Option",
+                    "sendNow": "Send now",
+                    "sendLater": "Schedule for later",
+                    "dateLabel": "Send Date",
+                    "datePlaceholder": "Pick a date",
+                    "timeLabel": "Send Time"
+                },
+                "submitButton": "Send Notification",
+                "toast": {
+                    "successTitle": "Notification Sent",
+                    "successDescription": "The broadcast notification has been queued for delivery."
+                }
+            }
+        },
+        "templates": {
+            "title": "Notification Templates",
+            "subtitle": "Manage transactional and automated notifications.",
+            "card": {
+                "title": "Templates",
+                "description": "Edit the content for email, push, and in-app notifications."
+            },
+            "table": {
+                "header": {
+                    "name": "Template Name",
+                    "type": "Type",
+                    "channels": "Active Channels"
+                },
+                "actions": {
+                    "edit": "Edit"
+                }
+            },
+            "edit": {
+                "title": "Edit Template: {templateName}",
+                "subtitle": "Adjust the content for each language and channel.",
+                "backToList": "Back to templates",
+                "saveButton": "Save Changes",
+                "variablesInfo": "Available variables: {{displayName}}, {{taskTitle}}, {{amount}}...",
+                "toastSuccessTitle": "Template Saved",
+                "toastSuccessDescription": "The notification template has been updated.",
+                "tabs": {
+                    "inAppPush": "In-App / Push",
+                    "email": "Email"
+                },
+                "card": {
+                    "inAppPush": {
+                        "title": "In-App & Push Content",
+                        "description": "Content for native notifications."
+                    },
+                    "email": {
+                        "title": "Email Content",
+                        "description": "Content for email notifications (supports simple HTML)."
+                    }
+                },
+                "fields": {
+                    "title": "Title",
+                    "body": "Body",
+                    "subject": "Email Subject"
+                }
+            }
+        },
         "detail": {
             "title": "Notification Detail",
             "notFound": "Notification not found.",

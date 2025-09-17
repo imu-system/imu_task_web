@@ -20,7 +20,7 @@ export default function AdminNotificationsLayout({
     ];
     
     // Find the current active tab. It will be the one whose href is the start of the current pathname.
-    const activeTab = navLinks.find(link => pathname === link.href)?.href ?? navLinks[0].href;
+    const activeTab = navLinks.find(link => pathname.startsWith(link.href))?.href ?? navLinks[0].href;
 
     return (
         <div className="space-y-8">

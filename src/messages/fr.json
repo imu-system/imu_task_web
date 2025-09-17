@@ -910,93 +910,135 @@
             "saveSuccessDescription": "Vos préférences de notification ont été mises à jour."
         }
     },
-    "AdminNotificationsPage": {
-        "detail": {
-            "title": "Détail de la Notification",
-            "notFound": "Notification non trouvée.",
-            "backToList": "Retour à la liste",
-            "cards": {
-                "details": {
-                    "title": "Détails",
-                    "description": "Informations sur la notification envoyée.",
-                    "type": "Type",
-                    "channel": "Canal",
-                    "status": "Statut",
-                    "recipient": "Destinataire"
-                },
-                "payload": {
-                    "title": "Payload",
-                    "description": "Les données envoyées avec la notification."
-                },
-                "actions": {
-                    "title": "Actions",
-                    "resend": "Renvoyer la notification"
-                }
-            },
-            "toast": {
-                "resendSuccessTitle": "Notification en file d'attente",
-                "resendSuccessDescription": "La notification a été mise en file d'attente pour être renvoyée."
-            }
-        }
+    "AdminNotificationsLayout": {
+        "history": "Historique",
+        "broadcast": "Diffusion",
+        "templates": "Modèles"
     },
-    "AdminSupportPage": {
-        "tickets": {
-            "title": "Tickets de Support",
-            "description": "Gérer toutes les demandes de support des utilisateurs.",
-            "actions": {
-                "create": "Nouveau Ticket",
-                "view": "Voir"
+    "AdminNotificationsPage": {
+        "history": {
+            "title": "Historique des Notifications",
+            "subtitle": "Surveillez toutes les notifications envoyées par le système.",
+            "card": {
+                "title": "Historique",
+                "description": "Liste de toutes les notifications envoyées aux utilisateurs."
             },
             "filters": {
-                "searchPlaceholder": "Rechercher par sujet, utilisateur...",
+                "searchPlaceholder": "Rechercher par destinataire...",
+                "type": "Type de notification",
+                "allTypes": "Tous les types",
                 "status": "Statut",
-                "allStatuses": "Tous les statuts",
-                "priority": "Priorité",
-                "allPriorities": "Toutes les priorités"
+                "allStatuses": "Tous les statuts"
             },
             "table": {
-                "id": "ID",
-                "subject": "Sujet",
                 "user": "Utilisateur",
+                "type": "Type",
+                "channel": "Canal",
                 "status": "Statut",
-                "priority": "Priorité",
-                "agent": "Agent",
-                "actions": "Actions"
+                "date": "Date",
+                "viewDetails": "Voir les détails"
+            },
+            "types": {
+                "task_offer_received": "Nouvelle offre",
+                "offer_accepted": "Offre acceptée",
+                "booking_scheduled": "Réservation planifiée",
+                "booking_reminder": "Rappel de réservation",
+                "payment_action_required": "Action de paiement requise",
+                "dispute_update": "Mise à jour de litige"
+            },
+            "channels": {
+                "in_app": "In-App",
+                "push": "Push",
+                "email": "Email"
+            },
+            "statuses": {
+                "queued": "En attente",
+                "sent": "Envoyée",
+                "failed": "Échouée"
             }
         },
-        "ticketDetail": {
-            "notFound": "Ticket non trouvé.",
-            "backToList": "Retour à la liste des tickets",
-            "title": "Détail du Ticket",
-            "cards": {
-                "conversation": {
-                    "title": "Conversation"
+        "broadcast": {
+            "title": "Envoyer une Notification de Diffusion",
+            "subtitle": "Communiquez avec des segments d'utilisateurs spécifiques.",
+            "form": {
+                "content": {
+                    "title": "Contenu du Message",
+                    "description": "Rédigez le message à envoyer.",
+                    "titleLabel": "Titre",
+                    "titlePlaceholder": "Annonce importante",
+                    "messageLabel": "Message",
+                    "messagePlaceholder": "Votre message ici...",
+                    "messageDescription": "Les variables comme {{displayName}} sont autorisées."
                 },
-                "response": {
-                    "title": "Répondre",
-                    "description": "Utilisez une réponse pré-enregistrée ou écrivez un message.",
-                    "cannedPlaceholder": "Insérer une réponse pré-enregistrée",
-                    "canned": {
-                        "greeting": "Salutation",
-                        "kycRejection": "Rejet KYC",
-                        "refundOk": "Remboursement effectué"
+                "targeting": {
+                    "title": "Ciblage",
+                    "description": "Choisissez qui recevra cette notification.",
+                    "rolesLabel": "Rôles des utilisateurs",
+                    "citiesLabel": "Villes cibles (optionnel)",
+                    "citiesPlaceholder": "Paris, Lyon, Marseille",
+                    "citiesDescription": "Laisser vide pour cibler toutes les villes. Séparer par des virgules."
+                },
+                "sending": {
+                    "title": "Envoi & Planification",
+                    "description": "Configurez comment et quand la notification sera envoyée.",
+                    "channelsLabel": "Canaux de diffusion",
+                    "sendOptionLabel": "Option d'envoi",
+                    "sendNow": "Envoyer maintenant",
+                    "sendLater": "Planifier pour plus tard",
+                    "dateLabel": "Date d'envoi",
+                    "datePlaceholder": "Choisir une date",
+                    "timeLabel": "Heure d'envoi"
+                },
+                "submitButton": "Envoyer la Notification",
+                "toast": {
+                    "successTitle": "Notification Envoyée",
+                    "successDescription": "La notification de diffusion a été mise en file d'attente."
+                }
+            }
+        },
+        "templates": {
+            "title": "Modèles de Notifications",
+            "subtitle": "Gérez les notifications transactionnelles et automatisées.",
+            "card": {
+                "title": "Modèles",
+                "description": "Modifiez le contenu des e-mails, push et notifications in-app."
+            },
+            "table": {
+                "header": {
+                    "name": "Nom du Modèle",
+                    "type": "Type",
+                    "channels": "Canaux Actifs"
+                },
+                "actions": {
+                    "edit": "Modifier"
+                }
+            },
+            "edit": {
+                "title": "Modifier le Modèle : {templateName}",
+                "subtitle": "Ajustez le contenu pour chaque langue et canal.",
+                "backToList": "Retour aux modèles",
+                "saveButton": "Enregistrer les modifications",
+                "variablesInfo": "Variables disponibles : {{displayName}}, {{taskTitle}}, {{amount}}...",
+                "toastSuccessTitle": "Modèle Enregistré",
+                "toastSuccessDescription": "Le modèle de notification a été mis à jour.",
+                "tabs": {
+                    "inAppPush": "In-App / Push",
+                    "email": "Email"
+                },
+                "card": {
+                    "inAppPush": {
+                        "title": "Contenu In-App & Push",
+                        "description": "Contenu pour les notifications natives."
                     },
-                    "textAreaPlaceholder": "Votre réponse...",
-                    "attachFile": "Joindre un fichier",
-                    "send": "Envoyer"
+                    "email": {
+                        "title": "Contenu Email",
+                        "description": "Contenu pour les notifications par e-mail (supporte le HTML simple)."
+                    }
                 },
-                "details": {
-                    "title": "Détails du Ticket",
-                    "status": "Statut",
-                    "priority": "Priorité",
-                    "agent": "Agent assigné",
-                    "tags": "Tags",
-                    "tagsPlaceholder": "ex: paiement, bug"
-                },
-                "context": {
-                    "title": "Contexte",
-                    "viewUser": "Voir le profil utilisateur",
-                    "viewBooking": "Voir la réservation"
+                "fields": {
+                    "title": "Titre",
+                    "body": "Corps du message",
+                    "subject": "Sujet de l'email"
                 }
             }
         }

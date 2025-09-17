@@ -507,7 +507,138 @@
             "saveSuccessDescription": "通知設定が更新されました。"
         }
     },
+    "AdminNotificationsLayout": {
+        "history": "履歴",
+        "broadcast": "ブロードキャスト",
+        "templates": "テンプレート"
+    },
     "AdminNotificationsPage": {
+        "history": {
+            "title": "通知履歴",
+            "subtitle": "システムから送信されたすべての通知を監視します。",
+            "card": {
+                "title": "履歴",
+                "description": "ユーザーに送信されたすべての通知のリスト。"
+            },
+            "filters": {
+                "searchPlaceholder": "受信者で検索...",
+                "type": "通知タイプ",
+                "allTypes": "すべてのタイプ",
+                "status": "ステータス",
+                "allStatuses": "すべてのステータス"
+            },
+            "table": {
+                "user": "ユーザー",
+                "type": "タイプ",
+                "channel": "チャネル",
+                "status": "ステータス",
+                "date": "日付",
+                "viewDetails": "詳細を表示"
+            },
+            "types": {
+                "task_offer_received": "新しいオファー",
+                "offer_accepted": "オファー承認済み",
+                "booking_scheduled": "予約スケジュール済み",
+                "booking_reminder": "予約リマインダー",
+                "payment_action_required": "支払いアクションが必要",
+                "dispute_update": "紛争更新"
+            },
+            "channels": {
+                "in_app": "アプリ内",
+                "push": "プッシュ",
+                "email": "メール"
+            },
+            "statuses": {
+                "queued": "キューに追加済み",
+                "sent": "送信済み",
+                "failed": "失敗"
+            }
+        },
+        "broadcast": {
+            "title": "ブロードキャスト通知を送信",
+            "subtitle": "特定のユーザーセグメントと通信します。",
+            "form": {
+                "content": {
+                    "title": "メッセージ内容",
+                    "description": "送信するメッセージを作成します。",
+                    "titleLabel": "タイトル",
+                    "titlePlaceholder": "重要なお知らせ",
+                    "messageLabel": "メッセージ",
+                    "messagePlaceholder": "ここにメッセージを入力...",
+                    "messageDescription": "{{displayName}}などの変数が使用できます。"
+                },
+                "targeting": {
+                    "title": "ターゲティング",
+                    "description": "この通知を受け取るユーザーを選択します。",
+                    "rolesLabel": "ユーザーロール",
+                    "citiesLabel": "対象都市（オプション）",
+                    "citiesPlaceholder": "東京, 大阪, 京都",
+                    "citiesDescription": "すべての都市を対象にする場合は空のままにします。カンマで区切ります。"
+                },
+                "sending": {
+                    "title": "送信とスケジュール",
+                    "description": "通知の送信方法とタイミングを設定します。",
+                    "channelsLabel": "配信チャネル",
+                    "sendOptionLabel": "送信オプション",
+                    "sendNow": "今すぐ送信",
+                    "sendLater": "後でスケジュール",
+                    "dateLabel": "送信日",
+                    "datePlaceholder": "日付を選択",
+                    "timeLabel": "送信時間"
+                },
+                "submitButton": "通知を送信",
+                "toast": {
+                    "successTitle": "通知が送信されました",
+                    "successDescription": "ブロードキャスト通知が配信キューに追加されました。"
+                }
+            }
+        },
+        "templates": {
+            "title": "通知テンプレート",
+            "subtitle": "トランザクション通知と自動通知を管理します。",
+            "card": {
+                "title": "テンプレート",
+                "description": "メール、プッシュ、アプリ内通知のコンテンツを編集します。"
+            },
+            "table": {
+                "header": {
+                    "name": "テンプレート名",
+                    "type": "タイプ",
+                    "channels": "アクティブなチャネル"
+                },
+                "actions": {
+                    "edit": "編集"
+                }
+            },
+            "edit": {
+                "title": "テンプレートを編集: {templateName}",
+                "subtitle": "各言語とチャネルのコンテンツを調整します。",
+                "backToList": "テンプレートに戻る",
+                "saveButton": "変更を保存",
+                "variablesInfo": "利用可能な変数: {{displayName}}, {{taskTitle}}, {{amount}}...",
+                "toastSuccessTitle": "テンプレートが保存されました",
+                "toastSuccessDescription": "通知テンプレートが更新されました。",
+                "tabs": {
+                    "inAppPush": "アプリ内/プッシュ",
+                    "email": "メール"
+                },
+                "card": {
+                    "inAppPush": {
+                        "title": "アプリ内およびプッシュ通知のコンテンツ",
+                        "description": "ネイティブ通知のコンテンツ。"
+                    },
+                    "email": {
+                        "title": "メールコンテンツ",
+                        "description": "メール通知のコンテンツ（シンプルなHTMLをサポート）。"
+                    }
+                },
+                "fields": {
+                    "title": "タイトル",
+                    "body": "本文",
+                    "subject": "メールの件名"
+                }
+            }
+        },
         "detail": {
             "title": "通知詳細",
             "notFound": "通知が見つかりません。",
