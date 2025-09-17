@@ -28,20 +28,22 @@ const ratingData = [
     { name: '1 ★', count: 0, percentage: 0 },
 ];
 
-const ReviewCard = ({ review }: { review: Review }) => {
+const ReviewCard = ({ review, type }: { review: Review, type: 'received' | 'given' }) => {
     const t = useTranslations('ReviewsPage');
     const [isReplying, setIsReplying] = useState(false);
+
+    const person = type === 'received' ? review.reviewer : review.reviewee;
 
     return (
         <div className="space-y-3">
             <div className="flex items-start gap-4">
                 <Avatar>
-                    <AvatarImage src={review.reviewer.profile.photoUrl} />
-                    <AvatarFallback>{review.reviewer.profile.displayName.charAt(0)}</AvatarFallback>
+                    <AvatarImage src={person.profile.photoUrl} />
+                    <AvatarFallback>{person.profile.displayName.charAt(0)}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
                     <div className="flex items-center justify-between">
-                        <p className="font-semibold">{review.reviewer.profile.displayName}</p>
+                        <p className="font-semibold">{person.profile.displayName}</p>
                         <p className="text-sm text-muted-foreground">{new Date(review.createdAt).toLocaleDateString()}</p>
                     </div>
                     <div className="flex items-center gap-0.5">
@@ -53,10 +55,12 @@ const ReviewCard = ({ review }: { review: Review }) => {
             </div>
             {review.comment && <p className="text-sm text-muted-foreground italic">"{review.comment}"</p>}
             <div className="flex items-center gap-2">
-                <Button variant="ghost" size="sm" onClick={() => setIsReplying(!isReplying)}>
-                    <MessageSquare className="mr-2 h-4 w-4"/>
-                    {t('actions.reply')}
-                </Button>
+                {type === 'received' && (
+                    <Button variant="ghost" size="sm" onClick={() => setIsReplying(!isReplying)}>
+                        <MessageSquare className="mr-2 h-4 w-4"/>
+                        {t('actions.reply')}
+                    </Button>
+                )}
                 <AlertDialog>
                     <AlertDialogTrigger asChild>
                         <Button variant="ghost" size="sm" className="text-muted-foreground">
@@ -162,7 +166,7 @@ export default function ReviewsPage() {
                         <CardContent className="space-y-6">
                             {mockReceivedReviews.map((review, index) => (
                                 <div key={review.id}>
-                                    <ReviewCard review={review} />
+                                    <ReviewCard review={review} type="received" />
                                     {index < mockReceivedReviews.length - 1 && <Separator className="mt-6" />}
                                 </div>
                             ))}
@@ -177,7 +181,7 @@ export default function ReviewsPage() {
                         <CardContent className="space-y-6">
                             {mockGivenReviews.map((review, index) => (
                                 <div key={review.id}>
-                                    <ReviewCard review={review} />
+                                    <ReviewCard review={review} type="given" />
                                     {index < mockGivenReviews.length - 1 && <Separator className="mt-6" />}
                                 </div>
                             ))}
@@ -188,3 +192,4 @@ export default function ReviewsPage() {
         </div>
     );
 }
+
