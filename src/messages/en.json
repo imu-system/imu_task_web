@@ -73,6 +73,7 @@
         "reviews": "Reviews",
         "provider": "Provider Space",
         "availability": "Availability",
+        "academy": "Academy",
         "users": "Users",
         "tasks": "Tasks",
         "offers": "Offers",
@@ -1136,6 +1137,22 @@
                     "viewBooking": "View booking"
                 }
             }
+        }
+    },
+    "AcademyPage": {
+        "title": "ImuTask Academy",
+        "subtitle": "Learn, grow, and earn badges 🔑",
+        "searchPlaceholder": "Search for a course...",
+        "filterPlaceholder": "Filter by category",
+        "filters": {
+            "all": "All categories",
+            "provider": "Provider",
+            "client": "Client"
+        },
+        "courseCard": {
+            "progress": "Progress",
+            "continue": "Continue",
+            "start": "Start"
         }
     }
 }

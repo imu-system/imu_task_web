@@ -73,6 +73,7 @@
         "reviews": "Avis",
         "provider": "Espace Prestataire",
         "availability": "Disponibilités",
+        "academy": "Académie",
         "users": "Utilisateurs",
         "tasks": "Missions",
         "offers": "Offres",
@@ -1136,6 +1137,22 @@
                     "viewBooking": "Voir la réservation"
                 }
             }
+        }
+    },
+    "AcademyPage": {
+        "title": "ImuTask Academy",
+        "subtitle": "Apprenez, progressez et gagnez des badges 🔑",
+        "searchPlaceholder": "Rechercher un cours...",
+        "filterPlaceholder": "Filtrer par catégorie",
+        "filters": {
+            "all": "Toutes les catégories",
+            "provider": "Prestataire",
+            "client": "Client"
+        },
+        "courseCard": {
+            "progress": "Progression",
+            "continue": "Continuer",
+            "start": "Démarrer"
         }
     }
 }

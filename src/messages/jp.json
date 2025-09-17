@@ -67,6 +67,7 @@
         "profile": "プロフィール",
         "logout": "ログアウト",
         "admin": "管理",
+        "academy": "アカデミー",
         "adminNav": {
             "community": "コミュニティ",
             "moderation": "モデレーション",
@@ -733,6 +734,22 @@
                     "viewBooking": "予約を表示"
                 }
             }
+        }
+    },
+    "AcademyPage": {
+        "title": "ImuTaskアカデミー",
+        "subtitle": "学び、成長し、バッジを獲得しましょう🔑",
+        "searchPlaceholder": "コースを検索...",
+        "filterPlaceholder": "カテゴリで絞り込み",
+        "filters": {
+            "all": "すべてのカテゴリ",
+            "provider": "プロバイダー",
+            "client": "クライアント"
+        },
+        "courseCard": {
+            "progress": "進捗",
+            "continue": "続ける",
+            "start": "始める"
         }
     }
 }

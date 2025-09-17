@@ -47,6 +47,7 @@ import {
   Search,
   Briefcase,
   Calendar as CalendarIcon,
+  BookOpen,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -74,6 +75,7 @@ export function DashboardNav() {
     { href: '/dashboard/bookings', icon: <CalendarCheck />, label: t('myBookings') },
     { href: '/dashboard/reviews', icon: <Star />, label: t('reviews') },
     { href: '/dashboard/wallet', icon: <Wallet />, label: t('wallet') },
+    { href: '/dashboard/academy', icon: <BookOpen />, label: t('academy') },
   ];
   
   const providerNavItems = [
@@ -85,7 +87,6 @@ export function DashboardNav() {
 
 
   return (
-    <>
       <Sidebar>
         <SidebarHeader>
           <Link href="/" className="flex items-center gap-2 font-bold text-lg">
@@ -328,6 +329,5 @@ export function DashboardNav() {
           </SidebarMenu>
         </SidebarFooter>
       </Sidebar>
-    </>
   );
 }
