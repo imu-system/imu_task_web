@@ -833,7 +833,8 @@
         },
         "actions": {
             "reply": "Reply",
-            "report": "Report"
+            "report": "Report",
+            "pin": "Pin"
         },
         "reportDialog": {
             "title": "Report this review?",

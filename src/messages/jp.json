@@ -430,7 +430,8 @@
         },
         "actions": {
             "reply": "返信",
-            "report": "報告"
+            "report": "報告",
+            "pin": "ピン留め"
         },
         "reportDialog": {
             "title": "このレビューを報告しますか？",

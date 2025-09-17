@@ -833,7 +833,8 @@
         },
         "actions": {
             "reply": "Répondre",
-            "report": "Signaler"
+            "report": "Signaler",
+            "pin": "Épingler"
         },
         "reportDialog": {
             "title": "Signaler cet avis ?",

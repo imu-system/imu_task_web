@@ -3,7 +3,7 @@
 
 import { useAuth } from '@/hooks/use-auth';
 import { useTranslations } from 'next-intl';
-import { Loader2, Star, Download, MessageSquare, AlertTriangle, Send } from 'lucide-react';
+import { Loader2, Star, Download, MessageSquare, AlertTriangle, Send, Bookmark } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
@@ -32,10 +32,12 @@ const ratingData = [
 
 const ReviewCard = ({ review, type }: { review: Review, type: 'received' | 'given' }) => {
     const t = useTranslations('ReviewsPage');
+    const { user } = useAuth();
     const [isReplying, setIsReplying] = useState(false);
     const [reportReason, setReportReason] = useState('');
 
     const person = type === 'received' ? review.reviewer : review.reviewee;
+    const isProvider = user?.roles.includes(UserRole.provider);
 
     return (
         <div className="space-y-3">
@@ -62,6 +64,12 @@ const ReviewCard = ({ review, type }: { review: Review, type: 'received' | 'give
                     <Button variant="ghost" size="sm" onClick={() => setIsReplying(!isReplying)}>
                         <MessageSquare className="mr-2 h-4 w-4"/>
                         {t('actions.reply')}
+                    </Button>
+                )}
+                 {type === 'received' && isProvider && (
+                    <Button variant="ghost" size="sm">
+                        <Bookmark className="mr-2 h-4 w-4"/>
+                        {t('actions.pin')}
                     </Button>
                 )}
                 <AlertDialog>
