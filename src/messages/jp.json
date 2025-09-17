@@ -756,6 +756,27 @@
             "start": "始める"
         }
     },
+    "AdminAcademyPage": {
+        "title": "アカデミー管理",
+        "subtitle": "コース、バッジを管理し、ユーザーの進捗を追跡します。",
+        "createCourse": "コースを作成",
+        "manageBadges": "バッジを管理",
+        "globalProgress": "全体の進捗",
+        "courseList": {
+            "title": "コース一覧",
+            "description": "プラットフォーム上のすべてのコースの概要。",
+            "table": {
+                "course": "コース",
+                "enrolled": "登録者数",
+                "completed": "完了者数",
+                "completionRate": "完了率"
+            },
+            "actions": {
+                "edit": "編集",
+                "delete": "削除"
+            }
+        }
+    },
     "AcademyDetailPage": {
         "notFound": "コースが見つかりません。",
         "backToAcademy": "アカデミーに戻る",

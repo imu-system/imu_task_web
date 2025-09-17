@@ -1159,6 +1159,27 @@
             "start": "Démarrer"
         }
     },
+    "AdminAcademyPage": {
+        "title": "Admin Académie",
+        "subtitle": "Gérez les cours, les badges et suivez la progression des utilisateurs.",
+        "createCourse": "Créer un cours",
+        "manageBadges": "Gérer les badges",
+        "globalProgress": "Progression globale",
+        "courseList": {
+            "title": "Liste des cours",
+            "description": "Aperçu de tous les cours sur la plateforme.",
+            "table": {
+                "course": "Cours",
+                "enrolled": "Inscrits",
+                "completed": "Terminés",
+                "completionRate": "Taux de complétion"
+            },
+            "actions": {
+                "edit": "Modifier",
+                "delete": "Supprimer"
+            }
+        }
+    },
     "AcademyDetailPage": {
         "notFound": "Cours non trouvé.",
         "backToAcademy": "Retour à l'académie",

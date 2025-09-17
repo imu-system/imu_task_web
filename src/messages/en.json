@@ -1159,6 +1159,27 @@
             "start": "Start"
         }
     },
+    "AdminAcademyPage": {
+        "title": "Academy Admin",
+        "subtitle": "Manage courses, badges, and track user progress.",
+        "createCourse": "Create Course",
+        "manageBadges": "Manage Badges",
+        "globalProgress": "Global Progress",
+        "courseList": {
+            "title": "Course List",
+            "description": "Overview of all courses on the platform.",
+            "table": {
+                "course": "Course",
+                "enrolled": "Enrolled",
+                "completed": "Completed",
+                "completionRate": "Completion Rate"
+            },
+            "actions": {
+                "edit": "Edit",
+                "delete": "Delete"
+            }
+        }
+    },
     "AcademyDetailPage": {
         "notFound": "Course not found.",
         "backToAcademy": "Back to Academy",

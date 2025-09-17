@@ -222,6 +222,14 @@ export function DashboardNav() {
                       </SidebarMenuItem>
                       
                       <SidebarGroupLabel className="mt-4">{t('adminNav.platform')}</SidebarGroupLabel>
+                       <SidebarMenuItem>
+                          <Link href="/dashboard/admin/academy">
+                              <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/academy')}>
+                                  <BookOpen />
+                                  <span>{t('academy')}</span>
+                              </SidebarMenuButton>
+                          </Link>
+                      </SidebarMenuItem>
                       <SidebarMenuItem>
                           <Link href="/dashboard/admin/services/categories">
                               <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/services')}>
