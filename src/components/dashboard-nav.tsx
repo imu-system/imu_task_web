@@ -47,6 +47,7 @@ import {
   Plug,
   Search,
   Briefcase,
+  Calendar as CalendarIcon,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -73,7 +74,13 @@ export function DashboardNav() {
     { href: '/dashboard/wallet', icon: <Wallet />, label: t('wallet') },
   ];
   
+  const providerNavItems = [
+    { href: '/dashboard/availability', icon: <CalendarIcon />, label: t('availability') },
+  ];
+
   const isAdmin = user?.roles?.includes(UserRole.admin);
+  const isProvider = user?.roles?.includes(UserRole.provider);
+
 
   return (
     <Sidebar>
@@ -99,6 +106,27 @@ export function DashboardNav() {
             </SidebarMenuItem>
           ))}
         </SidebarMenu>
+         {isProvider && (
+            <SidebarGroup>
+                <SidebarSeparator className="my-2"/>
+                <SidebarGroupLabel>{t('provider')}</SidebarGroupLabel>
+                 <SidebarMenu>
+                    {providerNavItems.map((item) => (
+                        <SidebarMenuItem key={item.href}>
+                            <Link href={item.href}>
+                                <SidebarMenuButton
+                                isActive={pathname.startsWith(item.href)}
+                                className="w-full justify-start"
+                                >
+                                {item.icon}
+                                <span>{item.label}</span>
+                                </SidebarMenuButton>
+                            </Link>
+                        </SidebarMenuItem>
+                    ))}
+                 </SidebarMenu>
+            </SidebarGroup>
+        )}
         {isAdmin && (
             <SidebarGroup>
                 <SidebarSeparator className="my-2"/>

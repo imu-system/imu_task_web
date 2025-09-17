@@ -64,6 +64,8 @@
         "findProvider": "Trouver un prestataire",
         "findTask": "Trouver une mission",
         "myBookings": "Mes Réservations",
+        "provider": "Espace Prestataire",
+        "availability": "Disponibilités",
         "users": "Utilisateurs",
         "tasks": "Missions",
         "offers": "Offres",
@@ -783,5 +785,47 @@
         "es": "Espagnol",
         "de": "Allemand",
         "it": "Italien"
+    },
+    "AvailabilityPage": {
+        "title": "Mes Disponibilités",
+        "subtitle": "Gérez votre planning pour recevoir des offres de missions pertinentes.",
+        "notProvider": {
+            "title": "Cette section est pour les prestataires.",
+            "description": "Pour gérer vos disponibilités, veuillez compléter votre profil de prestataire.",
+            "button": "Aller au profil"
+        },
+        "weekGrid": {
+            "title": "Ma Semaine",
+            "time": "Heure"
+        },
+        "days": {
+            "mon": "Lun",
+            "tue": "Mar",
+            "wed": "Mer",
+            "thu": "Jeu",
+            "fri": "Ven",
+            "sat": "Sam",
+            "sun": "Dim"
+        },
+        "actions": {
+            "title": "Actions Rapides",
+            "recurring": "Définir créneaux récurrents",
+            "exception": "Ajouter une exception",
+            "sync": "Synchroniser Google/Apple Agenda"
+        },
+        "suggestions": {
+            "title": "Suggestions IA",
+            "description": "Basées sur l'historique des missions dans votre secteur.",
+            "suggestion1": {
+                "title": "Mardi 18-20h : Forte demande",
+                "description": "Forte demande pour des missions de courses."
+            },
+            "suggestion2": {
+                "title": "Samedi matin : Dispo recommandée",
+                "description": "Beaucoup de missions de jardinage sont postées pour le week-end."
+            },
+            "accept": "Accepter",
+            "ignore": "Ignorer"
+        }
     }
 }

@@ -64,6 +64,8 @@
         "findProvider": "Find a provider",
         "findTask": "Find a task",
         "myBookings": "My Bookings",
+        "provider": "Provider Space",
+        "availability": "Availability",
         "users": "Users",
         "tasks": "Tasks",
         "offers": "Offers",
@@ -783,5 +785,47 @@
         "es": "Spanish",
         "de": "German",
         "it": "Italian"
+    },
+    "AvailabilityPage": {
+        "title": "My Availabilities",
+        "subtitle": "Manage your schedule to receive relevant mission offers.",
+        "notProvider": {
+            "title": "This section is for providers.",
+            "description": "To manage your availabilities, please complete your provider profile.",
+            "button": "Go to Profile"
+        },
+        "weekGrid": {
+            "title": "My Week",
+            "time": "Time"
+        },
+        "days": {
+            "mon": "Mon",
+            "tue": "Tue",
+            "wed": "Wed",
+            "thu": "Thu",
+            "fri": "Fri",
+            "sat": "Sat",
+            "sun": "Sun"
+        },
+        "actions": {
+            "title": "Quick Actions",
+            "recurring": "Set recurring slots",
+            "exception": "Add an exception",
+            "sync": "Sync Google/Apple Calendar"
+        },
+        "suggestions": {
+            "title": "AI Suggestions",
+            "description": "Based on mission history in your area.",
+            "suggestion1": {
+                "title": "Tuesday 6-8 PM: High demand",
+                "description": "High demand for shopping tasks."
+            },
+            "suggestion2": {
+                "title": "Saturday Morning: Recommended availability",
+                "description": "Many gardening missions are posted for the weekend."
+            },
+            "accept": "Accept",
+            "ignore": "Ignore"
+        }
     }
 }
