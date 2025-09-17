@@ -860,6 +860,20 @@
             "chart": {
                 "title": "比較チャート"
             }
+        },
+        "tax": {
+            "title": "税務概要",
+            "link": "税務概要を表示",
+            "card": {
+                "title": "税務概要",
+                "description": "{year}年の収益と手数料の概要。",
+                "exportButton": "エクスポート",
+                "totalRevenue": "総収益",
+                "payouts": "支払い（手数料後）",
+                "fees": "ImuTask手数料",
+                "monthlyList": "月次内訳",
+                "downloadCertificate": "税務証明書をダウンロード"
+            }
         }
     }
 }

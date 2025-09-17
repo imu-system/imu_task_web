@@ -32,6 +32,7 @@ export const pathnames = {
   '/dashboard/notifications/preferences': '/dashboard/notifications/preferences',
   '/dashboard/stats': '/dashboard/stats',
   '/dashboard/stats/compare': '/dashboard/stats/compare',
+  '/dashboard/stats/tax': '/dashboard/stats/tax',
   '/dashboard/admin/support/tickets': '/dashboard/admin/support/tickets',
   '/dashboard/admin/support/tickets/[id]': '/dashboard/admin/support/tickets/[id]',
   '/legal/terms': '/legal/terms',

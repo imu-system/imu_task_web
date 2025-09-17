@@ -3,7 +3,7 @@
 
 import { useAuth } from '@/hooks/use-auth';
 import { useTranslations } from 'next-intl';
-import { Loader2, LineChart as LineChartIcon, Settings, Download, DollarSign, Clock, CheckCircle, Star, Columns } from 'lucide-react';
+import { Loader2, LineChart as LineChartIcon, Settings, Download, DollarSign, Clock, CheckCircle, Star, Columns, FileText } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -99,6 +99,15 @@ export default function StatsPage() {
                         </CardContent>
                     </Card>
                 ))}
+            </div>
+            
+            <div className="flex justify-end">
+                <Button variant="link" asChild>
+                    <Link href="/dashboard/stats/tax">
+                        <FileText className="mr-2"/>
+                        {t('tax.link')}
+                    </Link>
+                </Button>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
