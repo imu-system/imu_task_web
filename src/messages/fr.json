@@ -326,9 +326,9 @@
                 "title": "Vérifié",
                 "description": "Identité vérifiée avec succès."
             },
-            "superProvider": {
-                "title": "Super Prestataire",
-                "description": "Moyenne de 5 étoiles sur 10 missions."
+            "topRated": {
+                "title": "Top Noté",
+                "description": "Note moyenne supérieure à 4.8"
             },
             "communityHelper": {
                 "title": "Pilier de la Communauté",
@@ -341,10 +341,6 @@
             "pioneer": {
                 "title": "Pionnier",
                 "description": "Avoir rejoint la plateforme la première année."
-            },
-            "topRated": {
-                "title": "Top Noté",
-                "description": "Note moyenne supérieure à 4.8"
             }
         }
     },
@@ -709,9 +705,9 @@
                 "title": "Vérifié",
                 "description": "Identité vérifiée avec succès."
             },
-            "superProvider": {
-                "title": "Super Prestataire",
-                "description": "Moyenne de 5 étoiles sur 10 missions."
+            "topRated": {
+                "title": "Top Noté",
+                "description": "Note moyenne supérieure à 4.8"
             },
             "communityHelper": {
                 "title": "Pilier de la Communauté",
@@ -724,10 +720,6 @@
             "pioneer": {
                 "title": "Pionnier",
                 "description": "Avoir rejoint la plateforme la première année."
-            },
-            "topRated": {
-                "title": "Top Noté",
-                "description": "Note moyenne supérieure à 4.8"
             }
         }
     },
@@ -790,7 +782,7 @@
         "title": "Mes Disponibilités",
         "subtitle": "Gérez votre planning pour recevoir des offres de missions pertinentes.",
         "notProvider": {
-            "title": "Cette section est pour les prestataires.",
+            "title": "Cette section est réservée aux prestataires.",
             "description": "Pour gérer vos disponibilités, veuillez compléter votre profil de prestataire.",
             "button": "Aller au profil"
         },
@@ -826,6 +818,22 @@
             },
             "accept": "Accepter",
             "ignore": "Ignorer"
+        },
+        "exceptionModal": {
+            "title": "Ajouter une Exception",
+            "description": "Bloquez un créneau spécifique ou rendez-vous exceptionnellement disponible.",
+            "date": "Date",
+            "startTime": "Heure de début",
+            "endTime": "Heure de fin",
+            "type": "Type",
+            "types": {
+                "blocked": "Bloqué",
+                "available": "Exceptionnellement disponible"
+            },
+            "comment": "Commentaire (optionnel)",
+            "commentPlaceholder": "Ex: Rendez-vous médical",
+            "cancel": "Annuler",
+            "save": "Enregistrer l'exception"
         }
     }
 }

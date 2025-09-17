@@ -5,12 +5,17 @@ import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Calendar, Repeat, CalendarPlus, Link as LinkIcon, Bot, Check, X } from 'lucide-react';
+import { Calendar, Repeat, CalendarPlus, Link as LinkIcon, Bot, Check, X, Clock as ClockIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
 import { Loader2 } from 'lucide-react';
 import { Link } from '@/navigation';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 
 const timeSlots = ["08:00 - 12:00", "12:00 - 18:00", "18:00 - 22:00"];
 
@@ -90,7 +95,55 @@ export default function AvailabilityPage() {
                 </CardHeader>
                  <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <Button variant="outline"><Repeat className="mr-2"/>{t('actions.recurring')}</Button>
-                    <Button variant="outline"><CalendarPlus className="mr-2"/>{t('actions.exception')}</Button>
+                     <Dialog>
+                        <DialogTrigger asChild>
+                            <Button variant="outline"><CalendarPlus className="mr-2"/>{t('actions.exception')}</Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>{t('exceptionModal.title')}</DialogTitle>
+                                <DialogDescription>{t('exceptionModal.description')}</DialogDescription>
+                            </DialogHeader>
+                            <div className="space-y-4 py-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="exception-date">{t('exceptionModal.date')}</Label>
+                                    <Input id="exception-date" type="date" defaultValue={new Date().toISOString().split('T')[0]} />
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="start-time">{t('exceptionModal.startTime')}</Label>
+                                        <Input id="start-time" type="time" defaultValue="14:00" />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="end-time">{t('exceptionModal.endTime')}</Label>
+                                        <Input id="end-time" type="time" defaultValue="18:00" />
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="exception-type">{t('exceptionModal.type')}</Label>
+                                    <Select defaultValue="blocked">
+                                        <SelectTrigger id="exception-type">
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="blocked">{t('exceptionModal.types.blocked')}</SelectItem>
+                                            <SelectItem value="available">{t('exceptionModal.types.available')}</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="comment">{t('exceptionModal.comment')}</Label>
+                                    <Textarea id="comment" placeholder={t('exceptionModal.commentPlaceholder')} />
+                                </div>
+                            </div>
+                            <DialogFooter>
+                                <DialogTrigger asChild>
+                                    <Button variant="ghost">{t('exceptionModal.cancel')}</Button>
+                                </DialogTrigger>
+                                <Button>{t('exceptionModal.save')}</Button>
+                            </DialogFooter>
+                        </DialogContent>
+                    </Dialog>
                     <Button variant="outline"><LinkIcon className="mr-2"/>{t('actions.sync')}</Button>
                 </CardContent>
             </Card>

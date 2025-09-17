@@ -285,9 +285,9 @@
                 "title": "確認済み",
                 "description": "本人確認が正常に完了しました。"
             },
-            "superProvider": {
-                "title": "スーパープロバイダー",
-                "description": "10件のミッションで平均5つ星。"
+            "topRated": {
+                "title": "トップ評価",
+                "description": "平均評価4.8以上"
             },
             "communityHelper": {
                 "title": "コミュニティヘルパー",
@@ -300,10 +300,6 @@
             "pioneer": {
                 "title": "パイオニア",
                 "description": "最初の年に参加しました。"
-            },
-            "topRated": {
-                "title": "トップ評価",
-                "description": "平均評価4.8以上"
             }
         }
     },
@@ -354,6 +350,24 @@
             "button": "Stripeで支払いを設定する"
         },
         "submitButton": "検証のために送信"
+    },
+    "AvailabilityPage": {
+        "exceptionModal": {
+            "title": "例外を追加",
+            "description": "特定のスロットをブロックするか、例外的に利用可能にします。",
+            "date": "日付",
+            "startTime": "開始時間",
+            "endTime": "終了時間",
+            "type": "タイプ",
+            "types": {
+                "blocked": "ブロック済み",
+                "available": "例外的に利用可能"
+            },
+            "comment": "コメント（オプション）",
+            "commentPlaceholder": "例：医者の予約",
+            "cancel": "キャンセル",
+            "save": "例外を保存"
+        }
     }
 }
     

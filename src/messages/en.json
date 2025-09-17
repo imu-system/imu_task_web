@@ -326,9 +326,9 @@
                 "title": "Verified",
                 "description": "Identity successfully verified."
             },
-            "superProvider": {
-                "title": "Super Provider",
-                "description": "Average rating of 5 stars over 10 missions."
+            "topRated": {
+                "title": "Top Rated",
+                "description": "Average rating above 4.8"
             },
             "communityHelper": {
                 "title": "Community Helper",
@@ -341,10 +341,6 @@
             "pioneer": {
                 "title": "Pioneer",
                 "description": "Joined in the first year."
-            },
-            "topRated": {
-                "title": "Top Rated",
-                "description": "Average rating above 4.8"
             }
         }
     },
@@ -709,9 +705,9 @@
                 "title": "Verified",
                 "description": "Identity successfully verified."
             },
-            "superProvider": {
-                "title": "Super Provider",
-                "description": "Average rating of 5 stars over 10 missions."
+            "topRated": {
+                "title": "Top Rated",
+                "description": "Average rating above 4.8"
             },
             "communityHelper": {
                 "title": "Community Helper",
@@ -724,10 +720,6 @@
             "pioneer": {
                 "title": "Pioneer",
                 "description": "Joined in the first year."
-            },
-            "topRated": {
-                "title": "Top Rated",
-                "description": "Average rating above 4.8"
             }
         }
     },
@@ -826,6 +818,22 @@
             },
             "accept": "Accept",
             "ignore": "Ignore"
+        },
+        "exceptionModal": {
+            "title": "Add an Exception",
+            "description": "Block a specific slot or make yourself exceptionally available.",
+            "date": "Date",
+            "startTime": "Start Time",
+            "endTime": "End Time",
+            "type": "Type",
+            "types": {
+                "blocked": "Blocked",
+                "available": "Exceptionally Available"
+            },
+            "comment": "Comment (optional)",
+            "commentPlaceholder": "e.g., Doctor's appointment",
+            "cancel": "Cancel",
+            "save": "Save Exception"
         }
     }
 }
