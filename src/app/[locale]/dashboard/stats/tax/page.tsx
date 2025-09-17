@@ -30,6 +30,25 @@ const mockYearlyData = {
             { month: 'Novembre', revenue: 750 },
             { month: 'Décembre', revenue: 500 },
         ]
+    },
+    '2024': {
+        totalRevenue: 10200,
+        totalPayouts: 8800,
+        totalFees: 1400,
+        monthly: [
+            { month: 'Janvier', revenue: 900 },
+            { month: 'Février', revenue: 750 },
+            { month: 'Mars', revenue: 1100 },
+            { month: 'Avril', revenue: 1000 },
+            { month: 'Mai', revenue: 1200 },
+            { month: 'Juin', revenue: 850 },
+            { month: 'Juillet', revenue: 1300 },
+            { month: 'Août', revenue: 1400 },
+            { month: 'Septembre', revenue: 950 },
+            { month: 'Octobre', revenue: 800 },
+            { month: 'Novembre', revenue: 650 },
+            { month: 'Décembre', revenue: 400 },
+        ]
     }
 }
 
@@ -44,6 +63,17 @@ export default function TaxSummaryPage() {
         return (
             <div className="flex justify-center items-center h-64">
                 <Loader2 className="h-16 w-16 animate-spin text-primary" />
+            </div>
+        );
+    }
+    
+    if (!data) {
+        return (
+            <div className="flex flex-col items-center justify-center h-64 gap-4">
+                <p>Aucune donnée disponible pour l'année sélectionnée.</p>
+                <Button asChild variant="outline">
+                    <Link href="/dashboard/stats">{t('backToList')}</Link>
+                </Button>
             </div>
         );
     }
