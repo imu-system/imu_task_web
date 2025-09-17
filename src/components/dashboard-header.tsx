@@ -27,6 +27,7 @@ import { Link } from '@/navigation';
 import { Button } from './ui/button';
 import { useSidebar } from './ui/sidebar';
 import { Input } from './ui/input';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
 
 export function DashboardHeader() {
   const t = useTranslations('Header');
@@ -46,8 +47,34 @@ export function DashboardHeader() {
         <Menu />
         <span className="sr-only">Toggle Menu</span>
       </Button>
-      
-      <div className="relative flex-1 md:grow-0">
+
+      {/* Mobile Search */}
+       <div className="md:hidden">
+         <Sheet>
+            <SheetTrigger asChild>
+                <Button variant="ghost" size="icon">
+                    <Search />
+                    <span className="sr-only">{t('searchPlaceholder')}</span>
+                </Button>
+            </SheetTrigger>
+            <SheetContent side="top">
+                <SheetHeader>
+                    <SheetTitle>{t('searchPlaceholder')}</SheetTitle>
+                </SheetHeader>
+                 <div className="relative mt-4">
+                    <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                    <Input
+                        type="search"
+                        placeholder={t('searchPlaceholder')}
+                        className="w-full rounded-lg bg-muted pl-8"
+                    />
+                 </div>
+            </SheetContent>
+         </Sheet>
+       </div>
+
+      {/* Desktop Search */}
+      <div className="relative hidden flex-1 md:flex md:grow-0">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
             type="search"
@@ -119,15 +146,15 @@ export function DashboardHeader() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="/dashboard/profile">
-                <User className="mr-2 h-4 w-4" />
-                <span>{t('profile')}</span>
+              <Link href="/dashboard">
+                <LayoutGrid className="mr-2 h-4 w-4" />
+                <span>{t('dashboard')}</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuItem asChild>
-              <Link href="/dashboard/admin/settings">
-                <LayoutGrid className="mr-2 h-4 w-4" />
-                <span>{t('settings')}</span>
+              <Link href="/dashboard/profile">
+                <User className="mr-2 h-4 w-4" />
+                <span>{t('profile')}</span>
               </Link>
             </DropdownMenuItem>
              <DropdownMenuItem asChild>

@@ -238,6 +238,14 @@ export function DashboardNav() {
                           </Link>
                       </SidebarMenuItem>
                       <SidebarMenuItem>
+                          <Link href="/dashboard/admin/notifications">
+                              <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/notifications')}>
+                                  <Bell />
+                                  <span>{t('notifications')}</span>
+                              </SidebarMenuButton>
+                          </Link>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem>
                           <Link href="/dashboard/admin/i18n/keys">
                               <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/i18n')}>
                                   <Languages />
