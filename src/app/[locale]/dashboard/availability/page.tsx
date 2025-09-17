@@ -45,7 +45,8 @@ const AppleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function AvailabilityPage() {
     const t = useTranslations('AvailabilityPage');
     const { user, loading } = useAuth();
-    const isProvider = user?.roles.includes(UserRole.provider);
+
+    const isProvider = user?.roles?.includes(UserRole.provider);
     const days = [t('days.mon'), t('days.tue'), t('days.wed'), t('days.thu'), t('days.fri'), t('days.sat'), t('days.sun')];
     const recurringDays = [
       { id: 'mon', label: t('days.mon') },
