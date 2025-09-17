@@ -1,4 +1,5 @@
 
+
 import {createLocalizedPathnamesNavigation} from 'next-intl/navigation';
 
 export const locales = ['en', 'fr', 'jp'] as const;
@@ -38,6 +39,7 @@ export const pathnames = {
   '/dashboard/admin/notifications/templates/edit/[id]': '/dashboard/admin/notifications/templates/edit/[id]',
   '/dashboard/academy': '/dashboard/academy',
   '/dashboard/academy/course/[id]': '/dashboard/academy/course/[id]',
+  '/dashboard/academy/course/[id]/quiz': '/dashboard/academy/course/[id]/quiz',
 
   // If locales use different paths, you can
   // specify each external path per locale.

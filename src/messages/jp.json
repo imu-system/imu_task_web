@@ -759,6 +759,19 @@
             "title": "セクション"
         },
         "downloadResources": "リソースをダウンロード",
-        "continueModule": "モジュールを続ける"
+        "continueModule": "モジュールを続ける",
+        "startQuiz": "クイズを開始"
+    },
+    "QuizPage": {
+        "title": "クイズ",
+        "question": "質問 {current}/{total}",
+        "timer": "10:00",
+        "previous": "前へ",
+        "next": "次へ",
+        "submit": "クイズを提出",
+        "toast": {
+            "title": "クイズが提出されました！",
+            "description": "あなたのスコアが計算され、まもなくバッジが付与されます。"
+        }
     }
 }

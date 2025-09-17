@@ -1162,6 +1162,19 @@
             "title": "Sections"
         },
         "downloadResources": "Download Resources",
-        "continueModule": "Continue Module"
+        "continueModule": "Continue Module",
+        "startQuiz": "Start Quiz"
+    },
+    "QuizPage": {
+        "title": "Quiz",
+        "question": "Question {current}/{total}",
+        "timer": "10:00",
+        "previous": "Previous",
+        "next": "Next",
+        "submit": "Submit Quiz",
+        "toast": {
+            "title": "Quiz Submitted!",
+            "description": "Your score will be calculated and your badge awarded shortly."
+        }
     }
 }

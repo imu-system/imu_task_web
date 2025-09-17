@@ -5,7 +5,7 @@ import { useParams, Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { getCourseById, Course, CourseModule } from '@/lib/academy';
-import { Loader2, ArrowLeft, CheckCircle, PlayCircle, Lock, Download } from 'lucide-react';
+import { Loader2, ArrowLeft, CheckCircle, PlayCircle, Lock, Download, FileQuestion } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
@@ -114,6 +114,10 @@ export default function CourseDetailPage() {
                                         allowFullScreen
                                     ></iframe>
                                 </div>
+                            ) : activeModule?.contentType === 'quiz' ? (
+                                <div className="prose max-w-none">
+                                    <p>{activeModule?.content}</p>
+                                </div>
                             ) : (
                                 <div className="prose max-w-none">
                                     <p>{activeModule?.content}</p>
@@ -126,8 +130,11 @@ export default function CourseDetailPage() {
                             <Download className="mr-2"/>
                             {t('downloadResources')}
                         </Button>
-                        <Button>
-                            {t('continueModule')}
+                        <Button asChild>
+                            <Link href={activeModule?.contentType === 'quiz' ? `/dashboard/academy/course/${course.id}/quiz` : '#'}>
+                                {activeModule?.contentType === 'quiz' ? <FileQuestion className="mr-2" /> : <PlayCircle className="mr-2"/>}
+                                {activeModule?.contentType === 'quiz' ? t('startQuiz') : t('continueModule')}
+                            </Link>
                         </Button>
                      </div>
                 </div>
@@ -135,4 +142,3 @@ export default function CourseDetailPage() {
         </div>
     );
 }
-
