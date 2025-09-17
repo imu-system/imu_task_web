@@ -909,5 +909,34 @@
             "saveSuccessTitle": "Preferences Saved",
             "saveSuccessDescription": "Your notification preferences have been updated."
         }
+    },
+    "AdminNotificationsPage": {
+        "detail": {
+            "title": "Notification Detail",
+            "notFound": "Notification not found.",
+            "backToList": "Back to list",
+            "cards": {
+                "details": {
+                    "title": "Details",
+                    "description": "Information about the sent notification.",
+                    "type": "Type",
+                    "channel": "Channel",
+                    "status": "Status",
+                    "recipient": "Recipient"
+                },
+                "payload": {
+                    "title": "Payload",
+                    "description": "The data sent with the notification."
+                },
+                "actions": {
+                    "title": "Actions",
+                    "resend": "Resend Notification"
+                }
+            },
+            "toast": {
+                "resendSuccessTitle": "Notification Queued",
+                "resendSuccessDescription": "The notification has been queued for sending again."
+            }
+        }
     }
 }

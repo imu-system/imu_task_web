@@ -506,5 +506,34 @@
             "saveSuccessTitle": "設定が保存されました",
             "saveSuccessDescription": "通知設定が更新されました。"
         }
+    },
+    "AdminNotificationsPage": {
+        "detail": {
+            "title": "通知詳細",
+            "notFound": "通知が見つかりません。",
+            "backToList": "リストに戻る",
+            "cards": {
+                "details": {
+                    "title": "詳細",
+                    "description": "送信された通知に関する情報。",
+                    "type": "タイプ",
+                    "channel": "チャネル",
+                    "status": "ステータス",
+                    "recipient": "受信者"
+                },
+                "payload": {
+                    "title": "ペイロード",
+                    "description": "通知で送信されたデータ。"
+                },
+                "actions": {
+                    "title": "アクション",
+                    "resend": "通知を再送信"
+                }
+            },
+            "toast": {
+                "resendSuccessTitle": "通知がキューに追加されました",
+                "resendSuccessDescription": "通知は再送のためにキューに追加されました。"
+            }
+        }
     }
 }

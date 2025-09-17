@@ -909,5 +909,34 @@
             "saveSuccessTitle": "Préférences enregistrées",
             "saveSuccessDescription": "Vos préférences de notification ont été mises à jour."
         }
+    },
+    "AdminNotificationsPage": {
+        "detail": {
+            "title": "Détail de la Notification",
+            "notFound": "Notification non trouvée.",
+            "backToList": "Retour à la liste",
+            "cards": {
+                "details": {
+                    "title": "Détails",
+                    "description": "Informations sur la notification envoyée.",
+                    "type": "Type",
+                    "channel": "Canal",
+                    "status": "Statut",
+                    "recipient": "Destinataire"
+                },
+                "payload": {
+                    "title": "Payload",
+                    "description": "Les données envoyées avec la notification."
+                },
+                "actions": {
+                    "title": "Actions",
+                    "resend": "Renvoyer la notification"
+                }
+            },
+            "toast": {
+                "resendSuccessTitle": "Notification en file d'attente",
+                "resendSuccessDescription": "La notification a été mise en file d'attente pour être renvoyée."
+            }
+        }
     }
 }
