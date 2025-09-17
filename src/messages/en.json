@@ -767,7 +767,7 @@
             "title": "Quick Actions",
             "recurring": "Set recurring slots",
             "exception": "Add an exception",
-            "sync": "Sync Google/Apple Calendar"
+            "sync": "Sync my Calendar"
         },
         "suggestions": {
             "title": "AI Suggestions",
@@ -805,6 +805,18 @@
             "autoAccept": "Auto-accept missions in these slots",
             "cancel": "Cancel",
             "save": "Save"
+        },
+        "syncModal": {
+            "title": "Sync my Calendar",
+            "description": "Connect your external calendars for simplified management.",
+            "google": "Connect Google Calendar",
+            "apple": "Connect Apple Calendar",
+            "export": "Export iCal",
+            "status": {
+                "label": "Status",
+                "connected": "✅ Google connected (Auto-update 1h)",
+                "lastSync": "Last sync"
+            }
         }
     }
 }

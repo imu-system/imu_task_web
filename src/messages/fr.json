@@ -757,7 +757,7 @@
         "days": {
             "mon": "Lun",
             "tue": "Mar",
-            "mer": "Mer",
+            "wed": "Mer",
             "thu": "Jeu",
             "fri": "Ven",
             "sat": "Sam",
@@ -767,7 +767,7 @@
             "title": "Actions Rapides",
             "recurring": "Définir créneaux récurrents",
             "exception": "Ajouter une exception",
-            "sync": "Synchroniser Google/Apple Agenda"
+            "sync": "Synchroniser mon Calendrier"
         },
         "suggestions": {
             "title": "Suggestions IA",
@@ -805,6 +805,18 @@
             "autoAccept": "Auto-accepter les missions dans ces créneaux",
             "cancel": "Annuler",
             "save": "Sauvegarder"
+        },
+        "syncModal": {
+            "title": "Synchroniser mon Calendrier",
+            "description": "Connectez vos calendriers externes pour une gestion simplifiée.",
+            "google": "Connecter Google Calendar",
+            "apple": "Connecter Apple Calendar",
+            "export": "Exporter en iCal",
+            "status": {
+                "label": "Statut",
+                "connected": "✅ Google connecté (Maj auto 1h)",
+                "lastSync": "Dernière sync"
+            }
         }
     }
 }
