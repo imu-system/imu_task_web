@@ -1154,5 +1154,14 @@
             "continue": "Continue",
             "start": "Start"
         }
+    },
+    "AcademyDetailPage": {
+        "notFound": "Course not found.",
+        "backToAcademy": "Back to Academy",
+        "sections": {
+            "title": "Sections"
+        },
+        "downloadResources": "Download Resources",
+        "continueModule": "Continue Module"
     }
 }
