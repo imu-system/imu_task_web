@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Features",
@@ -10,7 +9,13 @@
         "signOut": "Sign Out",
         "dashboard": "Dashboard",
         "profile": "Profile",
-        "openMenu": "Open menu"
+        "openMenu": "Open menu",
+        "searchPlaceholder": "Search...",
+        "create": "Create",
+        "createTask": "Create a task",
+        "setAvailability": "Set availability",
+        "settings": "Settings",
+        "support": "Support"
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. All rights reserved.",

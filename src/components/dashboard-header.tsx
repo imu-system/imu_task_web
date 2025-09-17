@@ -9,6 +9,9 @@ import {
   LogOut,
   Menu,
   User,
+  PlusCircle,
+  MessageSquare,
+  Search,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -23,6 +26,7 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/navigation';
 import { Button } from './ui/button';
 import { useSidebar } from './ui/sidebar';
+import { Input } from './ui/input';
 
 export function DashboardHeader() {
   const t = useTranslations('Header');
@@ -42,16 +46,52 @@ export function DashboardHeader() {
         <Menu />
         <span className="sr-only">Toggle Menu</span>
       </Button>
-      <div className="flex-1">
-        {/* Placeholder for potential breadcrumbs or search bar */}
+      
+      <div className="relative flex-1 md:grow-0">
+        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+        <Input
+            type="search"
+            placeholder={t('searchPlaceholder')}
+            className="w-full rounded-lg bg-muted pl-8 md:w-[200px] lg:w-[336px]"
+        />
       </div>
+
+      <div className="flex-1">
+        {/* Placeholder for potential breadcrumbs or page title */}
+      </div>
+
       <div className="flex items-center gap-2">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="sm" className="gap-1">
+              <PlusCircle className="h-4 w-4" />
+              <span className="hidden sm:inline">{t('create')}</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/tasks/new">{t('createTask')}</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/availability">{t('setAvailability')}</Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <Button asChild variant="ghost" size="icon">
+          <Link href="/dashboard/messages">
+            <MessageSquare />
+            <span className="sr-only">{t('messages', { ns: 'DashboardNav' })}</span>
+          </Link>
+        </Button>
+        
         <Button asChild variant="ghost" size="icon">
           <Link href="/dashboard/notifications">
             <Bell />
             <span className="sr-only">{t('notifications', { ns: 'DashboardNav' })}</span>
           </Link>
         </Button>
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" className="relative h-8 w-8 rounded-full">
@@ -79,15 +119,21 @@ export function DashboardHeader() {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem asChild>
-              <Link href="/dashboard">
-                <LayoutGrid className="mr-2 h-4 w-4" />
-                <span>{t('dashboard')}</span>
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
               <Link href="/dashboard/profile">
                 <User className="mr-2 h-4 w-4" />
                 <span>{t('profile')}</span>
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/admin/settings">
+                <LayoutGrid className="mr-2 h-4 w-4" />
+                <span>{t('settings')}</span>
+              </Link>
+            </DropdownMenuItem>
+             <DropdownMenuItem asChild>
+              <Link href="/dashboard/admin/support/tickets">
+                <LifeBuoy className="mr-2 h-4 w-4" />
+                <span>{t('support')}</span>
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />

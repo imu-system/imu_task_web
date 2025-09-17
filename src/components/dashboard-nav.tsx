@@ -68,13 +68,11 @@ export function DashboardNav() {
 
   const navItems = [
     { href: '/dashboard', icon: <LayoutGrid />, label: t('dashboard'), exact: true },
-    { href: '/dashboard/tasks/new', icon: <PlusCircle />, label: t('createTask') },
     { href: '/dashboard/search', icon: <Search />, label: t('findProvider') },
     { href: '/dashboard/offers', icon: <Briefcase />, label: t('findTask') },
     { href: '/dashboard/tasks', icon: <BookMarked />, label: t('myTasks') },
     { href: '/dashboard/bookings', icon: <CalendarCheck />, label: t('myBookings') },
     { href: '/dashboard/reviews', icon: <Star />, label: t('reviews') },
-    { href: '/dashboard/messages', icon: <MessageSquare />, label: t('messages') },
     { href: '/dashboard/wallet', icon: <Wallet />, label: t('wallet') },
   ];
   
@@ -88,7 +86,6 @@ export function DashboardNav() {
 
   return (
     <>
-      <DashboardHeader/>
       <Sidebar>
         <SidebarHeader>
           <Link href="/" className="flex items-center gap-2 font-bold text-lg">
@@ -237,14 +234,6 @@ export function DashboardNav() {
                               <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/cms')}>
                                   <FileText />
                                   <span>{t('cms')}</span>
-                              </SidebarMenuButton>
-                          </Link>
-                      </SidebarMenuItem>
-                      <SidebarMenuItem>
-                          <Link href="/dashboard/admin/notifications">
-                              <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/notifications')}>
-                                  <Bell />
-                                  <span>{t('notifications')}</span>
                               </SidebarMenuButton>
                           </Link>
                       </SidebarMenuItem>

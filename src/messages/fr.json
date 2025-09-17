@@ -9,7 +9,13 @@
         "signOut": "Se déconnecter",
         "dashboard": "Dashboard",
         "profile": "Profil",
-        "openMenu": "Ouvrir le menu"
+        "openMenu": "Ouvrir le menu",
+        "searchPlaceholder": "Rechercher...",
+        "create": "Créer",
+        "createTask": "Créer une mission",
+        "setAvailability": "Définir disponibilités",
+        "settings": "Paramètres",
+        "support": "Support"
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. Tous droits réservés.",
@@ -1039,6 +1045,95 @@
                     "title": "Titre",
                     "body": "Corps du message",
                     "subject": "Sujet de l'email"
+                }
+            }
+        },
+        "detail": {
+            "title": "Détail de la Notification",
+            "notFound": "Notification non trouvée.",
+            "backToList": "Retour à la liste",
+            "cards": {
+                "details": {
+                    "title": "Détails",
+                    "description": "Informations sur la notification envoyée.",
+                    "type": "Type",
+                    "channel": "Canal",
+                    "status": "Statut",
+                    "recipient": "Destinataire"
+                },
+                "payload": {
+                    "title": "Payload",
+                    "description": "Les données envoyées avec la notification."
+                },
+                "actions": {
+                    "title": "Actions",
+                    "resend": "Renvoyer la Notification"
+                }
+            },
+            "toast": {
+                "resendSuccessTitle": "Notification mise en file d'attente",
+                "resendSuccessDescription": "La notification a été mise en file d'attente pour être renvoyée."
+            }
+        }
+    },
+    "AdminSupportPage": {
+        "tickets": {
+            "title": "Tickets de Support",
+            "description": "Gérez toutes les demandes de support des utilisateurs.",
+            "actions": {
+                "create": "Nouveau Ticket",
+                "view": "Voir"
+            },
+            "filters": {
+                "searchPlaceholder": "Rechercher par sujet, utilisateur...",
+                "status": "Statut",
+                "allStatuses": "Tous les statuts",
+                "priority": "Priorité",
+                "allPriorities": "Toutes les priorités"
+            },
+            "table": {
+                "id": "ID",
+                "subject": "Sujet",
+                "user": "Utilisateur",
+                "status": "Statut",
+                "priority": "Priorité",
+                "agent": "Agent",
+                "actions": "Actions"
+            }
+        },
+        "ticketDetail": {
+            "notFound": "Ticket non trouvé.",
+            "backToList": "Retour à la liste des tickets",
+            "title": "Détail du Ticket",
+            "cards": {
+                "conversation": {
+                    "title": "Conversation"
+                },
+                "response": {
+                    "title": "Réponse",
+                    "description": "Utilisez une réponse pré-enregistrée ou écrivez un message.",
+                    "cannedPlaceholder": "Insérer une réponse pré-enregistrée",
+                    "canned": {
+                        "greeting": "Salutation",
+                        "kycRejection": "Rejet KYC",
+                        "refundOk": "Remboursement effectué"
+                    },
+                    "textAreaPlaceholder": "Votre réponse...",
+                    "attachFile": "Joindre un fichier",
+                    "send": "Envoyer"
+                },
+                "details": {
+                    "title": "Détails du Ticket",
+                    "status": "Statut",
+                    "priority": "Priorité",
+                    "agent": "Agent Assigné",
+                    "tags": "Tags",
+                    "tagsPlaceholder": "Ex: paiement, bug"
+                },
+                "context": {
+                    "title": "Contexte",
+                    "viewUser": "Voir le profil utilisateur",
+                    "viewBooking": "Voir la réservation"
                 }
             }
         }
