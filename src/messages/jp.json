@@ -825,6 +825,7 @@
             "last30days": "過去30日間",
             "last90days": "過去90日間"
         },
+        "comparePeriods": "比較",
         "exportCsv": "CSVをエクスポート",
         "kpi": {
             "totalEarnings": "総収益",
@@ -840,6 +841,24 @@
             "time": {
                 "title": "カテゴリ別分布",
                 "legend": "時間"
+            }
+        },
+        "compare": {
+            "title": "期間を比較",
+            "selection": {
+                "title": "選択",
+                "periodA": "期間A",
+                "periodB": "期間B"
+            },
+            "results": {
+                "title": "結果",
+                "earnings": "収益",
+                "hours": "時間",
+                "acceptance": "受諾率",
+                "rating": "平均評価"
+            },
+            "chart": {
+                "title": "比較チャート"
             }
         }
     }

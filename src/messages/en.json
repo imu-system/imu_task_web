@@ -1228,6 +1228,7 @@
             "last30days": "Last 30 days",
             "last90days": "Last 90 days"
         },
+        "comparePeriods": "Compare",
         "exportCsv": "Export CSV",
         "kpi": {
             "totalEarnings": "Total Earnings",
@@ -1243,6 +1244,24 @@
             "time": {
                 "title": "Distribution by Category",
                 "legend": "Hours"
+            }
+        },
+        "compare": {
+            "title": "Compare Periods",
+            "selection": {
+                "title": "Selection",
+                "periodA": "Period A",
+                "periodB": "Period B"
+            },
+            "results": {
+                "title": "Results",
+                "earnings": "Earnings",
+                "hours": "Hours",
+                "acceptance": "Acceptance Rate",
+                "rating": "Average Rating"
+            },
+            "chart": {
+                "title": "Comparative Chart"
             }
         }
     }

@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -1227,6 +1228,7 @@
             "last30days": "30 derniers jours",
             "last90days": "90 derniers jours"
         },
+        "comparePeriods": "Comparer",
         "exportCsv": "Exporter en CSV",
         "kpi": {
             "totalEarnings": "Gains totaux",
@@ -1242,6 +1244,24 @@
             "time": {
                 "title": "Répartition par catégorie",
                 "legend": "Heures"
+            }
+        },
+        "compare": {
+            "title": "Comparer les Périodes",
+            "selection": {
+                "title": "Sélection",
+                "periodA": "Période A",
+                "periodB": "Période B"
+            },
+            "results": {
+                "title": "Résultats",
+                "earnings": "Gains",
+                "hours": "Heures",
+                "acceptance": "Taux d'acceptation",
+                "rating": "Note moyenne"
+            },
+            "chart": {
+                "title": "Graphique Comparatif"
             }
         }
     }
