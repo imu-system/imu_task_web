@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "特徴",
@@ -825,6 +824,7 @@
             "last30days": "過去30日間",
             "last90days": "過去90日間"
         },
+        "myGoals": "私の目標",
         "comparePeriods": "比較",
         "exportCsv": "CSVをエクスポート",
         "kpi": {
@@ -873,6 +873,21 @@
                 "fees": "ImuTask手数料",
                 "monthlyList": "月次内訳",
                 "downloadCertificate": "税務証明書をダウンロード"
+            }
+        },
+        "goals": {
+            "title": "私の目標",
+            "card": {
+                "title": "目標を設定",
+                "description": "進捗を追跡するために月次のパフォーマンス目標を設定します。",
+                "earningsGoal": "月次収益目標 (€)",
+                "hoursGoal": "月次労働時間目標",
+                "acceptanceGoal": "目標受諾率 (%)",
+                "saveButton": "目標を保存"
+            },
+            "toast": {
+                "successTitle": "目標が保存されました！",
+                "successDescription": "パフォーマンス目標が更新されました。"
             }
         }
     }

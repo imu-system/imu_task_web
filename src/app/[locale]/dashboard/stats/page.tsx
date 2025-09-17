@@ -3,7 +3,7 @@
 
 import { useAuth } from '@/hooks/use-auth';
 import { useTranslations } from 'next-intl';
-import { Loader2, LineChart as LineChartIcon, Settings, Download, DollarSign, Clock, CheckCircle, Star, Columns, FileText } from 'lucide-react';
+import { Loader2, LineChart as LineChartIcon, Settings, Download, DollarSign, Clock, CheckCircle, Star, Columns, FileText, Target } from 'lucide-react';
 import { UserRole } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -76,6 +76,12 @@ export default function StatsPage() {
                             <SelectItem value="90d">{t('filters.last90days')}</SelectItem>
                         </SelectContent>
                     </Select>
+                     <Button variant="outline" asChild>
+                        <Link href="/dashboard/stats/goals">
+                            <Target className="mr-2"/>
+                            {t('myGoals')}
+                        </Link>
+                    </Button>
                     <Button variant="outline" asChild>
                         <Link href="/dashboard/stats/compare">
                             <Columns className="mr-2"/>

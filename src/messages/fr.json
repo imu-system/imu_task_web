@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -273,49 +272,7 @@
         "providersNeeded": "{accepted} / {required} prestataires"
     },
     "ProfilePage": {
-        "title": "Profil & Paramètres",
-        "subtitle": "Gérez vos informations personnelles et vos préférences.",
-        "editProfile": "Modifier le profil",
-        "kycVerification": "Vérification KYC",
         "myBadges": "Mes Badges",
-        "personalInfo": "Informations personnelles",
-        "personalInfoDesc": "Mettez à jour vos informations publiques.",
-        "changePhoto": "Changer la photo",
-        "fullName": "Nom complet",
-        "emailAddress": "Adresse e-mail",
-        "bio": "Bio",
-        "bioPlaceholder": "Parlez un peu de vous...",
-        "noBio": "Cet utilisateur n'a pas encore de biographie.",
-        "saveChanges": "Enregistrer les modifications",
-        "toastSuccessTitle": "Profil mis à jour",
-        "toastSuccessDescription": "Vos informations ont été enregistrées avec succès.",
-        "toastErrorTitle": "Erreur",
-        "toastErrorDescription": "Une erreur est survenue lors de la mise à jour de votre profil.",
-        "addressesTitle": "Mes Adresses",
-        "addressesDesc": "Gérez vos adresses enregistrées pour les missions.",
-        "addAddress": "Ajouter une adresse",
-        "setDefault": "Définir par défaut",
-        "delete": "Supprimer",
-        "noAddresses": "Vous n'avez pas encore ajouté d'adresse.",
-        "averageRating": "Note moyenne",
-        "reviewsCount": "Avis reçus",
-        "completedMissions": "Missions complétées",
-        "totalCompleted": "Total des missions complétées",
-        "basedOn": "Basé sur {count} avis",
-        "providerInfo": "Informations Prestataire",
-        "languages": "Langues parlées",
-        "languagesPlaceholder": "Ex: Français, Anglais",
-        "skills": "Compétences",
-        "skillsPlaceholder": "Ex: Jardinage, Bricolage",
-        "commaSeparated": "Séparer par des virgules",
-        "addressForm": {
-            "title": "Ajouter une nouvelle adresse",
-            "cancel": "Annuler",
-            "save": "Enregistrer"
-        },
-        "serviceRadius": "Rayon d'intervention",
-        "serviceRadiusPlaceholder": "Ex: 10",
-        "serviceRadiusDisplay": "Rayon de {km} km",
         "earnedBadges": "Badges Obtenus",
         "seeAllBadges": "Voir tous les badges",
         "earnedOn": "Obtenu le {date}"
@@ -700,46 +657,47 @@
         }
     },
     "ProfilePage": {
-        "myBadges": "Mes Badges",
-        "earnedBadges": "Badges Obtenus",
-        "seeAllBadges": "Voir tous les badges",
-        "earnedOn": "Obtenu le {date}"
-    },
-    "BadgesPage": {
-        "subtitle": "Voici les badges que vous avez débloqués.",
-        "cardTitle": "Mes Badges",
-        "cardDescription": "Les badges récompensent votre activité et votre fiabilité sur la plateforme.",
-        "history": {
-            "title": "Historique des missions",
-            "description": "Vos dernières missions terminées."
+        "title": "Profil & Paramètres",
+        "subtitle": "Gérez vos informations personnelles et vos préférences.",
+        "editProfile": "Modifier le profil",
+        "kycVerification": "Vérification KYC",
+        "personalInfo": "Informations personnelles",
+        "personalInfoDesc": "Mettez à jour vos informations publiques.",
+        "changePhoto": "Changer la photo",
+        "fullName": "Nom complet",
+        "emailAddress": "Adresse e-mail",
+        "bio": "Bio",
+        "bioPlaceholder": "Parlez un peu de vous...",
+        "noBio": "Cet utilisateur n'a pas encore de biographie.",
+        "saveChanges": "Enregistrer les modifications",
+        "toastSuccessTitle": "Profil mis à jour",
+        "toastSuccessDescription": "Vos informations ont été enregistrées avec succès.",
+        "toastErrorTitle": "Erreur",
+        "toastErrorDescription": "Une erreur est survenue lors de la mise à jour de votre profil.",
+        "addressesTitle": "Mes Adresses",
+        "addressesDesc": "Gérez vos adresses enregistrées pour les missions.",
+        "addAddress": "Ajouter une adresse",
+        "setDefault": "Définir par défaut",
+        "delete": "Supprimer",
+        "noAddresses": "Vous n'avez pas encore ajouté d'adresse.",
+        "averageRating": "Note moyenne",
+        "completedMissions": "Missions complétées",
+        "totalCompleted": "Total des missions complétées",
+        "basedOn": "Basé sur {count} avis",
+        "providerInfo": "Informations Prestataire",
+        "languages": "Langues parlées",
+        "languagesPlaceholder": "Ex: Français, Anglais",
+        "skills": "Compétences",
+        "skillsPlaceholder": "Ex: Jardinage, Bricolage",
+        "commaSeparated": "Séparer par des virgules",
+        "addressForm": {
+            "title": "Ajouter une nouvelle adresse",
+            "cancel": "Annuler",
+            "save": "Enregistrer"
         },
-        "shareProfile": "Partager le profil",
-        "badges": {
-            "firstMission": {
-                "title": "Première Mission",
-                "description": "Avoir terminé votre première mission."
-            },
-            "verified": {
-                "title": "Vérifié",
-                "description": "Identité vérifiée avec succès."
-            },
-            "topRated": {
-                "title": "Top Noté",
-                "description": "Note moyenne supérieure à 4.8"
-            },
-            "communityHelper": {
-                "title": "Pilier de la Communauté",
-                "description": "Avoir terminé 25 missions."
-            },
-            "profileComplete": {
-                "title": "Profil Complet",
-                "description": "Avoir rempli toutes les informations du profil."
-            },
-            "pioneer": {
-                "title": "Pionnier",
-                "description": "Avoir rejoint la plateforme la première année."
-            }
-        }
+        "serviceRadius": "Rayon d'intervention",
+        "serviceRadiusPlaceholder": "Ex: 10",
+        "serviceRadiusDisplay": "Rayon de {km} km"
     },
     "KycPage": {
         "title": "Vérification d'Identité (KYC)",
@@ -1270,6 +1228,7 @@
             "last30days": "30 derniers jours",
             "last90days": "90 derniers jours"
         },
+        "myGoals": "Mes Objectifs",
         "comparePeriods": "Comparer",
         "exportCsv": "Exporter en CSV",
         "kpi": {
@@ -1318,6 +1277,21 @@
                 "fees": "Commissions ImuTask",
                 "monthlyList": "Répartition mensuelle",
                 "downloadCertificate": "Télécharger l'attestation fiscale"
+            }
+        },
+        "goals": {
+            "title": "Mes Objectifs",
+            "card": {
+                "title": "Définissez Vos Objectifs",
+                "description": "Fixez vos cibles de performance mensuelles pour suivre votre progression.",
+                "earningsGoal": "Objectif de Gains Mensuels (€)",
+                "hoursGoal": "Objectif d'Heures Mensuelles",
+                "acceptanceGoal": "Taux d'Acceptation Cible (%)",
+                "saveButton": "Enregistrer les Objectifs"
+            },
+            "toast": {
+                "successTitle": "Objectifs Enregistrés !",
+                "successDescription": "Vos objectifs de performance ont été mis à jour."
             }
         }
     }
