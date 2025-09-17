@@ -448,5 +448,21 @@
         },
         "replyPlaceholder": "このレビューに返信する...",
         "publishReply": "返信を公開"
+    },
+    "UserNotificationsPage": {
+        "title": "通知",
+        "subtitle": "最新の更新情報はこちらです。",
+        "markAllAsRead": "すべて既読にする",
+        "markAsRead": "既読にする",
+        "open": "開く",
+        "noNotifications": "新しい通知はありません。",
+        "mock": {
+            "offer": "'{task}'のタスクに新しいオファーが届きました",
+            "message": "'{user}'からの新しいメッセージ",
+            "payment": "{amount}の支払いを受け取りました",
+            "review": "'{user}'から新しいレビューを受け取りました"
+        }
     }
 }
+
+    

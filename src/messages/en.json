@@ -851,5 +851,21 @@
         },
         "replyPlaceholder": "Reply to this review...",
         "publishReply": "Publish Reply"
+    },
+    "UserNotificationsPage": {
+        "title": "Notifications",
+        "subtitle": "Here are your latest updates.",
+        "markAllAsRead": "Mark all as read",
+        "markAsRead": "Mark as read",
+        "open": "Open",
+        "noNotifications": "You have no new notifications.",
+        "mock": {
+            "offer": "New offer received for your task '{task}'",
+            "message": "New message from '{user}'",
+            "payment": "You received a payment of {amount}",
+            "review": "You received a new review from '{user}'"
+        }
     }
 }
+
+    

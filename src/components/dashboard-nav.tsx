@@ -72,6 +72,7 @@ export function DashboardNav() {
     { href: '/dashboard/bookings', icon: <CalendarCheck />, label: t('myBookings') },
     { href: '/dashboard/reviews', icon: <Star />, label: t('reviews') },
     { href: '/dashboard/messages', icon: <MessageSquare />, label: t('messages') },
+    { href: '/dashboard/notifications', icon: <Bell />, label: t('notifications') },
     { href: '/dashboard/wallet', icon: <Wallet />, label: t('wallet') },
   ];
   

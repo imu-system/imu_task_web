@@ -851,5 +851,21 @@
         },
         "replyPlaceholder": "Répondre à cet avis...",
         "publishReply": "Publier"
+    },
+    "UserNotificationsPage": {
+        "title": "Notifications",
+        "subtitle": "Voici vos dernières mises à jour.",
+        "markAllAsRead": "Tout marquer comme lu",
+        "markAsRead": "Marquer comme lu",
+        "open": "Ouvrir",
+        "noNotifications": "Vous n'avez aucune nouvelle notification.",
+        "mock": {
+            "offer": "Nouvelle offre reçue pour votre mission '{task}'",
+            "message": "Nouveau message de '{user}'",
+            "payment": "Vous avez reçu un paiement de {amount}",
+            "review": "Vous avez reçu un nouvel avis de '{user}'"
+        }
     }
 }
+
+    
