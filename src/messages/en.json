@@ -839,7 +839,14 @@
             "title": "Report this review?",
             "description": "If this review violates our terms of service, our moderation team will review it.",
             "cancel": "Cancel",
-            "confirm": "Report"
+            "confirm": "Report",
+            "reasons": {
+                "offensive": "Offensive content",
+                "fake": "Fake review",
+                "personalInfo": "Contains personal information",
+                "other": "Other"
+            },
+            "otherPlaceholder": "Please specify..."
         },
         "replyPlaceholder": "Reply to this review...",
         "publishReply": "Publish Reply"

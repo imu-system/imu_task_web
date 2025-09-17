@@ -839,7 +839,14 @@
             "title": "Signaler cet avis ?",
             "description": "Si cet avis enfreint nos conditions d'utilisation, notre équipe de modération l'examinera.",
             "cancel": "Annuler",
-            "confirm": "Signaler"
+            "confirm": "Signaler",
+            "reasons": {
+                "offensive": "Contenu offensant",
+                "fake": "Faux avis",
+                "personalInfo": "Contient des informations personnelles",
+                "other": "Autre"
+            },
+            "otherPlaceholder": "Veuillez préciser..."
         },
         "replyPlaceholder": "Répondre à cet avis...",
         "publishReply": "Publier"

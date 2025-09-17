@@ -436,7 +436,14 @@
             "title": "このレビューを報告しますか？",
             "description": "このレビューが利用規約に違反している場合、モデレーションチームが審査します。",
             "cancel": "キャンセル",
-            "confirm": "報告"
+            "confirm": "報告",
+            "reasons": {
+                "offensive": "不適切なコンテンツ",
+                "fake": "偽のレビュー",
+                "personalInfo": "個人情報が含まれています",
+                "other": "その他"
+            },
+            "otherPlaceholder": "詳細を記入してください..."
         },
         "replyPlaceholder": "このレビューに返信する...",
         "publishReply": "返信を公開"

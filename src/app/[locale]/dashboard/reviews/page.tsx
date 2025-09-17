@@ -16,6 +16,8 @@ import { Review, UserRole } from '@/lib/types';
 import { useState, useEffect } from 'react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Textarea } from '@/components/ui/textarea';
+import { Label } from '@/components/ui/label';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 const mockReceivedReviews = getReviews().slice(0,2);
 const mockGivenReviews = getReviews().slice(2);
@@ -31,6 +33,7 @@ const ratingData = [
 const ReviewCard = ({ review, type }: { review: Review, type: 'received' | 'given' }) => {
     const t = useTranslations('ReviewsPage');
     const [isReplying, setIsReplying] = useState(false);
+    const [reportReason, setReportReason] = useState('');
 
     const person = type === 'received' ? review.reviewer : review.reviewee;
 
@@ -73,6 +76,29 @@ const ReviewCard = ({ review, type }: { review: Review, type: 'received' | 'give
                             <AlertDialogTitle>{t('reportDialog.title')}</AlertDialogTitle>
                             <AlertDialogDescription>{t('reportDialog.description')}</AlertDialogDescription>
                         </AlertDialogHeader>
+                        <div className="space-y-4 py-2">
+                             <RadioGroup onValueChange={setReportReason} defaultValue={reportReason}>
+                                <div className="flex items-center space-x-2">
+                                    <RadioGroupItem value="offensive" id="r1" />
+                                    <Label htmlFor="r1">{t('reportDialog.reasons.offensive')}</Label>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <RadioGroupItem value="fake" id="r2" />
+                                    <Label htmlFor="r2">{t('reportDialog.reasons.fake')}</Label>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <RadioGroupItem value="personal" id="r3" />
+                                    <Label htmlFor="r3">{t('reportDialog.reasons.personalInfo')}</Label>
+                                </div>
+                                <div className="flex items-center space-x-2">
+                                    <RadioGroupItem value="other" id="r4" />
+                                    <Label htmlFor="r4">{t('reportDialog.reasons.other')}</Label>
+                                </div>
+                            </RadioGroup>
+                            {reportReason === 'other' && (
+                                <Textarea placeholder={t('reportDialog.otherPlaceholder')} />
+                            )}
+                        </div>
                         <AlertDialogFooter>
                             <AlertDialogCancel>{t('reportDialog.cancel')}</AlertDialogCancel>
                             <AlertDialogAction>{t('reportDialog.confirm')}</AlertDialogAction>
@@ -192,4 +218,3 @@ export default function ReviewsPage() {
         </div>
     );
 }
-
