@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "特徴",
@@ -272,7 +273,10 @@
         }
     },
     "ProfilePage": {
-        "myBadges": "私のバッジ"
+        "myBadges": "私のバッジ",
+        "earnedBadges": "獲得したバッジ",
+        "seeAllBadges": "すべてのバッジを見る",
+        "earnedOn": "{date}に獲得"
     },
     "BadgesPage": {
         "subtitle": "ロック解除したバッジはこちらです。",

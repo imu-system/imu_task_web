@@ -313,7 +313,10 @@
         },
         "serviceRadius": "Rayon d'intervention",
         "serviceRadiusPlaceholder": "Ex: 10",
-        "serviceRadiusDisplay": "Rayon de {km} km"
+        "serviceRadiusDisplay": "Rayon de {km} km",
+        "earnedBadges": "Badges Obtenus",
+        "seeAllBadges": "Voir tous les badges",
+        "earnedOn": "Obtenu le {date}"
     },
     "BadgesPage": {
         "subtitle": "Voici les badges que vous avez débloqués.",

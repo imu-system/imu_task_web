@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { useTranslations } from 'next-intl';
@@ -18,19 +19,6 @@ const mockBadges = [
     { id: 'pioneer', icon: <Sparkles/>, titleKey: 'badges.pioneer.title', descriptionKey: 'badges.pioneer.description', unlocked: false },
 ];
 
-const mockHistory = [
-    { id: 'h1', date: '12 sept.', title: 'Nettoyage de printemps', rating: 5 },
-    { id: 'h2', date: '10 sept.', title: 'Aide aux courses', rating: 4 },
-    { id: 'h3', date: '05 sept.', title: 'Assistance numérique', rating: 5 },
-];
-
-const StarRating = ({ rating }: { rating: number }) => (
-    <div className="flex items-center gap-0.5">
-        {[...Array(5)].map((_, i) => (
-            <Star key={i} className={cn("h-4 w-4", i < rating ? "fill-yellow-400 text-yellow-400" : "fill-muted text-muted-foreground")} />
-        ))}
-    </div>
-)
 
 export default function BadgesPage() {
     const t = useTranslations('BadgesPage');
@@ -72,34 +60,6 @@ export default function BadgesPage() {
                             </div>
                         </div>
                     ))}
-                </CardContent>
-            </Card>
-
-             <Card>
-                <CardHeader>
-                    <CardTitle>{t('history.title')}</CardTitle>
-                    <CardDescription>{t('history.description')}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <ul className="space-y-4">
-                        {mockHistory.map((item, index) => (
-                             <li key={item.id}>
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-3">
-                                        <div className="p-2 bg-muted rounded-full">
-                                            <MessageCircle className="h-5 w-5 text-muted-foreground"/>
-                                        </div>
-                                        <div>
-                                            <p className="font-semibold">{item.title}</p>
-                                            <p className="text-sm text-muted-foreground">{item.date}</p>
-                                        </div>
-                                    </div>
-                                    <StarRating rating={item.rating} />
-                                </div>
-                                {index < mockHistory.length - 1 && <Separator className="mt-4"/>}
-                            </li>
-                        ))}
-                    </ul>
                 </CardContent>
             </Card>
             

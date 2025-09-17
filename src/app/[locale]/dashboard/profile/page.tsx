@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -21,6 +22,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import AddressForm from "@/components/address-form";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@/navigation";
+import { Award, Shield } from "lucide-react";
 
 // Helper function to split string by comma and trim whitespace
 const stringToArray = (str: string | undefined | string[]): string[] => {
@@ -33,6 +35,12 @@ const stringToArray = (str: string | undefined | string[]): string[] => {
 const mockAddresses = [
     { id: '1', label: 'Maison', formatted: '123 Rue Principale, 75001 Paris, France', isDefault: true },
     { id: '2', label: 'Travail', formatted: '456 Avenue des Champs-Élysées, 75008 Paris, France', isDefault: false },
+];
+
+const mockEarnedBadges = [
+    { id: 'b1', name: 'Starter', date: '2025-09-13', icon: <Award className="h-4 w-4"/> },
+    { id: 'b2', name: 'Communicator Pro', date: '2025-09-20', icon: <Medal className="h-4 w-4"/> },
+    { id: 'b3', name: 'Verified', date: '2025-09-10', icon: <Shield className="h-4 w-4"/> }
 ]
 
 export default function ProfilePage() {
@@ -241,12 +249,6 @@ export default function ProfilePage() {
                                         {t('kycVerification')}
                                     </Link>
                                 </Button>
-                                <Button variant="outline" asChild>
-                                    <Link href="/dashboard/profile/badges">
-                                        <Medal className="mr-2 h-4 w-4"/>
-                                        {t('myBadges')}
-                                    </Link>
-                                </Button>
                             </div>
                         </div>
                         <p className="text-muted-foreground">{user.profile?.bio || t('noBio')}</p>
@@ -286,6 +288,30 @@ export default function ProfilePage() {
           </CardContent>
       </Card>
       
+        <Card>
+            <CardHeader>
+                <div className="flex items-center justify-between">
+                    <CardTitle>{t('earnedBadges')}</CardTitle>
+                    <Button variant="link" asChild>
+                        <Link href="/dashboard/profile/badges">{t('seeAllBadges')}</Link>
+                    </Button>
+                </div>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-4">
+                {mockEarnedBadges.map(badge => (
+                    <div key={badge.id} className="flex items-center gap-3 p-3 border rounded-lg bg-muted/50">
+                        <div className="p-2 bg-primary/10 text-primary rounded-full">
+                           {badge.icon}
+                        </div>
+                        <div>
+                            <p className="font-semibold">{badge.name}</p>
+                            <p className="text-xs text-muted-foreground">{t('earnedOn', { date: badge.date })}</p>
+                        </div>
+                    </div>
+                ))}
+            </CardContent>
+        </Card>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-center md:text-left">
             <Card>
                 <CardHeader className="flex flex-row items-center justify-between pb-2">

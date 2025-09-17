@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Features",
@@ -313,7 +314,10 @@
         },
         "serviceRadius": "Service Radius (km)",
         "serviceRadiusPlaceholder": "e.g. 10",
-        "serviceRadiusDisplay": "{km} km radius"
+        "serviceRadiusDisplay": "{km} km radius",
+        "earnedBadges": "Earned Badges",
+        "seeAllBadges": "See All Badges",
+        "earnedOn": "Earned on {date}"
     },
     "BadgesPage": {
         "subtitle": "Here are the badges you have unlocked.",
