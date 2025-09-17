@@ -3,7 +3,7 @@
 
 import { useAuth } from '@/hooks/use-auth';
 import { useTranslations } from 'next-intl';
-import { Loader2, Star, Download } from 'lucide-react';
+import { Loader2, Star, Download, MessageSquare, AlertTriangle, Send } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
@@ -14,6 +14,8 @@ import { cn } from '@/lib/utils';
 import { getReviews } from '@/lib/data';
 import { Review, UserRole } from '@/lib/types';
 import { useState, useEffect } from 'react';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { Textarea } from '@/components/ui/textarea';
 
 const mockReceivedReviews = getReviews().slice(0,2);
 const mockGivenReviews = getReviews().slice(2);
@@ -28,6 +30,8 @@ const ratingData = [
 
 const ReviewCard = ({ review }: { review: Review }) => {
     const t = useTranslations('ReviewsPage');
+    const [isReplying, setIsReplying] = useState(false);
+
     return (
         <div className="space-y-3">
             <div className="flex items-start gap-4">
@@ -47,7 +51,40 @@ const ReviewCard = ({ review }: { review: Review }) => {
                     </div>
                 </div>
             </div>
-            <p className="text-sm text-muted-foreground italic">"{review.comment}"</p>
+            {review.comment && <p className="text-sm text-muted-foreground italic">"{review.comment}"</p>}
+            <div className="flex items-center gap-2">
+                <Button variant="ghost" size="sm" onClick={() => setIsReplying(!isReplying)}>
+                    <MessageSquare className="mr-2 h-4 w-4"/>
+                    {t('actions.reply')}
+                </Button>
+                <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                        <Button variant="ghost" size="sm" className="text-muted-foreground">
+                            <AlertTriangle className="mr-2 h-4 w-4"/>
+                            {t('actions.report')}
+                        </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle>{t('reportDialog.title')}</AlertDialogTitle>
+                            <AlertDialogDescription>{t('reportDialog.description')}</AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel>{t('reportDialog.cancel')}</AlertDialogCancel>
+                            <AlertDialogAction>{t('reportDialog.confirm')}</AlertDialogAction>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
+            </div>
+            {isReplying && (
+                <div className="pl-14 space-y-2">
+                    <Textarea placeholder={t('replyPlaceholder')} />
+                    <Button size="sm">
+                        <Send className="mr-2 h-4 w-4"/>
+                        {t('publishReply')}
+                    </Button>
+                </div>
+            )}
         </div>
     )
 }

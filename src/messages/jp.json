@@ -427,6 +427,18 @@
         "tabs": {
             "received": "受け取ったレビュー",
             "given": "与えたレビュー"
-        }
+        },
+        "actions": {
+            "reply": "返信",
+            "report": "報告"
+        },
+        "reportDialog": {
+            "title": "このレビューを報告しますか？",
+            "description": "このレビューが利用規約に違反している場合、モデレーションチームが審査します。",
+            "cancel": "キャンセル",
+            "confirm": "報告"
+        },
+        "replyPlaceholder": "このレビューに返信する...",
+        "publishReply": "返信を公開"
     }
 }

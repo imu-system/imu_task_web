@@ -830,6 +830,18 @@
         "tabs": {
             "received": "Avis Reçus",
             "given": "Avis Donnés"
-        }
+        },
+        "actions": {
+            "reply": "Répondre",
+            "report": "Signaler"
+        },
+        "reportDialog": {
+            "title": "Signaler cet avis ?",
+            "description": "Si cet avis enfreint nos conditions d'utilisation, notre équipe de modération l'examinera.",
+            "cancel": "Annuler",
+            "confirm": "Signaler"
+        },
+        "replyPlaceholder": "Répondre à cet avis...",
+        "publishReply": "Publier"
     }
 }

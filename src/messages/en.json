@@ -830,6 +830,18 @@
         "tabs": {
             "received": "Reviews Received",
             "given": "Reviews Given"
-        }
+        },
+        "actions": {
+            "reply": "Reply",
+            "report": "Report"
+        },
+        "reportDialog": {
+            "title": "Report this review?",
+            "description": "If this review violates our terms of service, our moderation team will review it.",
+            "cancel": "Cancel",
+            "confirm": "Report"
+        },
+        "replyPlaceholder": "Reply to this review...",
+        "publishReply": "Publish Reply"
     }
 }
