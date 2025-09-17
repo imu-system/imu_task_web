@@ -11,12 +11,12 @@ import { cn } from '@/lib/utils';
 import { Separator } from '@/components/ui/separator';
 
 const mockBadges = [
-    { id: 'first_mission', icon: <Award/>, titleKey: 'badges.firstMission.title', descriptionKey: 'badges.firstMission.description', unlocked: true },
-    { id: 'verified', icon: <ShieldCheck/>, titleKey: 'badges.verified.title', descriptionKey: 'badges.verified.description', unlocked: true },
-    { id: 'top_rated', icon: <Star/>, titleKey: 'badges.topRated.title', descriptionKey: 'badges.topRated.description', unlocked: true },
-    { id: 'community_helper', icon: <Heart/>, titleKey: 'badges.communityHelper.title', descriptionKey: 'badges.communityHelper.description', unlocked: false },
-    { id: 'profil_complete', icon: <CheckCircle/>, titleKey: 'badges.profileComplete.title', descriptionKey: 'badges.profileComplete.description', unlocked: true },
-    { id: 'pioneer', icon: <Sparkles/>, titleKey: 'badges.pioneer.title', descriptionKey: 'badges.pioneer.description', unlocked: false },
+    { id: 'cert-starter', icon: <Award/>, titleKey: 'badges.firstMission.title', descriptionKey: 'badges.firstMission.description', unlocked: true },
+    { id: 'cert-pro-communicator', icon: <ShieldCheck/>, titleKey: 'badges.verified.title', descriptionKey: 'badges.verified.description', unlocked: true },
+    { id: 'cert-top-rated', icon: <Star/>, titleKey: 'badges.topRated.title', descriptionKey: 'badges.topRated.description', unlocked: true },
+    { id: 'cert-community-helper', icon: <Heart/>, titleKey: 'badges.communityHelper.title', descriptionKey: 'badges.communityHelper.description', unlocked: false },
+    { id: 'cert-profile-complete', icon: <CheckCircle/>, titleKey: 'badges.profileComplete.title', descriptionKey: 'badges.profileComplete.description', unlocked: true },
+    { id: 'cert-pioneer', icon: <Sparkles/>, titleKey: 'badges.pioneer.title', descriptionKey: 'badges.pioneer.description', unlocked: false },
 ];
 
 
@@ -50,15 +50,17 @@ export default function BadgesPage() {
                 </CardHeader>
                 <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {mockBadges.map(badge => (
-                        <div key={badge.id} className={cn("flex flex-col items-center text-center gap-4 p-6 rounded-lg border", !badge.unlocked && "opacity-50 bg-muted/50")}>
-                            <div className={cn("p-4 rounded-full", badge.unlocked ? "bg-primary/10 text-primary" : "bg-muted-foreground/10 text-muted-foreground")}>
-                                {React.cloneElement(badge.icon, { className: 'h-8 w-8' })}
+                        <Link key={badge.id} href={badge.unlocked ? `/dashboard/academy/certificate/${badge.id}` : '#'} className={cn(!badge.unlocked && "pointer-events-none")}>
+                            <div className={cn("flex flex-col items-center text-center gap-4 p-6 rounded-lg border h-full hover:shadow-md transition-shadow", !badge.unlocked && "opacity-50 bg-muted/50")}>
+                                <div className={cn("p-4 rounded-full", badge.unlocked ? "bg-primary/10 text-primary" : "bg-muted-foreground/10 text-muted-foreground")}>
+                                    {React.cloneElement(badge.icon, { className: 'h-8 w-8' })}
+                                </div>
+                                <div className="space-y-1">
+                                    <h3 className="font-semibold text-lg">{t(badge.titleKey as any)}</h3>
+                                    <p className="text-xs text-muted-foreground">{t(badge.descriptionKey as any)}</p>
+                                </div>
                             </div>
-                            <div className="space-y-1">
-                                <h3 className="font-semibold text-lg">{t(badge.titleKey as any)}</h3>
-                                <p className="text-xs text-muted-foreground">{t(badge.descriptionKey as any)}</p>
-                            </div>
-                        </div>
+                        </Link>
                     ))}
                 </CardContent>
             </Card>

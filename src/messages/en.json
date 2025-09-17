@@ -1102,7 +1102,7 @@
                 "user": "User",
                 "status": "Status",
                 "priority": "Priority",
-                "agent": "Agent",
+                "agent": "Assigned Agent",
                 "actions": "Actions"
             }
         },
@@ -1179,6 +1179,20 @@
         "toast": {
             "title": "Quiz Submitted!",
             "description": "Your score will be calculated and your badge awarded shortly."
+        }
+    },
+    "CertificatePage": {
+        "title": "Certificate: {badgeName}",
+        "card": {
+            "title": "Certificate of Completion",
+            "issuedTo": "Issued to: {name}",
+            "forCompleting": "For successfully completing the course:",
+            "date": "Date of Completion",
+            "id": "Certificate ID"
+        },
+        "actions": {
+            "download": "Download PDF",
+            "verify": "Verify Validity"
         }
     }
 }

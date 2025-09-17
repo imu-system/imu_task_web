@@ -777,5 +777,19 @@
             "title": "クイズが提出されました！",
             "description": "あなたのスコアが計算され、まもなくバッジが付与されます。"
         }
+    },
+    "CertificatePage": {
+        "title": "証明書：{badgeName}",
+        "card": {
+            "title": "修了証明書",
+            "issuedTo": "発行対象者：{name}",
+            "forCompleting": "コースを無事修了したことを証明します：",
+            "date": "修了日",
+            "id": "証明書ID"
+        },
+        "actions": {
+            "download": "PDFをダウンロード",
+            "verify": "有効性を確認"
+        }
     }
 }

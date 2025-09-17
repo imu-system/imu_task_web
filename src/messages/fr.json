@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -746,11 +747,11 @@
         "submitButton": "Soumettre pour validation"
     },
     "Languages": {
-        "fr": "Français",
-        "en": "Anglais",
-        "es": "Espagnol",
-        "de": "Allemand",
-        "it": "Italien"
+        "fr": "French",
+        "en": "English",
+        "es": "Spanish",
+        "de": "German",
+        "it": "Italian"
     },
     "AvailabilityPage": {
         "title": "Mes Disponibilités",
@@ -1132,7 +1133,7 @@
                     "priority": "Priorité",
                     "agent": "Agent Assigné",
                     "tags": "Tags",
-                    "tagsPlaceholder": "Ex: paiement, bug"
+                    "tagsPlaceholder": "e.g. paiement, bug"
                 },
                 "context": {
                     "title": "Contexte",
@@ -1178,6 +1179,20 @@
         "toast": {
             "title": "Quiz soumis !",
             "description": "Votre score sera calculé et votre badge sera bientôt attribué."
+        }
+    },
+    "CertificatePage": {
+        "title": "Certificat : {badgeName}",
+        "card": {
+            "title": "Certificat de Réussite",
+            "issuedTo": "Délivré à : {name}",
+            "forCompleting": "Pour avoir terminé avec succès le cours :",
+            "date": "Date d'obtention",
+            "id": "ID du Certificat"
+        },
+        "actions": {
+            "download": "Télécharger en PDF",
+            "verify": "Vérifier la validité"
         }
     }
 }
