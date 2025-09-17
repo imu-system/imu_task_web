@@ -16,6 +16,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
+import { Checkbox } from '@/components/ui/checkbox';
 
 const timeSlots = ["08:00 - 12:00", "12:00 - 18:00", "18:00 - 22:00"];
 
@@ -31,6 +32,15 @@ export default function AvailabilityPage() {
     const { user, loading } = useAuth();
     const isProvider = user?.roles.includes(UserRole.provider);
     const days = [t('days.mon'), t('days.tue'), t('days.wed'), t('days.thu'), t('days.fri'), t('days.sat'), t('days.sun')];
+    const recurringDays = [
+      { id: 'mon', label: t('days.mon') },
+      { id: 'tue', label: t('days.tue') },
+      { id: 'wed', label: t('days.wed') },
+      { id: 'thu', label: t('days.thu') },
+      { id: 'fri', label: t('days.fri') },
+      { id: 'sat', label: t('days.sat') },
+      { id: 'sun', label: t('days.sun') },
+    ];
 
     if (loading || !user) {
       return <div className="flex justify-center items-center h-64"><Loader2 className="animate-spin h-12 w-12"/></div>
@@ -94,7 +104,41 @@ export default function AvailabilityPage() {
                     <CardTitle>{t('actions.title')}</CardTitle>
                 </CardHeader>
                  <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <Button variant="outline"><Repeat className="mr-2"/>{t('actions.recurring')}</Button>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button variant="outline"><Repeat className="mr-2"/>{t('actions.recurring')}</Button>
+                      </DialogTrigger>
+                      <DialogContent className="sm:max-w-2xl">
+                          <DialogHeader>
+                              <DialogTitle>{t('recurringModal.title')}</DialogTitle>
+                              <DialogDescription>{t('recurringModal.description')}</DialogDescription>
+                          </DialogHeader>
+                          <div className="space-y-4 py-4">
+                            {recurringDays.map(day => (
+                              <div key={day.id} className="flex flex-col sm:flex-row items-center gap-4 p-3 border rounded-lg">
+                                  <div className="flex items-center gap-3 w-full sm:w-40">
+                                    <Checkbox id={`check-${day.id}`} defaultChecked/>
+                                    <Label htmlFor={`check-${day.id}`} className="font-semibold">{day.label}</Label>
+                                  </div>
+                                  <div className="flex-1 grid grid-cols-2 gap-2 w-full">
+                                    <Input type="time" defaultValue="08:00"/>
+                                    <Input type="time" defaultValue="12:00"/>
+                                  </div>
+                              </div>
+                            ))}
+                             <div className="flex items-center space-x-2 pt-4">
+                                <Checkbox id="auto-accept" />
+                                <Label htmlFor="auto-accept">{t('recurringModal.autoAccept')}</Label>
+                            </div>
+                          </div>
+                          <DialogFooter>
+                              <DialogTrigger asChild>
+                                  <Button variant="ghost">{t('recurringModal.cancel')}</Button>
+                              </DialogTrigger>
+                              <Button>{t('recurringModal.save')}</Button>
+                          </DialogFooter>
+                      </DialogContent>
+                    </Dialog>
                      <Dialog>
                         <DialogTrigger asChild>
                             <Button variant="outline"><CalendarPlus className="mr-2"/>{t('actions.exception')}</Button>

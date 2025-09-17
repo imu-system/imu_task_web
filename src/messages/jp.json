@@ -352,6 +352,46 @@
         "submitButton": "検証のために送信"
     },
     "AvailabilityPage": {
+        "title": "私の利用可能時間",
+        "subtitle": "スケジュールを管理して、関連するミッションオファーを受け取ります。",
+        "notProvider": {
+            "title": "このセクションはプロバイダー向けです。",
+            "description": "サービスを提供するには、プロバイダープロファイルを完成させてください。",
+            "button": "プロフィールに移動"
+        },
+        "weekGrid": {
+            "title": "私の週",
+            "time": "時間"
+        },
+        "days": {
+            "mon": "月",
+            "tue": "火",
+            "wed": "水",
+            "thu": "木",
+            "fri": "金",
+            "sat": "土",
+            "sun": "日"
+        },
+        "actions": {
+            "title": "クイックアクション",
+            "recurring": "定期的なスロットを設定",
+            "exception": "例外を追加",
+            "sync": "Google/Appleカレンダーを同期"
+        },
+        "suggestions": {
+            "title": "AIの提案",
+            "description": "あなたの地域のミッション履歴に基づいています。",
+            "suggestion1": {
+                "title": "火曜日 18-20時：高い需要",
+                "description": "買い物タスクの高い需要。"
+            },
+            "suggestion2": {
+                "title": "土曜日の朝：推奨される利用可能性",
+                "description": "週末には多くのガーデニングミッションが投稿されます。"
+            },
+            "accept": "受け入れる",
+            "ignore": "無視"
+        },
         "exceptionModal": {
             "title": "例外を追加",
             "description": "特定のスロットをブロックするか、例外的に利用可能にします。",
@@ -367,6 +407,13 @@
             "commentPlaceholder": "例：医者の予約",
             "cancel": "キャンセル",
             "save": "例外を保存"
+        },
+        "recurringModal": {
+            "title": "定期的な利用可能性",
+            "description": "標準の週次スケジュールを定義します。",
+            "autoAccept": "これらのスロットでミッションを自動的に受け入れる",
+            "cancel": "キャンセル",
+            "save": "保存"
         }
     }
 }
@@ -376,3 +423,4 @@
 
 
     
+
