@@ -3,7 +3,7 @@
 
 import { useAuth } from '@/hooks/use-auth';
 import { useTranslations } from 'next-intl';
-import { Loader2, Bell, CheckCheck } from 'lucide-react';
+import { Loader2, Bell, CheckCheck, Settings } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -64,6 +64,12 @@ export default function UserNotificationsPage() {
                     <Button variant="outline" onClick={markAllAsRead}>
                         <CheckCheck className="mr-2 h-4 w-4"/>
                         {t('markAllAsRead')}
+                    </Button>
+                     <Button variant="outline" asChild>
+                        <Link href="/dashboard/notifications/preferences">
+                            <Settings className="mr-2 h-4 w-4"/>
+                            {t('preferences')}
+                        </Link>
                     </Button>
                 </div>
             </div>

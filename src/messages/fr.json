@@ -864,8 +864,37 @@
             "message": "Nouveau message de '{user}'",
             "payment": "Vous avez reçu un paiement de {amount}",
             "review": "Vous avez reçu un nouvel avis de '{user}'"
+        },
+        "preferences": "Préférences"
+    },
+    "NotificationPreferencesPage": {
+        "title": "Préférences de notifications",
+        "subtitle": "Choisissez comment et quand vous souhaitez être notifié.",
+        "channels": {
+            "title": "Canaux",
+            "description": "Comment souhaitez-vous recevoir les notifications ?",
+            "inApp": "Dans l'application",
+            "email": "E-mail",
+            "push": "Push (Mobile)"
+        },
+        "types": {
+            "title": "Types de notifications",
+            "description": "Choisissez les types de notifications que vous souhaitez recevoir.",
+            "newMessage": "Nouveaux messages",
+            "bookingUpdate": "Réservations (confirmations / annulations)",
+            "paymentUpdate": "Paiements & Virements",
+            "newOffer": "Nouvelles offres sur vos missions",
+            "promotional": "Offres promotionnelles"
+        },
+        "dnd": {
+            "title": "Ne pas déranger",
+            "description": "Mettez les notifications en pause temporairement.",
+            "enable": "Activer entre"
+        },
+        "saveButton": "Sauvegarder les préférences",
+        "toast": {
+            "saveSuccessTitle": "Préférences enregistrées",
+            "saveSuccessDescription": "Vos préférences de notification ont été mises à jour."
         }
     }
 }
-
-    

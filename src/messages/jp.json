@@ -461,8 +461,37 @@
             "message": "'{user}'からの新しいメッセージ",
             "payment": "{amount}の支払いを受け取りました",
             "review": "'{user}'から新しいレビューを受け取りました"
+        },
+        "preferences": "設定"
+    },
+    "NotificationPreferencesPage": {
+        "title": "通知設定",
+        "subtitle": "通知を受け取る方法とタイミングを選択します。",
+        "channels": {
+            "title": "チャンネル",
+            "description": "通知を受け取る方法を選択してください。",
+            "inApp": "アプリ内",
+            "email": "メール",
+            "push": "プッシュ（モバイル）"
+        },
+        "types": {
+            "title": "通知の種類",
+            "description": "受け取る通知の種類を選択してください。",
+            "newMessage": "新しいメッセージ",
+            "bookingUpdate": "予約（確認/キャンセル）",
+            "paymentUpdate": "支払いと出金",
+            "newOffer": "タスクへの新しいオファー",
+            "promotional": "プロモーションオファー"
+        },
+        "dnd": {
+            "title": "おやすみモード",
+            "description": "一時的に通知を一時停止します。",
+            "enable": "有効にする"
+        },
+        "saveButton": "設定を保存",
+        "toast": {
+            "saveSuccessTitle": "設定が保存されました",
+            "saveSuccessDescription": "通知設定が更新されました。"
         }
     }
 }
-
-    

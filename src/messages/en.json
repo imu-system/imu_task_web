@@ -864,8 +864,37 @@
             "message": "New message from '{user}'",
             "payment": "You received a payment of {amount}",
             "review": "You received a new review from '{user}'"
+        },
+        "preferences": "Preferences"
+    },
+    "NotificationPreferencesPage": {
+        "title": "Notification Preferences",
+        "subtitle": "Choose how and when you want to be notified.",
+        "channels": {
+            "title": "Channels",
+            "description": "How do you want to receive notifications?",
+            "inApp": "In-App",
+            "email": "Email",
+            "push": "Push (Mobile)"
+        },
+        "types": {
+            "title": "Notification Types",
+            "description": "Choose which types of notifications you want to receive.",
+            "newMessage": "New messages",
+            "bookingUpdate": "Bookings (confirmations / cancellations)",
+            "paymentUpdate": "Payments & Payouts",
+            "newOffer": "New offers on your tasks",
+            "promotional": "Promotional offers"
+        },
+        "dnd": {
+            "title": "Do Not Disturb",
+            "description": "Temporarily pause notifications.",
+            "enable": "Enable between"
+        },
+        "saveButton": "Save Preferences",
+        "toast": {
+            "saveSuccessTitle": "Preferences Saved",
+            "saveSuccessDescription": "Your notification preferences have been updated."
         }
     }
 }
-
-    
