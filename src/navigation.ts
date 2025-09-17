@@ -30,6 +30,7 @@ export const pathnames = {
   '/dashboard/reviews': '/dashboard/reviews',
   '/dashboard/notifications': '/dashboard/notifications',
   '/dashboard/notifications/preferences': '/dashboard/notifications/preferences',
+  '/dashboard/stats': '/dashboard/stats',
   '/dashboard/admin/support/tickets': '/dashboard/admin/support/tickets',
   '/dashboard/admin/support/tickets/[id]': '/dashboard/admin/support/tickets/[id]',
   '/legal/terms': '/legal/terms',

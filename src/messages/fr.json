@@ -1,5 +1,4 @@
 
-
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -74,6 +73,7 @@
         "reviews": "Avis",
         "provider": "Espace Prestataire",
         "availability": "Disponibilités",
+        "stats": "Statistiques",
         "academy": "Académie",
         "users": "Utilisateurs",
         "tasks": "Missions",
@@ -1214,6 +1214,35 @@
         "actions": {
             "download": "Télécharger en PDF",
             "verify": "Vérifier la validité"
+        }
+    },
+    "StatsPage": {
+        "title": "Mes Statistiques",
+        "notProvider": {
+            "title": "Section réservée aux prestataires",
+            "description": "Cette page est uniquement accessible aux utilisateurs ayant un profil de prestataire."
+        },
+        "filters": {
+            "last7days": "7 derniers jours",
+            "last30days": "30 derniers jours",
+            "last90days": "90 derniers jours"
+        },
+        "exportCsv": "Exporter en CSV",
+        "kpi": {
+            "totalEarnings": "Gains totaux",
+            "hoursWorked": "Heures travaillées",
+            "acceptanceRate": "Taux d'acceptation",
+            "averageRating": "Note moyenne"
+        },
+        "charts": {
+            "earnings": {
+                "title": "Évolution des gains",
+                "legend": "Gains"
+            },
+            "time": {
+                "title": "Répartition par catégorie",
+                "legend": "Heures"
+            }
         }
     }
 }

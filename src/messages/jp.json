@@ -68,6 +68,7 @@
         "profile": "プロフィール",
         "logout": "ログアウト",
         "admin": "管理",
+        "stats": "統計",
         "academy": "アカデミー",
         "adminNav": {
             "community": "コミュニティ",
@@ -811,6 +812,35 @@
         "actions": {
             "download": "PDFをダウンロード",
             "verify": "有効性を確認"
+        }
+    },
+    "StatsPage": {
+        "title": "私の統計",
+        "notProvider": {
+            "title": "プロバイダー専用セクション",
+            "description": "このページはプロバイダープロファイルを持つユーザーのみがアクセスできます。"
+        },
+        "filters": {
+            "last7days": "過去7日間",
+            "last30days": "過去30日間",
+            "last90days": "過去90日間"
+        },
+        "exportCsv": "CSVをエクスポート",
+        "kpi": {
+            "totalEarnings": "総収益",
+            "hoursWorked": "労働時間",
+            "acceptanceRate": "受諾率",
+            "averageRating": "平均評価"
+        },
+        "charts": {
+            "earnings": {
+                "title": "収益の推移",
+                "legend": "収益"
+            },
+            "time": {
+                "title": "カテゴリ別分布",
+                "legend": "時間"
+            }
         }
     }
 }

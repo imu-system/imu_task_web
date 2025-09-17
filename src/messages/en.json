@@ -74,6 +74,7 @@
         "reviews": "Reviews",
         "provider": "Provider Space",
         "availability": "Availability",
+        "stats": "Statistics",
         "academy": "Academy",
         "users": "Users",
         "tasks": "Tasks",
@@ -1214,6 +1215,35 @@
         "actions": {
             "download": "Download PDF",
             "verify": "Verify Validity"
+        }
+    },
+    "StatsPage": {
+        "title": "My Statistics",
+        "notProvider": {
+            "title": "Section reserved for providers",
+            "description": "This page is only accessible to users with a provider profile."
+        },
+        "filters": {
+            "last7days": "Last 7 days",
+            "last30days": "Last 30 days",
+            "last90days": "Last 90 days"
+        },
+        "exportCsv": "Export CSV",
+        "kpi": {
+            "totalEarnings": "Total Earnings",
+            "hoursWorked": "Hours Worked",
+            "acceptanceRate": "Acceptance Rate",
+            "averageRating": "Average Rating"
+        },
+        "charts": {
+            "earnings": {
+                "title": "Earnings Evolution",
+                "legend": "Earnings"
+            },
+            "time": {
+                "title": "Distribution by Category",
+                "legend": "Hours"
+            }
         }
     }
 }
