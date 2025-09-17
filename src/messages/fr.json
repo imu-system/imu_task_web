@@ -938,5 +938,67 @@
                 "resendSuccessDescription": "La notification a été mise en file d'attente pour être renvoyée."
             }
         }
+    },
+    "AdminSupportPage": {
+        "tickets": {
+            "title": "Tickets de Support",
+            "description": "Gérer toutes les demandes de support des utilisateurs.",
+            "actions": {
+                "create": "Nouveau Ticket",
+                "view": "Voir"
+            },
+            "filters": {
+                "searchPlaceholder": "Rechercher par sujet, utilisateur...",
+                "status": "Statut",
+                "allStatuses": "Tous les statuts",
+                "priority": "Priorité",
+                "allPriorities": "Toutes les priorités"
+            },
+            "table": {
+                "id": "ID",
+                "subject": "Sujet",
+                "user": "Utilisateur",
+                "status": "Statut",
+                "priority": "Priorité",
+                "agent": "Agent",
+                "actions": "Actions"
+            }
+        },
+        "ticketDetail": {
+            "notFound": "Ticket non trouvé.",
+            "backToList": "Retour à la liste des tickets",
+            "title": "Détail du Ticket",
+            "cards": {
+                "conversation": {
+                    "title": "Conversation"
+                },
+                "response": {
+                    "title": "Répondre",
+                    "description": "Utilisez une réponse pré-enregistrée ou écrivez un message.",
+                    "cannedPlaceholder": "Insérer une réponse pré-enregistrée",
+                    "canned": {
+                        "greeting": "Salutation",
+                        "kycRejection": "Rejet KYC",
+                        "refundOk": "Remboursement effectué"
+                    },
+                    "textAreaPlaceholder": "Votre réponse...",
+                    "attachFile": "Joindre un fichier",
+                    "send": "Envoyer"
+                },
+                "details": {
+                    "title": "Détails du Ticket",
+                    "status": "Statut",
+                    "priority": "Priorité",
+                    "agent": "Agent assigné",
+                    "tags": "Tags",
+                    "tagsPlaceholder": "ex: paiement, bug"
+                },
+                "context": {
+                    "title": "Contexte",
+                    "viewUser": "Voir le profil utilisateur",
+                    "viewBooking": "Voir la réservation"
+                }
+            }
+        }
     }
 }

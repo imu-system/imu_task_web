@@ -938,5 +938,67 @@
                 "resendSuccessDescription": "The notification has been queued for sending again."
             }
         }
+    },
+    "AdminSupportPage": {
+        "tickets": {
+            "title": "Support Tickets",
+            "description": "Manage all user support requests.",
+            "actions": {
+                "create": "New Ticket",
+                "view": "View"
+            },
+            "filters": {
+                "searchPlaceholder": "Search by subject, user...",
+                "status": "Status",
+                "allStatuses": "All Statuses",
+                "priority": "Priority",
+                "allPriorities": "All Priorities"
+            },
+            "table": {
+                "id": "ID",
+                "subject": "Subject",
+                "user": "User",
+                "status": "Status",
+                "priority": "Priority",
+                "agent": "Agent",
+                "actions": "Actions"
+            }
+        },
+        "ticketDetail": {
+            "notFound": "Ticket not found.",
+            "backToList": "Back to tickets list",
+            "title": "Ticket Detail",
+            "cards": {
+                "conversation": {
+                    "title": "Conversation"
+                },
+                "response": {
+                    "title": "Reply",
+                    "description": "Use a canned response or write a message.",
+                    "cannedPlaceholder": "Insert a canned response",
+                    "canned": {
+                        "greeting": "Greeting",
+                        "kycRejection": "KYC Rejection",
+                        "refundOk": "Refund Processed"
+                    },
+                    "textAreaPlaceholder": "Your response...",
+                    "attachFile": "Attach File",
+                    "send": "Send"
+                },
+                "details": {
+                    "title": "Ticket Details",
+                    "status": "Status",
+                    "priority": "Priority",
+                    "agent": "Assigned Agent",
+                    "tags": "Tags",
+                    "tagsPlaceholder": "e.g. payment, bug"
+                },
+                "context": {
+                    "title": "Context",
+                    "viewUser": "View user profile",
+                    "viewBooking": "View booking"
+                }
+            }
+        }
     }
 }

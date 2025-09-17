@@ -535,5 +535,67 @@
                 "resendSuccessDescription": "通知は再送のためにキューに追加されました。"
             }
         }
+    },
+    "AdminSupportPage": {
+        "tickets": {
+            "title": "サポートチケット",
+            "description": "すべてのユーザーサポートリクエストを管理します。",
+            "actions": {
+                "create": "新しいチケット",
+                "view": "表示"
+            },
+            "filters": {
+                "searchPlaceholder": "件名、ユーザーで検索...",
+                "status": "ステータス",
+                "allStatuses": "すべてのステータス",
+                "priority": "優先度",
+                "allPriorities": "すべての優先度"
+            },
+            "table": {
+                "id": "ID",
+                "subject": "件名",
+                "user": "ユーザー",
+                "status": "ステータス",
+                "priority": "優先度",
+                "agent": "担当者",
+                "actions": "アクション"
+            }
+        },
+        "ticketDetail": {
+            "notFound": "チケットが見つかりません。",
+            "backToList": "チケットリストに戻る",
+            "title": "チケット詳細",
+            "cards": {
+                "conversation": {
+                    "title": "会話"
+                },
+                "response": {
+                    "title": "返信",
+                    "description": "定型返信を使用するか、メッセージを作成します。",
+                    "cannedPlaceholder": "定型返信を挿入",
+                    "canned": {
+                        "greeting": "挨拶",
+                        "kycRejection": "KYC拒否",
+                        "refundOk": "返金処理済み"
+                    },
+                    "textAreaPlaceholder": "あなたの返信...",
+                    "attachFile": "ファイルを添付",
+                    "send": "送信"
+                },
+                "details": {
+                    "title": "チケット詳細",
+                    "status": "ステータス",
+                    "priority": "優先度",
+                    "agent": "担当エージェント",
+                    "tags": "タグ",
+                    "tagsPlaceholder": "例: payment, bug"
+                },
+                "context": {
+                    "title": "コンテキスト",
+                    "viewUser": "ユーザープロフィールを表示",
+                    "viewBooking": "予約を表示"
+                }
+            }
+        }
     }
 }
