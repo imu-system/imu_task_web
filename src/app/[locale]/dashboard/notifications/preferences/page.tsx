@@ -8,11 +8,22 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Input } from '@/components/ui/input';
-import { ArrowLeft, BellRing, Loader2 } from 'lucide-react';
+import { ArrowLeft, BellRing, Loader2, Smartphone, PlusCircle } from 'lucide-react';
 import { Link } from '@/navigation';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { Separator } from '@/components/ui/separator';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 const notificationChannels = [
     { id: 'in_app', labelKey: 'channels.inApp' },
@@ -27,6 +38,12 @@ const notificationTypes = [
     { id: 'new_offer', labelKey: 'types.newOffer' },
     { id: 'promotional', labelKey: 'types.promotional' },
 ];
+
+const mockDevices = [
+    { id: 'd1', name: 'iPhone 14', lastSync: '12/09 10:15' },
+    { id: 'd2', name: 'MacBook Pro', lastSync: '11/09 19:45' },
+];
+
 
 export default function NotificationPreferencesPage() {
     const t = useTranslations('NotificationPreferencesPage');
@@ -89,6 +106,46 @@ export default function NotificationPreferencesPage() {
                             <Label htmlFor={`type-${type.id}`}>{t(type.labelKey as any)}</Label>
                         </div>
                     ))}
+                </CardContent>
+            </Card>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle>{t('devices.title')}</CardTitle>
+                    <CardDescription>{t('devices.description')}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    {mockDevices.map((device) => (
+                         <div key={device.id} className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <Smartphone className="h-5 w-5 text-muted-foreground"/>
+                                <div>
+                                    <p className="font-semibold">{device.name}</p>
+                                    <p className="text-xs text-muted-foreground">{t('devices.lastSync')}: {device.lastSync}</p>
+                                </div>
+                            </div>
+                            <AlertDialog>
+                                <AlertDialogTrigger asChild>
+                                    <Button variant="ghost" className="text-destructive">{t('devices.remove')}</Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle>{t('devices.dialog.title')}</AlertDialogTitle>
+                                        <AlertDialogDescription>{t('devices.dialog.description', { deviceName: device.name })}</AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel>{t('devices.dialog.cancel')}</AlertDialogCancel>
+                                        <AlertDialogAction>{t('devices.dialog.confirm')}</AlertDialogAction>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
+                        </div>
+                    ))}
+                    <Separator/>
+                    <Button variant="outline" className="w-full" disabled>
+                        <PlusCircle className="mr-2"/>
+                        {t('devices.add')}
+                    </Button>
                 </CardContent>
             </Card>
 

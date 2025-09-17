@@ -891,6 +891,19 @@
             "description": "Mettez les notifications en pause temporairement.",
             "enable": "Activer entre"
         },
+        "devices": {
+            "title": "Appareils liés",
+            "description": "Gérez les appareils qui reçoivent les notifications push.",
+            "lastSync": "Dernière synchro",
+            "remove": "Supprimer",
+            "add": "Ajouter un nouvel appareil",
+            "dialog": {
+                "title": "Supprimer l'appareil ?",
+                "description": "Êtes-vous sûr de vouloir supprimer '{deviceName}' ? Vous ne recevrez plus de notifications push sur cet appareil.",
+                "cancel": "Annuler",
+                "confirm": "Confirmer"
+            }
+        },
         "saveButton": "Sauvegarder les préférences",
         "toast": {
             "saveSuccessTitle": "Préférences enregistrées",

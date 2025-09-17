@@ -891,6 +891,19 @@
             "description": "Temporarily pause notifications.",
             "enable": "Enable between"
         },
+        "devices": {
+            "title": "Linked Devices",
+            "description": "Manage the devices that receive push notifications.",
+            "lastSync": "Last sync",
+            "remove": "Remove",
+            "add": "Add new device",
+            "dialog": {
+                "title": "Remove device?",
+                "description": "Are you sure you want to remove '{deviceName}'? You will no longer receive push notifications on this device.",
+                "cancel": "Cancel",
+                "confirm": "Confirm"
+            }
+        },
         "saveButton": "Save Preferences",
         "toast": {
             "saveSuccessTitle": "Preferences Saved",

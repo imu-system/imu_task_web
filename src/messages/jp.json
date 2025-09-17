@@ -488,6 +488,19 @@
             "description": "一時的に通知を一時停止します。",
             "enable": "有効にする"
         },
+        "devices": {
+            "title": "リンクされたデバイス",
+            "description": "プッシュ通知を受信するデバイスを管理します。",
+            "lastSync": "最終同期",
+            "remove": "削除",
+            "add": "新しいデバイスを追加",
+            "dialog": {
+                "title": "デバイスを削除しますか？",
+                "description": "'{deviceName}'を削除してもよろしいですか？このデバイスではプッシュ通知を受信できなくなります。",
+                "cancel": "キャンセル",
+                "confirm": "確認"
+            }
+        },
         "saveButton": "設定を保存",
         "toast": {
             "saveSuccessTitle": "設定が保存されました",
