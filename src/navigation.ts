@@ -26,6 +26,7 @@ export const pathnames = {
   '/dashboard/profile/badges': '/dashboard/profile/badges',
   '/dashboard/profile/kyc': '/dashboard/profile/kyc',
   '/dashboard/availability': '/dashboard/availability',
+  '/dashboard/reviews': '/dashboard/reviews',
   '/legal/terms': '/legal/terms',
 
   // If locales use different paths, you can

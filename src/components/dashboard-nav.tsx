@@ -70,6 +70,7 @@ export function DashboardNav() {
     { href: '/dashboard/offers', icon: <Briefcase />, label: t('findTask') },
     { href: '/dashboard/tasks', icon: <BookMarked />, label: t('myTasks') },
     { href: '/dashboard/bookings', icon: <CalendarCheck />, label: t('myBookings') },
+    { href: '/dashboard/reviews', icon: <Star />, label: t('reviews') },
     { href: '/dashboard/messages', icon: <MessageSquare />, label: t('messages') },
     { href: '/dashboard/wallet', icon: <Wallet />, label: t('wallet') },
   ];

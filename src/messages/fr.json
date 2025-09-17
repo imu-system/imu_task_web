@@ -64,13 +64,13 @@
         "findProvider": "Trouver un prestataire",
         "findTask": "Trouver une mission",
         "myBookings": "Mes Réservations",
+        "reviews": "Avis",
         "provider": "Espace Prestataire",
         "availability": "Disponibilités",
         "users": "Utilisateurs",
         "tasks": "Missions",
         "offers": "Offres",
         "bookings": "Réservations",
-        "reviews": "Avis",
         "moderation": "Modération",
         "kycVerification": "Vérification KYC",
         "disputes": "Litiges",
@@ -817,6 +817,19 @@
                 "connected": "✅ Google connecté (Maj auto 1h)",
                 "lastSync": "Dernière sync"
             }
+        }
+    },
+    "ReviewsPage": {
+        "title": "Avis & Historique",
+        "subtitle": "Voyez ce que les autres disent de vous et les commentaires que vous avez laissés.",
+        "distribution": {
+            "title": "Répartition des notes",
+            "basedOn": "Basé sur {count} avis",
+            "reviews": "avis"
+        },
+        "tabs": {
+            "received": "Avis Reçus",
+            "given": "Avis Donnés"
         }
     }
 }

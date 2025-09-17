@@ -64,13 +64,13 @@
         "findProvider": "Find a provider",
         "findTask": "Find a task",
         "myBookings": "My Bookings",
+        "reviews": "Reviews",
         "provider": "Provider Space",
         "availability": "Availability",
         "users": "Users",
         "tasks": "Tasks",
         "offers": "Offers",
         "bookings": "Bookings",
-        "reviews": "Reviews",
         "moderation": "Moderation",
         "kycVerification": "KYC Verification",
         "disputes": "Disputes",
@@ -817,6 +817,19 @@
                 "connected": "✅ Google connected (Auto-update 1h)",
                 "lastSync": "Last sync"
             }
+        }
+    },
+    "ReviewsPage": {
+        "title": "Reviews & History",
+        "subtitle": "See what others say about you and the feedback you've given.",
+        "distribution": {
+            "title": "Rating Distribution",
+            "basedOn": "Based on {count} reviews",
+            "reviews": "reviews"
+        },
+        "tabs": {
+            "received": "Reviews Received",
+            "given": "Reviews Given"
         }
     }
 }
