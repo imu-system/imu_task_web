@@ -70,6 +70,7 @@
         "stats": "統計",
         "academy": "アカデミー",
         "referrals": "紹介",
+        "marketInsights": "市場インサイト",
         "adminNav": {
             "community": "コミュニティ",
             "moderation": "モデレーション",
@@ -996,6 +997,34 @@
                 "successDescription": "あなたの'{rewardName}'報酬が送信されました。"
             },
             "historyLink": "報酬履歴を表示"
+        }
+    },
+    "MarketInsightsLayout": {
+        "title": "市場インサイト",
+        "subtitle": "あなたの活動を最適化するための限定データ。",
+        "congrats": {
+            "title": "おめでとうございます！",
+            "description": "あなたはあなたのカテゴリ（{category}）でトップ10％のプロバイダーです。"
+        },
+        "tabs": {
+            "trends": "トレンド",
+            "pricing": "価格設定",
+            "performance": "パフォーマンス",
+            "zones": "ゾーン"
+        }
+    },
+    "MarketInsightsPage": {
+        "trends": {
+            "title": "市場のトレンド"
+        },
+        "pricing": {
+            "title": "価格分析"
+        },
+        "performance": {
+            "title": "パフォーマンス比較"
+        },
+        "zones": {
+            "title": "活動ゾーン"
         }
     }
 }

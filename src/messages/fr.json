@@ -94,6 +94,7 @@
         "integrations": "Intégrations",
         "settings": "Paramètres",
         "auditLog": "Logs d'audit",
+        "marketInsights": "Infos Marché",
         "adminNav": {
             "community": "Communauté",
             "moderation": "Modération",
@@ -1417,6 +1418,34 @@
                 "successDescription": "Votre récompense '{rewardName}' a été envoyée."
             },
             "historyLink": "Voir l'historique de vos récompenses"
+        }
+    },
+    "MarketInsightsLayout": {
+        "title": "Market Insights",
+        "subtitle": "Données exclusives pour optimiser votre activité.",
+        "congrats": {
+            "title": "Félicitations !",
+            "description": "Vous faites partie du top 10% des prestataires de votre catégorie ({category})."
+        },
+        "tabs": {
+            "trends": "Tendances",
+            "pricing": "Prix",
+            "performance": "Performances",
+            "zones": "Zones"
+        }
+    },
+    "MarketInsightsPage": {
+        "trends": {
+            "title": "Tendances du Marché"
+        },
+        "pricing": {
+            "title": "Analyse des Prix"
+        },
+        "performance": {
+            "title": "Comparaison des Performances"
+        },
+        "zones": {
+            "title": "Zones d'Activité"
         }
     }
 }

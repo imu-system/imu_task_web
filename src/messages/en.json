@@ -94,6 +94,7 @@
         "integrations": "Integrations",
         "settings": "Settings",
         "auditLog": "Audit Log",
+        "marketInsights": "Market Insights",
         "adminNav": {
             "community": "Community",
             "moderation": "Moderation",
@@ -1417,6 +1418,34 @@
                 "successDescription": "Your '{rewardName}' reward has been sent."
             },
             "historyLink": "View your rewards history"
+        }
+    },
+    "MarketInsightsLayout": {
+        "title": "Market Insights",
+        "subtitle": "Exclusive data to optimize your activity.",
+        "congrats": {
+            "title": "Congratulations!",
+            "description": "You are in the top 10% of providers in your category ({category})."
+        },
+        "tabs": {
+            "trends": "Trends",
+            "pricing": "Pricing",
+            "performance": "Performance",
+            "zones": "Zones"
+        }
+    },
+    "MarketInsightsPage": {
+        "trends": {
+            "title": "Market Trends"
+        },
+        "pricing": {
+            "title": "Pricing Analysis"
+        },
+        "performance": {
+            "title": "Performance Comparison"
+        },
+        "zones": {
+            "title": "Activity Zones"
         }
     }
 }

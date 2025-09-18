@@ -84,6 +84,7 @@ export function DashboardNav() {
   const providerNavItems = [
     { href: '/dashboard/availability', icon: <CalendarIcon />, label: t('availability') },
     { href: '/dashboard/stats', icon: <LineChart />, label: t('stats') },
+    { href: '/dashboard/market', icon: <LineChart />, label: t('marketInsights') },
   ];
 
   const isAdmin = user?.roles?.includes(UserRole.admin);
