@@ -1268,13 +1268,17 @@
                 "button": "Lire & Accepter"
             },
             "cgu": {
-                "title": "Conditions Générales d'Utilisation",
-                "contentPlaceholder": "[Le contenu des conditions générales d'utilisation sera affiché ici...]"
+                "title": "Conditions Générales d'Utilisation (version {version})"
             },
             "privacy": {
-                "title": "Politique de Confidentialité",
-                "contentPlaceholder": "[Le contenu de la politique de confidentialité sera affiché ici...]"
-            }
+                "title": "Politique de Confidentialité ({year})"
+            },
+            "audit": {
+                "title": "Historique de consentement",
+                "acceptedOn": "Accepté le {date} (version {version})"
+            },
+            "readOnline": "Lire en ligne",
+            "downloadPdf": "Télécharger en PDF"
         }
     }
 }

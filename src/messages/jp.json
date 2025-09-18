@@ -868,5 +868,32 @@
                 }
             }
         }
+    },
+    "LegalLayout": {
+        "title": "法的および文書",
+        "tabs": {
+            "policies": "規約とポリシー"
+        }
+    },
+    "LegalPage": {
+        "terms": {
+            "update": {
+                "title": "更新が利用可能です：利用規約（2025年9月1日）",
+                "description": "利用規約が更新されました。ImuTaskを引き続き使用するには、確認して同意してください。",
+                "button": "読んで同意する"
+            },
+            "cgu": {
+                "title": "利用規約（バージョン{version}）"
+            },
+            "privacy": {
+                "title": "プライバシーポリシー（{year}年）"
+            },
+            "audit": {
+                "title": "同意履歴",
+                "acceptedOn": "{date}に同意済み（バージョン{version}）"
+            },
+            "readOnline": "オンラインで読む",
+            "downloadPdf": "PDFをダウンロード"
+        }
     }
 }

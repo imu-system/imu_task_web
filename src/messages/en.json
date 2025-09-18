@@ -1268,13 +1268,17 @@
                 "button": "Read & Accept"
             },
             "cgu": {
-                "title": "Terms of Service",
-                "contentPlaceholder": "[Content of the terms of service will be displayed here...]"
+                "title": "Terms of Service (version {version})"
             },
             "privacy": {
-                "title": "Privacy Policy",
-                "contentPlaceholder": "[Content of the privacy policy will be displayed here...]"
-            }
+                "title": "Privacy Policy ({year})"
+            },
+            "audit": {
+                "title": "Consent History",
+                "acceptedOn": "Accepted on {date} (version {version})"
+            },
+            "readOnline": "Read Online",
+            "downloadPdf": "Download PDF"
         }
     }
 }
