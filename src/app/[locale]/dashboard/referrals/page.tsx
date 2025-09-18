@@ -165,8 +165,12 @@ export default function ReferralsPage() {
             </Card>
 
             <div className="flex justify-center gap-4">
-                <Button variant="outline">{t('actions.history')}</Button>
-                <Button>{t('actions.rewards')}</Button>
+                <Button variant="outline" asChild>
+                    <Link href="/dashboard/referrals/history">{t('actions.history')}</Link>
+                </Button>
+                <Button asChild>
+                    <Link href="/dashboard/referrals/rewards">{t('actions.rewards')}</Link>
+                </Button>
             </div>
         </div>
     );

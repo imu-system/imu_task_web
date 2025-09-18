@@ -945,6 +945,37 @@
                 "active": "アクティブ",
                 "pending": "保留中"
             }
+        },
+        "rewards": {
+            "title": "報酬カタログ",
+            "balance": {
+                "title": "利用可能な残高"
+            },
+            "options": {
+                "title": "報酬オプション",
+                "exchange": "交換",
+                "request": "リクエスト"
+            },
+            "rewards": {
+                "uber": "Uber Eatsクーポン",
+                "imutask": "ImuTask割引",
+                "amazon": "Amazonギフトカード",
+                "payout": "銀行振込",
+                "payoutMin": "最低50€"
+            },
+            "toast": {
+                "successTitle": "報酬獲得！",
+                "successDescription": "報酬「{rewardName}」がまもなく届きます。"
+            },
+            "historyLink": "報酬履歴を表示"
+        },
+        "rewardsHistory": {
+            "title": "報酬履歴",
+            "table": {
+                "date": "日付",
+                "description": "説明",
+                "amount": "金額"
+            }
         }
     }
 }

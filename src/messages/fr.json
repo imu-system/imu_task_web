@@ -1348,6 +1348,37 @@
                 "active": "Actif",
                 "pending": "En attente"
             }
+        },
+        "rewards": {
+            "title": "Catalogue des récompenses",
+            "balance": {
+                "title": "Solde disponible"
+            },
+            "options": {
+                "title": "Options de récompense",
+                "exchange": "Échanger",
+                "request": "Demander"
+            },
+            "rewards": {
+                "uber": "Coupon Uber Eats",
+                "imutask": "Réduction ImuTask",
+                "amazon": "Carte cadeau Amazon",
+                "payout": "Virement bancaire",
+                "payoutMin": "Min 50€"
+            },
+            "toast": {
+                "successTitle": "Récompense réclamée !",
+                "successDescription": "Votre récompense '{rewardName}' est en route."
+            },
+            "historyLink": "Voir l'historique des récompenses"
+        },
+        "rewardsHistory": {
+            "title": "Historique des récompenses",
+            "table": {
+                "date": "Date",
+                "description": "Description",
+                "amount": "Montant"
+            }
         }
     }
 }

@@ -1348,6 +1348,37 @@
                 "active": "Active",
                 "pending": "Pending"
             }
+        },
+        "rewards": {
+            "title": "Rewards Catalog",
+            "balance": {
+                "title": "Available Balance"
+            },
+            "options": {
+                "title": "Reward Options",
+                "exchange": "Exchange",
+                "request": "Request"
+            },
+            "rewards": {
+                "uber": "Uber Eats Coupon",
+                "imutask": "ImuTask Reduction",
+                "amazon": "Amazon Gift Card",
+                "payout": "Bank Transfer",
+                "payoutMin": "Min 50€"
+            },
+            "toast": {
+                "successTitle": "Reward Claimed!",
+                "successDescription": "Your reward '{rewardName}' is on its way."
+            },
+            "historyLink": "View reward history"
+        },
+        "rewardsHistory": {
+            "title": "Reward History",
+            "table": {
+                "date": "Date",
+                "description": "Description",
+                "amount": "Amount"
+            }
         }
     }
 }
