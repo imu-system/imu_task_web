@@ -1192,6 +1192,28 @@
                 "saveSuccessTitle": "Informations sauvegardées",
                 "saveSuccessDescription": "Vos informations de compte ont été mises à jour."
             }
+        },
+        "security": {
+            "title": "Paramètres de Sécurité",
+            "description": "Gérez votre mot de passe, l'authentification à deux facteurs et les sessions actives.",
+            "password": {
+                "title": "Mot de passe",
+                "button": "Changer le mot de passe"
+            },
+            "twoFactor": {
+                "title": "Authentification à deux facteurs (2FA)",
+                "statusLabel": "Statut",
+                "status": {
+                    "disabled": "Désactivé"
+                },
+                "enableSms": "Activer par SMS",
+                "enableApp": "Activer avec une app"
+            },
+            "sessions": {
+                "title": "Sessions Actives",
+                "currentSession": "Session actuelle",
+                "disconnect": "Déconnecter"
+            }
         }
     }
 }

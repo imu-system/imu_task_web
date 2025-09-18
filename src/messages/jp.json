@@ -790,6 +790,45 @@
                     "confirm": "はい、アカウントを削除します"
                 }
             }
+        },
+        "account": {
+            "title": "アカウント設定",
+            "description": "個人情報を管理します。",
+            "fullNameLabel": "氏名",
+            "emailLabel": "メールアドレス",
+            "changeButton": "変更",
+            "phoneLabel": "電話番号",
+            "verifyButton": "確認",
+            "saveButton": "変更を保存",
+            "linkedAccountsTitle": "リンクされたアカウント",
+            "connectButton": "接続",
+            "disconnectButton": "切断",
+            "toast": {
+                "saveSuccessTitle": "情報が保存されました",
+                "saveSuccessDescription": "アカウント情報が更新されました。"
+            }
+        },
+        "security": {
+            "title": "セキュリティ設定",
+            "description": "パスワード、二要素認証、アクティブなセッションを管理します。",
+            "password": {
+                "title": "パスワード",
+                "button": "パスワードを変更"
+            },
+            "twoFactor": {
+                "title": "二要素認証（2FA）",
+                "statusLabel": "ステータス",
+                "status": {
+                    "disabled": "無効"
+                },
+                "enableSms": "SMSで有効化",
+                "enableApp": "アプリで有効化"
+            },
+            "sessions": {
+                "title": "アクティブなセッション",
+                "currentSession": "現在のセッション",
+                "disconnect": "切断"
+            }
         }
     }
 }

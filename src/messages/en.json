@@ -1192,6 +1192,28 @@
                 "saveSuccessTitle": "Information Saved",
                 "saveSuccessDescription": "Your account information has been updated."
             }
+        },
+        "security": {
+            "title": "Security Settings",
+            "description": "Manage your password, two-factor authentication, and active sessions.",
+            "password": {
+                "title": "Password",
+                "button": "Change Password"
+            },
+            "twoFactor": {
+                "title": "Two-Factor Authentication (2FA)",
+                "statusLabel": "Status",
+                "status": {
+                    "disabled": "Disabled"
+                },
+                "enableSms": "Enable with SMS",
+                "enableApp": "Enable with App"
+            },
+            "sessions": {
+                "title": "Active Sessions",
+                "currentSession": "Current session",
+                "disconnect": "Disconnect"
+            }
         }
     }
 }
