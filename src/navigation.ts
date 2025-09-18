@@ -57,6 +57,7 @@ export const pathnames = {
   '/dashboard/settings/privacy': '/dashboard/settings/privacy',
   '/legal/invoices': '/legal/invoices',
   '/legal/contracts': '/legal/contracts',
+  '/legal/insurance': '/legal/insurance',
 
   // If locales use different paths, you can
   // specify each external path per locale.

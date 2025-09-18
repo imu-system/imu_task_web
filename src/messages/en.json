@@ -1259,7 +1259,8 @@
         "tabs": {
             "policies": "Terms & Policies",
             "invoices": "Invoices",
-            "contracts": "Contracts"
+            "contracts": "Contracts",
+            "insurance": "Insurance"
         }
     },
     "LegalPage": {
@@ -1303,6 +1304,17 @@
             "read": "Read",
             "download": "Download",
             "addNew": "Add / Sign a new contract"
+        },
+        "insurance": {
+            "title": "Insurance & Coverage",
+            "description": "Details of your Professional Liability insurance coverage.",
+            "providerLabel": "Provider",
+            "policyNumberLabel": "Policy Number",
+            "coverageLabel": "Coverage",
+            "coverageValue": "Up to €1,000,000",
+            "documentsTitle": "Related Documents",
+            "certificateButton": "Insurance Certificate",
+            "conditionsButton": "Coverage Conditions"
         }
     }
 }

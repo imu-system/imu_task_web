@@ -1259,7 +1259,8 @@
         "tabs": {
             "policies": "CGU & Politiques",
             "invoices": "Factures",
-            "contracts": "Contrats"
+            "contracts": "Contrats",
+            "insurance": "Assurance"
         }
     },
     "LegalPage": {
@@ -1303,6 +1304,17 @@
             "read": "Lire",
             "download": "Télécharger",
             "addNew": "Ajouter / Signer un nouveau contrat"
+        },
+        "insurance": {
+            "title": "Assurance & Couverture",
+            "description": "Détails de votre couverture d'assurance Responsabilité Civile Professionnelle.",
+            "providerLabel": "Fournisseur",
+            "policyNumberLabel": "Numéro de police",
+            "coverageLabel": "Couverture",
+            "coverageValue": "Jusqu’à 1 000 000 €",
+            "documentsTitle": "Documents liés",
+            "certificateButton": "Certificat d’assurance",
+            "conditionsButton": "Conditions de couverture"
         }
     }
 }

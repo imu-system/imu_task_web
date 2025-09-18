@@ -18,7 +18,7 @@ export default function LegalLayout({
         { href: '/legal/terms', label: t('tabs.policies') },
         { href: '/legal/invoices', label: t('tabs.invoices') },
         { href: '/legal/contracts', label: t('tabs.contracts') },
-        // { href: '/legal/insurance', label: t('tabs.insurance') },
+        { href: '/legal/insurance', label: t('tabs.insurance') },
     ];
     
     const activeTab = navLinks.find(link => pathname.startsWith(link.href))?.href ?? navLinks[0].href;
