@@ -1392,11 +1392,17 @@
             }
         },
         "rewardsHistory": {
-            "title": "Reward History",
+            "title": "My Rewards History",
             "table": {
+                "title": "Claimed Rewards",
+                "reward": "Reward",
                 "date": "Date",
-                "description": "Description",
-                "amount": "Amount"
+                "status": "Status"
+            },
+            "statuses": {
+                "received": "Received",
+                "pending": "Pending",
+                "used": "Used"
             }
         }
     }

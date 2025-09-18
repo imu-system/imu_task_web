@@ -1392,11 +1392,17 @@
             }
         },
         "rewardsHistory": {
-            "title": "Historique des récompenses",
+            "title": "Historique de mes récompenses",
             "table": {
+                "title": "Récompenses réclamées",
+                "reward": "Récompense",
                 "date": "Date",
-                "description": "Description",
-                "amount": "Montant"
+                "status": "Statut"
+            },
+            "statuses": {
+                "received": "Reçue",
+                "pending": "En attente",
+                "used": "Utilisée"
             }
         }
     }

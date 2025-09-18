@@ -6,17 +6,40 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Link } from '@/navigation';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { ArrowLeft, Gift } from 'lucide-react';
+import { ArrowLeft, Gift, CheckCircle, Clock } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 
 const mockRewardsHistory = [
-    { id: 'r1', date: '15/09/2025', description: 'Coupon Uber Eats', amount: 10 },
-    { id: 'r2', date: '01/09/2025', description: 'Réduction ImuTask', amount: 5 },
-    { id: 'r3', date: '20/08/2025', description: 'Virement bancaire', amount: 50 },
+    { id: 'r1', date: '12/09/2025', reward: 'Carte Amazon (20 €)', status: 'received' },
+    { id: 'r2', date: '05/09/2025', reward: 'Coupon Uber Eats', status: 'pending' },
+    { id: 'r3', date: '01/09/2025', reward: 'Réduction ImuTask', status: 'used' },
 ];
 
 export default function RewardsHistoryPage() {
     const t = useTranslations('ReferralsPage.rewardsHistory');
+
+    const getStatusVariant = (status: string) => {
+        switch (status) {
+            case 'received':
+            case 'used':
+                return 'default';
+            case 'pending':
+                return 'secondary';
+            default:
+                return 'outline';
+        }
+    };
+     const getStatusIcon = (status: string) => {
+        switch (status) {
+            case 'received':
+            case 'used':
+                return <CheckCircle className="h-4 w-4 mr-1" />;
+            case 'pending':
+                return <Clock className="h-4 w-4 mr-1" />;
+            default:
+                return null;
+        }
+    };
 
     return (
         <div className="space-y-8 max-w-2xl mx-auto">
@@ -36,23 +59,30 @@ export default function RewardsHistoryPage() {
 
              <Card>
                 <CardHeader>
-                    <CardTitle>{t('title')}</CardTitle>
+                    <CardTitle>{t('table.title')}</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <Table>
                         <TableHeader>
                             <TableRow>
+                                <TableHead>#</TableHead>
+                                <TableHead>{t('table.reward')}</TableHead>
                                 <TableHead>{t('table.date')}</TableHead>
-                                <TableHead>{t('table.description')}</TableHead>
-                                <TableHead className="text-right">{t('table.amount')}</TableHead>
+                                <TableHead>{t('table.status')}</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {mockRewardsHistory.map(item => (
+                            {mockRewardsHistory.map((item, index) => (
                                 <TableRow key={item.id}>
+                                    <TableCell>{index + 1}</TableCell>
+                                    <TableCell>{item.reward}</TableCell>
                                     <TableCell>{item.date}</TableCell>
-                                    <TableCell>{item.description}</TableCell>
-                                    <TableCell className="text-right font-medium">{item.amount.toFixed(2)} €</TableCell>
+                                    <TableCell>
+                                        <Badge variant={getStatusVariant(item.status)} className="flex items-center w-fit">
+                                            {getStatusIcon(item.status)}
+                                            {t(`statuses.${item.status}`)}
+                                        </Badge>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
@@ -62,4 +92,3 @@ export default function RewardsHistoryPage() {
         </div>
     );
 }
-

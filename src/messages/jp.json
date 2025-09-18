@@ -1001,11 +1001,17 @@
             }
         },
         "rewardsHistory": {
-            "title": "報酬履歴",
+            "title": "私の報酬履歴",
             "table": {
+                "title": "獲得した報酬",
+                "reward": "報酬",
                 "date": "日付",
-                "description": "説明",
-                "amount": "金額"
+                "status": "ステータス"
+            },
+            "statuses": {
+                "received": "受け取り済み",
+                "pending": "保留中",
+                "used": "使用済み"
             }
         }
     }
