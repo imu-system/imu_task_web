@@ -1234,6 +1234,24 @@
                 "changePlan": "Change Plan",
                 "cancel": "Cancel"
             }
+        },
+        "privacy": {
+            "preferences": {
+                "title": "Data Preferences",
+                "stats": "Allow anonymized use of my data for statistics",
+                "newsletter": "Receive newsletters and promotional offers"
+            },
+            "data": {
+                "title": "Personal Data",
+                "export": "Export my data",
+                "delete": "Request account deletion",
+                "dialog": {
+                    "title": "Are you sure?",
+                    "description": "This action is irreversible. Your account and all associated data will be permanently deleted.",
+                    "cancel": "Cancel",
+                    "confirm": "Yes, delete my account"
+                }
+            }
         }
     }
 }

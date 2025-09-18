@@ -1234,6 +1234,24 @@
                 "changePlan": "Changer de plan",
                 "cancel": "Annuler"
             }
+        },
+        "privacy": {
+            "preferences": {
+                "title": "Préférences de données",
+                "stats": "Autoriser l'utilisation anonymisée de mes données pour les statistiques",
+                "newsletter": "Recevoir les newsletters et offres promotionnelles"
+            },
+            "data": {
+                "title": "Données personnelles",
+                "export": "Exporter mes données",
+                "delete": "Demander la suppression du compte",
+                "dialog": {
+                    "title": "Êtes-vous sûr ?",
+                    "description": "Cette action est irréversible. Votre compte et toutes les données associées seront définitivement supprimés.",
+                    "cancel": "Annuler",
+                    "confirm": "Oui, supprimer mon compte"
+                }
+            }
         }
     }
 }
