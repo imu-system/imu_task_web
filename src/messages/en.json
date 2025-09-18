@@ -1214,6 +1214,26 @@
                 "currentSession": "Current session",
                 "disconnect": "Disconnect"
             }
+        },
+        "billing": {
+            "paymentMethods": {
+                "title": "Payment Methods",
+                "endingIn": "ending in",
+                "default": "Default",
+                "addCard": "Add a new card"
+            },
+            "invoices": {
+                "title": "Invoice History",
+                "date": "Date",
+                "amount": "Amount",
+                "download": "Download"
+            },
+            "subscription": {
+                "title": "Subscription",
+                "currentPlan": "Current Plan",
+                "changePlan": "Change Plan",
+                "cancel": "Cancel"
+            }
         }
     }
 }

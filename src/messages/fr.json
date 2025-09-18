@@ -1214,6 +1214,26 @@
                 "currentSession": "Session actuelle",
                 "disconnect": "Déconnecter"
             }
+        },
+        "billing": {
+            "paymentMethods": {
+                "title": "Moyens de paiement",
+                "endingIn": "se terminant par",
+                "default": "Par défaut",
+                "addCard": "Ajouter une nouvelle carte"
+            },
+            "invoices": {
+                "title": "Historique des factures",
+                "date": "Date",
+                "amount": "Montant",
+                "download": "Télécharger"
+            },
+            "subscription": {
+                "title": "Abonnement",
+                "currentPlan": "Plan actuel",
+                "changePlan": "Changer de plan",
+                "cancel": "Annuler"
+            }
         }
     }
 }

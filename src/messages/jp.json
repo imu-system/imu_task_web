@@ -829,6 +829,26 @@
                 "currentSession": "現在のセッション",
                 "disconnect": "切断"
             }
+        },
+        "billing": {
+            "paymentMethods": {
+                "title": "支払い方法",
+                "endingIn": "で終わる",
+                "default": "デフォルト",
+                "addCard": "新しいカードを追加"
+            },
+            "invoices": {
+                "title": "請求履歴",
+                "date": "日付",
+                "amount": "金額",
+                "download": "ダウンロード"
+            },
+            "subscription": {
+                "title": "サブスクリプション",
+                "currentPlan": "現在のプラン",
+                "changePlan": "プランを変更",
+                "cancel": "キャンセル"
+            }
         }
     }
 }
