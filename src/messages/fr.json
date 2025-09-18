@@ -1328,5 +1328,95 @@
             "providers": "Prestataires"
         },
         "quickActionsTitle": "Actions rapides"
+    },
+    "ReferralsPage": {
+        "title": "Parrainage",
+        "subtitle": "Invitez vos amis et soyez récompensés !",
+        "invite": {
+            "title": "Inviter des amis",
+            "emailLabel": "Inviter par email",
+            "emailPlaceholder": "Entrez un ou plusieurs emails...",
+            "addButton": "Ajouter",
+            "shareLabel": "Ou partager directement",
+            "smsButton": "SMS"
+        },
+        "codeCard": {
+            "title": "Votre code de parrainage",
+            "copied": "Copié !",
+            "copy": "Copier le code"
+        },
+        "linkCard": {
+            "title": "Votre lien de parrainage"
+        },
+        "stats": {
+            "title": "Vos statistiques",
+            "referred": "Amis parrainés",
+            "rewards": "Gains totaux",
+            "university": "Votre université"
+        },
+        "universities": {
+            "title": "Challenge Inter-Universités",
+            "promoLink": "Lien promo pour votre promo {year}",
+            "requestButton": "Demander un lien pour mon université"
+        },
+        "history": {
+            "title": "Historique des parrainages",
+            "name": "Nom",
+            "date": "Date",
+            "status": "Statut",
+            "gain": "Gain",
+            "statuses": {
+                "active": "Actif",
+                "pending": "En attente"
+            }
+        },
+        "actions": {
+            "history": "Voir l'historique des récompenses",
+            "rewards": "Voir les récompenses"
+        },
+        "rewardsHistory": {
+            "title": "Historique des récompenses",
+            "table": {
+                "title": "Récompenses réclamées",
+                "reward": "Récompense",
+                "date": "Date",
+                "status": "Statut"
+            },
+            "statuses": {
+                "received": "Reçue",
+                "pending": "En attente",
+                "used": "Utilisée"
+            }
+        },
+        "rewards": {
+            "title": "Catalogue des récompenses",
+            "balance": {
+                "title": "Solde de récompenses"
+            },
+            "options": {
+                "title": "Échangez vos points",
+                "exchange": "Échanger",
+                "request": "Demander"
+            },
+            "rewards": {
+                "uber": "Carte cadeau Uber Eats",
+                "imutask": "Réduction ImuTask",
+                "amazon": "Carte cadeau Amazon",
+                "payout": "Virement bancaire"
+            },
+            "dialog": {
+                "title": "Confirmer l'échange",
+                "reward": "Récompense",
+                "cost": "Coût",
+                "remainingBalance": "Solde restant",
+                "cancel": "Annuler",
+                "confirm": "Confirmer"
+            },
+            "toast": {
+                "successTitle": "Échange réussi !",
+                "successDescription": "Votre récompense '{rewardName}' a été envoyée."
+            },
+            "historyLink": "Voir l'historique de vos récompenses"
+        }
     }
 }

@@ -907,5 +907,95 @@
             "providers": "プロバイダー"
         },
         "quickActionsTitle": "クイックアクション"
+    },
+    "ReferralsPage": {
+        "title": "紹介",
+        "subtitle": "友達を招待して報酬をもらおう！",
+        "invite": {
+            "title": "友達を招待",
+            "emailLabel": "メールで招待",
+            "emailPlaceholder": "1つ以上のメールアドレスを入力...",
+            "addButton": "追加",
+            "shareLabel": "または直接共有",
+            "smsButton": "SMS"
+        },
+        "codeCard": {
+            "title": "あなたの紹介コード",
+            "copied": "コピーしました！",
+            "copy": "コードをコピー"
+        },
+        "linkCard": {
+            "title": "あなたの紹介リンク"
+        },
+        "stats": {
+            "title": "あなたの統計",
+            "referred": "紹介した友達",
+            "rewards": "合計報酬",
+            "university": "あなたの大学"
+        },
+        "universities": {
+            "title": "大学間チャレンジ",
+            "promoLink": "{year}年のプロモーションリンク",
+            "requestButton": "私の大学のリンクをリクエスト"
+        },
+        "history": {
+            "title": "紹介履歴",
+            "name": "名前",
+            "date": "日付",
+            "status": "ステータス",
+            "gain": "獲得",
+            "statuses": {
+                "active": "アクティブ",
+                "pending": "保留中"
+            }
+        },
+        "actions": {
+            "history": "報酬履歴を表示",
+            "rewards": "報酬を表示"
+        },
+        "rewardsHistory": {
+            "title": "報酬履歴",
+            "table": {
+                "title": "請求済みの報酬",
+                "reward": "報酬",
+                "date": "日付",
+                "status": "ステータス"
+            },
+            "statuses": {
+                "received": "受領済み",
+                "pending": "保留中",
+                "used": "使用済み"
+            }
+        },
+        "rewards": {
+            "title": "報酬カタログ",
+            "balance": {
+                "title": "報酬残高"
+            },
+            "options": {
+                "title": "ポイントを交換",
+                "exchange": "交換",
+                "request": "リクエスト"
+            },
+            "rewards": {
+                "uber": "Uber Eatsギフトカード",
+                "imutask": "ImuTask割引",
+                "amazon": "Amazonギフトカード",
+                "payout": "銀行振込"
+            },
+            "dialog": {
+                "title": "交換を確認",
+                "reward": "報酬",
+                "cost": "コスト",
+                "remainingBalance": "残高",
+                "cancel": "キャンセル",
+                "confirm": "確認"
+            },
+            "toast": {
+                "successTitle": "交換成功！",
+                "successDescription": "あなたの'{rewardName}'報酬が送信されました。"
+            },
+            "historyLink": "報酬履歴を表示"
+        }
     }
 }

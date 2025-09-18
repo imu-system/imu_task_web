@@ -1328,5 +1328,95 @@
             "providers": "Providers"
         },
         "quickActionsTitle": "Quick Actions"
+    },
+    "ReferralsPage": {
+        "title": "Referrals",
+        "subtitle": "Invite your friends and get rewarded!",
+        "invite": {
+            "title": "Invite Friends",
+            "emailLabel": "Invite by email",
+            "emailPlaceholder": "Enter one or more emails...",
+            "addButton": "Add",
+            "shareLabel": "Or share directly",
+            "smsButton": "SMS"
+        },
+        "codeCard": {
+            "title": "Your Referral Code",
+            "copied": "Copied!",
+            "copy": "Copy Code"
+        },
+        "linkCard": {
+            "title": "Your Referral Link"
+        },
+        "stats": {
+            "title": "Your Stats",
+            "referred": "Friends Referred",
+            "rewards": "Total Rewards",
+            "university": "Your University"
+        },
+        "universities": {
+            "title": "Inter-University Challenge",
+            "promoLink": "Promo link for your class of {year}",
+            "requestButton": "Request a link for my university"
+        },
+        "history": {
+            "title": "Referral History",
+            "name": "Name",
+            "date": "Date",
+            "status": "Status",
+            "gain": "Gain",
+            "statuses": {
+                "active": "Active",
+                "pending": "Pending"
+            }
+        },
+        "actions": {
+            "history": "View rewards history",
+            "rewards": "View rewards"
+        },
+        "rewardsHistory": {
+            "title": "Rewards History",
+            "table": {
+                "title": "Claimed Rewards",
+                "reward": "Reward",
+                "date": "Date",
+                "status": "Status"
+            },
+            "statuses": {
+                "received": "Received",
+                "pending": "Pending",
+                "used": "Used"
+            }
+        },
+        "rewards": {
+            "title": "Rewards Catalogue",
+            "balance": {
+                "title": "Reward Balance"
+            },
+            "options": {
+                "title": "Exchange Your Points",
+                "exchange": "Exchange",
+                "request": "Request"
+            },
+            "rewards": {
+                "uber": "Uber Eats Gift Card",
+                "imutask": "ImuTask Discount",
+                "amazon": "Amazon Gift Card",
+                "payout": "Bank Payout"
+            },
+            "dialog": {
+                "title": "Confirm Exchange",
+                "reward": "Reward",
+                "cost": "Cost",
+                "remainingBalance": "Remaining Balance",
+                "cancel": "Cancel",
+                "confirm": "Confirm"
+            },
+            "toast": {
+                "successTitle": "Exchange Successful!",
+                "successDescription": "Your '{rewardName}' reward has been sent."
+            },
+            "historyLink": "View your rewards history"
+        }
     }
 }
