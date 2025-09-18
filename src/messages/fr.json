@@ -273,10 +273,46 @@
         "providersNeeded": "{accepted} / {required} prestataires"
     },
     "ProfilePage": {
+        "title": "Mon Profil",
+        "subtitle": "Gérez vos informations personnelles et préférences.",
+        "editProfile": "Modifier le profil",
+        "personalInfoDesc": "Mettez à jour vos informations pour que la communauté puisse mieux vous connaître.",
+        "personalInfo": "Informations Personnelles",
+        "changePhoto": "Changer de photo",
+        "fullName": "Nom complet",
+        "emailAddress": "Adresse e-mail",
+        "bio": "Biographie",
+        "bioPlaceholder": "Parlez un peu de vous...",
+        "providerInfo": "Informations Prestataire",
+        "languages": "Langues parlées",
+        "languagesPlaceholder": "Sélectionnez vos langues",
+        "skills": "Compétences",
+        "skillsPlaceholder": "Ajoutez des compétences (ex: Jardinage)",
+        "commaSeparated": "Séparer par des virgules",
+        "serviceRadius": "Rayon d'intervention",
+        "serviceRadiusPlaceholder": "Entrez un rayon en km",
+        "saveChanges": "Enregistrer les modifications",
+        "toastSuccessTitle": "Profil mis à jour",
+        "toastSuccessDescription": "Vos informations ont été enregistrées avec succès.",
+        "toastErrorTitle": "Erreur",
+        "toastErrorDescription": "Une erreur est survenue lors de la mise à jour de votre profil.",
+        "addressesTitle": "Mes Adresses",
+        "addressesDesc": "Gérez vos adresses pour les missions.",
+        "addAddress": "Ajouter une adresse",
+        "setDefault": "Définir par défaut",
+        "delete": "Supprimer",
+        "noAddresses": "Aucune adresse enregistrée.",
+        "kycVerification": "Vérification d'identité (KYC)",
+        "averageRating": "Note moyenne",
+        "basedOn": "Basé sur {count} avis",
+        "completedMissions": "Missions terminées",
+        "totalCompleted": "Au total depuis l'inscription",
         "myBadges": "Mes Badges",
         "earnedBadges": "Badges Obtenus",
         "seeAllBadges": "Voir tous les badges",
-        "earnedOn": "Obtenu le {date}"
+        "earnedOn": "Obtenu le {date}",
+        "noBio": "Cet utilisateur n'a pas encore de biographie.",
+        "serviceRadiusDisplay": "{km} km de rayon"
     },
     "BadgesPage": {
         "subtitle": "Voici les badges que vous avez débloqués.",
@@ -657,48 +693,6 @@
             "successDescription": "Votre demande de retrait a été soumise et est en cours de traitement."
         }
     },
-    "ProfilePage": {
-        "myBadges": "Mes Badges",
-        "earnedBadges": "Badges Obtenus",
-        "seeAllBadges": "Voir tous les badges",
-        "earnedOn": "Obtenu le {date}"
-    },
-    "BadgesPage": {
-        "subtitle": "Voici les badges que vous avez débloqués.",
-        "cardTitle": "Mes Badges",
-        "cardDescription": "Les badges récompensent votre activité et votre fiabilité sur la plateforme.",
-        "history": {
-            "title": "Historique des missions",
-            "description": "Vos dernières missions terminées."
-        },
-        "shareProfile": "Partager le profil",
-        "badges": {
-            "firstMission": {
-                "title": "Première Mission",
-                "description": "Avoir terminé votre première mission."
-            },
-            "verified": {
-                "title": "Vérifié",
-                "description": "Identité vérifiée avec succès."
-            },
-            "topRated": {
-                "title": "Top Noté",
-                "description": "Note moyenne supérieure à 4.8"
-            },
-            "communityHelper": {
-                "title": "Pilier de la Communauté",
-                "description": "Avoir terminé 25 missions."
-            },
-            "profileComplete": {
-                "title": "Profil Complet",
-                "description": "Avoir rempli toutes les informations du profil."
-            },
-            "pioneer": {
-                "title": "Pionnier",
-                "description": "Avoir rejoint la plateforme la première année."
-            }
-        }
-    },
     "KycPage": {
         "title": "Vérification d'Identité (KYC)",
         "subtitle": "Confirmez votre identité pour sécuriser votre compte et accéder à toutes les fonctionnalités.",
@@ -748,11 +742,11 @@
         "submitButton": "Soumettre pour validation"
     },
     "Languages": {
-        "fr": "French",
-        "en": "English",
-        "es": "Spanish",
-        "de": "German",
-        "it": "Italian"
+        "fr": "Français",
+        "en": "Anglais",
+        "es": "Espagnol",
+        "de": "Allemand",
+        "it": "Italien"
     },
     "AvailabilityPage": {
         "title": "Mes Disponibilités",
@@ -1407,3 +1401,5 @@
         }
     }
 }
+
+    

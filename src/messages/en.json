@@ -273,10 +273,46 @@
         "providersNeeded": "{accepted} / {required} providers"
     },
     "ProfilePage": {
+        "title": "My Profile",
+        "subtitle": "Manage your personal information and preferences.",
+        "editProfile": "Edit Profile",
+        "personalInfoDesc": "Update your information so the community can get to know you better.",
+        "personalInfo": "Personal Information",
+        "changePhoto": "Change Photo",
+        "fullName": "Full Name",
+        "emailAddress": "Email Address",
+        "bio": "Bio",
+        "bioPlaceholder": "Tell us a little about yourself...",
+        "providerInfo": "Provider Information",
+        "languages": "Languages Spoken",
+        "languagesPlaceholder": "Select your languages",
+        "skills": "Skills",
+        "skillsPlaceholder": "Add skills (e.g. Gardening)",
+        "commaSeparated": "Separate with commas",
+        "serviceRadius": "Service Radius",
+        "serviceRadiusPlaceholder": "Enter a radius in km",
+        "saveChanges": "Save Changes",
+        "toastSuccessTitle": "Profile Updated",
+        "toastSuccessDescription": "Your information has been successfully saved.",
+        "toastErrorTitle": "Error",
+        "toastErrorDescription": "An error occurred while updating your profile.",
+        "addressesTitle": "My Addresses",
+        "addressesDesc": "Manage your addresses for missions.",
+        "addAddress": "Add Address",
+        "setDefault": "Set as default",
+        "delete": "Delete",
+        "noAddresses": "No saved addresses.",
+        "kycVerification": "Identity Verification (KYC)",
+        "averageRating": "Average Rating",
+        "basedOn": "Based on {count} reviews",
+        "completedMissions": "Completed Missions",
+        "totalCompleted": "Total since registration",
         "myBadges": "My Badges",
         "earnedBadges": "Earned Badges",
         "seeAllBadges": "See All Badges",
-        "earnedOn": "Earned on {date}"
+        "earnedOn": "Earned on {date}",
+        "noBio": "This user does not have a bio yet.",
+        "serviceRadiusDisplay": "{km} km radius"
     },
     "BadgesPage": {
         "subtitle": "Here are the badges you have unlocked.",
@@ -655,48 +691,6 @@
         "toast": {
             "successTitle": "Withdrawal Initiated",
             "successDescription": "Your withdrawal request has been submitted and is being processed."
-        }
-    },
-    "ProfilePage": {
-        "myBadges": "My Badges",
-        "earnedBadges": "Earned Badges",
-        "seeAllBadges": "See All Badges",
-        "earnedOn": "Earned on {date}"
-    },
-    "BadgesPage": {
-        "subtitle": "Here are the badges you have unlocked.",
-        "cardTitle": "My Badges",
-        "cardDescription": "Badges reward your activity and reliability on the platform.",
-        "history": {
-            "title": "Mission History",
-            "description": "Your last completed missions."
-        },
-        "shareProfile": "Share Profile",
-        "badges": {
-            "firstMission": {
-                "title": "First Mission",
-                "description": "Completed your first mission."
-            },
-            "verified": {
-                "title": "Verified",
-                "description": "Identity successfully verified."
-            },
-            "topRated": {
-                "title": "Top Rated",
-                "description": "Average rating above 4.8"
-            },
-            "communityHelper": {
-                "title": "Community Helper",
-                "description": "Completed 25 missions."
-            },
-            "profileComplete": {
-                "title": "Complete Profile",
-                "description": "Filled out all profile information."
-            },
-            "pioneer": {
-                "title": "Pioneer",
-                "description": "Joined in the first year."
-            }
         }
     },
     "KycPage": {
@@ -1305,7 +1299,7 @@
             "table": {
                 "mission": "Mission",
                 "duration": "Duration",
-                "earnings": "Earnings",
+                "earnings": "Gain",
                 "rating": "Rating",
                 "category": "Category",
                 "actions": "Actions",
@@ -1407,3 +1401,5 @@
         }
     }
 }
+
+    
