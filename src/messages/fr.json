@@ -918,8 +918,111 @@
             "saveSuccessDescription": "Vos préférences de notification ont été mises à jour."
         }
     },
-    "AdminDashboard": {},
-    "ReferralsPage": {},
+    "AdminDashboard": {
+        "subtitle": "Bienvenue dans le panneau d'administration.",
+        "priorityQueueTitle": "File d'attente prioritaire",
+        "priorityQueueDesc": "Actions nécessitant une attention immédiate.",
+        "quickActionsTitle": "Actions Rapides",
+        "clientProviderChart": {
+            "title": "Clients vs Prestataires",
+            "description": "Evolution du nombre de clients et de prestataires actifs.",
+            "clients": "Clients",
+            "providers": "Prestataires"
+        }
+    },
+    "ReferralsPage": {
+        "title": "Parrainage",
+        "subtitle": "Invitez vos amis et gagnez des récompenses !",
+        "invite": {
+            "title": "Inviter des amis",
+            "emailLabel": "Adresse e-mail",
+            "emailPlaceholder": "ami@example.com",
+            "addButton": "Ajouter",
+            "shareLabel": "Ou partager directement via :",
+            "smsButton": "SMS"
+        },
+        "codeCard": {
+            "title": "Votre code de parrainage",
+            "copy": "Copier le code",
+            "copied": "Code copié !"
+        },
+        "linkCard": {
+            "title": "Votre lien de parrainage",
+            "copy": "Copier le lien"
+        },
+        "stats": {
+            "title": "Vos statistiques",
+            "referred": "Amis parrainés",
+            "rewards": "Gains totaux",
+            "university": "Votre université"
+        },
+        "universities": {
+            "title": "Programme Universités",
+            "promoLink": "Lien promo pour {year}",
+            "requestButton": "Demander un lien pour mon université"
+        },
+        "history": {
+            "title": "Historique de vos parrainages",
+            "name": "Nom",
+            "date": "Date",
+            "status": "Statut",
+            "statuses": {
+                "active": "Actif",
+                "pending": "En attente"
+            },
+            "gain": "Gain"
+        },
+        "actions": {
+            "history": "Voir l'historique des gains",
+            "rewards": "Catalogue des récompenses"
+        },
+        "rewards": {
+            "title": "Catalogue des récompenses",
+            "balance": {
+                "title": "Votre solde de récompenses",
+                "current": "Solde actuel"
+            },
+            "options": {
+                "title": "Options de récompense",
+                "exchange": "Échanger",
+                "request": "Demander"
+            },
+            "rewards": {
+                "uber": "Coupon Uber Eats",
+                "imutask": "Réduction ImuTask",
+                "amazon": "Carte-cadeau Amazon",
+                "payout": "Virement bancaire",
+                "payoutMin": "Minimum 50 €"
+            },
+            "historyLink": "Voir l'historique de mes récompenses",
+            "dialog": {
+                "title": "Confirmer l'échange",
+                "reward": "Récompense",
+                "cost": "Coût",
+                "remainingBalance": "Solde restant",
+                "cancel": "Annuler",
+                "confirm": "Confirmer"
+            },
+            "toast": {
+                "successTitle": "Récompense obtenue !",
+                "successDescription": "Vous avez échangé vos points contre une récompense {rewardName}."
+            }
+        },
+        "rewardsHistory": {
+            "title": "Historique des Récompenses",
+            "table": {
+                "title": "Vos récompenses réclamées",
+                "reward": "Récompense",
+                "date": "Date",
+                "status": "Statut"
+            },
+            "statuses": {
+                "received": "Reçue",
+                "pending": "En attente",
+                "used": "Utilisée"
+            }
+        }
+    },
     "MarketInsightsLayout": {
         "title": "Market Insights",
         "subtitle": "Données exclusives pour optimiser votre activité.",
@@ -967,5 +1070,164 @@
         "zones": {
             "title": "Zones d'Activité"
         }
+    },
+    "LegalLayout": {
+        "title": "Légal & Documents",
+        "tabs": {
+            "policies": "CGU & Politiques",
+            "invoices": "Factures",
+            "contracts": "Contrats",
+            "insurance": "Assurance"
+        }
+    },
+    "LegalPage": {
+        "terms": {
+            "cgu": {
+                "title": "Conditions Générales d'Utilisation ({version})"
+            },
+            "privacy": {
+                "title": "Politique de Confidentialité ({year})"
+            },
+            "readOnline": "Lire en ligne",
+            "downloadPdf": "Télécharger PDF",
+            "audit": {
+                "title": "Historique de consentement",
+                "acceptedOn": "Accepté le {date} (version {version})"
+            }
+        },
+        "invoices": {
+            "title": "Mes factures",
+            "description": "Retrouvez ici toutes vos factures mensuelles pour votre abonnement.",
+            "table": {
+                "date": "Date",
+                "amount": "Montant",
+                "download": "Télécharger"
+            },
+            "actions": {
+                "exportCsv": "Exporter en CSV",
+                "requestSummary": "Demander un résumé fiscal"
+            }
+        },
+        "contracts": {
+            "title": "Mes contrats",
+            "providerContract": "Contrat Prestataire",
+            "nda": "Accord de Confidentialité (NDA)",
+            "signedOn": "Signé le {date}",
+            "read": "Lire",
+            "download": "Télécharger",
+            "addNew": "Ajouter / Signer un nouveau contrat"
+        },
+        "insurance": {
+            "title": "Assurance & Couverture",
+            "description": "Détails de l'assurance Responsabilité Civile Professionnelle incluse.",
+            "providerLabel": "Fournisseur",
+            "policyNumberLabel": "Numéro de police",
+            "coverageLabel": "Couverture",
+            "coverageValue": "Jusqu’à 1 000 000 € par sinistre",
+            "documentsTitle": "Documents liés",
+            "certificateButton": "Certificat d'assurance",
+            "conditionsButton": "Conditions de couverture"
+        }
+    },
+    "SettingsLayout": {
+        "title": "Paramètres",
+        "subtitle": "Gérez les paramètres de votre compte.",
+        "tabs": {
+            "account": "Compte",
+            "security": "Sécurité",
+            "billing": "Facturation",
+            "privacy": "Confidentialité"
+        }
+    },
+    "SettingsPage": {
+        "hub": {
+            "title": "Paramètres du Compte",
+            "description": "Gérez vos informations de compte, de paiement et de sécurité.",
+            "email": {
+                "label": "Adresse e-mail",
+                "button": "Changer"
+            },
+            "payment": {
+                "label": "Moyen de paiement",
+                "value": "Visa terminant par 1234",
+                "button": "Gérer"
+            },
+            "twoFactor": {
+                "label": "Authentification à 2 facteurs",
+                "value": "Non activée",
+                "button": "Activer"
+            },
+            "gdpr": {
+                "title": "Gestion des données",
+                "export": "Exporter mes données",
+                "delete": "Supprimer mon compte",
+                "dialog": {
+                    "title": "Êtes-vous absolument sûr ?",
+                    "description": "Cette action est irréversible et supprimera définitivement votre compte et toutes vos données.",
+                    "cancel": "Annuler",
+                    "confirm": "Confirmer la suppression"
+                }
+            }
+        },
+        "security": {
+            "password": {
+                "title": "Mot de passe",
+                "button": "Changer le mot de passe"
+            },
+            "twoFactor": {
+                "title": "Authentification à deux facteurs",
+                "statusLabel": "Statut",
+                "status": {
+                    "disabled": "Désactivée"
+                },
+                "enableSms": "Activer par SMS",
+                "enableApp": "Activer via une application"
+            },
+            "sessions": {
+                "title": "Sessions actives",
+                "currentSession": "Session actuelle",
+                "disconnect": "Déconnecter"
+            }
+        },
+        "billing": {
+            "paymentMethods": {
+                "title": "Méthodes de paiement",
+                "endingIn": "se terminant par",
+                "default": "Par défaut",
+                "addCard": "Ajouter une carte"
+            },
+            "invoices": {
+                "title": "Historique de facturation",
+                "date": "Date",
+                "amount": "Montant",
+                "download": "Télécharger"
+            },
+            "subscription": {
+                "title": "Abonnement",
+                "currentPlan": "Plan actuel",
+                "changePlan": "Changer de plan",
+                "cancel": "Annuler l'abonnement"
+            }
+        },
+        "privacy": {
+            "preferences": {
+                "title": "Préférences de données",
+                "stats": "Autoriser l'utilisation de mes données anonymisées pour les statistiques de la plateforme.",
+                "newsletter": "Recevoir les newsletters et les offres promotionnelles."
+            },
+            "data": {
+                "title": "Données personnelles",
+                "export": "Exporter toutes mes données",
+                "delete": "Demander la suppression du compte",
+                "dialog": {
+                    "title": "Êtes-vous absolument sûr ?",
+                    "description": "Cette action est irréversible et supprimera définitivement votre compte et toutes vos données.",
+                    "cancel": "Annuler",
+                    "confirm": "Confirmer la suppression"
+                }
+            }
+        }
     }
 }
+
+    
