@@ -753,268 +753,43 @@
             }
         }
     },
-    "AcademyPage": {
-        "title": "ImuTaskアカデミー",
-        "subtitle": "学び、成長し、バッジを獲得しましょう🔑",
-        "searchPlaceholder": "コースを検索...",
-        "filterPlaceholder": "カテゴリで絞り込み",
-        "filters": {
-            "all": "すべてのカテゴリ",
-            "provider": "プロバイダー",
-            "client": "クライアント"
-        },
-        "courseCard": {
-            "progress": "進捗",
-            "continue": "続ける",
-            "start": "始める"
-        }
+    "SettingsLayout": {
+        "title": "設定",
+        "subtitle": "アカウント、プライバシー、請求設定を管理します。",
+        "account": "アカウント",
+        "security": "セキュリティ",
+        "billing": "請求",
+        "privacy": "プライバシー"
     },
-    "AdminAcademyPage": {
-        "title": "アカデミー管理",
-        "subtitle": "コース、バッジを管理し、ユーザーの進捗を追跡します。",
-        "createCourse": "コースを作成",
-        "manageBadges": "バッジを管理",
-        "globalProgress": "全体の進捗",
-        "courseList": {
-            "title": "コース一覧",
-            "description": "プラットフォーム上のすべてのコースの概要。",
-            "table": {
-                "course": "コース",
-                "enrolled": "登録者数",
-                "completed": "完了者数",
-                "completionRate": "完了率"
+    "SettingsPage": {
+        "hub": {
+            "title": "アカウント概要",
+            "description": "主要なアカウント設定の概要。",
+            "email": {
+                "label": "メールアドレス",
+                "button": "変更"
             },
-            "actions": {
-                "edit": "編集",
-                "delete": "削除"
-            }
-        }
-    },
-    "AcademyDetailPage": {
-        "notFound": "コースが見つかりません。",
-        "backToAcademy": "アカデミーに戻る",
-        "sections": {
-            "title": "セクション"
-        },
-        "downloadResources": "リソースをダウンロード",
-        "continueModule": "モジュールを続ける",
-        "startQuiz": "クイズを開始"
-    },
-    "QuizPage": {
-        "title": "クイズ",
-        "question": "質問 {current}/{total}",
-        "timer": "10:00",
-        "previous": "前へ",
-        "next": "次へ",
-        "submit": "クイズを提出",
-        "toast": {
-            "title": "クイズが提出されました！",
-            "description": "あなたのスコアが計算され、まもなくバッジが付与されます。"
-        }
-    },
-    "CertificatePage": {
-        "title": "証明書：{badgeName}",
-        "card": {
-            "title": "修了証明書",
-            "issuedTo": "発行対象者：{name}",
-            "forCompleting": "コースを無事修了したことを証明します：",
-            "date": "修了日",
-            "id": "証明書ID"
-        },
-        "actions": {
-            "download": "PDFをダウンロード",
-            "verify": "有効性を確認"
-        }
-    },
-    "StatsPage": {
-        "title": "私の統計",
-        "notProvider": {
-            "title": "プロバイダー専用セクション",
-            "description": "このページはプロバイダープロファイルを持つユーザーのみがアクセスできます。"
-        },
-        "filters": {
-            "last7days": "過去7日間",
-            "last30days": "過去30日間",
-            "last90days": "過去90日間"
-        },
-        "myGoals": "私の目標",
-        "comparePeriods": "比較",
-        "exportCsv": "CSVをエクスポート",
-        "kpi": {
-            "totalEarnings": "総収益",
-            "hoursWorked": "労働時間",
-            "acceptanceRate": "受諾率",
-            "averageRating": "平均評価"
-        },
-        "charts": {
-            "earnings": {
-                "title": "収益の推移",
-                "legend": "収益"
+            "payment": {
+                "label": "支払い方法",
+                "value": "Visaの末尾1234",
+                "button": "管理"
             },
-            "time": {
-                "title": "カテゴリ別分布",
-                "legend": "時間"
-            }
-        },
-        "viewMissionDetails": "ミッション詳細を表示",
-        "compare": {
-            "title": "期間を比較",
-            "selection": {
-                "title": "選択",
-                "periodA": "期間A",
-                "periodB": "期間B"
+            "twoFactor": {
+                "label": "二要素認証",
+                "value": "無効",
+                "button": "有効にする"
             },
-            "results": {
-                "title": "結果",
-                "earnings": "収益",
-                "hours": "時間",
-                "acceptance": "受諾率",
-                "rating": "平均評価"
-            },
-            "chart": {
-                "title": "比較チャート"
-            }
-        },
-        "tax": {
-            "title": "税務概要",
-            "link": "税務概要を表示",
-            "card": {
-                "title": "税務概要",
-                "description": "{year}年の収益と手数料の概要。",
-                "exportButton": "エクスポート",
-                "totalRevenue": "総収益",
-                "payouts": "支払い（手数料後）",
-                "fees": "ImuTask手数料",
-                "monthlyList": "月次内訳",
-                "downloadCertificate": "税務証明書をダウンロード"
-            }
-        },
-        "goals": {
-            "title": "私の目標",
-            "card": {
-                "title": "目標を設定",
-                "description": "進捗を追跡するために月次のパフォーマンス目標を設定します。",
-                "earningsGoal": "月次収益目標 (€)",
-                "hoursGoal": "月次労働時間目標",
-                "acceptanceGoal": "目標受諾率 (%)",
-                "saveButton": "目標を保存"
-            },
-            "toast": {
-                "successTitle": "目標が保存されました！",
-                "successDescription": "パフォーマンス目標が更新されました。"
-            }
-        },
-        "missions": {
-            "title": "パフォーマンス詳細",
-            "subtitle": "改善点を見つけるために、ミッションを一つずつ分析します。",
-            "filters": {
-                "period": "期間",
-                "allMonths": "すべての月"
-            },
-            "table": {
-                "mission": "ミッション",
-                "duration": "期間",
-                "earnings": "収益",
-                "rating": "評価",
-                "category": "カテゴリ",
-                "actions": "アクション",
-                "viewConversation": "会話を見る"
-            },
-            "exportButton": "CSVをエクスポート"
-        }
-    },
-    "ReferralsPage": {
-        "title": "紹介プログラム",
-        "subtitle": "友達を招待して報酬を獲得しましょう！",
-        "invite": {
-            "title": "友達/クラスを招待する 🎓",
-            "emailLabel": "友達のメールアドレス",
-            "emailPlaceholder": "friend@example.com",
-            "addButton": "追加",
-            "shareLabel": "クイック共有",
-            "smsButton": "SMS"
-        },
-        "universities": {
-            "title": "提携大学",
-            "promoLink": "{year}年度生専用リンク",
-            "requestButton": "私の学校の追加をリクエスト"
-        },
-        "codeCard": {
-            "title": "あなたの紹介コード",
-            "copy": "コピー",
-            "copied": "コピーしました！"
-        },
-        "linkCard": {
-            "title": "あなたの紹介リンク"
-        },
-        "stats": {
-            "title": "クイック統計",
-            "referred": "紹介されたユーザー",
-            "rewards": "総報酬",
-            "university": "関連大学",
-            "noUniversity": "なし"
-        },
-        "actions": {
-            "history": "履歴を表示",
-            "rewards": "報酬カタログ"
-        },
-        "history": {
-            "title": "最近の紹介",
-            "name": "紹介されたユーザー名",
-            "date": "登録日",
-            "status": "ステータス",
-            "gain": "獲得",
-            "statuses": {
-                "active": "アクティブ",
-                "pending": "保留中"
-            }
-        },
-        "rewards": {
-            "title": "報酬カタログ",
-            "balance": {
-                "title": "利用可能な残高"
-            },
-            "options": {
-                "title": "報酬オプション",
-                "exchange": "交換",
-                "request": "リクエスト"
-            },
-            "rewards": {
-                "uber": "Uber Eatsクーポン",
-                "imutask": "ImuTask割引",
-                "amazon": "Amazonギフトカード",
-                "payout": "銀行振込",
-                "payoutMin": "最低50€"
-            },
-            "toast": {
-                "successTitle": "報酬獲得！",
-                "successDescription": "報酬「{rewardName}」がまもなく届きます。"
-            },
-            "historyLink": "報酬履歴を表示",
-            "dialog": {
-                "title": "交換を確認しますか？",
-                "reward": "報酬",
-                "cost": "コスト",
-                "remainingBalance": "交換後の残高",
-                "cancel": "キャンセル",
-                "confirm": "交換を確定"
-            }
-        },
-        "rewardsHistory": {
-            "title": "私の報酬履歴",
-            "table": {
-                "title": "獲得した報酬",
-                "reward": "報酬",
-                "date": "日付",
-                "status": "ステータス"
-            },
-            "statuses": {
-                "received": "受け取り済み",
-                "pending": "保留中",
-                "used": "使用済み"
+            "gdpr": {
+                "title": "データとプライバシー",
+                "export": "私のデータをエクスポート",
+                "delete": "アカウントを削除",
+                "dialog": {
+                    "title": "よろしいですか？",
+                    "description": "この操作は元に戻せません。すべてのデータが永久に削除されます。",
+                    "cancel": "キャンセル",
+                    "confirm": "はい、アカウントを削除します"
+                }
             }
         }
     }
 }
-
-    

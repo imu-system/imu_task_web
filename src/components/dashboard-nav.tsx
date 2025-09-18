@@ -49,6 +49,7 @@ import {
   Calendar as CalendarIcon,
   BookOpen,
   Gift,
+  Settings,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -330,6 +331,14 @@ export function DashboardNav() {
                           <span>{t('profile')}</span>
                       </SidebarMenuButton>
                   </Link>
+              </SidebarMenuItem>
+              <SidebarMenuItem>
+                <Link href="/dashboard/settings">
+                    <SidebarMenuButton isActive={pathname.startsWith('/dashboard/settings')}>
+                        <Settings />
+                        <span>{t('settings')}</span>
+                    </SidebarMenuButton>
+                </Link>
               </SidebarMenuItem>
                 <SidebarMenuItem>
                   <SidebarMenuButton onClick={handleSignOut}>

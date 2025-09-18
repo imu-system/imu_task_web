@@ -1138,265 +1138,42 @@
             }
         }
     },
-    "AcademyPage": {
-        "title": "ImuTask Academy",
-        "subtitle": "Learn, grow, and earn badges 🔑",
-        "searchPlaceholder": "Search for a course...",
-        "filterPlaceholder": "Filter by category",
-        "filters": {
-            "all": "All categories",
-            "provider": "Provider",
-            "client": "Client"
-        },
-        "courseCard": {
-            "progress": "Progress",
-            "continue": "Continue",
-            "start": "Start"
-        }
+    "SettingsLayout": {
+        "title": "Settings",
+        "subtitle": "Manage your account, privacy, and billing settings.",
+        "account": "Account",
+        "security": "Security",
+        "billing": "Billing",
+        "privacy": "Privacy"
     },
-    "AdminAcademyPage": {
-        "title": "Academy Admin",
-        "subtitle": "Manage courses, badges, and track user progress.",
-        "createCourse": "Create Course",
-        "manageBadges": "Manage Badges",
-        "globalProgress": "Global Progress",
-        "courseList": {
-            "title": "Course List",
-            "description": "Overview of all courses on the platform.",
-            "table": {
-                "course": "Course",
-                "enrolled": "Enrolled",
-                "completed": "Completed",
-                "completionRate": "Completion Rate"
+    "SettingsPage": {
+        "hub": {
+            "title": "Account Overview",
+            "description": "A summary of your main account settings.",
+            "email": {
+                "label": "Email Address",
+                "button": "Change"
             },
-            "actions": {
-                "edit": "Edit",
-                "delete": "Delete"
-            }
-        }
-    },
-    "AcademyDetailPage": {
-        "notFound": "Course not found.",
-        "backToAcademy": "Back to Academy",
-        "sections": {
-            "title": "Sections"
-        },
-        "downloadResources": "Download Resources",
-        "continueModule": "Continue Module",
-        "startQuiz": "Start Quiz"
-    },
-    "QuizPage": {
-        "title": "Quiz",
-        "question": "Question {current}/{total}",
-        "timer": "10:00",
-        "previous": "Previous",
-        "next": "Next",
-        "submit": "Submit Quiz",
-        "toast": {
-            "title": "Quiz Submitted!",
-            "description": "Your score will be calculated and your badge awarded shortly."
-        }
-    },
-    "CertificatePage": {
-        "title": "Certificate: {badgeName}",
-        "card": {
-            "title": "Certificate of Completion",
-            "issuedTo": "Issued to: {name}",
-            "forCompleting": "For successfully completing the course:",
-            "date": "Date of Completion",
-            "id": "Certificate ID"
-        },
-        "actions": {
-            "download": "Download PDF",
-            "verify": "Verify Validity"
-        }
-    },
-    "StatsPage": {
-        "title": "My Statistics",
-        "notProvider": {
-            "title": "Section reserved for providers",
-            "description": "This page is only accessible to users with a provider profile."
-        },
-        "filters": {
-            "last7days": "Last 7 days",
-            "last30days": "Last 30 days",
-            "last90days": "Last 90 days"
-        },
-        "myGoals": "My Goals",
-        "comparePeriods": "Compare",
-        "exportCsv": "Export CSV",
-        "kpi": {
-            "totalEarnings": "Total Earnings",
-            "hoursWorked": "Hours Worked",
-            "acceptanceRate": "Acceptance Rate",
-            "averageRating": "Average Rating"
-        },
-        "charts": {
-            "earnings": {
-                "title": "Earnings Evolution",
-                "legend": "Earnings"
+            "payment": {
+                "label": "Payment Method",
+                "value": "Visa ending in 1234",
+                "button": "Manage"
             },
-            "time": {
-                "title": "Distribution by Category",
-                "legend": "Hours"
-            }
-        },
-        "viewMissionDetails": "View mission details",
-        "compare": {
-            "title": "Compare Periods",
-            "selection": {
-                "title": "Selection",
-                "periodA": "Period A",
-                "periodB": "Period B"
+            "twoFactor": {
+                "label": "Two-Factor Authentication",
+                "value": "Disabled",
+                "button": "Enable"
             },
-            "results": {
-                "title": "Results",
-                "earnings": "Earnings",
-                "hours": "Hours",
-                "acceptance": "Acceptance Rate",
-                "rating": "Average Rating"
-            },
-            "chart": {
-                "title": "Comparative Chart"
-            }
-        },
-        "tax": {
-            "title": "Tax Summary",
-            "link": "View Tax Summary",
-            "card": {
-                "title": "Tax Summary",
-                "description": "Summary of your revenues and commissions for the year {year}.",
-                "exportButton": "Export",
-                "totalRevenue": "Total Revenue",
-                "payouts": "Payouts (after fees)",
-                "fees": "ImuTask Fees",
-                "monthlyList": "Monthly Breakdown",
-                "downloadCertificate": "Download Tax Certificate"
-            }
-        },
-        "goals": {
-            "title": "My Goals",
-            "card": {
-                "title": "Set Your Goals",
-                "description": "Define your monthly performance targets to track your progress.",
-                "earningsGoal": "Monthly Earnings Goal (€)",
-                "hoursGoal": "Monthly Hours Goal",
-                "acceptanceGoal": "Target Acceptance Rate (%)",
-                "saveButton": "Save Goals"
-            },
-            "toast": {
-                "successTitle": "Goals Saved!",
-                "successDescription": "Your performance goals have been updated."
-            }
-        },
-        "missions": {
-            "title": "Performance Details",
-            "subtitle": "Analyze your missions one by one to identify areas for improvement.",
-            "filters": {
-                "period": "Period",
-                "allMonths": "All months"
-            },
-            "table": {
-                "mission": "Mission",
-                "duration": "Duration",
-                "earnings": "Gain",
-                "rating": "Rating",
-                "category": "Category",
-                "actions": "Actions",
-                "viewConversation": "View conversation"
-            },
-            "exportButton": "Export CSV"
-        }
-    },
-    "ReferralsPage": {
-        "title": "Referral Program",
-        "subtitle": "Invite friends and earn rewards!",
-        "invite": {
-            "title": "Invite my friends / my class 🎓",
-            "emailLabel": "Friend's email address",
-            "emailPlaceholder": "friend@example.com",
-            "addButton": "Add",
-            "shareLabel": "Quick share",
-            "smsButton": "SMS"
-        },
-        "universities": {
-            "title": "Partner Universities",
-            "promoLink": "Special link for class of {year}",
-            "requestButton": "Request to add my school"
-        },
-        "codeCard": {
-            "title": "Your Referral Code",
-            "copy": "Copy",
-            "copied": "Copied!"
-        },
-        "linkCard": {
-            "title": "Your Referral Link"
-        },
-        "stats": {
-            "title": "Quick Stats",
-            "referred": "Referred Users",
-            "rewards": "Total Rewards",
-            "university": "Associated University",
-            "noUniversity": "None"
-        },
-        "actions": {
-            "history": "View History",
-            "rewards": "Rewards Catalog"
-        },
-        "history": {
-            "title": "Recent Referrals",
-            "name": "Referred User Name",
-            "date": "Registration Date",
-            "status": "Status",
-            "gain": "Gain",
-            "statuses": {
-                "active": "Active",
-                "pending": "Pending"
-            }
-        },
-        "rewards": {
-            "title": "Rewards Catalog",
-            "balance": {
-                "title": "Available Balance"
-            },
-            "options": {
-                "title": "Reward Options",
-                "exchange": "Exchange",
-                "request": "Request"
-            },
-            "rewards": {
-                "uber": "Uber Eats Coupon",
-                "imutask": "ImuTask Reduction",
-                "amazon": "Amazon Gift Card",
-                "payout": "Bank Transfer",
-                "payoutMin": "Min 50€"
-            },
-            "toast": {
-                "successTitle": "Reward Claimed!",
-                "successDescription": "Your reward '{rewardName}' is on its way."
-            },
-            "historyLink": "View reward history",
-            "dialog": {
-                "title": "Confirm Exchange?",
-                "reward": "Reward",
-                "cost": "Cost",
-                "remainingBalance": "Balance after exchange",
-                "cancel": "Cancel",
-                "confirm": "Confirm Exchange"
-            }
-        },
-        "rewardsHistory": {
-            "title": "My Rewards History",
-            "table": {
-                "title": "Claimed Rewards",
-                "reward": "Reward",
-                "date": "Date",
-                "status": "Status"
-            },
-            "statuses": {
-                "received": "Received",
-                "pending": "Pending",
-                "used": "Used"
+            "gdpr": {
+                "title": "Data & Privacy",
+                "export": "Export my data",
+                "delete": "Delete my account",
+                "dialog": {
+                    "title": "Are you sure?",
+                    "description": "This action is irreversible. All your data will be permanently deleted.",
+                    "cancel": "Cancel",
+                    "confirm": "Yes, delete my account"
+                }
             }
         }
     }

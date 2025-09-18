@@ -1138,268 +1138,43 @@
             }
         }
     },
-    "AcademyPage": {
-        "title": "ImuTask Academy",
-        "subtitle": "Apprenez, progressez et gagnez des badges 🔑",
-        "searchPlaceholder": "Rechercher un cours...",
-        "filterPlaceholder": "Filtrer par catégorie",
-        "filters": {
-            "all": "Toutes les catégories",
-            "provider": "Prestataire",
-            "client": "Client"
-        },
-        "courseCard": {
-            "progress": "Progression",
-            "continue": "Continuer",
-            "start": "Démarrer"
-        }
+    "SettingsLayout": {
+        "title": "Paramètres",
+        "subtitle": "Gérez votre compte, votre confidentialité et vos paramètres de facturation.",
+        "account": "Compte",
+        "security": "Sécurité",
+        "billing": "Facturation",
+        "privacy": "Confidentialité"
     },
-    "AdminAcademyPage": {
-        "title": "Admin Académie",
-        "subtitle": "Gérez les cours, les badges et suivez la progression des utilisateurs.",
-        "createCourse": "Créer un cours",
-        "manageBadges": "Gérer les badges",
-        "globalProgress": "Progression globale",
-        "courseList": {
-            "title": "Liste des cours",
-            "description": "Aperçu de tous les cours sur la plateforme.",
-            "table": {
-                "course": "Cours",
-                "enrolled": "Inscrits",
-                "completed": "Terminés",
-                "completionRate": "Taux de complétion"
+    "SettingsPage": {
+        "hub": {
+            "title": "Aperçu du Compte",
+            "description": "Un résumé de vos principaux paramètres de compte.",
+            "email": {
+                "label": "Adresse e-mail",
+                "button": "Modifier"
             },
-            "actions": {
-                "edit": "Modifier",
-                "delete": "Supprimer"
-            }
-        }
-    },
-    "AcademyDetailPage": {
-        "notFound": "Cours non trouvé.",
-        "backToAcademy": "Retour à l'académie",
-        "sections": {
-            "title": "Sections"
-        },
-        "downloadResources": "Télécharger les ressources",
-        "continueModule": "Continuer le module",
-        "startQuiz": "Commencer le Quiz"
-    },
-    "QuizPage": {
-        "title": "Quiz",
-        "question": "Question {current}/{total}",
-        "timer": "10:00",
-        "previous": "Précédent",
-        "next": "Suivant",
-        "submit": "Soumettre le quiz",
-        "toast": {
-            "title": "Quiz soumis !",
-            "description": "Votre score sera calculé et votre badge sera bientôt attribué."
-        }
-    },
-    "CertificatePage": {
-        "title": "Certificat : {badgeName}",
-        "card": {
-            "title": "Certificat de Réussite",
-            "issuedTo": "Délivré à : {name}",
-            "forCompleting": "Pour avoir terminé avec succès le cours :",
-            "date": "Date d'obtention",
-            "id": "ID du Certificat"
-        },
-        "actions": {
-            "download": "Télécharger en PDF",
-            "verify": "Vérifier la validité"
-        }
-    },
-    "StatsPage": {
-        "title": "Mes Statistiques",
-        "notProvider": {
-            "title": "Section réservée aux prestataires",
-            "description": "Cette page est uniquement accessible aux utilisateurs ayant un profil de prestataire."
-        },
-        "filters": {
-            "last7days": "7 derniers jours",
-            "last30days": "30 derniers jours",
-            "last90days": "90 derniers jours"
-        },
-        "myGoals": "Mes Objectifs",
-        "comparePeriods": "Comparer",
-        "exportCsv": "Exporter en CSV",
-        "kpi": {
-            "totalEarnings": "Gains totaux",
-            "hoursWorked": "Heures travaillées",
-            "acceptanceRate": "Taux d'acceptation",
-            "averageRating": "Note moyenne"
-        },
-        "charts": {
-            "earnings": {
-                "title": "Évolution des gains",
-                "legend": "Gains"
+            "payment": {
+                "label": "Moyen de paiement",
+                "value": "Visa se terminant par 1234",
+                "button": "Gérer"
             },
-            "time": {
-                "title": "Répartition par catégorie",
-                "legend": "Heures"
-            }
-        },
-        "viewMissionDetails": "Voir le détail des missions",
-        "compare": {
-            "title": "Comparer les Périodes",
-            "selection": {
-                "title": "Sélection",
-                "periodA": "Période A",
-                "periodB": "Période B"
+            "twoFactor": {
+                "label": "Authentification à deux facteurs",
+                "value": "Désactivée",
+                "button": "Activer"
             },
-            "results": {
-                "title": "Résultats",
-                "earnings": "Gains",
-                "hours": "Heures",
-                "acceptance": "Taux d'acceptation",
-                "rating": "Note moyenne"
-            },
-            "chart": {
-                "title": "Graphique Comparatif"
-            }
-        },
-        "tax": {
-            "title": "Résumé fiscal",
-            "link": "Voir le résumé fiscal",
-            "card": {
-                "title": "Résumé Fiscal",
-                "description": "Résumé de vos revenus et commissions pour l'année {year}.",
-                "exportButton": "Exporter",
-                "totalRevenue": "Revenus totaux",
-                "payouts": "Versements (après frais)",
-                "fees": "Commissions ImuTask",
-                "monthlyList": "Répartition mensuelle",
-                "downloadCertificate": "Télécharger l'attestation fiscale"
-            }
-        },
-        "goals": {
-            "title": "Mes Objectifs",
-            "card": {
-                "title": "Définissez Vos Objectifs",
-                "description": "Fixez vos cibles de performance mensuelles pour suivre votre progression.",
-                "earningsGoal": "Objectif de Gains Mensuels (€)",
-                "hoursGoal": "Objectif d'Heures Mensuelles",
-                "acceptanceGoal": "Taux d'Acceptation Cible (%)",
-                "saveButton": "Enregistrer les Objectifs"
-            },
-            "toast": {
-                "successTitle": "Objectifs Enregistrés !",
-                "successDescription": "Vos objectifs de performance ont été mis à jour."
-            }
-        },
-        "missions": {
-            "title": "Détail des Performances",
-            "subtitle": "Analysez vos missions une par une pour identifier des axes d'amélioration.",
-            "filters": {
-                "period": "Période",
-                "allMonths": "Tous les mois"
-            },
-            "table": {
-                "mission": "Mission",
-                "duration": "Durée",
-                "earnings": "Gain",
-                "rating": "Note",
-                "category": "Catégorie",
-                "actions": "Actions",
-                "viewConversation": "Voir conversation"
-            },
-            "exportButton": "Exporter en CSV"
-        }
-    },
-    "ReferralsPage": {
-        "title": "Programme de parrainage",
-        "subtitle": "Invitez des amis et gagnez des récompenses !",
-        "invite": {
-            "title": "Inviter mes amis / ma promo 🎓",
-            "emailLabel": "Adresse e-mail de l'ami",
-            "emailPlaceholder": "ami@exemple.com",
-            "addButton": "Ajouter",
-            "shareLabel": "Partage rapide",
-            "smsButton": "SMS"
-        },
-        "universities": {
-            "title": "Universités partenaires",
-            "promoLink": "Lien spécial promo {year}",
-            "requestButton": "Demander l'ajout de mon école"
-        },
-        "codeCard": {
-            "title": "Votre code de parrainage",
-            "copy": "Copier",
-            "copied": "Copié !"
-        },
-        "linkCard": {
-            "title": "Votre lien de parrainage"
-        },
-        "stats": {
-            "title": "Statistiques rapides",
-            "referred": "Filleuls",
-            "rewards": "Récompenses cumulées",
-            "university": "Université associée",
-            "noUniversity": "Aucune"
-        },
-        "actions": {
-            "history": "Voir l'historique",
-            "rewards": "Catalogue des récompenses"
-        },
-        "history": {
-            "title": "Parrainages récents",
-            "name": "Nom du filleul",
-            "date": "Date d'inscription",
-            "status": "Statut",
-            "gain": "Gain",
-            "statuses": {
-                "active": "Actif",
-                "pending": "En attente"
-            }
-        },
-        "rewards": {
-            "title": "Catalogue des récompenses",
-            "balance": {
-                "title": "Solde disponible"
-            },
-            "options": {
-                "title": "Options de récompense",
-                "exchange": "Échanger",
-                "request": "Demander"
-            },
-            "rewards": {
-                "uber": "Coupon Uber Eats",
-                "imutask": "Réduction ImuTask",
-                "amazon": "Carte cadeau Amazon",
-                "payout": "Virement bancaire",
-                "payoutMin": "Min 50€"
-            },
-            "toast": {
-                "successTitle": "Récompense réclamée !",
-                "successDescription": "Votre récompense '{rewardName}' est en route."
-            },
-            "historyLink": "Voir l'historique des récompenses",
-            "dialog": {
-                "title": "Confirmer l'échange ?",
-                "reward": "Récompense",
-                "cost": "Coût",
-                "remainingBalance": "Solde après échange",
-                "cancel": "Annuler",
-                "confirm": "Confirmer l'échange"
-            }
-        },
-        "rewardsHistory": {
-            "title": "Historique de mes récompenses",
-            "table": {
-                "title": "Récompenses réclamées",
-                "reward": "Récompense",
-                "date": "Date",
-                "status": "Statut"
-            },
-            "statuses": {
-                "received": "Reçue",
-                "pending": "En attente",
-                "used": "Utilisée"
+            "gdpr": {
+                "title": "Données & Confidentialité",
+                "export": "Exporter mes données",
+                "delete": "Supprimer mon compte",
+                "dialog": {
+                    "title": "Êtes-vous sûr ?",
+                    "description": "Cette action est irréversible. Toutes vos données seront définitivement supprimées.",
+                    "cancel": "Annuler",
+                    "confirm": "Oui, supprimer mon compte"
+                }
             }
         }
     }
 }
-
-    
