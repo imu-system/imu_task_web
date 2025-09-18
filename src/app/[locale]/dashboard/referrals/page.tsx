@@ -6,14 +6,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/hooks/use-auth';
-import { Loader2, Gift, Copy, Share2, Mail, Users, DollarSign, School, CheckCircle, Clock } from 'lucide-react';
+import { Loader2, Gift, Copy, Share2, Mail, Users, DollarSign, School, CheckCircle, Clock, MessageSquare, Twitter } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from '@/navigation';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
+import { Label } from '@/components/ui/label';
 
 const WhatsAppIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24px" height="24px" {...props}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18px" height="18px" {...props}>
         <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.026,24.01c0-7.854,6.398-14.252,14.252-14.252 c3.927,0,7.613,1.527,10.39,4.304c2.777,2.777,4.304,6.463,4.304,10.39c0,7.854-6.398,14.252-14.252,14.252 c-3.425,0-6.6,-1.21-9.111-3.24L4.868,43.303z"/>
         <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.026,24.01c0-7.854,6.398-14.252,14.252-14.252 c3.927,0,7.613,1.527,10.39,4.304c2.777,2.777,4.304,6.463,4.304,10.39c0,7.854-6.398,14.252-14.252,14.252 c-3.425,0-6.6,-1.21-9.111-3.24L4.868,43.303z"/>
         <path fill="#40c351" d="M19.278,34.559c-3.131,0-6.079-1.02-8.55-2.825L4,34.998l3.254-6.573c-2.005-2.6-3.226-5.83-3.226-9.395 c0-7.854,6.398-14.252,14.252-14.252c3.927,0,7.613,1.527,10.39,4.304c2.777,2.777,4.304,6.463,4.304,10.39 c0,7.854-6.398,14.252-14.252,14.252C22.695,34.559,20.963,34.559,19.278,34.559z"/>
@@ -65,41 +66,56 @@ export default function ReferralsPage() {
 
             <Card>
                 <CardHeader>
-                    <CardTitle>{t('codeCard.title')}</CardTitle>
+                    <CardTitle>{t('invite.title')}</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                    <div className="p-4 bg-muted rounded-lg font-mono text-center text-2xl tracking-widest">
-                        {referralCode}
+                <CardContent className="space-y-6">
+                    <div className="space-y-2">
+                        <Label htmlFor="email-invite">{t('invite.emailLabel')}</Label>
+                        <div className="flex gap-2">
+                            <Input id="email-invite" type="email" placeholder={t('invite.emailPlaceholder')} />
+                            <Button>{t('invite.addButton')}</Button>
+                        </div>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                         <Button variant="outline" onClick={() => handleCopy(referralCode)}>
-                            <Copy className="mr-2"/>
-                            {t('codeCard.copy')}
-                        </Button>
-                        <Button variant="outline">
-                            <WhatsAppIcon className="mr-2"/>
-                            {t('codeCard.shareWhatsapp')}
-                        </Button>
-                         <Button variant="outline">
-                            <Mail className="mr-2"/>
-                            {t('codeCard.shareEmail')}
-                        </Button>
+                     <div className="space-y-2">
+                        <Label>{t('invite.shareLabel')}</Label>
+                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <Button variant="outline"><WhatsAppIcon className="mr-2"/> WhatsApp</Button>
+                            <Button variant="outline"><MessageSquare className="mr-2"/> {t('invite.smsButton')}</Button>
+                            <Button variant="outline"><Twitter className="mr-2"/> Twitter</Button>
+                        </div>
                     </div>
-                </CardContent>
-            </Card>
-            
-             <Card>
-                <CardHeader>
-                    <CardTitle>{t('linkCard.title')}</CardTitle>
-                </CardHeader>
-                <CardContent className="flex items-center gap-2">
-                    <Input value={referralLink} readOnly />
-                    <Button onClick={() => handleCopy(referralLink)}>
-                        <Copy/>
-                    </Button>
                 </CardContent>
             </Card>
 
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>{t('codeCard.title')}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <div className="p-4 bg-muted rounded-lg font-mono text-center text-2xl tracking-widest">
+                            {referralCode}
+                        </div>
+                        <Button className="w-full" variant="outline" onClick={() => handleCopy(referralCode)}>
+                            <Copy className="mr-2"/>
+                            {t('codeCard.copy')}
+                        </Button>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>{t('linkCard.title')}</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <Input value={referralLink} readOnly />
+                        <Button className="w-full" onClick={() => handleCopy(referralLink)}>
+                            <Copy className="mr-2"/>
+                            {t('codeCard.copy')}
+                        </Button>
+                    </CardContent>
+                </Card>
+            </div>
+            
              <Card>
                 <CardHeader>
                     <CardTitle>{t('stats.title')}</CardTitle>
@@ -126,6 +142,19 @@ export default function ReferralsPage() {
                             <p className="text-lg font-semibold">ESIEA</p>
                         </div>
                     </div>
+                </CardContent>
+            </Card>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle>{t('universities.title')}</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    <div className="p-3 border rounded-lg">
+                        <p className="font-semibold">{t('universities.promoLink', { year: 2025 })}</p>
+                        <p className="text-sm font-mono text-muted-foreground">IMU-ESIEA-25</p>
+                    </div>
+                    <Button variant="secondary" className="w-full">{t('universities.requestButton')}</Button>
                 </CardContent>
             </Card>
             

@@ -368,7 +368,7 @@
         "subtitle": "スケジュールを管理して、関連するミッションオファーを受け取ります。",
         "notProvider": {
             "title": "このセクションはプロバイダー向けです。",
-            "description": "サービスを提供するには、プロバイダープロファイルを完成させてください。",
+            "description": "利用可能時間を管理するには、プロバイダープロファイルを完成させてください。",
             "button": "プロフィールに移動"
         },
         "weekGrid": {
@@ -388,7 +388,7 @@
             "title": "クイックアクション",
             "recurring": "定期的なスロットを設定",
             "exception": "例外を追加",
-            "sync": "Google/Appleカレンダーを同期"
+            "sync": "カレンダーを同期"
         },
         "suggestions": {
             "title": "AIの提案",
@@ -426,6 +426,18 @@
             "autoAccept": "これらのスロットでミッションを自動的に受け入れる",
             "cancel": "キャンセル",
             "save": "保存"
+        },
+        "syncModal": {
+            "title": "カレンダーを同期",
+            "description": "簡素化された管理のために外部カレンダーを接続します。",
+            "google": "Googleカレンダーを接続",
+            "apple": "Appleカレンダーを接続",
+            "export": "iCalをエクスポート",
+            "status": {
+                "label": "ステータス",
+                "connected": "✅ Google接続済み（自動更新1時間）",
+                "lastSync": "最終同期"
+            }
         }
     },
     "ReviewsPage": {
@@ -914,12 +926,23 @@
     "ReferralsPage": {
         "title": "紹介プログラム",
         "subtitle": "友達を招待して報酬を獲得しましょう！",
+        "invite": {
+            "title": "友達/クラスを招待する 🎓",
+            "emailLabel": "友達のメールアドレス",
+            "emailPlaceholder": "friend@example.com",
+            "addButton": "追加",
+            "shareLabel": "クイック共有",
+            "smsButton": "SMS"
+        },
+        "universities": {
+            "title": "提携大学",
+            "promoLink": "{year}年度生専用リンク",
+            "requestButton": "私の学校の追加をリクエスト"
+        },
         "codeCard": {
             "title": "あなたの紹介コード",
             "copy": "コピー",
-            "copied": "コピーしました！",
-            "shareWhatsapp": "共有",
-            "shareEmail": "メール"
+            "copied": "コピーしました！"
         },
         "linkCard": {
             "title": "あなたの紹介リンク"

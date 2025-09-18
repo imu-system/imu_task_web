@@ -1103,7 +1103,7 @@
                 "user": "Utilisateur",
                 "status": "Statut",
                 "priority": "Priorité",
-                "agent": "Agent",
+                "agent": "Agent Assigné",
                 "actions": "Actions"
             }
         },
@@ -1317,12 +1317,23 @@
     "ReferralsPage": {
         "title": "Programme de parrainage",
         "subtitle": "Invitez des amis et gagnez des récompenses !",
+        "invite": {
+            "title": "Inviter mes amis / ma promo 🎓",
+            "emailLabel": "Adresse e-mail de l'ami",
+            "emailPlaceholder": "ami@exemple.com",
+            "addButton": "Ajouter",
+            "shareLabel": "Partage rapide",
+            "smsButton": "SMS"
+        },
+        "universities": {
+            "title": "Universités partenaires",
+            "promoLink": "Lien spécial promo {year}",
+            "requestButton": "Demander l'ajout de mon école"
+        },
         "codeCard": {
             "title": "Votre code de parrainage",
             "copy": "Copier",
-            "copied": "Copié !",
-            "shareWhatsapp": "Partager",
-            "shareEmail": "Email"
+            "copied": "Copié !"
         },
         "linkCard": {
             "title": "Votre lien de parrainage"

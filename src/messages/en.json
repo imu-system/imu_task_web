@@ -1317,12 +1317,23 @@
     "ReferralsPage": {
         "title": "Referral Program",
         "subtitle": "Invite friends and earn rewards!",
+        "invite": {
+            "title": "Invite my friends / my class 🎓",
+            "emailLabel": "Friend's email address",
+            "emailPlaceholder": "friend@example.com",
+            "addButton": "Add",
+            "shareLabel": "Quick share",
+            "smsButton": "SMS"
+        },
+        "universities": {
+            "title": "Partner Universities",
+            "promoLink": "Special link for class of {year}",
+            "requestButton": "Request to add my school"
+        },
         "codeCard": {
             "title": "Your Referral Code",
             "copy": "Copy",
-            "copied": "Copied!",
-            "shareWhatsapp": "Share",
-            "shareEmail": "Email"
+            "copied": "Copied!"
         },
         "linkCard": {
             "title": "Your Referral Link"
