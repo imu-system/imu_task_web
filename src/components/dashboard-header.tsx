@@ -31,6 +31,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui
 
 export function DashboardHeader() {
   const t = useTranslations('Header');
+  const tNav = useTranslations('DashboardNav');
   const { user, signOut } = useAuth();
   const { toggleSidebar } = useSidebar();
 
@@ -108,14 +109,14 @@ export function DashboardHeader() {
         <Button asChild variant="ghost" size="icon">
           <Link href="/dashboard/messages">
             <MessageSquare />
-            <span className="sr-only">{t('messages', { ns: 'DashboardNav' })}</span>
+            <span className="sr-only">{tNav('messages')}</span>
           </Link>
         </Button>
         
         <Button asChild variant="ghost" size="icon">
           <Link href="/dashboard/notifications">
             <Bell />
-            <span className="sr-only">{t('notifications', { ns: 'DashboardNav' })}</span>
+            <span className="sr-only">{tNav('notifications')}</span>
           </Link>
         </Button>
 
