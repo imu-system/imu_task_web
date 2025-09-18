@@ -63,6 +63,11 @@ export const pathnames = {
     fr: '/a-propos',
     jp: '/about',
   },
+  '/legal': {
+    en: '/legal',
+    fr: '/legal',
+    jp: '/legal',
+  }
 
 };
 

@@ -1253,5 +1253,28 @@
                 }
             }
         }
+    },
+    "LegalLayout": {
+        "title": "Legal & Documents",
+        "tabs": {
+            "policies": "Terms & Policies"
+        }
+    },
+    "LegalPage": {
+        "terms": {
+            "update": {
+                "title": "Update Available: Terms of Service (01/09/2025)",
+                "description": "Our terms have been updated. Please review and accept them to continue using ImuTask.",
+                "button": "Read & Accept"
+            },
+            "cgu": {
+                "title": "Terms of Service",
+                "contentPlaceholder": "[Content of the terms of service will be displayed here...]"
+            },
+            "privacy": {
+                "title": "Privacy Policy",
+                "contentPlaceholder": "[Content of the privacy policy will be displayed here...]"
+            }
+        }
     }
 }

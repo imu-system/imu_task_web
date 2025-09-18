@@ -1253,5 +1253,28 @@
                 }
             }
         }
+    },
+    "LegalLayout": {
+        "title": "Légal & Documents",
+        "tabs": {
+            "policies": "CGU & Politiques"
+        }
+    },
+    "LegalPage": {
+        "terms": {
+            "update": {
+                "title": "Mise à jour disponible : CGU (01/09/2025)",
+                "description": "Nos conditions ont été mises à jour. Veuillez les lire et les accepter pour continuer à utiliser ImuTask.",
+                "button": "Lire & Accepter"
+            },
+            "cgu": {
+                "title": "Conditions Générales d'Utilisation",
+                "contentPlaceholder": "[Le contenu des conditions générales d'utilisation sera affiché ici...]"
+            },
+            "privacy": {
+                "title": "Politique de Confidentialité",
+                "contentPlaceholder": "[Le contenu de la politique de confidentialité sera affiché ici...]"
+            }
+        }
     }
 }
