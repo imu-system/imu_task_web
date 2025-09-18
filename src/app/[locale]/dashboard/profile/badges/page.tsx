@@ -2,6 +2,7 @@
 
 'use client';
 
+import * as React from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -53,7 +54,7 @@ export default function BadgesPage() {
                         <Link key={badge.id} href={badge.unlocked ? `/dashboard/academy/certificate/${badge.id}` : '#'} className={cn(!badge.unlocked && "pointer-events-none")}>
                             <div className={cn("flex flex-col items-center text-center gap-4 p-6 rounded-lg border h-full hover:shadow-md transition-shadow", !badge.unlocked && "opacity-50 bg-muted/50")}>
                                 <div className={cn("p-4 rounded-full", badge.unlocked ? "bg-primary/10 text-primary" : "bg-muted-foreground/10 text-muted-foreground")}>
-                                    {React.cloneElement(badge.icon, { className: 'h-8 w-8' })}
+                                    {React.cloneElement(badge.icon as React.ReactElement, { className: 'h-8 w-8' })}
                                 </div>
                                 <div className="space-y-1">
                                     <h3 className="font-semibold text-lg">{t(badge.titleKey as any)}</h3>
