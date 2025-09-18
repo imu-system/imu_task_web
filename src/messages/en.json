@@ -657,47 +657,46 @@
         }
     },
     "ProfilePage": {
-        "title": "Profile & Settings",
-        "subtitle": "Manage your personal information and preferences.",
-        "editProfile": "Edit Profile",
-        "kycVerification": "KYC Verification",
-        "personalInfo": "Personal Information",
-        "personalInfoDesc": "Update your public information.",
-        "changePhoto": "Change Photo",
-        "fullName": "Full Name",
-        "emailAddress": "Email Address",
-        "bio": "Bio",
-        "bioPlaceholder": "Tell us a little about yourself...",
-        "noBio": "This user does not have a bio yet.",
-        "saveChanges": "Save Changes",
-        "toastSuccessTitle": "Profile updated",
-        "toastSuccessDescription": "Your information has been successfully saved.",
-        "toastErrorTitle": "Error",
-        "toastErrorDescription": "An error occurred while updating your profile.",
-        "addressesTitle": "My Addresses",
-        "addressesDesc": "Manage your saved addresses for tasks.",
-        "addAddress": "Add Address",
-        "setDefault": "Set as default",
-        "delete": "Delete",
-        "noAddresses": "You haven't added any addresses yet.",
-        "averageRating": "Average Rating",
-        "completedMissions": "Completed Missions",
-        "totalCompleted": "Total completed missions",
-        "basedOn": "Based on {count} reviews",
-        "providerInfo": "Provider Information",
-        "languages": "Languages spoken",
-        "languagesPlaceholder": "e.g. French, English",
-        "skills": "Skills",
-        "skillsPlaceholder": "e.g. Gardening, DIY",
-        "commaSeparated": "Separate with commas",
-        "addressForm": {
-            "title": "Add a new address",
-            "cancel": "Cancel",
-            "save": "Save"
+        "myBadges": "My Badges",
+        "earnedBadges": "Earned Badges",
+        "seeAllBadges": "See All Badges",
+        "earnedOn": "Earned on {date}"
+    },
+    "BadgesPage": {
+        "subtitle": "Here are the badges you have unlocked.",
+        "cardTitle": "My Badges",
+        "cardDescription": "Badges reward your activity and reliability on the platform.",
+        "history": {
+            "title": "Mission History",
+            "description": "Your last completed missions."
         },
-        "serviceRadius": "Service Radius (km)",
-        "serviceRadiusPlaceholder": "e.g. 10",
-        "serviceRadiusDisplay": "{km} km radius"
+        "shareProfile": "Share Profile",
+        "badges": {
+            "firstMission": {
+                "title": "First Mission",
+                "description": "Completed your first mission."
+            },
+            "verified": {
+                "title": "Verified",
+                "description": "Identity successfully verified."
+            },
+            "topRated": {
+                "title": "Top Rated",
+                "description": "Average rating above 4.8"
+            },
+            "communityHelper": {
+                "title": "Community Helper",
+                "description": "Completed 25 missions."
+            },
+            "profileComplete": {
+                "title": "Complete Profile",
+                "description": "Filled out all profile information."
+            },
+            "pioneer": {
+                "title": "Pioneer",
+                "description": "Joined in the first year."
+            }
+        }
     },
     "KycPage": {
         "title": "Identity Verification (KYC)",
@@ -1247,6 +1246,7 @@
                 "legend": "Hours"
             }
         },
+        "viewMissionDetails": "View mission details",
         "compare": {
             "title": "Compare Periods",
             "selection": {
@@ -1293,6 +1293,24 @@
                 "successTitle": "Goals Saved!",
                 "successDescription": "Your performance goals have been updated."
             }
+        },
+        "missions": {
+            "title": "Performance Details",
+            "subtitle": "Analyze your missions one by one to identify areas for improvement.",
+            "filters": {
+                "period": "Period",
+                "allMonths": "All months"
+            },
+            "table": {
+                "mission": "Mission",
+                "duration": "Duration",
+                "earnings": "Earnings",
+                "rating": "Rating",
+                "category": "Category",
+                "actions": "Actions",
+                "viewConversation": "View conversation"
+            },
+            "exportButton": "Export CSV"
         }
     }
 }

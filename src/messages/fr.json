@@ -1247,6 +1247,7 @@
                 "legend": "Heures"
             }
         },
+        "viewMissionDetails": "Voir le détail des missions",
         "compare": {
             "title": "Comparer les Périodes",
             "selection": {
@@ -1293,6 +1294,24 @@
                 "successTitle": "Objectifs Enregistrés !",
                 "successDescription": "Vos objectifs de performance ont été mis à jour."
             }
+        },
+        "missions": {
+            "title": "Détail des Performances",
+            "subtitle": "Analysez vos missions une par une pour identifier des axes d'amélioration.",
+            "filters": {
+                "period": "Période",
+                "allMonths": "Tous les mois"
+            },
+            "table": {
+                "mission": "Mission",
+                "duration": "Durée",
+                "earnings": "Gain",
+                "rating": "Note",
+                "category": "Catégorie",
+                "actions": "Actions",
+                "viewConversation": "Voir conversation"
+            },
+            "exportButton": "Exporter en CSV"
         }
     }
 }

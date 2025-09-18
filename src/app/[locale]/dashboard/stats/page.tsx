@@ -107,7 +107,10 @@ export default function StatsPage() {
                 ))}
             </div>
             
-            <div className="flex justify-end">
+            <div className="flex justify-between items-center">
+                 <Button variant="link" asChild>
+                    <Link href="/dashboard/stats/missions">{t('viewMissionDetails')}</Link>
+                </Button>
                 <Button variant="link" asChild>
                     <Link href="/dashboard/stats/tax">
                         <FileText className="mr-2"/>

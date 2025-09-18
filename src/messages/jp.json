@@ -843,6 +843,7 @@
                 "legend": "時間"
             }
         },
+        "viewMissionDetails": "ミッション詳細を表示",
         "compare": {
             "title": "期間を比較",
             "selection": {
@@ -889,6 +890,24 @@
                 "successTitle": "目標が保存されました！",
                 "successDescription": "パフォーマンス目標が更新されました。"
             }
+        },
+        "missions": {
+            "title": "パフォーマンス詳細",
+            "subtitle": "改善点を見つけるために、ミッションを一つずつ分析します。",
+            "filters": {
+                "period": "期間",
+                "allMonths": "すべての月"
+            },
+            "table": {
+                "mission": "ミッション",
+                "duration": "期間",
+                "earnings": "収益",
+                "rating": "評価",
+                "category": "カテゴリ",
+                "actions": "アクション",
+                "viewConversation": "会話を見る"
+            },
+            "exportButton": "CSVをエクスポート"
         }
     }
 }
