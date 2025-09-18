@@ -1175,8 +1175,23 @@
                     "confirm": "Yes, delete my account"
                 }
             }
+        },
+        "account": {
+            "title": "Account Settings",
+            "description": "Manage your personal information.",
+            "fullNameLabel": "Full Name",
+            "emailLabel": "Email Address",
+            "changeButton": "Change",
+            "phoneLabel": "Phone Number",
+            "verifyButton": "Verify",
+            "saveButton": "Save Changes",
+            "linkedAccountsTitle": "Linked Accounts",
+            "connectButton": "Connect",
+            "disconnectButton": "Disconnect",
+            "toast": {
+                "saveSuccessTitle": "Information Saved",
+                "saveSuccessDescription": "Your account information has been updated."
+            }
         }
     }
 }
-
-    

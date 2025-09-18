@@ -1175,6 +1175,23 @@
                     "confirm": "Oui, supprimer mon compte"
                 }
             }
+        },
+        "account": {
+            "title": "Paramètres du Compte",
+            "description": "Gérez vos informations personnelles.",
+            "fullNameLabel": "Nom complet",
+            "emailLabel": "Adresse e-mail",
+            "changeButton": "Modifier",
+            "phoneLabel": "Numéro de téléphone",
+            "verifyButton": "Vérifier",
+            "saveButton": "Enregistrer les modifications",
+            "linkedAccountsTitle": "Comptes liés",
+            "connectButton": "Connecter",
+            "disconnectButton": "Déconnecter",
+            "toast": {
+                "saveSuccessTitle": "Informations sauvegardées",
+                "saveSuccessDescription": "Vos informations de compte ont été mises à jour."
+            }
         }
     }
 }
