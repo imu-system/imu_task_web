@@ -1316,5 +1316,17 @@
             "certificateButton": "Certificat d’assurance",
             "conditionsButton": "Conditions de couverture"
         }
+    },
+    "AdminDashboard": {
+        "subtitle": "Aperçu de l'activité de la plateforme.",
+        "priorityQueueTitle": "File d'attente prioritaire",
+        "priorityQueueDesc": "Actions nécessitant une attention immédiate.",
+        "clientProviderChart": {
+            "title": "Nouveaux clients vs. prestataires",
+            "description": "Nouveaux utilisateurs inscrits sur les 7 derniers mois.",
+            "clients": "Clients",
+            "providers": "Prestataires"
+        },
+        "quickActionsTitle": "Actions rapides"
     }
 }

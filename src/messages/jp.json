@@ -895,5 +895,17 @@
             "readOnline": "オンラインで読む",
             "downloadPdf": "PDFをダウンロード"
         }
+    },
+    "AdminDashboard": {
+        "subtitle": "プラットフォームのアクティビティの概要。",
+        "priorityQueueTitle": "優先キュー",
+        "priorityQueueDesc": "即時対応が必要なアクション。",
+        "clientProviderChart": {
+            "title": "新規クライアント vs. プロバイダー",
+            "description": "過去7ヶ月間に登録した新規ユーザー。",
+            "clients": "クライアント",
+            "providers": "プロバイダー"
+        },
+        "quickActionsTitle": "クイックアクション"
     }
 }

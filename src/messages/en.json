@@ -1316,5 +1316,17 @@
             "certificateButton": "Insurance Certificate",
             "conditionsButton": "Coverage Conditions"
         }
+    },
+    "AdminDashboard": {
+        "subtitle": "Overview of the platform's activity.",
+        "priorityQueueTitle": "Priority Queue",
+        "priorityQueueDesc": "Actions requiring immediate attention.",
+        "clientProviderChart": {
+            "title": "New Clients vs. Providers",
+            "description": "New users registered over the last 7 months.",
+            "clients": "Clients",
+            "providers": "Providers"
+        },
+        "quickActionsTitle": "Quick Actions"
     }
 }
