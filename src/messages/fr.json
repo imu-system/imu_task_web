@@ -1258,7 +1258,8 @@
         "title": "Légal & Documents",
         "tabs": {
             "policies": "CGU & Politiques",
-            "invoices": "Factures"
+            "invoices": "Factures",
+            "contracts": "Contrats"
         }
     },
     "LegalPage": {
@@ -1293,6 +1294,15 @@
                 "exportCsv": "Exporter tout en CSV",
                 "requestSummary": "Demander le récapitulatif annuel"
             }
+        },
+        "contracts": {
+            "title": "Mes Contrats",
+            "providerContract": "Contrat de Prestataire",
+            "nda": "Accord de Confidentialité (NDA)",
+            "signedOn": "Signé le {date}",
+            "read": "Lire",
+            "download": "Télécharger",
+            "addNew": "Ajouter / Signer un nouveau contrat"
         }
     }
 }

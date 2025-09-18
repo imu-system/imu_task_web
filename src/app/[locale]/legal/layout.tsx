@@ -17,7 +17,7 @@ export default function LegalLayout({
     const navLinks = [
         { href: '/legal/terms', label: t('tabs.policies') },
         { href: '/legal/invoices', label: t('tabs.invoices') },
-        // { href: '/legal/contracts', label: t('tabs.contracts') },
+        { href: '/legal/contracts', label: t('tabs.contracts') },
         // { href: '/legal/insurance', label: t('tabs.insurance') },
     ];
     

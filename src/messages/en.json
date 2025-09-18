@@ -1258,7 +1258,8 @@
         "title": "Legal & Documents",
         "tabs": {
             "policies": "Terms & Policies",
-            "invoices": "Invoices"
+            "invoices": "Invoices",
+            "contracts": "Contracts"
         }
     },
     "LegalPage": {
@@ -1293,6 +1294,15 @@
                 "exportCsv": "Export all as CSV",
                 "requestSummary": "Request annual summary"
             }
+        },
+        "contracts": {
+            "title": "My Contracts",
+            "providerContract": "Provider Contract",
+            "nda": "Confidentiality Agreement (NDA)",
+            "signedOn": "Signed on {date}",
+            "read": "Read",
+            "download": "Download",
+            "addNew": "Add / Sign a new contract"
         }
     }
 }
