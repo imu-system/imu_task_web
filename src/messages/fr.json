@@ -1337,6 +1337,17 @@
         "actions": {
             "history": "Voir l'historique",
             "rewards": "Catalogue des récompenses"
+        },
+        "history": {
+            "title": "Parrainages récents",
+            "name": "Nom du filleul",
+            "date": "Date d'inscription",
+            "status": "Statut",
+            "gain": "Gain",
+            "statuses": {
+                "active": "Actif",
+                "pending": "En attente"
+            }
         }
     }
 }

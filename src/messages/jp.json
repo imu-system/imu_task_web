@@ -934,6 +934,17 @@
         "actions": {
             "history": "履歴を表示",
             "rewards": "報酬カタログ"
+        },
+        "history": {
+            "title": "最近の紹介",
+            "name": "紹介されたユーザー名",
+            "date": "登録日",
+            "status": "ステータス",
+            "gain": "獲得",
+            "statuses": {
+                "active": "アクティブ",
+                "pending": "保留中"
+            }
         }
     }
 }

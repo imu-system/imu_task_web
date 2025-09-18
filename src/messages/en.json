@@ -1337,6 +1337,17 @@
         "actions": {
             "history": "View History",
             "rewards": "Rewards Catalog"
+        },
+        "history": {
+            "title": "Recent Referrals",
+            "name": "Referred User Name",
+            "date": "Registration Date",
+            "status": "Status",
+            "gain": "Gain",
+            "statuses": {
+                "active": "Active",
+                "pending": "Pending"
+            }
         }
     }
 }
