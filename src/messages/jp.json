@@ -69,6 +69,7 @@
         "admin": "管理",
         "stats": "統計",
         "academy": "アカデミー",
+        "referrals": "紹介",
         "adminNav": {
             "community": "コミュニティ",
             "moderation": "モデレーション",
@@ -908,6 +909,31 @@
                 "viewConversation": "会話を見る"
             },
             "exportButton": "CSVをエクスポート"
+        }
+    },
+    "ReferralsPage": {
+        "title": "紹介プログラム",
+        "subtitle": "友達を招待して報酬を獲得しましょう！",
+        "codeCard": {
+            "title": "あなたの紹介コード",
+            "copy": "コピー",
+            "copied": "コピーしました！",
+            "shareWhatsapp": "共有",
+            "shareEmail": "メール"
+        },
+        "linkCard": {
+            "title": "あなたの紹介リンク"
+        },
+        "stats": {
+            "title": "クイック統計",
+            "referred": "紹介されたユーザー",
+            "rewards": "総報酬",
+            "university": "関連大学",
+            "noUniversity": "なし"
+        },
+        "actions": {
+            "history": "履歴を表示",
+            "rewards": "報酬カタログ"
         }
     }
 }

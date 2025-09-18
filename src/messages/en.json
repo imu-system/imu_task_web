@@ -71,6 +71,7 @@
         "findTask": "Find a task",
         "myBookings": "My Bookings",
         "reviews": "Reviews",
+        "referrals": "Referrals",
         "provider": "Provider Space",
         "availability": "Availability",
         "stats": "Statistics",
@@ -1311,6 +1312,31 @@
                 "viewConversation": "View conversation"
             },
             "exportButton": "Export CSV"
+        }
+    },
+    "ReferralsPage": {
+        "title": "Referral Program",
+        "subtitle": "Invite friends and earn rewards!",
+        "codeCard": {
+            "title": "Your Referral Code",
+            "copy": "Copy",
+            "copied": "Copied!",
+            "shareWhatsapp": "Share",
+            "shareEmail": "Email"
+        },
+        "linkCard": {
+            "title": "Your Referral Link"
+        },
+        "stats": {
+            "title": "Quick Stats",
+            "referred": "Referred Users",
+            "rewards": "Total Rewards",
+            "university": "Associated University",
+            "noUniversity": "None"
+        },
+        "actions": {
+            "history": "View History",
+            "rewards": "Rewards Catalog"
         }
     }
 }

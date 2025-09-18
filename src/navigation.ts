@@ -47,6 +47,7 @@ export const pathnames = {
   '/dashboard/academy/course/[id]/quiz': '/dashboard/academy/course/[id]/quiz',
   '/dashboard/academy/certificate/[id]': '/dashboard/academy/certificate/[id]',
   '/dashboard/admin/academy': '/dashboard/admin/academy',
+  '/dashboard/referrals': '/dashboard/referrals',
 
   // If locales use different paths, you can
   // specify each external path per locale.

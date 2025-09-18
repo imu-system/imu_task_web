@@ -48,6 +48,7 @@ import {
   Briefcase,
   Calendar as CalendarIcon,
   BookOpen,
+  Gift,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -76,6 +77,7 @@ export function DashboardNav() {
     { href: '/dashboard/reviews', icon: <Star />, label: t('reviews') },
     { href: '/dashboard/wallet', icon: <Wallet />, label: t('wallet') },
     { href: '/dashboard/academy', icon: <BookOpen />, label: t('academy') },
+    { href: '/dashboard/referrals', icon: <Gift />, label: t('referrals') },
   ];
   
   const providerNavItems = [
