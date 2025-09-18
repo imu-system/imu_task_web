@@ -563,7 +563,18 @@
             }
         },
         "pricing": {
-            "title": "価格分析"
+            "title": "価格分析",
+            "description": "あなたの料金を市場平均と比較して収益を最大化します。",
+            "averagePrice": "平均価格",
+            "optimalRange": "最適範囲",
+            "yourRate": "現在の料金",
+            "recommendation": {
+                "title": "推奨事項",
+                "increase": "競争力を保ちながら時間を評価するために、料金を+{amount}€上げてください。",
+                "onPoint": "あなたの料金は市場内で適切に位置付けられています。素晴らしい！",
+                "decrease": "あなたの料金は最適範囲をわずかに上回っています。より多くのオファーを受け取るために調整を検討してください。"
+            },
+            "updateRateButton": "料金を更新"
         },
         "performance": {
             "title": "パフォーマンス比較"

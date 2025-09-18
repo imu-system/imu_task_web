@@ -948,7 +948,18 @@
             }
         },
         "pricing": {
-            "title": "Analyse des Prix"
+            "title": "Analyse de prix",
+            "description": "Comparez votre tarif à la moyenne du marché pour maximiser vos gains.",
+            "averagePrice": "Prix moyen",
+            "optimalRange": "Fourchette optimale",
+            "yourRate": "Votre tarif actuel",
+            "recommendation": {
+                "title": "Recommandation",
+                "increase": "Augmentez votre tarif de +{amount}€ pour rester compétitif tout en valorisant votre temps.",
+                "onPoint": "Votre tarif est bien positionné dans le marché. Bravo !",
+                "decrease": "Votre tarif est légèrement au-dessus de la fourchette optimale. Envisagez un ajustement pour recevoir plus d'offres."
+            },
+            "updateRateButton": "Mettre à jour mon tarif"
         },
         "performance": {
             "title": "Comparaison des Performances"

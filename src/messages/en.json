@@ -948,7 +948,18 @@
             }
         },
         "pricing": {
-            "title": "Pricing Analysis"
+            "title": "Pricing Analysis",
+            "description": "Compare your rate with the market average to maximize your earnings.",
+            "averagePrice": "Average Price",
+            "optimalRange": "Optimal Range",
+            "yourRate": "Your Current Rate",
+            "recommendation": {
+                "title": "Recommendation",
+                "increase": "Increase your rate by +{amount}€ to stay competitive while valuing your time.",
+                "onPoint": "Your rate is well-positioned within the market. Well done!",
+                "decrease": "Your rate is slightly above the optimal range. Consider an adjustment to receive more offers."
+            },
+            "updateRateButton": "Update My Rate"
         },
         "performance": {
             "title": "Performance Comparison"
