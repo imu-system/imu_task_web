@@ -967,7 +967,15 @@
                 "successTitle": "報酬獲得！",
                 "successDescription": "報酬「{rewardName}」がまもなく届きます。"
             },
-            "historyLink": "報酬履歴を表示"
+            "historyLink": "報酬履歴を表示",
+            "dialog": {
+                "title": "交換を確認しますか？",
+                "reward": "報酬",
+                "cost": "コスト",
+                "remainingBalance": "交換後の残高",
+                "cancel": "キャンセル",
+                "confirm": "交換を確定"
+            }
         },
         "rewardsHistory": {
             "title": "報酬履歴",

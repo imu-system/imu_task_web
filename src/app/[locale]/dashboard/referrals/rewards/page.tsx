@@ -7,12 +7,26 @@ import { Button } from '@/components/ui/button';
 import { Link } from '@/navigation';
 import { ArrowLeft, Gift, Ticket, Banknote, ExternalLink } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 const mockRewards = [
     { id: 'r1', nameKey: 'rewards.uber', value: 10 },
     { id: 'r2', nameKey: 'rewards.imutask', value: 5 },
     { id: 'r3', nameKey: 'rewards.amazon', value: 20 },
 ];
+
+const availableBalance = 60.00;
+
 
 export default function RewardsCataloguePage() {
     const t = useTranslations('ReferralsPage.rewards');
@@ -44,7 +58,7 @@ export default function RewardsCataloguePage() {
             <Card>
                 <CardHeader>
                     <CardTitle>{t('balance.title')}</CardTitle>
-                    <CardDescription className="text-4xl font-bold tracking-tight">60,00 €</CardDescription>
+                    <CardDescription className="text-4xl font-bold tracking-tight">{availableBalance.toFixed(2)} €</CardDescription>
                 </CardHeader>
             </Card>
 
@@ -62,10 +76,32 @@ export default function RewardsCataloguePage() {
                                     <p className="text-sm text-muted-foreground">{reward.value.toFixed(2)} €</p>
                                 </div>
                             </div>
-                            <Button variant="outline" onClick={() => handleExchange(t(reward.nameKey as any))}>
-                                <ExternalLink className="mr-2"/>
-                                {t('options.exchange')}
-                            </Button>
+                            <AlertDialog>
+                                <AlertDialogTrigger asChild>
+                                    <Button variant="outline">
+                                        <ExternalLink className="mr-2"/>
+                                        {t('options.exchange')}
+                                    </Button>
+                                </AlertDialogTrigger>
+                                <AlertDialogContent>
+                                    <AlertDialogHeader>
+                                        <AlertDialogTitle>{t('dialog.title')}</AlertDialogTitle>
+                                        <AlertDialogDescription>
+                                            <div className="py-4 space-y-2">
+                                                <p><strong>{t('dialog.reward')}:</strong> {t(reward.nameKey as any)}</p>
+                                                <p><strong>{t('dialog.cost')}:</strong> {reward.value.toFixed(2)} €</p>
+                                                <p><strong>{t('dialog.remainingBalance')}:</strong> {(availableBalance - reward.value).toFixed(2)} €</p>
+                                            </div>
+                                        </AlertDialogDescription>
+                                    </AlertDialogHeader>
+                                    <AlertDialogFooter>
+                                        <AlertDialogCancel>{t('dialog.cancel')}</AlertDialogCancel>
+                                        <AlertDialogAction onClick={() => handleExchange(t(reward.nameKey as any))}>
+                                            {t('dialog.confirm')}
+                                        </AlertDialogAction>
+                                    </AlertDialogFooter>
+                                </AlertDialogContent>
+                            </AlertDialog>
                         </div>
                     ))}
                      <div className="flex items-center justify-between p-3 border rounded-lg">

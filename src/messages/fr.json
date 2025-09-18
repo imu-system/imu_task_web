@@ -1370,7 +1370,15 @@
                 "successTitle": "Récompense réclamée !",
                 "successDescription": "Votre récompense '{rewardName}' est en route."
             },
-            "historyLink": "Voir l'historique des récompenses"
+            "historyLink": "Voir l'historique des récompenses",
+            "dialog": {
+                "title": "Confirmer l'échange ?",
+                "reward": "Récompense",
+                "cost": "Coût",
+                "remainingBalance": "Solde après échange",
+                "cancel": "Annuler",
+                "confirm": "Confirmer l'échange"
+            }
         },
         "rewardsHistory": {
             "title": "Historique des récompenses",
