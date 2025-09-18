@@ -1257,7 +1257,8 @@
     "LegalLayout": {
         "title": "Legal & Documents",
         "tabs": {
-            "policies": "Terms & Policies"
+            "policies": "Terms & Policies",
+            "invoices": "Invoices"
         }
     },
     "LegalPage": {
@@ -1279,6 +1280,19 @@
             },
             "readOnline": "Read Online",
             "downloadPdf": "Download PDF"
+        },
+        "invoices": {
+            "title": "My Invoices",
+            "description": "Here you can find all your invoices related to ImuTask services.",
+            "table": {
+                "date": "Date",
+                "amount": "Amount",
+                "download": "Download"
+            },
+            "actions": {
+                "exportCsv": "Export all as CSV",
+                "requestSummary": "Request annual summary"
+            }
         }
     }
 }

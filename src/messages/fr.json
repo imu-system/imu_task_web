@@ -1257,7 +1257,8 @@
     "LegalLayout": {
         "title": "Légal & Documents",
         "tabs": {
-            "policies": "CGU & Politiques"
+            "policies": "CGU & Politiques",
+            "invoices": "Factures"
         }
     },
     "LegalPage": {
@@ -1279,6 +1280,19 @@
             },
             "readOnline": "Lire en ligne",
             "downloadPdf": "Télécharger en PDF"
+        },
+        "invoices": {
+            "title": "Mes Factures",
+            "description": "Retrouvez ici toutes vos factures liées aux services ImuTask.",
+            "table": {
+                "date": "Date",
+                "amount": "Montant",
+                "download": "Télécharger"
+            },
+            "actions": {
+                "exportCsv": "Exporter tout en CSV",
+                "requestSummary": "Demander le récapitulatif annuel"
+            }
         }
     }
 }
