@@ -15,8 +15,7 @@
         "createTask": "Créer une mission",
         "setAvailability": "Définir disponibilités",
         "settings": "Paramètres",
-        "support": "Support",
-        "messages": "Messages"
+        "support": "Support"
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. Tous droits réservés.",
@@ -930,101 +929,9 @@
             "providers": "Prestataires"
         }
     },
-    "ReferralsPage": {
-        "title": "Parrainage",
-        "subtitle": "Invitez vos amis et gagnez des récompenses !",
-        "invite": {
-            "title": "Inviter des amis",
-            "emailLabel": "Adresse e-mail",
-            "emailPlaceholder": "ami@example.com",
-            "addButton": "Ajouter",
-            "shareLabel": "Ou partager directement via :",
-            "smsButton": "SMS"
-        },
-        "codeCard": {
-            "title": "Votre code de parrainage",
-            "copy": "Copier le code",
-            "copied": "Code copié !"
-        },
-        "linkCard": {
-            "title": "Votre lien de parrainage",
-            "copy": "Copier le lien"
-        },
-        "stats": {
-            "title": "Vos statistiques",
-            "referred": "Amis parrainés",
-            "rewards": "Gains totaux",
-            "university": "Votre université"
-        },
-        "universities": {
-            "title": "Programme Universités",
-            "promoLink": "Lien promo pour {year}",
-            "requestButton": "Demander un lien pour mon université"
-        },
-        "history": {
-            "title": "Historique de vos parrainages",
-            "name": "Nom",
-            "date": "Date",
-            "status": "Statut",
-            "statuses": {
-                "active": "Actif",
-                "pending": "En attente"
-            },
-            "gain": "Gain"
-        },
-        "actions": {
-            "history": "Voir l'historique des gains",
-            "rewards": "Catalogue des récompenses"
-        },
-        "rewards": {
-            "title": "Catalogue des récompenses",
-            "balance": {
-                "title": "Votre solde de récompenses",
-                "current": "Solde actuel"
-            },
-            "options": {
-                "title": "Options de récompense",
-                "exchange": "Échanger",
-                "request": "Demander"
-            },
-            "rewards": {
-                "uber": "Coupon Uber Eats",
-                "imutask": "Réduction ImuTask",
-                "amazon": "Carte-cadeau Amazon",
-                "payout": "Virement bancaire",
-                "payoutMin": "Minimum 50 €"
-            },
-            "historyLink": "Voir l'historique de mes récompenses",
-            "dialog": {
-                "title": "Confirmer l'échange",
-                "reward": "Récompense",
-                "cost": "Coût",
-                "remainingBalance": "Solde restant",
-                "cancel": "Annuler",
-                "confirm": "Confirmer"
-            },
-            "toast": {
-                "successTitle": "Récompense obtenue !",
-                "successDescription": "Vous avez échangé vos points contre une récompense {rewardName}."
-            }
-        },
-        "rewardsHistory": {
-            "title": "Historique des Récompenses",
-            "table": {
-                "title": "Vos récompenses réclamées",
-                "reward": "Récompense",
-                "date": "Date",
-                "status": "Statut"
-            },
-            "statuses": {
-                "received": "Reçue",
-                "pending": "En attente",
-                "used": "Utilisée"
-            }
-        }
-    },
+    "ReferralsPage": {},
     "MarketInsightsLayout": {
-        "title": "Market Insights",
+        "title": "Infos Marché",
         "subtitle": "Données exclusives pour optimiser votre activité.",
         "congrats": {
             "title": "Félicitations !",
@@ -1065,7 +972,20 @@
             "updateRateButton": "Mettre à jour mon tarif"
         },
         "performance": {
-            "title": "Comparaison des Performances"
+            "title": "Comparatif de performances",
+            "kpi": {
+                "title": "Vos indicateurs clés",
+                "acceptanceRate": "Taux d’acceptation",
+                "averageRating": "Note moyenne",
+                "responseTime": "Délai de réponse"
+            },
+            "radar": {
+                "title": "Profil de performance",
+                "description": "Votre positionnement par rapport à la moyenne du marché sur des indicateurs clés.",
+                "you": "Vous",
+                "average": "Moyenne"
+            },
+            "improveButton": "Voir comment améliorer mes stats"
         },
         "zones": {
             "title": "Zones d'Activité"
@@ -1229,5 +1149,3 @@
         }
     }
 }
-
-    

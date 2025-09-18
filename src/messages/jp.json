@@ -15,8 +15,7 @@
         "createTask": "タスクを作成",
         "setAvailability": "利用可能性を設定",
         "settings": "設定",
-        "support": "サポート",
-        "messages": "メッセージ"
+        "support": "サポート"
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. 無断複写・転載を禁じます。",
@@ -577,10 +576,180 @@
             "updateRateButton": "料金を更新"
         },
         "performance": {
-            "title": "パフォーマンス比較"
+            "title": "パフォーマンス比較",
+            "kpi": {
+                "title": "あなたの主要指標",
+                "acceptanceRate": "受諾率",
+                "averageRating": "平均評価",
+                "responseTime": "応答時間"
+            },
+            "radar": {
+                "title": "パフォーマンスプロファイル",
+                "description": "主要指標における市場平均に対するあなたの位置付け。",
+                "you": "あなた",
+                "average": "平均"
+            },
+            "improveButton": "統計を改善する方法を見る"
         },
         "zones": {
             "title": "活動ゾーン"
+        }
+    },
+    "LegalLayout": {
+        "title": "法務・書類",
+        "tabs": {
+            "policies": "規約・ポリシー",
+            "invoices": "請求書",
+            "contracts": "契約書",
+            "insurance": "保険"
+        }
+    },
+    "LegalPage": {
+        "terms": {
+            "cgu": {
+                "title": "利用規約 ({version})"
+            },
+            "privacy": {
+                "title": "プライバシーポリシー ({year})"
+            },
+            "readOnline": "オンラインで読む",
+            "downloadPdf": "PDFをダウンロード",
+            "audit": {
+                "title": "同意履歴",
+                "acceptedOn": "{date}に同意済み（バージョン{version}）"
+            }
+        },
+        "invoices": {
+            "title": "私の請求書",
+            "description": "月々のサブスクリプション請求書はこちらでご確認いただけます。",
+            "table": {
+                "date": "日付",
+                "amount": "金額",
+                "download": "ダウンロード"
+            },
+            "actions": {
+                "exportCsv": "CSVとしてエクスポート",
+                "requestSummary": "税務概要をリクエスト"
+            }
+        },
+        "contracts": {
+            "title": "私の契約書",
+            "providerContract": "プロバイダー契約",
+            "nda": "秘密保持契約（NDA）",
+            "signedOn": "{date}に署名済み",
+            "read": "読む",
+            "download": "ダウンロード",
+            "addNew": "新しい契約を追加/署名"
+        },
+        "insurance": {
+            "title": "保険と補償範囲",
+            "description": "含まれている職業賠償責任保険の詳細。",
+            "providerLabel": "提供者",
+            "policyNumberLabel": "証券番号",
+            "coverageLabel": "補償範囲",
+            "coverageValue": "1回の請求につき最大1,000,000 €",
+            "documentsTitle": "関連書類",
+            "certificateButton": "保険証明書",
+            "conditionsButton": "補償条件"
+        }
+    },
+    "SettingsLayout": {
+        "title": "設定",
+        "subtitle": "アカウント設定を管理します。",
+        "tabs": {
+            "account": "アカウント",
+            "security": "セキュリティ",
+            "billing": "請求",
+            "privacy": "プライバシー"
+        }
+    },
+    "SettingsPage": {
+        "hub": {
+            "title": "アカウント設定",
+            "description": "アカウント、支払い、セキュリティ情報を管理します。",
+            "email": {
+                "label": "メールアドレス",
+                "button": "変更"
+            },
+            "payment": {
+                "label": "支払い方法",
+                "value": "Visa（末尾1234）",
+                "button": "管理"
+            },
+            "twoFactor": {
+                "label": "二要素認証",
+                "value": "無効",
+                "button": "有効にする"
+            },
+            "gdpr": {
+                "title": "データ管理",
+                "export": "私のデータをエクスポート",
+                "delete": "アカウントを削除",
+                "dialog": {
+                    "title": "本当に実行しますか？",
+                    "description": "この操作は元に戻せず、アカウントとすべてのデータが完全に削除されます。",
+                    "cancel": "キャンセル",
+                    "confirm": "削除を確定"
+                }
+            }
+        },
+        "security": {
+            "password": {
+                "title": "パスワード",
+                "button": "パスワードを変更"
+            },
+            "twoFactor": {
+                "title": "二要素認証",
+                "statusLabel": "ステータス",
+                "status": {
+                    "disabled": "無効"
+                },
+                "enableSms": "SMSで有効にする",
+                "enableApp": "アプリで有効にする"
+            },
+            "sessions": {
+                "title": "アクティブなセッション",
+                "currentSession": "現在のセッション",
+                "disconnect": "切断"
+            }
+        },
+        "billing": {
+            "paymentMethods": {
+                "title": "支払い方法",
+                "endingIn": "（末尾",
+                "default": "デフォルト",
+                "addCard": "カードを追加"
+            },
+            "invoices": {
+                "title": "請求履歴",
+                "date": "日付",
+                "amount": "金額",
+                "download": "ダウンロード"
+            },
+            "subscription": {
+                "title": "サブスクリプション",
+                "currentPlan": "現在のプラン",
+                "changePlan": "プランを変更",
+                "cancel": "サブスクリプションをキャンセル"
+            }
+        },
+        "privacy": {
+            "preferences": {
+                "title": "データ設定",
+                "stats": "プラットフォーム統計のために匿名化されたデータの使用を許可する。",
+                "newsletter": "ニュースレターとプロモーションオファーを受け取る。"
+            },
+            "data": {
+                "title": "個人データ",
+                "export": "すべての私のデータをエクスポート",
+                "delete": "アカウント削除をリクエスト",
+                "dialog": {
+                    "title": "本当に実行しますか？",
+                    "description": "この操作は元に戻せず、アカウントとすべてのデータが完全に削除されます。",
+                    "cancel": "キャンセル",
+                    "confirm": "削除を確定"
+                }
+            }
         }
     }
 }
