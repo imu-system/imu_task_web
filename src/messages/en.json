@@ -1323,6 +1323,20 @@
             "title": "Recent Activity",
             "time": "Time",
             "event": "Event"
+        },
+        "flags": {
+            "title": "Feature Flag Management",
+            "searchPlaceholder": "Search a flag...",
+            "table": {
+                "key": "Key",
+                "envs": "Env(s)",
+                "status": "Status",
+                "rollout": "Rollout"
+            },
+            "actions": {
+                "details": "Details",
+                "history": "History"
+            }
         }
     }
 }

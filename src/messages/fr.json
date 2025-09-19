@@ -1324,8 +1324,23 @@
             "title": "Activité Récente",
             "time": "Heure",
             "event": "Événement"
+        },
+        "flags": {
+            "title": "Gestion des Feature Flags",
+            "searchPlaceholder": "Rechercher un flag...",
+            "table": {
+                "key": "Clé",
+                "envs": "Env(s)",
+                "status": "Statut",
+                "rollout": "Déploiement"
+            },
+            "actions": {
+                "details": "Détails",
+                "history": "Historique"
+            }
         }
     }
 }
 
     
+

@@ -894,6 +894,20 @@
             "title": "最近のアクティビティ",
             "time": "時間",
             "event": "イベント"
+        },
+        "flags": {
+            "title": "機能フラグ管理",
+            "searchPlaceholder": "フラグを検索...",
+            "table": {
+                "key": "キー",
+                "envs": "環境",
+                "status": "ステータス",
+                "rollout": "展開"
+            },
+            "actions": {
+                "details": "詳細",
+                "history": "履歴"
+            }
         }
     }
 }
