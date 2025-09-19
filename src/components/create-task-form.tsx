@@ -37,7 +37,8 @@ import { Card, CardContent } from './ui/card';
 import { useTranslations } from 'next-intl';
 import { createTask, getTaskTemplateById } from '@/lib/data';
 import { useAuth } from '@/hooks/use-auth';
-import { useRouter, useSearchParams } from '@/navigation';
+import { useRouter } from '@/navigation';
+import { useSearchParams } from 'next/navigation';
 import { collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 

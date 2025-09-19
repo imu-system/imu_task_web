@@ -1,7 +1,17 @@
+
 'use client';
 
 import { CreateTaskForm } from '@/components/create-task-form';
 import { useTranslations } from 'next-intl';
+import { Suspense } from 'react';
+
+function CreateTaskFormWithSuspense() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CreateTaskForm />
+    </Suspense>
+  )
+}
 
 export default function NewTaskPage() {
   const t = useTranslations('NewTaskPage');
@@ -15,7 +25,7 @@ export default function NewTaskPage() {
           {t('subtitle')}
         </p>
       </div>
-      <CreateTaskForm />
+      <CreateTaskFormWithSuspense />
     </div>
   );
 }
