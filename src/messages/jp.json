@@ -592,7 +592,26 @@
             "improveButton": "統計を改善する方法を見る"
         },
         "zones": {
-            "title": "活動ゾーン"
+            "title": "活動ゾーン",
+            "heatmap": {
+                "title": "需要ヒートマップ",
+                "description": "サービスの需要が最も高いゾーンを視覚化します。",
+                "placeholder": "[インタラクティブマッププレースホルダー]"
+            },
+            "zones": {
+                "cityCenter": "市内中心部",
+                "studentQuarters": "学生街",
+                "residentialNorth": "北部住宅地",
+                "ruralArea": "農村地域",
+                "highDemand": "高い需要",
+                "mediumDemand": "中程度の需要",
+                "lowDemand": "低い需要"
+            },
+            "suggestion": {
+                "title": "機会！",
+                "description": "隣接するエリアで高い需要があります。サービス範囲の拡大を検討してください。",
+                "actionButton": "半径を調整する"
+            }
         }
     },
     "LegalLayout": {

@@ -929,7 +929,98 @@
             "providers": "Providers"
         }
     },
-    "ReferralsPage": {},
+    "ReferralsPage": {
+        "title": "Referrals",
+        "subtitle": "Invite your friends and earn rewards.",
+        "invite": {
+            "title": "Invite Friends",
+            "emailLabel": "Invite by email",
+            "emailPlaceholder": "Enter one or more email addresses",
+            "addButton": "Add",
+            "shareLabel": "Or share directly via:",
+            "smsButton": "SMS"
+        },
+        "codeCard": {
+            "title": "Your Referral Code",
+            "copy": "Copy Code",
+            "copied": "Code copied!"
+        },
+        "linkCard": {
+            "title": "Your Referral Link",
+            "copy": "Copy Link"
+        },
+        "stats": {
+            "title": "Your Stats",
+            "referred": "Referred Friends",
+            "rewards": "Rewards Earned",
+            "university": "Your University"
+        },
+        "universities": {
+            "title": "University Challenge",
+            "promoLink": "{year} Promo Link",
+            "requestButton": "Request a link for my university"
+        },
+        "history": {
+            "title": "Referral History",
+            "name": "Name",
+            "date": "Date",
+            "status": "Status",
+            "gain": "Gain",
+            "statuses": {
+                "active": "Active",
+                "pending": "Pending"
+            }
+        },
+        "actions": {
+            "history": "View rewards history",
+            "rewards": "Choose my rewards"
+        },
+        "rewards": {
+            "title": "Rewards Catalogue",
+            "balance": {
+                "title": "Available Balance"
+            },
+            "options": {
+                "title": "Exchange your points",
+                "exchange": "Exchange",
+                "request": "Request"
+            },
+            "rewards": {
+                "uber": "Uber Eats Voucher",
+                "imutask": "ImuTask Credit",
+                "amazon": "Amazon Gift Card",
+                "payout": "Bank Payout",
+                "payoutMin": "Minimum 50 €"
+            },
+            "dialog": {
+                "title": "Confirm Exchange",
+                "reward": "Reward",
+                "cost": "Cost",
+                "remainingBalance": "Remaining Balance",
+                "cancel": "Cancel",
+                "confirm": "Confirm"
+            },
+            "toast": {
+                "successTitle": "Exchange Successful!",
+                "successDescription": "Your reward '{rewardName}' will be sent to you shortly."
+            },
+            "historyLink": "View my rewards history"
+        },
+        "rewardsHistory": {
+            "title": "Rewards History",
+            "table": {
+                "title": "Rewards obtained",
+                "reward": "Reward",
+                "date": "Date",
+                "status": "Status"
+            },
+            "statuses": {
+                "received": "Received",
+                "pending": "Pending",
+                "used": "Used"
+            }
+        }
+    },
     "MarketInsightsLayout": {
         "title": "Market Insights",
         "subtitle": "Exclusive data to optimize your activity.",
@@ -988,7 +1079,26 @@
             "improveButton": "See how to improve my stats"
         },
         "zones": {
-            "title": "Activity Zones"
+            "title": "Activity Zones",
+            "heatmap": {
+                "title": "Demand Heatmap",
+                "description": "Visualize the zones with the highest demand for services.",
+                "placeholder": "[Interactive map placeholder]"
+            },
+            "zones": {
+                "cityCenter": "City Center",
+                "studentQuarters": "Student Quarters",
+                "residentialNorth": "Residential North",
+                "ruralArea": "Rural Area",
+                "highDemand": "High Demand",
+                "mediumDemand": "Medium Demand",
+                "lowDemand": "Low Demand"
+            },
+            "suggestion": {
+                "title": "Opportunity!",
+                "description": "A neighboring area has high demand. Consider expanding your service radius.",
+                "actionButton": "Adjust my radius"
+            }
         }
     },
     "LegalLayout": {

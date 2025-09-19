@@ -929,7 +929,98 @@
             "providers": "Prestataires"
         }
     },
-    "ReferralsPage": {},
+    "ReferralsPage": {
+        "title": "Parrainage",
+        "subtitle": "Invitez vos amis et gagnez des récompenses.",
+        "invite": {
+            "title": "Inviter des amis",
+            "emailLabel": "Inviter par e-mail",
+            "emailPlaceholder": "Entrez une ou plusieurs adresses e-mail",
+            "addButton": "Ajouter",
+            "shareLabel": "Ou partager directement via :",
+            "smsButton": "SMS"
+        },
+        "codeCard": {
+            "title": "Votre code de parrainage",
+            "copy": "Copier le code",
+            "copied": "Code copié !"
+        },
+        "linkCard": {
+            "title": "Votre lien de parrainage",
+            "copy": "Copier le lien"
+        },
+        "stats": {
+            "title": "Vos statistiques",
+            "referred": "Amis parrainés",
+            "rewards": "Récompenses gagnées",
+            "university": "Votre université"
+        },
+        "universities": {
+            "title": "Challenge Universités",
+            "promoLink": "Lien promo {year}",
+            "requestButton": "Demander un lien pour mon université"
+        },
+        "history": {
+            "title": "Historique des parrainages",
+            "name": "Nom",
+            "date": "Date",
+            "status": "Statut",
+            "gain": "Gain",
+            "statuses": {
+                "active": "Actif",
+                "pending": "En attente"
+            }
+        },
+        "actions": {
+            "history": "Voir l'historique des récompenses",
+            "rewards": "Choisir mes récompenses"
+        },
+        "rewards": {
+            "title": "Catalogue des récompenses",
+            "balance": {
+                "title": "Solde disponible"
+            },
+            "options": {
+                "title": "Échangez vos points",
+                "exchange": "Échanger",
+                "request": "Demander"
+            },
+            "rewards": {
+                "uber": "Bon d'achat Uber Eats",
+                "imutask": "Crédit ImuTask",
+                "amazon": "Carte cadeau Amazon",
+                "payout": "Virement bancaire",
+                "payoutMin": "Minimum 50 €"
+            },
+            "dialog": {
+                "title": "Confirmer l'échange",
+                "reward": "Récompense",
+                "cost": "Coût",
+                "remainingBalance": "Solde restant",
+                "cancel": "Annuler",
+                "confirm": "Confirmer"
+            },
+            "toast": {
+                "successTitle": "Échange réussi !",
+                "successDescription": "Votre récompense '{rewardName}' vous sera envoyée sous peu."
+            },
+            "historyLink": "Voir l'historique de mes récompenses"
+        },
+        "rewardsHistory": {
+            "title": "Historique des récompenses",
+            "table": {
+                "title": "Récompenses obtenues",
+                "reward": "Récompense",
+                "date": "Date",
+                "status": "Statut"
+            },
+            "statuses": {
+                "received": "Reçue",
+                "pending": "En attente",
+                "used": "Utilisée"
+            }
+        }
+    },
     "MarketInsightsLayout": {
         "title": "Infos Marché",
         "subtitle": "Données exclusives pour optimiser votre activité.",
@@ -988,7 +1079,26 @@
             "improveButton": "Voir comment améliorer mes stats"
         },
         "zones": {
-            "title": "Zones d'Activité"
+            "title": "Zones d'Activité",
+            "heatmap": {
+                "title": "Carte de la Demande",
+                "description": "Visualisez les zones avec la plus forte demande de services.",
+                "placeholder": "[Emplacement pour carte interactive]"
+            },
+            "zones": {
+                "cityCenter": "Centre-ville",
+                "studentQuarters": "Quartiers étudiants",
+                "residentialNorth": "Résidentiel Nord",
+                "ruralArea": "Zone rurale",
+                "highDemand": "Forte Demande",
+                "mediumDemand": "Demande Moyenne",
+                "lowDemand": "Faible Demande"
+            },
+            "suggestion": {
+                "title": "Opportunité !",
+                "description": "Une zone voisine présente une forte demande. Envisagez d'élargir votre rayon d'intervention.",
+                "actionButton": "Ajuster mon rayon"
+            }
         }
     },
     "LegalLayout": {
