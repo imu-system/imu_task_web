@@ -918,110 +918,8 @@
             "saveSuccessDescription": "Your notification preferences have been updated."
         }
     },
-    "AdminDashboard": {
-        "subtitle": "Welcome to the administration panel.",
-        "priorityQueueTitle": "Priority Queue",
-        "priorityQueueDesc": "Actions requiring immediate attention.",
-        "quickActionsTitle": "Quick Actions",
-        "clientProviderChart": {
-            "title": "Clients vs Providers",
-            "description": "Evolution of the number of active clients and providers.",
-            "clients": "Clients",
-            "providers": "Providers"
-        }
-    },
-    "ReferralsPage": {
-        "title": "Referrals",
-        "subtitle": "Invite your friends and earn rewards.",
-        "invite": {
-            "title": "Invite Friends",
-            "emailLabel": "Invite by email",
-            "emailPlaceholder": "Enter one or more email addresses",
-            "addButton": "Add",
-            "shareLabel": "Or share directly via:",
-            "smsButton": "SMS"
-        },
-        "codeCard": {
-            "title": "Your Referral Code",
-            "copy": "Copy Code",
-            "copied": "Code copied!"
-        },
-        "linkCard": {
-            "title": "Your Referral Link",
-            "copy": "Copy Link"
-        },
-        "stats": {
-            "title": "Your Stats",
-            "referred": "Referred Friends",
-            "rewards": "Rewards Earned",
-            "university": "Your University"
-        },
-        "universities": {
-            "title": "University Challenge",
-            "promoLink": "{year} Promo Link",
-            "requestButton": "Request a link for my university"
-        },
-        "history": {
-            "title": "Referral History",
-            "name": "Name",
-            "date": "Date",
-            "status": "Status",
-            "gain": "Gain",
-            "statuses": {
-                "active": "Active",
-                "pending": "Pending"
-            }
-        },
-        "actions": {
-            "history": "View rewards history",
-            "rewards": "Choose my rewards"
-        },
-        "rewards": {
-            "title": "Rewards Catalogue",
-            "balance": {
-                "title": "Available Balance"
-            },
-            "options": {
-                "title": "Exchange your points",
-                "exchange": "Exchange",
-                "request": "Request"
-            },
-            "rewards": {
-                "uber": "Uber Eats Voucher",
-                "imutask": "ImuTask Credit",
-                "amazon": "Amazon Gift Card",
-                "payout": "Bank Payout",
-                "payoutMin": "Minimum 50 €"
-            },
-            "dialog": {
-                "title": "Confirm Exchange",
-                "reward": "Reward",
-                "cost": "Cost",
-                "remainingBalance": "Remaining Balance",
-                "cancel": "Cancel",
-                "confirm": "Confirm"
-            },
-            "toast": {
-                "successTitle": "Exchange Successful!",
-                "successDescription": "Your reward '{rewardName}' will be sent to you shortly."
-            },
-            "historyLink": "View my rewards history"
-        },
-        "rewardsHistory": {
-            "title": "Rewards History",
-            "table": {
-                "title": "Rewards obtained",
-                "reward": "Reward",
-                "date": "Date",
-                "status": "Status"
-            },
-            "statuses": {
-                "received": "Received",
-                "pending": "Pending",
-                "used": "Used"
-            }
-        }
-    },
+    "AdminDashboard": {},
+    "ReferralsPage": {},
     "MarketInsightsLayout": {
         "title": "Market Insights",
         "subtitle": "Exclusive data to optimize your activity.",
@@ -1311,6 +1209,17 @@
             "priceLabel": "Suggested Price",
             "cancel": "Cancel",
             "save": "Save Template",
+            "titleNewProvider": "New Service Pack",
+            "titleEditProvider": "Edit Service Pack",
+            "cardTitleProvider": "Pack Details",
+            "packNameLabel": "Pack Name",
+            "packNamePlaceholder": "e.g., Airbnb Cleaning 2h",
+            "durationLabel": "Standard Duration",
+            "durationPlaceholder": "e.g., 2h",
+            "loyaltyDiscountLabel": "Loyalty Discount",
+            "loyaltyDiscountDescription": "Offer a discount for recurring missions.",
+            "badgeLabel": "Associated Badge",
+            "badgePlaceholder": "Select a badge (optional)",
             "toast": {
                 "createSuccessTitle": "Template Created",
                 "createSuccessDescription": "Your new task template has been saved.",
