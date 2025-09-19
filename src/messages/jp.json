@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "特徴",
@@ -296,7 +297,12 @@
         "myBadges": "私のバッジ",
         "earnedBadges": "獲得したバッジ",
         "seeAllBadges": "すべてのバッジを見る",
-        "earnedOn": "{date}に獲得"
+        "earnedOn": "{date}に獲得",
+        "portfolio": {
+            "title": "私のポートフォリオ",
+            "empty": "あなたの仕事を追加して、信頼性を80％向上させましょう！",
+            "addWork": "仕事を追加"
+        }
     },
     "BadgesPage": {
         "subtitle": "ロック解除したバッジはこちらです。",

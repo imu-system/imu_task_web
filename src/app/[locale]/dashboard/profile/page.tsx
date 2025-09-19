@@ -15,7 +15,7 @@ import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera, Lock, SatelliteDish, UserRound } from "lucide-react";
+import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera, Lock, SatelliteDish, UserRound, Briefcase } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -196,6 +196,20 @@ export default function ProfilePage() {
                     </div>
                 </div>
 
+                <Separator />
+                
+                 <div className="space-y-4">
+                    <h3 className="text-lg font-medium">{t('portfolio.title')}</h3>
+                     <div className="p-6 text-center border-2 border-dashed rounded-lg">
+                        <p className="text-muted-foreground">{t('portfolio.empty')}</p>
+                        <Button type="button" variant="outline" className="mt-4">
+                            <PlusCircle className="mr-2"/>
+                            {t('portfolio.addWork')}
+                        </Button>
+                    </div>
+                </div>
+
+
                 <div className="flex justify-end gap-2">
                     <Button type="button" variant="ghost" onClick={() => setIsEditing(false)}>{t('addressForm.cancel')}</Button>
                     <Button type="submit" disabled={isSaving || !isDirty}>
@@ -287,6 +301,21 @@ export default function ProfilePage() {
               </div>
           </CardContent>
       </Card>
+
+      <Card>
+        <CardHeader>
+            <CardTitle>{t('portfolio.title')}</CardTitle>
+        </CardHeader>
+        <CardContent>
+            <div className="p-6 text-center border-2 border-dashed rounded-lg">
+                <p className="text-muted-foreground">{t('portfolio.empty')}</p>
+                <Button variant="outline" className="mt-4" onClick={() => setIsEditing(true)}>
+                    <PlusCircle className="mr-2" />
+                    {t('portfolio.addWork')}
+                </Button>
+            </div>
+        </CardContent>
+    </Card>
       
         <Card>
             <CardHeader>

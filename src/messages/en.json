@@ -1,4 +1,5 @@
 
+
 {
     "Header": {
         "features": "Features",
@@ -327,7 +328,12 @@
         "seeAllBadges": "See All Badges",
         "earnedOn": "Earned on {date}",
         "noBio": "This user does not have a bio yet.",
-        "serviceRadiusDisplay": "{km} km radius"
+        "serviceRadiusDisplay": "{km} km radius",
+        "portfolio": {
+            "title": "My Portfolio",
+            "empty": "Boost your credibility by 80% by adding your work!",
+            "addWork": "Add Work"
+        }
     },
     "BadgesPage": {
         "subtitle": "Here are the badges you have unlocked.",
