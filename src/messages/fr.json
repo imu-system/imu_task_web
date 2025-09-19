@@ -1387,11 +1387,21 @@
             "cancel": "Annuler",
             "saveDraft": "Enregistrer le brouillon",
             "saveAndCreate": "Enregistrer & créer"
+        },
+        "audiences": {
+            "title": "Audiences Bêta / Listes",
+            "importCsv": "Importer CSV",
+            "createAudience": "Créer une audience",
+            "members": "membres",
+            "actions": {
+                "view": "Voir les membres",
+                "add": "Ajouter membre",
+                "remove": "Retirer membre",
+                "export": "Exporter CSV",
+                "delete": "Supprimer"
+            }
         }
     }
 }
 
     
-
-
-

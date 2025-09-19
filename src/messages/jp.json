@@ -959,6 +959,19 @@
             "cancel": "キャンセル",
             "saveDraft": "下書きを保存",
             "saveAndCreate": "保存して作成"
+        },
+        "audiences": {
+            "title": "ベータオーディエンス/リスト",
+            "importCsv": "CSVをインポート",
+            "createAudience": "オーディエンスを作成",
+            "members": "メンバー",
+            "actions": {
+                "view": "メンバーを表示",
+                "add": "メンバーを追加",
+                "remove": "メンバーを削除",
+                "export": "CSVをエクスポート",
+                "delete": "削除"
+            }
         }
     }
 }

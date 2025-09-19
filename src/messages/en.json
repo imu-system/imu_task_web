@@ -1386,6 +1386,19 @@
             "cancel": "Cancel",
             "saveDraft": "Save draft",
             "saveAndCreate": "Save & create"
+        },
+        "audiences": {
+            "title": "Beta Audiences / Lists",
+            "importCsv": "Import CSV",
+            "createAudience": "Create Audience",
+            "members": "members",
+            "actions": {
+                "view": "View Members",
+                "add": "Add Member",
+                "remove": "Remove Member",
+                "export": "Export CSV",
+                "delete": "Delete"
+            }
         }
     }
 }
