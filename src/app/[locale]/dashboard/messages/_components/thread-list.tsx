@@ -7,7 +7,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { Message, Thread, User } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { Link, usePathname } from '@/navigation';
-import { Search, SlidersHorizontal } from 'lucide-react';
+import { Search, SlidersHorizontal, Plus } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
@@ -81,9 +81,15 @@ export function ThreadList() {
   if (!user) return null;
 
   return (
-    <div className="hidden md:flex w-full md:w-80 border-r flex-col bg-background">
+    <div className={cn("w-full md:w-80 border-r flex-col bg-background", pathname.startsWith('/dashboard/messages/') ? 'hidden md:flex' : 'flex')}>
       <div className="p-4 border-b space-y-4">
-        <h2 className="text-xl font-bold font-headline">{t('messages')}</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold font-headline">{t('messages')}</h2>
+          <Button size="icon" variant="ghost" className="md:hidden">
+            <Plus />
+            <span className="sr-only">New message</span>
+          </Button>
+        </div>
         <div className="flex items-center gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -104,6 +110,8 @@ export function ThreadList() {
             threads.map((thread) => {
                 const otherParticipant = thread.participantsData?.find(p => p.id !== user.uid);
                 const isActive = pathname.includes(thread.id);
+                // Mock unread count
+                const unreadCount = Math.floor(Math.random() * 5); 
                 return (
                 <Link
                     key={thread.id}
@@ -126,8 +134,12 @@ export function ThreadList() {
                             {thread.lastMessageAt ? new Date(thread.lastMessageAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''}
                         </time>
                     </div>
-                    <p className="text-sm text-muted-foreground truncate">{thread.lastMessage?.body}</p>
-                    {thread.task && <Badge variant="secondary" className="mt-1">{thread.task.title}</Badge>}
+                    <div className="flex items-center justify-between">
+                      <p className="text-sm text-muted-foreground truncate">{thread.lastMessage?.body}</p>
+                      {unreadCount > 0 && (
+                        <Badge className="h-5 w-5 p-0 flex items-center justify-center text-xs">{unreadCount}</Badge>
+                      )}
+                    </div>
                     </div>
                 </Link>
                 );
@@ -138,3 +150,4 @@ export function ThreadList() {
     </div>
   );
 }
+
