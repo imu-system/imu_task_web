@@ -62,6 +62,7 @@ export const pathnames = {
   '/legal/invoices': '/legal/invoices',
   '/legal/contracts': '/legal/contracts',
   '/legal/insurance': '/legal/insurance',
+  '/dashboard/templates': '/dashboard/templates',
 
   // If locales use different paths, you can
   // specify each external path per locale.

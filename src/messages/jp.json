@@ -71,6 +71,7 @@
         "academy": "アカデミー",
         "referrals": "紹介",
         "marketInsights": "市場インサイト",
+        "templates": "テンプレート",
         "adminNav": {
             "community": "コミュニティ",
             "moderation": "モデレーション",
@@ -769,6 +770,34 @@
                     "confirm": "削除を確定"
                 }
             }
+        }
+    },
+    "TaskTemplatesPage": {
+        "title": "私のタスクテンプレート",
+        "subtitle": "頻繁なタスクを再利用して時間を節約します。",
+        "newTemplate": "新しいテンプレート",
+        "searchPlaceholder": "テンプレートを検索...",
+        "filterPlaceholder": "カテゴリでフィルタリング",
+        "filters": {
+            "all": "すべてのカテゴリ",
+            "shopping": "買い物",
+            "cleaning": "掃除",
+            "visits": "訪問"
+        },
+        "list": {
+            "category": "カテゴリ",
+            "address": "住所",
+            "lastUsed": "最終使用日",
+            "createTask": "タスクを作成",
+            "edit": "編集",
+            "duplicate": "複製",
+            "delete": "削除"
+        },
+        "dialog": {
+            "title": "テンプレートを削除しますか？",
+            "description": "'{templateName}'テンプレートを削除してもよろしいですか？この操作は元に戻せません。",
+            "cancel": "キャンセル",
+            "confirm": "削除"
         }
     }
 }

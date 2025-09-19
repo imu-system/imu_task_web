@@ -50,6 +50,7 @@ import {
   BookOpen,
   Gift,
   Settings,
+  BookCopy,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -75,6 +76,7 @@ export function DashboardNav() {
     { href: '/dashboard/offers', icon: <Briefcase />, label: t('findTask') },
     { href: '/dashboard/tasks', icon: <BookMarked />, label: t('myTasks') },
     { href: '/dashboard/bookings', icon: <CalendarCheck />, label: t('myBookings') },
+    { href: '/dashboard/templates', icon: <BookCopy />, label: t('templates') },
     { href: '/dashboard/reviews', icon: <Star />, label: t('reviews') },
     { href: '/dashboard/wallet', icon: <Wallet />, label: t('wallet') },
     { href: '/dashboard/academy', icon: <BookOpen />, label: t('academy') },

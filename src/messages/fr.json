@@ -95,6 +95,7 @@
         "settings": "Paramètres",
         "auditLog": "Logs d'audit",
         "marketInsights": "Infos Marché",
+        "templates": "Modèles",
         "adminNav": {
             "community": "Communauté",
             "moderation": "Modération",
@@ -1256,6 +1257,34 @@
                     "confirm": "Confirmer la suppression"
                 }
             }
+        }
+    },
+    "TaskTemplatesPage": {
+        "title": "Mes modèles de tâches",
+        "subtitle": "Gagnez du temps en réutilisant vos tâches fréquentes.",
+        "newTemplate": "Nouveau modèle",
+        "searchPlaceholder": "Rechercher un modèle...",
+        "filterPlaceholder": "Filtrer par catégorie",
+        "filters": {
+            "all": "Toutes les catégories",
+            "shopping": "Courses",
+            "cleaning": "Ménage",
+            "visits": "Visites"
+        },
+        "list": {
+            "category": "Catégorie",
+            "address": "Adresse",
+            "lastUsed": "Dernière utilisation",
+            "createTask": "Créer une mission",
+            "edit": "Modifier",
+            "duplicate": "Dupliquer",
+            "delete": "Supprimer"
+        },
+        "dialog": {
+            "title": "Supprimer le modèle ?",
+            "description": "Êtes-vous sûr de vouloir supprimer le modèle '{templateName}' ? Cette action est irréversible.",
+            "cancel": "Annuler",
+            "confirm": "Supprimer"
         }
     }
 }

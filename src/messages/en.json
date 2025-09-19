@@ -95,6 +95,7 @@
         "settings": "Settings",
         "auditLog": "Audit Log",
         "marketInsights": "Market Insights",
+        "templates": "Templates",
         "adminNav": {
             "community": "Community",
             "moderation": "Moderation",
@@ -1256,6 +1257,34 @@
                     "confirm": "Confirm Deletion"
                 }
             }
+        }
+    },
+    "TaskTemplatesPage": {
+        "title": "My Task Templates",
+        "subtitle": "Save time by reusing your frequent tasks.",
+        "newTemplate": "New Template",
+        "searchPlaceholder": "Search templates...",
+        "filterPlaceholder": "Filter by category",
+        "filters": {
+            "all": "All categories",
+            "shopping": "Shopping",
+            "cleaning": "Cleaning",
+            "visits": "Visits"
+        },
+        "list": {
+            "category": "Category",
+            "address": "Address",
+            "lastUsed": "Last used",
+            "createTask": "Create Task",
+            "edit": "Edit",
+            "duplicate": "Duplicate",
+            "delete": "Delete"
+        },
+        "dialog": {
+            "title": "Delete Template?",
+            "description": "Are you sure you want to delete the template '{templateName}'? This action cannot be undone.",
+            "cancel": "Cancel",
+            "confirm": "Delete"
         }
     }
 }
