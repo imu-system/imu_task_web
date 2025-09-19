@@ -1285,6 +1285,28 @@
             "description": "Are you sure you want to delete the template '{templateName}'? This action cannot be undone.",
             "cancel": "Cancel",
             "confirm": "Delete"
+        },
+        "form": {
+            "titleNew": "New Task Template",
+            "titleEdit": "Edit Task Template",
+            "cardTitle": "Template Details",
+            "nameLabel": "Template Name",
+            "namePlaceholder": "e.g., Weekly shopping at Leclerc",
+            "categoryLabel": "Category",
+            "categoryPlaceholder": "Choose a category",
+            "descriptionLabel": "Default Description",
+            "descriptionPlaceholder": "Default description for this type of task",
+            "addressLabel": "Address",
+            "addressPlaceholder": "Choose a default address",
+            "priceLabel": "Suggested Price",
+            "cancel": "Cancel",
+            "save": "Save Template",
+            "toast": {
+                "createSuccessTitle": "Template Created",
+                "createSuccessDescription": "Your new task template has been saved.",
+                "updateSuccessTitle": "Template Updated",
+                "updateSuccessDescription": "Your task template has been updated."
+            }
         }
     }
 }

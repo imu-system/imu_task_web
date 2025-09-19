@@ -798,6 +798,28 @@
             "description": "'{templateName}'テンプレートを削除してもよろしいですか？この操作は元に戻せません。",
             "cancel": "キャンセル",
             "confirm": "削除"
+        },
+        "form": {
+            "titleNew": "新しいタスクテンプレート",
+            "titleEdit": "タスクテンプレートを編集",
+            "cardTitle": "テンプレートの詳細",
+            "nameLabel": "テンプレート名",
+            "namePlaceholder": "例：週ごとのLeclercでの買い物",
+            "categoryLabel": "カテゴリ",
+            "categoryPlaceholder": "カテゴリを選択",
+            "descriptionLabel": "デフォルトの説明",
+            "descriptionPlaceholder": "このタイプのタスクのデフォルトの説明",
+            "addressLabel": "住所",
+            "addressPlaceholder": "デフォルトの住所を選択",
+            "priceLabel": "提案価格",
+            "cancel": "キャンセル",
+            "save": "テンプレートを保存",
+            "toast": {
+                "createSuccessTitle": "テンプレートが作成されました",
+                "createSuccessDescription": "新しいタスクテンプレートが保存されました。",
+                "updateSuccessTitle": "テンプレートが更新されました",
+                "updateSuccessDescription": "タスクテンプレートが更新されました。"
+            }
         }
     }
 }
