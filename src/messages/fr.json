@@ -1042,7 +1042,53 @@
         }
     },
     "AdminDashboard": {},
-    "ReferralsPage": {},
+    "ReferralsPage": {
+        "title": "Parrainage",
+        "subtitle": "Invitez vos amis et soyez récompensé.",
+        "invite": {
+            "title": "Invitez vos amis par e-mail",
+            "emailLabel": "Adresses e-mail",
+            "emailPlaceholder": "Entrez un ou plusieurs e-mails, séparés par des virgules",
+            "addButton": "Ajouter",
+            "shareLabel": "Ou partagez directement via :",
+            "smsButton": "SMS / iMessage"
+        },
+        "codeCard": {
+            "title": "Votre code de parrainage",
+            "copy": "Copier le code",
+            "copied": "Code copié !"
+        },
+        "linkCard": {
+            "title": "Votre lien de parrainage",
+            "copy": "Copier le lien"
+        },
+        "stats": {
+            "title": "Vos statistiques",
+            "referred": "Amis parrainés",
+            "rewards": "Récompenses gagnées",
+            "university": "Votre université"
+        },
+        "universities": {
+            "title": "Programme Universités",
+            "promoLink": "Lien promo pour {year}",
+            "requestButton": "Demander un lien pour mon université"
+        },
+        "history": {
+            "title": "Historique de vos parrainages",
+            "name": "Nom",
+            "date": "Date d'inscription",
+            "status": "Statut",
+            "gain": "Gain",
+            "statuses": {
+                "pending": "En attente",
+                "active": "Actif"
+            }
+        },
+        "actions": {
+            "history": "Historique des récompenses",
+            "rewards": "Catalogue des récompenses"
+        }
+    },
     "MarketInsightsLayout": {
         "title": "Infos Marché",
         "subtitle": "Données exclusives pour optimiser votre activité.",
@@ -1582,3 +1628,4 @@
 }
 
     
+

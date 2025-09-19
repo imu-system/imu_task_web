@@ -868,6 +868,7 @@
     "Languages": {
         "fr": "French",
         "en": "English",
+        "jp": "Japanese",
         "es": "Spanish",
         "de": "German",
         "it": "Italian"
@@ -1041,7 +1042,53 @@
         }
     },
     "AdminDashboard": {},
-    "ReferralsPage": {},
+    "ReferralsPage": {
+        "title": "Referrals",
+        "subtitle": "Invite your friends and get rewarded.",
+        "invite": {
+            "title": "Invite your friends by email",
+            "emailLabel": "Email addresses",
+            "emailPlaceholder": "Enter one or more emails, separated by commas",
+            "addButton": "Add",
+            "shareLabel": "Or share directly via:",
+            "smsButton": "SMS / iMessage"
+        },
+        "codeCard": {
+            "title": "Your Referral Code",
+            "copy": "Copy Code",
+            "copied": "Code copied!"
+        },
+        "linkCard": {
+            "title": "Your Referral Link",
+            "copy": "Copy Link"
+        },
+        "stats": {
+            "title": "Your Stats",
+            "referred": "Friends Referred",
+            "rewards": "Rewards Earned",
+            "university": "Your University"
+        },
+        "universities": {
+            "title": "University Program",
+            "promoLink": "Promo link for {year}",
+            "requestButton": "Request a link for my university"
+        },
+        "history": {
+            "title": "Your Referral History",
+            "name": "Name",
+            "date": "Registration Date",
+            "status": "Status",
+            "gain": "Gain",
+            "statuses": {
+                "pending": "Pending",
+                "active": "Active"
+            }
+        },
+        "actions": {
+            "history": "Rewards History",
+            "rewards": "Rewards Catalogue"
+        }
+    },
     "MarketInsightsLayout": {
         "title": "Market Insights",
         "subtitle": "Exclusive data to optimize your activity.",
@@ -1581,3 +1628,4 @@
 }
 
     
+

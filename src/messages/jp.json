@@ -412,6 +412,7 @@
     "Languages": {
         "fr": "French",
         "en": "English",
+        "jp": "Japanese",
         "es": "Spanish",
         "de": "German",
         "it": "Italian"
@@ -585,7 +586,53 @@
         }
     },
     "AdminDashboard": {},
-    "ReferralsPage": {},
+    "ReferralsPage": {
+        "title": "紹介",
+        "subtitle": "友達を招待して報酬を獲得しましょう。",
+        "invite": {
+            "title": "友達をメールで招待する",
+            "emailLabel": "メールアドレス",
+            "emailPlaceholder": "1つ以上のメールアドレスをカンマで区切って入力してください",
+            "addButton": "追加",
+            "shareLabel": "または、直接共有する：",
+            "smsButton": "SMS / iMessage"
+        },
+        "codeCard": {
+            "title": "あなたの紹介コード",
+            "copy": "コードをコピー",
+            "copied": "コードをコピーしました！"
+        },
+        "linkCard": {
+            "title": "あなたの紹介リンク",
+            "copy": "リンクをコピー"
+        },
+        "stats": {
+            "title": "あなたの統計",
+            "referred": "紹介した友達",
+            "rewards": "獲得した報酬",
+            "university": "あなたの大学"
+        },
+        "universities": {
+            "title": "大学プログラム",
+            "promoLink": "{year}年のプロモーションリンク",
+            "requestButton": "私の大学のリンクをリクエスト"
+        },
+        "history": {
+            "title": "あなたの紹介履歴",
+            "name": "名前",
+            "date": "登録日",
+            "status": "ステータス",
+            "gain": "獲得",
+            "statuses": {
+                "pending": "保留中",
+                "active": "アクティブ"
+            }
+        },
+        "actions": {
+            "history": "報酬履歴",
+            "rewards": "報酬カタログ"
+        }
+    },
     "MarketInsightsLayout": {
         "title": "市場インサイト",
         "subtitle": "あなたの活動を最適化するための限定データ。",
@@ -1065,7 +1112,7 @@
             },
             "dialog": {
                 "title": "よろしいですか？",
-                "description": "これにより、すべての非管理者ユーザー、タスク、および予約が削除されます。このアクションは元に戻せません。",
+                "description": "これにより、すべての非管理者ユーザー、タスク、および予約が削除されます。この操作は元に戻せません。",
                 "cancel": "キャンセル",
                 "confirm": "確認"
             }
@@ -1125,3 +1172,4 @@
 }
 
     
+
