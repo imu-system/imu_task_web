@@ -1485,6 +1485,24 @@
                 "title": "Security Note",
                 "description": "These keys are read-only. Key regeneration must be done by an administrator and will be logged in the audit trail."
             }
+        },
+        "audit": {
+            "title": "Developer Audit Log",
+            "table": {
+                "title": "Recent Actions",
+                "date": "Date",
+                "actor": "Actor",
+                "action": "Action"
+            },
+            "exportCsv": "Export CSV",
+            "filters": {
+                "actor": "Actor",
+                "action": "Action",
+                "date": "Date",
+                "pickDate": "Pick a date",
+                "filter": "Filter",
+                "clear": "Clear"
+            }
         }
     }
 }

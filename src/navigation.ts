@@ -72,6 +72,7 @@ export const pathnames = {
   '/dashboard/dev/fixtures': '/dashboard/dev/fixtures',
   '/dashboard/dev/webhook-tester': '/dashboard/dev/webhook-tester',
   '/dashboard/dev/sdk-keys': '/dashboard/dev/sdk-keys',
+  '/dashboard/dev/audit': '/dashboard/dev/audit',
 
   // If locales use different paths, you can
   // specify each external path per locale.

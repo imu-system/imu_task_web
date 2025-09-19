@@ -1,5 +1,4 @@
 
-      
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -1485,6 +1484,24 @@
             "securityNote": {
                 "title": "Note de sécurité",
                 "description": "Ces clés sont en lecture seule. La régénération des clés doit être effectuée par un administrateur et sera enregistrée dans le journal d'audit."
+            }
+        },
+        "audit": {
+            "title": "Journal d'Audit - Développeur",
+            "table": {
+                "title": "Actions Récentes",
+                "date": "Date",
+                "actor": "Acteur",
+                "action": "Action"
+            },
+            "exportCsv": "Exporter en CSV",
+            "filters": {
+                "actor": "Acteur",
+                "action": "Action",
+                "date": "Date",
+                "pickDate": "Choisir une date",
+                "filter": "Filtrer",
+                "clear": "Effacer"
             }
         }
     }
