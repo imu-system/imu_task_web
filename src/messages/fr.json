@@ -708,45 +708,76 @@
             "successDescription": "Votre demande de retrait a été soumise et est en cours de traitement."
         }
     },
-    "ProfilePage": {
-        "myBadges": "Mes Badges",
-        "earnedBadges": "Badges Obtenus",
-        "seeAllBadges": "Voir tous les badges",
-        "earnedOn": "Obtenu le {date}"
-    },
-    "BadgesPage": {
-        "subtitle": "Voici les badges que vous avez débloqués.",
-        "cardTitle": "Mes Badges",
-        "cardDescription": "Les badges récompensent votre activité et votre fiabilité sur la plateforme.",
-        "history": {
-            "title": "Historique des missions",
-            "description": "Vos dernières missions terminées."
+    "CertificatePage": {
+        "title": "Certificat : {badgeName}",
+        "card": {
+            "title": "Certificat de Réussite",
+            "issuedTo": "Délivré à {name}",
+            "forCompleting": "Pour avoir terminé avec succès le cours :",
+            "date": "Date d'émission",
+            "id": "ID du certificat"
         },
-        "shareProfile": "Partager le profil",
-        "badges": {
-            "firstMission": {
-                "title": "Première Mission",
-                "description": "Avoir terminé votre première mission."
+        "actions": {
+            "download": "Télécharger (PDF)",
+            "verify": "Vérifier le certificat"
+        }
+    },
+    "AcademyDetailPage": {
+        "sections": {
+            "title": "Sections du cours"
+        },
+        "downloadResources": "Télécharger les ressources",
+        "continueModule": "Continuer le module",
+        "startQuiz": "Commencer le quiz",
+        "notFound": "Cours introuvable.",
+        "backToAcademy": "Retour à l'académie"
+    },
+    "QuizPage": {
+        "title": "Quiz",
+        "question": "Question {current} sur {total}",
+        "timer": "10:00",
+        "previous": "Précédent",
+        "next": "Suivant",
+        "submit": "Soumettre",
+        "toast": {
+            "title": "Quiz terminé !",
+            "description": "Vos réponses ont été enregistrées. Vous allez être redirigé."
+        }
+    },
+    "AcademyPage": {
+        "title": "Académie ImuTask",
+        "subtitle": "Développez vos compétences et gagnez des badges.",
+        "searchPlaceholder": "Rechercher un cours...",
+        "filterPlaceholder": "Filtrer par rôle",
+        "filters": {
+            "all": "Tous les cours",
+            "provider": "Prestataire",
+            "client": "Client"
+        },
+        "courseCard": {
+            "progress": "Progression",
+            "start": "Commencer",
+            "continue": "Continuer"
+        }
+    },
+    "AdminAcademyPage": {
+        "title": "Gestion de l'Académie",
+        "subtitle": "Créez, modifiez et suivez les statistiques des cours.",
+        "manageBadges": "Gérer les badges",
+        "globalProgress": "Progrès global",
+        "createCourse": "Créer un cours",
+        "courseList": {
+            "title": "Liste des Cours",
+            "description": "Gérez tous les cours de la plateforme.",
+            "table": {
+                "course": "Cours",
+                "enrolled": "Inscrits",
+                "completed": "Terminés",
+                "completionRate": "Taux de complétion"
             },
-            "verified": {
-                "title": "Vérifié",
-                "description": "Identité vérifiée avec succès."
-            },
-            "topRated": {
-                "title": "Top Noté",
-                "description": "Note moyenne supérieure à 4.8"
-            },
-            "communityHelper": {
-                "title": "Pilier de la Communauté",
-                "description": "Avoir terminé 25 missions."
-            },
-            "profileComplete": {
-                "title": "Profil Complet",
-                "description": "Avoir rempli toutes les informations du profil."
-            },
-            "pioneer": {
-                "title": "Pionnier",
-                "description": "Avoir rejoint la plateforme la première année."
+            "actions": {
+                "edit": "Modifier",
+                "delete": "Supprimer"
             }
         }
     },
@@ -799,11 +830,12 @@
         "submitButton": "Soumettre pour validation"
     },
     "Languages": {
-        "fr": "French",
-        "en": "English",
-        "es": "Spanish",
-        "de": "German",
-        "it": "Italian"
+        "fr": "Français",
+        "en": "Anglais",
+        "jp": "Japonais",
+        "es": "Espagnol",
+        "de": "Allemand",
+        "it": "Italien"
     },
     "AvailabilityPage": {
         "title": "Mes Disponibilités",
@@ -1512,3 +1544,5 @@
         }
     }
 }
+
+    

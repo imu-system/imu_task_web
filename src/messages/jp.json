@@ -291,6 +291,8 @@
         }
     },
     "ProfilePage": {
+        "title": "私のプロフィール",
+        "subtitle": "個人情報と設定を管理します。",
         "myBadges": "私のバッジ",
         "earnedBadges": "獲得したバッジ",
         "seeAllBadges": "すべてのバッジを見る",
@@ -1094,3 +1096,5 @@
         }
     }
 }
+
+    

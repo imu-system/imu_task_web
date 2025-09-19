@@ -708,45 +708,76 @@
             "successDescription": "Your withdrawal request has been submitted and is being processed."
         }
     },
-    "ProfilePage": {
-        "myBadges": "My Badges",
-        "earnedBadges": "Earned Badges",
-        "seeAllBadges": "See All Badges",
-        "earnedOn": "Earned on {date}"
-    },
-    "BadgesPage": {
-        "subtitle": "Here are the badges you have unlocked.",
-        "cardTitle": "My Badges",
-        "cardDescription": "Badges reward your activity and reliability on the platform.",
-        "history": {
-            "title": "Mission History",
-            "description": "Your last completed missions."
+    "CertificatePage": {
+        "title": "Certificate: {badgeName}",
+        "card": {
+            "title": "Certificate of Achievement",
+            "issuedTo": "Issued to {name}",
+            "forCompleting": "For successfully completing the course:",
+            "date": "Issue Date",
+            "id": "Certificate ID"
         },
-        "shareProfile": "Share Profile",
-        "badges": {
-            "firstMission": {
-                "title": "First Mission",
-                "description": "Completed your first mission."
+        "actions": {
+            "download": "Download (PDF)",
+            "verify": "Verify Certificate"
+        }
+    },
+    "AcademyDetailPage": {
+        "sections": {
+            "title": "Course Sections"
+        },
+        "downloadResources": "Download Resources",
+        "continueModule": "Continue Module",
+        "startQuiz": "Start Quiz",
+        "notFound": "Course not found.",
+        "backToAcademy": "Back to academy"
+    },
+    "QuizPage": {
+        "title": "Quiz",
+        "question": "Question {current} of {total}",
+        "timer": "10:00",
+        "previous": "Previous",
+        "next": "Next",
+        "submit": "Submit",
+        "toast": {
+            "title": "Quiz Completed!",
+            "description": "Your answers have been saved. You will now be redirected."
+        }
+    },
+    "AcademyPage": {
+        "title": "ImuTask Academy",
+        "subtitle": "Develop your skills and earn badges.",
+        "searchPlaceholder": "Search for a course...",
+        "filterPlaceholder": "Filter by role",
+        "filters": {
+            "all": "All courses",
+            "provider": "Provider",
+            "client": "Client"
+        },
+        "courseCard": {
+            "progress": "Progress",
+            "start": "Start",
+            "continue": "Continue"
+        }
+    },
+    "AdminAcademyPage": {
+        "title": "Academy Management",
+        "subtitle": "Create, edit, and track course statistics.",
+        "manageBadges": "Manage Badges",
+        "globalProgress": "Global Progress",
+        "createCourse": "Create Course",
+        "courseList": {
+            "title": "Course List",
+            "description": "Manage all courses on the platform.",
+            "table": {
+                "course": "Course",
+                "enrolled": "Enrolled",
+                "completed": "Completed",
+                "completionRate": "Completion Rate"
             },
-            "verified": {
-                "title": "Verified",
-                "description": "Identity successfully verified."
-            },
-            "topRated": {
-                "title": "Top Rated",
-                "description": "Average rating above 4.8"
-            },
-            "communityHelper": {
-                "title": "Community Helper",
-                "description": "Completed 25 missions."
-            },
-            "profileComplete": {
-                "title": "Complete Profile",
-                "description": "Filled out all profile information."
-            },
-            "pioneer": {
-                "title": "Pioneer",
-                "description": "Joined in the first year."
+            "actions": {
+                "edit": "Edit",
+                "delete": "Delete"
             }
         }
     },
@@ -1512,3 +1543,5 @@
         }
     }
 }
+
+    
