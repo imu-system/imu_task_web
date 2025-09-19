@@ -1225,6 +1225,21 @@
                 "createSuccessDescription": "Votre nouveau modèle de tâche a été enregistré.",
                 "updateSuccessTitle": "Modèle mis à jour",
                 "updateSuccessDescription": "Votre modèle de tâche a été mis à jour."
+            },
+            "share": {
+                "title": "Partager le pack de services",
+                "description": "Gérez la visibilité de votre pack de services '{packName}'.",
+                "visibilityLabel": "Visible sur mon profil",
+                "visibilityDescription": "Permettre aux clients de voir et de réserver ce pack directement depuis votre profil.",
+                "linkLabel": "Lien direct",
+                "copyLink": "Copier le lien",
+                "copied": "Copié !",
+                "promote": {
+                    "title": "Promouvoir ce pack",
+                    "description": "Envoyez cette offre à vos clients fidèles.",
+                    "button": "Promouvoir le pack"
+                },
+                "back": "Retour aux modèles"
             }
         }
     }

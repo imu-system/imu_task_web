@@ -840,6 +840,21 @@
                 "createSuccessDescription": "新しいタスクテンプレートが保存されました。",
                 "updateSuccessTitle": "テンプレートが更新されました",
                 "updateSuccessDescription": "タスクテンプレートが更新されました。"
+            },
+            "share": {
+                "title": "サービスパックを共有",
+                "description": "サービスパック'{packName}'の表示を管理します。",
+                "visibilityLabel": "私のプロフィールで表示",
+                "visibilityDescription": "クライアントがあなたのプロフィールから直接このパックを見て予約できるようにします。",
+                "linkLabel": "ダイレクトリンク",
+                "copyLink": "リンクをコピー",
+                "copied": "コピーしました！",
+                "promote": {
+                    "title": "このパックを宣伝する",
+                    "description": "このオファーをあなたの忠実なクライアントに送信します。",
+                    "button": "パックを宣伝"
+                },
+                "back": "テンプレートに戻る"
             }
         }
     }

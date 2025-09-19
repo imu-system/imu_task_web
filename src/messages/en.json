@@ -1225,6 +1225,21 @@
                 "createSuccessDescription": "Your new task template has been saved.",
                 "updateSuccessTitle": "Template Updated",
                 "updateSuccessDescription": "Your task template has been updated."
+            },
+            "share": {
+                "title": "Share Service Pack",
+                "description": "Manage the visibility of your service pack '{packName}'.",
+                "visibilityLabel": "Visible on my profile",
+                "visibilityDescription": "Allow clients to see and book this pack directly from your profile.",
+                "linkLabel": "Direct Link",
+                "copyLink": "Copy Link",
+                "copied": "Copied!",
+                "promote": {
+                    "title": "Promote this pack",
+                    "description": "Send this offer to your loyal clients.",
+                    "button": "Promote Pack"
+                },
+                "back": "Back to Templates"
             }
         }
     }

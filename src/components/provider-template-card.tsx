@@ -33,9 +33,11 @@ export default function ProviderTemplateCard() {
                 </div>
             </div>
             <div className="flex gap-2">
-                <Button variant="outline">
-                    <Share2 className="mr-2"/>
-                    {t('providerList.share')}
+                <Button variant="outline" asChild>
+                    <Link href={`/dashboard/templates/${template.id}/share`}>
+                        <Share2 className="mr-2"/>
+                        {t('providerList.share')}
+                    </Link>
                 </Button>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
