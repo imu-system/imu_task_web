@@ -1,8 +1,7 @@
 
 'use client';
 
-import { Link } from '@/navigation';
-import { useParams } from 'next/navigation';
+import { Link, useParams } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { getCourseById, Course, CourseModule } from '@/lib/academy';
@@ -29,7 +28,7 @@ export default function CourseDetailPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const data = getCourseById(courseId);
+        const data = getCourseById(courseId as string);
         if (data) {
             setCourse(data);
             setActiveModule(data.modules.find(m => m.status === 'in_progress') || data.modules[0] || null);
