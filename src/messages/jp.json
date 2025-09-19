@@ -372,6 +372,13 @@
         },
         "submitButton": "検証のために送信"
     },
+    "Languages": {
+        "fr": "French",
+        "en": "English",
+        "es": "Spanish",
+        "de": "German",
+        "it": "Italian"
+    },
     "AvailabilityPage": {
         "title": "私の利用可能時間",
         "subtitle": "スケジュールを管理して、関連するミッションオファーを受け取ります。",
@@ -971,6 +978,25 @@
                 "remove": "メンバーを削除",
                 "export": "CSVをエクスポート",
                 "delete": "削除"
+            }
+        },
+        "rollouts": {
+            "title": "ロールアウトと実験",
+            "list": {
+                "title": "アクティブなロールアウト",
+                "filterFlag": "フラグでフィルタ...",
+                "allFlags": "すべてのフラグ",
+                "filterEnv": "環境でフィルタ...",
+                "filter": "フィルタ",
+                "exposure": "露出: {value}%",
+                "conversion": "コンバージョン: {value}%"
+            },
+            "detail": {
+                "title": "ロールアウトの詳細",
+                "export": "CSVをエクスポート",
+                "exposureOverTime": "時間経過に伴う露出",
+                "kpiConversion": "KPIコンバージョン vs. コントロール",
+                "segmentExposure": "ユーザーセグメント別の露出"
             }
         }
     }

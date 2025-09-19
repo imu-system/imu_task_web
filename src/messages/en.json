@@ -1399,6 +1399,25 @@
                 "export": "Export CSV",
                 "delete": "Delete"
             }
+        },
+        "rollouts": {
+            "title": "Rollouts & Experiments",
+            "list": {
+                "title": "Active Rollouts",
+                "filterFlag": "Filter by flag...",
+                "allFlags": "All flags",
+                "filterEnv": "Filter by environment...",
+                "filter": "Filter",
+                "exposure": "Exposure: {value}%",
+                "conversion": "Conv: {value}%"
+            },
+            "detail": {
+                "title": "Rollout Detail",
+                "export": "Export CSV",
+                "exposureOverTime": "Exposure Over Time",
+                "kpiConversion": "KPI Conversion vs. Control",
+                "segmentExposure": "Exposure by User Segment"
+            }
         }
     }
 }

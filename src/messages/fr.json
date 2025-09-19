@@ -1400,8 +1400,28 @@
                 "export": "Exporter CSV",
                 "delete": "Supprimer"
             }
+        },
+        "rollouts": {
+            "title": "Déploiements & Expériences",
+            "list": {
+                "title": "Déploiements Actifs",
+                "filterFlag": "Filtrer par flag...",
+                "allFlags": "Tous les flags",
+                "filterEnv": "Filtrer par environnement...",
+                "filter": "Filtrer",
+                "exposure": "Exposition : {value}%",
+                "conversion": "Conv: {value}%"
+            },
+            "detail": {
+                "title": "Détail du Déploiement",
+                "export": "Exporter CSV",
+                "exposureOverTime": "Exposition au fil du temps",
+                "kpiConversion": "Conversion KPI vs. Contrôle",
+                "segmentExposure": "Exposition par Segment Utilisateur"
+            }
         }
     }
 }
 
     
+
