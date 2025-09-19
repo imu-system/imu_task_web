@@ -1469,6 +1469,22 @@
                 "title": "Request History",
                 "response": "Response"
             }
+        },
+        "sdkKeys": {
+            "title": "SDK Keys & Config",
+            "copied": "Copied!",
+            "clientConfig": {
+                "title": "Client SDK Key (staging)",
+                "regenerate": "Regenerate key"
+            },
+            "mobileConfig": {
+                "title": "Mobile Config",
+                "copy": "Copy Config"
+            },
+            "securityNote": {
+                "title": "Security Note",
+                "description": "These keys are read-only. Key regeneration must be done by an administrator and will be logged in the audit trail."
+            }
         }
     }
 }

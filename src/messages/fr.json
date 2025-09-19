@@ -1470,12 +1470,22 @@
                 "title": "Historique des requêtes",
                 "response": "Réponse"
             }
+        },
+        "sdkKeys": {
+            "title": "Clés SDK & Config",
+            "copied": "Copié !",
+            "clientConfig": {
+                "title": "Clé SDK Client (staging)",
+                "regenerate": "Régénérer la clé"
+            },
+            "mobileConfig": {
+                "title": "Config Mobile",
+                "copy": "Copier la config"
+            },
+            "securityNote": {
+                "title": "Note de sécurité",
+                "description": "Ces clés sont en lecture seule. La régénération des clés doit être effectuée par un administrateur et sera enregistrée dans le journal d'audit."
+            }
         }
     }
 }
-
-    
-
-
-
-

@@ -1049,6 +1049,22 @@
                 "title": "リクエスト履歴",
                 "response": "レスポンス"
             }
+        },
+        "sdkKeys": {
+            "title": "SDKキーと設定",
+            "copied": "コピーしました！",
+            "clientConfig": {
+                "title": "クライアントSDKキー（ステージング）",
+                "regenerate": "キーを再生成"
+            },
+            "mobileConfig": {
+                "title": "モバイル設定",
+                "copy": "設定をコピー"
+            },
+            "securityNote": {
+                "title": "セキュリティノート",
+                "description": "これらのキーは読み取り専用です。キーの再生成は管理者によって行われる必要があり、監査証跡に記録されます。"
+            }
         }
     }
 }
