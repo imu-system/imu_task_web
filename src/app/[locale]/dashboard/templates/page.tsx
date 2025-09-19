@@ -20,8 +20,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useAuth } from '@/hooks/use-auth';
+import { UserRole } from '@/lib/types';
+import ProviderTemplateCard from '@/components/provider-template-card';
+import { Loader2 } from 'lucide-react';
 
-const mockTemplates = [
+const mockClientTemplates = [
     { id: 'tpl1', name: 'Courses hebdomadaires', category: 'Courses', address: '123 Rue Principale, Paris', lastUsed: '05/09/2025' },
     { id: 'tpl2', name: 'Nettoyage Airbnb', category: 'Nettoyage', address: '24 Rue de la Paix, Lyon', lastUsed: '28/08/2025' },
     { id: 'tpl3', name: 'Visite hebdomadaire à Mamie', category: 'Visites', address: '7 Avenue Foch, Metz', lastUsed: '06/09/2025' },
@@ -29,9 +33,21 @@ const mockTemplates = [
 
 export default function TaskTemplatesPage() {
     const t = useTranslations('TaskTemplatesPage');
+    const { user, loading } = useAuth();
 
-    return (
-        <div className="space-y-8">
+    if (loading || !user) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <Loader2 className="animate-spin h-12 w-12 text-primary"/>
+            </div>
+        );
+    }
+    
+    const isProvider = user.roles.includes(UserRole.provider);
+
+    // Client View
+    const ClientTemplatesView = () => (
+         <div className="space-y-8">
             <div>
                 <h1 className="text-3xl font-bold tracking-tight font-headline flex items-center gap-2">
                     <BookCopy className="h-8 w-8 text-primary"/>
@@ -39,7 +55,6 @@ export default function TaskTemplatesPage() {
                 </h1>
                 <p className="text-muted-foreground">{t('subtitle')}</p>
             </div>
-
             <Card>
                 <CardHeader>
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -73,7 +88,7 @@ export default function TaskTemplatesPage() {
                     </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                    {mockTemplates.map((template) => (
+                    {mockClientTemplates.map((template) => (
                         <Card key={template.id} className="flex flex-col md:flex-row justify-between items-start p-4 gap-4">
                             <div className="flex-1">
                                 <h3 className="font-semibold text-lg">{template.name}</h3>
@@ -135,4 +150,43 @@ export default function TaskTemplatesPage() {
             </Card>
         </div>
     );
+
+    // Provider View
+    const ProviderTemplatesView = () => (
+        <div className="space-y-8">
+            <div>
+                <h1 className="text-3xl font-bold tracking-tight font-headline flex items-center gap-2">
+                    <BookCopy className="h-8 w-8 text-primary"/>
+                    {t('providerTitle')}
+                </h1>
+                <p className="text-muted-foreground">{t('providerSubtitle')}</p>
+            </div>
+            <Card>
+                <CardHeader>
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div className="relative flex-1 md:grow-0">
+                            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                            <Input
+                                type="search"
+                                placeholder={t('searchPlaceholder')}
+                                className="w-full rounded-lg bg-muted pl-8 md:w-[200px] lg:w-[336px]"
+                            />
+                        </div>
+                        <Button asChild>
+                            <Link href="/dashboard/templates/new">
+                                <PlusCircle className="mr-2"/>
+                                {t('newServicePack')}
+                            </Link>
+                        </Button>
+                    </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    <ProviderTemplateCard />
+                    <ProviderTemplateCard />
+                </CardContent>
+            </Card>
+        </div>
+    );
+
+    return isProvider ? <ProviderTemplatesView /> : <ClientTemplatesView />;
 }

@@ -775,7 +775,10 @@
     "TaskTemplatesPage": {
         "title": "私のタスクテンプレート",
         "subtitle": "頻繁なタスクを再利用して時間を節約します。",
+        "providerTitle": "私のサービスパッケージ",
+        "providerSubtitle": "サービスパッケージを管理して、簡単に提供できるようにします。",
         "newTemplate": "新しいテンプレート",
+        "newServicePack": "新しいサービスパック",
         "searchPlaceholder": "テンプレートを検索...",
         "filterPlaceholder": "カテゴリでフィルタリング",
         "filters": {
@@ -792,6 +795,13 @@
             "edit": "編集",
             "duplicate": "複製",
             "delete": "削除"
+        },
+        "providerList": {
+            "duration": "期間",
+            "price": "価格",
+            "lastMission": "最後のミッション",
+            "share": "共有",
+            "disable": "無効にする"
         },
         "dialog": {
             "title": "テンプレートを削除しますか？",

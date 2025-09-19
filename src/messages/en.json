@@ -1262,7 +1262,10 @@
     "TaskTemplatesPage": {
         "title": "My Task Templates",
         "subtitle": "Save time by reusing your frequent tasks.",
+        "providerTitle": "My Service Packages",
+        "providerSubtitle": "Manage your service packages to offer them more easily.",
         "newTemplate": "New Template",
+        "newServicePack": "New Service Pack",
         "searchPlaceholder": "Search templates...",
         "filterPlaceholder": "Filter by category",
         "filters": {
@@ -1279,6 +1282,13 @@
             "edit": "Edit",
             "duplicate": "Duplicate",
             "delete": "Delete"
+        },
+        "providerList": {
+            "duration": "Duration",
+            "price": "Price",
+            "lastMission": "Last mission",
+            "share": "Share",
+            "disable": "Disable"
         },
         "dialog": {
             "title": "Delete Template?",
