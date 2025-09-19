@@ -15,7 +15,7 @@ import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera, Lock, SatelliteDish, UserRound, Briefcase, Link as LinkIcon, File as FileIcon } from "lucide-react";
+import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera, Lock, SatelliteDish, UserRound, Briefcase, Link as LinkIcon, File as FileIcon, GripVertical } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
@@ -24,6 +24,7 @@ import { Badge } from "@/components/ui/badge";
 import { Link } from "@/navigation";
 import { Award, Shield } from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from "@/components/ui/alert-dialog";
 
 // Helper function to split string by comma and trim whitespace
 const stringToArray = (str: string | undefined | string[]): string[] => {
@@ -42,11 +43,17 @@ const mockEarnedBadges = [
     { id: 'b1', name: 'Starter', date: '2025-09-13', icon: <Award className="h-4 w-4"/> },
     { id: 'b2', name: 'Communicator Pro', date: '2025-09-20', icon: <Medal className="h-4 w-4"/> },
     { id: 'b3', name: 'Verified', date: '2025-09-10', icon: <Shield className="h-4 w-4"/> }
-]
+];
 
-const PortfolioItemForm = ({ onSave, onClose }: { onSave: (data: any) => void; onClose: () => void; }) => {
+const mockPortfolioItems = [
+    { id: 'p1', title: 'Logo pour une startup food-tech', type: 'file', url: 'https://picsum.photos/seed/logo/400/300', description: 'Création d\'une identité visuelle complète.' },
+    { id: 'p2', title: 'Site vitrine en React', type: 'link', url: 'https://example.com', description: 'Développement d\'un site performant avec Next.js.' },
+];
+
+
+const PortfolioItemForm = ({ onSave, onClose, item }: { onSave: (data: any) => void; onClose: () => void; item?: any; }) => {
     const t = useTranslations('ProfilePage.portfolio.form');
-    const [itemType, setItemType] = useState<'link' | 'file'>('link');
+    const [itemType, setItemType] = useState<'link' | 'file'>(item?.type || 'link');
 
     // This would be a more complex form with its own state and validation
     const handleSubmit = (e: React.FormEvent) => {
@@ -58,11 +65,11 @@ const PortfolioItemForm = ({ onSave, onClose }: { onSave: (data: any) => void; o
         <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
                 <Label htmlFor="portfolio-title">{t('titleLabel')}</Label>
-                <Input id="portfolio-title" placeholder={t('titlePlaceholder')} required />
+                <Input id="portfolio-title" placeholder={t('titlePlaceholder')} defaultValue={item?.title} required />
             </div>
             <div className="space-y-2">
                 <Label>{t('typeLabel')}</Label>
-                <RadioGroup defaultValue="link" onValueChange={(value) => setItemType(value as 'link' | 'file')}>
+                <RadioGroup defaultValue={itemType} onValueChange={(value) => setItemType(value as 'link' | 'file')}>
                     <div className="flex items-center space-x-2">
                         <RadioGroupItem value="link" id="type-link" />
                         <Label htmlFor="type-link" className="flex items-center gap-2">
@@ -83,18 +90,19 @@ const PortfolioItemForm = ({ onSave, onClose }: { onSave: (data: any) => void; o
             {itemType === 'link' ? (
                  <div className="space-y-2">
                     <Label htmlFor="portfolio-url">{t('urlLabel')}</Label>
-                    <Input id="portfolio-url" type="url" placeholder="https://..." required />
+                    <Input id="portfolio-url" type="url" placeholder="https://..." defaultValue={item?.url} required />
                 </div>
             ) : (
                 <div className="space-y-2">
                     <Label htmlFor="portfolio-file">{t('fileLabel')}</Label>
-                    <Input id="portfolio-file" type="file" required />
+                    <Input id="portfolio-file" type="file" required={!item} />
+                    {item && <p className="text-xs text-muted-foreground">{t('fileCurrent', { file: item.url.split('/').pop() })}</p>}
                 </div>
             )}
 
             <div className="space-y-2">
                 <Label htmlFor="portfolio-description">{t('descriptionLabel')}</Label>
-                <Textarea id="portfolio-description" placeholder={t('descriptionPlaceholder')} maxLength={300} />
+                <Textarea id="portfolio-description" placeholder={t('descriptionPlaceholder')} defaultValue={item?.description} maxLength={300} />
             </div>
             <DialogFooter>
                 <DialogClose asChild>
@@ -113,6 +121,7 @@ export default function ProfilePage() {
   const [isSaving, setIsSaving] = useState(false);
   const [isAddressFormOpen, setIsAddressFormOpen] = useState(false);
   const [isPortfolioFormOpen, setIsPortfolioFormOpen] = useState(false);
+  const [editingPortfolioItem, setEditingPortfolioItem] = useState<any>(null);
   const [isEditing, setIsEditing] = useState(false);
   const t = useTranslations('ProfilePage');
 
@@ -177,7 +186,22 @@ export default function ProfilePage() {
     console.log("Saving portfolio item:", data);
     toast({ title: "Réalisation ajoutée", description: "Votre nouvelle réalisation a été ajoutée à votre portfolio."});
     setIsPortfolioFormOpen(false);
+    setEditingPortfolioItem(null);
   };
+
+  const handleEditPortfolioItem = (item: any) => {
+    setEditingPortfolioItem(item);
+    setIsPortfolioFormOpen(true);
+  }
+  
+  const handleDeletePortfolioItem = (itemId: string) => {
+      console.log(`Deleting item ${itemId}`);
+      toast({
+          variant: "destructive",
+          title: "Réalisation supprimée",
+          description: "La réalisation a été supprimée de votre portfolio."
+      });
+  }
 
   if (profileLoading || !user) {
     return (
@@ -271,27 +295,59 @@ export default function ProfilePage() {
                 
                  <div className="space-y-4">
                     <h3 className="text-lg font-medium">{t('portfolio.title')}</h3>
-                     <div className="p-6 text-center border-2 border-dashed rounded-lg">
-                        <p className="text-muted-foreground">{t('portfolio.empty')}</p>
-                         <Dialog open={isPortfolioFormOpen} onOpenChange={setIsPortfolioFormOpen}>
-                            <DialogTrigger asChild>
-                                <Button type="button" variant="outline" className="mt-4">
-                                    <PlusCircle className="mr-2"/>
-                                    {t('portfolio.addWork')}
-                                </Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                                <DialogHeader>
-                                    <DialogTitle>{t('portfolio.form.title')}</DialogTitle>
-                                    <DialogDescription>{t('portfolio.form.description')}</DialogDescription>
-                                </DialogHeader>
-                                <PortfolioItemForm
-                                    onSave={handleSavePortfolioItem}
-                                    onClose={() => setIsPortfolioFormOpen(false)}
-                                />
-                            </DialogContent>
-                        </Dialog>
+                    <div className="space-y-2">
+                        {mockPortfolioItems.map(item => (
+                            <div key={item.id} className="group flex items-center justify-between p-3 border rounded-lg hover:bg-muted/50">
+                                <div className="flex items-center gap-3">
+                                    <GripVertical className="h-5 w-5 text-muted-foreground cursor-grab" />
+                                    {item.type === 'link' ? <LinkIcon className="h-5 w-5 text-muted-foreground" /> : <FileIcon className="h-5 w-5 text-muted-foreground" />}
+                                    <span className="font-medium">{item.title}</span>
+                                </div>
+                                <div className="hidden group-hover:flex items-center gap-1">
+                                    <Button type="button" variant="ghost" size="icon" onClick={() => handleEditPortfolioItem(item)}>
+                                        <Edit className="h-4 w-4"/>
+                                    </Button>
+                                    <AlertDialog>
+                                        <AlertDialogTrigger asChild>
+                                            <Button type="button" variant="ghost" size="icon" className="text-destructive hover:text-destructive">
+                                                <Trash2 className="h-4 w-4"/>
+                                            </Button>
+                                        </AlertDialogTrigger>
+                                        <AlertDialogContent>
+                                            <AlertDialogHeader>
+                                                <AlertDialogTitle>{t('portfolio.deleteDialog.title')}</AlertDialogTitle>
+                                                <AlertDialogDescription>{t('portfolio.deleteDialog.description', { title: item.title })}</AlertDialogDescription>
+                                            </AlertDialogHeader>
+                                            <AlertDialogFooter>
+                                                <AlertDialogCancel>{t('portfolio.form.cancel')}</AlertDialogCancel>
+                                                <AlertDialogAction onClick={() => handleDeletePortfolioItem(item.id)}>{t('delete')}</AlertDialogAction>
+                                            </AlertDialogFooter>
+                                        </AlertDialogContent>
+                                    </AlertDialog>
+                                </div>
+                            </div>
+                        ))}
                     </div>
+
+                     <Dialog open={isPortfolioFormOpen} onOpenChange={setIsPortfolioFormOpen}>
+                        <DialogTrigger asChild>
+                            <Button type="button" variant="outline" className="mt-4" onClick={() => setEditingPortfolioItem(null)}>
+                                <PlusCircle className="mr-2"/>
+                                {t('portfolio.addWork')}
+                            </Button>
+                        </DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>{editingPortfolioItem ? t('portfolio.form.titleEdit') : t('portfolio.form.title')}</DialogTitle>
+                                <DialogDescription>{t('portfolio.form.description')}</DialogDescription>
+                            </DialogHeader>
+                            <PortfolioItemForm
+                                item={editingPortfolioItem}
+                                onSave={handleSavePortfolioItem}
+                                onClose={() => setIsPortfolioFormOpen(false)}
+                            />
+                        </DialogContent>
+                    </Dialog>
                 </div>
 
 
@@ -392,13 +448,29 @@ export default function ProfilePage() {
             <CardTitle>{t('portfolio.title')}</CardTitle>
         </CardHeader>
         <CardContent>
-            <div className="p-6 text-center border-2 border-dashed rounded-lg">
-                <p className="text-muted-foreground">{t('portfolio.empty')}</p>
-                <Button variant="outline" className="mt-4" onClick={() => setIsEditing(true)}>
-                    <PlusCircle className="mr-2" />
-                    {t('portfolio.addWork')}
-                </Button>
-            </div>
+            {mockPortfolioItems.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {mockPortfolioItems.map(item => (
+                        <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="block border rounded-lg overflow-hidden group hover:shadow-lg transition-shadow">
+                            <div className="aspect-video bg-muted overflow-hidden">
+                                <img src={item.url} alt={item.title} className="w-full h-full object-cover"/>
+                            </div>
+                            <div className="p-4">
+                                <p className="font-semibold">{item.title}</p>
+                                <p className="text-sm text-muted-foreground">{item.description}</p>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            ) : (
+                <div className="p-6 text-center border-2 border-dashed rounded-lg">
+                    <p className="text-muted-foreground">{t('portfolio.empty')}</p>
+                    <Button variant="outline" className="mt-4" onClick={() => setIsEditing(true)}>
+                        <PlusCircle className="mr-2" />
+                        {t('portfolio.addWork')}
+                    </Button>
+                </div>
+            )}
         </CardContent>
     </Card>
       
@@ -508,5 +580,3 @@ export default function ProfilePage() {
     </div>
   );
 }
-
-    

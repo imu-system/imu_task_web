@@ -335,6 +335,7 @@
             "addWork": "Add Work",
             "form": {
                 "title": "Add a Portfolio Item",
+                "titleEdit": "Edit Portfolio Item",
                 "description": "Showcase your skills with your past work.",
                 "titleLabel": "Title",
                 "titlePlaceholder": "e.g., Logo for a startup",
@@ -343,10 +344,15 @@
                 "typeFile": "File",
                 "urlLabel": "URL",
                 "fileLabel": "File",
+                "fileCurrent": "Current file: {file}. Upload a new one to replace it.",
                 "descriptionLabel": "Description (optional)",
                 "descriptionPlaceholder": "Add some context about this project...",
                 "save": "Save Item",
                 "cancel": "Cancel"
+            },
+            "deleteDialog": {
+                "title": "Delete Item?",
+                "description": "Are you sure you want to delete the item '{title}'? This action is irreversible."
             }
         },
         "addressForm": {

@@ -334,7 +334,8 @@
             "empty": "Augmentez votre crédibilité de 80% en ajoutant vos réalisations !",
             "addWork": "Ajouter une réalisation",
             "form": {
-                "title": "Ajouter un élément au portfolio",
+                "title": "Ajouter une réalisation",
+                "titleEdit": "Modifier la réalisation",
                 "description": "Mettez en valeur vos compétences avec vos travaux passés.",
                 "titleLabel": "Titre",
                 "titlePlaceholder": "Ex: Logo pour une startup",
@@ -343,10 +344,15 @@
                 "typeFile": "Fichier",
                 "urlLabel": "URL",
                 "fileLabel": "Fichier",
+                "fileCurrent": "Fichier actuel : {file}. Téléversez un nouveau pour le remplacer.",
                 "descriptionLabel": "Description (optionnel)",
                 "descriptionPlaceholder": "Ajoutez du contexte sur ce projet...",
                 "save": "Enregistrer",
                 "cancel": "Annuler"
+            },
+            "deleteDialog": {
+                "title": "Supprimer la réalisation ?",
+                "description": "Êtes-vous sûr de vouloir supprimer la réalisation '{title}' ? Cette action est irréversible."
             }
         },
         "addressForm": {

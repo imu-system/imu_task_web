@@ -304,6 +304,7 @@
             "addWork": "仕事を追加",
             "form": {
                 "title": "ポートフォリオに項目を追加",
+                "titleEdit": "ポートフォリオ項目を編集",
                 "description": "過去の仕事であなたのスキルを披露しましょう。",
                 "titleLabel": "タイトル",
                 "titlePlaceholder": "例：スタートアップのロゴ",
@@ -312,10 +313,15 @@
                 "typeFile": "ファイル",
                 "urlLabel": "URL",
                 "fileLabel": "ファイル",
+                "fileCurrent": "現在のファイル：{file}。新しいファイルをアップロードして置き換えます。",
                 "descriptionLabel": "説明（任意）",
                 "descriptionPlaceholder": "このプロジェクトについて少し説明してください...",
                 "save": "保存",
                 "cancel": "キャンセル"
+            },
+            "deleteDialog": {
+                "title": "項目を削除しますか？",
+                "description": "'{title}'という項目を削除してもよろしいですか？この操作は元に戻せません。"
             }
         }
     },
