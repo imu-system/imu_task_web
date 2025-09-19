@@ -63,9 +63,11 @@ export default function TaskTemplatesPage() {
                                     <SelectItem value="visits">{t('filters.visits')}</SelectItem>
                                 </SelectContent>
                             </Select>
-                            <Button>
-                                <PlusCircle className="mr-2"/>
-                                {t('newTemplate')}
+                            <Button asChild>
+                                <Link href="/dashboard/templates/new">
+                                    <PlusCircle className="mr-2"/>
+                                    {t('newTemplate')}
+                                </Link>
                             </Button>
                         </div>
                     </div>
@@ -82,9 +84,11 @@ export default function TaskTemplatesPage() {
                                 </div>
                             </div>
                             <div className="flex gap-2">
-                                <Button>
-                                    <FileUp className="mr-2"/>
-                                    {t('list.createTask')}
+                                <Button asChild>
+                                    <Link href={`/dashboard/tasks/new?templateId=${template.id}`}>
+                                        <FileUp className="mr-2"/>
+                                        {t('list.createTask')}
+                                    </Link>
                                 </Button>
                                  <AlertDialog>
                                      <DropdownMenu>
@@ -92,9 +96,11 @@ export default function TaskTemplatesPage() {
                                             <Button variant="outline" size="icon"><MoreHorizontal /></Button>
                                         </DropdownMenuTrigger>
                                         <DropdownMenuContent align="end">
-                                            <DropdownMenuItem>
-                                                <Edit className="mr-2 h-4 w-4" />
-                                                {t('list.edit')}
+                                            <DropdownMenuItem asChild>
+                                                <Link href={`/dashboard/templates/edit/${template.id}`}>
+                                                    <Edit className="mr-2 h-4 w-4" />
+                                                    {t('list.edit')}
+                                                </Link>
                                             </DropdownMenuItem>
                                              <DropdownMenuItem>
                                                 <Copy className="mr-2 h-4 w-4" />

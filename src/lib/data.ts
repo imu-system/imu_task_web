@@ -781,8 +781,11 @@ export const getMessagesForThread = (threadId: string): Message[] => {
     return mockMessages.filter(m => m.threadId === threadId).sort((a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime());
 }
 
-
-
-
-
-
+export const getTaskTemplateById = (templateId: string) => {
+    const mockTemplates = [
+        { id: 'tpl1', name: 'Courses hebdomadaires', category: 'Courses', address: '123 Rue Principale, 75001 Paris, France', description: 'Faire les courses pour la semaine selon la liste fournie.', price: 20 },
+        { id: 'tpl2', name: 'Nettoyage Airbnb', category: 'Nettoyage', address: '24 Rue de la Paix, Lyon', description: 'Nettoyage complet de l\'appartement entre deux locations.', price: 50 },
+        { id: 'tpl3', name: 'Visite hebdomadaire à Mamie', category: 'Visites', address: '7 Avenue Foch, Metz', description: 'Passer du temps, discuter et vérifier que tout va bien.', price: 15 },
+    ];
+    return mockTemplates.find(t => t.id === templateId);
+};

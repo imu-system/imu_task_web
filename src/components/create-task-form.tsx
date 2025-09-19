@@ -32,12 +32,12 @@ import { Badge } from './ui/badge';
 import { useState, useEffect } from 'react';
 import { suggestTaskCategories } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
-import { type ServiceCategory } from '@/lib/types';
+import { type ServiceCategory, type Task } from '@/lib/types';
 import { Card, CardContent } from './ui/card';
 import { useTranslations } from 'next-intl';
-import { createTask } from '@/lib/data';
+import { createTask, getTaskTemplateById } from '@/lib/data';
 import { useAuth } from '@/hooks/use-auth';
-import { useRouter } from '@/navigation';
+import { useRouter, useSearchParams } from '@/navigation';
 import { collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 
@@ -76,27 +76,7 @@ export function CreateTaskForm() {
   const t = useTranslations('CreateTaskForm');
   const { user } = useAuth();
   const router = useRouter();
-
-  useEffect(() => {
-    setIsLoadingCategories(true);
-    const q = query(collection(db, 'serviceCategories'), where('isActive', '==', true));
-    
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        const categories = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as ServiceCategory));
-        setTaskCategories(categories);
-        setIsLoadingCategories(false);
-    }, (error) => {
-        console.error("Error fetching categories:", error);
-        toast({
-            variant: 'destructive',
-            title: t('toastErrorTitle'),
-            description: "Impossible de charger les catégories.",
-        });
-        setIsLoadingCategories(false);
-    });
-
-    return () => unsubscribe();
-  }, [toast, t]);
+  const searchParams = useSearchParams();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -111,6 +91,48 @@ export function CreateTaskForm() {
   });
 
   const descriptionValue = form.watch('description');
+
+  useEffect(() => {
+    setIsLoadingCategories(true);
+    const q = query(collection(db, 'serviceCategories'), where('isActive', '==', true));
+    
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const categories = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as ServiceCategory));
+        setTaskCategories(categories);
+        setIsLoadingCategories(false);
+
+        // Pre-fill from template once categories are loaded
+        const templateId = searchParams.get('templateId');
+        if (templateId) {
+            const template = getTaskTemplateById(templateId);
+            if (template) {
+                const category = categories.find(c => c.name.fr === template.category);
+                form.reset({
+                    title: template.name,
+                    description: template.description,
+                    priceOffered: template.price,
+                    categoryId: category?.id,
+                    addressId: mockAddresses.find(a => a.formatted === template.address)?.id,
+                });
+                 toast({
+                    title: "Modèle chargé",
+                    description: `Les informations du modèle "${template.name}" ont été pré-remplies.`,
+                });
+            }
+        }
+
+    }, (error) => {
+        console.error("Error fetching categories:", error);
+        toast({
+            variant: 'destructive',
+            title: t('toastErrorTitle'),
+            description: "Impossible de charger les catégories.",
+        });
+        setIsLoadingCategories(false);
+    });
+
+    return () => unsubscribe();
+  }, [searchParams, toast, t, form]);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     if (!user) {
@@ -250,7 +272,7 @@ export function CreateTaskForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('categoryLabel')}</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value} disabled={isLoadingCategories}>
+              <Select onValueChange={field.onChange} value={field.value} disabled={isLoadingCategories}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder={isLoadingCategories ? t('categoryLoading') : t('categoryPlaceholder')} />
@@ -275,7 +297,7 @@ export function CreateTaskForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('locationLabel')}</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder={t('locationPlaceholder')} />

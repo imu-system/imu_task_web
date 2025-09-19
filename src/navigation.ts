@@ -65,6 +65,7 @@ export const pathnames = {
   '/dashboard/templates': '/dashboard/templates',
   '/dashboard/templates/new': '/dashboard/templates/new',
   '/dashboard/templates/edit/[id]': '/dashboard/templates/edit/[id]',
+  '/dashboard/tasks/new': '/dashboard/tasks/new',
 
   // If locales use different paths, you can
   // specify each external path per locale.
@@ -81,5 +82,5 @@ export const pathnames = {
 
 };
 
-export const {Link, redirect, usePathname, useRouter} =
+export const {Link, redirect, usePathname, useRouter, useSearchParams} =
   createLocalizedPathnamesNavigation({locales, pathnames});
