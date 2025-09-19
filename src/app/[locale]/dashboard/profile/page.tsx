@@ -453,7 +453,7 @@ export default function ProfilePage() {
                     {mockPortfolioItems.map(item => (
                         <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="block border rounded-lg overflow-hidden group hover:shadow-lg transition-shadow">
                             <div className="aspect-video bg-muted overflow-hidden">
-                                <img src={item.url} alt={item.title} className="w-full h-full object-cover"/>
+                                <img src={item.url} alt={item.title} className="w-full h-full object-cover" data-ai-hint="portfolio item"/>
                             </div>
                             <div className="p-4">
                                 <p className="font-semibold">{item.title}</p>
