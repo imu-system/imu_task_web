@@ -1,7 +1,8 @@
 
 'use client';
 
-import { useParams, useRouter, Link } from '@/navigation';
+import { useRouter, Link } from '@/navigation';
+import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { getCourseById, Course, CourseModule } from '@/lib/academy';
@@ -27,7 +28,7 @@ export default function CourseQuizPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
-        const data = getCourseById(courseId);
+        const data = getCourseById(courseId as string);
         if (data) {
             setCourse(data);
             const quiz = data.modules.find(m => m.contentType === 'quiz');

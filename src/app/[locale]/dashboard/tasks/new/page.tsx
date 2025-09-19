@@ -7,7 +7,7 @@ import { Suspense } from 'react';
 
 function CreateTaskFormWithSuspense() {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense>
       <CreateTaskForm />
     </Suspense>
   )

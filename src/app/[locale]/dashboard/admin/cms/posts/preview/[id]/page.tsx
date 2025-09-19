@@ -1,11 +1,11 @@
 
 'use client';
 
-import { useParams } from '@/navigation';
+import { Link } from '@/navigation';
+import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Link } from '@/navigation';
 import { ArrowLeft, Check, Eye, Loader2, Globe } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
@@ -27,7 +27,7 @@ const mockPostsData: any = {
 
 export default function PostPreviewPage() {
     const params = useParams<{ id: string }>();
-    const postId = params.id;
+    const postId = params.id as string;
     const t = useTranslations('AdminCmsPage.posts.preview');
     const { toast } = useToast();
 
@@ -35,7 +35,7 @@ export default function PostPreviewPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const postData = mockPostsData[postId as string];
+        const postData = mockPostsData[postId];
         if (postData) {
             setPost(postData);
         }

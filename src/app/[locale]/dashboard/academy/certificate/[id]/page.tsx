@@ -4,7 +4,8 @@
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Link, useRouter, useParams } from '@/navigation';
+import { Link, useRouter } from '@/navigation';
+import { useParams } from 'next/navigation';
 import { ArrowLeft, Download, CheckCircle, ExternalLink } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { useAuth } from '@/hooks/use-auth';
@@ -96,4 +97,3 @@ export default function CertificatePage() {
         </div>
     );
 }
-

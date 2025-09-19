@@ -1,7 +1,8 @@
 
 'use client';
 
-import { Link, useParams } from '@/navigation';
+import { Link } from '@/navigation';
+import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { getCourseById, Course, CourseModule } from '@/lib/academy';
