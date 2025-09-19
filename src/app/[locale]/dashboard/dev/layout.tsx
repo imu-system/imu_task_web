@@ -4,6 +4,7 @@
 import { usePathname, Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { Code, Flag, Users, AreaChart, HeartPulse, Database, Webhook, KeyRound, History } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function DevToolsLayout({
     children,
