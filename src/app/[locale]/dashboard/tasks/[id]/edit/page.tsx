@@ -109,8 +109,8 @@ export default function EditTaskPage() {
                 // Populate form
                 form.reset({
                     ...taskData,
-                    timeWindowStart: taskData.timeWindowStart instanceof Timestamp ? taskData.timeWindowStart.toDate() : taskData.timeWindowStart,
-                    timeWindowEnd: taskData.timeWindowEnd instanceof Timestamp ? taskData.timeWindowEnd.toDate() : taskData.timeWindowEnd,
+                    timeWindowStart: taskData.timeWindowStart instanceof Timestamp ? taskData.timeWindowStart.toDate() : new Date(taskData.timeWindowStart),
+                    timeWindowEnd: taskData.timeWindowEnd instanceof Timestamp ? taskData.timeWindowEnd.toDate() : new Date(taskData.timeWindowEnd),
                 });
             } else {
                  toast({ variant: 'destructive', title: tEdit('toastNotFoundTitle'), description: tEdit('toastNotFoundDescription') });
@@ -401,5 +401,3 @@ export default function EditTaskPage() {
     </div>
   );
 }
-
-    
