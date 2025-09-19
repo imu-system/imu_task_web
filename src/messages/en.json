@@ -130,7 +130,13 @@
             "description": "Stay up to date.",
             "noNotifications": "No new notifications.",
             "viewAll": "View all notifications"
+        },
+        "popularPacks": {
+            "title": "Popular Provider Offers"
         }
+    },
+    "ServicePackCard": {
+        "book": "Book"
     },
     "MyTasksPage": {
         "title": "My Requests",

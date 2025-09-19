@@ -6,13 +6,19 @@ import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/use-auth';
 import { getTasks } from '@/lib/data';
 import { Task, TaskStatus } from '@/lib/types';
-import { BookMarked, Handshake, LayoutGrid, Loader2, PlusCircle, UserCheck } from 'lucide-react';
+import { BookMarked, Handshake, LayoutGrid, Loader2, PlusCircle, UserCheck, Star } from 'lucide-react';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { KpiCard } from '@/components/dashboard/kpi-card';
 import { UpcomingBookings } from '@/components/dashboard/upcoming-bookings';
 import { RecentNotifications } from '@/components/dashboard/recent-notifications';
+import ServicePackCard from '@/components/service-pack-card';
+
+const mockServicePacks = [
+  { id: 'sp1', name: 'Nettoyage Airbnb 2h', price: 40, providerName: 'Marie Dupont', providerRating: 4.9 },
+  { id: 'sp2', name: 'Assistance numérique - PC lent', price: 25, providerName: 'Yuki Tanaka', providerRating: 4.7 },
+];
 
 export default function DashboardPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -80,6 +86,18 @@ export default function DashboardPage() {
                     <p className="text-muted-foreground">{t('noTasks')}</p>
                 </div>
             )}
+
+            <div className="space-y-6">
+                <h2 className="text-2xl font-bold tracking-tight font-headline flex items-center gap-2">
+                    <Star className="text-yellow-400 fill-yellow-400"/>
+                    {t('popularPacks.title')}
+                </h2>
+                <div className="space-y-4">
+                    {mockServicePacks.map(pack => (
+                        <ServicePackCard key={pack.id} pack={pack} />
+                    ))}
+                </div>
+            </div>
         </div>
         <div className="space-y-8">
             <UpcomingBookings />

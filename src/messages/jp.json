@@ -84,7 +84,13 @@
         "title": "利用可能なタスク",
         "subtitle": "近くであなたに合ったタスクを見つけましょう。",
         "createTask": "タスクを作成",
-        "noTasks": "現在利用可能なタスクはありません。"
+        "noTasks": "現在利用可能なタスクはありません。",
+        "popularPacks": {
+            "title": "人気のプロバイダーオファー"
+        }
+    },
+    "ServicePackCard": {
+        "book": "予約"
     },
     "NewTaskPage": {
         "title": "新しいタスクを作成",
@@ -533,8 +539,6 @@
             "saveSuccessDescription": "通知設定が更新されました。"
         }
     },
-    "AdminDashboard": {},
-    "ReferralsPage": {},
     "MarketInsightsLayout": {
         "title": "市場インサイト",
         "subtitle": "あなたの活動を最適化するための限定データ。",

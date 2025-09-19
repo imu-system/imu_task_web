@@ -130,7 +130,13 @@
             "description": "Restez à jour.",
             "noNotifications": "Aucune nouvelle notification.",
             "viewAll": "Voir toutes les notifications"
+        },
+        "popularPacks": {
+            "title": "Offres populaires de prestataires"
         }
+    },
+    "ServicePackCard": {
+        "book": "Réserver"
     },
     "MyTasksPage": {
         "title": "Mes demandes",
