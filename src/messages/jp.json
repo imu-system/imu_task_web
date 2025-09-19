@@ -72,6 +72,7 @@
         "referrals": "紹介",
         "marketInsights": "市場インサイト",
         "templates": "テンプレート",
+        "devTools": "開発者ツール",
         "adminNav": {
             "community": "コミュニティ",
             "moderation": "モデレーション",
@@ -860,6 +861,39 @@
                 },
                 "back": "テンプレートに戻る"
             }
+        }
+    },
+    "DevToolsLayout": {
+        "title": "開発者ツール",
+        "sidebar": {
+            "flags": "機能フラグ",
+            "audiences": "オーディエンス/ベータ",
+            "rollouts": "ロールアウトとメトリクス",
+            "health": "ヘルスチェック",
+            "fixtures": "フィクスチャとシード",
+            "webhookTester": "Webhookテスター",
+            "sdkKeys": "SDKキー",
+            "auditLog": "監査ログ"
+        }
+    },
+    "DevToolsPage": {
+        "title": "開発者ダッシュボード",
+        "kpi": {
+            "totalFlags": "総フラグ数",
+            "activeRollouts": "アクティブなロールアウト",
+            "betaUsers": "ベータユーザー",
+            "errors": "エラー"
+        },
+        "lastDeploy": "最終デプロイ",
+        "quickActions": {
+            "createFlag": "フラグを作成",
+            "importFlags": "インポート（JSON）",
+            "runFixtures": "フィクスチャを実行"
+        },
+        "activity": {
+            "title": "最近のアクティビティ",
+            "time": "時間",
+            "event": "イベント"
         }
     }
 }

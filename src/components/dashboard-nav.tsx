@@ -51,6 +51,7 @@ import {
   Gift,
   Settings,
   BookCopy,
+  Code,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -310,6 +311,14 @@ export function DashboardNav() {
                               <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/settings')}>
                                   <SlidersHorizontal />
                                   <span>{t('settings')}</span>
+                              </SidebarMenuButton>
+                          </Link>
+                      </SidebarMenuItem>
+                       <SidebarMenuItem>
+                          <Link href="/dashboard/dev">
+                              <SidebarMenuButton isActive={pathname.startsWith('/dashboard/dev')}>
+                                  <Code />
+                                  <span>{t('devTools')}</span>
                               </SidebarMenuButton>
                           </Link>
                       </SidebarMenuItem>

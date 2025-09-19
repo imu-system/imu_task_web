@@ -96,6 +96,7 @@
         "auditLog": "Audit Log",
         "marketInsights": "Market Insights",
         "templates": "Templates",
+        "devTools": "Developer Tools",
         "adminNav": {
             "community": "Community",
             "moderation": "Moderation",
@@ -701,6 +702,48 @@
             "successDescription": "Your withdrawal request has been submitted and is being processed."
         }
     },
+    "ProfilePage": {
+        "myBadges": "My Badges",
+        "earnedBadges": "Earned Badges",
+        "seeAllBadges": "See All Badges",
+        "earnedOn": "Earned on {date}"
+    },
+    "BadgesPage": {
+        "subtitle": "Here are the badges you have unlocked.",
+        "cardTitle": "My Badges",
+        "cardDescription": "Badges reward your activity and reliability on the platform.",
+        "history": {
+            "title": "Mission History",
+            "description": "Your last completed missions."
+        },
+        "shareProfile": "Share Profile",
+        "badges": {
+            "firstMission": {
+                "title": "First Mission",
+                "description": "Completed your first mission."
+            },
+            "verified": {
+                "title": "Verified",
+                "description": "Identity successfully verified."
+            },
+            "topRated": {
+                "title": "Top Rated",
+                "description": "Average rating above 4.8"
+            },
+            "communityHelper": {
+                "title": "Community Helper",
+                "description": "Completed 25 missions."
+            },
+            "profileComplete": {
+                "title": "Complete Profile",
+                "description": "Filled out all profile information."
+            },
+            "pioneer": {
+                "title": "Pioneer",
+                "description": "Joined in the first year."
+            }
+        }
+    },
     "KycPage": {
         "title": "Identity Verification (KYC)",
         "subtitle": "Confirm your identity to secure your account and access all features.",
@@ -1247,6 +1290,39 @@
                 },
                 "back": "Back to Templates"
             }
+        }
+    },
+    "DevToolsLayout": {
+        "title": "Developer Tools",
+        "sidebar": {
+            "flags": "Feature Flags",
+            "audiences": "Audiences / Beta",
+            "rollouts": "Rollouts & Metrics",
+            "health": "Health Checks",
+            "fixtures": "Fixtures & Seeds",
+            "webhookTester": "Webhook Tester",
+            "sdkKeys": "SDK Keys",
+            "auditLog": "Audit Log"
+        }
+    },
+    "DevToolsPage": {
+        "title": "Developer Dashboard",
+        "kpi": {
+            "totalFlags": "Total Flags",
+            "activeRollouts": "Active Rollouts",
+            "betaUsers": "Beta Users",
+            "errors": "Errors"
+        },
+        "lastDeploy": "Last deploy",
+        "quickActions": {
+            "createFlag": "Create Flag",
+            "importFlags": "Import Flags (JSON)",
+            "runFixtures": "Run Fixtures"
+        },
+        "activity": {
+            "title": "Recent Activity",
+            "time": "Time",
+            "event": "Event"
         }
     }
 }

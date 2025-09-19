@@ -97,6 +97,7 @@
         "auditLog": "Logs d'audit",
         "marketInsights": "Infos Marché",
         "templates": "Modèles",
+        "devTools": "Outils Développeur",
         "adminNav": {
             "community": "Communauté",
             "moderation": "Modération",
@@ -702,6 +703,48 @@
             "successDescription": "Votre demande de retrait a été soumise et est en cours de traitement."
         }
     },
+    "ProfilePage": {
+        "myBadges": "Mes Badges",
+        "earnedBadges": "Badges Obtenus",
+        "seeAllBadges": "Voir tous les badges",
+        "earnedOn": "Obtenu le {date}"
+    },
+    "BadgesPage": {
+        "subtitle": "Voici les badges que vous avez débloqués.",
+        "cardTitle": "Mes Badges",
+        "cardDescription": "Les badges récompensent votre activité et votre fiabilité sur la plateforme.",
+        "history": {
+            "title": "Historique des missions",
+            "description": "Vos dernières missions terminées."
+        },
+        "shareProfile": "Partager le profil",
+        "badges": {
+            "firstMission": {
+                "title": "Première Mission",
+                "description": "Avoir terminé votre première mission."
+            },
+            "verified": {
+                "title": "Vérifié",
+                "description": "Identité vérifiée avec succès."
+            },
+            "topRated": {
+                "title": "Top Noté",
+                "description": "Note moyenne supérieure à 4.8"
+            },
+            "communityHelper": {
+                "title": "Pilier de la Communauté",
+                "description": "Avoir terminé 25 missions."
+            },
+            "profileComplete": {
+                "title": "Profil Complet",
+                "description": "Avoir rempli toutes les informations du profil."
+            },
+            "pioneer": {
+                "title": "Pionnier",
+                "description": "Avoir rejoint la plateforme la première année."
+            }
+        }
+    },
     "KycPage": {
         "title": "Vérification d'Identité (KYC)",
         "subtitle": "Confirmez votre identité pour sécuriser votre compte et accéder à toutes les fonctionnalités.",
@@ -1248,6 +1291,39 @@
                 },
                 "back": "Retour aux modèles"
             }
+        }
+    },
+    "DevToolsLayout": {
+        "title": "Outils Développeur",
+        "sidebar": {
+            "flags": "Feature Flags",
+            "audiences": "Audiences / Bêta",
+            "rollouts": "Déploiements & Métriques",
+            "health": "Health Checks",
+            "fixtures": "Fixtures & Seeds",
+            "webhookTester": "Testeur de Webhooks",
+            "sdkKeys": "Clés SDK",
+            "auditLog": "Logs d'audit"
+        }
+    },
+    "DevToolsPage": {
+        "title": "Dashboard Développeur",
+        "kpi": {
+            "totalFlags": "Flags totaux",
+            "activeRollouts": "Déploiements actifs",
+            "betaUsers": "Utilisateurs Bêta",
+            "errors": "Erreurs"
+        },
+        "lastDeploy": "Dernier déploiement",
+        "quickActions": {
+            "createFlag": "Créer un Flag",
+            "importFlags": "Importer (JSON)",
+            "runFixtures": "Lancer les Fixtures"
+        },
+        "activity": {
+            "title": "Activité Récente",
+            "time": "Heure",
+            "event": "Événement"
         }
     }
 }
