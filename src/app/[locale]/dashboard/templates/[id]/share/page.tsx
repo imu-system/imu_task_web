@@ -7,7 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
-import { Link, useParams } from '@/navigation';
+import { Link, useRouter } from '@/navigation';
+import { useParams } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
 import { ArrowLeft, Copy, Loader2 } from 'lucide-react';
 import { useState } from 'react';
