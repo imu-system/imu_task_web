@@ -58,9 +58,6 @@ export const pathnames = {
   '/dashboard/settings/security': '/dashboard/settings/security',
   '/dashboard/settings/billing': '/dashboard/settings/billing',
   '/dashboard/settings/privacy': '/dashboard/settings/privacy',
-  '/legal/invoices': '/legal/invoices',
-  '/legal/contracts': '/legal/contracts',
-  '/legal/insurance': '/legal/insurance',
   '/dashboard/templates': '/dashboard/templates',
   '/dashboard/templates/new': '/dashboard/templates/new',
   '/dashboard/templates/edit/[id]': '/dashboard/templates/edit/[id]',
@@ -68,6 +65,7 @@ export const pathnames = {
   '/dashboard/tasks/new': '/dashboard/tasks/new',
   '/dashboard/dev': '/dashboard/dev',
   '/dashboard/dev/flags': '/dashboard/dev/flags',
+  '/dashboard/dev/flags/[flagKey]': '/dashboard/dev/flags/[flagKey]',
 
   // If locales use different paths, you can
   // specify each external path per locale.

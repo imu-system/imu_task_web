@@ -1338,9 +1338,45 @@
                 "details": "Détails",
                 "history": "Historique"
             }
+        },
+        "flagDetail": {
+            "flagTitle": "Flag",
+            "overview": {
+                "title": "Aperçu",
+                "key": "Clé",
+                "status": "Statut",
+                "pause": "Pause",
+                "rollback": "Rollback",
+                "owner": "Propriétaire",
+                "created": "Créé le"
+            },
+            "targeting": {
+                "title": "Ciblage & Règles",
+                "rule1": "SI utilisateur dans @beta-testers ALORS ON",
+                "rule2": "SI pays = FR ET device = mobile ALORS 20% déploiement",
+                "default": "Fallback par défaut -> OFF",
+                "addRule": "Ajouter règle",
+                "testUser": "Tester un utilisateur"
+            },
+            "metrics": {
+                "title": "Métrique du déploiement",
+                "exposure": "Exposition actuelle",
+                "conversions": "Conversions",
+                "errors": "Erreurs"
+            },
+            "schedule": {
+                "title": "Planification",
+                "start": "Début",
+                "end": "Fin"
+            },
+            "history": {
+                "title": "Historique",
+                "fullAudit": "Voir le log d'audit complet"
+            }
         }
     }
 }
 
     
+
 

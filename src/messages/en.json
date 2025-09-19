@@ -1337,6 +1337,41 @@
                 "details": "Details",
                 "history": "History"
             }
+        },
+        "flagDetail": {
+            "flagTitle": "Flag",
+            "overview": {
+                "title": "Overview",
+                "key": "Key",
+                "status": "Status",
+                "pause": "Pause",
+                "rollback": "Rollback",
+                "owner": "Owner",
+                "created": "Created"
+            },
+            "targeting": {
+                "title": "Targeting & Rules",
+                "rule1": "IF user in @beta-testers THEN ON",
+                "rule2": "IF country = FR AND device = mobile THEN 20% rollout",
+                "default": "Default Fallback -> OFF",
+                "addRule": "Add Rule",
+                "testUser": "Test User"
+            },
+            "metrics": {
+                "title": "Rollout Metrics",
+                "exposure": "Current exposure",
+                "conversions": "Conversions",
+                "errors": "Errors"
+            },
+            "schedule": {
+                "title": "Schedule",
+                "start": "Start",
+                "end": "End"
+            },
+            "history": {
+                "title": "History",
+                "fullAudit": "Show full audit log"
+            }
         }
     }
 }

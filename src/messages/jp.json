@@ -540,6 +540,8 @@
             "saveSuccessDescription": "通知設定が更新されました。"
         }
     },
+    "AdminDashboard": {},
+    "ReferralsPage": {},
     "MarketInsightsLayout": {
         "title": "市場インサイト",
         "subtitle": "あなたの活動を最適化するための限定データ。",
@@ -907,6 +909,41 @@
             "actions": {
                 "details": "詳細",
                 "history": "履歴"
+            }
+        },
+        "flagDetail": {
+            "flagTitle": "フラグ",
+            "overview": {
+                "title": "概要",
+                "key": "キー",
+                "status": "ステータス",
+                "pause": "一時停止",
+                "rollback": "ロールバック",
+                "owner": "所有者",
+                "created": "作成日"
+            },
+            "targeting": {
+                "title": "ターゲティングとルール",
+                "rule1": "IF user in @beta-testers THEN ON",
+                "rule2": "IF country = FR AND device = mobile THEN 20% rollout",
+                "default": "Default Fallback -> OFF",
+                "addRule": "ルールを追加",
+                "testUser": "ユーザーをテスト"
+            },
+            "metrics": {
+                "title": "展開メトリクス",
+                "exposure": "現在の露出",
+                "conversions": "コンバージョン",
+                "errors": "エラー"
+            },
+            "schedule": {
+                "title": "スケジュール",
+                "start": "開始",
+                "end": "終了"
+            },
+            "history": {
+                "title": "履歴",
+                "fullAudit": "完全な監査ログを表示"
             }
         }
     }

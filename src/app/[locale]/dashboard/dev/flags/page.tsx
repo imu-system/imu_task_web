@@ -12,6 +12,7 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 import { MoreHorizontal, Search } from 'lucide-react';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Progress } from '@/components/ui/progress';
+import { Link } from '@/navigation';
 
 const mockFlags = [
     { id: 'flag1', key: 'new-payment-flow', envs: ['dev', 'stg'], status: true, rollout: 45 },
@@ -59,7 +60,11 @@ export default function FlagsPage() {
                             {mockFlags.map(flag => (
                                 <TableRow key={flag.id}>
                                     <TableCell><Checkbox/></TableCell>
-                                    <TableCell className="font-mono">{flag.key}</TableCell>
+                                    <TableCell>
+                                        <Link href={`/dashboard/dev/flags/${flag.key}`} className="font-mono hover:underline">
+                                            {flag.key}
+                                        </Link>
+                                    </TableCell>
                                     <TableCell>
                                         <div className="flex gap-1">
                                             {flag.envs.map(env => (
@@ -82,7 +87,9 @@ export default function FlagsPage() {
                                                 <Button variant="ghost" size="icon"><MoreHorizontal/></Button>
                                             </DropdownMenuTrigger>
                                             <DropdownMenuContent>
-                                                <DropdownMenuItem>{t('actions.details')}</DropdownMenuItem>
+                                                <DropdownMenuItem asChild>
+                                                    <Link href={`/dashboard/dev/flags/${flag.key}`}>{t('actions.details')}</Link>
+                                                </DropdownMenuItem>
                                                 <DropdownMenuItem>{t('actions.history')}</DropdownMenuItem>
                                             </DropdownMenuContent>
                                         </DropdownMenu>
