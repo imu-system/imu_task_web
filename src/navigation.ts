@@ -68,6 +68,7 @@ export const pathnames = {
   '/dashboard/dev/flags/[flagKey]': '/dashboard/dev/flags/[flagKey]',
   '/dashboard/dev/audiences': '/dashboard/dev/audiences',
   '/dashboard/dev/rollouts': '/dashboard/dev/rollouts',
+  '/dashboard/dev/health': '/dashboard/dev/health',
 
   // If locales use different paths, you can
   // specify each external path per locale.

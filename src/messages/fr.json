@@ -1419,9 +1419,24 @@
                 "kpiConversion": "Conversion KPI vs. Contrôle",
                 "segmentExposure": "Exposition par Segment Utilisateur"
             }
+        },
+        "health": {
+            "title": "Health Checks",
+            "services": {
+                "title": "Statut des services"
+            },
+            "actions": {
+                "title": "Actions",
+                "runHealthcheck": "Lancer le healthcheck",
+                "clearCache": "Vider le cache Redis"
+            },
+            "logs": {
+                "title": "Logs (en temps réel)"
+            }
         }
     }
 }
 
     
+
 

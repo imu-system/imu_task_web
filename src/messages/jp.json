@@ -998,6 +998,20 @@
                 "kpiConversion": "KPIコンバージョン vs. コントロール",
                 "segmentExposure": "ユーザーセグメント別の露出"
             }
+        },
+        "health": {
+            "title": "ヘルスチェック",
+            "services": {
+                "title": "サービスステータス"
+            },
+            "actions": {
+                "title": "アクション",
+                "runHealthcheck": "ヘルスチェックを実行",
+                "clearCache": "Redisキャッシュをクリア"
+            },
+            "logs": {
+                "title": "ログ（リアルタイム）"
+            }
         }
     }
 }
