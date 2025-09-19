@@ -1,3 +1,4 @@
+
 {
     "Header": {
         "features": "特徴",
@@ -1030,6 +1031,23 @@
                 "description": "これにより、すべての非管理者ユーザー、タスク、および予約が削除されます。このアクションは元に戻せません。",
                 "cancel": "キャンセル",
                 "confirm": "確認"
+            }
+        },
+        "webhookTester": {
+            "title": "Webhookテスター",
+            "card": {
+                "title": "テストイベントを送信",
+                "method": "メソッド",
+                "url": "エンドポイントURL",
+                "payload": "ペイロード（JSON）",
+                "headers": "ヘッダー",
+                "addHeader": "ヘッダーを追加",
+                "saveTemplate": "テンプレートとして保存",
+                "sendTest": "テストを送信"
+            },
+            "logs": {
+                "title": "リクエスト履歴",
+                "response": "レスポンス"
             }
         }
     }

@@ -1,3 +1,4 @@
+
 {
     "Header": {
         "features": "Features",
@@ -1450,6 +1451,23 @@
                 "description": "This will delete all non-admin users, tasks, and bookings. This action cannot be undone.",
                 "cancel": "Cancel",
                 "confirm": "Confirm"
+            }
+        },
+        "webhookTester": {
+            "title": "Webhook Tester",
+            "card": {
+                "title": "Send a Test Event",
+                "method": "Method",
+                "url": "Endpoint URL",
+                "payload": "Payload (JSON)",
+                "headers": "Headers",
+                "addHeader": "Add Header",
+                "saveTemplate": "Save as Template",
+                "sendTest": "Send Test"
+            },
+            "logs": {
+                "title": "Request History",
+                "response": "Response"
             }
         }
     }

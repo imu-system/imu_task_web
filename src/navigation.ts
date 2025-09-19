@@ -1,3 +1,4 @@
+
 import {createLocalizedPathnamesNavigation} from 'next-intl/navigation';
 
 export const locales = ['en', 'fr', 'jp'] as const;
@@ -69,6 +70,7 @@ export const pathnames = {
   '/dashboard/dev/rollouts': '/dashboard/dev/rollouts',
   '/dashboard/dev/health': '/dashboard/dev/health',
   '/dashboard/dev/fixtures': '/dashboard/dev/fixtures',
+  '/dashboard/dev/webhook-tester': '/dashboard/dev/webhook-tester',
 
   // If locales use different paths, you can
   // specify each external path per locale.

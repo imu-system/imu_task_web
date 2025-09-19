@@ -1,3 +1,4 @@
+
       
 {
     "Header": {
@@ -1452,11 +1453,29 @@
                 "cancel": "Annuler",
                 "confirm": "Confirmer"
             }
+        },
+        "webhookTester": {
+            "title": "Testeur de Webhooks",
+            "card": {
+                "title": "Envoyer un événement de test",
+                "method": "Méthode",
+                "url": "URL de l'endpoint",
+                "payload": "Payload (JSON)",
+                "headers": "En-têtes",
+                "addHeader": "Ajouter un en-tête",
+                "saveTemplate": "Enregistrer comme modèle",
+                "sendTest": "Envoyer le test"
+            },
+            "logs": {
+                "title": "Historique des requêtes",
+                "response": "Réponse"
+            }
         }
     }
 }
 
     
+
 
 
 
