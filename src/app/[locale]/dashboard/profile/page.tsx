@@ -15,14 +15,15 @@ import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera, Lock, SatelliteDish, UserRound, Briefcase } from "lucide-react";
+import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera, Lock, SatelliteDish, UserRound, Briefcase, Link as LinkIcon, File as FileIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import AddressForm from "@/components/address-form";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@/navigation";
 import { Award, Shield } from "lucide-react";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 // Helper function to split string by comma and trim whitespace
 const stringToArray = (str: string | undefined | string[]): string[] => {
@@ -43,11 +44,75 @@ const mockEarnedBadges = [
     { id: 'b3', name: 'Verified', date: '2025-09-10', icon: <Shield className="h-4 w-4"/> }
 ]
 
+const PortfolioItemForm = ({ onSave, onClose }: { onSave: (data: any) => void; onClose: () => void; }) => {
+    const t = useTranslations('ProfilePage.portfolio.form');
+    const [itemType, setItemType] = useState<'link' | 'file'>('link');
+
+    // This would be a more complex form with its own state and validation
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        onSave({}); // Pass form data here
+    }
+
+    return (
+        <form onSubmit={handleSubmit} className="space-y-6">
+            <div className="space-y-2">
+                <Label htmlFor="portfolio-title">{t('titleLabel')}</Label>
+                <Input id="portfolio-title" placeholder={t('titlePlaceholder')} required />
+            </div>
+            <div className="space-y-2">
+                <Label>{t('typeLabel')}</Label>
+                <RadioGroup defaultValue="link" onValueChange={(value) => setItemType(value as 'link' | 'file')}>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="link" id="type-link" />
+                        <Label htmlFor="type-link" className="flex items-center gap-2">
+                            <LinkIcon className="h-4 w-4" />
+                            {t('typeLink')}
+                        </Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                        <RadioGroupItem value="file" id="type-file" />
+                        <Label htmlFor="type-file" className="flex items-center gap-2">
+                            <FileIcon className="h-4 w-4" />
+                            {t('typeFile')}
+                        </Label>
+                    </div>
+                </RadioGroup>
+            </div>
+
+            {itemType === 'link' ? (
+                 <div className="space-y-2">
+                    <Label htmlFor="portfolio-url">{t('urlLabel')}</Label>
+                    <Input id="portfolio-url" type="url" placeholder="https://..." required />
+                </div>
+            ) : (
+                <div className="space-y-2">
+                    <Label htmlFor="portfolio-file">{t('fileLabel')}</Label>
+                    <Input id="portfolio-file" type="file" required />
+                </div>
+            )}
+
+            <div className="space-y-2">
+                <Label htmlFor="portfolio-description">{t('descriptionLabel')}</Label>
+                <Textarea id="portfolio-description" placeholder={t('descriptionPlaceholder')} maxLength={300} />
+            </div>
+            <DialogFooter>
+                <DialogClose asChild>
+                    <Button type="button" variant="ghost">{t('cancel')}</Button>
+                </DialogClose>
+                <Button type="submit">{t('save')}</Button>
+            </DialogFooter>
+        </form>
+    );
+};
+
+
 export default function ProfilePage() {
   const { user, profileLoading } = useAuth();
   const { toast } = useToast();
   const [isSaving, setIsSaving] = useState(false);
   const [isAddressFormOpen, setIsAddressFormOpen] = useState(false);
+  const [isPortfolioFormOpen, setIsPortfolioFormOpen] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const t = useTranslations('ProfilePage');
 
@@ -106,6 +171,12 @@ export default function ProfilePage() {
     } finally {
       setIsSaving(false);
     }
+  };
+
+  const handleSavePortfolioItem = (data: any) => {
+    console.log("Saving portfolio item:", data);
+    toast({ title: "Réalisation ajoutée", description: "Votre nouvelle réalisation a été ajoutée à votre portfolio."});
+    setIsPortfolioFormOpen(false);
   };
 
   if (profileLoading || !user) {
@@ -202,10 +273,24 @@ export default function ProfilePage() {
                     <h3 className="text-lg font-medium">{t('portfolio.title')}</h3>
                      <div className="p-6 text-center border-2 border-dashed rounded-lg">
                         <p className="text-muted-foreground">{t('portfolio.empty')}</p>
-                        <Button type="button" variant="outline" className="mt-4">
-                            <PlusCircle className="mr-2"/>
-                            {t('portfolio.addWork')}
-                        </Button>
+                         <Dialog open={isPortfolioFormOpen} onOpenChange={setIsPortfolioFormOpen}>
+                            <DialogTrigger asChild>
+                                <Button type="button" variant="outline" className="mt-4">
+                                    <PlusCircle className="mr-2"/>
+                                    {t('portfolio.addWork')}
+                                </Button>
+                            </DialogTrigger>
+                            <DialogContent>
+                                <DialogHeader>
+                                    <DialogTitle>{t('portfolio.form.title')}</DialogTitle>
+                                    <DialogDescription>{t('portfolio.form.description')}</DialogDescription>
+                                </DialogHeader>
+                                <PortfolioItemForm
+                                    onSave={handleSavePortfolioItem}
+                                    onClose={() => setIsPortfolioFormOpen(false)}
+                                />
+                            </DialogContent>
+                        </Dialog>
                     </div>
                 </div>
 

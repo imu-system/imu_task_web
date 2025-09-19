@@ -332,7 +332,31 @@
         "portfolio": {
             "title": "My Portfolio",
             "empty": "Boost your credibility by 80% by adding your work!",
-            "addWork": "Add Work"
+            "addWork": "Add Work",
+            "form": {
+                "title": "Add a Portfolio Item",
+                "description": "Showcase your skills with your past work.",
+                "titleLabel": "Title",
+                "titlePlaceholder": "e.g., Logo for a startup",
+                "typeLabel": "Item Type",
+                "typeLink": "External Link",
+                "typeFile": "File",
+                "urlLabel": "URL",
+                "fileLabel": "File",
+                "descriptionLabel": "Description (optional)",
+                "descriptionPlaceholder": "Add some context about this project...",
+                "save": "Save Item",
+                "cancel": "Cancel"
+            }
+        },
+        "addressForm": {
+            "title": "Add a new address",
+            "label": "Address Name",
+            "labelPlaceholder": "e.g. Home, Office",
+            "address": "Full Address",
+            "addressPlaceholder": "Start typing your address...",
+            "cancel": "Cancel",
+            "save": "Save Address"
         }
     },
     "BadgesPage": {

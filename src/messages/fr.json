@@ -332,7 +332,31 @@
         "portfolio": {
             "title": "Mon Portfolio",
             "empty": "Augmentez votre crédibilité de 80% en ajoutant vos réalisations !",
-            "addWork": "Ajouter une réalisation"
+            "addWork": "Ajouter une réalisation",
+            "form": {
+                "title": "Ajouter un élément au portfolio",
+                "description": "Mettez en valeur vos compétences avec vos travaux passés.",
+                "titleLabel": "Titre",
+                "titlePlaceholder": "Ex: Logo pour une startup",
+                "typeLabel": "Type d'élément",
+                "typeLink": "Lien externe",
+                "typeFile": "Fichier",
+                "urlLabel": "URL",
+                "fileLabel": "Fichier",
+                "descriptionLabel": "Description (optionnel)",
+                "descriptionPlaceholder": "Ajoutez du contexte sur ce projet...",
+                "save": "Enregistrer",
+                "cancel": "Annuler"
+            }
+        },
+        "addressForm": {
+            "title": "Ajouter une nouvelle adresse",
+            "label": "Nom de l'adresse",
+            "labelPlaceholder": "Ex: Maison, Bureau",
+            "address": "Adresse complète",
+            "addressPlaceholder": "Commencez à taper votre adresse...",
+            "cancel": "Annuler",
+            "save": "Enregistrer l'adresse"
         }
     },
     "BadgesPage": {
