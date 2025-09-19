@@ -242,7 +242,13 @@
         "toastAcceptDescription": "The task is now assigned to {name}.",
         "reviews": "({count} reviews)",
         "accept": "Accept offer",
-        "contact": "Contact"
+        "contact": "Contact",
+        "confirmAccept": {
+            "title": "Confirm Offer Acceptance",
+            "description": "Are you sure you want to accept the offer of {amount}€ from {name}? The payment will be authorized.",
+            "cancel": "Cancel",
+            "confirm": "Confirm & Pay"
+        }
     },
     "OfferForm": {
         "title": "Make an offer",

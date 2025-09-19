@@ -93,10 +93,29 @@ const OfferCard = ({ offer, onAccept, disabled }: { offer: Offer, onAccept: (off
           {offer.message}
         </p>
         <div className="flex gap-2 pt-2">
-          <Button size="sm" onClick={handleAccept} disabled={isAccepting || disabled}>
-            {isAccepting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
-            {t('accept')}
-          </Button>
+          <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button size="sm" disabled={isAccepting || disabled}>
+                    {isAccepting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
+                    {t('accept')}
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                  <AlertDialogHeader>
+                      <AlertDialogTitle>{t('confirmAccept.title')}</AlertDialogTitle>
+                      <AlertDialogDescription>
+                          {t('confirmAccept.description', { amount: offer.proposedPrice, name: offer.provider.profile?.displayName })}
+                      </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                      <AlertDialogCancel>{t('confirmAccept.cancel')}</AlertDialogCancel>
+                      <AlertDialogAction onClick={handleAccept} disabled={isAccepting}>
+                         {isAccepting && <Loader2 className="mr-2 h-4 w-4 animate-spin"/>}
+                         {t('confirmAccept.confirm')}
+                      </AlertDialogAction>
+                  </AlertDialogFooter>
+              </AlertDialogContent>
+          </AlertDialog>
           <Button size="sm" variant="ghost">
             <MessageSquare className="mr-2 h-4 w-4" />
             {t('contact')}

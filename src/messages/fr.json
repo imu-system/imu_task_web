@@ -242,7 +242,13 @@
         "toastAcceptDescription": "La mission est maintenant assignée à {name}.",
         "reviews": "({count} avis)",
         "accept": "Accepter l'offre",
-        "contact": "Contacter"
+        "contact": "Contacter",
+        "confirmAccept": {
+            "title": "Confirmer l'acceptation de l'offre",
+            "description": "Êtes-vous sûr de vouloir accepter l'offre de {amount}€ de {name} ? Le paiement sera autorisé.",
+            "cancel": "Annuler",
+            "confirm": "Confirmer & Payer"
+        }
     },
     "OfferForm": {
         "title": "Faire une offre",

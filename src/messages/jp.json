@@ -148,6 +148,14 @@
         "completed": "完了",
         "canceled": "タスクキャンセル"
     },
+    "OfferCard": {
+        "confirmAccept": {
+            "title": "オファーの受け入れを確認",
+            "description": "{name}からの{amount}€のオファーを本当に受け入れますか？支払いが承認されます。",
+            "cancel": "キャンセル",
+            "confirm": "確認して支払う"
+        }
+    },
     "ThreadPage": {
         "task": "タスク",
         "placeholder": "メッセージを入力してください...",
