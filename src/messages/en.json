@@ -1336,7 +1336,8 @@
             "actions": {
                 "details": "Details",
                 "history": "History"
-            }
+            },
+            "createButton": "Create Flag"
         },
         "flagDetail": {
             "flagTitle": "Flag",
@@ -1372,6 +1373,19 @@
                 "title": "History",
                 "fullAudit": "Show full audit log"
             }
+        },
+        "flagDialog": {
+            "title": "Create Feature Flag",
+            "keyLabel": "Key",
+            "nameLabel": "Display name",
+            "descriptionLabel": "Description",
+            "environmentsLabel": "Environments",
+            "typeLabel": "Type",
+            "tagsLabel": "Tags",
+            "ownerLabel": "Owner",
+            "cancel": "Cancel",
+            "saveDraft": "Save draft",
+            "saveAndCreate": "Save & create"
         }
     }
 }

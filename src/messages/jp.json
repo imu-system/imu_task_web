@@ -909,7 +909,8 @@
             "actions": {
                 "details": "詳細",
                 "history": "履歴"
-            }
+            },
+            "createButton": "フラグを作成"
         },
         "flagDetail": {
             "flagTitle": "フラグ",
@@ -945,6 +946,19 @@
                 "title": "履歴",
                 "fullAudit": "完全な監査ログを表示"
             }
+        },
+        "flagDialog": {
+            "title": "機能フラグを作成",
+            "keyLabel": "キー",
+            "nameLabel": "表示名",
+            "descriptionLabel": "説明",
+            "environmentsLabel": "環境",
+            "typeLabel": "タイプ",
+            "tagsLabel": "タグ",
+            "ownerLabel": "所有者",
+            "cancel": "キャンセル",
+            "saveDraft": "下書きを保存",
+            "saveAndCreate": "保存して作成"
         }
     }
 }
