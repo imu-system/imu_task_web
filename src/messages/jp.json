@@ -1,4 +1,3 @@
-
 {
     "Header": {
         "features": "特徴",
@@ -819,7 +818,7 @@
         },
         "dialog": {
             "title": "テンプレートを削除しますか？",
-            "description": "'{templateName}'テンプレートを削除してもよろしいですか？この操作は元に戻せません。",
+            "description": " '{templateName}'テンプレートを削除してもよろしいですか？この操作は元に戻せません。",
             "cancel": "キャンセル",
             "confirm": "削除"
         },
@@ -976,26 +975,26 @@
                 "view": "メンバーを表示",
                 "add": "メンバーを追加",
                 "remove": "メンバーを削除",
-                "export": "CSVをエクスポート",
-                "delete": "削除"
+                "export": "Export CSV",
+                "delete": "Delete"
             }
         },
         "rollouts": {
             "title": "ロールアウトと実験",
             "list": {
                 "title": "アクティブなロールアウト",
-                "filterFlag": "フラグでフィルタ...",
+                "filterFlag": "フラグでフィルタリング...",
                 "allFlags": "すべてのフラグ",
-                "filterEnv": "環境でフィルタ...",
-                "filter": "フィルタ",
-                "exposure": "露出: {value}%",
-                "conversion": "コンバージョン: {value}%"
+                "filterEnv": "環境でフィルタリング...",
+                "filter": "フィルタリング",
+                "exposure": "露出：{value}%",
+                "conversion": "Conv: {value}%"
             },
             "detail": {
-                "title": "ロールアウトの詳細",
+                "title": "展開の詳細",
                 "export": "CSVをエクスポート",
-                "exposureOverTime": "時間経過に伴う露出",
-                "kpiConversion": "KPIコンバージョン vs. コントロール",
+                "exposureOverTime": "時間の経過に伴う露出",
+                "kpiConversion": "KPIコンバージョン対コントロール",
                 "segmentExposure": "ユーザーセグメント別の露出"
             }
         },
@@ -1006,11 +1005,31 @@
             },
             "actions": {
                 "title": "アクション",
-                "runHealthcheck": "ヘルスチェックを実行",
+                "runHealthcheck": "ヘルスチェックを今すぐ実行",
                 "clearCache": "Redisキャッシュをクリア"
             },
             "logs": {
-                "title": "ログ（リアルタイム）"
+                "title": "ログ（テール）"
+            }
+        },
+        "fixtures": {
+            "title": "フィクスチャとテストデータ",
+            "actions": {
+                "title": "利用可能なアクション",
+                "runDemoCity": "シードを実行：demo-city（50人のユーザー、200のタスクを作成）",
+                "runHeavyLoad": "シードを実行：heavy-load（1万のタスクをシミュレート）",
+                "generateCsv": "サンプル予約CSVを生成",
+                "clearTestData": "テストデータをクリア"
+            },
+            "logs": {
+                "title": "出力ログ",
+                "placeholder": "アクションログがここに表示されます..."
+            },
+            "dialog": {
+                "title": "よろしいですか？",
+                "description": "これにより、すべての非管理者ユーザー、タスク、および予約が削除されます。このアクションは元に戻せません。",
+                "cancel": "キャンセル",
+                "confirm": "確認"
             }
         }
     }

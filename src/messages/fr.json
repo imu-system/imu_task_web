@@ -1,4 +1,3 @@
-
       
 {
     "Header": {
@@ -794,11 +793,11 @@
         "submitButton": "Soumettre pour validation"
     },
     "Languages": {
-        "fr": "Français",
-        "en": "Anglais",
-        "es": "Espagnol",
-        "de": "Allemand",
-        "it": "Italien"
+        "fr": "French",
+        "en": "English",
+        "es": "Spanish",
+        "de": "German",
+        "it": "Italian"
     },
     "AvailabilityPage": {
         "title": "Mes Disponibilités",
@@ -1416,7 +1415,7 @@
                 "title": "Détail du Déploiement",
                 "export": "Exporter CSV",
                 "exposureOverTime": "Exposition au fil du temps",
-                "kpiConversion": "Conversion KPI vs. Contrôle",
+                "kpiConversion": "KPI Conversion vs. Contrôle",
                 "segmentExposure": "Exposition par Segment Utilisateur"
             }
         },
@@ -1433,10 +1432,31 @@
             "logs": {
                 "title": "Logs (en temps réel)"
             }
+        },
+        "fixtures": {
+            "title": "Fixtures & Données de Test",
+            "actions": {
+                "title": "Actions Disponibles",
+                "runDemoCity": "Lancer seed : demo-city (crée 50 utilisateurs, 200 tâches)",
+                "runHeavyLoad": "Lancer seed : heavy-load (simule 10k tâches)",
+                "generateCsv": "Générer un CSV d'exemple de réservations",
+                "clearTestData": "Nettoyer les données de test"
+            },
+            "logs": {
+                "title": "Console de sortie",
+                "placeholder": "Les logs des actions apparaîtront ici..."
+            },
+            "dialog": {
+                "title": "Êtes-vous sûr ?",
+                "description": "Ceci supprimera tous les utilisateurs non-administrateurs, les tâches et les réservations. Cette action est irréversible.",
+                "cancel": "Annuler",
+                "confirm": "Confirmer"
+            }
         }
     }
 }
 
     
+
 
 

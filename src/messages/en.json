@@ -1,4 +1,3 @@
-
 {
     "Header": {
         "features": "Features",
@@ -1431,6 +1430,26 @@
             },
             "logs": {
                 "title": "Logs (tail)"
+            }
+        },
+        "fixtures": {
+            "title": "Fixtures & Test Data",
+            "actions": {
+                "title": "Available Actions",
+                "runDemoCity": "Run seed: demo-city (creates 50 users, 200 tasks)",
+                "runHeavyLoad": "Run seed: heavy-load (simulates 10k tasks)",
+                "generateCsv": "Generate sample bookings CSV",
+                "clearTestData": "Clear test data"
+            },
+            "logs": {
+                "title": "Output Log",
+                "placeholder": "Action logs will appear here..."
+            },
+            "dialog": {
+                "title": "Are you sure?",
+                "description": "This will delete all non-admin users, tasks, and bookings. This action cannot be undone.",
+                "cancel": "Cancel",
+                "confirm": "Confirm"
             }
         }
     }
