@@ -96,7 +96,7 @@ const PortfolioItemForm = ({ onSave, onClose, item }: { onSave: (data: any) => v
                 <div className="space-y-2">
                     <Label htmlFor="portfolio-file">{t('fileLabel')}</Label>
                     <Input id="portfolio-file" type="file" required={!item} />
-                    {item && <p className="text-xs text-muted-foreground">{t('fileCurrent', { file: item.url.split('/').pop() })}</p>}
+                    {item && <p className="text-xs text-muted-foreground">{t('fileCurrent', { file: 'logo.png' })}</p>}
                 </div>
             )}
 
@@ -452,12 +452,21 @@ export default function ProfilePage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {mockPortfolioItems.map(item => (
                         <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="block border rounded-lg overflow-hidden group hover:shadow-lg transition-shadow">
-                            <div className="aspect-video bg-muted overflow-hidden">
-                                <img src={item.url} alt={item.title} className="w-full h-full object-cover" data-ai-hint="portfolio item"/>
+                           <div className="aspect-video bg-muted overflow-hidden relative">
+                                {item.type === 'file' ? (
+                                    <img src={item.url} alt={item.title} className="w-full h-full object-cover" data-ai-hint="portfolio item"/>
+                                ) : (
+                                    <div className="flex items-center justify-center h-full bg-secondary">
+                                        <LinkIcon className="h-12 w-12 text-muted-foreground"/>
+                                    </div>
+                                )}
+                                <div className="absolute top-2 right-2 p-1.5 bg-background/80 rounded-full backdrop-blur-sm">
+                                    {item.type === 'file' ? <FileIcon className="h-4 w-4 text-muted-foreground" /> : <LinkIcon className="h-4 w-4 text-muted-foreground" />}
+                                </div>
                             </div>
-                            <div className="p-4">
-                                <p className="font-semibold">{item.title}</p>
-                                <p className="text-sm text-muted-foreground">{item.description}</p>
+                            <div className="p-4 bg-background">
+                                <p className="font-semibold truncate">{item.title}</p>
+                                <p className="text-sm text-muted-foreground truncate">{item.description}</p>
                             </div>
                         </a>
                     ))}
@@ -580,3 +589,4 @@ export default function ProfilePage() {
     </div>
   );
 }
+
