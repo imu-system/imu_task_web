@@ -728,6 +728,33 @@
             "description": "Êtes-vous sûr de vouloir supprimer le partenariat avec {name} ? Cette action est irréversible.",
             "cancel": "Annuler",
             "confirm": "Confirmer"
+        },
+        "detail": {
+            "info": {
+                "title": "Informations générales",
+                "campus": "Campus",
+                "contact": "Contact référent",
+                "status": "Statut",
+                "createdAt": "Date de création",
+                "expiresAt": "Date d’expiration",
+                "edit": "Modifier infos",
+                "terminate": "Résilier partenariat"
+            },
+            "promo": {
+                "title": "Codes promo étudiants",
+                "generate": "Générer nouveau code"
+            },
+            "audience": {
+                "title": "Audience connectée",
+                "students": "étudiants inscrits",
+                "hours": "heures validées au total",
+                "exportCsv": "Export CSV étudiants"
+            },
+            "stats": {
+                "title": "Statistiques campus",
+                "graphPlaceholder": "[Graphiques des métriques du campus]",
+                "exportPdf": "Exporter reporting PDF"
+            }
         }
     }
 }

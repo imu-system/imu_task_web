@@ -654,7 +654,7 @@
         "codeCard": {
             "title": "あなたの紹介コード",
             "copy": "コードをコピー",
-            "copied": "コードをコピーしました！"
+            "copied": "コピーしました！"
         },
         "linkCard": {
             "title": "あなたの紹介リンク",
@@ -1264,6 +1264,33 @@
             "description": "{name}との提携を削除してもよろしいですか？この操作は元に戻せません。",
             "cancel": "キャンセル",
             "confirm": "確認"
+        },
+        "detail": {
+            "info": {
+                "title": "一般情報",
+                "campus": "キャンパス",
+                "contact": "連絡担当者",
+                "status": "ステータス",
+                "createdAt": "作成日",
+                "expiresAt": "有効期限",
+                "edit": "情報を編集",
+                "terminate": "提携を終了"
+            },
+            "promo": {
+                "title": "学生プロモーションコード",
+                "generate": "新しいコードを生成"
+            },
+            "audience": {
+                "title": "接続されたオーディエンス",
+                "students": "登録済み学生",
+                "hours": "合計検証済み時間",
+                "exportCsv": "学生CSVをエクスポート"
+            },
+            "stats": {
+                "title": "キャンパス統計",
+                "graphPlaceholder": "[キャンパスメトリクスのグラフ]",
+                "exportPdf": "PDFレポートをエクスポート"
+            }
         }
     }
 }

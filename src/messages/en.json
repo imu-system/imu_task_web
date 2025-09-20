@@ -728,6 +728,33 @@
             "description": "Are you sure you want to delete the partnership with {name}? This action is irreversible.",
             "cancel": "Cancel",
             "confirm": "Confirm"
+        },
+        "detail": {
+            "info": {
+                "title": "General Information",
+                "campus": "Campus",
+                "contact": "Contact Person",
+                "status": "Status",
+                "createdAt": "Creation Date",
+                "expiresAt": "Expiration Date",
+                "edit": "Edit Info",
+                "terminate": "Terminate Partnership"
+            },
+            "promo": {
+                "title": "Student Promo Codes",
+                "generate": "Generate New Code"
+            },
+            "audience": {
+                "title": "Connected Audience",
+                "students": "registered students",
+                "hours": "total validated hours",
+                "exportCsv": "Export Students CSV"
+            },
+            "stats": {
+                "title": "Campus Statistics",
+                "graphPlaceholder": "[Graphs of campus metrics]",
+                "exportPdf": "Export PDF Report"
+            }
         }
     }
 }
