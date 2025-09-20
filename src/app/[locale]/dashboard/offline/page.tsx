@@ -4,7 +4,7 @@
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, WifiOff, RefreshCw, Trash2, Loader2 } from 'lucide-react';
+import { ArrowLeft, WifiOff, RefreshCw, Trash2, Loader2, MessageSquare, UploadCloud, Check } from 'lucide-react';
 import { Link } from '@/navigation';
 import {
   AlertDialog,
@@ -20,6 +20,11 @@ import {
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
 
+const mockPendingItems = [
+    { id: '1', description: 'Message "Bonjour" → thread #1245', icon: <MessageSquare className="h-5 w-5 text-muted-foreground"/> },
+    { id: '2', description: 'Upload CV.pdf (2,1 Mo)', icon: <UploadCloud className="h-5 w-5 text-muted-foreground"/> },
+    { id: '3', description: 'Accept task #982', icon: <Check className="h-5 w-5 text-muted-foreground"/> },
+];
 
 export default function OfflineStatusPage() {
     const t = useTranslations('OfflinePage');
@@ -111,6 +116,28 @@ export default function OfflineStatusPage() {
                             </AlertDialogContent>
                         </AlertDialog>
                     </div>
+                </CardContent>
+            </Card>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle>{t('outbox.title', { count: mockPendingItems.length })}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <ul className="space-y-3">
+                        {mockPendingItems.map(item => (
+                            <li key={item.id} className="flex items-center justify-between p-3 rounded-lg border bg-muted/50">
+                                <div className="flex items-center gap-3">
+                                    {item.icon}
+                                    <span className="text-sm">{item.description}</span>
+                                </div>
+                                <Button variant="ghost" size="sm">
+                                    <RefreshCw className="mr-2 h-4 w-4"/>
+                                    {t('outbox.retry')}
+                                </Button>
+                            </li>
+                        ))}
+                    </ul>
                 </CardContent>
             </Card>
 

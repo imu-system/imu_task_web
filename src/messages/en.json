@@ -662,6 +662,10 @@
             "forceSync": "Force a sync",
             "purgeFiles": "Purge files"
         },
+        "outbox": {
+            "title": "Pending Sync ({count})",
+            "retry": "Retry"
+        },
         "purgeDialog": {
             "title": "Purge cached files?",
             "description": "This action will delete all locally cached files and data. It cannot be undone.",

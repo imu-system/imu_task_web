@@ -662,6 +662,10 @@
             "forceSync": "Forcer une synchronisation",
             "purgeFiles": "Purger les fichiers"
         },
+        "outbox": {
+            "title": "Files en attente de synchronisation ({count})",
+            "retry": "Réessayer"
+        },
         "purgeDialog": {
             "title": "Purger les fichiers mis en cache ?",
             "description": "Cette action supprimera tous les fichiers et données mis en cache localement. Elle ne peut pas être annulée.",
