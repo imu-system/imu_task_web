@@ -236,7 +236,9 @@
         "termsLink": "Conditions d'utilisation",
         "errorTitle": "Erreur d'inscription",
         "continueWithGoogle": "Continuer avec Google",
-        "orContinueWith": "Ou continuer avec"
+        "orContinueWith": "Ou continuer avec",
+        "referralCodeLabel": "Code de parrainage (Optionnel)",
+        "referralCodePlaceholder": "Entrez un code si vous en avez un"
     },
     "OfferCard": {
         "toastAcceptTitle": "Offre acceptée !",
@@ -1648,5 +1650,6 @@
 }
 
     
+
 
 

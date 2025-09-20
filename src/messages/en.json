@@ -236,7 +236,9 @@
         "termsLink": "Terms of Service",
         "errorTitle": "Registration Error",
         "continueWithGoogle": "Continue with Google",
-        "orContinueWith": "Or continue with"
+        "orContinueWith": "Or continue with",
+        "referralCodeLabel": "Referral Code (Optional)",
+        "referralCodePlaceholder": "Enter code if you have one"
     },
     "OfferCard": {
         "toastAcceptTitle": "Offer accepted!",
@@ -1648,5 +1650,6 @@
 }
 
     
+
 
 

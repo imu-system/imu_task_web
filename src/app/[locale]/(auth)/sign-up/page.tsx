@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Link } from '@/navigation';
+import { Link, useSearchParams } from '@/navigation';
 import { Zap, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
@@ -33,11 +33,19 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function SignUpPage() {
     const t = useTranslations('SignUpPage');
     const { signUp, signInWithGoogle, loading, error, setError } = useAuth();
-    
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm<SignUpFormValues>({
+    const searchParams = useSearchParams();
+    const refCode = searchParams.get('ref');
+
+    const form = useForm<SignUpFormValues>({
         resolver: zodResolver(signUpSchema),
         mode: 'onChange', // Validate on change to enable/disable button
+        defaultValues: {
+            referralCode: refCode || '',
+        }
     });
+    
+    const { register, handleSubmit, formState: { errors, isValid } } = form;
+
 
     useEffect(() => {
         return () => {
@@ -122,6 +130,19 @@ export default function SignUpPage() {
                     />
                     {errors.password && <p className="text-xs text-destructive mt-1">{errors.password.message}</p>}
                 </div>
+                </div>
+
+                <div>
+                    <Label htmlFor="referralCode">{t('referralCodeLabel')}</Label>
+                    <div className="mt-2">
+                        <Input
+                        id="referralCode"
+                        type="text"
+                        placeholder={t('referralCodePlaceholder')}
+                        {...register('referralCode')}
+                        />
+                        {errors.referralCode && <p className="text-xs text-destructive mt-1">{errors.referralCode.message}</p>}
+                    </div>
                 </div>
                 
                 <div>

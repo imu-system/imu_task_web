@@ -30,6 +30,7 @@ export const signUpSchema = z.object({
   name: z.string().min(2, "Le nom est requis"),
   email: z.string().email("Adresse e-mail invalide"),
   password: z.string().min(6, "Le mot de passe doit contenir au moins 6 caractères"),
+  referralCode: z.string().optional(),
 });
 
 export const signInSchema = z.object({
