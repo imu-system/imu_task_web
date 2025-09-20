@@ -695,6 +695,11 @@
             "purgeSuccess": {
                 "title": "Cache purgé avec succès"
             }
+        },
+        "advancedLogs": {
+            "title": "Logs de synchronisation",
+            "export": "Exporter JSON",
+            "close": "Fermer"
         }
     }
 }

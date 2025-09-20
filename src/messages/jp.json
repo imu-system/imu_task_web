@@ -240,6 +240,11 @@
             "purgeSuccess": {
                 "title": "キャッシュが正常にパージされました"
             }
+        },
+        "advancedLogs": {
+            "title": "同期ログ",
+            "export": "JSONをエクスポート",
+            "close": "閉じる"
         }
     },
     "WalletPage": {

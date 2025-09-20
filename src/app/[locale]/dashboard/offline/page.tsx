@@ -30,6 +30,13 @@ const mockHistory = [
     { id: 'h1', textKey: 'history.success', params: { count: 12 }, status: 'success', time: '14h32' },
     { id: 'h2', textKey: 'history.partial', params: { reason: 'fichier trop volumineux' }, status: 'warning', time: '14h18' },
     { id: 'h3', textKey: 'history.success', params: { count: 4 }, status: 'success', time: '13h59' },
+];
+
+const mockAdvancedLogs = [
+    '[2025-09-20 14:32] Sync OK (12 items)',
+    '[2025-09-20 14:18] Error 504 (network)',
+    '[2025-09-20 13:59] Sync OK (4 items)',
+    '[2025-09-20 13:50] Sync STARTED',
 ]
 
 export default function OfflineStatusPage() {
@@ -161,7 +168,23 @@ export default function OfflineStatusPage() {
                             </li>
                         ))}
                     </ul>
-                    <Button variant="link" className="mt-2 p-0 h-auto">{t('historyCard.advancedLogs')}</Button>
+                    <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                            <Button variant="link" className="mt-2 p-0 h-auto">{t('historyCard.advancedLogs')}</Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent className="max-w-xl">
+                            <AlertDialogHeader>
+                                <AlertDialogTitle>{t('advancedLogs.title')}</AlertDialogTitle>
+                            </AlertDialogHeader>
+                            <pre className="bg-muted p-4 rounded-lg text-xs font-mono max-h-80 overflow-auto">
+                                {mockAdvancedLogs.join('\n')}
+                            </pre>
+                            <AlertDialogFooter>
+                                <AlertDialogCancel>{t('advancedLogs.close')}</AlertDialogCancel>
+                                <AlertDialogAction>{t('advancedLogs.export')}</AlertDialogAction>
+                            </AlertDialogFooter>
+                        </AlertDialogContent>
+                    </AlertDialog>
                 </CardContent>
             </Card>
 

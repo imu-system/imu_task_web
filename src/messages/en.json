@@ -695,6 +695,11 @@
             "purgeSuccess": {
                 "title": "Cache purged successfully"
             }
+        },
+        "advancedLogs": {
+            "title": "Sync Logs",
+            "export": "Export JSON",
+            "close": "Close"
         }
     }
 }
