@@ -754,6 +754,18 @@
                 "title": "Campus Statistics",
                 "graphPlaceholder": "[Graphs of campus metrics]",
                 "exportPdf": "Export PDF Report"
+            },
+            "ects": {
+                "title": "ECTS Credit Validation",
+                "student": "Student",
+                "missions": "Completed Missions",
+                "hours": "Total Requested Hours",
+                "status": {
+                    "pending": "Pending"
+                },
+                "validate": "Validate Hours",
+                "reject": "Reject",
+                "export": "Export Certificate"
             }
         }
     }

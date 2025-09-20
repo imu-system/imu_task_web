@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Link, useParams } from '@/navigation';
-import { ArrowLeft, Edit, Trash2, PlusCircle, Download, Users, BarChart, Clock } from 'lucide-react';
+import { ArrowLeft, Edit, Trash2, PlusCircle, Download, Users, BarChart, Clock, Shield } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 
@@ -25,6 +25,14 @@ const mockCampusData = {
         students: 325,
         hours: 2540,
     }
+};
+
+const ectsValidationData = {
+    studentName: "Marie Lefevre",
+    studentId: "#ST12345",
+    completedMissions: 12,
+    requestedHours: 24,
+    status: "pending"
 };
 
 export default function PartnershipDetailPage() {
@@ -84,6 +92,32 @@ export default function PartnershipDetailPage() {
                                 <p className="text-muted-foreground ml-2">{t('stats.graphPlaceholder')}</p>
                             </div>
                             <Button variant="outline"><Download className="mr-2"/>{t('stats.exportPdf')}</Button>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader>
+                             <CardTitle className="flex items-center gap-2">
+                                <Shield className="h-5 w-5"/>
+                                {t('ects.title')}
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                             <div className="space-y-1 text-sm">
+                                <p><strong>{t('ects.student')}:</strong> {ectsValidationData.studentName} ({ectsValidationData.studentId})</p>
+                                <p><strong>{t('ects.missions')}:</strong> {ectsValidationData.completedMissions}</p>
+                                <p><strong>{t('ects.hours')}:</strong> {ectsValidationData.requestedHours}h</p>
+                                <div className="flex items-center gap-2">
+                                     <strong>{t('info.status')}:</strong>
+                                    <Badge variant="secondary">{t(`ects.status.${ectsValidationData.status}`)}</Badge>
+                                </div>
+                            </div>
+                            <Separator/>
+                            <div className="flex flex-wrap gap-2">
+                                <Button>{t('ects.validate')}</Button>
+                                <Button variant="destructive-outline">{t('ects.reject')}</Button>
+                                <Button variant="outline"><Download className="mr-2"/>{t('ects.export')}</Button>
+                            </div>
                         </CardContent>
                     </Card>
                 </div>

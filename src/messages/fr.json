@@ -754,6 +754,18 @@
                 "title": "Statistiques campus",
                 "graphPlaceholder": "[Graphiques des métriques du campus]",
                 "exportPdf": "Exporter reporting PDF"
+            },
+            "ects": {
+                "title": "Validation des heures ECTS",
+                "student": "Étudiant",
+                "missions": "Missions complétées",
+                "hours": "Total heures demandées",
+                "status": {
+                    "pending": "En attente"
+                },
+                "validate": "Valider heures",
+                "reject": "Rejeter (motif)",
+                "export": "Exporter attestation"
             }
         }
     }

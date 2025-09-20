@@ -1290,6 +1290,18 @@
                 "title": "キャンパス統計",
                 "graphPlaceholder": "[キャンパスメトリクスのグラフ]",
                 "exportPdf": "PDFレポートをエクスポート"
+            },
+            "ects": {
+                "title": "ECTS単位の検証",
+                "student": "学生",
+                "missions": "完了したミッション",
+                "hours": "要求された合計時間",
+                "status": {
+                    "pending": "保留中"
+                },
+                "validate": "時間を検証",
+                "reject": "拒否（理由）",
+                "export": "証明書をエクスポート"
             }
         }
     }
