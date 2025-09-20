@@ -47,8 +47,6 @@ export const pathnames = {
   '/dashboard/admin/notifications/templates/edit/[id]': '/dashboard/admin/notifications/templates/edit/[id]',
   '/dashboard/academy': '/dashboard/academy',
   '/dashboard/academy/course/[id]': '/dashboard/academy/course/[id]',
-  '/dashboard/academy/course/[id]/quiz': '/dashboard/academy/course/[id]/quiz',
-  '/dashboard/academy/certificate/[id]': '/dashboard/academy/certificate/[id]',
   '/dashboard/admin/academy': '/dashboard/admin/academy',
   '/dashboard/referrals': '/dashboard/referrals',
   '/dashboard/referrals/rewards': '/dashboard/referrals/rewards',

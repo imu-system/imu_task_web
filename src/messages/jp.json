@@ -1304,5 +1304,31 @@
                 "export": "証明書をエクスポート"
             }
         }
+    },
+    "AcademyPage": {
+        "title": "ImuTask アカデミー",
+        "subtitle": "スキルを向上させ、新しい機会を解き放ちましょう。",
+        "searchPlaceholder": "コースを検索...",
+        "filterPlaceholder": "役割で絞り込む",
+        "filters": {
+            "all": "すべての役割",
+            "provider": "プロバイダー",
+            "client": "クライアント"
+        },
+        "courseCard": {
+            "progress": "進捗",
+            "continue": "続ける",
+            "start": "コースを開始"
+        }
+    },
+    "AcademyDetailPage": {
+        "notFound": "コースが見つかりません",
+        "backToAcademy": "アカデミーに戻る",
+        "sections": {
+            "title": "セクション"
+        },
+        "downloadResources": "リソースをダウンロード",
+        "continueModule": "モジュールを続ける",
+        "startQuiz": "クイズを開始"
     }
 }

@@ -768,5 +768,31 @@
                 "export": "Export Certificate"
             }
         }
+    },
+    "AcademyPage": {
+        "title": "ImuTask Academy",
+        "subtitle": "Improve your skills and unlock new opportunities.",
+        "searchPlaceholder": "Search for a course...",
+        "filterPlaceholder": "Filter by role",
+        "filters": {
+            "all": "All roles",
+            "provider": "Provider",
+            "client": "Client"
+        },
+        "courseCard": {
+            "progress": "Progress",
+            "continue": "Continue",
+            "start": "Start Course"
+        }
+    },
+    "AcademyDetailPage": {
+        "notFound": "Course not found",
+        "backToAcademy": "Back to academy",
+        "sections": {
+            "title": "Sections"
+        },
+        "downloadResources": "Download Resources",
+        "continueModule": "Continue Module",
+        "startQuiz": "Start Quiz"
     }
 }
