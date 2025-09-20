@@ -652,6 +652,39 @@
     "OfflineBanner": {
         "offlineMessage": "⚠️ Vous êtes hors ligne — tentative de reconnexion…"
     },
+    "OfflinePage": {
+        "title": "Statut Hors-ligne / Synchronisation",
+        "globalStatusCard": {
+            "title": "Statut Global",
+            "statusOffline": "Vous êtes actuellement HORS-LIGNE",
+            "statusOnline": "Connecté et synchronisé",
+            "lastSync": "Dernière synchronisation : {time}",
+            "forceSync": "Forcer une synchronisation",
+            "purgeFiles": "Purger les fichiers"
+        },
+        "purgeDialog": {
+            "title": "Purger les fichiers mis en cache ?",
+            "description": "Cette action supprimera tous les fichiers et données mis en cache localement. Elle ne peut pas être annulée.",
+            "cancel": "Annuler",
+            "confirm": "Confirmer la purge"
+        },
+        "toast": {
+            "sync": {
+                "title": "Synchronisation en cours...",
+                "description": "Tentative de synchronisation des données avec le serveur."
+            },
+            "syncSuccess": {
+                "title": "Synchronisation réussie",
+                "description": "Toutes vos données sont à jour."
+            },
+            "purge": {
+                "title": "Purge en cours..."
+            },
+            "purgeSuccess": {
+                "title": "Cache purgé avec succès"
+            }
+        }
+    },
     "WalletPage": {
         "title": "Portefeuille",
         "subtitle": "Consultez votre solde et gérez vos transactions.",

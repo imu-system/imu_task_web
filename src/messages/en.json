@@ -652,6 +652,39 @@
     "OfflineBanner": {
         "offlineMessage": "⚠️ You are currently offline. Attempting to reconnect..."
     },
+    "OfflinePage": {
+        "title": "Offline / Sync Status",
+        "globalStatusCard": {
+            "title": "Global Status",
+            "statusOffline": "You are currently OFFLINE",
+            "statusOnline": "Connected and synced",
+            "lastSync": "Last sync: {time}",
+            "forceSync": "Force a sync",
+            "purgeFiles": "Purge files"
+        },
+        "purgeDialog": {
+            "title": "Purge cached files?",
+            "description": "This action will delete all locally cached files and data. It cannot be undone.",
+            "cancel": "Cancel",
+            "confirm": "Confirm Purge"
+        },
+        "toast": {
+            "sync": {
+                "title": "Syncing...",
+                "description": "Attempting to sync data with the server."
+            },
+            "syncSuccess": {
+                "title": "Sync Successful",
+                "description": "All your data is up to date."
+            },
+            "purge": {
+                "title": "Purging cache..."
+            },
+            "purgeSuccess": {
+                "title": "Cache purged successfully"
+            }
+        }
+    },
     "WalletPage": {
         "title": "Wallet",
         "subtitle": "Check your balance and manage your transactions.",

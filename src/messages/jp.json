@@ -197,6 +197,39 @@
     "OfflineBanner": {
         "offlineMessage": "⚠️ 現在オフラインです。再接続を試みています..."
     },
+    "OfflinePage": {
+        "title": "オフライン/同期ステータス",
+        "globalStatusCard": {
+            "title": "グローバルステータス",
+            "statusOffline": "現在オフラインです",
+            "statusOnline": "接続および同期済み",
+            "lastSync": "最終同期：{time}",
+            "forceSync": "同期を強制",
+            "purgeFiles": "ファイルをパージ"
+        },
+        "purgeDialog": {
+            "title": "キャッシュされたファイルをパージしますか？",
+            "description": "この操作は、ローカルにキャッシュされたすべてのファイルとデータを削除します。元に戻すことはできません。",
+            "cancel": "キャンセル",
+            "confirm": "パージを確定"
+        },
+        "toast": {
+            "sync": {
+                "title": "同期中...",
+                "description": "サーバーとのデータ同期を試みています。"
+            },
+            "syncSuccess": {
+                "title": "同期成功",
+                "description": "すべてのデータが最新です。"
+            },
+            "purge": {
+                "title": "キャッシュをパージ中..."
+            },
+            "purgeSuccess": {
+                "title": "キャッシュが正常にパージされました"
+            }
+        }
+    },
     "WalletPage": {
         "title": "ウォレット",
         "subtitle": "残高を確認し、取引を管理します。",
