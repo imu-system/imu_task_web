@@ -802,5 +802,26 @@
         "downloadResources": "Télécharger les ressources",
         "continueModule": "Continuer le module",
         "startQuiz": "Commencer le quiz"
+    },
+    "AdminAcademyPage": {
+        "title": "Gestion de l'Académie",
+        "subtitle": "Créez, modifiez et gérez tous les cours de la plateforme.",
+        "manageBadges": "Gérer les badges",
+        "globalProgress": "Progrès global",
+        "createCourse": "Créer un cours",
+        "courseList": {
+            "title": "Liste des Cours",
+            "description": "Suivez la performance de chaque cours.",
+            "table": {
+                "course": "Cours",
+                "enrolled": "Inscrits",
+                "completed": "Terminés",
+                "completionRate": "Taux de réussite"
+            },
+            "actions": {
+                "edit": "Modifier",
+                "delete": "Supprimer"
+            }
+        }
     }
 }

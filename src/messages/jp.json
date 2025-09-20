@@ -1338,5 +1338,26 @@
         "downloadResources": "リソースをダウンロード",
         "continueModule": "モジュールを続ける",
         "startQuiz": "クイズを開始"
+    },
+    "AdminAcademyPage": {
+        "title": "アカデミー管理",
+        "subtitle": "プラットフォームのすべてのコースを作成、編集、管理します。",
+        "manageBadges": "バッジを管理",
+        "globalProgress": "グローバルな進捗",
+        "createCourse": "コースを作成",
+        "courseList": {
+            "title": "コース一覧",
+            "description": "各コースのパフォーマンスを監視します。",
+            "table": {
+                "course": "コース",
+                "enrolled": "登録者数",
+                "completed": "完了者数",
+                "completionRate": "完了率"
+            },
+            "actions": {
+                "edit": "編集",
+                "delete": "削除"
+            }
+        }
     }
 }

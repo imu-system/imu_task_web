@@ -802,5 +802,26 @@
         "downloadResources": "Download Resources",
         "continueModule": "Continue Module",
         "startQuiz": "Start Quiz"
+    },
+    "AdminAcademyPage": {
+        "title": "Academy Management",
+        "subtitle": "Create, edit, and manage all platform courses.",
+        "manageBadges": "Manage Badges",
+        "globalProgress": "Global Progress",
+        "createCourse": "Create Course",
+        "courseList": {
+            "title": "Course List",
+            "description": "Monitor the performance of each course.",
+            "table": {
+                "course": "Course",
+                "enrolled": "Enrolled",
+                "completed": "Completed",
+                "completionRate": "Completion Rate"
+            },
+            "actions": {
+                "edit": "Edit",
+                "delete": "Delete"
+            }
+        }
     }
 }
