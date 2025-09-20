@@ -823,5 +823,69 @@
                 "delete": "Supprimer"
             }
         }
+    },
+    "AvailabilityPage": {
+        "title": "Mon emploi du temps",
+        "subtitle": "Gérez votre planning pour recevoir des offres de missions pertinentes.",
+        "notProvider": {
+            "title": "Cette section est réservée aux prestataires.",
+            "description": "Pour gérer vos disponibilités, veuillez compléter votre profil prestataire.",
+            "button": "Aller au profil"
+        },
+        "weekGrid": {
+            "title": "Ma semaine",
+            "time": "Heure"
+        },
+        "days": {
+            "mon": "Lun",
+            "tue": "Mar",
+            "wed": "Mer",
+            "thu": "Jeu",
+            "fri": "Ven",
+            "sat": "Sam",
+            "sun": "Dim"
+        },
+        "actions": {
+            "title": "Actions rapides",
+            "recurring": "Définir les créneaux récurrents",
+            "exception": "Ajouter une exception",
+            "sync": "Synchroniser le calendrier",
+            "settings": "Paramètres"
+        },
+        "autoBusy": {
+            "title": "Règles d'occupation automatique",
+            "decline": "Décliner automatiquement les réservations pendant les blocs d'étude",
+            "markBusy": "Marquer comme 'Occupé' lorsqu'un créneau est rempli"
+        },
+        "exceptionModal": {
+            "title": "Ajouter une exception",
+            "description": "Bloquez un créneau spécifique ou rendez-vous exceptionnellement disponible.",
+            "date": "Date",
+            "startTime": "Heure de début",
+            "endTime": "Heure de fin",
+            "type": "Type",
+            "types": {
+                "blocked": "Bloqué",
+                "available": "Exceptionnellement disponible"
+            },
+            "comment": "Commentaire (optionnel)",
+            "commentPlaceholder": "Ex : Rendez-vous médical",
+            "cancel": "Annuler",
+            "save": "Enregistrer l'exception"
+        },
+        "recurringModal": {
+            "title": "Disponibilité récurrente",
+            "description": "Définissez votre planning hebdomadaire standard.",
+            "autoAccept": "Accepter automatiquement les missions dans ces créneaux",
+            "cancel": "Annuler",
+            "save": "Enregistrer"
+        },
+        "syncModal": {
+            "title": "Synchroniser le calendrier",
+            "description": "Connectez vos calendriers externes pour une gestion simplifiée.",
+            "google": "Connecter Google Calendar",
+            "apple": "Connecter Apple Calendar",
+            "export": "Exporter en iCal"
+        }
     }
 }

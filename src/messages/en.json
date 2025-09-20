@@ -823,5 +823,69 @@
                 "delete": "Delete"
             }
         }
+    },
+    "AvailabilityPage": {
+        "title": "My Schedule",
+        "subtitle": "Manage your schedule to receive relevant mission offers.",
+        "notProvider": {
+            "title": "This section is for providers.",
+            "description": "To manage your availability, please complete your provider profile.",
+            "button": "Go to Profile"
+        },
+        "weekGrid": {
+            "title": "My Week",
+            "time": "Time"
+        },
+        "days": {
+            "mon": "Mon",
+            "tue": "Tue",
+            "wed": "Wed",
+            "thu": "Thu",
+            "fri": "Fri",
+            "sat": "Sat",
+            "sun": "Sun"
+        },
+        "actions": {
+            "title": "Quick Actions",
+            "recurring": "Set recurring slots",
+            "exception": "Add exception",
+            "sync": "Sync Calendar",
+            "settings": "Settings"
+        },
+        "autoBusy": {
+            "title": "Auto-Busy Rules",
+            "decline": "Automatically decline bookings during study blocks",
+            "markBusy": "Mark as 'Busy' when a slot is filled"
+        },
+        "exceptionModal": {
+            "title": "Add Exception",
+            "description": "Block a specific slot or make yourself available exceptionally.",
+            "date": "Date",
+            "startTime": "Start time",
+            "endTime": "End time",
+            "type": "Type",
+            "types": {
+                "blocked": "Blocked",
+                "available": "Exceptionally available"
+            },
+            "comment": "Comment (optional)",
+            "commentPlaceholder": "E.g., Doctor's appointment",
+            "cancel": "Cancel",
+            "save": "Save Exception"
+        },
+        "recurringModal": {
+            "title": "Recurring Availability",
+            "description": "Define your standard weekly schedule.",
+            "autoAccept": "Automatically accept missions in these slots",
+            "cancel": "Cancel",
+            "save": "Save"
+        },
+        "syncModal": {
+            "title": "Sync Calendar",
+            "description": "Connect your external calendars for simplified management.",
+            "google": "Connect Google Calendar",
+            "apple": "Connect Apple Calendar",
+            "export": "Export iCal"
+        }
     }
 }

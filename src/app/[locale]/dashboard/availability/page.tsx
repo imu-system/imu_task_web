@@ -18,13 +18,17 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 
-const timeSlots = ["08:00 - 12:00", "12:00 - 18:00", "18:00 - 22:00"];
+const timeSlots = ["08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00"];
 
 // Mock availability data
 const availabilityData = [
-  [true, false, true, true, true, false, false],
-  [true, true, false, true, true, true, true],
-  [false, true, true, false, false, true, false],
+  { day: 'LUN', events: { '08:00': { type: 'study', label: 'Bloc étude' }, '10:00': { type: 'available' }, '11:00': { type: 'course', label: 'Cours - Math' } } },
+  { day: 'MAR', events: { '09:00': { type: 'google', label: 'Réunion (Google)' } } },
+  { day: 'MER', events: {} },
+  { day: 'JEU', events: { '14:00': { type: 'busy', label: 'Projet dev (auto)' }, '15:00': { type: 'available' } } },
+  { day: 'VEN', events: { '16:00': { type: 'course', label: 'Cours - Info' } } },
+  { day: 'SAM', events: {} },
+  { day: 'DIM', events: {} },
 ];
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -71,6 +75,17 @@ export default function AvailabilityPage() {
             </div>
         )
     }
+    
+    const getEventStyle = (type?: string) => {
+        switch(type) {
+            case 'study': return 'bg-blue-200 border-blue-400 text-blue-800';
+            case 'google': return 'bg-red-200 border-red-400 text-red-800';
+            case 'course': return 'bg-purple-200 border-purple-400 text-purple-800';
+            case 'busy': return 'bg-gray-300 border-gray-400 text-gray-800';
+            case 'available': return 'bg-green-200 border-green-400 text-green-800';
+            default: return 'bg-transparent';
+        }
+    }
 
     return (
         <div className="space-y-8">
@@ -84,170 +99,76 @@ export default function AvailabilityPage() {
                 </p>
             </div>
             
+            <div className="flex flex-col md:flex-row gap-2">
+                 <Dialog>
+                    <DialogTrigger asChild>
+                        <Button variant="outline"><LinkIcon className="mr-2"/>{t('actions.sync')}</Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>{t('syncModal.title')}</DialogTitle>
+                            <DialogDescription>{t('syncModal.description')}</DialogDescription>
+                        </DialogHeader>
+                        <div className="grid gap-4 py-4">
+                            <Button variant="outline"><GoogleIcon className="mr-2"/>{t('syncModal.google')}</Button>
+                            <Button variant="outline"><AppleIcon className="mr-2"/>{t('syncModal.apple')}</Button>
+                            <Button variant="secondary"><Share2 className="mr-2"/>{t('syncModal.export')}</Button>
+                        </div>
+                    </DialogContent>
+                </Dialog>
+                <Button variant="outline">{t('actions.settings')}</Button>
+            </div>
+
+
             <Card>
                 <CardHeader>
                     <CardTitle>{t('weekGrid.title')}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                    <Table>
-                        <TableHeader>
-                           <TableRow>
-                                <TableHead className="w-[100px]">{t('weekGrid.time')}</TableHead>
-                                {days.map(day => <TableHead key={day}>{day}</TableHead>)}
-                           </TableRow>
-                        </TableHeader>
-                         <TableBody>
-                            {timeSlots.map((slot, rowIndex) => (
-                                <TableRow key={slot}>
-                                    <TableCell className="font-medium">{slot}</TableCell>
-                                    {availabilityData[rowIndex].map((isAvailable, colIndex) => (
-                                        <TableCell key={colIndex}>
-                                            <div className={cn(
-                                                "w-full h-10 rounded-md",
-                                                isAvailable ? "bg-green-200" : "bg-red-200/50"
-                                            )}></div>
-                                        </TableCell>
-                                    ))}
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                    <div className="overflow-x-auto">
+                        <Table className="min-w-[800px]">
+                            <TableHeader>
+                               <TableRow>
+                                    <TableHead className="w-[80px]">{t('weekGrid.time')}</TableHead>
+                                    {availabilityData.map(day => <TableHead key={day.day}>{day.day}</TableHead>)}
+                               </TableRow>
+                            </TableHeader>
+                             <TableBody>
+                                {timeSlots.map((slot) => (
+                                    <TableRow key={slot}>
+                                        <TableCell className="font-mono text-xs text-muted-foreground">{slot}</TableCell>
+                                        {availabilityData.map((day, dayIndex) => {
+                                            const event = day.events[slot as keyof typeof day.events];
+                                            return (
+                                            <TableCell key={dayIndex} className="p-1">
+                                                {event ? (
+                                                    <div className={cn("w-full h-12 rounded-md p-1.5 text-xs border", getEventStyle(event.type))}>
+                                                        {event.label}
+                                                    </div>
+                                                ) : <div className="w-full h-12 rounded-md bg-muted/30"></div>}
+                                            </TableCell>
+                                        )})}
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </CardContent>
             </Card>
 
-            <Card>
+             <Card>
                 <CardHeader>
-                    <CardTitle>{t('actions.title')}</CardTitle>
+                    <CardTitle>{t('autoBusy.title')}</CardTitle>
                 </CardHeader>
-                 <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button variant="outline"><Repeat className="mr-2"/>{t('actions.recurring')}</Button>
-                      </DialogTrigger>
-                      <DialogContent className="sm:max-w-2xl">
-                          <DialogHeader>
-                              <DialogTitle>{t('recurringModal.title')}</DialogTitle>
-                              <DialogDescription>{t('recurringModal.description')}</DialogDescription>
-                          </DialogHeader>
-                          <div className="space-y-4 py-4">
-                            {recurringDays.map(day => (
-                              <div key={day.id} className="flex flex-col sm:flex-row items-center gap-4 p-3 border rounded-lg">
-                                  <div className="flex items-center gap-3 w-full sm:w-40">
-                                    <Checkbox id={`check-${day.id}`} defaultChecked/>
-                                    <Label htmlFor={`check-${day.id}`} className="font-semibold">{day.label}</Label>
-                                  </div>
-                                  <div className="flex-1 grid grid-cols-2 gap-2 w-full">
-                                    <Input type="time" defaultValue="08:00"/>
-                                    <Input type="time" defaultValue="12:00"/>
-                                  </div>
-                              </div>
-                            ))}
-                             <div className="flex items-center space-x-2 pt-4">
-                                <Checkbox id="auto-accept" />
-                                <Label htmlFor="auto-accept">{t('recurringModal.autoAccept')}</Label>
-                            </div>
-                          </div>
-                          <DialogFooter>
-                              <DialogTrigger asChild>
-                                  <Button variant="ghost">{t('recurringModal.cancel')}</Button>
-                              </DialogTrigger>
-                              <Button>{t('recurringModal.save')}</Button>
-                          </DialogFooter>
-                      </DialogContent>
-                    </Dialog>
-                     <Dialog>
-                        <DialogTrigger asChild>
-                            <Button variant="outline"><CalendarPlus className="mr-2"/>{t('actions.exception')}</Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                            <DialogHeader>
-                                <DialogTitle>{t('exceptionModal.title')}</DialogTitle>
-                                <DialogDescription>{t('exceptionModal.description')}</DialogDescription>
-                            </DialogHeader>
-                            <div className="space-y-4 py-4">
-                                <div className="space-y-2">
-                                    <Label htmlFor="exception-date">{t('exceptionModal.date')}</Label>
-                                    <Input id="exception-date" type="date" defaultValue={new Date().toISOString().split('T')[0]} />
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-2">
-                                        <Label htmlFor="start-time">{t('exceptionModal.startTime')}</Label>
-                                        <Input id="start-time" type="time" defaultValue="14:00" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Label htmlFor="end-time">{t('exceptionModal.endTime')}</Label>
-                                        <Input id="end-time" type="time" defaultValue="18:00" />
-                                    </div>
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="exception-type">{t('exceptionModal.type')}</Label>
-                                    <Select defaultValue="blocked">
-                                        <SelectTrigger id="exception-type">
-                                            <SelectValue />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="blocked">{t('exceptionModal.types.blocked')}</SelectItem>
-                                            <SelectItem value="available">{t('exceptionModal.types.available')}</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="comment">{t('exceptionModal.comment')}</Label>
-                                    <Textarea id="comment" placeholder={t('exceptionModal.commentPlaceholder')} />
-                                </div>
-                            </div>
-                            <DialogFooter>
-                                <DialogTrigger asChild>
-                                    <Button variant="ghost">{t('exceptionModal.cancel')}</Button>
-                                </DialogTrigger>
-                                <Button>{t('exceptionModal.save')}</Button>
-                            </DialogFooter>
-                        </DialogContent>
-                    </Dialog>
-                    <Dialog>
-                        <DialogTrigger asChild>
-                            <Button variant="outline"><LinkIcon className="mr-2"/>{t('actions.sync')}</Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                            <DialogHeader>
-                                <DialogTitle>{t('syncModal.title')}</DialogTitle>
-                                <DialogDescription>{t('syncModal.description')}</DialogDescription>
-                            </DialogHeader>
-                            <div className="grid gap-4 py-4">
-                                <Button variant="outline"><GoogleIcon className="mr-2"/>{t('syncModal.google')}</Button>
-                                <Button variant="outline"><AppleIcon className="mr-2"/>{t('syncModal.apple')}</Button>
-                                <Button variant="secondary"><Share2 className="mr-2"/>{t('syncModal.export')}</Button>
-                            </div>
-                            <div className="text-sm text-muted-foreground p-4 bg-muted rounded-lg">
-                                <p><strong>{t('syncModal.status.label')}:</strong> {t('syncModal.status.connected')}</p>
-                                <p><strong>{t('syncModal.status.lastSync')}:</strong> {new Date().toLocaleString()}</p>
-                            </div>
-                        </DialogContent>
-                    </Dialog>
-                </CardContent>
-            </Card>
-
-            <Card className="border-primary/20 bg-primary/5">
-                <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                        <Bot className="h-6 w-6 text-primary"/>
-                        {t('suggestions.title')}
-                    </CardTitle>
-                    <CardDescription>{t('suggestions.description')}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                   <div className="p-3 bg-background rounded-lg border">
-                        <p className="font-semibold">{t('suggestions.suggestion1.title')}</p>
-                        <p className="text-sm text-muted-foreground">{t('suggestions.suggestion1.description')}</p>
-                   </div>
-                   <div className="p-3 bg-background rounded-lg border">
-                        <p className="font-semibold">{t('suggestions.suggestion2.title')}</p>
-                        <p className="text-sm text-muted-foreground">{t('suggestions.suggestion2.description')}</p>
-                   </div>
-                   <div className="flex gap-2 justify-end">
-                       <Button variant="ghost"><X className="mr-2"/>{t('suggestions.ignore')}</Button>
-                       <Button><Check className="mr-2"/>{t('suggestions.accept')}</Button>
-                   </div>
+                 <CardContent className="space-y-2">
+                    <div className="flex items-center space-x-2">
+                        <Checkbox id="auto-accept" />
+                        <Label htmlFor="auto-accept">{t('autoBusy.decline')}</Label>
+                    </div>
+                     <div className="flex items-center space-x-2">
+                        <Checkbox id="auto-busy" defaultChecked/>
+                        <Label htmlFor="auto-busy">{t('autoBusy.markBusy')}</Label>
+                    </div>
                 </CardContent>
             </Card>
 

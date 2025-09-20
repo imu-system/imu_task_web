@@ -476,8 +476,8 @@
         "it": "イタリア語"
     },
     "AvailabilityPage": {
-        "title": "私の利用可能時間",
-        "subtitle": "スケジュールを管理して、関連するミッションオファーを受け取ります。",
+        "title": "私のスケジュール",
+        "subtitle": "関連するミッションオファーを受け取るためにスケジュールを管理します。",
         "notProvider": {
             "title": "このセクションはプロバイダー向けです。",
             "description": "利用可能時間を管理するには、プロバイダープロファイルを完成させてください。",
@@ -500,21 +500,13 @@
             "title": "クイックアクション",
             "recurring": "定期的なスロットを設定",
             "exception": "例外を追加",
-            "sync": "カレンダーを同期"
+            "sync": "カレンダーを同期",
+            "settings": "設定"
         },
-        "suggestions": {
-            "title": "AIの提案",
-            "description": "あなたの地域のミッション履歴に基づいています。",
-            "suggestion1": {
-                "title": "火曜日 18-20時：高い需要",
-                "description": "買い物タスクの高い需要。"
-            },
-            "suggestion2": {
-                "title": "土曜日の朝：推奨される利用可能性",
-                "description": "週末には多くのガーデニングミッションが投稿されます。"
-            },
-            "accept": "受け入れる",
-            "ignore": "無視"
+        "autoBusy": {
+            "title": "自動 занято ルール",
+            "decline": "勉強ブロック中に予約を自動的に辞退する",
+            "markBusy": "スロットが埋まったら「忙しい」とマークする"
         },
         "exceptionModal": {
             "title": "例外を追加",
@@ -527,7 +519,7 @@
                 "blocked": "ブロック済み",
                 "available": "例外的に利用可能"
             },
-            "comment": "コメント（オプション）",
+            "comment": "コメント（任意）",
             "commentPlaceholder": "例：医者の予約",
             "cancel": "キャンセル",
             "save": "例外を保存"
@@ -544,12 +536,7 @@
             "description": "簡素化された管理のために外部カレンダーを接続します。",
             "google": "Googleカレンダーを接続",
             "apple": "Appleカレンダーを接続",
-            "export": "iCalをエクスポート",
-            "status": {
-                "label": "ステータス",
-                "connected": "✅ Google接続済み（自動更新1時間）",
-                "lastSync": "最終同期"
-            }
+            "export": "iCalをエクスポート"
         }
     },
     "ReviewsPage": {
@@ -1358,6 +1345,70 @@
                 "edit": "編集",
                 "delete": "削除"
             }
+        }
+    },
+    "AvailabilityPage": {
+        "title": "私のスケジュール",
+        "subtitle": "関連するミッションオファーを受け取るためにスケジュールを管理します。",
+        "notProvider": {
+            "title": "このセクションはプロバイダー向けです。",
+            "description": "利用可能時間を管理するには、プロバイダープロファイルを完成させてください。",
+            "button": "プロフィールに移動"
+        },
+        "weekGrid": {
+            "title": "私の週",
+            "time": "時間"
+        },
+        "days": {
+            "mon": "月",
+            "tue": "火",
+            "wed": "水",
+            "thu": "木",
+            "fri": "金",
+            "sat": "土",
+            "sun": "日"
+        },
+        "actions": {
+            "title": "クイックアクション",
+            "recurring": "定期的なスロットを設定",
+            "exception": "例外を追加",
+            "sync": "カレンダーを同期",
+            "settings": "設定"
+        },
+        "autoBusy": {
+            "title": "自動 занято ルール",
+            "decline": "勉強ブロック中に予約を自動的に辞退する",
+            "markBusy": "スロットが埋まったら「忙しい」とマークする"
+        },
+        "exceptionModal": {
+            "title": "例外を追加",
+            "description": "特定のスロットをブロックするか、例外的に利用可能にします。",
+            "date": "日付",
+            "startTime": "開始時間",
+            "endTime": "終了時間",
+            "type": "タイプ",
+            "types": {
+                "blocked": "ブロック済み",
+                "available": "例外的に利用可能"
+            },
+            "comment": "コメント（任意）",
+            "commentPlaceholder": "例：医者の予約",
+            "cancel": "キャンセル",
+            "save": "例外を保存"
+        },
+        "recurringModal": {
+            "title": "定期的な利用可能性",
+            "description": "標準の週次スケジュールを定義します。",
+            "autoAccept": "これらのスロットでミッションを自動的に受け入れる",
+            "cancel": "キャンセル",
+            "save": "保存"
+        },
+        "syncModal": {
+            "title": "カレンダーを同期",
+            "description": "簡素化された管理のために外部カレンダーを接続します。",
+            "google": "Googleカレンダーを接続",
+            "apple": "Appleカレンダーを接続",
+            "export": "iCalをエクスポート"
         }
     }
 }
