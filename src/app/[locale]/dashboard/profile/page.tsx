@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -488,7 +487,7 @@ export default function ProfilePage() {
                 <div className="flex items-center justify-between">
                     <CardTitle>{t('earnedBadges')}</CardTitle>
                     <Button variant="link" asChild>
-                        <Link href="/dashboard/profile/badges">{t('seeAllBadges')}</Link>
+                        <Link href="/dashboard/academy/certificates">{t('seeAllBadges')}</Link>
                     </Button>
                 </div>
             </CardHeader>
@@ -589,4 +588,3 @@ export default function ProfilePage() {
     </div>
   );
 }
-

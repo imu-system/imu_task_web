@@ -368,6 +368,7 @@
         }
     },
     "BadgesPage": {
+        "title": "Mes Certificats & Badges",
         "subtitle": "Voici les badges que vous avez débloqués.",
         "cardTitle": "Mes Badges",
         "cardDescription": "Les badges récompensent votre activité et votre fiabilité sur la plateforme.",
@@ -401,7 +402,14 @@
                 "title": "Pionnier",
                 "description": "Avoir rejoint la plateforme la première année."
             }
-        }
+        },
+        "filters": {
+            "all": "Tous",
+            "badges": "Badges",
+            "certificates": "Certificats"
+        },
+        "earnedOn": "Obtenu le {date}",
+        "share": "Partager"
     },
     "AddressForm": {
         "title": "Ajouter une nouvelle adresse",

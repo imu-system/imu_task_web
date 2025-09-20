@@ -376,6 +376,7 @@
         }
     },
     "BadgesPage": {
+        "title": "私の証明書とバッジ",
         "subtitle": "ロック解除したバッジはこちらです。",
         "cardTitle": "私のバッジ",
         "cardDescription": "バッジはプラットフォームでのあなたの活動と信頼性を報酬します。",
@@ -409,7 +410,14 @@
                 "title": "パイオニア",
                 "description": "最初の年に参加しました。"
             }
-        }
+        },
+        "filters": {
+            "all": "すべて",
+            "badges": "バッジ",
+            "certificates": "証明書"
+        },
+        "earnedOn": "{date}に獲得",
+        "share": "共有"
     },
     "KycPage": {
         "title": "本人確認（KYC）",
@@ -460,12 +468,12 @@
         "submitButton": "検証のために送信"
     },
     "Languages": {
-        "fr": "French",
-        "en": "English",
-        "jp": "Japanese",
-        "es": "Spanish",
-        "de": "German",
-        "it": "Italian"
+        "fr": "フランス語",
+        "en": "英語",
+        "jp": "日本語",
+        "es": "スペイン語",
+        "de": "ドイツ語",
+        "it": "イタリア語"
     },
     "AvailabilityPage": {
         "title": "私の利用可能時間",
