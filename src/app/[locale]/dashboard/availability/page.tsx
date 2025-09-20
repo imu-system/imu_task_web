@@ -116,7 +116,7 @@ export default function AvailabilityPage() {
                         </div>
                     </DialogContent>
                 </Dialog>
-                <Button variant="outline">{t('actions.settings')}</Button>
+                <Button variant="outline" asChild><Link href="/dashboard/availability/settings">{t('actions.settings')}</Link></Button>
             </div>
 
 
@@ -175,3 +175,5 @@ export default function AvailabilityPage() {
         </div>
     )
 }
+
+    

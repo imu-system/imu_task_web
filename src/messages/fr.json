@@ -855,7 +855,7 @@
         "autoBusy": {
             "title": "Règles d'occupation automatique",
             "decline": "Décliner automatiquement les réservations pendant les blocs d'étude",
-            "markBusy": "Marquer comme 'Occupé' lorsqu'un créneau est rempli"
+            "markBusy": "Marquer \"Occupé\" si créneau rempli"
         },
         "exceptionModal": {
             "title": "Ajouter une exception",
@@ -887,5 +887,28 @@
             "apple": "Connecter Apple Calendar",
             "export": "Exporter en iCal"
         }
+    },
+    "AvailabilitySettingsPage": {
+        "title": "Paramètres de disponibilité",
+        "sync": {
+            "title": "Synchronisation des calendriers",
+            "description": "Connectez vos calendriers externes pour bloquer automatiquement les périodes d'indisponibilité.",
+            "google": "Google Calendar",
+            "apple": "Apple Calendar",
+            "export": "Exporter mes disponibilités (iCal)"
+        },
+        "rules": {
+            "title": "Règles d'occupation automatique",
+            "description": "Définissez des règles pour gérer automatiquement votre planning.",
+            "decline": "Décliner automatiquement les réservations pendant les blocs d'étude.",
+            "markBusy": "Marquer comme 'Occupé' lorsqu'un créneau de mission est rempli."
+        },
+        "saveButton": "Enregistrer les paramètres",
+        "toast": {
+            "successTitle": "Paramètres enregistrés",
+            "successDescription": "Vos paramètres de disponibilité ont été mis à jour."
+        }
     }
 }
+
+    

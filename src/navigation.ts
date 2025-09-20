@@ -25,6 +25,7 @@ export const pathnames = {
   '/dashboard/profile/edit': '/dashboard/profile/edit',
   '/dashboard/profile/kyc': '/dashboard/profile/kyc',
   '/dashboard/availability': '/dashboard/availability',
+  '/dashboard/availability/settings': '/dashboard/availability/settings',
   '/dashboard/reviews': '/dashboard/reviews',
   '/dashboard/notifications': '/dashboard/notifications',
   '/dashboard/notifications/preferences': '/dashboard/notifications/preferences',
@@ -92,3 +93,5 @@ export const pathnames = {
 
 export const {Link, redirect, usePathname, useRouter, useParams} =
   createLocalizedPathnamesNavigation({locales, pathnames});
+
+    

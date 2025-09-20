@@ -887,5 +887,28 @@
             "apple": "Connect Apple Calendar",
             "export": "Export iCal"
         }
+    },
+    "AvailabilitySettingsPage": {
+        "title": "Availability Settings",
+        "sync": {
+            "title": "Calendar Sync",
+            "description": "Connect your external calendars to automatically block out busy times.",
+            "google": "Google Calendar",
+            "apple": "Apple Calendar",
+            "export": "Export your availability (iCal)"
+        },
+        "rules": {
+            "title": "Auto-Busy Rules",
+            "description": "Set rules to automatically manage your schedule.",
+            "decline": "Automatically decline bookings during study blocks.",
+            "markBusy": "Mark as 'Busy' when a mission slot is filled."
+        },
+        "saveButton": "Save Settings",
+        "toast": {
+            "successTitle": "Settings Saved",
+            "successDescription": "Your availability settings have been updated."
+        }
     }
 }
+
+    
