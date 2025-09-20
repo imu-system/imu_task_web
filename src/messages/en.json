@@ -1045,6 +1045,10 @@
     "ReferralsPage": {
         "title": "Referrals",
         "subtitle": "Invite your friends and get rewarded.",
+        "callToAction": {
+            "title": "Invite your friends, get up to €15 per invite!",
+            "description": "You earn money, and so do your friends. It's simple, share your unique code."
+        },
         "invite": {
             "title": "Invite your friends by email",
             "emailLabel": "Email addresses",
@@ -1066,6 +1070,7 @@
             "title": "Your Stats",
             "referred": "Friends Referred",
             "rewards": "Rewards Earned",
+            "pendingRewards": "Pending Rewards",
             "university": "Your University"
         },
         "universities": {
@@ -1087,6 +1092,21 @@
         "actions": {
             "history": "Rewards History",
             "rewards": "Rewards Catalogue"
+        },
+        "howItWorks": {
+            "title": "How it works?",
+            "step1": {
+                "title": "Share",
+                "description": "Send your unique link to your friends."
+            },
+            "step2": {
+                "title": "Register",
+                "description": "Your friend signs up and receives a €5 bonus."
+            },
+            "step3": {
+                "title": "Earn",
+                "description": "Receive €5 upon their registration, then €10 after their first mission."
+            }
         }
     },
     "MarketInsightsLayout": {
@@ -1628,4 +1648,5 @@
 }
 
     
+
 

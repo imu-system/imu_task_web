@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useAuth } from '@/hooks/use-auth';
-import { Loader2, Gift, Copy, Share2, Mail, Users, DollarSign, School, CheckCircle, Clock, MessageSquare, Twitter } from 'lucide-react';
+import { Loader2, Gift, Copy, Share2, Mail, Users, DollarSign, School, CheckCircle, Clock, MessageSquare, Twitter, UserPlus, Award } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from '@/navigation';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
@@ -27,6 +27,12 @@ const mockReferrals = [
     { name: 'Alex M.', date: '10/09/2025', status: 'pending', gain: 0 },
     { name: 'Julien R.', date: '05/09/2025', status: 'active', gain: 5 },
 ];
+
+const howItWorksSteps = [
+    { icon: <Share2 className="h-8 w-8" />, titleKey: 'howItWorks.step1.title', descriptionKey: 'howItWorks.step1.description' },
+    { icon: <UserPlus className="h-8 w-8" />, titleKey: 'howItWorks.step2.title', descriptionKey: 'howItWorks.step2.description' },
+    { icon: <Award className="h-8 w-8" />, titleKey: 'howItWorks.step3.title', descriptionKey: 'howItWorks.step3.description' },
+]
 
 export default function ReferralsPage() {
     const { user, loading } = useAuth();
@@ -64,27 +70,11 @@ export default function ReferralsPage() {
                 </p>
             </div>
 
-            <Card>
+            <Card className="bg-primary/5 border-primary/20 text-center">
                 <CardHeader>
-                    <CardTitle>{t('invite.title')}</CardTitle>
+                    <CardTitle className="text-2xl">{t('callToAction.title')}</CardTitle>
+                    <CardDescription className="text-base">{t('callToAction.description')}</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                    <div className="space-y-2">
-                        <Label htmlFor="email-invite">{t('invite.emailLabel')}</Label>
-                        <div className="flex gap-2">
-                            <Input id="email-invite" type="email" placeholder={t('invite.emailPlaceholder')} />
-                            <Button>{t('invite.addButton')}</Button>
-                        </div>
-                    </div>
-                     <div className="space-y-2">
-                        <Label>{t('invite.shareLabel')}</Label>
-                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                            <Button variant="outline"><WhatsAppIcon className="mr-2"/> WhatsApp</Button>
-                            <Button variant="outline"><MessageSquare className="mr-2"/> {t('invite.smsButton')}</Button>
-                            <Button variant="outline"><Twitter className="mr-2"/> Twitter</Button>
-                        </div>
-                    </div>
-                </CardContent>
             </Card>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -108,13 +98,33 @@ export default function ReferralsPage() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <Input value={referralLink} readOnly />
-                        <Button className="w-full" onClick={() => handleCopy(referralLink)}>
-                            <Copy className="mr-2"/>
-                            {t('codeCard.copy')}
-                        </Button>
+                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                            <Button variant="outline"><WhatsAppIcon className="mr-2"/> WhatsApp</Button>
+                            <Button variant="outline"><MessageSquare className="mr-2"/> {t('invite.smsButton')}</Button>
+                            <Button variant="outline"><Twitter className="mr-2"/> Twitter</Button>
+                        </div>
                     </CardContent>
                 </Card>
             </div>
+
+            <Card>
+                <CardHeader>
+                    <CardTitle>{t('howItWorks.title')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <div className="flex flex-col md:flex-row justify-around items-start text-center gap-8">
+                        {howItWorksSteps.map(step => (
+                            <div key={step.titleKey} className="flex flex-col items-center gap-2 flex-1">
+                                <div className="p-4 bg-primary/10 text-primary rounded-full">
+                                    {step.icon}
+                                </div>
+                                <h3 className="font-semibold">{t(step.titleKey as any)}</h3>
+                                <p className="text-sm text-muted-foreground">{t(step.descriptionKey as any)}</p>
+                            </div>
+                        ))}
+                    </div>
+                </CardContent>
+            </Card>
             
              <Card>
                 <CardHeader>
@@ -132,29 +142,16 @@ export default function ReferralsPage() {
                         <DollarSign className="h-8 w-8 text-primary"/>
                         <div>
                             <p className="text-sm text-muted-foreground">{t('stats.rewards')}</p>
-                            <p className="text-2xl font-bold">60 €</p>
+                            <p className="text-2xl font-bold">65,00 €</p>
                         </div>
                     </div>
-                    <div className="p-4 bg-muted rounded-lg flex items-center gap-4">
-                        <School className="h-8 w-8 text-primary"/>
+                     <div className="p-4 bg-muted rounded-lg flex items-center gap-4">
+                        <DollarSign className="h-8 w-8 text-yellow-500"/>
                         <div>
-                            <p className="text-sm text-muted-foreground">{t('stats.university')}</p>
-                            <p className="text-lg font-semibold">ESIEA</p>
+                            <p className="text-sm text-muted-foreground">{t('stats.pendingRewards')}</p>
+                            <p className="text-2xl font-bold">20,00 €</p>
                         </div>
                     </div>
-                </CardContent>
-            </Card>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle>{t('universities.title')}</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <div className="p-3 border rounded-lg">
-                        <p className="font-semibold">{t('universities.promoLink', { year: 2025 })}</p>
-                        <p className="text-sm font-mono text-muted-foreground">IMU-ESIEA-25</p>
-                    </div>
-                    <Button variant="secondary" className="w-full">{t('universities.requestButton')}</Button>
                 </CardContent>
             </Card>
             
@@ -166,7 +163,6 @@ export default function ReferralsPage() {
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead>#</TableHead>
                                 <TableHead>{t('history.name')}</TableHead>
                                 <TableHead>{t('history.date')}</TableHead>
                                 <TableHead>{t('history.status')}</TableHead>
@@ -176,7 +172,6 @@ export default function ReferralsPage() {
                         <TableBody>
                             {mockReferrals.map((referral, index) => (
                                 <TableRow key={index}>
-                                    <TableCell>{index + 1}</TableCell>
                                     <TableCell className="font-medium">{referral.name}</TableCell>
                                     <TableCell>{referral.date}</TableCell>
                                     <TableCell>

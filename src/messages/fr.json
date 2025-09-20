@@ -1045,6 +1045,10 @@
     "ReferralsPage": {
         "title": "Parrainage",
         "subtitle": "Invitez vos amis et soyez récompensé.",
+        "callToAction": {
+            "title": "Invitez vos amis, gagnez jusqu'à 15€ par invitation !",
+            "description": "Vous gagnez de l'argent, et vos amis aussi. C'est simple, partagez votre code unique."
+        },
         "invite": {
             "title": "Invitez vos amis par e-mail",
             "emailLabel": "Adresses e-mail",
@@ -1066,6 +1070,7 @@
             "title": "Vos statistiques",
             "referred": "Amis parrainés",
             "rewards": "Récompenses gagnées",
+            "pendingRewards": "Gains en attente",
             "university": "Votre université"
         },
         "universities": {
@@ -1087,6 +1092,21 @@
         "actions": {
             "history": "Historique des récompenses",
             "rewards": "Catalogue des récompenses"
+        },
+        "howItWorks": {
+            "title": "Comment ça marche ?",
+            "step1": {
+                "title": "Partagez",
+                "description": "Envoyez votre lien unique à vos amis."
+            },
+            "step2": {
+                "title": "Inscrivez",
+                "description": "Votre ami s'inscrit et reçoit un bonus de 5€."
+            },
+            "step3": {
+                "title": "Gagnez",
+                "description": "Recevez 5€ à son inscription, puis 10€ après sa première mission."
+            }
         }
     },
     "MarketInsightsLayout": {
@@ -1628,4 +1648,5 @@
 }
 
     
+
 

@@ -589,6 +589,10 @@
     "ReferralsPage": {
         "title": "紹介",
         "subtitle": "友達を招待して報酬を獲得しましょう。",
+        "callToAction": {
+            "title": "友達を招待して、招待ごとに最大€15を獲得しましょう！",
+            "description": "あなたも友達もお金を稼げます。簡単です、あなたのユニークなコードを共有してください。"
+        },
         "invite": {
             "title": "友達をメールで招待する",
             "emailLabel": "メールアドレス",
@@ -610,6 +614,7 @@
             "title": "あなたの統計",
             "referred": "紹介した友達",
             "rewards": "獲得した報酬",
+            "pendingRewards": "保留中の報酬",
             "university": "あなたの大学"
         },
         "universities": {
@@ -631,6 +636,21 @@
         "actions": {
             "history": "報酬履歴",
             "rewards": "報酬カタログ"
+        },
+        "howItWorks": {
+            "title": "仕組み",
+            "step1": {
+                "title": "共有",
+                "description": "あなたのユニークなリンクを友達に送信します。"
+            },
+            "step2": {
+                "title": "登録",
+                "description": "あなたの友達が登録し、€5のボーナスを受け取ります。"
+            },
+            "step3": {
+                "title": "獲得",
+                "description": "登録時に€5、最初のミッション後に€10を受け取ります。"
+            }
         }
     },
     "MarketInsightsLayout": {
@@ -1172,4 +1192,5 @@
 }
 
     
+
 
