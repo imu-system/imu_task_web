@@ -97,6 +97,7 @@
         "marketInsights": "Infos Marché",
         "templates": "Modèles",
         "devTools": "Outils Développeur",
+        "partnerships": "Partenariats",
         "adminNav": {
             "community": "Communauté",
             "moderation": "Modération",
@@ -700,6 +701,33 @@
             "title": "Logs de synchronisation",
             "export": "Exporter JSON",
             "close": "Fermer"
+        }
+    },
+    "PartnershipsPage": {
+        "title": "Partenariats Universités",
+        "subtitle": "Gérez les partenariats avec les universités et les écoles.",
+        "searchPlaceholder": "Rechercher un partenariat...",
+        "createButton": "Créer un partenariat",
+        "table": {
+            "university": "Université",
+            "campus": "Campus",
+            "students": "Étudiants",
+            "status": "Statut",
+            "actions": "Actions",
+            "viewDetails": "Voir le détail",
+            "edit": "Modifier",
+            "delete": "Supprimer"
+        },
+        "status": {
+            "active": "Actif",
+            "pending": "En attente",
+            "expired": "Expiré"
+        },
+        "dialog": {
+            "title": "Supprimer le partenariat ?",
+            "description": "Êtes-vous sûr de vouloir supprimer le partenariat avec {name} ? Cette action est irréversible.",
+            "cancel": "Annuler",
+            "confirm": "Confirmer"
         }
     }
 }

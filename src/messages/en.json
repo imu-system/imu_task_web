@@ -97,6 +97,7 @@
         "marketInsights": "Market Insights",
         "templates": "Templates",
         "devTools": "Developer Tools",
+        "partnerships": "Partnerships",
         "adminNav": {
             "community": "Community",
             "moderation": "Moderation",
@@ -700,6 +701,33 @@
             "title": "Sync Logs",
             "export": "Export JSON",
             "close": "Close"
+        }
+    },
+    "PartnershipsPage": {
+        "title": "University Partnerships",
+        "subtitle": "Manage partnerships with universities and schools.",
+        "searchPlaceholder": "Search partnerships...",
+        "createButton": "Create Partnership",
+        "table": {
+            "university": "University",
+            "campus": "Campus",
+            "students": "Students",
+            "status": "Status",
+            "actions": "Actions",
+            "viewDetails": "View Details",
+            "edit": "Edit",
+            "delete": "Delete"
+        },
+        "status": {
+            "active": "Active",
+            "pending": "Pending",
+            "expired": "Expired"
+        },
+        "dialog": {
+            "title": "Delete Partnership?",
+            "description": "Are you sure you want to delete the partnership with {name}? This action is irreversible.",
+            "cancel": "Cancel",
+            "confirm": "Confirm"
         }
     }
 }

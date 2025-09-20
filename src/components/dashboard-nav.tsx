@@ -249,6 +249,14 @@ export function DashboardNav() {
                           </Link>
                       </SidebarMenuItem>
                       <SidebarMenuItem>
+                          <Link href="/dashboard/admin/partnerships">
+                              <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/partnerships')}>
+                                  <Handshake />
+                                  <span>{t('partnerships')}</span>
+                              </SidebarMenuButton>
+                          </Link>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem>
                           <Link href="/dashboard/admin/cms/pages">
                               <SidebarMenuButton isActive={pathname.startsWith('/dashboard/admin/cms')}>
                                   <FileText />

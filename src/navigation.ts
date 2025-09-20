@@ -74,6 +74,7 @@ export const pathnames = {
   '/dashboard/dev/sdk-keys': '/dashboard/dev/sdk-keys',
   '/dashboard/dev/audit': '/dashboard/dev/audit',
   '/dashboard/offline': '/dashboard/offline',
+  '/dashboard/admin/partnerships': '/dashboard/admin/partnerships',
 
   // If locales use different paths, you can
   // specify each external path per locale.

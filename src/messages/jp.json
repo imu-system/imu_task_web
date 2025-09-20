@@ -73,6 +73,7 @@
         "marketInsights": "市場インサイト",
         "templates": "テンプレート",
         "devTools": "開発者ツール",
+        "partnerships": "パートナーシップ",
         "adminNav": {
             "community": "コミュニティ",
             "moderation": "モデレーション",
@@ -1236,6 +1237,33 @@
                 "filter": "フィルタリング",
                 "clear": "クリア"
             }
+        }
+    },
+    "PartnershipsPage": {
+        "title": "大学との提携",
+        "subtitle": "大学や学校との提携を管理します。",
+        "searchPlaceholder": "提携を検索...",
+        "createButton": "提携を作成",
+        "table": {
+            "university": "大学",
+            "campus": "キャンパス",
+            "students": "学生",
+            "status": "ステータス",
+            "actions": "アクション",
+            "viewDetails": "詳細を表示",
+            "edit": "編集",
+            "delete": "削除"
+        },
+        "status": {
+            "active": "アクティブ",
+            "pending": "保留中",
+            "expired": "期限切れ"
+        },
+        "dialog": {
+            "title": "提携を削除しますか？",
+            "description": "{name}との提携を削除してもよろしいですか？この操作は元に戻せません。",
+            "cancel": "キャンセル",
+            "confirm": "確認"
         }
     }
 }
