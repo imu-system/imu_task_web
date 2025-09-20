@@ -4,7 +4,7 @@
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowLeft, WifiOff, RefreshCw, Trash2, Loader2, MessageSquare, UploadCloud, Check } from 'lucide-react';
+import { ArrowLeft, WifiOff, RefreshCw, Trash2, Loader2, MessageSquare, UploadCloud, Check, CheckCircle, AlertTriangle } from 'lucide-react';
 import { Link } from '@/navigation';
 import {
   AlertDialog,
@@ -25,6 +25,12 @@ const mockPendingItems = [
     { id: '2', description: 'Upload CV.pdf (2,1 Mo)', icon: <UploadCloud className="h-5 w-5 text-muted-foreground"/> },
     { id: '3', description: 'Accept task #982', icon: <Check className="h-5 w-5 text-muted-foreground"/> },
 ];
+
+const mockHistory = [
+    { id: 'h1', textKey: 'history.success', params: { count: 12 }, status: 'success', time: '14h32' },
+    { id: 'h2', textKey: 'history.partial', params: { reason: 'fichier trop volumineux' }, status: 'warning', time: '14h18' },
+    { id: 'h3', textKey: 'history.success', params: { count: 4 }, status: 'success', time: '13h59' },
+]
 
 export default function OfflineStatusPage() {
     const t = useTranslations('OfflinePage');
@@ -138,6 +144,24 @@ export default function OfflineStatusPage() {
                             </li>
                         ))}
                     </ul>
+                </CardContent>
+            </Card>
+            
+            <Card>
+                <CardHeader>
+                    <CardTitle>{t('historyCard.title')}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <ul className="space-y-3">
+                         {mockHistory.map(item => (
+                            <li key={item.id} className="flex items-center gap-3 text-sm">
+                                {item.status === 'success' ? <CheckCircle className="h-4 w-4 text-green-500" /> : <AlertTriangle className="h-4 w-4 text-amber-500" />}
+                                <span className="text-muted-foreground">{item.time}</span>
+                                <span className="flex-1">{t(item.textKey as any, item.params)}</span>
+                            </li>
+                        ))}
+                    </ul>
+                    <Button variant="link" className="mt-2 p-0 h-auto">{t('historyCard.advancedLogs')}</Button>
                 </CardContent>
             </Card>
 

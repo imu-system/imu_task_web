@@ -217,6 +217,14 @@
             "cancel": "キャンセル",
             "confirm": "パージを確定"
         },
+        "historyCard": {
+            "title": "同期履歴",
+            "history": {
+                "success": "同期成功（{count}アイテム送信）",
+                "partial": "部分的同期（{reason}）"
+            },
+            "advancedLogs": "高度なログを表示"
+        },
         "toast": {
             "sync": {
                 "title": "同期中...",
