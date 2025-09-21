@@ -33,6 +33,7 @@ import { db } from '@/lib/firebase';
 import { useEffect, useState, ReactNode } from 'react';
 import type { ServiceCategory } from '@/lib/types';
 import TestimonialCard from '@/components/testimonial-card';
+import placeholderImages from '@/app/lib/placeholder-images.json';
 
 const categoryIcons: Record<string, ReactNode> = {
   'shopping-basket': <ShoppingBasket className="h-8 w-8" />,
@@ -116,9 +117,9 @@ export default function Home() {
             </div>
           </div>
           <Image
-            src="https://picsum.photos/1920/1080"
+            src={placeholderImages.hero.src}
             alt="Helping hands"
-            data-ai-hint="helping hands"
+            data-ai-hint={placeholderImages.hero.hint}
             fill
             className="absolute inset-0 -z-10 object-cover opacity-10"
           />
@@ -183,9 +184,9 @@ export default function Home() {
                     </CardHeader>
                     <CardContent className="flex-grow flex items-center justify-center">
                        <Image
-                          src="https://picsum.photos/seed/client/600/400"
+                          src={placeholderImages.forClients.src}
                           alt={t('forClients.title')}
-                          data-ai-hint="happy person receiving help"
+                          data-ai-hint={placeholderImages.forClients.hint}
                           width={400}
                           height={300}
                           className="rounded-xl shadow-lg"
@@ -205,9 +206,9 @@ export default function Home() {
                     </CardHeader>
                     <CardContent className="flex-grow flex items-center justify-center">
                         <Image
-                          src="https://picsum.photos/seed/provider/600/400"
+                          src={placeholderImages.forProviders.src}
                           alt={t('forProviders.title')}
-                          data-ai-hint="student helping elderly"
+                          data-ai-hint={placeholderImages.forProviders.hint}
                           width={400}
                           height={300}
                           className="rounded-xl shadow-lg"
@@ -232,14 +233,14 @@ export default function Home() {
                 <TestimonialCard
                     name={t('testimonials.testimonial1.name')}
                     role={t('testimonials.testimonial1.role')}
-                    avatarUrl="https://picsum.photos/seed/t1/100/100"
+                    avatarUrl={placeholderImages.testimonial1.src}
                     avatarFallback="M"
                     testimonial={t('testimonials.testimonial1.text')}
                 />
                 <TestimonialCard
                     name={t('testimonials.testimonial2.name')}
                     role={t('testimonials.testimonial2.role')}
-                    avatarUrl="https://picsum.photos/seed/t2/100/100"
+                    avatarUrl={placeholderImages.testimonial2.src}
                     avatarFallback="L"
                     testimonial={t('testimonials.testimonial2.text')}
                 />

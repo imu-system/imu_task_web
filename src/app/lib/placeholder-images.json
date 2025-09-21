@@ -1,0 +1,23 @@
+
+{
+  "hero": {
+    "src": "https://picsum.photos/1920/1080",
+    "hint": "helping hands"
+  },
+  "forClients": {
+    "src": "https://picsum.photos/seed/client/600/400",
+    "hint": "smiling senior"
+  },
+  "forProviders": {
+    "src": "https://picsum.photos/seed/provider/600/400",
+    "hint": "student helping gardening"
+  },
+  "testimonial1": {
+    "src": "https://picsum.photos/seed/t1/100/100",
+    "hint": "senior woman"
+  },
+  "testimonial2": {
+    "src": "https://picsum.photos/seed/t2/100/100",
+    "hint": "male student"
+  }
+}
