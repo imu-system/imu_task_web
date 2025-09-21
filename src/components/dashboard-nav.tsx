@@ -54,6 +54,10 @@ import {
   Code,
   Webhook,
   ChevronRight,
+  Users2,
+  HeartHandshake,
+  Landmark,
+  Palette,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -99,38 +103,50 @@ export function DashboardNav() {
   ];
 
   const adminNavGroups = {
-    community: [
-      { href: '/dashboard/admin/users', icon: <Users/>, label: t('users') },
-      { href: '/dashboard/admin/tasks', icon: <ListOrdered/>, label: t('tasks') },
-      { href: '/dashboard/admin/offers', icon: <Handshake/>, label: t('offers') },
-      { href: '/dashboard/admin/bookings', icon: <CalendarCheck/>, label: t('bookings') },
-      { href: '/dashboard/admin/reviews', icon: <Star/>, label: t('reviews') },
-    ],
-    moderation: [
-       { href: '/dashboard/admin/moderation/reports', icon: <ModerationIcon/>, label: t('moderation') },
-       { href: '/dashboard/admin/kyc', icon: <ShieldCheck/>, label: t('kycVerification') },
-       { href: '/dashboard/admin/disputes', icon: <BadgeAlert/>, label: t('disputes') },
-       { href: '/dashboard/admin/support/tickets', icon: <LifeBuoy/>, label: t('support') },
-    ],
-    platform: [
-        { href: '/dashboard/admin/academy', icon: <BookOpen/>, label: t('academy') },
-        { href: '/dashboard/admin/services/categories', icon: <LayoutList/>, label: t('categories') },
-        { href: '/dashboard/admin/partnerships', icon: <Handshake/>, label: t('partnerships') },
-        { href: '/dashboard/admin/cms/pages', icon: <FileText/>, label: t('cms') },
-        { href: '/dashboard/admin/notifications', icon: <Bell/>, label: t('notifications') },
-        { href: '/dashboard/admin/i18n/keys', icon: <Languages/>, label: t('translations') },
-    ],
-    finance: [
-        { href: '/dashboard/admin/payments/transactions', icon: <Wallet/>, label: t('payments') },
-        { href: '/dashboard/admin/pricing/fees', icon: <DollarSign/>, label: t('pricing') },
-        { href: '/dashboard/admin/reports', icon: <LineChart/>, label: t('reports') },
-    ],
-    config: [
-        { href: '/dashboard/admin/integrations', icon: <Plug/>, label: t('integrations') },
-        { href: '/dashboard/admin/settings', icon: <SlidersHorizontal/>, label: t('settings') },
-        { href: '/dashboard/dev', icon: <Code/>, label: t('devTools') },
-        { href: '/dashboard/admin/audit', icon: <History/>, label: t('auditLog') },
-    ]
+    community: {
+        icon: <Users2 className="h-4 w-4 mr-2"/>,
+        links: [
+            { href: '/dashboard/admin/users', icon: <Users/>, label: t('users') },
+            { href: '/dashboard/admin/tasks', icon: <ListOrdered/>, label: t('tasks') },
+            { href: '/dashboard/admin/offers', icon: <Handshake/>, label: t('offers') },
+            { href: '/dashboard/admin/reviews', icon: <Star/>, label: t('reviews') },
+        ]
+    },
+    moderation: {
+        icon: <ModerationIcon className="h-4 w-4 mr-2"/>,
+        links: [
+            { href: '/dashboard/admin/kyc', icon: <ShieldCheck/>, label: t('kycVerification') },
+            { href: '/dashboard/admin/disputes', icon: <BadgeAlert/>, label: t('disputes') },
+            { href: '/dashboard/admin/support/tickets', icon: <LifeBuoy/>, label: t('support') },
+        ]
+    },
+    platform: {
+        icon: <Palette className="h-4 w-4 mr-2"/>,
+        links: [
+            { href: '/dashboard/admin/services/categories', icon: <LayoutList/>, label: t('categories') },
+            { href: '/dashboard/admin/cms/pages', icon: <FileText/>, label: t('cms') },
+            { href: '/dashboard/admin/notifications', icon: <Bell/>, label: t('notifications') },
+            { href: '/dashboard/admin/partnerships', icon: <Handshake/>, label: t('partnerships') },
+        ]
+    },
+    finance: {
+        icon: <Landmark className="h-4 w-4 mr-2"/>,
+        links: [
+            { href: '/dashboard/admin/payments/transactions', icon: <Wallet/>, label: t('payments') },
+            { href: '/dashboard/admin/pricing/fees', icon: <DollarSign/>, label: t('pricing') },
+            { href: '/dashboard/admin/reports', icon: <LineChart/>, label: t('reports') },
+        ]
+    },
+    config: {
+        icon: <SlidersHorizontal className="h-4 w-4 mr-2"/>,
+        links: [
+            { href: '/dashboard/admin/integrations', icon: <Plug/>, label: t('integrations') },
+            { href: '/dashboard/admin/settings', icon: <SlidersHorizontal/>, label: t('settings') },
+            { href: '/dashboard/admin/i18n/keys', icon: <Languages/>, label: t('translations') },
+            { href: '/dashboard/admin/audit', icon: <History/>, label: t('auditLog') },
+            { href: '/dashboard/dev', icon: <Code/>, label: t('devTools') },
+        ]
+    }
   };
 
   const isAdmin = user?.roles?.includes(UserRole.admin);
@@ -147,20 +163,20 @@ export function DashboardNav() {
     </SidebarMenuItem>
   );
 
-  const AdminNavGroup = ({ groupKey, links }: { groupKey: keyof typeof adminNavGroups, links: any[] }) => {
-    const [isOpen, setIsOpen] = useState(links.some(link => pathname.startsWith(link.href)));
+  const AdminNavGroup = ({ groupKey, groupData }: { groupKey: keyof typeof adminNavGroups, groupData: any }) => {
+    const [isOpen, setIsOpen] = useState(groupData.links.some((link: any) => pathname.startsWith(link.href)));
 
     return (
         <Collapsible open={isOpen} onOpenChange={setIsOpen}>
             <CollapsibleTrigger className="w-full">
                 <div className={cn("flex w-full items-center justify-between rounded-md p-2 hover:bg-sidebar-accent", isOpen && "bg-sidebar-accent")}>
-                    <span className="text-sm font-semibold">{t(`adminNav.${groupKey}`)}</span>
+                    <span className="text-sm font-semibold flex items-center">{groupData.icon} {t(`adminNav.${groupKey}`)}</span>
                     <ChevronRight className={cn("h-4 w-4 transition-transform", isOpen && "rotate-90")}/>
                 </div>
             </CollapsibleTrigger>
             <CollapsibleContent>
                 <SidebarMenu className="pl-4 py-2 border-l ml-4 space-y-0">
-                    {links.map(link => <AdminNavLink key={link.href} {...link}/>)}
+                    {groupData.links.map((link: any) => <AdminNavLink key={link.href} {...link}/>)}
                 </SidebarMenu>
             </CollapsibleContent>
         </Collapsible>
@@ -231,8 +247,8 @@ export function DashboardNav() {
                    </div>
                     
                     <div className="space-y-1 mt-2">
-                        {Object.entries(adminNavGroups).map(([key, links]) => (
-                            <AdminNavGroup key={key} groupKey={key as keyof typeof adminNavGroups} links={links} />
+                        {Object.entries(adminNavGroups).map(([key, groupData]) => (
+                            <AdminNavGroup key={key} groupKey={key as keyof typeof adminNavGroups} groupData={groupData} />
                         ))}
                     </div>
 
