@@ -7,6 +7,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
+  CardDescription,
 } from '@/components/ui/card';
 import {
   ShoppingBasket,
@@ -20,6 +21,8 @@ import {
   Wrench,
   PawPrint,
   Loader2,
+  Users,
+  HardHat
 } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from '@/navigation';
@@ -144,60 +147,54 @@ export default function Home() {
 
         <section id="how-it-works" className="w-full py-12 md:py-24 lg:py-32 bg-card">
           <div className="container mx-auto px-4 md:px-6">
-            <div className="grid gap-12 lg:grid-cols-2 lg:gap-24 items-center">
-              <div className="space-y-4">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl font-headline">
-                  {t('howItWorksTitle')}
-                </h2>
-                <p className="text-muted-foreground">
-                  {t('howItWorksDesc')}
-                </p>
-                <ul className="space-y-6">
-                  <li className="flex items-start">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold mr-4">
-                      1
-                    </span>
-                    <div>
-                      <h3 className="font-semibold">{t('step1Title')}</h3>
-                      <p className="text-muted-foreground">
-                        {t('step1Desc')}
-                      </p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold mr-4">
-                      2
-                    </span>
-                    <div>
-                      <h3 className="font-semibold">{t('step2Title')}</h3>
-                      <p className="text-muted-foreground">
-                        {t('step2Desc')}
-                      </p>
-                    </div>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground font-bold mr-4">
-                      3
-                    </span>
-                    <div>
-                      <h3 className="font-semibold">{t('step3Title')}</h3>
-                      <p className="text-muted-foreground">
-                        {t('step3Desc')}
-                      </p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <Image
-                  src="https://picsum.photos/600/500"
-                  alt="How it works"
-                  data-ai-hint="community connection"
-                  width={600}
-                  height={500}
-                  className="rounded-xl shadow-lg"
-                />
-              </div>
+            <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl font-headline mb-12">
+              {t('howItWorksTitle')}
+            </h2>
+            <div className="grid gap-8 lg:grid-cols-2">
+                <Card className="flex flex-col">
+                    <CardHeader className="items-center text-center">
+                        <Users className="h-12 w-12 text-primary"/>
+                        <CardTitle className="text-2xl mt-4">{t('forClients.title')}</CardTitle>
+                        <CardDescription>{t('forClients.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-grow flex items-center justify-center">
+                       <Image
+                          src="https://picsum.photos/seed/client/600/400"
+                          alt={t('forClients.title')}
+                          data-ai-hint="happy person receiving help"
+                          width={400}
+                          height={300}
+                          className="rounded-xl shadow-lg"
+                        />
+                    </CardContent>
+                    <CardContent>
+                        <Button asChild size="lg" className="w-full">
+                            <Link href="/inscription?role=client">{t('forClients.button')}</Link>
+                        </Button>
+                    </CardContent>
+                </Card>
+                 <Card className="flex flex-col">
+                    <CardHeader className="items-center text-center">
+                        <HardHat className="h-12 w-12 text-primary"/>
+                        <CardTitle className="text-2xl mt-4">{t('forProviders.title')}</CardTitle>
+                        <CardDescription>{t('forProviders.description')}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-grow flex items-center justify-center">
+                        <Image
+                          src="https://picsum.photos/seed/provider/600/400"
+                          alt={t('forProviders.title')}
+                          data-ai-hint="student helping elderly"
+                          width={400}
+                          height={300}
+                          className="rounded-xl shadow-lg"
+                        />
+                    </CardContent>
+                    <CardContent>
+                       <Button asChild size="lg" className="w-full">
+                            <Link href="/inscription?role=provider">{t('forProviders.button')}</Link>
+                        </Button>
+                    </CardContent>
+                </Card>
             </div>
           </div>
         </section>
@@ -245,3 +242,5 @@ export default function Home() {
     </>
   );
 }
+
+    

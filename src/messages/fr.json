@@ -50,14 +50,17 @@
         "feature2Desc": "Profils vérifiés (KYC), paiements sécurisés et avis pour garantir des missions en toute sérénité.",
         "feature3Title": "Communication Simple",
         "feature3Desc": "Discutez facilement avec les membres via notre messagerie intégrée pour organiser les détails de la mission.",
-        "howItWorksTitle": "Comment ça marche ?",
-        "howItWorksDesc": "En quelques étapes simples, trouvez de l'aide ou proposez vos compétences.",
-        "step1Title": "Publiez une mission",
-        "step1Desc": "Décrivez votre besoin, le lieu, le créneau et votre budget.",
-        "step2Title": "Recevez des offres",
-        "step2Desc": "Des jeunes motivés de votre quartier vous proposent leur aide.",
-        "step3Title": "Choisissez & Validez",
-        "step3Desc": "Acceptez une offre et payez en toute sécurité. Les fonds sont conservés jusqu'à la fin de la mission.",
+        "howItWorksTitle": "À chaque besoin, sa solution",
+        "forClients": {
+            "title": "Pour les Clients",
+            "description": "Trouvez de l'aide rapidement et en toute sécurité. Postez votre mission, choisissez votre prestataire et avancez en toute sérénité.",
+            "button": "Publier une mission"
+        },
+        "forProviders": {
+            "title": "Pour les Prestataires",
+            "description": "Gagnez un revenu complémentaire en aidant votre communauté. Choisissez vos missions, gérez votre planning et soyez payé en toute sécurité.",
+            "button": "Devenir prestataire"
+        },
         "categoriesTitle": "Des services pour tous vos besoins",
         "categoryShopping": "Courses",
         "categoryGardening": "Jardinage",
@@ -927,5 +930,7 @@
         }
     }
 }
+
+    
 
     

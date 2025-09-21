@@ -50,14 +50,17 @@
         "feature2Desc": "Verified profiles (KYC), secure payments, and reviews to ensure missions are completed with peace of mind.",
         "feature3Title": "Simple Communication",
         "feature3Desc": "Easily chat with members via our integrated messaging system to organize mission details.",
-        "howItWorksTitle": "How does it work?",
-        "howItWorksDesc": "In a few simple steps, find help or offer your skills.",
-        "step1Title": "Post a mission",
-        "step1Desc": "Describe your need, location, time slot, and your budget.",
-        "step2Title": "Receive offers",
-        "step2Desc": "Motivated young people from your neighborhood offer their help.",
-        "step3Title": "Choose & Validate",
-        "step3Desc": "Accept an offer and pay securely. Funds are held until the mission is completed.",
+        "howItWorksTitle": "For each need, a solution",
+        "forClients": {
+            "title": "For Clients",
+            "description": "Find help quickly and securely. Post your task, choose your provider, and get things done with peace of mind.",
+            "button": "Post a mission"
+        },
+        "forProviders": {
+            "title": "For Providers",
+            "description": "Earn extra income by helping your community. Choose your missions, manage your schedule, and get paid securely.",
+            "button": "Become a provider"
+        },
         "categoriesTitle": "Services for all your needs",
         "categoryShopping": "Shopping",
         "categoryGardening": "Gardening",
@@ -927,5 +930,7 @@
         }
     }
 }
+
+    
 
     
