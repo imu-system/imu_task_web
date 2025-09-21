@@ -12,7 +12,7 @@ export default function LegalLayout({
     children: React.ReactNode;
 }) {
     const pathname = usePathname();
-    const t = useTranslations('LegalLayout');
+    const t = useTranslations('LegalPage');
 
     const navLinks = [
         { href: '/legal/terms', label: t('tabs.policies') },
