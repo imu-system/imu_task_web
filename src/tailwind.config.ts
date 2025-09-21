@@ -72,6 +72,11 @@ export default {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      backdropBlur: {
+        xs: '4px',
+        sm: '8px',
+        md: '12px'
+      },
       keyframes: {
         'accordion-down': {
           from: {
