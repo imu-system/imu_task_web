@@ -56,6 +56,7 @@ import {
   Landmark,
   Palette,
   MoreVertical,
+  Edit,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
@@ -66,10 +67,13 @@ import { useSettingsModal } from '@/context/settings-modal-context';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
+import { Switch } from './ui/switch';
+import { Label } from './ui/label';
 
 export function DashboardNav() {
   const pathname = usePathname();
   const t = useTranslations('DashboardNav');
+  const tHeader = useTranslations('Header');
   const { user, signOut } = useAuth();
   const router = useRouter();
   const { setIsOpen } = useSettingsModal();
@@ -191,9 +195,9 @@ export function DashboardNav() {
         </SidebarHeader>
 
         <SidebarContent className="p-2 space-y-2">
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="w-full justify-start items-center gap-3 p-2 h-auto text-left">
+            <div className="p-2 space-y-3">
+                 <div className="flex justify-between items-start gap-3">
+                    <div className="flex items-start gap-3">
                         <Avatar className="h-9 w-9">
                             <AvatarImage src={user?.photoURL || undefined} alt="User avatar" />
                             <AvatarFallback>
@@ -204,27 +208,41 @@ export function DashboardNav() {
                             <p className="font-semibold truncate text-sm">{user?.profile?.displayName}</p>
                             <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
                         </div>
-                        <MoreVertical className="h-4 w-4 text-muted-foreground"/>
-                    </Button>
-                </DropdownMenuTrigger>
-                 <DropdownMenuContent className="w-56" align="start">
-                    <DropdownMenuItem asChild>
-                        <Link href="/dashboard/profile">
-                            <UserCircle className="mr-2 h-4 w-4" />
-                            <span>{t('profile')}</span>
-                        </Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => setIsOpen(true)}>
-                        <Settings className="mr-2 h-4 w-4" />
-                        <span>{t('settings')}</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={handleSignOut}>
-                        <LogOut className="mr-2 h-4 w-4" />
-                        <span>{t('logout')}</span>
-                    </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
+                    </div>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                             <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground">
+                                <MoreVertical className="h-4 w-4"/>
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-56" align="start">
+                            <DropdownMenuItem asChild>
+                                <Link href="/dashboard/profile">
+                                    <UserCircle className="mr-2 h-4 w-4" />
+                                    <span>{t('profile')}</span>
+                                </Link>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setIsOpen(true)}>
+                                <Settings className="mr-2 h-4 w-4" />
+                                <span>{t('settings')}</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem onClick={handleSignOut}>
+                                <LogOut className="mr-2 h-4 w-4" />
+                                <span>{t('logout')}</span>
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+                {isProvider && (
+                    <div className="flex items-center space-x-2">
+                        <Switch id="availability-switch" defaultChecked />
+                        <Label htmlFor="availability-switch" className="text-sm">
+                            {tHeader('availableForMissions')}
+                        </Label>
+                    </div>
+                )}
+            </div>
 
             <SidebarSeparator/>
 
