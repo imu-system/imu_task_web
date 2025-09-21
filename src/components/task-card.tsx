@@ -44,9 +44,10 @@ const categoryIcons: Record<string, ReactNode> = {
 
 type TaskCardProps = {
   task: Task;
+  onOpenSheet: (taskId: string) => void;
 };
 
-export default function TaskCard({ task }: TaskCardProps) {
+export default function TaskCard({ task, onOpenSheet }: TaskCardProps) {
   const { title, client, category, address, timeWindowStart, priceOffered, id } = task;
   const locale = useLocale();
   const t = useTranslations('TaskCard');
@@ -92,20 +93,10 @@ export default function TaskCard({ task }: TaskCardProps) {
           <span className="text-sm font-medium">{clientName}</span>
         </div>
         <div className="flex gap-2">
-           <Button asChild variant="outline" size="sm">
-              <Link href={`/dashboard/tasks/${id}`}>
-                <Eye className="mr-2"/>
-                {t('viewTask')}
-              </Link>
-          </Button>
-          <Dialog>
-              <DialogTrigger asChild>
-                  <Button size="sm">{t('makeOffer')}</Button>
-              </DialogTrigger>
-              <DialogContent>
-                  <OfferForm task={task}/>
-              </DialogContent>
-          </Dialog>
+           <Button variant="outline" size="sm" onClick={() => onOpenSheet(id)}>
+              <Eye className="mr-2"/>
+              {t('viewTask')}
+            </Button>
         </div>
       </CardFooter>
     </Card>

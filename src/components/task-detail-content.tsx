@@ -178,7 +178,7 @@ const ClientActions = ({ offers, onAccept, task }: { offers: Offer[], onAccept: 
 }
 
 
-export default function TaskDetailClientPage({ task: initialTask, offers: initialOffers }: { task: Task, offers: Offer[] }) {
+export default function TaskDetailContent({ task: initialTask, offers: initialOffers }: { task: Task, offers: Offer[] }) {
   const { user } = useAuth();
   const t = useTranslations('TaskDetailPage');
   const tActions = useTranslations('TaskActions');
@@ -218,7 +218,7 @@ export default function TaskDetailClientPage({ task: initialTask, offers: initia
   }
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8">
+    <div className="p-2 space-y-8">
       <TaskStatusTimeline currentStatus={task.status} />
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-6">

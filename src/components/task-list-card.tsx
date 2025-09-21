@@ -19,6 +19,7 @@ import { OfferForm } from './offer-form';
 
 type TaskListCardProps = {
   task: Task;
+  onOpenSheet: (taskId: string) => void;
 };
 
 const getStatusVariant = (status: TaskStatus) => {
@@ -31,7 +32,7 @@ const getStatusVariant = (status: TaskStatus) => {
     }
 }
 
-export default function TaskListCard({ task }: TaskListCardProps) {
+export default function TaskListCard({ task, onOpenSheet }: TaskListCardProps) {
   const { title, category, timeWindowStart, priceOffered, id, status } = task;
   const locale = useLocale();
   const t = useTranslations('MyTasksPage');
@@ -65,11 +66,9 @@ export default function TaskListCard({ task }: TaskListCardProps) {
                 {priceOffered}€
             </div>
             <div className="flex gap-2">
-                <Button asChild variant="outline" size="sm">
-                    <Link href={`/dashboard/tasks/${id}`}>
-                        <Eye className="mr-2"/>
-                        {t('view')}
-                    </Link>
+                <Button variant="outline" size="sm" onClick={() => onOpenSheet(id)}>
+                    <Eye className="mr-2"/>
+                    {t('view')}
                 </Button>
                  <Dialog>
                     <DialogTrigger asChild>
