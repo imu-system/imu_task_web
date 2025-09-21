@@ -38,6 +38,13 @@ import React from 'react';
 import { UserRole } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+
 
 export function DashboardHeader() {
   const t = useTranslations('Header');
@@ -48,7 +55,7 @@ export function DashboardHeader() {
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "/") {
+      if ((e.key === "k" && (e.metaKey || e.ctrlKey))) {
         if (
           (e.target instanceof HTMLElement && e.target.isContentEditable) ||
           e.target instanceof HTMLInputElement ||
@@ -292,12 +299,21 @@ export function DashboardHeader() {
             </DropdownMenuContent>
         </DropdownMenu>
 
-        <Button asChild variant="ghost" size="icon">
-            <Link href="/dashboard/offline">
-                <Wifi/>
-                <span className="sr-only">{tNav('offline')}</span>
-            </Link>
-        </Button>
+        <TooltipProvider>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                     <Button asChild variant="ghost" size="icon">
+                        <Link href="/dashboard/offline">
+                            <Wifi/>
+                            <span className="sr-only">{tNav('offline')}</span>
+                        </Link>
+                    </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                    <p>{t('lastSync')}</p>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

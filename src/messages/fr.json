@@ -1,4 +1,3 @@
-
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -19,7 +18,8 @@
         "support": "Support",
         "suggestedAction": "Créer une mission 'Courses' (modèle)",
         "notificationsTitle": "Notifications",
-        "viewAllNotifications": "Voir toutes les notifications"
+        "viewAllNotifications": "Voir toutes les notifications",
+        "lastSync": "Dernière synchro : à l'instant"
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. Tous droits réservés.",

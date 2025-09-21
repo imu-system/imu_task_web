@@ -19,7 +19,8 @@
         "support": "サポート",
         "suggestedAction": "「買い物」タスクを作成（テンプレート）",
         "notificationsTitle": "通知",
-        "viewAllNotifications": "すべての通知を表示"
+        "viewAllNotifications": "すべての通知を表示",
+        "lastSync": "最終同期：たった今"
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. 無断複写・転載を禁じます。",

@@ -1,4 +1,3 @@
-
 {
     "Header": {
         "features": "Features",
@@ -19,7 +18,8 @@
         "support": "Support",
         "suggestedAction": "Create 'Shopping' task (template)",
         "notificationsTitle": "Notifications",
-        "viewAllNotifications": "View all notifications"
+        "viewAllNotifications": "View all notifications",
+        "lastSync": "Last sync: just now"
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. All rights reserved.",
