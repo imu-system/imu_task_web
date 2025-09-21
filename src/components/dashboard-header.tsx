@@ -49,7 +49,7 @@ import { Label } from './ui/label';
 import { Switch } from './ui/switch';
 import { Dialog, DialogTrigger, DialogContent } from './ui/dialog';
 import { CreateTaskForm } from './create-task-form';
-import { SettingsModal } from './settings-modal';
+import { useSettingsModal } from '@/context/settings-modal-context';
 
 
 export function DashboardHeader() {
@@ -61,6 +61,7 @@ export function DashboardHeader() {
   const [open, setOpen] = useState(false);
   const [isOffline, setIsOffline] = useState(false);
   const [hasPendingChanges, setHasPendingChanges] = useState(false);
+  const { setIsOpen: setSettingsModalOpen } = useSettingsModal();
 
 
   useEffect(() => {
@@ -380,86 +381,82 @@ export function DashboardHeader() {
             </Tooltip>
         </TooltipProvider>
 
-        <SettingsModal>
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="relative h-8 w-8 rounded-full">
-                    <Avatar className="h-9 w-9">
-                        <AvatarImage
-                        src={user?.photoURL || undefined}
-                        alt="User avatar"
-                        />
-                        <AvatarFallback>
-                        {user?.profile?.displayName?.charAt(0).toUpperCase() || user?.email?.charAt(0).toUpperCase()}
-                        </AvatarFallback>
-                    </Avatar>
-                    </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56" align="end" forceMount>
-                    <DropdownMenuLabel className="font-normal">
-                    <div className="flex flex-col space-y-1">
-                        <p className="text-sm font-medium leading-none">
-                        {user.profile?.displayName || 'Utilisateur'}
-                        </p>
-                        <p className="text-xs leading-none text-muted-foreground">
-                        {user.email}
-                        </p>
-                    </div>
-                    </DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    {isProvider && (
-                    <>
-                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="flex items-center justify-between">
-                        <Label htmlFor="availability-switch" className="pr-2 font-normal cursor-pointer">{t('availableForMissions')}</Label>
-                        <Switch id="availability-switch" defaultChecked />
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                    </>
-                    )}
-                    <DropdownMenuGroup>
-                        <DropdownMenuItem asChild>
-                        <Link href="/dashboard">
-                            <LayoutGrid className="mr-2 h-4 w-4" />
-                            <span>{t('dashboard')}</span>
-                        </Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem asChild>
-                        <Link href="/dashboard/profile">
-                            <User className="mr-2 h-4 w-4" />
-                            <span>{t('profile')}</span>
-                        </Link>
-                        </DropdownMenuItem>
-                         <DialogTrigger asChild>
-                            <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
-                                <SettingsIcon className="mr-2 h-4 w-4" />
-                                <span>{tNav('settings')}</span>
-                            </DropdownMenuItem>
-                        </DialogTrigger>
-                        <DropdownMenuItem asChild>
-                        <Link href="/dashboard/admin/support/tickets">
-                            <LifeBuoy className="mr-2 h-4 w-4" />
-                            <span>{t('support')}</span>
-                        </Link>
-                        </DropdownMenuItem>
-                    </DropdownMenuGroup>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuGroup>
-                        <DropdownMenuLabel>{t('favorites.title')}</DropdownMenuLabel>
-                        <DropdownMenuItem asChild>
-                            <Link href="/dashboard/stats">
-                                <Star className="mr-2 h-4 w-4"/>
-                                {t('favorites.myStats')}
-                            </Link>
-                        </DropdownMenuItem>
-                    </DropdownMenuGroup>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={signOut}>
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>{t('signOut')}</span>
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                <Avatar className="h-9 w-9">
+                    <AvatarImage
+                    src={user?.photoURL || undefined}
+                    alt="User avatar"
+                    />
+                    <AvatarFallback>
+                    {user?.profile?.displayName?.charAt(0).toUpperCase() || user?.email?.charAt(0).toUpperCase()}
+                    </AvatarFallback>
+                </Avatar>
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-56" align="end" forceMount>
+                <DropdownMenuLabel className="font-normal">
+                <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">
+                    {user.profile?.displayName || 'Utilisateur'}
+                    </p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                    {user.email}
+                    </p>
+                </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                {isProvider && (
+                <>
+                    <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="flex items-center justify-between">
+                    <Label htmlFor="availability-switch" className="pr-2 font-normal cursor-pointer">{t('availableForMissions')}</Label>
+                    <Switch id="availability-switch" defaultChecked />
                     </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-        </SettingsModal>
+                    <DropdownMenuSeparator />
+                </>
+                )}
+                <DropdownMenuGroup>
+                    <DropdownMenuItem asChild>
+                    <Link href="/dashboard">
+                        <LayoutGrid className="mr-2 h-4 w-4" />
+                        <span>{t('dashboard')}</span>
+                    </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                    <Link href="/dashboard/profile">
+                        <User className="mr-2 h-4 w-4" />
+                        <span>{t('profile')}</span>
+                    </Link>
+                    </DropdownMenuItem>
+                     <DropdownMenuItem onSelect={() => setSettingsModalOpen(true)}>
+                        <SettingsIcon className="mr-2 h-4 w-4" />
+                        <span>{tNav('settings')}</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                    <Link href="/dashboard/admin/support/tickets">
+                        <LifeBuoy className="mr-2 h-4 w-4" />
+                        <span>{t('support')}</span>
+                    </Link>
+                    </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                    <DropdownMenuLabel>{t('favorites.title')}</DropdownMenuLabel>
+                    <DropdownMenuItem asChild>
+                        <Link href="/dashboard/stats">
+                            <Star className="mr-2 h-4 w-4"/>
+                            {t('favorites.myStats')}
+                        </Link>
+                    </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={signOut}>
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>{t('signOut')}</span>
+                </DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );

@@ -60,12 +60,14 @@ import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from './ui/dropdown-menu';
 import { DashboardHeader } from './dashboard-header';
+import { useSettingsModal } from '@/context/settings-modal-context';
 
 export function DashboardNav() {
   const pathname = usePathname();
   const t = useTranslations('DashboardNav');
   const { user, signOut } = useAuth();
   const router = useRouter();
+  const { setIsOpen } = useSettingsModal();
 
   const handleSignOut = async () => {
     await signOut();
@@ -355,12 +357,10 @@ export function DashboardNav() {
                   </Link>
               </SidebarMenuItem>
               <SidebarMenuItem>
-                <Link href="/dashboard/settings">
-                    <SidebarMenuButton isActive={pathname.startsWith('/dashboard/settings')}>
-                        <Settings />
-                        <span>{t('settings')}</span>
-                    </SidebarMenuButton>
-                </Link>
+                <SidebarMenuButton onClick={() => setIsOpen(true)} isActive={pathname.startsWith('/dashboard/settings')}>
+                    <Settings />
+                    <span>{t('settings')}</span>
+                </SidebarMenuButton>
               </SidebarMenuItem>
                 <SidebarMenuItem>
                   <SidebarMenuButton onClick={handleSignOut}>

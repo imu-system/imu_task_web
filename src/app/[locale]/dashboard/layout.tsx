@@ -12,6 +12,8 @@ import { useRouter, useSearchParams } from '@/navigation';
 import { useState, useEffect } from 'react';
 import { TaskDetailSheet } from '@/components/task-detail-sheet';
 import { BookingDetailSheet } from '@/components/booking-detail-sheet';
+import { SettingsModalProvider } from '@/context/settings-modal-context';
+import { SettingsModal } from '@/components/settings-modal';
 
 export default function DashboardLayout({
   children,
@@ -52,6 +54,7 @@ export default function DashboardLayout({
 
   return (
     <AuthGuard>
+      <SettingsModalProvider>
         <SidebarProvider>
             <ImpersonationBanner />
             <OfflineBanner />
@@ -83,7 +86,9 @@ export default function DashboardLayout({
                 }
               }}
             />
+            <SettingsModal />
         </SidebarProvider>
+      </SettingsModalProvider>
     </AuthGuard>
   );
 }

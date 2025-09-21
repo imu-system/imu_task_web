@@ -13,8 +13,10 @@ import AccountSettings from './settings/account-settings';
 import SecuritySettings from './settings/security-settings';
 import BillingSettings from './settings/billing-settings';
 import PrivacySettings from './settings/privacy-settings';
+import { useSettingsModal } from '@/context/settings-modal-context';
 
-export function SettingsModal({ children }: { children: React.ReactNode }) {
+export function SettingsModal() {
+  const { isOpen, setIsOpen } = useSettingsModal();
   const [activeTab, setActiveTab] = useState<SettingsTab>('account');
 
   const renderContent = () => {
@@ -33,8 +35,7 @@ export function SettingsModal({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <Dialog>
-      {children}
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogContent className="max-w-4xl h-full sm:h-[90vh] flex flex-col p-0">
         <DialogHeader className="p-6 pb-0">
           <DialogTitle className="sr-only">Settings</DialogTitle>
