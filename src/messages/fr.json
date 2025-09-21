@@ -25,7 +25,8 @@
             "online": "Connecté et synchronisé",
             "offline": "Hors ligne",
             "pending": "Changements en attente de synchronisation"
-        }
+        },
+        "availableForMissions": "Disponible pour de nouvelles missions"
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. Tous droits réservés.",

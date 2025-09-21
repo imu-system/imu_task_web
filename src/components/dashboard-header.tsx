@@ -44,6 +44,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { Label } from './ui/label';
+import { Switch } from './ui/switch';
 
 
 export function DashboardHeader() {
@@ -227,13 +229,9 @@ export function DashboardHeader() {
         <span className="sr-only">Toggle Menu</span>
       </Button>
 
-      {/* Command Menu */}
       <Button
         variant="outline"
-        className={cn(
-          "relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64",
-          "hidden md:flex" 
-        )}
+        className="relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
         onClick={() => setOpen(true)}
       >
         <Search className="h-4 w-4 mr-2" />
@@ -384,6 +382,15 @@ export function DashboardHeader() {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
+            {isProvider && (
+              <>
+                <DropdownMenuItem onSelect={(e) => e.preventDefault()} className="flex items-center justify-between">
+                  <Label htmlFor="availability-switch" className="pr-2 font-normal cursor-pointer">{t('availableForMissions')}</Label>
+                  <Switch id="availability-switch" defaultChecked />
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+              </>
+            )}
             <DropdownMenuItem asChild>
               <Link href="/dashboard">
                 <LayoutGrid className="mr-2 h-4 w-4" />

@@ -25,7 +25,8 @@
             "online": "Online and synced",
             "offline": "Offline",
             "pending": "Changes pending sync"
-        }
+        },
+        "availableForMissions": "Available for new missions"
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. All rights reserved.",
