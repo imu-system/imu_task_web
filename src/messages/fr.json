@@ -16,7 +16,8 @@
         "createTask": "Créer une mission",
         "setAvailability": "Définir disponibilités",
         "settings": "Paramètres",
-        "support": "Support"
+        "support": "Support",
+        "suggestedAction": "Créer une mission 'Courses' (modèle)"
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. Tous droits réservés.",
@@ -110,7 +111,6 @@
     "DashboardPage": {
         "title": "Missions disponibles",
         "subtitle": "Trouvez une mission qui vous correspond près de chez vous.",
-        "createTask": "Créer une mission",
         "noTasks": "Aucune mission disponible pour le moment.",
         "welcome": "Bon retour, {name} !",
         "welcomeSubtitle": "Voici ce qui se passe aujourd'hui.",

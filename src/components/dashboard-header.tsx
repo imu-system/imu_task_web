@@ -13,6 +13,7 @@ import {
   MessageSquare,
   Search,
   ChevronDown,
+  Sparkles,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -87,6 +88,13 @@ export function DashboardHeader() {
                     <DropdownMenuItem asChild>
                         <Link href="/dashboard/availability">{t('setAvailability')}</Link>
                     </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                      <Link href="/dashboard/tasks/new?template=shopping">
+                        <Sparkles className="mr-2 h-4 w-4 text-primary" />
+                        <span>{t('suggestedAction')}</span>
+                      </Link>
+                    </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         </div>
@@ -113,6 +121,13 @@ export function DashboardHeader() {
                         <DropdownMenuItem asChild>
                             <Link href="/dashboard/tasks/new">{t('createTask')}</Link>
                         </DropdownMenuItem>
+                         <DropdownMenuSeparator />
+                         <DropdownMenuItem asChild>
+                           <Link href="/dashboard/tasks/new?template=shopping">
+                             <Sparkles className="mr-2 h-4 w-4 text-primary" />
+                             <span>{t('suggestedAction')}</span>
+                           </Link>
+                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             </div>
@@ -135,6 +150,13 @@ export function DashboardHeader() {
             <DropdownMenuItem asChild>
               <Link href="/dashboard/availability">{t('setAvailability')}</Link>
             </DropdownMenuItem>
+             <DropdownMenuSeparator />
+             <DropdownMenuItem asChild>
+               <Link href="/dashboard/tasks/new?template=shopping">
+                 <Sparkles className="mr-2 h-4 w-4 text-primary" />
+                 <span>{t('suggestedAction')}</span>
+               </Link>
+             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
     )

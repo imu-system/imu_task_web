@@ -16,7 +16,8 @@
         "createTask": "タスクを作成",
         "setAvailability": "利用可能性を設定",
         "settings": "設定",
-        "support": "サポート"
+        "support": "サポート",
+        "suggestedAction": "「買い物」タスクを作成（テンプレート）"
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. 無断複写・転載を禁じます。",
