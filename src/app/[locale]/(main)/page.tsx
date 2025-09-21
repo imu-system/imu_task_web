@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Button } from '@/components/ui/button';
@@ -14,34 +15,58 @@ import {
   ShieldCheck,
   MessagesSquare,
   Sparkles,
+  HelpCircle,
+  Briefcase,
+  Wrench,
+  PawPrint,
+  Loader2,
 } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
+import { collection, getDocs, limit, query } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
+import { useEffect, useState, ReactNode } from 'react';
+import type { ServiceCategory } from '@/lib/types';
 
-const categories = [
-  {
-    icon: <ShoppingBasket className="h-8 w-8" />,
-    nameKey: 'categoryShopping',
-  },
-  {
-    icon: <Spade className="h-8 w-8" />,
-    nameKey: 'categoryGardening',
-  },
-  {
-    icon: <Sparkles className="h-8 w-8" />,
-    nameKey: 'categoryCleaning',
-  },
-  {
-    icon: <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8"><path d="M17 14h.01"/><path d="M12.5 4.5h-5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6.5l-4-4Z"/><path d="M15 4.5V8h3.5"/></svg>,
-    nameKey: 'categoryAdmin',
-  },
-];
+const categoryIcons: Record<string, ReactNode> = {
+  'shopping-basket': <ShoppingBasket className="h-8 w-8" />,
+  spade: <Spade className="h-8 w-8" />,
+  sparkles: <Sparkles className="h-8 w-8" />,
+  'file-text': <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8"><path d="M17 14h.01"/><path d="M12.5 4.5h-5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6.5l-4-4Z"/><path d="M15 4.5V8h3.5"/></svg>,
+  'help-circle': <HelpCircle className="h-8 w-8" />,
+  briefcase: <Briefcase className="h-8 w-8" />,
+  wrench: <Wrench className="h-8 w-8" />,
+  'paw-print': <PawPrint className="h-8 w-8" />,
+  default: <HelpCircle className="h-8 w-8" />,
+};
+
 
 export default function Home() {
   const t = useTranslations('HomePage');
   const tHeader = useTranslations('Header');
+  const [categories, setCategories] = useState<ServiceCategory[]>([]);
+  const [loadingCategories, setLoadingCategories] = useState(true);
   
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const q = query(collection(db, 'serviceCategories'), limit(4));
+        const querySnapshot = await getDocs(q);
+        const categoriesData: ServiceCategory[] = [];
+        querySnapshot.forEach((doc) => {
+          categoriesData.push({ id: doc.id, ...doc.data() } as ServiceCategory);
+        });
+        setCategories(categoriesData);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      } finally {
+        setLoadingCategories(false);
+      }
+    };
+    fetchCategories();
+  }, []);
+
   const features = [
     {
       icon: <HeartHandshake className="h-10 w-10 text-primary" />,
@@ -183,12 +208,20 @@ export default function Home() {
               {t('categoriesTitle')}
             </h2>
             <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-              {categories.map((category) => (
-                <Card key={category.nameKey} className="flex flex-col items-center justify-center p-6">
-                  <div className="text-primary">{category.icon}</div>
-                  <p className="mt-2 font-semibold">{t(category.nameKey as any)}</p>
-                </Card>
-              ))}
+              {loadingCategories ? (
+                Array.from({ length: 4 }).map((_, index) => (
+                    <Card key={index} className="flex flex-col items-center justify-center p-6 h-32">
+                       <Loader2 className="h-8 w-8 animate-spin text-muted-foreground"/>
+                    </Card>
+                ))
+              ) : (
+                categories.map((category) => (
+                    <Card key={category.id} className="flex flex-col items-center justify-center p-6 text-center">
+                    <div className="text-primary">{categoryIcons[category.icon || 'default']}</div>
+                    <p className="mt-2 font-semibold">{category.name.fr || category.slug}</p>
+                    </Card>
+                ))
+              )}
             </div>
           </div>
         </section>
