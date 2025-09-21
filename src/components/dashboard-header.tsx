@@ -19,6 +19,9 @@ import {
   CheckCheck,
   Wifi,
   Settings as SettingsIcon,
+  Monitor,
+  Sun,
+  Moon,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -28,6 +31,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
   DropdownMenuGroup,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal,
 } from './ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { useTranslations } from 'next-intl';
@@ -51,7 +58,6 @@ import { Dialog, DialogTrigger, DialogContent } from './ui/dialog';
 import { CreateTaskForm } from './create-task-form';
 import { useSettingsModal } from '@/context/settings-modal-context';
 
-
 export function DashboardHeader() {
   const t = useTranslations('Header');
   const tNav = useTranslations('DashboardNav');
@@ -62,7 +68,22 @@ export function DashboardHeader() {
   const [isOffline, setIsOffline] = useState(false);
   const [hasPendingChanges, setHasPendingChanges] = useState(false);
   const { setIsOpen: setSettingsModalOpen } = useSettingsModal();
+  const [theme, setThemeState] = React.useState<"theme-light" | "theme-dark" | "system">("system")
 
+  useEffect(() => {
+    const isDarkMode = document.documentElement.classList.contains("dark")
+    setThemeState(isDarkMode ? "theme-dark" : "theme-light")
+  }, [])
+
+  useEffect(() => {
+    const isDark =
+      theme === "theme-dark" ||
+      (theme === "system" &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    document.documentElement.classList[isDark ? "add" : "remove"]("dark")
+    document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    localStorage.setItem('imu_theme', theme);
+  }, [theme])
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -441,15 +462,29 @@ export function DashboardHeader() {
                     </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                    <DropdownMenuLabel>{t('favorites.title')}</DropdownMenuLabel>
-                    <DropdownMenuItem asChild>
-                        <Link href="/dashboard/stats">
-                            <Star className="mr-2 h-4 w-4"/>
-                            {t('favorites.myStats')}
-                        </Link>
-                    </DropdownMenuItem>
-                </DropdownMenuGroup>
+                <DropdownMenuSub>
+                    <DropdownMenuSubTrigger>
+                        <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                        <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                        <span className="ml-2">Theme</span>
+                    </DropdownMenuSubTrigger>
+                    <DropdownMenuPortal>
+                        <DropdownMenuSubContent>
+                            <DropdownMenuItem onClick={() => setThemeState("theme-light")}>
+                                <Sun className="mr-2 h-4 w-4" />
+                                <span>Clair</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setThemeState("theme-dark")}>
+                                <Moon className="mr-2 h-4 w-4" />
+                                <span>Sombre</span>
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => setThemeState("system")}>
+                                <Monitor className="mr-2 h-4 w-4" />
+                                <span>Système</span>
+                            </DropdownMenuItem>
+                        </DropdownMenuSubContent>
+                    </DropdownMenuPortal>
+                </DropdownMenuSub>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={signOut}>
                 <LogOut className="mr-2 h-4 w-4" />

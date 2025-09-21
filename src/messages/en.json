@@ -30,6 +30,12 @@
         "favorites": {
             "title": "Favorites",
             "myStats": "My Stats"
+        },
+        "theme": {
+            "title": "Theme",
+            "light": "Light",
+            "dark": "Dark",
+            "system": "System"
         }
     },
     "Footer": {
@@ -963,8 +969,3 @@
         }
     }
 }
-
-    
-
-    
-

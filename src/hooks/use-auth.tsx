@@ -87,21 +87,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const impersonatingUser = originalAdmin ? user : null;
 
-  useEffect(() => {
-    function setTheme(theme: string){
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('imu_theme', theme);
-    }
-    const saved = localStorage.getItem('imu_theme');
-    if(saved) {
-        setTheme(saved);
-    } else if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
-        setTheme('dark');
-    } else {
-        setTheme('light');
-    }
-  }, []);
-
   const fetchUserData = async (firebaseUser: FirebaseUser) => {
     try {
         const userDocRef = doc(db, 'users', firebaseUser.uid);
