@@ -31,6 +31,9 @@ export default function MyBookingsPage() {
         }
     }, [user, authLoading, router]);
 
+    const handleOpenSheet = (bookingId: string) => {
+        router.push(`?bookingId=${bookingId}`, { scroll: false });
+    };
 
     if (authLoading || loading || !user) {
         return (
@@ -89,9 +92,9 @@ export default function MyBookingsPage() {
                         {bookings.map((booking) => (
                             <TableRow key={booking.id}>
                                 <TableCell>
-                                    <Link href={`/dashboard/tasks/${booking.taskId}`} className="font-medium hover:underline">
+                                    <button onClick={() => router.push(`/dashboard/tasks?taskId=${booking.taskId}`)} className="font-medium hover:underline text-left">
                                         {booking.task?.title}
-                                    </Link>
+                                    </button>
                                     <div className="text-sm text-muted-foreground font-mono">{booking.taskId.substring(0,6)}...</div>
                                 </TableCell>
                                  <TableCell>
@@ -119,11 +122,9 @@ export default function MyBookingsPage() {
                                     <Badge variant={t(`statusVariants.${booking.status}`) as any}>{t(`status.${booking.status}`)}</Badge>
                                 </TableCell>
                                 <TableCell className="text-right">
-                                    <Button asChild variant="outline" size="sm">
-                                        <Link href={`/dashboard/bookings/${booking.id}`}>
-                                            <Eye className="mr-2 h-4 w-4" />
-                                            {t('table.details')}
-                                        </Link>
+                                    <Button variant="outline" size="sm" onClick={() => handleOpenSheet(booking.id)}>
+                                        <Eye className="mr-2 h-4 w-4" />
+                                        {t('table.details')}
                                     </Button>
                                 </TableCell>
                             </TableRow>

@@ -11,6 +11,7 @@ import { MobileBottomNav } from '@/components/mobile-bottom-nav';
 import { useRouter, useSearchParams } from '@/navigation';
 import { useState, useEffect } from 'react';
 import { TaskDetailSheet } from '@/components/task-detail-sheet';
+import { BookingDetailSheet } from '@/components/booking-detail-sheet';
 
 export default function DashboardLayout({
   children,
@@ -20,18 +21,30 @@ export default function DashboardLayout({
   const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
+  const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
 
   useEffect(() => {
     const taskIdFromUrl = searchParams.get('taskId');
+    const bookingIdFromUrl = searchParams.get('bookingId');
+    
     if (taskIdFromUrl) {
       setSelectedTaskId(taskIdFromUrl);
+      setSelectedBookingId(null);
     } else {
       setSelectedTaskId(null);
+    }
+
+    if (bookingIdFromUrl) {
+      setSelectedBookingId(bookingIdFromUrl);
+      setSelectedTaskId(null);
+    } else {
+      setSelectedBookingId(null);
     }
   }, [searchParams]);
 
   const handleCloseSheet = () => {
     setSelectedTaskId(null);
+    setSelectedBookingId(null);
     // Use window.history to remove the query param without causing a full re-render from the router.
     const newUrl = `${window.location.pathname}`;
     window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
@@ -55,6 +68,15 @@ export default function DashboardLayout({
             <TaskDetailSheet 
               taskId={selectedTaskId}
               open={!!selectedTaskId}
+              onOpenChange={(isOpen) => {
+                if (!isOpen) {
+                  handleCloseSheet();
+                }
+              }}
+            />
+            <BookingDetailSheet
+              bookingId={selectedBookingId}
+              open={!!selectedBookingId}
               onOpenChange={(isOpen) => {
                 if (!isOpen) {
                   handleCloseSheet();

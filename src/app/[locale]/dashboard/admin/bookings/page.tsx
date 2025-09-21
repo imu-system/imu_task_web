@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useAuth } from '@/hooks/use-auth';
@@ -16,10 +17,11 @@ import { Input } from '@/components/ui/input';
 
 const mockBookings: Booking[] = getBookings();
 
-export default function MyBookingsPage() {
+export default function AdminBookingsPage() {
     const { user, loading: authLoading } = useAuth();
     const router = useRouter();
     const t = useTranslations('MyBookingsPage');
+    const tAdmin = useTranslations('AdminBookingsPage');
     
     const [bookings, setBookings] = useState<Booking[]>(mockBookings);
     const [loading, setLoading] = useState(false);
@@ -30,6 +32,9 @@ export default function MyBookingsPage() {
         }
     }, [user, authLoading, router]);
 
+    const handleOpenSheet = (bookingId: string) => {
+        router.push(`?bookingId=${bookingId}`, { scroll: false });
+    };
 
     if (authLoading || loading || !user) {
         return (
@@ -62,7 +67,7 @@ export default function MyBookingsPage() {
                     {t('title')}
                 </h1>
                 <p className="text-muted-foreground">
-                {t('subtitle')}
+                    {tAdmin('subtitle')}
                 </p>
             </div>
         </div>
@@ -88,9 +93,9 @@ export default function MyBookingsPage() {
                         {bookings.map((booking) => (
                             <TableRow key={booking.id}>
                                 <TableCell>
-                                    <Link href={`/dashboard/tasks/${booking.taskId}`} className="font-medium hover:underline">
+                                    <button onClick={() => router.push(`/dashboard/tasks?taskId=${booking.taskId}`)} className="font-medium hover:underline text-left">
                                         {booking.task?.title}
-                                    </Link>
+                                    </button>
                                     <div className="text-sm text-muted-foreground font-mono">{booking.taskId.substring(0,6)}...</div>
                                 </TableCell>
                                  <TableCell>
@@ -118,11 +123,9 @@ export default function MyBookingsPage() {
                                     <Badge variant={t(`statusVariants.${booking.status}`) as any}>{t(`status.${booking.status}`)}</Badge>
                                 </TableCell>
                                 <TableCell className="text-right">
-                                    <Button asChild variant="outline" size="sm">
-                                        <Link href={`/dashboard/bookings/${booking.id}`}>
-                                            <Eye className="mr-2 h-4 w-4" />
-                                            {t('table.details')}
-                                        </Link>
+                                    <Button variant="outline" size="sm" onClick={() => handleOpenSheet(booking.id)}>
+                                        <Eye className="mr-2 h-4 w-4" />
+                                        {t('table.details')}
                                     </Button>
                                 </TableCell>
                             </TableRow>

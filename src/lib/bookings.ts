@@ -1,7 +1,10 @@
 
+
 import { Booking, BookingStatus, PaymentStatus, TaskStatus } from './types';
 import { getTasks } from './data';
 import { users } from './data';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from './firebase';
 
 const tasks = getTasks();
 const providers = users.filter(u => u.id === 'user2' || u.id === 'user3');
@@ -47,3 +50,31 @@ export const getBookings = (): Booking[] => [
         updatedAt: new Date('2024-08-20T10:05:00'),
     },
 ];
+
+export async function getBookingById(bookingId: string): Promise<Booking | null> {
+    // In a real app, this would fetch from Firestore.
+    // For now, we use mock data.
+    const booking = getBookings().find(b => b.id === bookingId);
+
+    // Simulate async fetching of related data if it wasn't already populated
+    if (booking) {
+        if (!booking.task) {
+            const taskRef = doc(db, 'tasks', booking.taskId);
+            const taskSnap = await getDoc(taskRef);
+            if(taskSnap.exists()) booking.task = taskSnap.data() as Task;
+        }
+        if (!booking.client) {
+            const clientRef = doc(db, 'users', booking.clientId);
+            const clientSnap = await getDoc(clientRef);
+            if(clientSnap.exists()) booking.client = clientSnap.data() as any;
+        }
+        if (!booking.provider) {
+             const providerRef = doc(db, 'users', booking.providerId);
+            const providerSnap = await getDoc(providerRef);
+            if(providerSnap.exists()) booking.provider = providerSnap.data() as any;
+        }
+    }
+    
+    return booking || null;
+}
+
