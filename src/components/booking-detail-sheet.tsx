@@ -50,7 +50,13 @@ export function BookingDetailSheet({ bookingId, open, onOpenChange }: BookingDet
                         <Loader2 className="h-16 w-16 animate-spin text-primary" />
                     </div>
                 ) : booking ? (
-                    <BookingDetailContent booking={booking} />
+                    <>
+                        <SheetHeader>
+                            <SheetTitle className="sr-only">{t('title')} {booking.id}</SheetTitle>
+                            <SheetDescription className="sr-only">Détails pour la réservation {booking.id}</SheetDescription>
+                        </SheetHeader>
+                        <BookingDetailContent booking={booking} />
+                    </>
                 ) : (
                     <SheetHeader>
                         <SheetTitle>{t('notFound')}</SheetTitle>

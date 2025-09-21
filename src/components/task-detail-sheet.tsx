@@ -97,7 +97,13 @@ export function TaskDetailSheet({ taskId, open, onOpenChange }: TaskDetailSheetP
                         <Loader2 className="h-16 w-16 animate-spin text-primary" />
                     </div>
                 ) : task ? (
-                    <TaskDetailContent task={task} offers={offers} />
+                    <>
+                        <SheetHeader>
+                            <SheetTitle className="sr-only">{task.title}</SheetTitle>
+                            <SheetDescription className="sr-only">Détails pour la tâche {task.title}</SheetDescription>
+                        </SheetHeader>
+                        <TaskDetailContent task={task} offers={offers} />
+                    </>
                 ) : (
                     <SheetHeader>
                         <SheetTitle>{t('notFound')}</SheetTitle>
