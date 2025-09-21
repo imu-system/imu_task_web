@@ -13,13 +13,13 @@ interface SettingsNavProps {
 }
 
 export function SettingsNav({ activeTab, onTabChange }: SettingsNavProps) {
-  const t = useTranslations('SettingsLayout');
+  const t = useTranslations('SettingsPage');
 
   const navLinks: { id: SettingsTab; label: string; icon: React.ReactNode }[] = [
-    { id: 'account', label: t('account'), icon: <User /> },
-    { id: 'security', label: t('security'), icon: <Shield /> },
-    { id: 'billing', label: t('billing'), icon: <CreditCard /> },
-    { id: 'privacy', label: t('privacy'), icon: <Lock /> },
+    { id: 'account', label: t('account.title'), icon: <User /> },
+    { id: 'security', label: t('security.title'), icon: <Shield /> },
+    { id: 'billing', label: t('billing.title'), icon: <CreditCard /> },
+    { id: 'privacy', label: t('privacy.title'), icon: <Lock /> },
   ];
 
   return (
