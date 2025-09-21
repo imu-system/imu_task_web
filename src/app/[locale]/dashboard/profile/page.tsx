@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -17,13 +18,14 @@ import { useState, useEffect } from "react";
 import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera, Lock, SatelliteDish, UserRound, Briefcase, Link as LinkIcon, File as FileIcon, GripVertical } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription, SheetFooter } from "@/components/ui/sheet";
 import AddressForm from "@/components/address-form";
 import { Badge } from "@/components/ui/badge";
 import { Link } from "@/navigation";
 import { Award, Shield } from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from "@/components/ui/alert-dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
 
 // Helper function to split string by comma and trim whitespace
 const stringToArray = (str: string | undefined | string[]): string[] => {
@@ -536,23 +538,26 @@ export default function ProfilePage() {
                         <CardTitle>{t('addressesTitle')}</CardTitle>
                         <CardDescription>{t('addressesDesc')}</CardDescription>
                     </div>
-                    <Dialog open={isAddressFormOpen} onOpenChange={setIsAddressFormOpen}>
-                        <DialogTrigger asChild>
+                    <Sheet open={isAddressFormOpen} onOpenChange={setIsAddressFormOpen}>
+                        <SheetTrigger asChild>
                             <Button type="button" variant="outline">
                                 <PlusCircle className="mr-2"/>
                                 {t('addAddress')}
                             </Button>
-                        </DialogTrigger>
-                        <DialogContent>
-                            <DialogHeader>
-                                <DialogTitle>{t('addressForm.title')}</DialogTitle>
-                            </DialogHeader>
-                            <AddressForm 
-                                onSave={(data) => console.log(data)}
-                                onClose={() => setIsAddressFormOpen(false)}
-                            />
-                        </DialogContent>
-                    </Dialog>
+                        </SheetTrigger>
+                        <SheetContent>
+                            <SheetHeader>
+                                <SheetTitle>{t('addressForm.title')}</SheetTitle>
+                                <SheetDescription/>
+                            </SheetHeader>
+                            <div className="py-4">
+                                <AddressForm 
+                                    onSave={(data) => console.log(data)}
+                                    onClose={() => setIsAddressFormOpen(false)}
+                                />
+                            </div>
+                        </SheetContent>
+                    </Sheet>
                 </div>
             </CardHeader>
             <CardContent className="space-y-4">
