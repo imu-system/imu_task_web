@@ -1,5 +1,6 @@
 
 import {createLocalizedPathnamesNavigation} from 'next-intl/navigation';
+import { useSearchParams as useNextSearchParams } from 'next/navigation';
 
 export const locales = ['en', 'fr', 'jp'] as const;
 export type Locale = (typeof locales)[number];
@@ -91,7 +92,9 @@ export const pathnames = {
 
 };
 
-export const {Link, redirect, usePathname, useRouter, useParams} =
-  createLocalizedPathnamesNavigation({locales, pathnames});
+const navigation = createLocalizedPathnamesNavigation({locales, pathnames});
 
-    
+export const {Link, redirect, usePathname, useRouter, useParams} = navigation;
+
+// Re-export useSearchParams to avoid confusion
+export const useSearchParams = useNextSearchParams;

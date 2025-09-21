@@ -8,7 +8,7 @@ import AuthGuard from '@/components/auth-guard';
 import ImpersonationBanner from '@/components/impersonation-banner';
 import OfflineBanner from '@/components/offline-banner';
 import { MobileBottomNav } from '@/components/mobile-bottom-nav';
-import { useRouter, useSearchParams } from 'next-intl/navigation';
+import { useRouter, useSearchParams } from '@/navigation';
 import { useState, useEffect } from 'react';
 import { TaskDetailSheet } from '@/components/task-detail-sheet';
 
