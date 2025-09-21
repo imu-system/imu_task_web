@@ -55,12 +55,6 @@ export default function DashboardPage() {
           </h1>
           <p className="text-muted-foreground">{t('welcomeSubtitle')}</p>
         </div>
-        <Button asChild>
-          <Link ref="/dashboard/tasks/new" href={'/'}>
-            <PlusCircle className="mr-2 h-4 w-4" />
-            {t('createTask')}
-          </Link>
-        </Button>
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
