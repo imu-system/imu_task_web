@@ -2,7 +2,7 @@ import {ReactNode} from 'react';
 import {notFound} from 'next/navigation';
 import {NextIntlClientProvider, useMessages} from 'next-intl';
 import {unstable_setRequestLocale} from 'next-intl/server';
-import {locales, type Locale} from '@/navigation';
+import {locales, type Locale} from '@/lib/locales';
 import { AuthProvider } from '@/hooks/use-auth';
 import { Toaster } from '@/components/ui/toaster';
 
