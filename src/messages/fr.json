@@ -303,7 +303,9 @@
             "makeOffer": "Faire une offre"
         },
         "providersRequired": "{count} prestataires requis",
-        "providersNeeded": "{accepted} / {required} prestataires"
+        "providersNeeded": "{accepted} / {required} prestataires",
+        "notFound": "Mission non trouvée",
+        "notFoundDescription": "La mission que vous cherchez n'existe pas ou a été supprimée."
     },
     "ProfilePage": {
         "title": "Mon Profil",
@@ -925,3 +927,5 @@
         }
     }
 }
+
+    

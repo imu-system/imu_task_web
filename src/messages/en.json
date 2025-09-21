@@ -303,7 +303,9 @@
             "makeOffer": "Make an Offer"
         },
         "providersRequired": "{count} providers required",
-        "providersNeeded": "{accepted} / {required} providers"
+        "providersNeeded": "{accepted} / {required} providers",
+        "notFound": "Task Not Found",
+        "notFoundDescription": "The task you are looking for does not exist or has been deleted."
     },
     "ProfilePage": {
         "title": "My Profile",
@@ -925,3 +927,5 @@
         }
     }
 }
+
+    

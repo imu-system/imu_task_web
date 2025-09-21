@@ -155,7 +155,9 @@
     },
     "TaskDetailPage": {
         "providersRequired": "{count}人のプロバイダーが必要です",
-        "providersNeeded": "{accepted} / {required} プロバイダー"
+        "providersNeeded": "{accepted} / {required} プロバイダー",
+        "notFound": "タスクが見つかりません",
+        "notFoundDescription": "お探しのタスクは存在しないか、削除されました。"
     },
     "TaskStatusTimeline": {
         "published": "公開済み",
@@ -571,3 +573,5 @@
         }
     }
 }
+
+    
