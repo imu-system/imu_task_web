@@ -391,24 +391,36 @@ export function DashboardHeader() {
                 <DropdownMenuSeparator />
               </>
             )}
-            <DropdownMenuItem asChild>
-              <Link href="/dashboard">
-                <LayoutGrid className="mr-2 h-4 w-4" />
-                <span>{t('dashboard')}</span>
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href="/dashboard/profile">
-                <User className="mr-2 h-4 w-4" />
-                <span>{t('profile')}</span>
-              </Link>
-            </DropdownMenuItem>
-             <DropdownMenuItem asChild>
-              <Link href="/dashboard/admin/support/tickets">
-                <LifeBuoy className="mr-2 h-4 w-4" />
-                <span>{t('support')}</span>
-              </Link>
-            </DropdownMenuItem>
+            <DropdownMenuGroup>
+                <DropdownMenuItem asChild>
+                <Link href="/dashboard">
+                    <LayoutGrid className="mr-2 h-4 w-4" />
+                    <span>{t('dashboard')}</span>
+                </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                <Link href="/dashboard/profile">
+                    <User className="mr-2 h-4 w-4" />
+                    <span>{t('profile')}</span>
+                </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                <Link href="/dashboard/admin/support/tickets">
+                    <LifeBuoy className="mr-2 h-4 w-4" />
+                    <span>{t('support')}</span>
+                </Link>
+                </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+                <DropdownMenuLabel>{t('favorites.title')}</DropdownMenuLabel>
+                <DropdownMenuItem asChild>
+                    <Link href="/dashboard/stats">
+                        <Star className="mr-2 h-4 w-4"/>
+                        {t('favorites.myStats')}
+                    </Link>
+                </DropdownMenuItem>
+            </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={signOut}>
               <LogOut className="mr-2 h-4 w-4" />

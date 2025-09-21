@@ -26,7 +26,11 @@
             "offline": "Hors ligne",
             "pending": "Changements en attente de synchronisation"
         },
-        "availableForMissions": "Disponible pour de nouvelles missions"
+        "availableForMissions": "Disponible pour de nouvelles missions",
+        "favorites": {
+            "title": "Favoris",
+            "myStats": "Mes statistiques"
+        }
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. Tous droits réservés.",

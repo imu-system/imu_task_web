@@ -26,7 +26,11 @@
             "offline": "オフライン",
             "pending": "同期保留中の変更"
         },
-        "availableForMissions": "新しいミッションに対応可能"
+        "availableForMissions": "新しいミッションに対応可能",
+        "favorites": {
+            "title": "お気に入り",
+            "myStats": "私の統計"
+        }
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. 無断複写・転載を禁じます。",

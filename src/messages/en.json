@@ -26,7 +26,11 @@
             "offline": "Offline",
             "pending": "Changes pending sync"
         },
-        "availableForMissions": "Available for new missions"
+        "availableForMissions": "Available for new missions",
+        "favorites": {
+            "title": "Favorites",
+            "myStats": "My Stats"
+        }
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. All rights reserved.",
