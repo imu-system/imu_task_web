@@ -1,5 +1,4 @@
 
-
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -26,6 +25,10 @@ import { Award, Shield } from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from "@/components/ui/alert-dialog";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription, DialogFooter, DialogClose } from "@/components/ui/dialog";
+import { MultiSelect } from "@/components/ui/multi-select";
+import { TagInput } from "@/components/ui/tag-input";
+import { Form, FormControl, FormField } from "@/components/ui/form";
+
 
 // Helper function to split string by comma and trim whitespace
 const stringToArray = (str: string | undefined | string[]): string[] => {
@@ -49,6 +52,14 @@ const mockEarnedBadges = [
 const mockPortfolioItems = [
     { id: 'p1', title: 'Logo pour une startup food-tech', type: 'file', url: 'https://picsum.photos/seed/logo/400/300', description: 'Création d\'une identité visuelle complète.' },
     { id: 'p2', title: 'Site vitrine en React', type: 'link', url: 'https://example.com', description: 'Développement d\'un site performant avec Next.js.' },
+];
+
+const availableLanguages = [
+    { value: 'fr', label: 'Français' },
+    { value: 'en', label: 'English' },
+    { value: 'es', label: 'Español' },
+    { value: 'de', label: 'Deutsch' },
+    { value: 'it', label: 'Italiano' },
 ];
 
 
@@ -182,6 +193,26 @@ export default function ProfilePage() {
       setIsSaving(false);
     }
   };
+
+  const handleQuickSave = async (field: 'languages' | 'skills', value: string[]) => {
+      if(!user) return;
+      
+      const profileRef = doc(db, 'profiles', user.uid);
+      try {
+          await updateDoc(profileRef, {
+              [field]: value,
+              updatedAt: serverTimestamp()
+          });
+          toast({
+              title: t('toastSuccessTitle'),
+          })
+      } catch (error) {
+           toast({
+              variant: "destructive",
+              title: t('toastErrorTitle'),
+            });
+      }
+  }
 
   const handleSavePortfolioItem = (data: any) => {
     console.log("Saving portfolio item:", data);
@@ -409,12 +440,40 @@ export default function ProfilePage() {
                         </div>
                         <p className="text-muted-foreground">{user.profile?.bio || t('noBio')}</p>
                         <div className="flex flex-wrap items-center justify-center sm:justify-start gap-4 text-sm text-muted-foreground pt-2">
-                             {user.profile?.languages && user.profile.languages.length > 0 && (
-                                <div className="flex items-center gap-2">
-                                    <Languages className="h-4 w-4"/>
-                                    <span>{user.profile.languages.join(', ')}</span>
-                                </div>
-                            )}
+                             <div className="flex items-center gap-2">
+                                <Dialog>
+                                    <DropdownMenu>
+                                        <div className="flex items-center gap-2">
+                                            <Languages className="h-4 w-4"/>
+                                            <span>{user.profile?.languages?.join(', ') || t('languagesPlaceholder')}</span>
+                                            <DropdownMenuTrigger asChild>
+                                                <Button variant="ghost" size="icon" className="h-6 w-6"><Edit className="h-3 w-3"/></Button>
+                                            </DropdownMenuTrigger>
+                                        </div>
+                                        <DropdownMenuContent>
+                                            <DialogTrigger asChild><DropdownMenuItem>{t('edit')}</DropdownMenuItem></DialogTrigger>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                    <DialogContent>
+                                        <DialogHeader><DialogTitle>{t('languages')}</DialogTitle></DialogHeader>
+                                        <Form {...form}>
+                                            <form onSubmit={handleSubmit(d => handleQuickSave('languages', stringToArray(d.languages)))}>
+                                                <FormField control={form.control} name="languages" render={({field}) => (
+                                                    <MultiSelect
+                                                        options={availableLanguages}
+                                                        selected={field.value}
+                                                        onChange={field.onChange}
+                                                        placeholder={t('languagesPlaceholder')}
+                                                    />
+                                                )}/>
+                                                <DialogFooter className="mt-4">
+                                                    <Button type="submit">{t('saveChanges')}</Button>
+                                                </DialogFooter>
+                                            </form>
+                                        </Form>
+                                    </DialogContent>
+                                </Dialog>
+                            </div>
                              {user.profile?.city && (
                                 <div className="flex items-center gap-2">
                                     <MapPin className="h-4 w-4"/>
@@ -428,16 +487,46 @@ export default function ProfilePage() {
                                 </div>
                             )}
                         </div>
-                        <div className="flex flex-wrap gap-2 pt-2 justify-center sm:justify-start">
+                         <div className="flex flex-wrap gap-2 pt-2 justify-center sm:justify-start">
                             {user.profile?.verifiedBadges?.map(badge => (
                                 <Badge key={badge} variant="secondary" className="bg-green-100 text-green-800">
                                     <ShieldCheck className="h-4 w-4 mr-1"/>
                                     {badge}
                                 </Badge>
                             ))}
-                            {user.profile?.skills?.map(skill => (
-                                <Badge key={skill}>{skill}</Badge>
-                            ))}
+                            
+                             <Dialog>
+                                <DropdownMenu>
+                                    <div className="flex items-center gap-2">
+                                        {user.profile?.skills?.map(skill => (
+                                            <Badge key={skill}>{skill}</Badge>
+                                        ))}
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="ghost" size="icon" className="h-6 w-6"><Edit className="h-3 w-3"/></Button>
+                                        </DropdownMenuTrigger>
+                                    </div>
+                                    <DropdownMenuContent>
+                                        <DialogTrigger asChild><DropdownMenuItem>{t('edit')}</DropdownMenuItem></DialogTrigger>
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                                <DialogContent>
+                                    <DialogHeader><DialogTitle>{t('skills')}</DialogTitle></DialogHeader>
+                                    <Form {...form}>
+                                        <form onSubmit={handleSubmit(d => handleQuickSave('skills', stringToArray(d.skills)))}>
+                                            <FormField control={form.control} name="skills" render={({field}) => (
+                                                <TagInput
+                                                    tags={field.value}
+                                                    onChange={field.onChange}
+                                                    placeholder={t('skillsPlaceholder')}
+                                                />
+                                            )}/>
+                                            <DialogFooter className="mt-4">
+                                                <Button type="submit">{t('saveChanges')}</Button>
+                                            </DialogFooter>
+                                        </form>
+                                    </Form>
+                                </DialogContent>
+                            </Dialog>
                         </div>
                     </div>
               </div>
@@ -593,3 +682,5 @@ export default function ProfilePage() {
     </div>
   );
 }
+
+    
