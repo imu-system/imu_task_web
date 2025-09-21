@@ -17,7 +17,9 @@
         "setAvailability": "Définir disponibilités",
         "settings": "Paramètres",
         "support": "Support",
-        "suggestedAction": "Créer une mission 'Courses' (modèle)"
+        "suggestedAction": "Créer une mission 'Courses' (modèle)",
+        "notificationsTitle": "Notifications",
+        "viewAllNotifications": "Voir toutes les notifications"
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. Tous droits réservés.",

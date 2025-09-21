@@ -14,6 +14,8 @@ import {
   Search,
   ChevronDown,
   Sparkles,
+  Handshake,
+  Star,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -22,6 +24,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuGroup,
 } from './ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { useTranslations } from 'next-intl';
@@ -208,12 +211,53 @@ export function DashboardHeader() {
           </Link>
         </Button>
         
-        <Button asChild variant="ghost" size="icon">
-          <Link href="/dashboard/notifications">
-            <Bell />
-            <span className="sr-only">{tNav('notifications')}</span>
-          </Link>
-        </Button>
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                    <Bell />
+                    <span className="sr-only">{tNav('notifications')}</span>
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-80">
+                <DropdownMenuLabel>{t('notificationsTitle')}</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuGroup>
+                     <DropdownMenuItem>
+                        <div className="flex items-start gap-3">
+                            <Handshake className="h-4 w-4 mt-1 text-muted-foreground"/>
+                            <div className="flex-1">
+                                <p className="text-sm font-medium">3 nouvelles offres pour votre mission 'Jardinage'</p>
+                                <p className="text-xs text-muted-foreground">il y a 5 minutes</p>
+                            </div>
+                        </div>
+                     </DropdownMenuItem>
+                     <DropdownMenuItem>
+                        <div className="flex items-start gap-3">
+                            <Star className="h-4 w-4 mt-1 text-muted-foreground"/>
+                            <div className="flex-1">
+                                <p className="text-sm font-medium">Vous avez reçu un nouvel avis de la part de Marie D.</p>
+                                <p className="text-xs text-muted-foreground">il y a 1 heure</p>
+                            </div>
+                        </div>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                        <div className="flex items-start gap-3">
+                            <MessageSquare className="h-4 w-4 mt-1 text-muted-foreground"/>
+                            <div className="flex-1">
+                                <p className="text-sm font-medium">Nouveau message de Jean P. concernant la mission 'Aide aux courses'</p>
+                                <p className="text-xs text-muted-foreground">il y a 3 heures</p>
+                            </div>
+                        </div>
+                    </DropdownMenuItem>
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                   <Link href="/dashboard/notifications" className="justify-center">
+                        {t('viewAllNotifications')}
+                   </Link>
+                </DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

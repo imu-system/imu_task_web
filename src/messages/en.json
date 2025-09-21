@@ -17,7 +17,9 @@
         "setAvailability": "Set availability",
         "settings": "Settings",
         "support": "Support",
-        "suggestedAction": "Create 'Shopping' task (template)"
+        "suggestedAction": "Create 'Shopping' task (template)",
+        "notificationsTitle": "Notifications",
+        "viewAllNotifications": "View all notifications"
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. All rights reserved.",
