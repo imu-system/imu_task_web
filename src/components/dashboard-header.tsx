@@ -64,8 +64,10 @@ export function DashboardHeader() {
   if (!user) return null;
   
   const isClient = user.roles.includes(UserRole.client);
+  const isProvider = user.roles.includes(UserRole.provider);
 
   const CreateButton = () => {
+    // Client-first approach: If user is client (even if also provider), primary action is creating a task.
     if (isClient) {
       return (
          <div className="flex items-center">
@@ -91,7 +93,33 @@ export function DashboardHeader() {
       )
     }
 
-    // Default fallback
+    // If user is ONLY a provider (not a client)
+    if (isProvider) {
+        return (
+            <div className="flex items-center">
+                <Button asChild size="sm" className="gap-1 rounded-r-none">
+                    <Link href="/dashboard/availability">
+                        <PlusCircle className="h-4 w-4" />
+                        <span className="hidden sm:inline">{t('setAvailability')}</span>
+                    </Link>
+                </Button>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button size="sm" className="rounded-l-none px-2 border-l">
+                            <ChevronDown className="h-4 w-4"/>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuItem asChild>
+                            <Link href="/dashboard/tasks/new">{t('createTask')}</Link>
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </div>
+        )
+    }
+
+    // Default fallback for users with other roles (e.g., admin only)
     return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
