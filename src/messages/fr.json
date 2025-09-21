@@ -68,7 +68,20 @@
         "categoryAdmin": "Aide administrative",
         "readyToStartTitle": "Prêt à commencer ?",
         "readyToStartDesc": "Rejoignez une communauté bienveillante et solidaire.",
-        "signUpFree": "Inscrivez-vous gratuitement"
+        "signUpFree": "Inscrivez-vous gratuitement",
+        "testimonials": {
+            "title": "Ce que nos membres en pensent",
+            "testimonial1": {
+                "text": "Grâce à ImuTask, j'ai trouvé Lucas, un étudiant adorable qui vient tondre ma pelouse toutes les deux semaines. C'est un vrai soulagement et nos discussions sont toujours un plaisir !",
+                "name": "Marie-Hélène, 72 ans",
+                "role": "Cliente"
+            },
+            "testimonial2": {
+                "text": "Je finance une partie de mes études en faisant des petites missions sur ImuTask. C'est flexible, bien payé, et j'ai l'impression d'être vraiment utile à mes voisins.",
+                "name": "Lucas, 21 ans",
+                "role": "Prestataire"
+            }
+        }
     },
     "LanguageSwitcher": {
         "changeLanguage": "Changer de langue",

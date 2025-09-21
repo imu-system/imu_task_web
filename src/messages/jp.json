@@ -68,7 +68,20 @@
         "categoryAdmin": "事務手伝い",
         "readyToStartTitle": "準備はいいですか？",
         "readyToStartDesc": "思いやりのある支援的なコミュニティに参加しましょう。",
-        "signUpFree": "無料でサインアップ"
+        "signUpFree": "無料でサインアップ",
+        "testimonials": {
+            "title": "メンバーの声",
+            "testimonial1": {
+                "text": "ImuTaskのおかげで、2週間ごとに芝生を刈りに来てくれる素敵な学生のルーカス君を見つけました。本当に助かりますし、彼とのおしゃべりもいつも楽しいです！",
+                "name": "マリー＝エレーヌ、72歳",
+                "role": "クライアント"
+            },
+            "testimonial2": {
+                "text": "ImuTaskでちょっとした仕事をして、学費の一部を稼いでいます。柔軟に働けるし、給料もいいし、近所の人たちの役に立っていると実感できます。",
+                "name": "ルーカス、21歳",
+                "role": "プロバイダー"
+            }
+        }
     },
     "LanguageSwitcher": {
         "changeLanguage": "言語を変更",

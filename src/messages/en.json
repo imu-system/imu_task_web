@@ -68,7 +68,20 @@
         "categoryAdmin": "Administrative Help",
         "readyToStartTitle": "Ready to get started?",
         "readyToStartDesc": "Join a caring and supportive community.",
-        "signUpFree": "Sign up for free"
+        "signUpFree": "Sign up for free",
+        "testimonials": {
+            "title": "What our members think",
+            "testimonial1": {
+                "text": "Thanks to ImuTask, I found Lucas, a lovely student who comes to mow my lawn every two weeks. It's a real relief and our chats are always a pleasure!",
+                "name": "Marie-Hélène, 72",
+                "role": "Client"
+            },
+            "testimonial2": {
+                "text": "I'm financing part of my studies by doing small jobs on ImuTask. It's flexible, well-paid, and I feel like I'm really being useful to my neighbors.",
+                "name": "Lucas, 21",
+                "role": "Provider"
+            }
+        }
     },
     "LanguageSwitcher": {
         "changeLanguage": "Change language",
