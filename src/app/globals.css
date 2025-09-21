@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -23,7 +24,6 @@
     --border: 214 32% 91%;
     --input: 214 32% 91%;
     --ring: 243 78% 61%;
-    --radius: 0.5rem;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -40,7 +40,6 @@
 
     /* Glass tokens (light) */
     --glass-bg: rgba(255, 255, 255, 0.6);
-    --glass-bg-dark: rgba(255, 255, 255, 0.06);
     --glass-border: rgba(255, 255, 255, 0.12);
     --glass-shadow: 0 6px 20px rgba(2, 6, 23, 0.08);
     --glass-blur: 12px;
@@ -81,7 +80,6 @@
 
     /* Glass tokens (dark) */
     --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-bg-dark: rgba(255, 255, 255, 0.04);
     --glass-border: rgba(255, 255, 255, 0.06);
     --glass-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
   }
@@ -121,12 +119,10 @@
   }
 
   /* Fallback for browsers without backdrop-filter support */
-  @supports not (backdrop-filter: blur(12px)) {
-    .imu-glass {
-      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.5));
-    }
-    [data-theme="dark"] .imu-glass {
-      background: linear-gradient(180deg, rgba(30, 41, 59, 0.7), rgba(30, 41, 59, 0.6));
-    }
+  .no-backdrop .imu-glass {
+    background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.5));
+  }
+  .no-backdrop[data-theme="dark"] .imu-glass {
+    background: linear-gradient(180deg, rgba(30, 41, 59, 0.7), rgba(30, 41, 59, 0.6));
   }
 }

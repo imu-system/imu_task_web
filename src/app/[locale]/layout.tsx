@@ -1,7 +1,7 @@
+
 import {ReactNode} from 'react';
 import {notFound} from 'next/navigation';
 import {NextIntlClientProvider, useMessages} from 'next-intl';
-import {unstable_setRequestLocale} from 'next-intl/server';
 import {locales, type Locale} from '@/lib/locales';
 import { AuthProvider } from '@/hooks/use-auth';
 import { Toaster } from '@/components/ui/toaster';
@@ -20,8 +20,8 @@ export default function LocaleLayout({children, params}: Props) {
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as Locale)) notFound();
 
-  // Enable static rendering
-  unstable_setRequestLocale(locale);
+  // No need for unstable_setRequestLocale in a client component.
+  // The middleware already handles locale detection.
 
   const messages = useMessages();
 

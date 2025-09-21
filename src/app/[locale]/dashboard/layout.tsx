@@ -26,6 +26,19 @@ export default function DashboardLayout({
   const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);
 
   useEffect(() => {
+    function supportsBackdropFilter(){
+      const el = document.createElement('div');
+      el.style.backdropFilter = 'blur(1px)';
+      return el.style.backdropFilter !== '';
+    }
+
+    if(!supportsBackdropFilter()){
+      document.documentElement.classList.add('no-backdrop');
+    }
+  }, []);
+
+
+  useEffect(() => {
     const taskIdFromUrl = searchParams.get('taskId');
     const bookingIdFromUrl = searchParams.get('bookingId');
     
