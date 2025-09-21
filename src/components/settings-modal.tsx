@@ -9,9 +9,28 @@ import {
 } from '@/components/ui/dialog';
 import { SettingsNav, type SettingsTab } from './settings-nav';
 import { useState } from 'react';
+import AccountSettings from './settings/account-settings';
+import SecuritySettings from './settings/security-settings';
+import BillingSettings from './settings/billing-settings';
+import PrivacySettings from './settings/privacy-settings';
 
 export function SettingsModal({ children }: { children: React.ReactNode }) {
   const [activeTab, setActiveTab] = useState<SettingsTab>('account');
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'account':
+        return <AccountSettings />;
+      case 'security':
+        return <SecuritySettings />;
+      case 'billing':
+        return <BillingSettings />;
+      case 'privacy':
+        return <PrivacySettings />;
+      default:
+        return null;
+    }
+  };
 
   return (
     <Dialog>
@@ -25,7 +44,7 @@ export function SettingsModal({ children }: { children: React.ReactNode }) {
                  <SettingsNav activeTab={activeTab} onTabChange={setActiveTab} />
             </div>
             <div className="w-[70%] overflow-y-auto pr-6">
-                <p>Le contenu des paramètres pour l'onglet '{activeTab}' s'affichera ici.</p>
+                {renderContent()}
             </div>
         </div>
       </DialogContent>
