@@ -11,7 +11,6 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarFooter,
   SidebarSeparator,
   SidebarGroup,
   SidebarGroupLabel,
@@ -21,7 +20,6 @@ import {
   LayoutGrid,
   LogOut,
   MessageSquare,
-  PlusCircle,
   UserCircle,
   Wallet,
   Zap,
@@ -52,19 +50,18 @@ import {
   Settings,
   BookCopy,
   Code,
-  Webhook,
   ChevronRight,
   Users2,
   HeartHandshake,
   Landmark,
   Palette,
+  MoreVertical,
 } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
 import { UserRole } from '@/lib/types';
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from './ui/dropdown-menu';
-import { DashboardHeader } from './dashboard-header';
 import { useSettingsModal } from '@/context/settings-modal-context';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from './ui/collapsible';
 import { useState } from 'react';
@@ -192,59 +189,97 @@ export function DashboardNav() {
             <span className="font-headline">ImuTask</span>
           </Link>
         </SidebarHeader>
-        <SidebarContent>
-          <SidebarMenu>
-            {navItems.map((item) => (
-              <SidebarMenuItem key={item.href}>
-                <Link href={item.href}>
-                  <SidebarMenuButton
-                    isActive={item.exact ? pathname === item.href : pathname.startsWith(item.href)}
-                    className="w-full justify-start"
-                  >
-                    {item.icon}
-                    <span>{item.label}</span>
-                  </SidebarMenuButton>
-                </Link>
-              </SidebarMenuItem>
-            ))}
-          </SidebarMenu>
-          {isProvider && (
-              <SidebarGroup className="p-0">
-                  <SidebarSeparator className="my-2"/>
-                  <SidebarGroupLabel className="px-2">{t('provider')}</SidebarGroupLabel>
-                  <SidebarMenu className="px-2">
-                      {providerNavItems.map((item) => (
-                          <SidebarMenuItem key={item.href}>
-                              <Link href={item.href}>
-                                  <SidebarMenuButton
-                                  isActive={pathname.startsWith(item.href)}
-                                  className="w-full justify-start"
-                                  >
-                                  {item.icon}
-                                  <span>{item.label}</span>
-                                  </SidebarMenuButton>
-                              </Link>
-                          </SidebarMenuItem>
-                      ))}
-                  </SidebarMenu>
-              </SidebarGroup>
-          )}
-          {isAdmin && (
-              <SidebarGroup className="p-0">
-                  <SidebarSeparator className="my-2"/>
-                   <div className="px-2">
-                     <SidebarGroupLabel>{t('admin')}</SidebarGroupLabel>
-                     <SidebarMenu>
-                         <SidebarMenuItem>
-                            <Link href="/dashboard/admin">
-                                <SidebarMenuButton isActive={pathname === '/dashboard/admin'}>
-                                    <Shield />
-                                    <span>{t('dashboard')}</span>
-                                </SidebarMenuButton>
-                            </Link>
-                        </SidebarMenuItem>
+
+        <SidebarContent className="p-2 space-y-2">
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" className="w-full justify-start items-center gap-3 p-2 h-auto text-left">
+                        <Avatar className="h-9 w-9">
+                            <AvatarImage src={user?.photoURL || undefined} alt="User avatar" />
+                            <AvatarFallback>
+                                {user?.profile?.displayName?.charAt(0).toUpperCase() || user?.email?.charAt(0).toUpperCase()}
+                            </AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1 truncate">
+                            <p className="font-semibold truncate text-sm">{user?.profile?.displayName}</p>
+                            <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+                        </div>
+                        <MoreVertical className="h-4 w-4 text-muted-foreground"/>
+                    </Button>
+                </DropdownMenuTrigger>
+                 <DropdownMenuContent className="w-56" align="start">
+                    <DropdownMenuItem asChild>
+                        <Link href="/dashboard/profile">
+                            <UserCircle className="mr-2 h-4 w-4" />
+                            <span>{t('profile')}</span>
+                        </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setIsOpen(true)}>
+                        <Settings className="mr-2 h-4 w-4" />
+                        <span>{t('settings')}</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem onClick={handleSignOut}>
+                        <LogOut className="mr-2 h-4 w-4" />
+                        <span>{t('logout')}</span>
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+
+            <SidebarSeparator/>
+
+            <SidebarMenu>
+                {navItems.map((item) => (
+                <SidebarMenuItem key={item.href}>
+                    <Link href={item.href}>
+                    <SidebarMenuButton
+                        isActive={item.exact ? pathname === item.href : pathname.startsWith(item.href)}
+                        className="w-full justify-start"
+                    >
+                        {item.icon}
+                        <span>{item.label}</span>
+                    </SidebarMenuButton>
+                    </Link>
+                </SidebarMenuItem>
+                ))}
+            </SidebarMenu>
+            {isProvider && (
+                <SidebarGroup className="p-0">
+                    <SidebarSeparator className="my-2"/>
+                    <SidebarGroupLabel className="px-2">{t('provider')}</SidebarGroupLabel>
+                    <SidebarMenu className="px-2">
+                        {providerNavItems.map((item) => (
+                            <SidebarMenuItem key={item.href}>
+                                <Link href={item.href}>
+                                    <SidebarMenuButton
+                                    isActive={pathname.startsWith(item.href)}
+                                    className="w-full justify-start"
+                                    >
+                                    {item.icon}
+                                    <span>{item.label}</span>
+                                    </SidebarMenuButton>
+                                </Link>
+                            </SidebarMenuItem>
+                        ))}
                     </SidebarMenu>
-                   </div>
+                </SidebarGroup>
+            )}
+            {isAdmin && (
+                <SidebarGroup className="p-0">
+                    <SidebarSeparator className="my-2"/>
+                    <div className="px-2">
+                        <SidebarGroupLabel>{t('admin')}</SidebarGroupLabel>
+                        <SidebarMenu>
+                            <SidebarMenuItem>
+                                <Link href="/dashboard/admin">
+                                    <SidebarMenuButton isActive={pathname === '/dashboard/admin'}>
+                                        <Shield />
+                                        <span>{t('dashboard')}</span>
+                                    </SidebarMenuButton>
+                                </Link>
+                            </SidebarMenuItem>
+                        </SidebarMenu>
+                    </div>
                     
                     <div className="space-y-1 mt-2">
                         {Object.entries(adminNavGroups).map(([key, groupData]) => (
@@ -252,33 +287,9 @@ export function DashboardNav() {
                         ))}
                     </div>
 
-              </SidebarGroup>
-          )}
+                </SidebarGroup>
+            )}
         </SidebarContent>
-        <SidebarFooter className='mt-auto'>
-          <SidebarMenu>
-              <SidebarMenuItem>
-                  <Link href="/dashboard/profile">
-                      <SidebarMenuButton isActive={pathname === '/dashboard/profile'}>
-                          <UserCircle />
-                          <span>{t('profile')}</span>
-                      </SidebarMenuButton>
-                  </Link>
-              </SidebarMenuItem>
-              <SidebarMenuItem>
-                <SidebarMenuButton onClick={() => setIsOpen(true)} isActive={pathname.startsWith('/dashboard/settings')}>
-                    <Settings />
-                    <span>{t('settings')}</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-                <SidebarMenuItem>
-                  <SidebarMenuButton onClick={handleSignOut}>
-                      <LogOut />
-                      <span>{t('logout')}</span>
-                  </SidebarMenuButton>
-              </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarFooter>
       </Sidebar>
   );
 }
