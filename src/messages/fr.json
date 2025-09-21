@@ -81,6 +81,11 @@
                 "name": "Lucas, 21 ans",
                 "role": "Prestataire"
             }
+        },
+        "stats": {
+            "missions": "Missions réalisées",
+            "members": "Membres actifs",
+            "rating": "Note moyenne des prestataires"
         }
     },
     "LanguageSwitcher": {

@@ -22,7 +22,8 @@ import {
   PawPrint,
   Loader2,
   Users,
-  HardHat
+  HardHat,
+  Star,
 } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from '@/navigation';
@@ -144,6 +145,28 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </section>
+
+        <section id="stats" className="w-full py-12 md:py-24 lg:py-32 bg-primary/5">
+            <div className="container mx-auto px-4 md:px-6">
+                <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3 text-center">
+                    <div className="flex flex-col items-center">
+                        <HardHat className="h-10 w-10 text-primary mb-4" />
+                        <p className="text-4xl font-bold tracking-tighter">1500+</p>
+                        <p className="text-muted-foreground">{t('stats.missions')}</p>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <Users className="h-10 w-10 text-primary mb-4" />
+                        <p className="text-4xl font-bold tracking-tighter">800+</p>
+                        <p className="text-muted-foreground">{t('stats.members')}</p>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <Star className="h-10 w-10 text-primary mb-4" />
+                        <p className="text-4xl font-bold tracking-tighter">4.8/5</p>
+                        <p className="text-muted-foreground">{t('stats.rating')}</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="how-it-works" className="w-full py-12 md:py-24 lg:py-32 bg-card">

@@ -81,6 +81,11 @@
                 "name": "Lucas, 21",
                 "role": "Provider"
             }
+        },
+        "stats": {
+            "missions": "Missions completed",
+            "members": "Active members",
+            "rating": "Average provider rating"
         }
     },
     "LanguageSwitcher": {
