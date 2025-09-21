@@ -12,6 +12,7 @@ import {
   PlusCircle,
   MessageSquare,
   Search,
+  ChevronDown,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -28,13 +29,15 @@ import { Button } from './ui/button';
 import { useSidebar } from './ui/sidebar';
 import { CommandMenu } from './command-menu';
 import React from 'react';
+import { UserRole } from '@/lib/types';
+import { cn } from '@/lib/utils';
 
 export function DashboardHeader() {
   const t = useTranslations('Header');
   const tNav = useTranslations('DashboardNav');
   const { user, signOut } = useAuth();
   const { toggleSidebar } = useSidebar();
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -59,6 +62,56 @@ export function DashboardHeader() {
 
 
   if (!user) return null;
+  
+  const isClient = user.roles.includes(UserRole.client);
+
+  const CreateButton = () => {
+    if (isClient) {
+      return (
+         <div className="flex items-center">
+            <Button asChild size="sm" className="gap-1 rounded-r-none">
+              <Link href="/dashboard/tasks/new">
+                <PlusCircle className="h-4 w-4" />
+                <span className="hidden sm:inline">{t('createTask')}</span>
+              </Link>
+            </Button>
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Button size="sm" className="rounded-l-none px-2 border-l">
+                        <ChevronDown className="h-4 w-4"/>
+                    </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                    <DropdownMenuItem asChild>
+                        <Link href="/dashboard/availability">{t('setAvailability')}</Link>
+                    </DropdownMenuItem>
+                </DropdownMenuContent>
+            </DropdownMenu>
+        </div>
+      )
+    }
+
+    // Default fallback
+    return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="sm" className="gap-1">
+              <PlusCircle className="h-4 w-4" />
+              <span className="hidden sm:inline">{t('create')}</span>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/tasks/new">{t('createTask')}</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href="/dashboard/availability">{t('setAvailability')}</Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+    )
+  }
+
 
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
@@ -75,7 +128,10 @@ export function DashboardHeader() {
       {/* Command Menu */}
       <Button
         variant="outline"
-        className="relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
+        className={cn(
+          "relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64",
+          "hidden md:flex" 
+        )}
         onClick={() => setOpen(true)}
       >
         <Search className="h-4 w-4 mr-2" />
@@ -93,22 +149,7 @@ export function DashboardHeader() {
       </div>
 
       <div className="flex items-center gap-2">
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="sm" className="gap-1">
-              <PlusCircle className="h-4 w-4" />
-              <span className="hidden sm:inline">{t('create')}</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuItem asChild>
-              <Link href="/dashboard/tasks/new">{t('createTask')}</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href="/dashboard/availability">{t('setAvailability')}</Link>
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <CreateButton/>
 
         <Button asChild variant="ghost" size="icon">
           <Link href="/dashboard/messages">
