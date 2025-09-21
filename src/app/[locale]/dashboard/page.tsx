@@ -39,6 +39,11 @@ export default function DashboardPage() {
     setLoading(false);
   }, [user]);
 
+  const handleOpenSheet = (taskId: string) => {
+    // This is now possible because the sheet state is in the parent layout
+    router.push(`?taskId=${taskId}`, { scroll: false });
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
@@ -76,7 +81,7 @@ export default function DashboardPage() {
                         <TaskCard 
                             key={task.id} 
                             task={task} 
-                            onOpenSheet={(taskId) => router.push(`/dashboard/tasks?taskId=${taskId}`)}
+                            onOpenSheet={handleOpenSheet}
                         />
                     ))}
                 </div>

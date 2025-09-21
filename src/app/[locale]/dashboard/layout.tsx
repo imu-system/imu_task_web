@@ -1,4 +1,6 @@
 
+'use client';
+
 import { DashboardHeader } from '@/components/dashboard-header';
 import { DashboardNav } from '@/components/dashboard-nav';
 import { SidebarProvider, SidebarInset } from '@/components/ui/sidebar';
@@ -6,12 +8,35 @@ import AuthGuard from '@/components/auth-guard';
 import ImpersonationBanner from '@/components/impersonation-banner';
 import OfflineBanner from '@/components/offline-banner';
 import { MobileBottomNav } from '@/components/mobile-bottom-nav';
+import { useRouter, useSearchParams } from 'next-intl/navigation';
+import { useState, useEffect } from 'react';
+import { TaskDetailSheet } from '@/components/task-detail-sheet';
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const taskIdFromUrl = searchParams.get('taskId');
+    if (taskIdFromUrl) {
+      setSelectedTaskId(taskIdFromUrl);
+    } else {
+      setSelectedTaskId(null);
+    }
+  }, [searchParams]);
+
+  const handleCloseSheet = () => {
+    setSelectedTaskId(null);
+    // Use window.history to remove the query param without causing a full re-render from the router.
+    const newUrl = `${window.location.pathname}`;
+    window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl);
+  };
+
   return (
     <AuthGuard>
         <SidebarProvider>
@@ -27,6 +52,15 @@ export default function DashboardLayout({
               </SidebarInset>
             </div>
             <MobileBottomNav />
+            <TaskDetailSheet 
+              taskId={selectedTaskId}
+              open={!!selectedTaskId}
+              onOpenChange={(isOpen) => {
+                if (!isOpen) {
+                  handleCloseSheet();
+                }
+              }}
+            />
         </SidebarProvider>
     </AuthGuard>
   );

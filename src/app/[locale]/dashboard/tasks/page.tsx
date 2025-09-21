@@ -7,7 +7,7 @@ import { db } from '@/lib/firebase';
 import { Address, ServiceCategory, Task } from '@/lib/types';
 import { collection, onSnapshot, query, where, doc, getDoc, Timestamp } from 'firebase/firestore';
 import { PlusCircle, Loader2, LayoutGrid, List } from 'lucide-react';
-import { Link, useRouter, useSearchParams } from '@/navigation';
+import { Link, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState, useMemo } from 'react';
 import { useAuth } from '@/hooks/use-auth';
@@ -19,7 +19,6 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import TaskListCard from '@/components/task-list-card';
-import { TaskDetailSheet } from '@/components/task-detail-sheet';
 
 export default function DashboardTasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -29,16 +28,6 @@ export default function DashboardTasksPage() {
   const t = useTranslations('MyTasksPage');
   const { user } = useAuth();
   const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const taskIdFromUrl = searchParams.get('taskId');
-    if (taskIdFromUrl) {
-      setSelectedTaskId(taskIdFromUrl);
-    }
-  }, [searchParams]);
 
   useEffect(() => {
     if (!user) {
@@ -109,18 +98,10 @@ export default function DashboardTasksPage() {
   }, [tasks, searchTerm]);
   
   const handleOpenSheet = (taskId: string) => {
-    setSelectedTaskId(taskId);
-    router.push(`/dashboard/tasks?taskId=${taskId}`, { scroll: false });
+    router.push(`?taskId=${taskId}`, { scroll: false });
   };
-
-  const handleCloseSheet = () => {
-    setSelectedTaskId(null);
-    router.push('/dashboard/tasks', { scroll: false });
-  };
-
 
   return (
-    <>
       <div className="space-y-8">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
@@ -194,16 +175,5 @@ export default function DashboardTasksPage() {
           </>
         )}
       </div>
-
-      <TaskDetailSheet 
-        taskId={selectedTaskId}
-        open={!!selectedTaskId}
-        onOpenChange={(isOpen) => {
-          if (!isOpen) {
-            handleCloseSheet();
-          }
-        }}
-      />
-    </>
   );
 }
