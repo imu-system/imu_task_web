@@ -7,7 +7,7 @@ import { useAuth } from '@/hooks/use-auth';
 import { getTasks } from '@/lib/data';
 import { Task, TaskStatus } from '@/lib/types';
 import { BookMarked, Handshake, LayoutGrid, Loader2, PlusCircle, UserCheck, Star } from 'lucide-react';
-import { Link } from '@/navigation';
+import { Link, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState } from 'react';
 import { KpiCard } from '@/components/dashboard/kpi-card';
@@ -25,6 +25,7 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
   const t = useTranslations('DashboardPage');
   const { user } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     if (!user) {
@@ -72,7 +73,11 @@ export default function DashboardPage() {
             {tasks.length > 0 ? (
                  <div className="grid gap-6 md:grid-cols-2">
                     {tasks.slice(0, 2).map((task) => (
-                        <TaskCard key={task.id} task={task} />
+                        <TaskCard 
+                            key={task.id} 
+                            task={task} 
+                            onOpenSheet={(taskId) => router.push(`/dashboard/tasks?taskId=${taskId}`)}
+                        />
                     ))}
                 </div>
             ) : (

@@ -27,8 +27,6 @@ import { Link } from '@/navigation';
 import { Button } from './ui/button';
 import { useTranslations, useLocale } from 'next-intl';
 import { ReactNode } from 'react';
-import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
-import { OfferForm } from './offer-form';
 
 const categoryIcons: Record<string, ReactNode> = {
   groceries: <ShoppingBasket className="h-4 w-4" />,
@@ -44,7 +42,7 @@ const categoryIcons: Record<string, ReactNode> = {
 
 type TaskCardProps = {
   task: Task;
-  onOpenSheet: (taskId: string) => void;
+  onOpenSheet?: (taskId: string) => void;
 };
 
 export default function TaskCard({ task, onOpenSheet }: TaskCardProps) {
@@ -59,6 +57,20 @@ export default function TaskCard({ task, onOpenSheet }: TaskCardProps) {
   const categoryLabel = category?.name?.[locale as keyof typeof category.name] || category?.slug || 'Catégorie';
   const categoryIcon = category?.icon ? (categoryIcons[category.icon] || categoryIcons.default) : categoryIcons.default;
   const locationLabel = address?.city || task.location;
+
+  const detailButton = onOpenSheet ? (
+    <Button variant="outline" size="sm" onClick={() => onOpenSheet(id)}>
+        <Eye className="mr-2"/>
+        {t('viewTask')}
+    </Button>
+  ) : (
+    <Button asChild variant="outline" size="sm">
+        <Link href={`/dashboard/tasks/${id}`}>
+            <Eye className="mr-2"/>
+            {t('viewTask')}
+        </Link>
+    </Button>
+  );
 
   return (
     <Card className="flex flex-col h-full">
@@ -93,10 +105,7 @@ export default function TaskCard({ task, onOpenSheet }: TaskCardProps) {
           <span className="text-sm font-medium">{clientName}</span>
         </div>
         <div className="flex gap-2">
-           <Button variant="outline" size="sm" onClick={() => onOpenSheet(id)}>
-              <Eye className="mr-2"/>
-              {t('viewTask')}
-            </Button>
+           {detailButton}
         </div>
       </CardFooter>
     </Card>
