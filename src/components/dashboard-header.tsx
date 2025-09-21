@@ -17,6 +17,7 @@ import {
   Handshake,
   Star,
   CheckCheck,
+  Wifi,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -290,6 +291,13 @@ export function DashboardHeader() {
                 </Tabs>
             </DropdownMenuContent>
         </DropdownMenu>
+
+        <Button asChild variant="ghost" size="icon">
+            <Link href="/dashboard/offline">
+                <Wifi/>
+                <span className="sr-only">{tNav('offline')}</span>
+            </Link>
+        </Button>
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

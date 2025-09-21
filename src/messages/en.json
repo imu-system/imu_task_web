@@ -102,6 +102,7 @@
         "templates": "Templates",
         "devTools": "Developer Tools",
         "partnerships": "Partnerships",
+        "offline": "Offline Status",
         "adminNav": {
             "community": "Community",
             "moderation": "Moderation",

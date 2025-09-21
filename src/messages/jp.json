@@ -78,6 +78,7 @@
         "templates": "テンプレート",
         "devTools": "開発者ツール",
         "partnerships": "パートナーシップ",
+        "offline": "オフラインステータス",
         "adminNav": {
             "community": "コミュニティ",
             "moderation": "モデレーション",
