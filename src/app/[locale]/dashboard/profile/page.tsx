@@ -139,7 +139,7 @@ export default function ProfilePage() {
   const [isEditing, setIsEditing] = useState(false);
   const t = useTranslations('ProfilePage');
 
-  const { register, handleSubmit, formState: { errors, isDirty }, reset } = useForm<ProfileFormValues>({
+  const form = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
     defaultValues: {
         displayName: '',
@@ -149,6 +149,9 @@ export default function ProfilePage() {
         serviceRadiusKm: 0,
     }
   });
+  
+  const { register, handleSubmit, formState: { errors, isDirty }, reset } = form;
+
 
   useEffect(() => {
     if (user?.profile) {
@@ -684,5 +687,3 @@ export default function ProfilePage() {
     </div>
   );
 }
-
-    
