@@ -34,6 +34,12 @@ import { useEffect, useState, ReactNode } from 'react';
 import type { ServiceCategory } from '@/lib/types';
 import TestimonialCard from '@/components/testimonial-card';
 import placeholderImages from '@/app/lib/placeholder-images.json';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 const categoryIcons: Record<string, ReactNode> = {
   'shopping-basket': <ShoppingBasket className="h-8 w-8" />,
@@ -270,6 +276,28 @@ export default function Home() {
               )}
             </div>
           </div>
+        </section>
+
+        <section id="faq" className="w-full py-12 md:py-24 lg:py-32">
+            <div className="container mx-auto px-4 md:px-6 max-w-3xl">
+                <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl font-headline mb-12">
+                    {t('faq.title')}
+                </h2>
+                <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="item-1">
+                        <AccordionTrigger>{t('faq.q1.question')}</AccordionTrigger>
+                        <AccordionContent>{t('faq.q1.answer')}</AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-2">
+                        <AccordionTrigger>{t('faq.q2.question')}</AccordionTrigger>
+                        <AccordionContent>{t('faq.q2.answer')}</AccordionContent>
+                    </AccordionItem>
+                    <AccordionItem value="item-3">
+                        <AccordionTrigger>{t('faq.q3.question')}</AccordionTrigger>
+                        <AccordionContent>{t('faq.q3.answer')}</AccordionContent>
+                    </AccordionItem>
+                </Accordion>
+            </div>
         </section>
 
         <section className="w-full py-12 md:py-24 lg:py-32 bg-primary/10">

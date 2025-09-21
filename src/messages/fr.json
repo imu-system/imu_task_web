@@ -86,6 +86,21 @@
             "missions": "Missions réalisées",
             "members": "Membres actifs",
             "rating": "Note moyenne des prestataires"
+        },
+        "faq": {
+            "title": "Foire Aux Questions",
+            "q1": {
+                "question": "Comment sont fixés les prix ?",
+                "answer": "Les clients proposent un budget en postant une mission. Les prestataires peuvent alors faire une offre à ce prix, ou en proposer un différent. Le prix final est celui sur lequel le client et le prestataire se sont mis d'accord."
+            },
+            "q2": {
+                "question": "La plateforme est-elle sécurisée ?",
+                "answer": "Oui, la sécurité est notre priorité. Nous vérifions l'identité des prestataires (KYC), sécurisons tous les paiements via notre partenaire Stripe, et disposons d'un système d'avis pour renforcer la confiance au sein de la communauté."
+            },
+            "q3": {
+                "question": "Que se passe-t-il en cas de problème pendant une mission ?",
+                "answer": "Vous pouvez ouvrir un litige directement depuis le détail de la réservation. Notre équipe de support interviendra alors pour vous aider à trouver une solution à l'amiable."
+            }
         }
     },
     "LanguageSwitcher": {
@@ -952,3 +967,4 @@
     
 
     
+
