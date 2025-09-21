@@ -10,6 +10,7 @@
         "dashboard": "ダッシュボード",
         "profile": "プロフィール",
         "openMenu": "メニューを開く",
+        "search": "検索",
         "searchPlaceholder": "検索...",
         "create": "作成",
         "createTask": "タスクを作成",
@@ -561,5 +562,3 @@
         }
     }
 }
-
-    

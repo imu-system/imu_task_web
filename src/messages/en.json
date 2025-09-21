@@ -10,6 +10,7 @@
         "dashboard": "Dashboard",
         "profile": "Profile",
         "openMenu": "Open menu",
+        "search": "Search",
         "searchPlaceholder": "Search...",
         "create": "Create",
         "createTask": "Create a task",
@@ -910,5 +911,3 @@
         }
     }
 }
-
-    

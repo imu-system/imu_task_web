@@ -26,14 +26,37 @@ import { useTranslations } from 'next-intl';
 import { Link } from '@/navigation';
 import { Button } from './ui/button';
 import { useSidebar } from './ui/sidebar';
-import { Input } from './ui/input';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from './ui/sheet';
+import { CommandMenu } from './command-menu';
+import React from 'react';
 
 export function DashboardHeader() {
   const t = useTranslations('Header');
   const tNav = useTranslations('DashboardNav');
   const { user, signOut } = useAuth();
   const { toggleSidebar } = useSidebar();
+  const [open, setOpen] = React.useState(false)
+
+  React.useEffect(() => {
+    const down = (e: KeyboardEvent) => {
+      if ((e.key === "k" && (e.metaKey || e.ctrlKey)) || e.key === "/") {
+        if (
+          (e.target instanceof HTMLElement && e.target.isContentEditable) ||
+          e.target instanceof HTMLInputElement ||
+          e.target instanceof HTMLTextAreaElement ||
+          e.target instanceof HTMLSelectElement
+        ) {
+          return
+        }
+
+        e.preventDefault()
+        setOpen((open) => !open)
+      }
+    }
+
+    document.addEventListener("keydown", down)
+    return () => document.removeEventListener("keydown", down)
+  }, [])
+
 
   if (!user) return null;
 
@@ -49,40 +72,21 @@ export function DashboardHeader() {
         <span className="sr-only">Toggle Menu</span>
       </Button>
 
-      {/* Mobile Search */}
-       <div className="md:hidden">
-         <Sheet>
-            <SheetTrigger asChild>
-                <Button variant="ghost" size="icon">
-                    <Search />
-                    <span className="sr-only">{t('searchPlaceholder')}</span>
-                </Button>
-            </SheetTrigger>
-            <SheetContent side="top">
-                <SheetHeader>
-                    <SheetTitle>{t('searchPlaceholder')}</SheetTitle>
-                </SheetHeader>
-                 <div className="relative mt-4">
-                    <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                    <Input
-                        type="search"
-                        placeholder={t('searchPlaceholder')}
-                        className="w-full rounded-lg bg-muted pl-8"
-                    />
-                 </div>
-            </SheetContent>
-         </Sheet>
-       </div>
+      {/* Command Menu */}
+      <Button
+        variant="outline"
+        className="relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
+        onClick={() => setOpen(true)}
+      >
+        <Search className="h-4 w-4 mr-2" />
+        <span className="hidden lg:inline-flex">{t('searchPlaceholder')}</span>
+        <span className="inline-flex lg:hidden">{t('search')}</span>
+        <kbd className="pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+          <span className="text-xs">⌘</span>K
+        </kbd>
+      </Button>
+      <CommandMenu open={open} setOpen={setOpen} />
 
-      {/* Desktop Search */}
-      <div className="relative hidden flex-1 md:flex md:grow-0">
-        <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-        <Input
-            type="search"
-            placeholder={t('searchPlaceholder')}
-            className="w-full rounded-lg bg-muted pl-8 md:w-[200px] lg:w-[336px]"
-        />
-      </div>
 
       <div className="flex-1">
         {/* Placeholder for potential breadcrumbs or page title */}
