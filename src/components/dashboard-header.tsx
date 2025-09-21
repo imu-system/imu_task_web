@@ -16,6 +16,7 @@ import {
   Sparkles,
   Handshake,
   Star,
+  CheckCheck,
 } from 'lucide-react';
 import {
   DropdownMenu,
@@ -35,6 +36,7 @@ import { CommandMenu } from './command-menu';
 import React from 'react';
 import { UserRole } from '@/lib/types';
 import { cn } from '@/lib/utils';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 export function DashboardHeader() {
   const t = useTranslations('Header');
@@ -218,56 +220,74 @@ export function DashboardHeader() {
                     <span className="sr-only">{tNav('notifications')}</span>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-96">
-                <DropdownMenuLabel>{t('notificationsTitle')}</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <div className="p-1 space-y-2">
-                     <div className="p-2 rounded-md hover:bg-muted">
-                        <div className="flex items-start gap-3">
-                            <Handshake className="h-4 w-4 mt-1 text-muted-foreground"/>
-                            <div className="flex-1">
-                                <p className="text-sm">3 nouvelles offres pour votre mission 'Jardinage'</p>
-                                <p className="text-xs text-muted-foreground">il y a 5 minutes</p>
+            <DropdownMenuContent align="end" className="w-96 p-0">
+                <Tabs defaultValue="all" className="w-full">
+                    <div className="p-4 border-b">
+                         <div className="flex items-center justify-between">
+                            <DropdownMenuLabel className="p-0">{t('notificationsTitle')}</DropdownMenuLabel>
+                            <Button variant="ghost" size="sm">
+                                <CheckCheck className="mr-2"/>
+                                Marquer tout comme lu
+                            </Button>
+                         </div>
+                        <TabsList className="grid w-full grid-cols-2 mt-2">
+                            <TabsTrigger value="all">Toutes</TabsTrigger>
+                            <TabsTrigger value="unread">Non lues</TabsTrigger>
+                        </TabsList>
+                    </div>
+                    <TabsContent value="all">
+                        <div className="p-2 space-y-2 max-h-96 overflow-y-auto">
+                            <div className="p-2 rounded-md hover:bg-muted">
+                                <div className="flex items-start gap-3">
+                                    <Handshake className="h-4 w-4 mt-1 text-muted-foreground"/>
+                                    <div className="flex-1">
+                                        <p className="text-sm">3 nouvelles offres pour votre mission 'Jardinage'</p>
+                                        <p className="text-xs text-muted-foreground">il y a 5 minutes</p>
+                                    </div>
+                                </div>
+                                <div className="flex justify-end gap-2 mt-2">
+                                    <Button variant="outline" size="sm">Voir les offres</Button>
+                                    <Button variant="ghost" size="sm">Ignorer</Button>
+                                </div>
+                            </div>
+                            <DropdownMenuSeparator />
+                            <div className="p-2 rounded-md hover:bg-muted">
+                                <div className="flex items-start gap-3">
+                                    <Star className="h-4 w-4 mt-1 text-muted-foreground"/>
+                                    <div className="flex-1">
+                                        <p className="text-sm">Vous avez reçu un nouvel avis de la part de Marie D.</p>
+                                        <p className="text-xs text-muted-foreground">il y a 1 heure</p>
+                                    </div>
+                                </div>
+                                <div className="flex justify-end gap-2 mt-2">
+                                    <Button variant="outline" size="sm">Laisser un avis</Button>
+                                </div>
                             </div>
                         </div>
-                        <div className="flex justify-end gap-2 mt-2">
-                            <Button variant="outline" size="sm">Voir les offres</Button>
-                            <Button variant="ghost" size="sm">Ignorer</Button>
-                        </div>
-                     </div>
-                      <DropdownMenuSeparator />
-                     <div className="p-2 rounded-md hover:bg-muted">
-                        <div className="flex items-start gap-3">
-                            <Star className="h-4 w-4 mt-1 text-muted-foreground"/>
-                            <div className="flex-1">
-                                <p className="text-sm">Vous avez reçu un nouvel avis de la part de Marie D.</p>
-                                <p className="text-xs text-muted-foreground">il y a 1 heure</p>
+                    </TabsContent>
+                    <TabsContent value="unread">
+                         <div className="p-2 space-y-2 max-h-96 overflow-y-auto">
+                           <div className="p-2 rounded-md hover:bg-muted">
+                                <div className="flex items-start gap-3">
+                                    <MessageSquare className="h-4 w-4 mt-1 text-muted-foreground"/>
+                                    <div className="flex-1">
+                                        <p className="text-sm">Nouveau message de Jean P. concernant la mission 'Aide aux courses'</p>
+                                        <p className="text-xs text-muted-foreground">il y a 3 heures</p>
+                                    </div>
+                                </div>
+                                <div className="flex justify-end gap-2 mt-2">
+                                    <Button variant="default" size="sm">Répondre</Button>
+                                </div>
                             </div>
                         </div>
-                        <div className="flex justify-end gap-2 mt-2">
-                            <Button variant="outline" size="sm">Laisser un avis</Button>
-                        </div>
-                     </div>
-                      <DropdownMenuSeparator />
-                    <div className="p-2 rounded-md hover:bg-muted">
-                        <div className="flex items-start gap-3">
-                            <MessageSquare className="h-4 w-4 mt-1 text-muted-foreground"/>
-                            <div className="flex-1">
-                                <p className="text-sm">Nouveau message de Jean P. concernant la mission 'Aide aux courses'</p>
-                                <p className="text-xs text-muted-foreground">il y a 3 heures</p>
-                            </div>
-                        </div>
-                        <div className="flex justify-end gap-2 mt-2">
-                             <Button variant="default" size="sm">Répondre</Button>
-                        </div>
-                     </div>
-                </div>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                   <Link href="/dashboard/notifications" className="justify-center">
-                        {t('viewAllNotifications')}
-                   </Link>
-                </DropdownMenuItem>
+                    </TabsContent>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem asChild>
+                    <Link href="/dashboard/notifications" className="justify-center">
+                            {t('viewAllNotifications')}
+                    </Link>
+                    </DropdownMenuItem>
+                </Tabs>
             </DropdownMenuContent>
         </DropdownMenu>
 
