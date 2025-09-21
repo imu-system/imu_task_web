@@ -3,12 +3,12 @@
 
 import * as React from 'react';
 import {
-  Calculator,
-  Calendar,
-  CreditCard,
-  Settings,
-  Smile,
+  LayoutGrid,
   User,
+  BookMarked,
+  LifeBuoy,
+  PlusCircle,
+  Settings,
 } from 'lucide-react';
 
 import {
@@ -19,7 +19,6 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut,
 } from '@/components/ui/command';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/navigation';
@@ -31,45 +30,61 @@ interface CommandMenuProps {
 
 export function CommandMenu({ open, setOpen }: CommandMenuProps) {
     const t = useTranslations('DashboardNav');
+
+    const runCommand = (command: () => unknown) => {
+        setOpen(false);
+        command();
+    };
+
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
-      <CommandInput placeholder="Type a command or search..." />
+      <CommandInput placeholder="Tapez une commande ou une recherche..." />
       <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Suggestions">
+        <CommandEmpty>Aucun résultat trouvé.</CommandEmpty>
+
+        <CommandGroup heading="Missions">
+            <CommandItem onSelect={() => runCommand(() => router.push('/dashboard/tasks/new'))}>
+                <PlusCircle className="mr-2 h-4 w-4" />
+                <span>Créer une nouvelle mission</span>
+            </CommandItem>
+            <CommandItem onSelect={() => runCommand(() => router.push('/dashboard/tasks'))}>
+                <BookMarked className="mr-2 h-4 w-4" />
+                <span>Voir mes missions</span>
+            </CommandItem>
+        </CommandGroup>
+        
+        <CommandSeparator />
+
+        <CommandGroup heading="Utilisateurs">
+             <CommandItem onSelect={() => runCommand(() => router.push('/dashboard/profile'))}>
+                <User className="mr-2 h-4 w-4" />
+                <span>Voir mon profil</span>
+            </CommandItem>
+             <CommandItem onSelect={() => runCommand(() => router.push('/dashboard/admin/users'))}>
+                <User className="mr-2 h-4 w-4" />
+                <span>Rechercher un utilisateur...</span>
+            </CommandItem>
+        </CommandGroup>
+        
+        <CommandSeparator />
+        
+        <CommandGroup heading="Navigation">
           <Link href="/dashboard" passHref>
-            <CommandItem onSelect={() => setOpen(false)}>
-              <Calendar className="mr-2 h-4 w-4" />
+            <CommandItem onSelect={() => runCommand(() => {})}>
+              <LayoutGrid className="mr-2 h-4 w-4" />
               <span>{t('dashboard')}</span>
             </CommandItem>
           </Link>
-          <Link href="/dashboard/tasks" passHref>
-            <CommandItem onSelect={() => setOpen(false)}>
-              <Smile className="mr-2 h-4 w-4" />
-              <span>{t('myTasks')}</span>
-            </CommandItem>
-          </Link>
-           <Link href="/dashboard/wallet" passHref>
-            <CommandItem onSelect={() => setOpen(false)}>
-              <CreditCard className="mr-2 h-4 w-4" />
-              <span>{t('wallet')}</span>
-            </CommandItem>
-           </Link>
-        </CommandGroup>
-        <CommandSeparator />
-        <CommandGroup heading="Settings">
-          <Link href="/dashboard/profile" passHref>
-            <CommandItem onSelect={() => setOpen(false)}>
-              <User className="mr-2 h-4 w-4" />
-              <span>{t('profile')}</span>
-              <CommandShortcut>⌘P</CommandShortcut>
-            </CommandItem>
-          </Link>
           <Link href="/dashboard/settings" passHref>
-            <CommandItem onSelect={() => setOpen(false)}>
+            <CommandItem onSelect={() => runCommand(() => {})}>
               <Settings className="mr-2 h-4 w-4" />
               <span>{t('settings')}</span>
-              <CommandShortcut>⌘S</CommandShortcut>
+            </CommandItem>
+          </Link>
+           <Link href="/dashboard/admin/support/tickets" passHref>
+            <CommandItem onSelect={() => runCommand(() => {})}>
+              <LifeBuoy className="mr-2 h-4 w-4" />
+              <span>{t('support')}</span>
             </CommandItem>
           </Link>
         </CommandGroup>
