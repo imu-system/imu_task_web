@@ -1,3 +1,4 @@
+
 {
     "Header": {
         "features": "Features",
@@ -19,7 +20,12 @@
         "suggestedAction": "Create 'Shopping' task (template)",
         "notificationsTitle": "Notifications",
         "viewAllNotifications": "View all notifications",
-        "lastSync": "Last sync: just now"
+        "lastSync": "Last sync: just now",
+        "status": {
+            "online": "Online and synced",
+            "offline": "Offline",
+            "pending": "Changes pending sync"
+        }
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. All rights reserved.",

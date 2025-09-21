@@ -20,7 +20,12 @@
         "suggestedAction": "「買い物」タスクを作成（テンプレート）",
         "notificationsTitle": "通知",
         "viewAllNotifications": "すべての通知を表示",
-        "lastSync": "最終同期：たった今"
+        "lastSync": "最終同期：たった今",
+        "status": {
+            "online": "オンラインで同期済み",
+            "offline": "オフライン",
+            "pending": "同期保留中の変更"
+        }
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. 無断複写・転載を禁じます。",
@@ -348,12 +353,6 @@
         }
     },
     "ProfilePage": {
-        "title": "私のプロフィール",
-        "subtitle": "個人情報と設定を管理します。",
-        "myBadges": "私のバッジ",
-        "earnedBadges": "獲得したバッジ",
-        "seeAllBadges": "すべてのバッジを見る",
-        "earnedOn": "{date}に獲得",
         "portfolio": {
             "title": "私のポートフォリオ",
             "empty": "あなたの仕事を追加して、信頼性を80％向上させましょう！",

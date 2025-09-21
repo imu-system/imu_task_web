@@ -34,7 +34,7 @@ import { Link } from '@/navigation';
 import { Button } from './ui/button';
 import { useSidebar } from './ui/sidebar';
 import { CommandMenu } from './command-menu';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { UserRole } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -51,9 +51,12 @@ export function DashboardHeader() {
   const tNav = useTranslations('DashboardNav');
   const { user, signOut } = useAuth();
   const { toggleSidebar } = useSidebar();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [isOffline, setIsOffline] = useState(false);
+  const [hasPendingChanges, setHasPendingChanges] = useState(false);
 
-  React.useEffect(() => {
+
+  useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if ((e.key === "k" && (e.metaKey || e.ctrlKey))) {
         if (
@@ -73,6 +76,42 @@ export function DashboardHeader() {
     document.addEventListener("keydown", down)
     return () => document.removeEventListener("keydown", down)
   }, [])
+  
+  useEffect(() => {
+    const handleOffline = () => setIsOffline(true);
+    const handleOnline = () => setIsOffline(false);
+
+    if (typeof window !== 'undefined' && !window.navigator.onLine) {
+        handleOffline();
+    }
+
+    window.addEventListener('offline', handleOffline);
+    window.addEventListener('online', handleOnline);
+
+    // Simulate pending changes for demo
+    const timer = setTimeout(() => {
+        if(!isOffline) setHasPendingChanges(true);
+    }, 5000);
+    const timer2 = setTimeout(() => {
+        if(!isOffline) setHasPendingChanges(false);
+    }, 15000);
+
+
+    return () => {
+      window.removeEventListener('offline', handleOffline);
+      window.removeEventListener('online', handleOnline);
+      clearTimeout(timer);
+      clearTimeout(timer2);
+    };
+  }, [isOffline]);
+  
+  const getStatus = () => {
+      if (isOffline) return 'offline';
+      if (hasPendingChanges) return 'pending';
+      return 'online';
+  }
+
+  const status = getStatus();
 
 
   if (!user) return null;
@@ -304,13 +343,17 @@ export function DashboardHeader() {
                 <TooltipTrigger asChild>
                      <Button asChild variant="ghost" size="icon">
                         <Link href="/dashboard/offline">
-                            <Wifi/>
+                            <Wifi className={cn(
+                                status === 'offline' && 'text-destructive',
+                                status === 'pending' && 'text-amber-500',
+                                status === 'online' && 'text-green-500'
+                            )}/>
                             <span className="sr-only">{tNav('offline')}</span>
                         </Link>
                     </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                    <p>{t('lastSync')}</p>
+                    <p>{t(`status.${status}`)}</p>
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>

@@ -1,3 +1,4 @@
+
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -19,7 +20,12 @@
         "suggestedAction": "Créer une mission 'Courses' (modèle)",
         "notificationsTitle": "Notifications",
         "viewAllNotifications": "Voir toutes les notifications",
-        "lastSync": "Dernière synchro : à l'instant"
+        "lastSync": "Dernière synchro : à l'instant",
+        "status": {
+            "online": "Connecté et synchronisé",
+            "offline": "Hors ligne",
+            "pending": "Changements en attente de synchronisation"
+        }
     },
     "Footer": {
         "rights": "© {currentYear} ImuTask. Tous droits réservés.",
