@@ -4,23 +4,23 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%; /* Adjusted from #F9FAFB */
-    --foreground: 222 47% 11%; /* #111827 */
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
-    --primary: 243 78% 61%; /* #4F46E5 */
+    --primary: 243 78% 61%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 188 95% 41%; /* #06B6D4 */
+    --secondary: 188 95% 41%;
     --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96.1%; /* #F3F4F6 */
-    --muted-foreground: 215 28% 45%; /* #6B7280 */
-    --accent: 38 92% 50%; /* #F59E0B */
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215 28% 45%;
+    --accent: 38 92% 50%;
     --accent-foreground: 222 47% 11%;
-    --destructive: 0 84% 60%; /* #EF4444 */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 214 32% 91%; /* #E5E7EB */
+    --border: 214 32% 91%;
     --input: 214 32% 91%;
     --ring: 243 78% 61%;
     --radius: 0.5rem;
@@ -40,28 +40,29 @@
 
     /* Glass tokens (light) */
     --glass-bg: rgba(255, 255, 255, 0.6);
+    --glass-bg-dark: rgba(255, 255, 255, 0.06);
     --glass-border: rgba(255, 255, 255, 0.12);
     --glass-shadow: 0 6px 20px rgba(2, 6, 23, 0.08);
     --glass-blur: 12px;
   }
   [data-theme="dark"] {
-    --background: 220 28% 9%; /* #0B1220 */
-    --foreground: 213 36% 91%; /* #E6EEF8 */
-    --card: 215 30% 13%; /* rgba(255,255,255,0.04) as solid */
+    --background: 220 28% 9%;
+    --foreground: 213 36% 91%;
+    --card: 215 30% 13%;
     --card-foreground: 213 36% 91%;
     --popover: 215 30% 13%;
     --popover-foreground: 213 36% 91%;
-    --primary: 254 80% 70%; /* #8B5CF6 */
+    --primary: 254 80% 70%;
     --primary-foreground: 222 47% 11%;
-    --secondary: 184 98% 57%; /* #34E3F0 */
+    --secondary: 184 98% 57%;
     --secondary-foreground: 222 47% 11%;
-    --muted: 223 35% 8%; /* #081020 */
-    --muted-foreground: 212 18% 63%; /* #9AA6B2 */
-    --accent: 43 96% 58%; /* #FBBF24 */
+    --muted: 223 35% 8%;
+    --muted-foreground: 212 18% 63%;
+    --accent: 43 96% 58%;
     --accent-foreground: 222 47% 11%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 211 24% 14%; /* rgba(255,255,255,0.06) as solid */
+    --border: 211 24% 14%;
     --input: 211 24% 14%;
     --ring: 254 80% 70%;
     --chart-1: 220 70% 50%;
@@ -80,6 +81,7 @@
 
     /* Glass tokens (dark) */
     --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-bg-dark: rgba(255, 255, 255, 0.04);
     --glass-border: rgba(255, 255, 255, 0.06);
     --glass-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
   }
@@ -92,7 +94,29 @@
   body {
     @apply bg-background text-foreground;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply text-primary;
+  }
+}
+
+@layer components {
+  .imu-glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 12px;
+    padding: 1rem;
+    backdrop-filter: blur(var(--glass-blur)) saturate(120%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(120%);
+    background-clip: padding-box;
+  }
+
+  [data-theme='dark'] .imu-glass {
+    background: var(--glass-bg-dark);
   }
 }
