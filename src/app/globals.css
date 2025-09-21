@@ -119,4 +119,14 @@
   [data-theme='dark'] .imu-glass {
     background: var(--glass-bg-dark);
   }
+
+  /* Fallback for browsers without backdrop-filter support */
+  @supports not (backdrop-filter: blur(12px)) {
+    .imu-glass {
+      background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.5));
+    }
+    [data-theme="dark"] .imu-glass {
+      background: linear-gradient(180deg, rgba(30, 41, 59, 0.7), rgba(30, 41, 59, 0.6));
+    }
+  }
 }
