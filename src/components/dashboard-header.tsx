@@ -218,38 +218,50 @@ export function DashboardHeader() {
                     <span className="sr-only">{tNav('notifications')}</span>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-80">
+            <DropdownMenuContent align="end" className="w-96">
                 <DropdownMenuLabel>{t('notificationsTitle')}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuGroup>
-                     <DropdownMenuItem>
+                <div className="p-1 space-y-2">
+                     <div className="p-2 rounded-md hover:bg-muted">
                         <div className="flex items-start gap-3">
                             <Handshake className="h-4 w-4 mt-1 text-muted-foreground"/>
                             <div className="flex-1">
-                                <p className="text-sm font-medium">3 nouvelles offres pour votre mission 'Jardinage'</p>
+                                <p className="text-sm">3 nouvelles offres pour votre mission 'Jardinage'</p>
                                 <p className="text-xs text-muted-foreground">il y a 5 minutes</p>
                             </div>
                         </div>
-                     </DropdownMenuItem>
-                     <DropdownMenuItem>
+                        <div className="flex justify-end gap-2 mt-2">
+                            <Button variant="outline" size="sm">Voir les offres</Button>
+                            <Button variant="ghost" size="sm">Ignorer</Button>
+                        </div>
+                     </div>
+                      <DropdownMenuSeparator />
+                     <div className="p-2 rounded-md hover:bg-muted">
                         <div className="flex items-start gap-3">
                             <Star className="h-4 w-4 mt-1 text-muted-foreground"/>
                             <div className="flex-1">
-                                <p className="text-sm font-medium">Vous avez reçu un nouvel avis de la part de Marie D.</p>
+                                <p className="text-sm">Vous avez reçu un nouvel avis de la part de Marie D.</p>
                                 <p className="text-xs text-muted-foreground">il y a 1 heure</p>
                             </div>
                         </div>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
+                        <div className="flex justify-end gap-2 mt-2">
+                            <Button variant="outline" size="sm">Laisser un avis</Button>
+                        </div>
+                     </div>
+                      <DropdownMenuSeparator />
+                    <div className="p-2 rounded-md hover:bg-muted">
                         <div className="flex items-start gap-3">
                             <MessageSquare className="h-4 w-4 mt-1 text-muted-foreground"/>
                             <div className="flex-1">
-                                <p className="text-sm font-medium">Nouveau message de Jean P. concernant la mission 'Aide aux courses'</p>
+                                <p className="text-sm">Nouveau message de Jean P. concernant la mission 'Aide aux courses'</p>
                                 <p className="text-xs text-muted-foreground">il y a 3 heures</p>
                             </div>
                         </div>
-                    </DropdownMenuItem>
-                </DropdownMenuGroup>
+                        <div className="flex justify-end gap-2 mt-2">
+                             <Button variant="default" size="sm">Répondre</Button>
+                        </div>
+                     </div>
+                </div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
                    <Link href="/dashboard/notifications" className="justify-center">
