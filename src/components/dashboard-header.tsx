@@ -46,11 +46,14 @@ import {
 } from '@/components/ui/tooltip';
 import { Label } from './ui/label';
 import { Switch } from './ui/switch';
+import { Dialog, DialogTrigger, DialogContent } from './ui/dialog';
+import { CreateTaskForm } from './create-task-form';
 
 
 export function DashboardHeader() {
   const t = useTranslations('Header');
   const tNav = useTranslations('DashboardNav');
+  const tCreateTask = useTranslations('NewTaskPage');
   const { user, signOut } = useAuth();
   const { toggleSidebar } = useSidebar();
   const [open, setOpen] = useState(false);
@@ -125,33 +128,38 @@ export function DashboardHeader() {
     // Client-first approach: If user is client (even if also provider), primary action is creating a task.
     if (isClient) {
       return (
-         <div className="flex items-center">
-            <Button asChild size="sm" className="gap-1 rounded-r-none">
-              <Link href="/dashboard/tasks/new">
-                <PlusCircle className="h-4 w-4" />
-                <span className="hidden sm:inline">{t('createTask')}</span>
-              </Link>
-            </Button>
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button size="sm" className="rounded-l-none px-2 border-l">
-                        <ChevronDown className="h-4 w-4"/>
+        <Dialog>
+            <div className="flex items-center">
+                <DialogTrigger asChild>
+                    <Button size="sm" className="gap-1 rounded-r-none">
+                        <PlusCircle className="h-4 w-4" />
+                        <span className="hidden sm:inline">{t('createTask')}</span>
                     </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                    <DropdownMenuItem asChild>
-                        <Link href="/dashboard/availability">{t('setAvailability')}</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem asChild>
-                      <Link href="/dashboard/tasks/new?template=shopping">
-                        <Sparkles className="mr-2 h-4 w-4 text-primary" />
-                        <span>{t('suggestedAction')}</span>
-                      </Link>
-                    </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-        </div>
+                </DialogTrigger>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button size="sm" className="rounded-l-none px-2 border-l">
+                            <ChevronDown className="h-4 w-4"/>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuItem asChild>
+                            <Link href="/dashboard/availability">{t('setAvailability')}</Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem asChild>
+                          <Link href="/dashboard/tasks/new?template=shopping">
+                            <Sparkles className="mr-2 h-4 w-4 text-primary" />
+                            <span>{t('suggestedAction')}</span>
+                          </Link>
+                        </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </div>
+            <DialogContent className="sm:max-w-2xl">
+                 <CreateTaskForm />
+            </DialogContent>
+        </Dialog>
       )
     }
 
@@ -172,9 +180,16 @@ export function DashboardHeader() {
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                        <DropdownMenuItem asChild>
-                            <Link href="/dashboard/tasks/new">{t('createTask')}</Link>
-                        </DropdownMenuItem>
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                                    {t('createTask')}
+                                </DropdownMenuItem>
+                            </DialogTrigger>
+                            <DialogContent className="sm:max-w-2xl">
+                                <CreateTaskForm />
+                            </DialogContent>
+                        </Dialog>
                          <DropdownMenuSeparator />
                          <DropdownMenuItem asChild>
                            <Link href="/dashboard/tasks/new?template=shopping">
@@ -198,9 +213,16 @@ export function DashboardHeader() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem asChild>
-              <Link href="/dashboard/tasks/new">{t('createTask')}</Link>
-            </DropdownMenuItem>
+             <Dialog>
+                <DialogTrigger asChild>
+                    <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+                        {t('createTask')}
+                    </DropdownMenuItem>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-2xl">
+                    <CreateTaskForm />
+                </DialogContent>
+            </Dialog>
             <DropdownMenuItem asChild>
               <Link href="/dashboard/availability">{t('setAvailability')}</Link>
             </DropdownMenuItem>

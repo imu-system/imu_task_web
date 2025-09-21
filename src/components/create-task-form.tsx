@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useForm, Controller } from 'react-hook-form';
@@ -33,7 +34,7 @@ import { useState, useEffect } from 'react';
 import { suggestTaskCategories } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 import { type ServiceCategory, type Task } from '@/lib/types';
-import { Card, CardContent } from './ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card';
 import { useTranslations } from 'next-intl';
 import { createTask, getTaskTemplateById } from '@/lib/data';
 import { useAuth } from '@/hooks/use-auth';
@@ -41,6 +42,8 @@ import { useRouter } from '@/navigation';
 import { useSearchParams } from 'next/navigation';
 import { collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
+
 
 const formSchema = z.object({
   title: z.string().min(5, 'Le titre doit faire au moins 5 caractères.'),
@@ -75,6 +78,7 @@ export function CreateTaskForm() {
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
   const { toast } = useToast();
   const t = useTranslations('CreateTaskForm');
+  const tPage = useTranslations('NewTaskPage');
   const { user } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -193,10 +197,14 @@ export function CreateTaskForm() {
   };
   
   return (
-    <Card>
-    <CardContent className="p-6">
+    <>
+    <DialogHeader>
+        <DialogTitle>{tPage('title')}</DialogTitle>
+        <DialogDescription>{tPage('subtitle')}</DialogDescription>
+    </DialogHeader>
+    <div className="max-h-[80vh] overflow-y-auto p-1 pr-4">
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 pt-4">
         <FormField
           control={form.control}
           name="title"
@@ -467,7 +475,7 @@ export function CreateTaskForm() {
         </Button>
       </form>
     </Form>
-    </CardContent>
-    </Card>
+    </div>
+    </>
   );
 }
