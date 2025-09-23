@@ -968,5 +968,63 @@
             "successTitle": "Settings Saved",
             "successDescription": "Your availability settings have been updated."
         }
+    },
+    "LegalPage": {
+        "title": "Legal & Documents",
+        "tabs": {
+            "policies": "Policies",
+            "invoices": "Invoices",
+            "contracts": "Contracts",
+            "insurance": "Insurance"
+        },
+        "terms": {
+            "cgu": {
+                "title": "Terms of Service (v{version})"
+            },
+            "privacy": {
+                "title": "Privacy Policy ({year})"
+            }
+        },
+        "readOnline": "Read Online",
+        "downloadPdf": "Download PDF",
+        "audit": {
+            "title": "Consent History",
+            "acceptedOn": "Accepted on {date} (version {version})"
+        },
+        "invoices": {
+            "title": "Subscription Invoices",
+            "description": "Here are your subscription invoices for ImuTask Pro.",
+            "table": {
+                "date": "Date",
+                "amount": "Amount",
+                "download": "Download"
+            },
+            "actions": {
+                "exportCsv": "Export as CSV",
+                "requestSummary": "Request Annual Summary"
+            }
+        },
+        "contracts": {
+            "title": "My Contracts",
+            "signedOn": "Signed on {date}",
+            "read": "Read",
+            "download": "Download",
+            "addNew": "Add New Document/Contract",
+            "providerContract": "Provider Service Agreement",
+            "nda": "Non-Disclosure Agreement"
+        },
+        "insurance": {
+            "title": "Civil Liability Insurance",
+            "description": "ImuTask provides basic insurance coverage for missions.",
+            "providerLabel": "Insurance Provider",
+            "policyNumberLabel": "Policy Number",
+            "coverageLabel": "Coverage",
+            "coverageValue": "Up to €500 for material damages.",
+            "documentsTitle": "Documents",
+            "certificateButton": "Download Certificate",
+            "conditionsButton": "Read General Conditions"
+        }
     }
 }
+
+    

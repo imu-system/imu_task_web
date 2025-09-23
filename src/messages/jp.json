@@ -608,11 +608,63 @@
             "successTitle": "設定が保存されました",
             "successDescription": "利用可能性設定が更新されました。"
         }
+    },
+    "LegalPage": {
+        "title": "法務・書類",
+        "tabs": {
+            "policies": "ポリシー",
+            "invoices": "請求書",
+            "contracts": "契約書",
+            "insurance": "保険"
+        },
+        "terms": {
+            "cgu": {
+                "title": "利用規約 (v{version})"
+            },
+            "privacy": {
+                "title": "プライバシーポリシー ({year})"
+            }
+        },
+        "readOnline": "オンラインで読む",
+        "downloadPdf": "PDFをダウンロード",
+        "audit": {
+            "title": "同意履歴",
+            "acceptedOn": "{date}に同意 (バージョン {version})"
+        },
+        "invoices": {
+            "title": "購読請求書",
+            "description": "ImuTask Proの購読請求書はこちらです。",
+            "table": {
+                "date": "日付",
+                "amount": "金額",
+                "download": "ダウンロード"
+            },
+            "actions": {
+                "exportCsv": "CSVとしてエクスポート",
+                "requestSummary": "年間要約をリクエスト"
+            }
+        },
+        "contracts": {
+            "title": "私の契約書",
+            "signedOn": "{date}に署名",
+            "read": "読む",
+            "download": "ダウンロード",
+            "addNew": "新しい文書/契約を追加",
+            "providerContract": "プロバイダーサービス契約",
+            "nda": "秘密保持契約"
+        },
+        "insurance": {
+            "title": "民事責任保険",
+            "description": "ImuTaskはミッションに対する基本的な保険を提供します。",
+            "providerLabel": "保険会社",
+            "policyNumberLabel": "保険証券番号",
+            "coverageLabel": "補償範囲",
+            "coverageValue": "物的損害に対して最大500€。",
+            "documentsTitle": "書類",
+            "certificateButton": "証明書をダウンロード",
+            "conditionsButton": "一般条件を読む"
+        }
     }
 }
 
     
-
-    
-
-
