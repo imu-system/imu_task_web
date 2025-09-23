@@ -983,10 +983,10 @@
             },
             "privacy": {
                 "title": "Politique de Confidentialité ({year})"
-            }
+            },
+            "readOnline": "Lire en ligne",
+            "downloadPdf": "Télécharger en PDF"
         },
-        "readOnline": "Lire en ligne",
-        "downloadPdf": "Télécharger en PDF",
         "audit": {
             "title": "Historique de consentement",
             "acceptedOn": "Accepté le {date} (version {version})"
@@ -1026,5 +1026,3 @@
         }
     }
 }
-
-    

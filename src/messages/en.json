@@ -983,10 +983,10 @@
             },
             "privacy": {
                 "title": "Privacy Policy ({year})"
-            }
+            },
+            "readOnline": "Read Online",
+            "downloadPdf": "Download PDF"
         },
-        "readOnline": "Read Online",
-        "downloadPdf": "Download PDF",
         "audit": {
             "title": "Consent History",
             "acceptedOn": "Accepted on {date} (version {version})"
@@ -1026,5 +1026,3 @@
         }
     }
 }
-
-    

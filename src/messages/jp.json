@@ -623,10 +623,10 @@
             },
             "privacy": {
                 "title": "プライバシーポリシー ({year})"
-            }
+            },
+            "readOnline": "オンラインで読む",
+            "downloadPdf": "PDFをダウンロード"
         },
-        "readOnline": "オンラインで読む",
-        "downloadPdf": "PDFをダウンロード",
         "audit": {
             "title": "同意履歴",
             "acceptedOn": "{date}に同意 (バージョン {version})"
@@ -666,5 +666,3 @@
         }
     }
 }
-
-    
