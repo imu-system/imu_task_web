@@ -305,6 +305,9 @@
     "WalletPage": {
         "title": "ウォレット",
         "subtitle": "残高を確認し、取引を管理します。",
+        "viewTransactions": "すべての取引を表示",
+        "viewPayouts": "支払い履歴を表示",
+        "payoutsPageKycRequired": "引き出しを行うには本人確認が必要です。",
         "balance": {
             "title": "残高",
             "current": "現在の残高",
@@ -313,12 +316,9 @@
         },
         "summary": {
             "title": "クイックサマリー",
-            "earnedThisMonth": "今月の収益合計",
-            "paidThisMonth": "今月の支払い合計"
-        },
-        "viewTransactions": "すべての取引を表示",
-        "viewPayouts": "引き出し履歴を表示",
-        "payoutsPageKycRequired": "引き出しを行うには本人確認が必要です。"
+            "earnedThisMonth": "今月の収益",
+            "paidThisMonth": "今月の支出"
+        }
     },
     "PayoutsPage": {
         "title": "引き出し",

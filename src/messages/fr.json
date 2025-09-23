@@ -1024,5 +1024,23 @@
             "certificateButton": "Télécharger l'attestation",
             "conditionsButton": "Lire les conditions générales"
         }
+    },
+    "WalletPage": {
+        "title": "Portefeuille",
+        "subtitle": "Consultez votre solde et gérez vos transactions.",
+        "viewTransactions": "Voir toutes les transactions",
+        "viewPayouts": "Voir les versements",
+        "payoutsPageKycRequired": "La vérification d'identité est requise pour effectuer des retraits.",
+        "balance": {
+            "title": "Solde",
+            "current": "Solde actuel",
+            "withdraw": "Effectuer un retrait",
+            "viewInvoices": "Voir les factures"
+        },
+        "summary": {
+            "title": "Résumé rapide",
+            "earnedThisMonth": "Gains ce mois-ci",
+            "paidThisMonth": "Dépenses ce mois-ci"
+        }
     }
 }

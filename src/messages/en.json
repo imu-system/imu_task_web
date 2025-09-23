@@ -1024,5 +1024,23 @@
             "certificateButton": "Download Certificate",
             "conditionsButton": "Read General Conditions"
         }
+    },
+    "WalletPage": {
+        "title": "Wallet",
+        "subtitle": "Check your balance and manage your transactions.",
+        "viewTransactions": "View all transactions",
+        "viewPayouts": "View payouts",
+        "payoutsPageKycRequired": "Identity verification is required to make withdrawals.",
+        "balance": {
+            "title": "Balance",
+            "current": "Current balance",
+            "withdraw": "Make a withdrawal",
+            "viewInvoices": "View invoices"
+        },
+        "summary": {
+            "title": "Quick summary",
+            "earnedThisMonth": "Earnings this month",
+            "paidThisMonth": "Expenses this month"
+        }
     }
 }
