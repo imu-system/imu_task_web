@@ -390,6 +390,7 @@
         "earnedOn": "Obtenu le {date}",
         "noBio": "Cet utilisateur n'a pas encore de biographie.",
         "serviceRadiusDisplay": "{km} km de rayon",
+        "edit": "Modifier",
         "portfolio": {
             "title": "Mon Portfolio",
             "empty": "Augmentez votre crédibilité de 80% en ajoutant vos réalisations !",

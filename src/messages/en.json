@@ -390,6 +390,7 @@
         "earnedOn": "Earned on {date}",
         "noBio": "This user does not have a bio yet.",
         "serviceRadiusDisplay": "{km} km radius",
+        "edit": "Edit",
         "portfolio": {
             "title": "My Portfolio",
             "empty": "Boost your credibility by 80% by adding your work!",
@@ -954,7 +955,7 @@
             "description": "Connect your external calendars to automatically block out busy times.",
             "google": "Google Calendar",
             "apple": "Apple Calendar",
-            "export": "Export your availability (iCal)"
+            "export": "Export my availability (iCal)"
         },
         "rules": {
             "title": "Auto-Busy Rules",
