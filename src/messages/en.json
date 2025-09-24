@@ -111,6 +111,7 @@
     },
     "LanguageSwitcher": {
         "changeLanguage": "Change language",
+        "changeLanguageRegionCurrency": "Change language, region, or currency",
         "languageRegion": "Language & Region",
         "currency": "Currency",
         "languageRegionDescription": "Select your preferred language and region.",

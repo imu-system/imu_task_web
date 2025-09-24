@@ -16,6 +16,7 @@ import { useRouter, usePathname } from '@/navigation';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { locales } from '@/lib/locales';
+import { Label } from './ui/label';
 
 type LanguageOption = {
   code: (typeof locales)[number];
@@ -83,7 +84,7 @@ export default function LanguageRegionSwitcher() {
            <span className="hidden text-sm font-medium sm:inline">
             {currentLocale.toUpperCase()} | {selectedCurrency}
           </span>
-          <span className="sr-only">{t('changeLanguage')}</span>
+          <span className="sr-only">{t('changeLanguageRegionCurrency')}</span>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-96" align="end">
@@ -97,8 +98,10 @@ export default function LanguageRegionSwitcher() {
           <TabsContent value="language-region">
             <div className="py-4">
               <div className="relative mb-4">
+                  <Label htmlFor="search-language" className="sr-only">{t('searchPlaceholder')}</Label>
                   <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground"/>
                   <Input 
+                      id="search-language"
                       placeholder={t('searchPlaceholder')} 
                       className="pl-8" 
                       value={searchTerm}

@@ -105,6 +105,7 @@
     },
     "LanguageSwitcher": {
         "changeLanguage": "言語を変更",
+        "changeLanguageRegionCurrency": "言語、地域、通貨を変更",
         "languageRegion": "言語と地域",
         "currency": "通貨",
         "languageRegionDescription": "ご希望の言語と地域を選択してください。",

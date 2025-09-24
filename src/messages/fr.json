@@ -111,6 +111,7 @@
     },
     "LanguageSwitcher": {
         "changeLanguage": "Changer de langue",
+        "changeLanguageRegionCurrency": "Changer de langue, de région ou de devise",
         "languageRegion": "Langue & Région",
         "currency": "Devise",
         "languageRegionDescription": "Sélectionnez votre langue et région préférées.",
