@@ -57,6 +57,7 @@ import { Switch } from './ui/switch';
 import { Dialog, DialogTrigger, DialogContent } from './ui/dialog';
 import { CreateTaskForm } from './create-task-form';
 import { useSettingsModal } from '@/context/settings-modal-context';
+import LanguageRegionSwitcher from './language-region-switcher';
 
 export function DashboardHeader() {
   const t = useTranslations('Header');
@@ -296,6 +297,8 @@ export function DashboardHeader() {
 
       <div className="flex items-center gap-2">
         <CreateButton/>
+
+        <LanguageRegionSwitcher />
 
         <Button asChild variant="ghost" size="icon">
           <Link href="/dashboard/messages">
