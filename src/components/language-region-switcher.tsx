@@ -54,13 +54,11 @@ export default function LanguageRegionSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(currentLocale);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCurrency, setSelectedCurrency] = useState('EUR');
 
 
   const handleLanguageChange = (newLocale: string) => {
-    setSelectedLanguage(newLocale);
     router.replace(pathname, { locale: newLocale });
     setOpen(false);
   };
@@ -111,12 +109,12 @@ export default function LanguageRegionSwitcher() {
                     onClick={() => handleLanguageChange(option.code)}
                     className={cn(
                       'flex flex-col items-start p-3 rounded-lg border text-left hover:bg-accent transition-colors relative',
-                      selectedLanguage === option.code && 'border-primary ring-2 ring-primary'
+                      currentLocale === option.code && 'border-primary ring-2 ring-primary'
                     )}
                   >
                     <span className="text-sm font-medium">{tLanguages(option.code as any)}</span>
                     <span className="text-xs text-muted-foreground">{tCountries(option.code as any)}</span>
-                    {selectedLanguage === option.code && (
+                    {currentLocale === option.code && (
                         <Check className="h-4 w-4 absolute top-2 right-2 text-primary"/>
                     )}
                   </button>
