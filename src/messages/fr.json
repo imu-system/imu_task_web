@@ -971,60 +971,6 @@
             "successDescription": "Vos paramètres de disponibilité ont été mis à jour."
         }
     },
-    "LegalPage": {
-        "title": "Légal & Documents",
-        "tabs": {
-            "policies": "Politiques",
-            "invoices": "Factures",
-            "contracts": "Contrats",
-            "insurance": "Assurance"
-        },
-        "terms": {
-            "cgu": {
-                "title": "Conditions Générales d'Utilisation (v{version})"
-            },
-            "privacy": {
-                "title": "Politique de Confidentialité ({year})"
-            }
-        },
-        "audit": {
-            "title": "Historique de consentement",
-            "acceptedOn": "Accepté le {date} (version {version})"
-        },
-        "invoices": {
-            "title": "Factures d'abonnement",
-            "description": "Voici vos factures d'abonnement pour ImuTask Pro.",
-            "table": {
-                "date": "Date",
-                "amount": "Montant",
-                "download": "Télécharger"
-            },
-            "actions": {
-                "exportCsv": "Exporter en CSV",
-                "requestSummary": "Demander un récapitulatif annuel"
-            }
-        },
-        "contracts": {
-            "title": "Mes Contrats",
-            "signedOn": "Signé le {date}",
-            "read": "Lire",
-            "download": "Télécharger",
-            "addNew": "Ajouter un nouveau document/contrat",
-            "providerContract": "Contrat de Prestation de Service",
-            "nda": "Accord de Non-Divulgation"
-        },
-        "insurance": {
-            "title": "Assurance Responsabilité Civile",
-            "description": "ImuTask fournit une couverture d'assurance de base pour les missions.",
-            "providerLabel": "Fournisseur d'assurance",
-            "policyNumberLabel": "Numéro de police",
-            "coverageLabel": "Couverture",
-            "coverageValue": "Jusqu'à 500 € pour les dommages matériels.",
-            "documentsTitle": "Documents",
-            "certificateButton": "Télécharger l'attestation",
-            "conditionsButton": "Lire les conditions générales"
-        }
-    },
     "WalletPage": {
         "title": "Portefeuille",
         "subtitle": "Consultez votre solde et gérez vos transactions.",
@@ -1058,7 +1004,13 @@
         "es": "Español",
         "de": "Deutsch",
         "zh": "中文 (简体)"
+    },
+    "Currencies": {
+        "EUR": "Euro",
+        "USD": "Dollar américain",
+        "JPY": "Yen japonais"
     }
 }
+
 
 
