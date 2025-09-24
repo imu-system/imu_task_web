@@ -49,8 +49,8 @@ export default function LanguageRegionSwitcher() {
   };
   
   const filteredOptions = languageOptions.filter(option => 
-    tLanguages(option.code).toLowerCase().includes(searchTerm.toLowerCase()) ||
-    tCountries(option.code).toLowerCase().includes(searchTerm.toLowerCase())
+    tLanguages(option.code as any).toLowerCase().includes(searchTerm.toLowerCase()) ||
+    tCountries(option.code as any).toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
