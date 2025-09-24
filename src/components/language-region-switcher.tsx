@@ -87,7 +87,7 @@ export default function LanguageRegionSwitcher() {
           <span className="sr-only">{t('changeLanguageRegionCurrency')}</span>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-96" align="end">
+      <PopoverContent className="w-96 imu-glass p-4" align="end">
         <Tabs defaultValue="language-region">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="language-region">
@@ -114,7 +114,7 @@ export default function LanguageRegionSwitcher() {
                     key={option.code}
                     onClick={() => handleLanguageChange(option.code)}
                     className={cn(
-                      'flex flex-col items-start p-3 rounded-lg border text-left hover:bg-accent transition-colors relative',
+                      'flex flex-col items-start p-3 rounded-lg border text-left hover:bg-accent/50 transition-colors relative',
                       currentLocale === option.code && 'border-primary ring-2 ring-primary'
                     )}
                   >
@@ -139,7 +139,7 @@ export default function LanguageRegionSwitcher() {
                             key={option.code}
                             onClick={() => handleCurrencyChange(option.code)}
                              className={cn(
-                                'flex items-center justify-between p-3 rounded-lg border text-left hover:bg-accent transition-colors',
+                                'flex items-center justify-between p-3 rounded-lg border text-left hover:bg-accent/50 transition-colors',
                                 selectedCurrency === option.code && 'border-primary ring-2 ring-primary'
                             )}
                         >
