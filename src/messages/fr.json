@@ -111,9 +111,10 @@
     },
     "LanguageSwitcher": {
         "changeLanguage": "Changer de langue",
-        "fr": "Français",
-        "en": "English",
-        "jp": "Japonais"
+        "languageRegion": "Langue & Région",
+        "currency": "Devise",
+        "languageRegionDescription": "Sélectionnez votre langue et région préférées.",
+        "currencyDescription": "Sélectionnez votre devise préférée."
     },
     "DashboardNav": {
         "dashboard": "Dashboard",

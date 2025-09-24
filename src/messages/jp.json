@@ -105,9 +105,10 @@
     },
     "LanguageSwitcher": {
         "changeLanguage": "言語を変更",
-        "fr": "Français",
-        "en": "English",
-        "jp": "日本語"
+        "languageRegion": "言語と地域",
+        "currency": "通貨",
+        "languageRegionDescription": "ご希望の言語と地域を選択してください。",
+        "currencyDescription": "ご希望の通貨を選択してください。"
     },
     "DashboardNav": {
         "dashboard": "ダッシュボード",
