@@ -26,6 +26,7 @@ import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import { usePathname, Link } from '@/navigation';
 import { useAuth } from '@/hooks/use-auth';
+import LanguageRegionSwitcher from './language-region-switcher';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -167,23 +168,7 @@ export default function Header() {
           </Link>
 
           <div className="flex items-center gap-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Globe className="h-5 w-5" />
-                  <span className="sr-only">{tLang('changeLanguage')}</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem asChild>
-                  <Link href={pathname} locale="fr">{tLang('fr')}</Link>
-                </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href={pathname} locale="en">{tLang('en')}</Link>
-                  </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-
+            <LanguageRegionSwitcher />
             {isAuthenticated ? <UserMenu /> : <AuthButtons />}
           </div>
         </div>
