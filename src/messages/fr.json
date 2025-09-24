@@ -169,6 +169,7 @@
     "DashboardPage": {
         "title": "Missions disponibles",
         "subtitle": "Trouvez une mission qui vous correspond près de chez vous.",
+        "createTask": "Créer une mission",
         "noTasks": "Aucune mission disponible pour le moment.",
         "welcome": "Bon retour, {name} !",
         "welcomeSubtitle": "Voici ce qui se passe aujourd'hui.",
@@ -999,11 +1000,11 @@
     },
     "Languages": {
         "fr": "Français",
-        "en": "English",
-        "jp": "日本語",
-        "es": "Español",
-        "de": "Deutsch",
-        "zh": "中文 (简体)"
+        "en": "Anglais",
+        "jp": "Japonais",
+        "es": "Espagnol",
+        "de": "Allemand",
+        "zh": "Chinois (simplifié)"
     },
     "Currencies": {
         "EUR": "Euro",
@@ -1012,5 +1013,4 @@
     }
 }
 
-
-
+  
