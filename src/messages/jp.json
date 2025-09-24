@@ -108,7 +108,8 @@
         "languageRegion": "言語と地域",
         "currency": "通貨",
         "languageRegionDescription": "ご希望の言語と地域を選択してください。",
-        "currencyDescription": "ご希望の通貨を選択してください。"
+        "currencyDescription": "ご希望の通貨を選択してください。",
+        "searchPlaceholder": "言語を検索..."
     },
     "DashboardNav": {
         "dashboard": "ダッシュボード",
@@ -517,153 +518,20 @@
         },
         "submitButton": "検証のために送信"
     },
+    "Countries": {
+        "fr": "フランス",
+        "en": "アメリカ合衆国",
+        "jp": "日本",
+        "es": "スペイン",
+        "de": "ドイツ",
+        "zh": "中国"
+    },
     "Languages": {
         "fr": "フランス語",
         "en": "英語",
         "jp": "日本語",
         "es": "スペイン語",
         "de": "ドイツ語",
-        "it": "イタリア語"
-    },
-    "AvailabilityPage": {
-        "title": "私のスケジュール",
-        "subtitle": "関連するミッションオファーを受け取るためにスケジュールを管理します。",
-        "notProvider": {
-            "title": "このセクションはプロバイダー向けです。",
-            "description": "利用可能時間を管理するには、プロバイダープロファイルを完成させてください。",
-            "button": "プロフィールに移動"
-        },
-        "weekGrid": {
-            "title": "私の週",
-            "time": "時間"
-        },
-        "days": {
-            "mon": "月",
-            "tue": "火",
-            "wed": "水",
-            "thu": "木",
-            "fri": "金",
-            "sat": "土",
-            "sun": "日"
-        },
-        "actions": {
-            "title": "クイックアクション",
-            "recurring": "定期的なスロットを設定",
-            "exception": "例外を追加",
-            "sync": "カレンダーを同期",
-            "settings": "設定"
-        },
-        "autoBusy": {
-            "title": "自動 занято ルール",
-            "decline": "勉強ブロック中に予約を自動的に辞退する",
-            "markBusy": "スロットが埋まったら「忙しい」とマークする"
-        },
-        "exceptionModal": {
-            "title": "例外を追加",
-            "description": "特定のスロットをブロックするか、例外的に利用可能にします。",
-            "date": "日付",
-            "startTime": "開始時間",
-            "endTime": "終了時間",
-            "type": "タイプ",
-            "types": {
-                "blocked": "ブロック済み",
-                "available": "例外的に利用可能"
-            },
-            "comment": "コメント（任意）",
-            "commentPlaceholder": "例：医者の予約",
-            "cancel": "キャンセル",
-            "save": "例外を保存"
-        },
-        "recurringModal": {
-            "title": "定期的な利用可能性",
-            "description": "標準の週次スケジュールを定義します。",
-            "autoAccept": "これらのスロットでミッションを自動的に受け入れる",
-            "cancel": "キャンセル",
-            "save": "保存"
-        },
-        "syncModal": {
-            "title": "カレンダーを同期",
-            "description": "簡素化された管理のために外部カレンダーを接続します。",
-            "google": "Googleカレンダーを接続",
-            "apple": "Appleカレンダーを接続",
-            "export": "iCalをエクスポート"
-        }
-    },
-    "AvailabilitySettingsPage": {
-        "title": "利用可能性設定",
-        "sync": {
-            "title": "カレンダー同期",
-            "description": "外部カレンダーを接続して、忙しい時間を自動的にブロックします。",
-            "google": "Googleカレンダー",
-            "apple": "Appleカレンダー",
-            "export": "利用可能性をエクスポート（iCal）"
-        },
-        "rules": {
-            "title": "自動 занято ルール",
-            "description": "スケジュールを自動的に管理するためのルールを設定します。",
-            "decline": "勉強ブロック中に予約を自動的に辞退します。",
-            "markBusy": "ミッションスロットが埋まったら「忙しい」とマークします。"
-        },
-        "saveButton": "設定を保存",
-        "toast": {
-            "successTitle": "設定が保存されました",
-            "successDescription": "利用可能性設定が更新されました。"
-        }
-    },
-    "LegalPage": {
-        "title": "法務・書類",
-        "tabs": {
-            "policies": "ポリシー",
-            "invoices": "請求書",
-            "contracts": "契約書",
-            "insurance": "保険"
-        },
-        "terms": {
-            "cgu": {
-                "title": "利用規約 (v{version})"
-            },
-            "privacy": {
-                "title": "プライバシーポリシー ({year})"
-            },
-            "readOnline": "オンラインで読む",
-            "downloadPdf": "PDFをダウンロード"
-        },
-        "audit": {
-            "title": "同意履歴",
-            "acceptedOn": "{date}に同意 (バージョン {version})"
-        },
-        "invoices": {
-            "title": "購読請求書",
-            "description": "ImuTask Proの購読請求書はこちらです。",
-            "table": {
-                "date": "日付",
-                "amount": "金額",
-                "download": "ダウンロード"
-            },
-            "actions": {
-                "exportCsv": "CSVとしてエクスポート",
-                "requestSummary": "年間要約をリクエスト"
-            }
-        },
-        "contracts": {
-            "title": "私の契約書",
-            "signedOn": "{date}に署名",
-            "read": "読む",
-            "download": "ダウンロード",
-            "addNew": "新しい文書/契約を追加",
-            "providerContract": "プロバイダーサービス契約",
-            "nda": "秘密保持契約"
-        },
-        "insurance": {
-            "title": "民事責任保険",
-            "description": "ImuTaskはミッションに対する基本的な保険を提供します。",
-            "providerLabel": "保険会社",
-            "policyNumberLabel": "保険証券番号",
-            "coverageLabel": "補償範囲",
-            "coverageValue": "物的損害に対して最大500€。",
-            "documentsTitle": "書類",
-            "certificateButton": "証明書をダウンロード",
-            "conditionsButton": "一般条件を読む"
-        }
+        "zh": "中国語（簡体字）"
     }
 }

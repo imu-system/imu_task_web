@@ -114,7 +114,8 @@
         "languageRegion": "Language & Region",
         "currency": "Currency",
         "languageRegionDescription": "Select your preferred language and region.",
-        "currencyDescription": "Select your preferred currency."
+        "currencyDescription": "Select your preferred currency.",
+        "searchPlaceholder": "Search for a language..."
     },
     "DashboardNav": {
         "dashboard": "Dashboard",
@@ -984,9 +985,7 @@
             },
             "privacy": {
                 "title": "Privacy Policy ({year})"
-            },
-            "readOnline": "Read Online",
-            "downloadPdf": "Download PDF"
+            }
         },
         "audit": {
             "title": "Consent History",
@@ -1043,5 +1042,22 @@
             "earnedThisMonth": "Earnings this month",
             "paidThisMonth": "Expenses this month"
         }
+    },
+    "Countries": {
+        "fr": "France",
+        "en": "United States",
+        "jp": "Japan",
+        "es": "Spain",
+        "de": "Germany",
+        "zh": "China"
+    },
+    "Languages": {
+        "fr": "French",
+        "en": "English",
+        "jp": "Japanese",
+        "es": "Spanish",
+        "de": "German",
+        "zh": "Chinese (Simplified)"
     }
 }
+

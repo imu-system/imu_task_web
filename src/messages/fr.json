@@ -114,7 +114,8 @@
         "languageRegion": "Langue & Région",
         "currency": "Devise",
         "languageRegionDescription": "Sélectionnez votre langue et région préférées.",
-        "currencyDescription": "Sélectionnez votre devise préférée."
+        "currencyDescription": "Sélectionnez votre devise préférée.",
+        "searchPlaceholder": "Rechercher une langue..."
     },
     "DashboardNav": {
         "dashboard": "Dashboard",
@@ -984,9 +985,7 @@
             },
             "privacy": {
                 "title": "Politique de Confidentialité ({year})"
-            },
-            "readOnline": "Lire en ligne",
-            "downloadPdf": "Télécharger en PDF"
+            }
         },
         "audit": {
             "title": "Historique de consentement",
@@ -1043,5 +1042,22 @@
             "earnedThisMonth": "Gains ce mois-ci",
             "paidThisMonth": "Dépenses ce mois-ci"
         }
+    },
+    "Countries": {
+        "fr": "France",
+        "en": "États-Unis",
+        "jp": "Japon",
+        "es": "Espagne",
+        "de": "Allemagne",
+        "zh": "Chine"
+    },
+    "Languages": {
+        "fr": "Français",
+        "en": "English",
+        "jp": "日本語",
+        "es": "Español",
+        "de": "Deutsch",
+        "zh": "中文 (简体)"
     }
 }
+
