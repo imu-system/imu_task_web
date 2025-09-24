@@ -78,8 +78,11 @@ export default function LanguageRegionSwitcher() {
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button variant="ghost" size="icon">
+        <Button variant="ghost" className="gap-1">
           <Globe className="h-5 w-5" />
+           <span className="hidden text-sm font-medium sm:inline">
+            {currentLocale.toUpperCase()} | {selectedCurrency}
+          </span>
           <span className="sr-only">{t('changeLanguage')}</span>
         </Button>
       </PopoverTrigger>
