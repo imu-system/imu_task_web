@@ -21,11 +21,12 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 - **[ROADMAP.md](./ROADMAP.md)** — Feuille de route détaillée (10 phases, KPIs, timeline)
 - **[PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md)** — Synthèse exécutive avec métriques et progression
 
-### 🏗️ Technique
+### 📘 Technique
 
-- **[TECHNICAL_ARCHITECTURE.md](./TECHNICAL_ARCHITECTURE.md)** ⭐ — Architecture complète (stack, DB schema, API, infra)
-- **[FIREBASE_SETUP.md](./FIREBASE_SETUP.md)** — Guide configuration Firebase (Auth, Firestore, Storage)
-- **[WEB_MOBILE_SYNC.md](./WEB_MOBILE_SYNC.md)** — Stratégie synchronisation web-mobile
+1. **[TECHNICAL_ARCHITECTURE.md](./TECHNICAL_ARCHITECTURE.md)** ⭐ — Architecture technique complète
+2. **[FIREBASE_SETUP.md](./FIREBASE_SETUP.md)** — Guide de configuration Firebase
+3. **[FIREBASE_CONFIG_COMPLETED.md](./FIREBASE_CONFIG_COMPLETED.md)** 🎉 — Configuration Firebase terminée
+4. **[WEB_MOBILE_SYNC.md](./WEB_MOBILE_SYNC.md)** — Synchronisation web-mobile
 
 ### 📋 Tâches & Suivi
 

@@ -2,7 +2,7 @@
 
 **Version:** 1.0  
 **Dernière mise à jour:** 3 octobre 2025  
-**Statut:** 🔴 Non configuré
+**Statut:** � En cours de configuration
 
 ---
 

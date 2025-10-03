@@ -4,36 +4,19 @@
 
 ---
 
-## 🔴 Bugs Critiques (À corriger immédiatement)
+## 🔴 Bugs Critiques (Bloquants)
 
-### BUG-001: Absence de configuration Firebase
-**Statut:** 🔴 Ouvert  
-**Priorité:** Critique  
-**Créé le:** 3 octobre 2025  
-**Assigné à:** Non assigné
-
-**Description:**
-Le projet n'a pas de configuration Firebase initialisée. Aucun fichier de configuration Firebase n'est présent dans le projet.
-
-**Impact:**
-- Aucune fonctionnalité nécessitant Firebase ne fonctionne
-- Impossible de tester l'authentification
-- Impossible de sauvegarder des données
-
-**Fichiers affectés:**
-- Aucun fichier de configuration Firebase trouvé
-- Les fonctionnalités auth, firestore, storage ne sont pas configurées
-
-**Solution proposée:**
-1. Créer un projet Firebase dans la console
-2. Ajouter `firebase-config.ts` ou similaire dans `/src/lib/`
-3. Initialiser Firebase Auth, Firestore, Storage
-4. Configurer les variables d'environnement (.env.local)
-5. Ajouter les règles de sécurité Firestore
-
-**Étapes de reproduction:**
-1. Rechercher des fichiers de configuration Firebase
-2. Constater leur absence
+### BUG-001: Configuration Firebase manquante
+- **Statut:** ✅ **RÉSOLU** (3 octobre 2025)
+- **Priorité:** CRITIQUE
+- **Impact:** Bloque toute l'authentification et la persistence
+- **Solution:**
+  - ✅ Créé `/src/lib/firebase.ts` avec initialisation Firebase
+  - ✅ Créé `/.env.local` avec les vraies clés Firebase
+  - ✅ Créé `/firebase.json`, `firestore.rules`, `storage.rules`
+  - ✅ Testé avec succès sur `/fr/test-firebase`
+- **Temps de résolution:** 30 minutes
+- **Voir:** [FIREBASE_CONFIG_COMPLETED.md](./FIREBASE_CONFIG_COMPLETED.md)
 
 ---
 
