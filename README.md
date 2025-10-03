@@ -49,16 +49,42 @@ L'application sera disponible sur [http://localhost:9002](http://localhost:9002)
 
 ---
 
-## 📚 Documentation complète
+## 📚 Documentation
 
-**⚠️ Pour toute information détaillée, consultez le dossier `/docs`:**
+La documentation complète du projet se trouve dans le dossier `/docs`:
 
-- **[📖 INDEX.md](./docs/INDEX.md)** - Point d'entrée de toute la documentation
-- **[🗺️ ROADMAP.md](./docs/ROADMAP.md)** - Feuille de route du développement
-- **[🐛 BUGS_AND_ISSUES.md](./docs/BUGS_AND_ISSUES.md)** - Suivi des bugs
-- **[🔥 FIREBASE_SETUP.md](./docs/FIREBASE_SETUP.md)** - Configuration Firebase
-- **[🔄 WEB_MOBILE_SYNC.md](./docs/WEB_MOBILE_SYNC.md)** - Synchronisation web/mobile
-- **[📋 blueprint.md](./docs/blueprint.md)** - Vision et design original
+### 🎯 Commencer Ici
+
+- **[NEXT_STEPS.md](./docs/NEXT_STEPS.md)** ⚡ — Guide de démarrage rapide avec actions immédiates
+- **[GETTING_STARTED.md](./docs/GETTING_STARTED.md)** — Setup environnement de développement
+- **[PROJECT_SUMMARY.md](./docs/PROJECT_SUMMARY.md)** — Synthèse exécutive et métriques
+
+### 📖 Documentation Complète
+
+- **[PRODUCT_VISION.md](./docs/PRODUCT_VISION.md)** — Vision produit, business model, personas, MVP→V2
+- **[TECHNICAL_ARCHITECTURE.md](./docs/TECHNICAL_ARCHITECTURE.md)** — Architecture technique détaillée
+- **[ROADMAP.md](./docs/ROADMAP.md)** — Feuille de route développement (10 phases)
+- **[FIREBASE_SETUP.md](./docs/FIREBASE_SETUP.md)** — Configuration Firebase complète
+- **[TASKS_TODO.md](./docs/TASKS_TODO.md)** — Tâches prioritaires et sprints
+- **[BUGS_AND_ISSUES.md](./docs/BUGS_AND_ISSUES.md)** — Bugs connus et solutions
+- **[INDEX.md](./docs/INDEX.md)** — Index de toute la documentation
+
+### 🚀 Quick Start
+
+```bash
+# 1. Installer dépendances
+pnpm install
+
+# 2. Configuration Firebase
+cp .env.example .env.local
+# Éditer .env.local avec vos clés Firebase
+
+# 3. Lancer le serveur
+pnpm dev
+# → http://localhost:9002
+```
+
+**Voir:** [docs/NEXT_STEPS.md](./docs/NEXT_STEPS.md) pour les actions prioritaires
 
 ---
 

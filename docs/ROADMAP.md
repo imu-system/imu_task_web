@@ -8,13 +8,55 @@
 
 ## 📊 Vue d'ensemble du projet
 
-ImuTask est une plateforme web permettant de connecter des clients avec des prestataires de services pour diverses tâches. Le projet utilise Next.js 15, Firebase, et une architecture multilingue (en, fr, de, es, ja).
+**Pitch:** ImuTask est une plateforme mobile-first et web (admin/marketing) qui met en relation des jeunes (18–30 ans) offrant des micro-services locaux (courses, ménage, accompagnement, aide numérique, etc.) et des particuliers/associations ayant besoin d'un service occasionnel — avec paiements sécurisés, traçabilité complète et montée en compétences via des badges et micro-formations.
+
+**Vision long terme:** Devenir l'écosystème local référent où les jeunes gagnent un revenu légal, se forment et montrent leur valeur, tandis que les communautés locales accèdent à une main-d'œuvre fiable, traçable et qualifiée.
+
+**Stack technique:** Next.js 15, Firebase/Postgres, Expo React Native, architecture multilingue (en, fr, de, es, ja, it, pt).
 
 ### 🎯 Objectifs principaux
-- Permettre aux utilisateurs de poster des tâches avec des budgets
-- Matcher automatiquement les prestataires qualifiés
-- Faciliter la communication directe client-prestataire
-- Gérer les paiements et les réservations de manière sécurisée
+- **Pour les jeunes/prestataires:** revenus flexibles, traçabilité, badges/certificats, micro-formations, sécurité
+- **Pour les clients:** accès rapide à des prestataires locaux vérifiables, paiement sécurisé, résolution de litiges
+- **Pour les partenaires:** canaux d'engagement local, reporting RSE, co-financement de missions solidaires
+- **Pour la plateforme:** revenus via commissions (12-20%), abonnements ImuPro, services premium, sponsoring
+
+### 👥 Publics cibles & Personas
+
+- **Jeune Prestataire (18–30, étudiant):** chercheur de revenus d'appoint, flexible, mobile-first, valeurs sociales
+- **Client particulier:** parent occupé, senior, personne active, cherche simplicité et sécurité
+- **Association locale/ONG:** besoin de volontaires rémunérés ponctuels
+- **Admin/Opérations:** modération, KYC, payouts, support
+- **Sponsor/Partenaire campus:** recherche d'impact et visibilité
+
+### 🎯 Périmètre MVP → V1 → V2
+
+**MVP (Priorité absolue - Version Web):**
+- Auth/profils multi-rôles (client/provider)
+- Création/recherche Tasks (texte + géoloc + créneau)
+- Offers (propositions providers)
+- Booking (acceptation + statut)
+- Paiements Stripe Connect (authorize/capture/refund)
+- Messagerie in-app (texte + attachements, traçabilité)
+- KYC basique (upload pièce + selfie)
+- Reviews & rating post-mission
+- Admin minimal (KYC queue, disputes, paiements)
+
+**V1 (Post-validation MVP):**
+- Disponibilités/calendrier prestataire
+- Auto-accept rules & matching basique
+- Offline queue, retry & status page
+- Notifications push & email
+- Templates/Packs
+- ImuAcademy (mini-cours + badges)
+- Referrals & Rewards
+
+**V2 (Scale & Growth):**
+- ImuChallenge (concours)
+- WebRTC audio (calls + recording avec consentement)
+- Pricing intelligence (IA suggest_pricing)
+- Advanced Trust & Safety (ML detection)
+- Feature flags & experiments
+- Marketplace professionnel/packs premium
 
 ---
 
@@ -92,14 +134,17 @@ ImuTask est une plateforme web permettant de connecter des clients avec des pres
 - [ ] Géolocalisation des tâches
 
 #### 📋 À faire
-- [ ] Page de liste des tâches avec filtres
-- [ ] Page de détails d'une tâche
+- [ ] Page de liste des tâches avec filtres (catégorie, prix, distance)
+- [ ] Page de détails d'une tâche (photos, map, provider suggestions)
 - [ ] Édition/suppression de tâches
-- [ ] Recherche de tâches (texte + filtres)
-- [ ] Système de statuts de tâches (Open, In Progress, Completed, Cancelled)
-- [ ] Intégration de cartes pour la localisation
-- [ ] Matching automatique des prestataires (algorithme)
+- [ ] Recherche de tâches (texte + filtres + géolocalisation)
+- [ ] Système de statuts: draft → publish → offers → accept → booking → complete → review
+- [ ] Intégration de cartes (PostGIS/ElasticSearch pour recherche locale)
+- [ ] Matching automatique des prestataires (algorithme basé skills + distance + rating)
 - [ ] Notifications de nouvelles tâches pertinentes
+- [ ] **Trust & Safety:** PII detection (messages), on-platform communications enforced
+- [ ] Photo before/after, check-in/out proof
+- [ ] SOS button (urgences)
 
 **Date cible:** 30 novembre 2025
 
@@ -159,14 +204,17 @@ ImuTask est une plateforme web permettant de connecter des clients avec des pres
 - [x] Traductions pour les paiements
 
 #### 📋 À faire
-- [ ] Intégration Stripe ou solution de paiement
-- [ ] Page de portefeuille utilisateur
-- [ ] Système de dépôt sécurisé (escrow)
-- [ ] Historique des transactions
-- [ ] Gestion des retraits pour prestataires
-- [ ] Système de commissions
-- [ ] Factures automatiques
-- [ ] Remboursements et litiges
+- [ ] Intégration Stripe Connect (accounts, transfers, webhooks)
+- [ ] Page de portefeuille utilisateur (balance, transactions)
+- [ ] Système de dépôt sécurisé (escrow: authorize → capture à complétion)
+- [ ] Historique des transactions avec filtres & export
+- [ ] Gestion des retraits pour prestataires (payouts, KYC requis)
+- [ ] Système de commissions (take-rate 12-20% configurable)
+- [ ] Tips optionnels post-mission
+- [ ] Factures automatiques (PDF génération)
+- [ ] Remboursements et litiges (automatic refund triggers)
+- [ ] Webhooks Stripe (payment_intent, transfer, dispute)
+- [ ] Réconciliation automatique (BullMQ workers)
 
 **Date cible:** 31 janvier 2026
 
@@ -230,21 +278,40 @@ ImuTask est une plateforme web permettant de connecter des clients avec des pres
 
 ---
 
-### Phase 10: Tests, Optimisation & Lancement 🔴 (0% complété)
+### Phase 10: IA & Intelligence 🔴 (0% complété)
+
+**Statut:** 🔴 Non démarré
+
+#### 📋 À faire
+- [ ] **NL→Form:** création task via vocal/texte (Genkit + LLM)
+- [ ] **Pricing suggéré:** suggestion locale (p50/p75/max) par catégorie & ville
+- [ ] **Moderation assistée:** LLM classifier + small models (toxicité/spam)
+- [ ] **Ops Copilot:** résumé automatique disputes pour admin
+- [ ] **RAG:** stockage docs (TOS, pricing guidance) pour réponses factuelles
+- [ ] **Smart Matching:** ML-based provider suggestions
+- [ ] **Risk Scoring:** détection patterns suspects (no-show, disputes, chargebacks)
+- [ ] **OCR Images:** détection coordonnées dans photos uploadées
+
+**Date cible:** 15 mars 2026
+
+---
+
+### Phase 11: Tests, Optimisation & Lancement 🔴 (0% complété)
 
 **Statut:** 🔴 Non démarré
 
 #### 📋 À faire
 - [ ] Tests E2E (Playwright/Cypress)
-- [ ] Tests de charge et performance
-- [ ] Optimisation des images et assets
-- [ ] Optimisation SEO
-- [ ] Configuration du monitoring (Sentry)
-- [ ] Documentation utilisateur
-- [ ] Guide de démarrage
-- [ ] Beta testing avec utilisateurs réels
-- [ ] Corrections finales
-- [ ] Déploiement en production
+- [ ] Tests de charge et performance (Artillery/k6)
+- [ ] Optimisation des images et assets (Next.js Image)
+- [ ] Optimisation SEO (meta tags, sitemap, structured data)
+- [ ] Configuration du monitoring (Sentry + Prometheus + Grafana)
+- [ ] Documentation utilisateur (guides, FAQs, vidéos)
+- [ ] Guide de démarrage pour campus pilotes
+- [ ] Beta testing avec utilisateurs réels (50 providers + 50 clients)
+- [ ] Corrections finales & polish UX
+- [ ] Déploiement en production (Vercel + infra backend)
+- [ ] Plan de rollback & incident response
 
 **Date cible:** 30 avril 2026
 
@@ -263,9 +330,29 @@ ImuTask est une plateforme web permettant de connecter des clients avec des pres
 | Phase 7: Avis | 0% | 🟢 Moyenne | 🔴 Non démarré |
 | Phase 8: Dashboards | 25% | 🟢 Moyenne | 🟡 En cours |
 | Phase 9: Avancées | 0% | ⚪ Faible | 🔴 Non démarré |
-| Phase 10: Lancement | 0% | 🔴 Critique | 🔴 Non démarré |
+| Phase 10: IA & Intelligence | 0% | 🟡 Haute | 🔴 Non démarré |
+| Phase 11: Lancement | 0% | 🔴 Critique | 🔴 Non démarré |
 
 **Progression globale du projet: 19.5%**
+
+### 📊 KPIs & Métriques à tracker
+
+**Business:**
+- GMV daily/monthly, Take-rate, AOV, #bookings
+- Fill rate (#bookings / #tasks published)
+- Conversion publish→booking
+- Time publish→first offer
+
+**Qualité:**
+- No-show rate, Dispute rate
+- KYC pass rate, Fraud detection rate
+- Review average rating
+
+**Growth:**
+- Retention cohorts (D7/D30/D90)
+- NPS (Net Promoter Score)
+- CAC/LTV ratio
+- Referral conversion rate
 
 ---
 

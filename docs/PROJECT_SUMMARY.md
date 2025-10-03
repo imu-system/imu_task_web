@@ -134,27 +134,58 @@ Phase 10: Tests & Lancement         ░░░░░░░░░░░░░░�
 
 ---
 
-## 🔗 Architecture Actuelle
+## 🔗 Architecture Actuelle vs Cible
 
 ```
 Frontend (Next.js 15)
 ├── Pages & Routes ✅
-├── Components UI ✅
+├── Components UI (shadcn) ✅
 ├── Forms & Validation ✅
-├── Internationalization ✅
+├── Internationalization (7 langues) ✅
 └── Styling (Tailwind) ✅
 
-Backend (Firebase) ❌ NON CONFIGURÉ
-├── Authentication ❌
-├── Firestore Database ❌
-├── Storage ❌
-├── Cloud Functions ❌
-└── Hosting ⚠️ Partiel
+Mobile (Expo React Native) ⏸️ PLANIFIÉ
+├── Auth & Onboarding ⏸️
+├── Task Creation/Browse ⏸️
+├── Offers & Bookings ⏸️
+├── In-app Messaging ⏸️
+├── Wallet & Payments ⏸️
+└── Push Notifications ⏸️
 
-AI & Tools
+Backend (Hybrid Firebase + Node.js) ❌ PARTIELLEMENT CONFIGURÉ
+├── Authentication (Firebase Auth) ❌
+├── Database (Firestore + Postgres cible) ❌
+├── Storage (Firebase Storage / S3) ❌
+├── API (tRPC / REST) ⏸️
+├── Workers (BullMQ) ⏸️
+└── Search (ElasticSearch / PostGIS) ⏸️
+
+Paiements & Financier
+├── Stripe Connect ❌ À configurer
+├── Escrow (authorize → capture) ⏸️
+├── Payouts & Reconciliation ⏸️
+└── Invoicing ⏸️
+
+AI & Intelligence
 ├── Genkit (Gemini) ✅ Configuré
-├── Analytics ❌
-└── Monitoring ❌
+├── NL→Form (task creation) ⏸️
+├── Pricing Intelligence ⏸️
+├── Moderation (PII/toxicity) ⏸️
+└── Ops Copilot (disputes) ⏸️
+
+Trust & Safety
+├── KYC (Onfido/Veriff ou manuel) ⏸️
+├── PII Detection (messages/images) ⏸️
+├── On-platform Communications ⏸️
+├── Risk Scoring ⏸️
+└── Disputes & Refunds ⏸️
+
+Infra & Observability
+├── Hosting (Vercel + K8s/Serverless) ⏸️
+├── CI/CD (GitHub Actions) ⏸️
+├── Monitoring (Sentry + Prometheus) ❌
+├── Logs (Loki / CloudWatch) ❌
+└── Feature Flags ⏸️
 ```
 
 ---
@@ -173,7 +204,53 @@ Avril 2026          [████████░░░░░░░░░░░�
 
 ---
 
-## 👥 Ressources Requises
+## � Business Model & Monétisation
+
+### Sources de revenus
+
+1. **Commission sur bookings (take-rate)** — Revenue principal
+   - 12-20% par transaction
+   - Configurable par catégorie/région
+   - ~70% des revenus attendus
+
+2. **Abonnements ImuPro (providers)**
+   - Mensuel/Annuel
+   - Avantages: visibilité accrue, réduction fees, templates illimités
+   - ~15% des revenus
+
+3. **Frais fixes/micro-frais**
+   - Pour petites transactions (<10€)
+   - Couvre coûts Stripe + opérations
+
+4. **Promoted listings / Sponsor packages**
+   - Mise en avant de tasks
+   - Sponsoring par partenaires locaux
+   - ~10% des revenus
+
+5. **Marketplace packs**
+   - Commission sur vente de packs de services prédéfinis
+   - Templates premium
+
+6. **ImuChallenge (concours)**
+   - Frais d'inscription
+   - Sponsors & partenariats
+   - ~5% des revenus
+
+7. **Data / Reporting entreprise (B2B)**
+   - Analytics RSE pour collectivités
+   - Rapports d'impact social
+
+### Estimation GMV & Revenus (12 mois post-MVP)
+
+- **Pilote campus (3 mois):** 50 providers × 4 missions/mois × 25€ = 5k€ GMV/mois
+- **Scale régional (6 mois):** 500 providers × 6 missions/mois × 30€ = 90k€ GMV/mois
+- **Multi-villes (12 mois):** 2000 providers × 8 missions/mois × 35€ = 560k€ GMV/mois
+
+**Take-rate 15%:** 84k€ revenus/mois à 12 mois
+
+---
+
+## �👥 Ressources Requises
 
 ### Compétences Nécessaires
 - ✅ Next.js / React

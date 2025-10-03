@@ -13,43 +13,24 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 
 ---
 
-## 📂 Documents disponibles
+## � Documents disponibles
 
-### 1. [ROADMAP.md](./ROADMAP.md) - Feuille de route du développement
-**Quand consulter:** Planification, suivi de la progression
+### 🎯 Vision & Stratégie
 
-**Contenu:**
-- Vue d'ensemble du projet et objectifs
-- 10 phases de développement détaillées
-- Progression actuelle (19.5%)
-- Tâches complétées, en cours et à faire
-- Dates cibles pour chaque phase
-- Métriques et priorités
-- Prochaines étapes du sprint actuel
+- **[PRODUCT_VISION.md](./PRODUCT_VISION.md)** ⭐ — Vision produit complète, business model, personas, MVP→V2
+- **[ROADMAP.md](./ROADMAP.md)** — Feuille de route détaillée (10 phases, KPIs, timeline)
+- **[PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md)** — Synthèse exécutive avec métriques et progression
 
-**Résumé de la progression:**
-- ✅ Phase 1 (Fondations): 80%
-- 🟡 Phase 2 (Authentification): 30%
-- 🟡 Phase 3 (Tâches): 40%
-- 🔴 Phases 4-10: En planification
+### 🏗️ Technique
 
----
+- **[TECHNICAL_ARCHITECTURE.md](./TECHNICAL_ARCHITECTURE.md)** ⭐ — Architecture complète (stack, DB schema, API, infra)
+- **[FIREBASE_SETUP.md](./FIREBASE_SETUP.md)** — Guide configuration Firebase (Auth, Firestore, Storage)
+- **[WEB_MOBILE_SYNC.md](./WEB_MOBILE_SYNC.md)** — Stratégie synchronisation web-mobile
 
-### 2. [BUGS_AND_ISSUES.md](./BUGS_AND_ISSUES.md) - Suivi des bugs et problèmes
-**Quand consulter:** Correction de bugs, debugging, amélioration de la qualité
+### 📋 Tâches & Suivi
 
-**Contenu:**
-- 🔴 3 bugs critiques (Firebase, Auth, Formulaires)
-- 🟡 4 bugs importants (Données statiques, Rôles, Middleware, Env vars)
-- 🟢 5 bugs mineurs (Linting, TypeScript, Documentation)
-- 📋 2 problèmes de configuration (Émulateurs, Tests)
-- Plan d'action prioritaire
-- Template pour nouveaux bugs
-
-**Bugs les plus critiques:**
-1. Absence de configuration Firebase
-2. Pages d'authentification non fonctionnelles
-3. Formulaire de création de tâche non connecté
+- **[TASKS_TODO.md](./TASKS_TODO.md)** — Liste des tâches prioritaires et sprints
+- **[BUGS_AND_ISSUES.md](./BUGS_AND_ISSUES.md)** — Catalogue de bugs et problèmes connus
 
 ---
 
@@ -148,17 +129,31 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 
 ---
 
-## 📊 État actuel du projet (3 octobre 2025)
+## 📊 Métriques du projet (Mise à jour: 3 oct 2025)
 
-### Statistiques globales
+### Progression
+- **Globale:** 19.5% (voir [PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md))
+- **Phase 1 (Fondations):** 80%
+- **Phase 2 (Auth):** 30%
+- **Phase 3 (Tasks):** 40%
 
-- **Progression totale:** 19.5%
-- **Bugs critiques:** 3
-- **Bugs total:** 12
-- **Phases complétées:** 0/10
-- **Phases en cours:** 3/10
-- **Technologies:** Next.js 15, Firebase, TypeScript, Tailwind
-- **Langues supportées:** 5 (en, fr, de, es, ja)
+### Qualité
+- **Bugs critiques:** 3 (Firebase config, Auth, Persistence)
+- **Bugs importants:** 4
+- **Bugs mineurs:** 5
+- **Taux de résolution:** 0% (projet en setup initial)
+
+### Documentation
+- **Pages totales:** 11
+- **Guides techniques:** 4
+- **Documents stratégiques:** 3
+- **Checklists:** 5
+
+### Business (Objectifs MVP)
+- **GMV cible pilote:** 5k€/mois (M3)
+- **Providers cible:** 50 (campus pilote)
+- **Clients cible:** 50
+- **Take-rate:** 15% standard
 
 ### Ce qui fonctionne
 
