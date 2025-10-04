@@ -15,6 +15,8 @@ import { getTotalUnreadCount } from '@/lib/firestore-conversations';
 
 interface UseConversationsReturn {
     conversations: Conversation[];
+    archivedConversations: Conversation[];
+    activeConversations: Conversation[];
     loading: boolean;
     error: string | null;
     totalUnreadCount: number;
@@ -31,6 +33,14 @@ export function useConversations(userId: string | undefined): UseConversationsRe
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [totalUnreadCount, setTotalUnreadCount] = useState(0);
+
+    // Filter archived and active conversations
+    const archivedConversations = conversations.filter(conv =>
+        conv.archivedBy?.includes(userId || '')
+    );
+    const activeConversations = conversations.filter(conv =>
+        !conv.archivedBy?.includes(userId || '')
+    );
 
     // Fetch total unread count
     const refreshUnreadCount = async () => {
@@ -102,6 +112,8 @@ export function useConversations(userId: string | undefined): UseConversationsRe
 
     return {
         conversations,
+        archivedConversations,
+        activeConversations,
         loading,
         error,
         totalUnreadCount,

@@ -3,6 +3,7 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { useUserProposals } from '@/hooks/use-user-proposals';
 import { useUserBookings } from '@/hooks/use-user-bookings';
+import { useConversations } from '@/hooks/use-conversations';
 import {
   ArrowUpRight,
   DollarSign,
@@ -12,6 +13,7 @@ import {
   Search,
   Loader2,
   Calendar,
+  MessageSquare,
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -47,6 +49,7 @@ export default function ProviderDashboardPage() {
   const t = useTranslations('Dashboard.provider');
   const { proposals, loading: proposalsLoading } = useUserProposals(user?.uid || null);
   const { bookings, loading: bookingsLoading } = useUserBookings(user?.uid, 'provider');
+  const { conversations, totalUnreadCount, loading: conversationsLoading } = useConversations(user?.uid || '');
   
   const [availableTasks, setAvailableTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
@@ -120,7 +123,7 @@ export default function ProviderDashboardPage() {
   };
 
   // Loading state
-  if (loading || proposalsLoading || bookingsLoading) {
+  if (loading || proposalsLoading || bookingsLoading || conversationsLoading) {
     return (
       <div className="space-y-4">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -214,6 +217,35 @@ export default function ProviderDashboardPage() {
         </Card>
       </div>
 
+      {/* Messages Stats */}
+      <div className="grid gap-4 md:grid-cols-2 md:gap-8">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Unread Messages</CardTitle>
+            <MessageSquare className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{totalUnreadCount}</div>
+            <p className="text-xs text-muted-foreground">
+              {conversations.length} total conversations
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Recent Conversations</CardTitle>
+            <MessageSquare className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{conversations.slice(0, 5).length}</div>
+            <p className="text-xs text-muted-foreground">
+              Last 5 active chats
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
       {/* Quick Actions */}
       <Card>
         <CardHeader>
@@ -231,6 +263,13 @@ export default function ProviderDashboardPage() {
           <Button variant="outline" onClick={() => router.push('/bookings')} className="gap-2">
             <Calendar className="h-4 w-4" />
             {t('viewBookings') || 'View My Bookings'}
+          </Button>
+          <Button variant="outline" onClick={() => router.push('/messages')} className="gap-2">
+            <MessageSquare className="h-4 w-4" />
+            Messages
+            {totalUnreadCount > 0 && (
+              <Badge variant="destructive" className="ml-1">{totalUnreadCount}</Badge>
+            )}
           </Button>
         </CardContent>
       </Card>

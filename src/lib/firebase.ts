@@ -3,6 +3,7 @@ import { initializeApp, getApps } from 'firebase/app';
 import { getAuth, connectAuthEmulator } from 'firebase/auth';
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 import { getStorage, connectStorageEmulator } from 'firebase/storage';
+import { getMessaging, isSupported } from 'firebase/messaging';
 
 // Configuration Firebase - ImuTask
 const firebaseConfig = {
@@ -42,6 +43,17 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+
+// Initialize messaging (only on client-side)
+let messaging: ReturnType<typeof getMessaging> | null = null;
+if (typeof window !== 'undefined') {
+    isSupported().then((supported) => {
+        if (supported) {
+            messaging = getMessaging(app);
+        }
+    });
+}
+export { messaging };
 
 // Connect to emulators in development
 if (

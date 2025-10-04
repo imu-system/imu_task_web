@@ -20,6 +20,7 @@ import { ConversationList } from '@/components/chat/conversation-list';
 import { MessageThread } from '@/components/chat/message-thread';
 import { MessageInput } from '@/components/chat/message-input';
 import { NewConversationDialog } from '@/components/chat/new-conversation-dialog';
+import { NotificationPermissionBanner } from '@/components/notifications/notification-permission-banner';
 import { createConversation } from '@/lib/firestore-conversations';
 import { getOtherParticipant } from '@/lib/firestore-conversations';
 import { cn } from '@/lib/utils';
@@ -50,13 +51,16 @@ export function MessagesClient() {
 
   // Get conversations
   const {
-    conversations,
+    activeConversations,
+    archivedConversations,
     loading: conversationsLoading,
     error: conversationsError,
   } = useConversations(user?.uid);
 
   // Get selected conversation details
-  const selectedConversation = conversations.find((c) => c.id === selectedConversationId);
+  const selectedConversation = [...activeConversations, ...archivedConversations].find(
+    (c) => c.id === selectedConversationId
+  );
   const otherUser = selectedConversation
     ? getOtherParticipant(selectedConversation, user?.uid || '')
     : null;
@@ -135,28 +139,36 @@ export function MessagesClient() {
   const showMessageThread = !isMobileView || selectedConversationId;
 
   return (
-    <div className="h-[calc(100vh-4rem)] flex">
-      {/* Conversation List - Sidebar */}
-      <div
-        className={cn(
-          'w-full md:w-80 lg:w-96',
-          !showConversationList && 'hidden md:block'
-        )}
-      >
-        <ConversationList
-          conversations={conversations}
-          selectedConversationId={selectedConversationId}
-          currentUserId={user?.uid || ''}
-          loading={conversationsLoading}
-          onSelectConversation={setSelectedConversationId}
-          onNewConversation={() => setShowNewConversationDialog(true)}
-        />
+    <div className="h-[calc(100vh-4rem)] flex flex-col">
+      {/* Notification Permission Banner */}
+      <div className="px-4 pt-4">
+        <NotificationPermissionBanner />
       </div>
 
-      {/* Message Thread - Main Area */}
-      <div
-        className={cn(
-          'flex-1 flex flex-col',
+      {/* Main Messages Layout */}
+      <div className="flex-1 flex overflow-hidden">
+        {/* Conversation List - Sidebar */}
+        <div
+          className={cn(
+            'w-full md:w-80 lg:w-96',
+            !showConversationList && 'hidden md:block'
+          )}
+        >
+          <ConversationList
+            conversations={activeConversations}
+            archivedConversations={archivedConversations}
+            selectedConversationId={selectedConversationId}
+            currentUserId={user?.uid || ''}
+            loading={conversationsLoading}
+            onSelectConversation={setSelectedConversationId}
+            onNewConversation={() => setShowNewConversationDialog(true)}
+          />
+        </div>
+
+        {/* Message Thread - Main Area */}
+        <div
+          className={cn(
+            'flex-1 flex flex-col',
           !showMessageThread && 'hidden md:flex'
         )}
       >
@@ -188,7 +200,12 @@ export function MessagesClient() {
             />
 
             {/* Input */}
-            <MessageInput onSend={sendMessage} sending={sending} />
+            <MessageInput
+              conversationId={selectedConversationId}
+              userId={user?.uid || ''}
+              onSend={sendMessage}
+              sending={sending}
+            />
           </>
         ) : (
           <div className="flex-1 flex items-center justify-center p-8">
@@ -198,6 +215,7 @@ export function MessagesClient() {
             </div>
           </div>
         )}
+      </div>
       </div>
 
       {/* New Conversation Dialog */}

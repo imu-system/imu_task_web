@@ -33,6 +33,8 @@ export interface Conversation {
     lastMessage: string;
     lastMessageAt: Timestamp;
     unreadCount: { [userId: string]: number }; // Map userId -> unread count
+    archivedBy?: string[]; // Array of user IDs who archived this conversation
+    mutedBy?: string[]; // Array of user IDs who muted this conversation
     bookingId?: string; // Optional link to booking
     createdAt: Timestamp;
     updatedAt: Timestamp;

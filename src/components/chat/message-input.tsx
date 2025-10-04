@@ -10,17 +10,21 @@ import { useState, useRef, useEffect } from 'react';
 import { Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { ImageUploadButton } from '@/components/chat/image-upload-button';
 import { useTranslations } from 'next-intl';
 
 interface MessageInputProps {
-  onSend: (content: string) => Promise<void>;
+  conversationId: string;
+  userId: string;
+  onSend: (content: string, imageUrl?: string) => Promise<void>;
   sending: boolean;
   disabled?: boolean;
 }
 
-export function MessageInput({ onSend, sending, disabled = false }: MessageInputProps) {
+export function MessageInput({ conversationId, userId, onSend, sending, disabled = false }: MessageInputProps) {
   const t = useTranslations('messages');
   const [content, setContent] = useState('');
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Auto-resize textarea based on content
@@ -32,15 +36,20 @@ export function MessageInput({ onSend, sending, disabled = false }: MessageInput
   }, [content]);
 
   const handleSend = async () => {
-    if (!content.trim() || sending) return;
+    if ((!content.trim() && !imageUrl) || sending) return;
 
-    await onSend(content);
+    await onSend(content || '📷 Image', imageUrl || undefined);
     setContent('');
+    setImageUrl(null);
 
     // Reset textarea height
     if (textareaRef.current) {
       textareaRef.current.style.height = 'auto';
     }
+  };
+
+  const handleImageUploaded = (url: string) => {
+    setImageUrl(url);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -53,6 +62,12 @@ export function MessageInput({ onSend, sending, disabled = false }: MessageInput
 
   return (
     <div className="flex items-end gap-2 p-4 border-t bg-background">
+      <ImageUploadButton
+        conversationId={conversationId}
+        userId={userId}
+        onImageUploaded={handleImageUploaded}
+        disabled={disabled || sending}
+      />
       <Textarea
         ref={textareaRef}
         value={content}
@@ -65,7 +80,7 @@ export function MessageInput({ onSend, sending, disabled = false }: MessageInput
       />
       <Button
         onClick={handleSend}
-        disabled={!content.trim() || sending || disabled}
+        disabled={(!content.trim() && !imageUrl) || sending || disabled}
         size="icon"
         className="shrink-0"
       >

@@ -13,6 +13,7 @@ import { fr, enUS, es, de, ja } from 'date-fns/locale';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { MessageImage } from '@/components/chat/message-image';
 import { AlertCircle } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import type { Message } from '@/lib/firestore-messages';
@@ -113,16 +114,37 @@ export function MessageThread({ messages, currentUserId, loading, error }: Messa
                 <span className="text-xs text-muted-foreground px-3">{message.senderName}</span>
               )}
               
-              <div
-                className={cn(
-                  'rounded-2xl px-4 py-2 break-words',
-                  isCurrentUser
-                    ? 'bg-primary text-primary-foreground rounded-br-sm'
-                    : 'bg-muted rounded-bl-sm'
-                )}
-              >
-                <p className="text-sm whitespace-pre-wrap">{message.content}</p>
-              </div>
+              {message.type === 'image' && message.fileUrl ? (
+                <div
+                  className={cn(
+                    'rounded-2xl overflow-hidden',
+                    isCurrentUser ? 'rounded-br-sm' : 'rounded-bl-sm'
+                  )}
+                >
+                  <MessageImage src={message.fileUrl} alt={message.content} />
+                  {message.content && message.content !== '📷 Image' && (
+                    <div
+                      className={cn(
+                        'px-4 py-2',
+                        isCurrentUser ? 'bg-primary text-primary-foreground' : 'bg-muted'
+                      )}
+                    >
+                      <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div
+                  className={cn(
+                    'rounded-2xl px-4 py-2 break-words',
+                    isCurrentUser
+                      ? 'bg-primary text-primary-foreground rounded-br-sm'
+                      : 'bg-muted rounded-bl-sm'
+                  )}
+                >
+                  <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                </div>
+              )}
 
               <span className="text-xs text-muted-foreground px-3">{timestamp}</span>
             </div>

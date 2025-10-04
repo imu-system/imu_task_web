@@ -22,7 +22,7 @@ interface UseMessagesReturn {
     loading: boolean;
     error: string | null;
     sending: boolean;
-    sendMessage: (content: string) => Promise<void>;
+    sendMessage: (content: string, imageUrl?: string) => Promise<void>;
     markAllAsRead: () => Promise<void>;
 }
 
@@ -93,8 +93,13 @@ export function useMessages({
 
     // Send a new message
     const sendMessage = useCallback(
-        async (content: string) => {
-            if (!conversationId || !currentUserId || !recipientId || !content.trim()) {
+        async (content: string, imageUrl?: string) => {
+            if (!conversationId || !currentUserId || !recipientId) {
+                return;
+            }
+
+            // Require either content or imageUrl
+            if (!content.trim() && !imageUrl) {
                 return;
             }
 
@@ -107,9 +112,10 @@ export function useMessages({
                     senderId: currentUserId,
                     senderName: currentUserName,
                     senderAvatar: currentUserAvatar,
-                    content: content.trim(),
-                    type: 'text',
+                    content: content.trim() || '📷 Image',
+                    type: imageUrl ? 'image' : 'text',
                     recipientId,
+                    ...(imageUrl && { fileUrl: imageUrl }),
                 };
 
                 await sendMessageFn(input);

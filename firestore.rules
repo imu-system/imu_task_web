@@ -59,19 +59,32 @@ service cloud.firestore {
       allow delete: if false;
     }
     
-    // Conversations
+    // Conversations collection
     match /conversations/{conversationId} {
-      allow read, write: if isAuthenticated() && 
+      allow read: if isAuthenticated() && 
         request.auth.uid in resource.data.participants;
+      allow create: if isAuthenticated() && 
+        request.auth.uid in request.resource.data.participants;
+      allow update: if isAuthenticated() && 
+        request.auth.uid in resource.data.participants;
+      allow delete: if false; // Admin only
     }
     
-    // Messages (subcollection)
-    match /conversations/{conversationId}/messages/{messageId} {
+    // Messages collection
+    match /messages/{messageId} {
       allow read: if isAuthenticated() && 
-        request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.participants;
+        request.auth.uid in get(/databases/$(database)/documents/conversations/$(resource.data.conversationId)).data.participants;
       allow create: if isAuthenticated() && 
-        request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversationId)).data.participants;
-      allow update, delete: if false;
+        request.auth.uid == request.resource.data.senderId &&
+        request.auth.uid in get(/databases/$(database)/documents/conversations/$(request.resource.data.conversationId)).data.participants &&
+        (request.resource.data.type == 'text' || 
+         (request.resource.data.type == 'image' && request.resource.data.keys().hasAll(['fileUrl'])));
+      allow update: if isAuthenticated() && (
+        request.auth.uid == resource.data.senderId ||
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['readBy', 'updatedAt'])
+      );
+      allow delete: if isAuthenticated() && 
+        request.auth.uid == resource.data.senderId;
     }
     
     // Reviews
