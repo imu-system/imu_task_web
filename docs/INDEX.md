@@ -26,12 +26,20 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 1. **[TECHNICAL_ARCHITECTURE.md](./TECHNICAL_ARCHITECTURE.md)** ⭐ — Architecture technique complète
 2. **[FIREBASE_SETUP.md](./FIREBASE_SETUP.md)** — Guide de configuration Firebase
 3. **[FIREBASE_CONFIG_COMPLETED.md](./FIREBASE_CONFIG_COMPLETED.md)** 🎉 — Configuration Firebase terminée
-4. **[WEB_MOBILE_SYNC.md](./WEB_MOBILE_SYNC.md)** — Synchronisation web-mobile
+4. **[AUTH_PAGES_COMPLETED.md](./AUTH_PAGES_COMPLETED.md)** ✅ — Pages d'authentification complétées
+5. **[WEB_MOBILE_SYNC.md](./WEB_MOBILE_SYNC.md)** — Synchronisation web-mobile
 
 ### 📋 Tâches & Suivi
 
 - **[TASKS_TODO.md](./TASKS_TODO.md)** — Liste des tâches prioritaires et sprints
+- **[BUGS_RESOLVED.md](./BUGS_RESOLVED.md)** 🎯 — Historique des bugs résolus (BUG-001 ✅, BUG-002 ✅)
 - **[BUGS_AND_ISSUES.md](./BUGS_AND_ISSUES.md)** — Catalogue de bugs et problèmes connus
+
+### 🇫🇷 Résumés Exécutifs
+
+- **[RESUME_FIREBASE.md](./RESUME_FIREBASE.md)** — Résumé Firebase en français
+- **[FIREBASE_STATUS.md](./FIREBASE_STATUS.md)** — Statut actuel Firebase
+- **[FIREBASE_SUCCESS.md](./FIREBASE_SUCCESS.md)** — Succès Firebase
 
 ---
 

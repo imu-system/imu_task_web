@@ -1,0 +1,61 @@
+{
+    "general": {
+        "messages": "メッセージ",
+        "conversations": "会話",
+        "send": "送信",
+        "search": "検索",
+        "newMessage": "新しいメッセージ"
+    },
+    "status": {
+        "read": "既読",
+        "unread": "未読",
+        "typing": "入力中...",
+        "sent": "送信済み",
+        "delivered": "配信済み",
+        "online": "オンライン",
+        "offline": "オフライン",
+        "creating": "作成中..."
+    },
+    "labels": {
+        "from": "送信者",
+        "to": "宛先",
+        "message": "メッセージ",
+        "timestamp": "タイムスタンプ",
+        "lastMessage": "最後のメッセージ",
+        "unknown": "不明",
+        "selectConversation": "会話を選択",
+        "selectConversationDesc": "左側から会話を選択してチャットを開始してください",
+        "startConversation": "会話を開始するにはメッセージを送信してください",
+        "startNewConversation": "上のボタンをクリックして新しい会話を開始してください",
+        "startNewConversationDesc": "受信者のユーザーIDと最初のメッセージを入力してください",
+        "recipientUserId": "受信者ユーザーID",
+        "userIdHelp": "ユーザーIDは予約またはタスク提案で確認できます",
+        "initialMessage": "最初のメッセージ",
+        "messagesPageDesc": "クライアントとプロバイダーとチャット"
+    },
+    "actions": {
+        "send": "送信",
+        "delete": "削除",
+        "markRead": "既読にする",
+        "newConversation": "新しい会話",
+        "startChat": "チャット開始",
+        "cancel": "キャンセル",
+        "create": "作成"
+    },
+    "placeholders": {
+        "typeMessage": "メッセージを入力...",
+        "searchUser": "ユーザーを検索...",
+        "noMessages": "まだメッセージがありません",
+        "noConversations": "まだ会話がありません",
+        "enterUserId": "ユーザーIDを入力..."
+    },
+    "success": {
+        "messageSent": "メッセージが正常に送信されました",
+        "conversationCreated": "会話が作成されました"
+    },
+    "errors": {
+        "sendFailed": "メッセージの送信に失敗しました",
+        "loadFailed": "メッセージの読み込みに失敗しました",
+        "userNotFound": "ユーザーが見つかりません"
+    }
+}

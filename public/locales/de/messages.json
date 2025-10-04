@@ -1,0 +1,61 @@
+{
+    "general": {
+        "messages": "Nachrichten",
+        "conversations": "Unterhaltungen",
+        "send": "Senden",
+        "search": "Suchen",
+        "newMessage": "Neue Nachricht"
+    },
+    "status": {
+        "read": "Gelesen",
+        "unread": "Ungelesen",
+        "typing": "Tippt...",
+        "sent": "Gesendet",
+        "delivered": "Zugestellt",
+        "online": "Online",
+        "offline": "Offline",
+        "creating": "Erstellen..."
+    },
+    "labels": {
+        "from": "Von",
+        "to": "An",
+        "message": "Nachricht",
+        "timestamp": "Zeitstempel",
+        "lastMessage": "Letzte Nachricht",
+        "unknown": "Unbekannt",
+        "selectConversation": "Wählen Sie eine Unterhaltung",
+        "selectConversationDesc": "Wählen Sie links eine Unterhaltung aus, um zu chatten",
+        "startConversation": "Senden Sie eine Nachricht, um die Unterhaltung zu starten",
+        "startNewConversation": "Klicken Sie auf die Schaltfläche oben, um eine neue Unterhaltung zu starten",
+        "startNewConversationDesc": "Geben Sie die Benutzer-ID des Empfängers und Ihre erste Nachricht ein",
+        "recipientUserId": "Empfänger Benutzer-ID",
+        "userIdHelp": "Sie finden Benutzer-IDs in Ihren Buchungen oder Aufgabenvorschlägen",
+        "initialMessage": "Erste Nachricht",
+        "messagesPageDesc": "Chatten Sie mit Kunden und Anbietern"
+    },
+    "actions": {
+        "send": "Senden",
+        "delete": "Löschen",
+        "markRead": "Als gelesen markieren",
+        "newConversation": "Neue Unterhaltung",
+        "startChat": "Chat starten",
+        "cancel": "Abbrechen",
+        "create": "Erstellen"
+    },
+    "placeholders": {
+        "typeMessage": "Geben Sie eine Nachricht ein...",
+        "searchUser": "Benutzer suchen...",
+        "noMessages": "Noch keine Nachrichten",
+        "noConversations": "Noch keine Unterhaltungen",
+        "enterUserId": "Benutzer-ID eingeben..."
+    },
+    "success": {
+        "messageSent": "Nachricht erfolgreich gesendet",
+        "conversationCreated": "Unterhaltung erstellt"
+    },
+    "errors": {
+        "sendFailed": "Nachricht konnte nicht gesendet werden",
+        "loadFailed": "Nachrichten konnten nicht geladen werden",
+        "userNotFound": "Benutzer nicht gefunden"
+    }
+}

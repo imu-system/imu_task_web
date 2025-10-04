@@ -173,23 +173,33 @@
 
 ---
 
-### Phase 5: Messagerie & Communication 🔴 (5% complété)
+### Phase 5: Messagerie & Communication � (85% complété)
 
-**Statut:** 🔴 Planifié
+**Statut:** � En développement actif
 
 #### ✅ Complété
 - [x] Structure de dossiers pour le chat
 - [x] Types TypeScript pour les messages
+- [x] Bibliothèques backend Firestore (conversations + messages)
+- [x] Hooks React personnalisés (useConversations + useMessages)
+- [x] Composants UI (ConversationList, MessageThread, MessageInput, etc.)
+- [x] Interface de messagerie en temps réel
+- [x] Intégration Firestore pour les messages
+- [x] Liste des conversations
+- [x] Indicateur de lecture des messages
+- [x] Traductions i18n (EN, FR, ES, DE, JA)
+- [x] Page route /messages
+- [x] Real-time listeners Firestore
+- [x] Unread counts par utilisateur
 
 #### 📋 À faire
-- [ ] Interface de messagerie en temps réel
-- [ ] Intégration Firebase Realtime Database ou Firestore
-- [ ] Liste des conversations
 - [ ] Notifications de nouveaux messages
 - [ ] Upload de fichiers/images dans le chat
 - [ ] Système de notifications push (web)
-- [ ] Indicateur de lecture des messages
 - [ ] Archivage de conversations
+- [ ] Integration dashboard (stats + recent messages)
+- [ ] Security rules Firestore pour messages
+- [ ] Tests avec données réelles
 
 **Date cible:** 10 janvier 2026
 

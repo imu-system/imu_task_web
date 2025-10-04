@@ -1,18 +1,23 @@
+'use client';
+
+import { useAuth } from '@/contexts/AuthContext';
+import { useUserProposals } from '@/hooks/use-user-proposals';
+import { useUserBookings } from '@/hooks/use-user-bookings';
 import {
   ArrowUpRight,
   DollarSign,
-  Users,
-  CreditCard,
-  Activity,
+  Briefcase,
+  Clock,
+  CheckCircle2,
+  Search,
+  Loader2,
+  Calendar,
 } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -29,73 +34,220 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { tasks, users, proposals } from '@/lib/placeholder-data';
+import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { collection, getDocs, query, where, orderBy, limit } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
+import { Task } from '@/lib/firestore-tasks';
 
 export default function ProviderDashboardPage() {
+  const { user } = useAuth();
+  const router = useRouter();
+  const t = useTranslations('Dashboard.provider');
+  const { proposals, loading: proposalsLoading } = useUserProposals(user?.uid || null);
+  const { bookings, loading: bookingsLoading } = useUserBookings(user?.uid, 'provider');
+  
+  const [availableTasks, setAvailableTasks] = useState<Task[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch available tasks (open tasks)
+  useEffect(() => {
+    const fetchAvailableTasks = async () => {
+      try {
+        setLoading(true);
+        const tasksRef = collection(db, 'tasks');
+        const q = query(
+          tasksRef,
+          where('status', '==', 'open'),
+          orderBy('createdAt', 'desc'),
+          limit(10)
+        );
+        
+        const snapshot = await getDocs(q);
+        const tasksData = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            ...data,
+            createdAt: data.createdAt?.toDate() || new Date(),
+            updatedAt: data.updatedAt?.toDate() || new Date(),
+            deadline: data.deadline?.toDate() || null,
+          } as Task;
+        });
+        
+        setAvailableTasks(tasksData);
+      } catch (err) {
+        console.error('Error fetching available tasks:', err);
+        setError('Failed to load available tasks');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAvailableTasks();
+  }, []);
+
+  // Calculate provider stats
+  const stats = {
+    totalProposals: proposals.length,
+    pendingProposals: proposals.filter((p) => p.status === 'pending').length,
+    acceptedProposals: proposals.filter((p) => p.status === 'accepted').length,
+    availableTasks: availableTasks.length,
+    activeBookings: bookings.filter((b) => 
+      b.status === 'confirmed' || b.status === 'in_progress'
+    ).length,
+    completedBookings: bookings.filter((b) => b.status === 'completed').length,
+    totalEarnings: bookings
+      .filter((b) => b.status === 'completed')
+      .reduce((sum, b) => sum + b.amount, 0),
+  };
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('fr-FR', {
+      style: 'currency',
+      currency: 'EUR',
+    }).format(amount);
+  };
+
+  const formatDate = (date: Date) => {
+    return new Intl.DateTimeFormat('fr-FR', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    }).format(date);
+  };
+
+  // Loading state
+  if (loading || proposalsLoading || bookingsLoading) {
+    return (
+      <div className="space-y-4">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {[...Array(4)].map((_, i) => (
+            <Card key={i}>
+              <CardHeader className="pb-2">
+                <Skeleton className="h-4 w-24" />
+              </CardHeader>
+              <CardContent>
+                <Skeleton className="h-8 w-16 mb-2" />
+                <Skeleton className="h-3 w-32" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <Alert variant="destructive">
+        <AlertDescription>{error}</AlertDescription>
+      </Alert>
+    );
+  }
+
   return (
-    <>
+    <div className="space-y-8">
+      {/* Stats Cards */}
       <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">
+              {t('availableTasks')}
+            </CardTitle>
+            <Briefcase className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$4,523.89</div>
+            <div className="text-2xl font-bold">{stats.availableTasks}</div>
             <p className="text-xs text-muted-foreground">
-              +20.1% from last month
+              {t('openTasksToBid')}
             </p>
           </CardContent>
         </Card>
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">
-              Completed Tasks
+              {t('myProposals')}
             </CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">+23</div>
+            <div className="text-2xl font-bold">{stats.totalProposals}</div>
             <p className="text-xs text-muted-foreground">
-              +18.1% from last month
+              {t('pendingResponse', { count: stats.pendingProposals })}
             </p>
           </CardContent>
         </Card>
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Open Tasks</CardTitle>
-            <CreditCard className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">
+              {t('activeBookings') || 'Active Bookings'}
+            </CardTitle>
+            <Calendar className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">+12</div>
+            <div className="text-2xl font-bold">{stats.activeBookings}</div>
             <p className="text-xs text-muted-foreground">
-              +19% from last month
+              {t('confirmedInProgress') || 'Confirmed & in progress'}
             </p>
           </CardContent>
         </Card>
+
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Now</CardTitle>
-            <Activity className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">{t('totalEarnings') || 'Total Earnings'}</CardTitle>
+            <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">+57</div>
-            <p className="text-xs text-muted-foreground">+2 providers online</p>
+            <div className="text-2xl font-bold">
+              {formatCurrency(stats.totalEarnings)}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {t('fromCompletedBookings') || `From ${stats.completedBookings} completed bookings`}
+            </p>
           </CardContent>
         </Card>
       </div>
-      <div className="grid gap-4 md:gap-8 lg:grid-cols-2 xl:grid-cols-3">
-        <Card className="xl:col-span-2">
+
+      {/* Quick Actions */}
+      <Card>
+        <CardHeader>
+          <CardTitle>{t('quickActions')}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex gap-4 flex-wrap">
+          <Button onClick={() => router.push('/tasks')} className="gap-2">
+            <Search className="h-4 w-4" />
+            {t('browseAvailableTasks')}
+          </Button>
+          <Button variant="outline" onClick={() => router.push('/offers')} className="gap-2">
+            {t('viewMyProposals')}
+            <ArrowUpRight className="h-4 w-4" />
+          </Button>
+          <Button variant="outline" onClick={() => router.push('/bookings')} className="gap-2">
+            <Calendar className="h-4 w-4" />
+            {t('viewBookings') || 'View My Bookings'}
+          </Button>
+        </CardContent>
+      </Card>
+
+      {/* Recent Bookings */}
+      {bookings.length > 0 && (
+        <Card>
           <CardHeader className="flex flex-row items-center">
             <div className="grid gap-2">
-              <CardTitle>Recent Tasks</CardTitle>
+              <CardTitle>{t('recentBookings') || 'Recent Bookings'}</CardTitle>
               <CardDescription>
-                Recent tasks posted on the platform.
+                {t('bookingsDescription') || 'Your latest bookings and their status'}
               </CardDescription>
             </div>
             <Button asChild size="sm" className="ml-auto gap-1">
-              <Link href="/tasks">
-                View All
+              <Link href="/bookings">
+                {t('viewAll') || 'View All'}
                 <ArrowUpRight className="h-4 w-4" />
               </Link>
             </Button>
@@ -104,45 +256,40 @@ export default function ProviderDashboardPage() {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead>Task</TableHead>
-                  <TableHead className="hidden xl:table-column">
-                    Category
-                  </TableHead>
-                  <TableHead className="hidden xl:table-column">
-                    Status
-                  </TableHead>
-                  <TableHead className="hidden md:table-cell">Budget</TableHead>
-                  <TableHead className="text-right">Action</TableHead>
+                  <TableHead>{t('booking') || 'Booking'}</TableHead>
+                  <TableHead>{t('status') || 'Status'}</TableHead>
+                  <TableHead className="hidden md:table-cell">{t('amount') || 'Amount'}</TableHead>
+                  <TableHead className="hidden lg:table-cell">{t('date') || 'Date'}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {tasks.slice(0, 5).map(task => (
-                  <TableRow key={task.id}>
+                {bookings.slice(0, 5).map((booking) => (
+                  <TableRow key={booking.id}>
                     <TableCell>
-                      <div className="font-medium">{task.title}</div>
-                      <div className="hidden text-sm text-muted-foreground md:inline">
-                        {task.location}
-                      </div>
+                      <div className="font-medium">#{booking.id.slice(0, 8)}</div>
                     </TableCell>
-                    <TableCell className="hidden xl:table-column">
-                      <Badge variant="outline">{task.category}</Badge>
-                    </TableCell>
-                    <TableCell className="hidden xl:table-column">
+                    <TableCell>
                       <Badge
                         variant={
-                          task.status === 'Open' ? 'secondary' : 'default'
+                          booking.status === 'completed'
+                            ? 'default'
+                            : booking.status === 'cancelled'
+                            ? 'destructive'
+                            : booking.status === 'in_progress'
+                            ? 'secondary'
+                            : 'outline'
                         }
                       >
-                        {task.status}
+                        {booking.status}
                       </Badge>
                     </TableCell>
                     <TableCell className="hidden md:table-cell">
-                      ${task.budget.toFixed(2)}
+                      {formatCurrency(booking.amount)}
                     </TableCell>
-                    <TableCell className="text-right">
-                      <Button asChild size="sm" variant="outline">
-                        <Link href={`/tasks/${task.id}`}>View</Link>
-                      </Button>
+                    <TableCell className="hidden lg:table-cell">
+                      <span className="text-sm text-muted-foreground">
+                        {formatDate(booking.createdAt)}
+                      </span>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -150,41 +297,133 @@ export default function ProviderDashboardPage() {
             </Table>
           </CardContent>
         </Card>
+      )}
+
+      {/* Available Tasks */}
+      <div className="grid gap-4 md:gap-8 lg:grid-cols-2 xl:grid-cols-3">
+        <Card className="xl:col-span-2">
+          <CardHeader className="flex flex-row items-center">
+            <div className="grid gap-2">
+              <CardTitle>{t('availableTasksTitle')}</CardTitle>
+            </div>
+            <Button asChild size="sm" className="ml-auto gap-1">
+              <Link href="/tasks">
+                {t('view')}
+                <ArrowUpRight className="h-4 w-4" />
+              </Link>
+            </Button>
+          </CardHeader>
+          <CardContent>
+            {availableTasks.length === 0 ? (
+              <div className="text-center py-12">
+                <Briefcase className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-semibold mb-2">{t('noAvailableTasks')}</h3>
+                <p className="text-sm text-muted-foreground">
+                  {t('checkBackLater')}
+                </p>
+              </div>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>{t('task')}</TableHead>
+                    <TableHead className="hidden xl:table-cell">
+                      {t('category')}
+                    </TableHead>
+                    <TableHead className="hidden xl:table-cell">
+                      {t('posted')}
+                    </TableHead>
+                    <TableHead className="hidden md:table-cell">{t('budget')}</TableHead>
+                    <TableHead className="text-right">{t('action')}</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {availableTasks.slice(0, 5).map((task) => (
+                    <TableRow key={task.id}>
+                      <TableCell>
+                        <div className="font-medium">{task.title}</div>
+                        <div className="hidden text-sm text-muted-foreground md:inline">
+                          {typeof task.location === 'string'
+                            ? task.location
+                            : task.location.address}
+                        </div>
+                      </TableCell>
+                      <TableCell className="hidden xl:table-cell">
+                        <Badge variant="outline">{task.category}</Badge>
+                      </TableCell>
+                      <TableCell className="hidden xl:table-cell">
+                        <span className="text-sm text-muted-foreground">
+                          {formatDate(task.createdAt)}
+                        </span>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">
+                        {formatCurrency(task.budget)}
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <Button asChild size="sm" variant="outline">
+                          <Link href={`/tasks/${task.id}`}>{t('view')}</Link>
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            )}
+          </CardContent>
+        </Card>
+
+        {/* My Proposals */}
         <Card>
           <CardHeader>
-            <CardTitle>Active Proposals</CardTitle>
+            <CardTitle>{t('myProposalsTitle')}</CardTitle>
           </CardHeader>
-          <CardContent className="grid gap-8">
-            {proposals.slice(0, 4).map(proposal => {
-              const user = users.find(u => u.id === proposal.providerId);
-              const task = tasks.find(t => t.id === proposal.taskId);
-              return (
-                <div key={proposal.id} className="flex items-center gap-4">
-                  <Avatar className="hidden h-9 w-9 sm:flex">
-                    <AvatarImage
-                      src={user?.avatarUrl}
-                      alt="Avatar"
-                      data-ai-hint="person portrait"
-                    />
-                    <AvatarFallback>{user?.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div className="grid gap-1">
-                    <p className="text-sm font-medium leading-none">
-                      {user?.name}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {task?.title}
-                    </p>
+          <CardContent>
+            {proposals.length === 0 ? (
+              <div className="text-center py-8">
+                <Clock className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
+                <p className="text-sm text-muted-foreground mb-3">
+                  {t('noProposalsYet')}
+                </p>
+                <Button size="sm" onClick={() => router.push('/tasks')}>
+                  {t('browseTasks')}
+                </Button>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {proposals.slice(0, 4).map((proposal) => (
+                  <div
+                    key={proposal.id}
+                    className="flex items-center justify-between p-3 border rounded-lg"
+                  >
+                    <div className="space-y-1">
+                      <p className="text-sm font-medium">{t('proposalId', { id: proposal.id?.slice(0, 8) || '' })}</p>
+                      <Badge
+                        variant={
+                          proposal.status === 'accepted'
+                            ? 'default'
+                            : proposal.status === 'rejected'
+                            ? 'destructive'
+                            : 'secondary'
+                        }
+                      >
+                        {proposal.status === 'accepted' ? t('statusAccepted') : proposal.status === 'rejected' ? t('statusRejected') : t('statusPending')}
+                      </Badge>
+                    </div>
+                    <div className="text-right">
+                      <div className="font-semibold">{formatCurrency(proposal.amount)}</div>
+                    </div>
                   </div>
-                  <div className="ml-auto font-medium">
-                    ${proposal.amount.toFixed(2)}
-                  </div>
-                </div>
-              );
-            })}
+                ))}
+                {proposals.length > 4 && (
+                  <Button variant="outline" className="w-full" asChild>
+                    <Link href="/offers">{t('viewAllProposals')}</Link>
+                  </Button>
+                )}
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,0 +1,61 @@
+{
+    "general": {
+        "messages": "Mensajes",
+        "conversations": "Conversaciones",
+        "send": "Enviar",
+        "search": "Buscar",
+        "newMessage": "Nuevo Mensaje"
+    },
+    "status": {
+        "read": "Leído",
+        "unread": "No leído",
+        "typing": "Escribiendo...",
+        "sent": "Enviado",
+        "delivered": "Entregado",
+        "online": "En línea",
+        "offline": "Desconectado",
+        "creating": "Creando..."
+    },
+    "labels": {
+        "from": "De",
+        "to": "Para",
+        "message": "Mensaje",
+        "timestamp": "Marca de tiempo",
+        "lastMessage": "Último mensaje",
+        "unknown": "Desconocido",
+        "selectConversation": "Selecciona una conversación",
+        "selectConversationDesc": "Elige una conversación de la izquierda para comenzar a chatear",
+        "startConversation": "Envía un mensaje para iniciar la conversación",
+        "startNewConversation": "Haz clic en el botón de arriba para iniciar una nueva conversación",
+        "startNewConversationDesc": "Introduce el ID de usuario del destinatario y tu primer mensaje",
+        "recipientUserId": "ID de Usuario Destinatario",
+        "userIdHelp": "Puedes encontrar los ID de usuario en tus reservas o propuestas de tareas",
+        "initialMessage": "Mensaje Inicial",
+        "messagesPageDesc": "Chatea con clientes y proveedores"
+    },
+    "actions": {
+        "send": "Enviar",
+        "delete": "Eliminar",
+        "markRead": "Marcar como leído",
+        "newConversation": "Nueva Conversación",
+        "startChat": "Iniciar Chat",
+        "cancel": "Cancelar",
+        "create": "Crear"
+    },
+    "placeholders": {
+        "typeMessage": "Escribe un mensaje...",
+        "searchUser": "Buscar un usuario...",
+        "noMessages": "Aún no hay mensajes",
+        "noConversations": "Aún no hay conversaciones",
+        "enterUserId": "Introduce el ID de usuario..."
+    },
+    "success": {
+        "messageSent": "Mensaje enviado con éxito",
+        "conversationCreated": "Conversación creada"
+    },
+    "errors": {
+        "sendFailed": "Error al enviar el mensaje",
+        "loadFailed": "Error al cargar los mensajes",
+        "userNotFound": "Usuario no encontrado"
+    }
+}

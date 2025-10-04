@@ -50,6 +50,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setUser(user);
       setLoading(false);
       
+      // Gérer le cookie d'authentification pour le middleware
+      if (user) {
+        // Créer un cookie pour indiquer l'état d'authentification
+        document.cookie = `firebaseAuth=true; path=/; max-age=2592000; SameSite=Lax`;
+      } else {
+        // Supprimer le cookie si l'utilisateur se déconnecte
+        document.cookie = 'firebaseAuth=; path=/; max-age=0';
+      }
+      
       if (process.env.NODE_ENV === 'development') {
         console.log('🔐 Auth state changed:', user ? `User: ${user.email}` : 'No user');
       }

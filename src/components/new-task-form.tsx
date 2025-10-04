@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type FieldErrors } from "react-hook-form";
@@ -26,7 +27,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
+import { useAuth } from "@/contexts/AuthContext";
+import { createTask } from "@/lib/firestore-tasks";
+import { Loader2 } from "lucide-react";
 
 const step1Schema = z.object({
   title: z.string().min(5, "Title must be at least 5 characters"),
@@ -66,7 +71,13 @@ const steps = [
 export function NewTaskForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [taskId, setTaskId] = useState<string | null>(null);
+  
   const { toast } = useToast();
+  const { user } = useAuth();
+  const router = useRouter();
 
   const {
     register,
@@ -102,13 +113,57 @@ export function NewTaskForm() {
     }
   };
 
-  const onSubmit = (data: FormData) => {
-    console.log("Form submitted", data);
-    toast({
-      title: "Task Posted!",
-      description: "Your task has been successfully posted.",
-    });
-    setIsSubmitted(true);
+  const onSubmit = async (data: FormData) => {
+    // Check if user is authenticated
+    if (!user) {
+      setError("Vous devez être connecté pour créer une tâche");
+      toast({
+        title: "Authentication Required",
+        description: "Please login to create a task.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+
+    try {
+      // Create task in Firestore
+      const newTaskId = await createTask(user.uid, {
+        title: data.title,
+        description: data.description,
+        category: data.category,
+        location: data.location,
+        budget: data.budget,
+        deadline: null, // Can be added later
+      });
+
+      setTaskId(newTaskId);
+      
+      toast({
+        title: "✅ Task Posted!",
+        description: "Your task has been successfully posted.",
+      });
+      
+      setIsSubmitted(true);
+      
+      // Redirect to tasks page after 2 seconds
+      setTimeout(() => {
+        router.push('/tasks');
+      }, 2000);
+    } catch (err: any) {
+      console.error("Error creating task:", err);
+      setError(err.message || "Failed to create task. Please try again.");
+      
+      toast({
+        title: "Error",
+        description: "Failed to create task. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
   
    if (isSubmitted) {
@@ -119,14 +174,45 @@ export function NewTaskForm() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <CardTitle className="text-2xl font-bold mb-4">Task Submitted Successfully!</CardTitle>
-          <CardDescription className="mb-8">Providers will now be able to view and bid on your task.</CardDescription>
+          <div className="mb-4 flex justify-center">
+            <div className="rounded-full bg-green-50 p-3">
+              <svg
+                className="h-12 w-12 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+          </div>
+          <CardTitle className="text-2xl font-bold mb-4">
+            Task Submitted Successfully!
+          </CardTitle>
+          <CardDescription className="mb-2">
+            Providers will now be able to view and bid on your task.
+          </CardDescription>
+          {taskId && (
+            <p className="text-sm text-muted-foreground mb-6">
+              Task ID: <code className="font-mono bg-muted px-2 py-1 rounded">{taskId}</code>
+            </p>
+          )}
+          <p className="text-sm text-muted-foreground mb-8">
+            Redirecting to your tasks...
+          </p>
           <div className="flex gap-4 justify-center">
             <Button asChild>
-              <Link href="/">Back to Dashboard</Link>
+              <Link href="/tasks">View My Tasks</Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href="/tasks/new" onClick={() => { setIsSubmitted(false); setCurrentStep(0); }}>Post Another Task</Link>
+              <Link href="/tasks/new" onClick={() => { setIsSubmitted(false); setCurrentStep(0); setTaskId(null); }}>
+                Post Another Task
+              </Link>
             </Button>
           </div>
         </motion.div>
@@ -148,6 +234,20 @@ export function NewTaskForm() {
         </div>
       </CardHeader>
       <CardContent>
+        {error && (
+          <Alert variant="destructive" className="mb-4">
+            <AlertDescription>{error}</AlertDescription>
+          </Alert>
+        )}
+        
+        {!user && (
+          <Alert className="mb-4">
+            <AlertDescription>
+              You must be <Link href="/auth/login" className="underline font-medium">logged in</Link> to create a task.
+            </AlertDescription>
+          </Alert>
+        )}
+        
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <AnimatePresence mode="wait">
             <motion.div
@@ -257,13 +357,33 @@ export function NewTaskForm() {
         </form>
       </CardContent>
       <CardFooter className="flex justify-between">
-        <Button variant="outline" onClick={prevStep} disabled={currentStep === 0}>
+        <Button 
+          variant="outline" 
+          onClick={prevStep} 
+          disabled={currentStep === 0 || loading}
+          type="button"
+        >
           Previous
         </Button>
         {currentStep < steps.length - 1 ? (
-          <Button onClick={nextStep}>Next</Button>
+          <Button onClick={nextStep} type="button" disabled={loading}>
+            Next
+          </Button>
         ) : (
-          <Button onClick={handleSubmit(onSubmit)}>Submit Task</Button>
+          <Button 
+            onClick={handleSubmit(onSubmit)} 
+            type="button"
+            disabled={loading || !user}
+          >
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Creating task...
+              </>
+            ) : (
+              'Submit Task'
+            )}
+          </Button>
         )}
       </CardFooter>
     </Card>

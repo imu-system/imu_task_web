@@ -101,86 +101,82 @@ export const tasks: Task[] = [
 ];
 
 export const proposals: Proposal[] = [
-    {
-        id: 'prop-1',
-        taskId: 'task-1',
-        providerId: 'user-1',
-        amount: 1100,
-        message: 'I can build this for you in a week.',
-        status: 'Pending',
-    },
-    {
-        id: 'prop-2',
-        taskId: 'task-3',
-        providerId: 'user-1',
-        amount: 450,
-        message: 'I have extensive experience in logo design.',
-        status: 'Accepted',
-    },
-    {
-        id: 'prop-3',
-        taskId: 'task-4',
-        providerId: 'user-4',
-        amount: 750,
-        message: 'I specialize in tech writing and can deliver high-quality content.',
-        status: 'Pending',
-    },
-    {
-        id: 'prop-4',
-        taskId: 'task-2',
-        providerId: 'user-3',
-        amount: 140,
-        message: 'I can come by tomorrow morning to fix it.',
-        status: 'Pending',
-    }
+  {
+    id: 'prop-1',
+    taskId: 'task-1',
+    providerId: 'user-1',
+    amount: 1100,
+    message: 'I can build this for you in a week.',
+    status: 'Pending',
+  },
+  {
+    id: 'prop-2',
+    taskId: 'task-3',
+    providerId: 'user-1',
+    amount: 450,
+    message: 'I have extensive experience in logo design.',
+    status: 'Accepted',
+  },
+  {
+    id: 'prop-3',
+    taskId: 'task-4',
+    providerId: 'user-4',
+    amount: 750,
+    message: 'I specialize in tech writing and can deliver high-quality content.',
+    status: 'Pending',
+  },
+  {
+    id: 'prop-4',
+    taskId: 'task-2',
+    providerId: 'user-3',
+    amount: 140,
+    message: 'I can come by tomorrow morning to fix it.',
+    status: 'Pending',
+  }
 ];
 
 export const messages: Message[] = [
-    {
-        id: 'msg-1',
-        conversationId: 'conv-1',
-        senderId: 'user-1',
-        receiverId: 'user-2',
-        content: 'Hello! I saw your task for the landing page and I am very interested.',
-        timestamp: new Date(Date.now() - 1000 * 60 * 5)
-    },
-    {
-        id: 'msg-2',
-        conversationId: 'conv-1',
-        senderId: 'user-2',
-        receiverId: 'user-1',
-        content: 'Great! Do you have a portfolio I can look at?',
-        timestamp: new Date(Date.now() - 1000 * 60 * 4)
-    },
-    {
-        id: 'msg-3',
-        conversationId: 'conv-1',
-        senderId: 'user-1',
-        receiverId: 'user-2',
-        content: 'Yes, you can check it out at myprofile.com/portfolio. I can start immediately.',
-        timestamp: new Date(Date.now() - 1000 * 60 * 3)
-    },
-    {
-        id: 'msg-4',
-        conversationId: 'conv-2',
-        senderId: 'user-3',
-        receiverId: 'user-2',
-        content: 'Regarding the leaky faucet, I can be there at 10 AM tomorrow.',
-        timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24)
-    }
+  {
+    id: 'msg-1',
+    conversationId: 'conv-1',
+    senderId: 'user-1',
+    content: 'Hello! I saw your task for the landing page and I am very interested.',
+    timestamp: new Date(Date.now() - 1000 * 60 * 5)
+  },
+  {
+    id: 'msg-2',
+    conversationId: 'conv-1',
+    senderId: 'user-2',
+    content: 'Great! Do you have a portfolio I can look at?',
+    timestamp: new Date(Date.now() - 1000 * 60 * 4)
+  },
+  {
+    id: 'msg-3',
+    conversationId: 'conv-1',
+    senderId: 'user-1',
+    content: 'Yes, you can check it out at myprofile.com/portfolio. I can start immediately.',
+    timestamp: new Date(Date.now() - 1000 * 60 * 3)
+  },
+  {
+    id: 'msg-4',
+    conversationId: 'conv-2',
+    senderId: 'user-3',
+    content: 'Regarding the leaky faucet, I can be there at 10 AM tomorrow.',
+    timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24)
+  }
 ];
 
 export const conversations: Conversation[] = [
-    {
-        id: 'conv-1',
-        participant1Id: 'user-1',
-        participant2Id: 'user-2',
-        lastMessage: messages[2],
-    },
-    {
-        id: 'conv-2',
-        participant1Id: 'user-3',
-        participant2Id: 'user-2',
-        lastMessage: messages[3],
-    }
+  {
+    id: 'conv-1',
+    participants: ['user-1', 'user-2'],
+    lastMessage: 'Yes, you can check it out at myprofile.com/portfolio. I can start immediately.',
+    lastMessageAt: new Date(Date.now() - 1000 * 60 * 3)
+  },
+  {
+    id: 'conv-2',
+    participants: ['user-3', 'user-2'],
+    lastMessage: 'Regarding the leaky faucet, I can be there at 10 AM tomorrow.',
+    lastMessageAt: new Date(Date.now() - 1000 * 60 * 60 * 24)
+  }
 ];
