@@ -45,9 +45,22 @@
     "placeholders": {
         "typeMessage": "Tapez un message...",
         "searchUser": "Rechercher un utilisateur...",
-        "noMessages": "Aucun message pour le moment",
-        "noConversations": "Aucune conversation pour le moment",
+        "noMessages": "Aucun message",
+        "noConversations": "Aucune conversation",
+        "noArchivedConversations": "Aucune conversation archivée",
+        "searchConversations": "Rechercher des conversations...",
+        "noResults": "Aucune conversation trouvée",
         "enterUserId": "Entrez l'ID utilisateur..."
+    },
+    "sort": {
+        "sortBy": "Trier par",
+        "recent": "Plus récent",
+        "alphabetical": "Alphabétique",
+        "unread": "Non lus en premier"
+    },
+    "date": {
+        "today": "Aujourd'hui",
+        "yesterday": "Hier"
     },
     "success": {
         "messageSent": "Message envoyé avec succès",
@@ -57,5 +70,9 @@
         "sendFailed": "Échec de l'envoi du message",
         "loadFailed": "Échec du chargement des messages",
         "userNotFound": "Utilisateur introuvable"
+    },
+    "hints": {
+        "enterToSend": "Entrée pour envoyer",
+        "shiftEnterNewLine": "Maj+Entrée pour nouvelle ligne"
     }
 }

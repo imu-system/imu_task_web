@@ -43,11 +43,24 @@
         "create": "Erstellen"
     },
     "placeholders": {
-        "typeMessage": "Geben Sie eine Nachricht ein...",
+        "typeMessage": "Nachricht eingeben...",
         "searchUser": "Benutzer suchen...",
-        "noMessages": "Noch keine Nachrichten",
-        "noConversations": "Noch keine Unterhaltungen",
+        "noMessages": "Keine Nachrichten",
+        "noConversations": "Keine Unterhaltungen",
+        "noArchivedConversations": "Keine archivierten Unterhaltungen",
+        "searchConversations": "Unterhaltungen durchsuchen...",
+        "noResults": "Keine Unterhaltungen gefunden",
         "enterUserId": "Benutzer-ID eingeben..."
+    },
+    "sort": {
+        "sortBy": "Sortieren nach",
+        "recent": "Neueste",
+        "alphabetical": "Alphabetisch",
+        "unread": "Ungelesene zuerst"
+    },
+    "date": {
+        "today": "Heute",
+        "yesterday": "Gestern"
     },
     "success": {
         "messageSent": "Nachricht erfolgreich gesendet",
@@ -57,5 +70,9 @@
         "sendFailed": "Nachricht konnte nicht gesendet werden",
         "loadFailed": "Nachrichten konnten nicht geladen werden",
         "userNotFound": "Benutzer nicht gefunden"
+    },
+    "hints": {
+        "enterToSend": "Eingabe zum Senden",
+        "shiftEnterNewLine": "Umschalt+Eingabe für neue Zeile"
     }
 }

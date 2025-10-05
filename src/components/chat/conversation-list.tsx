@@ -7,21 +7,24 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo, useCallback, memo } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { fr, enUS, es, de, ja } from 'date-fns/locale';
-import { MessageCircle, Archive, MoreVertical, ArchiveRestore, BellOff, Bell } from 'lucide-react';
+import { MessageCircle, Archive, MoreVertical, ArchiveRestore, BellOff, Bell, Search, ArrowUpDown } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Input } from '@/components/ui/input';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 import { useTranslations, useLocale } from 'next-intl';
 import type { Conversation } from '@/lib/firestore-conversations';
@@ -53,6 +56,8 @@ const localeMap = {
   ja: ja,
 };
 
+type SortOption = 'recent' | 'alphabetical' | 'unread';
+
 export function ConversationList({
   conversations,
   archivedConversations,
@@ -65,26 +70,69 @@ export function ConversationList({
   const t = useTranslations('messages');
   const locale = useLocale() as keyof typeof localeMap;
   const [activeTab, setActiveTab] = useState<'active' | 'archived'>('active');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState<SortOption>('recent');
 
-  const handleArchive = async (conversationId: string, e: React.MouseEvent) => {
+  // Filter and sort conversations
+  const filteredAndSortedConversations = useMemo(() => {
+    const filterConversations = (convs: Conversation[]) => {
+      let filtered = convs;
+
+      // Apply search filter
+      if (searchQuery.trim()) {
+        filtered = filtered.filter((conv) => {
+          const otherUser = getOtherParticipant(conv, currentUserId);
+          return otherUser?.name.toLowerCase().includes(searchQuery.toLowerCase());
+        });
+      }
+
+      // Apply sorting
+      const sorted = [...filtered].sort((a, b) => {
+        switch (sortBy) {
+          case 'alphabetical':
+            const nameA = getOtherParticipant(a, currentUserId)?.name.toLowerCase() || '';
+            const nameB = getOtherParticipant(b, currentUserId)?.name.toLowerCase() || '';
+            return nameA.localeCompare(nameB);
+          
+          case 'unread':
+            const unreadA = a.unreadCount[currentUserId] || 0;
+            const unreadB = b.unreadCount[currentUserId] || 0;
+            if (unreadB !== unreadA) return unreadB - unreadA;
+            return b.lastMessageAt?.toMillis() - a.lastMessageAt?.toMillis();
+          
+          case 'recent':
+          default:
+            return b.lastMessageAt?.toMillis() - a.lastMessageAt?.toMillis();
+        }
+      });
+
+      return sorted;
+    };
+
+    return {
+      active: filterConversations(conversations),
+      archived: filterConversations(archivedConversations),
+    };
+  }, [conversations, archivedConversations, searchQuery, sortBy, currentUserId]);
+
+  const handleArchive = useCallback(async (conversationId: string, e: React.MouseEvent) => {
     e.stopPropagation();
     try {
       await archiveConversation(conversationId, currentUserId);
     } catch (error) {
       console.error('Failed to archive conversation:', error);
     }
-  };
+  }, [currentUserId]);
 
-  const handleUnarchive = async (conversationId: string, e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleUnarchive = useCallback(async (conversationId: string) => {
     try {
       await unarchiveConversation(conversationId, currentUserId);
     } catch (error) {
       console.error('Failed to unarchive conversation:', error);
     }
-  };
+  }, [currentUserId]);
 
-  const handleMute = async (conversationId: string, conversation: Conversation, e: React.MouseEvent) => {
+  const handleMute = useCallback(async (conversationId: string, conversation: Conversation, e: React.MouseEvent) => {
     e.stopPropagation();
     try {
       const isMuted = isConversationMuted(conversation.mutedBy, currentUserId);
@@ -96,21 +144,46 @@ export function ConversationList({
     } catch (error) {
       console.error('Failed to toggle mute:', error);
     }
-  };
+  }, [currentUserId]);
 
   if (loading) {
     return (
       <div className="flex flex-col h-full border-r">
-        <div className="p-4 border-b">
-          <Skeleton className="h-10 w-full" />
+        {/* Header Skeleton */}
+        <div className="p-4 border-b space-y-3">
+          <div className="flex items-center justify-between">
+            <Skeleton className="h-6 w-32" />
+            <Skeleton className="h-5 w-8 rounded-full" />
+          </div>
+          <Skeleton className="h-9 w-full" />
         </div>
+
+        {/* Search & Sort Skeleton */}
+        <div className="p-3 border-b space-y-2">
+          <Skeleton className="h-9 w-full" />
+          <Skeleton className="h-8 w-24" />
+        </div>
+
+        {/* Tabs Skeleton */}
+        <div className="border-b">
+          <div className="flex">
+            <Skeleton className="h-10 flex-1" />
+            <Skeleton className="h-10 flex-1" />
+          </div>
+        </div>
+
+        {/* Conversations Skeleton */}
         <div className="flex-1 p-2 space-y-2">
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="flex gap-3 p-3">
+            <div key={i} className="flex gap-3 p-3 rounded-lg">
               <Skeleton className="h-12 w-12 rounded-full shrink-0" />
               <div className="flex-1 space-y-2">
-                <Skeleton className="h-4 w-32" />
+                <div className="flex items-center justify-between">
+                  <Skeleton className="h-4 w-32" />
+                  <Skeleton className="h-3 w-16" />
+                </div>
                 <Skeleton className="h-3 w-full" />
+                <Skeleton className="h-3 w-3/4" />
               </div>
             </div>
           ))}
@@ -193,7 +266,7 @@ export function ConversationList({
               )}
             </DropdownMenuItem>
             {isArchived ? (
-              <DropdownMenuItem onClick={(e) => handleUnarchive(conversation.id, e)}>
+              <DropdownMenuItem onClick={() => handleUnarchive(conversation.id)}>
                 <ArchiveRestore className="mr-2 h-4 w-4" />
                 Unarchive
               </DropdownMenuItem>
@@ -215,7 +288,9 @@ export function ConversationList({
       <div className="p-4 border-b bg-background">
         <div className="flex items-center justify-between mb-3">
           <h2 className="text-lg font-semibold">{t('general.conversations')}</h2>
-          <Badge variant="secondary">{conversations.length}</Badge>
+          <Badge variant="secondary">
+            {activeTab === 'active' ? filteredAndSortedConversations.active.length : filteredAndSortedConversations.archived.length}
+          </Badge>
         </div>
         <Button onClick={onNewConversation} className="w-full" size="sm">
           <MessageCircle className="h-4 w-4 mr-2" />
@@ -223,31 +298,100 @@ export function ConversationList({
         </Button>
       </div>
 
+      {/* Search & Sort */}
+      <div className="p-3 border-b space-y-2 bg-background">
+        {/* Search Input */}
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Input
+            type="text"
+            placeholder={t('placeholders.searchConversations') || 'Search conversations...'}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-9 h-9"
+          />
+        </div>
+
+        {/* Sort Dropdown */}
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="sm" className="w-full justify-start h-8">
+              <ArrowUpDown className="h-3 w-3 mr-2" />
+              {sortBy === 'recent' && (t('sort.recent') || 'Most recent')}
+              {sortBy === 'alphabetical' && (t('sort.alphabetical') || 'Alphabetical')}
+              {sortBy === 'unread' && (t('sort.unread') || 'Unread first')}
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="w-[200px]">
+            <DropdownMenuLabel>{t('sort.sortBy') || 'Sort by'}</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => setSortBy('recent')}>
+              {t('sort.recent') || 'Most recent'}
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setSortBy('alphabetical')}>
+              {t('sort.alphabetical') || 'Alphabetical'}
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setSortBy('unread')}>
+              {t('sort.unread') || 'Unread first'}
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
       {/* Tabs: Active / Archived */}
-      <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as 'active' | 'archived')} className="flex-1 flex flex-col">
+      <Tabs 
+        value={activeTab} 
+        onValueChange={(v) => setActiveTab(v as 'active' | 'archived')} 
+        className="flex-1 flex flex-col"
+      >
         <TabsList className="w-full rounded-none border-b">
-          <TabsTrigger value="active" className="flex-1">
-            Active ({conversations.length})
+          <TabsTrigger value="active" className="flex-1 data-[state=active]:bg-background transition-all">
+            Active ({filteredAndSortedConversations.active.length})
           </TabsTrigger>
-          <TabsTrigger value="archived" className="flex-1">
+          <TabsTrigger value="archived" className="flex-1 data-[state=active]:bg-background transition-all">
             <Archive className="h-3 w-3 mr-1" />
-            Archived ({archivedConversations.length})
+            Archived ({filteredAndSortedConversations.archived.length})
           </TabsTrigger>
         </TabsList>
 
         <TabsContent value="active" className="flex-1 m-0">
           <ScrollArea className="h-full">
-            {conversations.length === 0 ? (
-              <div className="flex flex-col items-center justify-center p-8 text-center">
-                <MessageCircle className="h-12 w-12 text-muted-foreground mb-3" />
-                <p className="text-sm text-muted-foreground">{t('placeholders.noConversations')}</p>
-                <p className="text-xs text-muted-foreground mt-1">
-                  {t('labels.startNewConversation')}
-                </p>
+            {filteredAndSortedConversations.active.length === 0 ? (
+              <div className="flex flex-col items-center justify-center p-8 text-center h-[400px]">
+                {searchQuery ? (
+                  <>
+                    <Search className="h-12 w-12 text-muted-foreground/40 mb-4" />
+                    <p className="text-sm font-medium text-muted-foreground">
+                      {t('placeholders.noResults') || 'No conversations found'}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Try adjusting your search
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <MessageCircle className="h-12 w-12 text-muted-foreground/40 mb-4" />
+                    <p className="text-sm font-medium text-muted-foreground">
+                      {t('placeholders.noConversations') || 'No conversations yet'}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {t('labels.startNewConversation') || 'Start a new conversation to get started'}
+                    </p>
+                    <Button 
+                      onClick={onNewConversation} 
+                      variant="outline" 
+                      size="sm" 
+                      className="mt-4"
+                    >
+                      <MessageCircle className="h-3 w-3 mr-2" />
+                      New Conversation
+                    </Button>
+                  </>
+                )}
               </div>
             ) : (
               <div className="p-2 space-y-1">
-                {conversations.map((conv) => renderConversationItem(conv, false))}
+                {filteredAndSortedConversations.active.map((conv) => renderConversationItem(conv, false))}
               </div>
             )}
           </ScrollArea>
@@ -255,14 +399,33 @@ export function ConversationList({
 
         <TabsContent value="archived" className="flex-1 m-0">
           <ScrollArea className="h-full">
-            {archivedConversations.length === 0 ? (
-              <div className="flex flex-col items-center justify-center p-8 text-center">
-                <Archive className="h-12 w-12 text-muted-foreground mb-3" />
-                <p className="text-sm text-muted-foreground">No archived conversations</p>
+            {filteredAndSortedConversations.archived.length === 0 ? (
+              <div className="flex flex-col items-center justify-center p-8 text-center h-[400px]">
+                {searchQuery ? (
+                  <>
+                    <Search className="h-12 w-12 text-muted-foreground/40 mb-4" />
+                    <p className="text-sm font-medium text-muted-foreground">
+                      {t('placeholders.noResults') || 'No conversations found'}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Try adjusting your search
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <Archive className="h-12 w-12 text-muted-foreground/40 mb-4" />
+                    <p className="text-sm font-medium text-muted-foreground">
+                      {t('placeholders.noArchivedConversations') || 'No archived conversations'}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Archived conversations will appear here
+                    </p>
+                  </>
+                )}
               </div>
             ) : (
               <div className="p-2 space-y-1">
-                {archivedConversations.map((conv) => renderConversationItem(conv, true))}
+                {filteredAndSortedConversations.archived.map((conv) => renderConversationItem(conv, true))}
               </div>
             )}
           </ScrollArea>

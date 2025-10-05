@@ -1,0 +1,74 @@
+{
+    "general": {
+        "messages": "Messages",
+        "conversations": "Conversations",
+        "send": "Send",
+        "search": "Search",
+        "newMessage": "New Message"
+    },
+    "status": {
+        "read": "Read",
+        "unread": "Unread",
+        "typing": "Typing...",
+        "sent": "Sent",
+        "delivered": "Delivered",
+        "online": "Online",
+        "offline": "Offline",
+        "creating": "Creating..."
+    },
+    "labels": {
+        "from": "From",
+        "to": "To",
+        "message": "Message",
+        "timestamp": "Timestamp",
+        "lastMessage": "Last message",
+        "unknown": "Unknown",
+        "selectConversation": "Select a conversation",
+        "selectConversationDesc": "Choose a conversation from the left to start messaging",
+        "startConversation": "Send a message to start the conversation",
+        "startNewConversation": "Click the button above to start a new conversation",
+        "startNewConversationDesc": "Enter the recipient's user ID and your first message",
+        "recipientUserId": "Recipient User ID",
+        "userIdHelp": "You can find user IDs in your bookings or task proposals",
+        "initialMessage": "Initial Message",
+        "messagesPageDesc": "Chat with clients and providers"
+    },
+    "actions": {
+        "send": "Send",
+        "delete": "Delete",
+        "markRead": "Mark as read",
+        "newConversation": "New Conversation",
+        "startChat": "Start Chat",
+        "cancel": "Cancel",
+        "create": "Create"
+    },
+    "placeholders": {
+        "typeMessage": "Type a message...",
+        "searchUser": "Search for a user...",
+        "noMessages": "No messages yet",
+        "noConversations": "No conversations yet",
+        "noArchivedConversations": "No archived conversations",
+        "searchConversations": "Search conversations...",
+        "noResults": "No conversations found",
+        "enterUserId": "Enter user ID..."
+    },
+    "sort": {
+        "sortBy": "Sort by",
+        "recent": "Most recent",
+        "alphabetical": "Alphabetical",
+        "unread": "Unread first"
+    },
+    "date": {
+        "today": "Today",
+        "yesterday": "Yesterday"
+    },
+    "success": {
+        "messageSent": "Message sent successfully",
+        "conversationCreated": "Conversation created"
+    },
+    "errors": {
+        "sendFailed": "Failed to send message",
+        "loadFailed": "Failed to load messages",
+        "userNotFound": "User not found"
+    }
+}

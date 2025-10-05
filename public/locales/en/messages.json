@@ -47,7 +47,20 @@
         "searchUser": "Search for a user...",
         "noMessages": "No messages yet",
         "noConversations": "No conversations yet",
+        "noArchivedConversations": "No archived conversations",
+        "searchConversations": "Search conversations...",
+        "noResults": "No conversations found",
         "enterUserId": "Enter user ID..."
+    },
+    "sort": {
+        "sortBy": "Sort by",
+        "recent": "Most recent",
+        "alphabetical": "Alphabetical",
+        "unread": "Unread first"
+    },
+    "date": {
+        "today": "Today",
+        "yesterday": "Yesterday"
     },
     "success": {
         "messageSent": "Message sent successfully",
@@ -57,5 +70,9 @@
         "sendFailed": "Failed to send message",
         "loadFailed": "Failed to load messages",
         "userNotFound": "User not found"
+    },
+    "hints": {
+        "enterToSend": "Enter to send",
+        "shiftEnterNewLine": "Shift+Enter for new line"
     }
 }

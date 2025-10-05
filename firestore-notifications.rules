@@ -1,0 +1,64 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ============================================================================
+    // NOTIFICATIONS COLLECTION
+    // ============================================================================
+    
+    match /notifications/{notificationId} {
+      
+      // Helper function to check if user is authenticated
+      function isAuthenticated() {
+        return request.auth != null;
+      }
+      
+      // Helper function to check if user owns the notification
+      function isOwner() {
+        return isAuthenticated() && 
+               resource.data.userId == request.auth.uid;
+      }
+      
+      // Helper function to check if creating user matches notification userId
+      function isCreatingForSelf() {
+        return isAuthenticated() && 
+               request.resource.data.userId == request.auth.uid;
+      }
+      
+      // READ: Users can only read their own notifications
+      allow read: if isOwner();
+      
+      // CREATE: Users can create notifications for themselves
+      // (Most notifications will be created server-side via Cloud Functions)
+      allow create: if isCreatingForSelf() && 
+                       request.resource.data.keys().hasAll([
+                         'userId', 'type', 'title', 'body', 'category',
+                         'priority', 'read', 'shown', 'createdAt'
+                       ]);
+      
+      // UPDATE: Users can update their own notifications
+      // Allowed fields: read, readAt, shown, deleted
+      allow update: if isOwner() && 
+                       request.resource.data.diff(resource.data).affectedKeys()
+                         .hasOnly(['read', 'readAt', 'shown', 'deleted']);
+      
+      // DELETE: Not allowed (use soft delete via update)
+      allow delete: if false;
+    }
+    
+    // ============================================================================
+    // USERS COLLECTION - Notification Preferences
+    // ============================================================================
+    
+    match /users/{userId} {
+      
+      // Allow users to update their own notification preferences
+      allow update: if request.auth != null && 
+                       request.auth.uid == userId &&
+                       // Only allow updating notificationPreferences field
+                       request.resource.data.diff(resource.data).affectedKeys()
+                         .hasOnly(['notificationPreferences', 'updatedAt']);
+    }
+  }
+}
