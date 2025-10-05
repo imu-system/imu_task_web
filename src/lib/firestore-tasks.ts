@@ -14,6 +14,8 @@ import {
 } from 'firebase/firestore';
 import { db } from './firebase';
 import { notifyNewTask, notifyTaskCompleted } from './firestore-notifications';
+import { getUserById, getProvidersBySkill, getProvidersByMultipleSkills } from './firestore-users';
+import { getRelatedSkills } from './skill-mapping';
 
 // Types
 export interface TaskLocation {
@@ -82,6 +84,53 @@ export async function createTask(
         const docRef = await addDoc(tasksRef, newTask);
 
         console.log('✅ Task created successfully with ID:', docRef.id);
+
+        // Notify relevant providers about new task
+        try {
+            // Get related skills to expand search (e.g., "Plumbing" -> ["Plumbing", "Plumber", "Pipe Repair"])
+            const relatedSkills = getRelatedSkills(taskData.category);
+
+            console.log(`🔍 Searching providers with skills: ${relatedSkills.join(', ')}`);
+
+            // Get providers matching any of the related skills
+            const providersWithSkills = await getProvidersByMultipleSkills(relatedSkills, {
+                onlyAvailable: true,   // Only notify available providers
+                maxResults: 50         // Limit to 50 to avoid spam
+            });
+
+            if (providersWithSkills.length > 0) {
+                let taskLocation = 'Location not specified';
+                if (typeof taskData.location === 'string') {
+                    taskLocation = taskData.location;
+                } else if (typeof taskData.location === 'object' && taskData.location !== null) {
+                    taskLocation = (taskData.location as TaskLocation).address ||
+                        (taskData.location as TaskLocation).city ||
+                        'Location not specified';
+                }
+
+                // Send notifications in parallel
+                await Promise.all(
+                    providersWithSkills.map(provider =>
+                        notifyNewTask(
+                            provider.id,
+                            docRef.id,
+                            taskData.title,
+                            taskData.category,
+                            taskLocation
+                        )
+                    )
+                );
+
+                console.log(`✅ Notified ${providersWithSkills.length} providers about new task`);
+            } else {
+                console.log('ℹ️ No available providers found with matching skills');
+                console.log(`💡 Consider broadening search or adding more providers with "${taskData.category}" skill`);
+            }
+        } catch (notifError) {
+            console.error('⚠️ Failed to send new task notifications:', notifError);
+            // Don't throw - notification failure shouldn't block task creation
+        }
+
         return docRef.id;
     } catch (error) {
         console.error('❌ Error creating task:', error);
@@ -239,6 +288,26 @@ export async function updateTask(
         await updateDoc(taskRef, updateData);
 
         console.log('✅ Task updated successfully:', taskId);
+
+        // Notify client if task is completed
+        if (updates.status === 'completed') {
+            try {
+                const taskSnap = await getDoc(taskRef);
+                if (taskSnap.exists()) {
+                    const taskData = taskSnap.data();
+                    const clientId = taskData.clientId;
+                    const taskTitle = taskData.title;
+
+                    if (clientId && taskTitle) {
+                        await notifyTaskCompleted(clientId, taskId, taskTitle);
+                        console.log('✅ Notification sent to client for completed task');
+                    }
+                }
+            } catch (notifError) {
+                console.error('⚠️ Failed to send task completion notification:', notifError);
+                // Don't throw - notification failure shouldn't block task update
+            }
+        }
     } catch (error) {
         console.error('❌ Error updating task:', error);
         throw new Error('Failed to update task. Please try again.');

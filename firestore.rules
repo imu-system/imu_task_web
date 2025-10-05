@@ -95,6 +95,26 @@ service cloud.firestore {
       allow update, delete: if false;
     }
     
+    // Notifications collection
+    match /notifications/{notificationId} {
+      // Users can only read their own notifications
+      allow read: if isAuthenticated() && isOwner(resource.data.userId);
+      
+      // Only Cloud Functions can create notifications
+      allow create: if false;
+      
+      // Users can update only 'read', 'dismissed', 'shown' fields
+      allow update: if isAuthenticated() && 
+        isOwner(resource.data.userId) &&
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read', 'dismissed', 'shown', 'updatedAt']) &&
+        request.resource.data.userId == resource.data.userId &&
+        request.resource.data.type == resource.data.type &&
+        request.resource.data.category == resource.data.category;
+      
+      // Users can delete their own notifications
+      allow delete: if isAuthenticated() && isOwner(resource.data.userId);
+    }
+    
     // Transactions
     match /transactions/{transactionId} {
       allow read: if isAuthenticated() && (

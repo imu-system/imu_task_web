@@ -82,6 +82,35 @@ export async function markNotificationAsRead(notificationId: string): Promise<vo
     await updateDoc(notifRef, {
         read: true,
         readAt: Timestamp.now(),
+        updatedAt: Timestamp.now(),
+    });
+}
+
+// Alias for React Query hooks
+export const markAsRead = markNotificationAsRead;
+
+/**
+ * Mark a notification as unread
+ * @param notificationId Notification ID
+ */
+export async function markAsUnread(notificationId: string): Promise<void> {
+    const notifRef = doc(db, 'notifications', notificationId);
+    await updateDoc(notifRef, {
+        read: false,
+        readAt: null,
+        updatedAt: Timestamp.now(),
+    });
+}
+
+/**
+ * Dismiss a notification (keeps it but marks as dismissed)
+ * @param notificationId Notification ID
+ */
+export async function dismissNotification(notificationId: string): Promise<void> {
+    const notifRef = doc(db, 'notifications', notificationId);
+    await updateDoc(notifRef, {
+        dismissed: true,
+        updatedAt: Timestamp.now(),
     });
 }
 
