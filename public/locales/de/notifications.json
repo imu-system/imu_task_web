@@ -1,0 +1,60 @@
+{
+    "notifications": {
+        "title": "Benachrichtigungen",
+        "unread": "{{count}} ungelesen",
+        "markAllAsRead": "Alle als gelesen markieren",
+        "clearAll": "Alle löschen",
+        "noNotifications": "Noch keine Benachrichtigungen",
+        "loading": "Benachrichtigungen werden geladen...",
+        "error": "Fehler beim Laden der Benachrichtigungen",
+        "categories": {
+            "all": "Alle",
+            "messages": "Nachrichten",
+            "tasks": "Aufgaben",
+            "proposals": "Angebote",
+            "bookings": "Buchungen",
+            "reviews": "Bewertungen",
+            "profile": "Profil",
+            "payments": "Zahlungen",
+            "system": "System"
+        },
+        "emptyStates": {
+            "all": "Noch keine Benachrichtigungen",
+            "messages": "Keine Nachrichtenbenachrichtigungen",
+            "tasks": "Keine Aufgabenbenachrichtigungen",
+            "proposals": "Keine Angebotsbenachrichtigungen",
+            "bookings": "Keine Buchungsbenachrichtigungen",
+            "reviews": "Keine Bewertungsbenachrichtigungen",
+            "profile": "Keine Profilbenachrichtigungen",
+            "payments": "Keine Zahlungsbenachrichtigungen",
+            "system": "Keine Systembenachrichtigungen"
+        },
+        "actions": {
+            "view": "Ansehen",
+            "dismiss": "Verwerfen",
+            "markAsRead": "Als gelesen markieren",
+            "delete": "Löschen"
+        },
+        "types": {
+            "newMessage": "Neue Nachricht von {{name}}",
+            "newProposal": "Neues Angebot erhalten",
+            "proposalAccepted": "Angebot angenommen",
+            "proposalRejected": "Angebot nicht ausgewählt",
+            "bookingConfirmed": "Buchung bestätigt",
+            "bookingCancelled": "Buchung storniert",
+            "taskCreated": "Neue Aufgabe verfügbar",
+            "taskCompleted": "Aufgabe abgeschlossen",
+            "newReview": "Neue Bewertung",
+            "paymentReceived": "Zahlung erhalten",
+            "systemAnnouncement": "Systemankündigung"
+        },
+        "timeAgo": {
+            "justNow": "Gerade eben",
+            "minutesAgo": "vor {{count}}Min",
+            "hoursAgo": "vor {{count}}Std",
+            "daysAgo": "vor {{count}}T",
+            "weeksAgo": "vor {{count}}W",
+            "monthsAgo": "vor {{count}}Mon"
+        }
+    }
+}

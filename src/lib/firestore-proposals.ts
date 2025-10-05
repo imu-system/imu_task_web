@@ -15,6 +15,7 @@ import {
 import { db } from './firebase';
 import { createBooking } from './firestore-bookings';
 import { getTask } from './firestore-tasks';
+import { notifyNewProposal, notifyProposalAccepted, notifyProposalRejected } from './firestore-notifications';
 
 // Types
 export interface Proposal {
@@ -63,6 +64,19 @@ export async function createProposal(
         };
 
         const docRef = await addDoc(proposalsRef, newProposal);
+
+        // 🔔 Notify task owner of new proposal
+        const task = await getTask(proposalData.taskId);
+        if (task) {
+            await notifyNewProposal(
+                proposalData.clientId,
+                proposalData.providerId,
+                'Provider', // TODO: Get provider name from user profile
+                task.title,
+                docRef.id,
+                proposalData.taskId
+            );
+        }
 
         console.log('✅ Proposal created successfully with ID:', docRef.id);
         return docRef.id;
@@ -321,6 +335,14 @@ export async function acceptProposal(
         // Accept the selected proposal
         await updateProposalStatus(proposalId, 'accepted');
 
+        // 🔔 Notify provider that their proposal was accepted
+        await notifyProposalAccepted(
+            proposalData.providerId,
+            task.title,
+            proposalId,
+            taskId
+        );
+
         // Reject all other proposals for this task
         const taskProposals = await getTaskProposals(taskId);
         const otherProposals = taskProposals.filter(p => p.id !== proposalId && p.status === 'pending');
@@ -328,6 +350,13 @@ export async function acceptProposal(
         for (const proposal of otherProposals) {
             if (proposal.id) {
                 await updateProposalStatus(proposal.id, 'rejected');
+
+                // 🔔 Notify rejected providers
+                await notifyProposalRejected(
+                    proposal.providerId,
+                    task.title,
+                    proposal.id
+                );
             }
         }
 

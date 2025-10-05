@@ -1,0 +1,60 @@
+{
+    "notifications": {
+        "title": "Notifications",
+        "unread": "{{count}} unread",
+        "markAllAsRead": "Mark all as read",
+        "clearAll": "Clear all",
+        "noNotifications": "No notifications yet",
+        "loading": "Loading notifications...",
+        "error": "Failed to load notifications",
+        "categories": {
+            "all": "All",
+            "messages": "Messages",
+            "tasks": "Tasks",
+            "proposals": "Proposals",
+            "bookings": "Bookings",
+            "reviews": "Reviews",
+            "profile": "Profile",
+            "payments": "Payments",
+            "system": "System"
+        },
+        "emptyStates": {
+            "all": "No notifications yet",
+            "messages": "No message notifications",
+            "tasks": "No task notifications",
+            "proposals": "No proposal notifications",
+            "bookings": "No booking notifications",
+            "reviews": "No review notifications",
+            "profile": "No profile notifications",
+            "payments": "No payment notifications",
+            "system": "No system notifications"
+        },
+        "actions": {
+            "view": "View",
+            "dismiss": "Dismiss",
+            "markAsRead": "Mark as read",
+            "delete": "Delete"
+        },
+        "types": {
+            "newMessage": "New message from {{name}}",
+            "newProposal": "New proposal received",
+            "proposalAccepted": "Proposal accepted",
+            "proposalRejected": "Proposal not selected",
+            "bookingConfirmed": "Booking confirmed",
+            "bookingCancelled": "Booking cancelled",
+            "taskCreated": "New task available",
+            "taskCompleted": "Task completed",
+            "newReview": "New review",
+            "paymentReceived": "Payment received",
+            "systemAnnouncement": "System announcement"
+        },
+        "timeAgo": {
+            "justNow": "Just now",
+            "minutesAgo": "{{count}}m ago",
+            "hoursAgo": "{{count}}h ago",
+            "daysAgo": "{{count}}d ago",
+            "weeksAgo": "{{count}}w ago",
+            "monthsAgo": "{{count}}mo ago"
+        }
+    }
+}

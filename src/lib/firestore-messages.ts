@@ -29,6 +29,7 @@ import {
     updateConversationLastMessage,
     incrementUnreadCount,
 } from './firestore-conversations';
+import { notifyNewMessage } from './firestore-notifications';
 
 // ============================================================================
 // TYPES
@@ -118,6 +119,15 @@ export async function sendMessage(
 
         // Increment recipient's unread count
         await incrementUnreadCount(conversationId, recipientId);
+
+        // 🔔 Send notification to recipient
+        await notifyNewMessage(
+            recipientId,
+            senderId,
+            senderName,
+            previewContent,
+            conversationId
+        );
 
         return newMessageRef.id;
     } catch (error) {

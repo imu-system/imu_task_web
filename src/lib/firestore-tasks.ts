@@ -13,6 +13,7 @@ import {
     DocumentData,
 } from 'firebase/firestore';
 import { db } from './firebase';
+import { notifyNewTask, notifyTaskCompleted } from './firestore-notifications';
 
 // Types
 export interface TaskLocation {

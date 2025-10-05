@@ -29,6 +29,7 @@ import {
 } from 'firebase/firestore';
 import { db } from './firebase';
 import type { Booking } from './types';
+import { notifyBookingConfirmed, notifyBookingCancelled } from './firestore-notifications';
 
 const COLLECTION_NAME = 'bookings';
 
@@ -246,6 +247,43 @@ export async function updateBookingStatus(
         }
 
         await updateDoc(docRef, updateData);
+
+        // 🔔 Send notifications based on status
+        if (status === 'confirmed') {
+            const booking = await getBooking(bookingId);
+            if (booking?.scheduledDate) {
+                // Notify both client and provider
+                await notifyBookingConfirmed(
+                    booking.clientId,
+                    bookingId,
+                    'Task', // TODO: Get task title
+                    booking.scheduledDate
+                );
+                await notifyBookingConfirmed(
+                    booking.providerId,
+                    bookingId,
+                    'Task', // TODO: Get task title
+                    booking.scheduledDate
+                );
+            }
+        } else if (status === 'cancelled') {
+            const booking = await getBooking(bookingId);
+            if (booking) {
+                // Notify both parties
+                await notifyBookingCancelled(
+                    booking.clientId,
+                    bookingId,
+                    'Task', // TODO: Get task title
+                    additionalData?.cancellationReason
+                );
+                await notifyBookingCancelled(
+                    booking.providerId,
+                    bookingId,
+                    'Task', // TODO: Get task title
+                    additionalData?.cancellationReason
+                );
+            }
+        }
     } catch (error) {
         console.error('Error updating booking status:', error);
         throw new Error('Failed to update booking status');
