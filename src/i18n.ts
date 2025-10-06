@@ -1,9 +1,12 @@
-import {notFound} from 'next/navigation';
-import {getRequestConfig} from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { getRequestConfig } from 'next-intl/server';
 
 export const locales = ['en', 'fr', 'de', 'es', 'ja'];
 
-export default getRequestConfig(async ({locale}) => {
+export default getRequestConfig(async ({ requestLocale }) => {
+  // Await the locale
+  const locale = await requestLocale;
+
   if (!locales.includes(locale as any)) notFound();
 
   const messages = await Promise.all([
@@ -15,6 +18,7 @@ export default getRequestConfig(async ({locale}) => {
   ]);
 
   return {
+    locale,
     messages: Object.assign({}, ...messages)
   };
 });

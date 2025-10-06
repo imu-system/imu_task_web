@@ -6,6 +6,8 @@ import { getStorage, connectStorageEmulator } from 'firebase/storage';
 import { getMessaging, isSupported } from 'firebase/messaging';
 
 // Configuration Firebase - ImuTask
+// Les variables NEXT_PUBLIC_* doivent être référencées directement (pas dynamiquement)
+// pour que Next.js 15 les injecte correctement côté client
 const firebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
     authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -15,19 +17,14 @@ const firebaseConfig = {
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Validation de la configuration
-const requiredEnvVars = [
-    'NEXT_PUBLIC_FIREBASE_API_KEY',
-    'NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN',
-    'NEXT_PUBLIC_FIREBASE_PROJECT_ID',
-    'NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET',
-    'NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID',
-    'NEXT_PUBLIC_FIREBASE_APP_ID',
-];
-
-const missingVars = requiredEnvVars.filter(
-    (varName) => !process.env[varName]
-);
+// Validation de la configuration avec références directes
+const missingVars: string[] = [];
+if (!process.env.NEXT_PUBLIC_FIREBASE_API_KEY) missingVars.push('NEXT_PUBLIC_FIREBASE_API_KEY');
+if (!process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN) missingVars.push('NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN');
+if (!process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID) missingVars.push('NEXT_PUBLIC_FIREBASE_PROJECT_ID');
+if (!process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET) missingVars.push('NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET');
+if (!process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID) missingVars.push('NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID');
+if (!process.env.NEXT_PUBLIC_FIREBASE_APP_ID) missingVars.push('NEXT_PUBLIC_FIREBASE_APP_ID');
 
 if (missingVars.length > 0) {
     throw new Error(
