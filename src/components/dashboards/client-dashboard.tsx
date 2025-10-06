@@ -19,6 +19,19 @@ import {
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { useState, useEffect } from 'react';
+import { RevenueChart } from '@/components/analytics/revenue-chart';
+import { TaskStatsChart } from '@/components/analytics/task-stats-chart';
+import { ActivityMetricsCard } from '@/components/analytics/activity-metrics-card';
+import { ExportReports } from '@/components/analytics/export-reports';
+import { 
+  getClientSpending, 
+  getClientTaskStatistics, 
+  getActivityMetrics,
+  type ClientSpending,
+  type TaskStatistics,
+  type ActivityMetrics
+} from '@/lib/analytics/dashboard-analytics';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -40,6 +53,41 @@ export default function ClientDashboardPage() {
   const { bookings, loading: bookingsLoading } = useUserBookings(user?.uid, 'client');
   const { conversations, totalUnreadCount, loading: conversationsLoading } = useConversations(user?.uid || '');
   const stats = useUserStats(tasks);
+
+  // Analytics state
+  const [spending, setSpending] = useState<ClientSpending | null>(null);
+  const [taskStats, setTaskStats] = useState<TaskStatistics | null>(null);
+  const [activityMetrics, setActivityMetrics] = useState<ActivityMetrics | null>(null);
+  const [analyticsLoading, setAnalyticsLoading] = useState(true);
+
+  // Fetch analytics data
+  useEffect(() => {
+    const fetchAnalytics = async () => {
+      if (!user?.uid) return;
+      
+      try {
+        setAnalyticsLoading(true);
+        const now = new Date();
+        const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+
+        const [spendingData, taskStatsData, activityData] = await Promise.all([
+          getClientSpending(user.uid),
+          getClientTaskStatistics(user.uid),
+          getActivityMetrics(user.uid, 'client'),
+        ]);
+
+        setSpending(spendingData);
+        setTaskStats(taskStatsData);
+        setActivityMetrics(activityData);
+      } catch (error) {
+        console.error('Error fetching analytics:', error);
+      } finally {
+        setAnalyticsLoading(false);
+      }
+    };
+
+    fetchAnalytics();
+  }, [user?.uid]);
 
   // Loading state
   if (loading || bookingsLoading || conversationsLoading) {
@@ -190,6 +238,28 @@ export default function ClientDashboardPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Activity Metrics */}
+      {activityMetrics && (
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <ActivityMetricsCard metrics={activityMetrics} role="client" />
+        </div>
+      )}
+
+      {/* Analytics Charts */}
+      <div className="grid gap-4 md:grid-cols-2">
+        {taskStats && (
+          <TaskStatsChart stats={taskStats} type="category" />
+        )}
+        {taskStats && (
+          <TaskStatsChart stats={taskStats} type="status" />
+        )}
+      </div>
+
+      {/* Export Reports */}
+      {user?.uid && (
+        <ExportReports userId={user.uid} role="client" />
+      )}
 
       {/* Messages Stats */}
       <div className="grid gap-4 md:grid-cols-2">
