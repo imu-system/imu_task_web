@@ -1,7 +1,7 @@
-import {NextIntlClientProvider, useMessages} from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
 import { Inter } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
-import { getTranslations } from 'next-intl/server';
+import { getTranslations, getMessages } from 'next-intl/server';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { NotificationToastProvider } from '@/components/notifications';
 import { AppHeaderClient } from '@/components/layout/app-header-client';
@@ -37,7 +37,8 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 const inter = Inter({ subsets: ['latin'] });
 
-export async function generateMetadata({ params: { locale } }: { params: { locale: string }}) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   return {
     title: 'ImuTask',
     description: 'Streamline your tasks and connect with providers.',
@@ -46,18 +47,16 @@ export async function generateMetadata({ params: { locale } }: { params: { local
 
 export default async function LocaleLayout({
   children,
-  params: { locale },
+  params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
-  const messages = useMessages();
-  const t = await getTranslations({ locale, namespace: 'Navigation' });
-  const tUserMenu = await getTranslations({ locale, namespace: 'UserMenu' });
-  const tRootLayout = await getTranslations({
-    locale,
-    namespace: 'RootLayout',
-  });
+  const { locale } = await params;
+  const messages = await getMessages();
+  const t = await getTranslations('Navigation');
+  const tUserMenu = await getTranslations('UserMenu');
+  const tRootLayout = await getTranslations('RootLayout');
  
   return (
     <html lang={locale}>

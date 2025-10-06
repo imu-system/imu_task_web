@@ -28,6 +28,7 @@ import {
 } from '../firestore-notifications';
 import { notificationKeys, invalidateUnreadCounts } from './query-client';
 import type { Notification, NotificationCategory } from '../types/notifications';
+import { trackMutationError } from '../error-tracking';
 
 /**
  * Hook: Get paginated notifications with infinite scroll
@@ -118,6 +119,8 @@ export function useMarkAsRead(userId: string) {
                     queryClient.setQueryData(queryKey, data);
                 });
             }
+
+            trackMutationError('markAsRead', _err as Error, { notificationId: _notificationId });
         },
         onSuccess: () => {
             // Invalidate unread counts
@@ -134,6 +137,9 @@ export function useMarkAsUnread(userId: string) {
 
     return useMutation({
         mutationFn: (notificationId: string) => markAsUnread(notificationId),
+        onError: (_err, _notificationId) => {
+            trackMutationError('markAsUnread', _err as Error, { notificationId: _notificationId });
+        },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: notificationKeys.lists() });
             invalidateUnreadCounts(userId);
@@ -181,6 +187,8 @@ export function useDismissNotification() {
                     queryClient.setQueryData(queryKey, data);
                 });
             }
+
+            trackMutationError('dismissNotification', _err as Error, { notificationId: _notificationId });
         },
     });
 }
@@ -221,6 +229,8 @@ export function useDeleteNotification(userId: string) {
                     queryClient.setQueryData(queryKey, data);
                 });
             }
+
+            trackMutationError('deleteNotification', _err as Error, { notificationId: _notificationId });
         },
         onSuccess: () => {
             invalidateUnreadCounts(userId);
@@ -236,6 +246,9 @@ export function useMarkAllAsRead(userId: string) {
 
     return useMutation({
         mutationFn: (notificationIds: string[]) => markNotificationsAsReadBatch(notificationIds),
+        onError: (_err, _notificationIds) => {
+            trackMutationError('markAllAsRead', _err as Error, { notificationIds: _notificationIds });
+        },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: notificationKeys.lists() });
             invalidateUnreadCounts(userId);
@@ -251,6 +264,9 @@ export function useDeleteMultiple(userId: string) {
 
     return useMutation({
         mutationFn: (notificationIds: string[]) => deleteNotificationsBatch(notificationIds),
+        onError: (_err, _notificationIds) => {
+            trackMutationError('deleteMultiple', _err as Error, { notificationIds: _notificationIds });
+        },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: notificationKeys.lists() });
             invalidateUnreadCounts(userId);
