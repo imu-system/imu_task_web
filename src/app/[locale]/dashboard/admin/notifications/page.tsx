@@ -2,7 +2,7 @@
 
 'use client';
 
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { useRouter, Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState, useMemo } from 'react';

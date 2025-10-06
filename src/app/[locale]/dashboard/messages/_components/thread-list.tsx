@@ -3,7 +3,7 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Input } from '@/components/ui/input';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { Message, Thread, User } from '@/lib/types';
 import { cn } from '@/lib/utils';
 import { Link, usePathname } from '@/navigation';

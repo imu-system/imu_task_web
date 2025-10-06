@@ -10,7 +10,7 @@ import { PlusCircle, Loader2, LayoutGrid, List } from 'lucide-react';
 import { Link, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState, useMemo } from 'react';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { Input } from '@/components/ui/input';
 import {
   Tooltip,

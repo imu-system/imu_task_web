@@ -1,7 +1,8 @@
 
 'use client';
 
-import { useAuth } from '@/hooks/use-auth';
+import { useState } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
 import { Link } from '@/navigation';
 import { Loader2, ArrowLeft, Calendar, User, Euro, MessageSquare, Clock, XCircle, CheckCircle, Edit, ShieldAlert, Handshake, CreditCard, CalendarCheck, Trash2 } from 'lucide-react';
 import { UserRole, Booking, BookingStatus } from '@/lib/types';

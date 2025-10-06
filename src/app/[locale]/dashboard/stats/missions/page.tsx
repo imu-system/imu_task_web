@@ -1,7 +1,8 @@
 
 'use client';
 
-import { useAuth } from '@/hooks/use-auth';
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
 import { useTranslations } from 'next-intl';
 import { Loader2, ArrowLeft, Download, MessageSquare, Star } from 'lucide-react';
 import { UserRole } from '@/lib/types';
@@ -11,7 +12,6 @@ import { Link } from '@/navigation';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useState } from 'react';
 
 const mockMissions = [
     { id: 'm1', name: 'Courses Client A', duration: '2h', earnings: 25.00, rating: 4, category: 'Courses', conversationLink: '#' },

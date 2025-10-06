@@ -11,10 +11,10 @@ import { Upload, Download } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import fr from '@/messages/fr.json';
 import en from '@/messages/en.json';
-import jp from '@/messages/jp.json';
+import ja from '@/messages/ja.json';
 import React, { useState } from 'react';
 
-const allMessages: Record<string, any> = { fr, en, jp };
+const allMessages: Record<string, any> = { fr, en, ja };
 
 export default function AdminIoPage() {
     const t = useTranslations('AdminI18nPage.io');

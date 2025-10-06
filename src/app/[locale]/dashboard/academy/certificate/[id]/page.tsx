@@ -8,7 +8,7 @@ import { Link, useRouter } from '@/navigation';
 import { useParams } from 'next/navigation';
 import { ArrowLeft, Download, CheckCircle, ExternalLink } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { Loader2 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 

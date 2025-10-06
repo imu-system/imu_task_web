@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { Link, useRouter } from '@/navigation';
 import { useEffect, useState } from 'react';
 import { Loader2, ArrowLeft } from 'lucide-react';

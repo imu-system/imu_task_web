@@ -20,6 +20,24 @@ export enum KYCStatus {
   rejected = 'rejected'
 }
 
+// Booking-related enums
+export enum BookingStatus {
+  pending = 'pending',
+  confirmed = 'confirmed',
+  in_progress = 'in_progress',
+  completed = 'completed',
+  cancelled = 'cancelled',
+  disputed = 'disputed'
+}
+
+export enum PaymentStatus {
+  authorized = 'authorized',
+  captured = 'captured',
+  refunded = 'refunded',
+  failed = 'failed',
+  canceled = 'canceled'
+}
+
 // Profile type
 export type Profile = {
   displayName: string;

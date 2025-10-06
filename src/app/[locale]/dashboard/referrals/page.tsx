@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { Loader2, Gift, Copy, Share2, Mail, Users, DollarSign, School, CheckCircle, Clock, MessageSquare, Twitter, UserPlus, Award } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { Link } from '@/navigation';

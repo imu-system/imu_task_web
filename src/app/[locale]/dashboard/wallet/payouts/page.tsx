@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { useTranslations } from 'next-intl';
 import { Loader2, ArrowLeft, Download, Banknote, Calendar as CalendarIcon, CheckCircle2, AlertCircle, Clock } from 'lucide-react';
 import { UserRole } from '@/lib/types';
