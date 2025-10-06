@@ -1,0 +1,1016 @@
+
+{
+    "Header": {
+        "features": "Features",
+        "howItWorks": "How it works",
+        "categories": "Categories",
+        "signIn": "Sign In",
+        "signUp": "Sign Up",
+        "signOut": "Sign Out",
+        "dashboard": "Dashboard",
+        "profile": "Profile",
+        "openMenu": "Open menu",
+        "search": "Search",
+        "searchPlaceholder": "Search...",
+        "create": "Create",
+        "createTask": "Create a task",
+        "setAvailability": "Set availability",
+        "settings": "Settings",
+        "support": "Support",
+        "suggestedAction": "Create 'Shopping' task (template)",
+        "notificationsTitle": "Notifications",
+        "viewAllNotifications": "View all notifications",
+        "lastSync": "Last sync: just now",
+        "status": {
+            "online": "Online and synced",
+            "offline": "Offline",
+            "pending": "Changes pending sync"
+        },
+        "availableForMissions": "Available for new missions",
+        "favorites": {
+            "title": "Favorites",
+            "myStats": "My Stats"
+        },
+        "theme": {
+            "title": "Theme",
+            "light": "Light",
+            "dark": "Dark",
+            "system": "System"
+        }
+    },
+    "Footer": {
+        "rights": "© {currentYear} ImuTask. All rights reserved.",
+        "terms": "Terms of Use",
+        "privacy": "Privacy Policy"
+    },
+    "HomePage": {
+        "title": "ImuTask",
+        "subtitle": "Your needs, their mission.",
+        "description": "Connecting generations for everyday services, with simplicity, reliability, and security.",
+        "signIn": "Sign In",
+        "signUp": "Sign Up",
+        "whyChoose": "Why choose ImuTask?",
+        "feature1Title": "Intergenerational Mutual Aid",
+        "feature1Desc": "Create unique bonds by helping or receiving help from people in your community.",
+        "feature2Title": "Trust & Security",
+        "feature2Desc": "Verified profiles (KYC), secure payments, and reviews to ensure missions are completed with peace of mind.",
+        "feature3Title": "Simple Communication",
+        "feature3Desc": "Easily chat with members via our integrated messaging system to organize mission details.",
+        "howItWorksTitle": "For each need, a solution",
+        "forClients": {
+            "title": "For Clients",
+            "description": "Find help quickly and securely. Post your task, choose your provider, and get things done with peace of mind.",
+            "button": "Post a mission"
+        },
+        "forProviders": {
+            "title": "For Providers",
+            "description": "Earn extra income by helping your community. Choose your missions, manage your schedule, and get paid securely.",
+            "button": "Become a provider"
+        },
+        "categoriesTitle": "Services for all your needs",
+        "categoryShopping": "Shopping",
+        "categoryGardening": "Gardening",
+        "categoryCleaning": "Cleaning",
+        "categoryAdmin": "Administrative Help",
+        "readyToStartTitle": "Ready to get started?",
+        "readyToStartDesc": "Join a caring and supportive community.",
+        "signUpFree": "Sign up for free",
+        "testimonials": {
+            "title": "What our members think",
+            "testimonial1": {
+                "text": "Thanks to ImuTask, I found Lucas, a lovely student who comes to mow my lawn every two weeks. It's a real relief and our chats are always a pleasure!",
+                "name": "Marie-Hélène, 72",
+                "role": "Client"
+            },
+            "testimonial2": {
+                "text": "I'm financing part of my studies by doing small jobs on ImuTask. It's flexible, well-paid, and I feel like I'm really being useful to my neighbors.",
+                "name": "Lucas, 21",
+                "role": "Provider"
+            }
+        },
+        "stats": {
+            "missions": "Missions completed",
+            "members": "Active members",
+            "rating": "Average provider rating"
+        },
+        "faq": {
+            "title": "Frequently Asked Questions",
+            "q1": {
+                "question": "How are prices set?",
+                "answer": "Clients suggest a budget when posting a task. Providers can then make an offer at that price, or suggest a different one. The final price is the one agreed upon between the client and the provider."
+            },
+            "q2": {
+                "question": "Is the platform secure?",
+                "answer": "Yes, security is our priority. We verify providers' identities (KYC), secure all payments through our partner Stripe, and have a rating system to build trust within the community."
+            },
+            "q3": {
+                "question": "What happens if there's a problem during a mission?",
+                "answer": "You can open a dispute directly from the booking detail page. Our support team will then intervene to help you find an amicable solution."
+            }
+        }
+    },
+    "LanguageSwitcher": {
+        "changeLanguage": "Change language",
+        "changeLanguageRegionCurrency": "Change language, region, or currency",
+        "languageRegion": "Language & Region",
+        "currency": "Currency",
+        "languageRegionDescription": "Select your preferred language and region.",
+        "currencyDescription": "Select your preferred currency.",
+        "searchPlaceholder": "Search for a language..."
+    },
+    "DashboardNav": {
+        "dashboard": "Dashboard",
+        "createTask": "Create task",
+        "myTasks": "My tasks",
+        "messages": "Messages",
+        "wallet": "Wallet",
+        "profile": "Profile",
+        "logout": "Log out",
+        "admin": "Admin",
+        "findProvider": "Find a provider",
+        "findTask": "Find a task",
+        "myBookings": "My Bookings",
+        "reviews": "Reviews",
+        "referrals": "Referrals",
+        "provider": "Provider Space",
+        "availability": "Availability",
+        "stats": "Statistics",
+        "academy": "Academy",
+        "users": "Users",
+        "tasks": "Tasks",
+        "offers": "Offers",
+        "bookings": "Bookings",
+        "moderation": "Moderation",
+        "kycVerification": "KYC Verification",
+        "disputes": "Disputes",
+        "support": "Support",
+        "categories": "Categories",
+        "cms": "CMS",
+        "notifications": "Notifications",
+        "translations": "Translations",
+        "payments": "Payments",
+        "pricing": "Pricing",
+        "reports": "Reports",
+        "integrations": "Integrations",
+        "settings": "Settings",
+        "auditLog": "Audit Log",
+        "marketInsights": "Market Insights",
+        "templates": "Templates",
+        "devTools": "Developer Tools",
+        "partnerships": "Partnerships",
+        "offline": "Offline Status",
+        "adminNav": {
+            "community": "Community",
+            "moderation": "Moderation",
+            "platform": "Platform",
+            "finance": "Finance",
+            "config": "Configuration"
+        }
+    },
+    "DashboardPage": {
+        "title": "Available tasks",
+        "subtitle": "Find a task that suits you near you.",
+        "noTasks": "No tasks available at the moment.",
+        "welcome": "Welcome back, {name}!",
+        "welcomeSubtitle": "Here's what's happening today.",
+        "kpi": {
+            "activeTasks": "Active Tasks",
+            "pendingOffers": "Pending Offers",
+            "completedMissions": "Completed Missions",
+            "walletBalance": "Wallet Balance"
+        },
+        "recommendedTasks": {
+            "title": "Recommended for you"
+        },
+        "upcomingBookings": {
+            "title": "Upcoming Bookings",
+            "description": "Your next scheduled missions.",
+            "noBookings": "No upcoming bookings."
+        },
+        "recentNotifications": {
+            "title": "Recent Notifications",
+            "description": "Stay up to date.",
+            "noNotifications": "No new notifications.",
+            "viewAll": "View all notifications"
+        },
+        "popularPacks": {
+            "title": "Popular Provider Offers"
+        }
+    },
+    "ServicePackCard": {
+        "book": "Book"
+    },
+    "MyTasksPage": {
+        "title": "My Requests",
+        "subtitle": "Manage the tasks you have created.",
+        "createTask": "Create new task",
+        "noTasks": "You haven't created any tasks yet.",
+        "createFirstTask": "Create your first task",
+        "searchPlaceholder": "Search in your tasks...",
+        "viewGrid": "Grid view",
+        "viewList": "List view",
+        "noSearchResults": "No results for your search.",
+        "view": "View"
+    },
+    "NewTaskPage": {
+        "title": "Create a new task",
+        "subtitle": "Fill in the details below to find help quickly."
+    },
+    "EditTaskPage": {
+        "title": "Edit Task",
+        "subtitle": "Update the details of your task below.",
+        "submitButton": "Save Changes",
+        "toastSuccessTitle": "Task Updated",
+        "toastSuccessDescription": "Your task has been successfully updated.",
+        "toastErrorTitle": "Error",
+        "toastErrorDescription": "An error occurred while updating the task.",
+        "toastNotFoundTitle": "Task Not Found",
+        "toastNotFoundDescription": "The requested task could not be found or you don't have permission to edit it."
+    },
+    "TaskCard": {
+        "viewTask": "Details",
+        "reviews": "({count} reviews)",
+        "makeOffer": "Make Offer"
+    },
+    "TaskCategories": {
+        "shopping": "Shopping",
+        "gardening": "Gardening",
+        "lightCleaning": "Light cleaning",
+        "digitalHelp": "Digital help",
+        "administrativeHelp": "Administrative help",
+        "handyman": "Handyman",
+        "petSitting": "Pet sitting"
+    },
+    "CreateTaskForm": {
+        "taskTitleLabel": "Task title",
+        "taskTitlePlaceholder": "E.g. Mow the lawn",
+        "descriptionLabel": "Detailed description",
+        "descriptionPlaceholder": "Describe precisely what you need...",
+        "descriptionHelp": "The more precise you are, the more relevant offers you will receive.",
+        "suggestCategoriesButton": "Suggest categories with AI",
+        "suggestionsLabel": "Suggestions:",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "Choose a category",
+        "categoryLoading": "Loading...",
+        "locationLabel": "Task location",
+        "locationPlaceholder": "Choose a saved address",
+        "startTimeLabel": "Time window start",
+        "endTimeLabel": "Time window end",
+        "datePlaceholder": "Choose a date",
+        "budgetLabel": "Offered price (in €)",
+        "budgetHelp": "This is the amount that will be offered to the provider.",
+        "submitButton": "Publish task",
+        "toastSuccessTitle": "Task created!",
+        "toastSuccessDescription": "Your task has been successfully published.",
+        "toastErrorTitle": "Error",
+        "toastErrorDescription": "An error occurred while suggesting categories.",
+        "durationLabel": "Estimated duration (in minutes)",
+        "durationPlaceholder": "e.g. 60",
+        "durationHelp": "Estimate how long the task should take.",
+        "providersLabel": "Number of Providers",
+        "providersHelp": "For tasks that require multiple people (e.g. moving).",
+        "attachmentsLabel": "Attachments",
+        "attachmentsPlaceholder": "Click or drag & drop files here"
+    },
+    "SignInPage": {
+        "title": "Sign in to your account",
+        "orSignUp": "Or",
+        "signUpLink": "create a new account",
+        "emailLabel": "Email address",
+        "passwordLabel": "Password",
+        "forgotPasswordLink": "Forgot password?",
+        "submitButton": "Sign in",
+        "errorTitle": "Authentication Error",
+        "continueWithGoogle": "Continue with Google",
+        "orContinueWith": "Or continue with"
+    },
+    "SignUpPage": {
+        "title": "Create your ImuTask account",
+        "orSignIn": "Already a member?",
+        "signInLink": "Sign in",
+        "nameLabel": "Full name",
+        "emailLabel": "Email address",
+        "passwordLabel": "Password",
+        "submitButton": "Create account",
+        "termsPrefix": "By creating an account, you agree to our",
+        "termsLink": "Terms of Service",
+        "errorTitle": "Registration Error",
+        "continueWithGoogle": "Continue with Google",
+        "orContinueWith": "Or continue with",
+        "referralCodeLabel": "Referral Code (Optional)",
+        "referralCodePlaceholder": "Enter code if you have one"
+    },
+    "OfferCard": {
+        "toastAcceptTitle": "Offer accepted!",
+        "toastAcceptDescription": "The task is now assigned to {name}.",
+        "reviews": "({count} reviews)",
+        "accept": "Accept offer",
+        "contact": "Contact",
+        "confirmAccept": {
+            "title": "Confirm Offer Acceptance",
+            "description": "Are you sure you want to accept the offer of {amount}€ from {name}? The payment will be authorized.",
+            "cancel": "Cancel",
+            "confirm": "Confirm & Pay"
+        }
+    },
+    "OfferForm": {
+        "title": "Make an offer",
+        "description": "Propose your services for this task.",
+        "priceLabel": "Your price (€)",
+        "messageLabel": "Your message",
+        "messagePlaceholder": "Introduce yourself and explain why you're the right person for this task.",
+        "submit": "Send my offer",
+        "toastSuccessTitle": "Offer Sent!",
+        "toastSuccessDescription": "Your offer has been sent to the client."
+    },
+    "TaskDetailPage": {
+        "offersReceived": "Offers received ({count})",
+        "noOffers": "You haven't received any offers for this task yet.",
+        "budget": "Client budget",
+        "client": "Client",
+        "memberSince": "Member since {year}",
+        "identityVerified": "Identity verified",
+        "paymentVerified": "Payment verified",
+        "actions": {
+            "title": "Actions",
+            "edit": "Edit Task",
+            "cancel": "Cancel Task",
+            "receipt": "View Receipt",
+            "reportProblem": "Report a Problem"
+        },
+        "messaging": {
+            "title": "Messaging",
+            "contactProvider": "Contact Provider",
+            "notMatched": "Messaging will be available once you accept an offer."
+        },
+        "providerActions": {
+            "title": "Your Actions",
+            "makeOffer": "Make an Offer"
+        },
+        "providersRequired": "{count} providers required",
+        "providersNeeded": "{accepted} / {required} providers",
+        "notFound": "Task Not Found",
+        "notFoundDescription": "The task you are looking for does not exist or has been deleted."
+    },
+    "ProfilePage": {
+        "title": "My Profile",
+        "subtitle": "Manage your personal information and preferences.",
+        "editProfile": "Edit Profile",
+        "personalInfoDesc": "Update your information so the community can get to know you better.",
+        "personalInfo": "Personal Information",
+        "changePhoto": "Change Photo",
+        "fullName": "Full Name",
+        "emailAddress": "Email Address",
+        "bio": "Bio",
+        "bioPlaceholder": "Tell us a little about yourself...",
+        "providerInfo": "Provider Information",
+        "languages": "Languages Spoken",
+        "languagesPlaceholder": "Select your languages",
+        "skills": "Skills",
+        "skillsPlaceholder": "Add skills (e.g. Gardening)",
+        "commaSeparated": "Separate with commas",
+        "serviceRadius": "Service Radius",
+        "serviceRadiusPlaceholder": "Enter a radius in km",
+        "saveChanges": "Save Changes",
+        "toastSuccessTitle": "Profile Updated",
+        "toastSuccessDescription": "Your information has been successfully saved.",
+        "toastErrorTitle": "Error",
+        "toastErrorDescription": "An error occurred while updating your profile.",
+        "addressesTitle": "My Addresses",
+        "addressesDesc": "Manage your addresses for missions.",
+        "addAddress": "Add Address",
+        "setDefault": "Set as default",
+        "delete": "Delete",
+        "noAddresses": "No saved addresses.",
+        "kycVerification": "Identity Verification (KYC)",
+        "averageRating": "Average Rating",
+        "basedOn": "Based on {count} reviews",
+        "completedMissions": "Completed Missions",
+        "totalCompleted": "Total since registration",
+        "myBadges": "My Badges",
+        "earnedBadges": "Earned Badges",
+        "seeAllBadges": "See All Badges",
+        "earnedOn": "Earned on {date}",
+        "noBio": "This user does not have a bio yet.",
+        "serviceRadiusDisplay": "{km} km radius",
+        "edit": "Edit",
+        "portfolio": {
+            "title": "My Portfolio",
+            "empty": "Boost your credibility by 80% by adding your work!",
+            "addWork": "Add Work",
+            "form": {
+                "title": "Add a Portfolio Item",
+                "titleEdit": "Edit Portfolio Item",
+                "description": "Showcase your skills with your past work.",
+                "titleLabel": "Title",
+                "titlePlaceholder": "e.g., Logo for a startup",
+                "typeLabel": "Item Type",
+                "typeLink": "External Link",
+                "typeFile": "File",
+                "urlLabel": "URL",
+                "fileLabel": "File",
+                "fileCurrent": "Current file: {file}. Upload a new one to replace it.",
+                "descriptionLabel": "Description (optional)",
+                "descriptionPlaceholder": "Add some context about this project...",
+                "save": "Save Item",
+                "cancel": "Cancel"
+            },
+            "deleteDialog": {
+                "title": "Delete Item?",
+                "description": "Are you sure you want to delete the item '{title}'? This action is irreversible."
+            }
+        },
+        "addressForm": {
+            "title": "Add a new address",
+            "label": "Address Name",
+            "labelPlaceholder": "e.g. Home, Office",
+            "address": "Full Address",
+            "addressPlaceholder": "Start typing your address...",
+            "cancel": "Cancel",
+            "save": "Save Address"
+        }
+    },
+    "BadgesPage": {
+        "title": "My Certificates & Badges",
+        "subtitle": "Here are the badges you have unlocked.",
+        "cardTitle": "My Badges",
+        "cardDescription": "Badges reward your activity and reliability on the platform.",
+        "history": {
+            "title": "Mission History",
+            "description": "Your last completed missions."
+        },
+        "shareProfile": "Share Profile",
+        "badges": {
+            "firstMission": {
+                "title": "First Mission",
+                "description": "Completed your first mission."
+            },
+            "verified": {
+                "title": "Verified",
+                "description": "Identity successfully verified."
+            },
+            "topRated": {
+                "title": "Top Rated",
+                "description": "Average rating above 4.8"
+            },
+            "communityHelper": {
+                "title": "Community Helper",
+                "description": "Completed 25 missions."
+            },
+            "profileComplete": {
+                "title": "Complete Profile",
+                "description": "Filled out all profile information."
+            },
+            "pioneer": {
+                "title": "Pioneer",
+                "description": "Joined in the first year."
+            }
+        },
+        "filters": {
+            "all": "All",
+            "badges": "Badges",
+            "certificates": "Certificates"
+        },
+        "earnedOn": "Earned on {date}",
+        "share": "Share"
+    },
+    "AddressForm": {
+        "title": "Add a new address",
+        "label": "Address Name",
+        "labelPlaceholder": "e.g. Home, Office",
+        "address": "Full Address",
+        "addressPlaceholder": "Start typing your address...",
+        "cancel": "Cancel",
+        "save": "Save Address"
+    },
+    "ImpersonationBanner": {
+        "impersonateWarning": "You are currently impersonating {email}.",
+        "stopImpersonation": "Stop impersonation"
+    },
+    "TaskStatusTimeline": {
+        "published": "Published",
+        "partially_matched": "Partially Matched",
+        "matched": "Matched",
+        "in_progress": "In Progress",
+        "completed": "Completed",
+        "canceled": "Task Canceled"
+    },
+    "TaskActions": {
+        "cancelDialogTitle": "Are you sure you want to cancel this task?",
+        "cancelDialogDescription": "This action cannot be undone. All offers will be declined and the task will be removed from the marketplace.",
+        "cancelDialogCancel": "Go back",
+        "cancelDialogConfirm": "Yes, cancel task",
+        "reportProblem": {
+            "title": "Report a Problem",
+            "description": "If you've encountered an issue with this task, please let us know.",
+            "reasonLabel": "Reason for reporting",
+            "reasonPlaceholder": "Select a reason",
+            "reasons": {
+                "noShow": "The provider did not show up",
+                "quality": "The work was not done correctly",
+                "delay": "The provider was significantly late",
+                "other": "Other"
+            },
+            "commentLabel": "Details",
+            "commentPlaceholder": "Please provide as much detail as possible...",
+            "attachmentsLabel": "Add attachments",
+            "attachmentsButton": "Upload photos or documents",
+            "submitButton": "Submit Report",
+            "toastSuccessTitle": "Report Sent",
+            "toastSuccessDescription": "Your report has been submitted and our team will review it shortly."
+        }
+    },
+    "SearchPage": {
+        "title": "Find a Provider",
+        "subtitle": "Browse profiles and find the perfect person for your task.",
+        "filters": {
+            "keywordLabel": "Keyword or skill",
+            "keywordPlaceholder": "E.g. gardener, shopping, handyman...",
+            "addressLabel": "Location",
+            "addressPlaceholder": "Enter a city or address",
+            "distanceLabel": "Distance",
+            "availabilityLabel": "Availability",
+            "availabilityPlaceholder": "All availabilities",
+            "categoryLabel": "Category",
+            "categoryPlaceholder": "All categories",
+            "priceLabel": "Hourly rate (€)",
+            "minPricePlaceholder": "Min",
+            "maxPricePlaceholder": "Max",
+            "searchButton": "Search",
+            "moreFilters": "More Filters",
+            "hideFilters": "Hide Filters"
+        }
+    },
+    "ProviderCard": {
+        "reviews": "reviews",
+        "noBio": "This provider does not have a bio yet.",
+        "viewProfile": "View Profile",
+        "contact": "Contact"
+    },
+    "ProviderOffersPage": {
+        "title": "Tasks & Offers",
+        "subtitle": "Find tasks and manage your offers.",
+        "notProvider": {
+            "title": "This section is for providers.",
+            "description": "To offer your services, please complete your provider profile.",
+            "button": "Go to Profile"
+        },
+        "recommendedTasks": {
+            "title": "Recommended Tasks",
+            "noTasks": "No recommended tasks at the moment."
+        },
+        "sentOffers": {
+            "title": "My Sent Offers",
+            "table": {
+                "task": "Task",
+                "yourPrice": "Your Price",
+                "status": "Status",
+                "viewTask": "View Task",
+                "editOffer": "Edit Offer",
+                "withdrawOffer": "Withdraw Offer"
+            },
+            "noOffers": "You have not sent any offers yet.",
+            "dialog": {
+                "withdrawTitle": "Withdraw Offer",
+                "withdrawDescription": "Are you sure you want to withdraw your offer for this task? This action cannot be undone.",
+                "cancel": "Cancel",
+                "confirm": "Yes, withdraw"
+            },
+            "toast": {
+                "withdrawSuccessTitle": "Offer Withdrawn",
+                "withdrawSuccessDescription": "Your offer has been successfully withdrawn."
+            }
+        },
+        "tabs": {
+            "list": "List",
+            "calendar": "Calendar"
+        },
+        "calendarView": {
+            "title": "Calendar View",
+            "description": "See available tasks on a calendar.",
+            "tasksFor": "Tasks for {date}",
+            "noTasksForDay": "No tasks available for this day."
+        }
+    },
+    "MyBookingsPage": {
+        "title": "My Bookings",
+        "subtitle": "Track your scheduled and past missions.",
+        "table": {
+            "title": "Booking History",
+            "description": "A list of all your missions, whether you are the client or the provider.",
+            "task": "Task",
+            "client": "Client",
+            "provider": "Provider",
+            "amount": "Amount",
+            "status": "Status",
+            "actions": "Actions",
+            "details": "Details"
+        },
+        "status": {
+            "scheduled": "Scheduled",
+            "in_progress": "In Progress",
+            "completed": "Completed",
+            "no_show_client": "Client No-Show",
+            "no_show_provider": "Provider No-Show",
+            "canceled": "Canceled"
+        },
+        "statusVariants": {
+            "scheduled": "secondary",
+            "in_progress": "secondary",
+            "completed": "default",
+            "no_show_client": "destructive",
+            "no_show_provider": "destructive",
+            "canceled": "destructive"
+        }
+    },
+    "BookingDetailPage": {
+        "title": "Booking Details",
+        "notFound": "Booking not found.",
+        "backToList": "Back to bookings list",
+        "viewProfile": "View profile",
+        "cards": {
+            "summary": {
+                "title": "Mission Summary",
+                "description": "Details of the mission \"{taskTitle}\".",
+                "client": "Client",
+                "provider": "Provider",
+                "amount": "Agreed Amount",
+                "date": "Scheduled Date"
+            },
+            "timeline": {
+                "title": "Timeline",
+                "description": "History of the booking's key events.",
+                "events": {
+                    "offerAccepted": "Offer Accepted",
+                    "offerAcceptedDesc": "The client has accepted the provider's offer.",
+                    "paymentAuthorized": "Payment Authorized",
+                    "paymentAuthorizedDesc": "The client's payment has been pre-authorized and is held securely.",
+                    "bookingConfirmed": "Booking Confirmed",
+                    "bookingConfirmedDesc": "The mission is officially scheduled.",
+                    "taskCompleted": "Task Completed",
+                    "taskCompletedDesc": "The task has been marked as completed by the client."
+                }
+            },
+            "actions": {
+                "title": "Actions",
+                "description": "Manage the booking.",
+                "confirmCompletion": "Confirm Completion",
+                "reschedule": "Request Reschedule",
+                "cancel": "Cancel Booking",
+                "openDispute": "Open a Dispute",
+                "rescheduleDialog": {
+                    "title": "Request a Reschedule",
+                    "description": "Propose a new date and time for this mission. The other party will have to approve.",
+                    "startTime": "New start time",
+                    "endTime": "New end time",
+                    "cancel": "Cancel",
+                    "confirm": "Send Request"
+                },
+                "cancelDialog": {
+                    "title": "Are you sure you want to cancel?",
+                    "description": "This action cannot be undone. Penalties may apply according to our terms of service.",
+                    "reasonLabel": "Reason for cancellation",
+                    "reasonPlaceholder": "Please specify the reason for cancellation...",
+                    "cancel": "Cancel",
+                    "confirm": "Confirm Cancellation"
+                }
+            }
+        }
+    },
+    "MessagesPage": {
+        "title": "Select a conversation",
+        "description": "Choose a conversation from the list to start messaging."
+    },
+    "ThreadPage": {
+        "task": "Task",
+        "placeholder": "Type your message...",
+        "toastErrorTitle": "Error sending message",
+        "toastErrorDescription": "Please check your connection and try again."
+    },
+    "CallPage": {
+        "ringing": "Ringing...",
+        "callInProgress": "Call in progress",
+        "recordingConsent": "Recording is active. Consent from all participants is required."
+    },
+    "AttachmentPreview": {
+        "addAsEvidence": "Add as evidence",
+        "delete": "Delete",
+        "open": "Open",
+        "toastSuccessTitle": "Evidence added",
+        "toastSuccessDescription": "The file '{filename}' has been added as evidence."
+    },
+    "ThreadRightPanel": {
+        "timeline": {
+            "title": "Timeline"
+        },
+        "evidence": {
+            "title": "Evidence"
+        },
+        "actions": {
+            "title": "Quick Actions",
+            "openDispute": "Open a dispute",
+            "createTask": "Create a task"
+        },
+        "moderator": {
+            "title": "Moderator View",
+            "threadId": "Thread ID",
+            "participants": "Participants",
+            "lastMessage": "Last Message",
+            "hide": "Hide",
+            "warn": "Warn",
+            "suspend": "Suspend"
+        }
+    },
+    "OfflineBanner": {
+        "offlineMessage": "⚠️ You are currently offline. Attempting to reconnect..."
+    },
+    "OfflinePage": {
+        "title": "Offline / Sync Status",
+        "globalStatusCard": {
+            "title": "Global Status",
+            "statusOffline": "You are currently OFFLINE",
+            "statusOnline": "Connected and synced",
+            "lastSync": "Last sync: {time}",
+            "forceSync": "Force a sync",
+            "purgeFiles": "Purge files"
+        },
+        "outbox": {
+            "title": "Pending Sync ({count})",
+            "retry": "Retry"
+        },
+        "purgeDialog": {
+            "title": "Purge cached files?",
+            "description": "This action will delete all locally cached files and data. It cannot be undone.",
+            "cancel": "Cancel",
+            "confirm": "Confirm Purge"
+        },
+        "historyCard": {
+            "title": "Sync History",
+            "history": {
+                "success": "Sync successful ({count} items sent)",
+                "partial": "Partial sync ({reason})"
+            },
+            "advancedLogs": "View advanced logs"
+        },
+        "toast": {
+            "sync": {
+                "title": "Syncing...",
+                "description": "Attempting to sync data with the server."
+            },
+            "syncSuccess": {
+                "title": "Sync Successful",
+                "description": "All your data is up to date."
+            },
+            "purge": {
+                "title": "Purging cache..."
+            },
+            "purgeSuccess": {
+                "title": "Cache purged successfully"
+            }
+        },
+        "advancedLogs": {
+            "title": "Sync Logs",
+            "export": "Export JSON",
+            "close": "Close"
+        }
+    },
+    "PartnershipsPage": {
+        "title": "University Partnerships",
+        "subtitle": "Manage partnerships with universities and schools.",
+        "searchPlaceholder": "Search partnerships...",
+        "createButton": "Create Partnership",
+        "table": {
+            "university": "University",
+            "campus": "Campus",
+            "students": "Students",
+            "status": "Status",
+            "actions": "Actions",
+            "viewDetails": "View Details",
+            "edit": "Edit",
+            "delete": "Delete"
+        },
+        "status": {
+            "active": "Active",
+            "pending": "Pending",
+            "expired": "Expired"
+        },
+        "dialog": {
+            "title": "Delete Partnership?",
+            "description": "Are you sure you want to delete the partnership with {name}? This action is irreversible.",
+            "cancel": "Cancel",
+            "confirm": "Confirm"
+        },
+        "detail": {
+            "info": {
+                "title": "General Information",
+                "campus": "Campus",
+                "contact": "Contact Person",
+                "status": "Status",
+                "createdAt": "Creation Date",
+                "expiresAt": "Expiration Date",
+                "edit": "Edit Info",
+                "terminate": "Terminate Partnership"
+            },
+            "promo": {
+                "title": "Student Promo Codes",
+                "generate": "Generate New Code"
+            },
+            "audience": {
+                "title": "Connected Audience",
+                "students": "registered students",
+                "hours": "total validated hours",
+                "exportCsv": "Export Students CSV"
+            },
+            "stats": {
+                "title": "Campus Statistics",
+                "graphPlaceholder": "[Graphs of campus metrics]",
+                "exportPdf": "Export PDF Report"
+            },
+            "ects": {
+                "title": "ECTS Credit Validation",
+                "student": "Student",
+                "missions": "Completed Missions",
+                "hours": "Total Requested Hours",
+                "status": {
+                    "pending": "Pending"
+                },
+                "validate": "Validate Hours",
+                "reject": "Reject",
+                "export": "Export Certificate"
+            }
+        }
+    },
+    "AcademyPage": {
+        "title": "ImuTask Academy",
+        "subtitle": "Improve your skills and unlock new opportunities.",
+        "searchPlaceholder": "Search for a course...",
+        "filterPlaceholder": "Filter by role",
+        "filters": {
+            "all": "All roles",
+            "provider": "Provider",
+            "client": "Client"
+        },
+        "courseCard": {
+            "progress": "Progress",
+            "continue": "Continue",
+            "start": "Start Course"
+        }
+    },
+    "AcademyDetailPage": {
+        "notFound": "Course not found",
+        "backToAcademy": "Back to academy",
+        "sections": {
+            "title": "Sections"
+        },
+        "downloadResources": "Download Resources",
+        "continueModule": "Continue Module",
+        "startQuiz": "Start Quiz"
+    },
+    "AdminAcademyPage": {
+        "title": "Academy Management",
+        "subtitle": "Create, edit, and manage all platform courses.",
+        "manageBadges": "Manage Badges",
+        "globalProgress": "Global Progress",
+        "createCourse": "Create Course",
+        "courseList": {
+            "title": "Course List",
+            "description": "Monitor the performance of each course.",
+            "table": {
+                "course": "Course",
+                "enrolled": "Enrolled",
+                "completed": "Completed",
+                "completionRate": "Completion Rate"
+            },
+            "actions": {
+                "edit": "Edit",
+                "delete": "Delete"
+            }
+        }
+    },
+    "AvailabilityPage": {
+        "title": "My Schedule",
+        "subtitle": "Manage your schedule to receive relevant mission offers.",
+        "notProvider": {
+            "title": "This section is for providers.",
+            "description": "To manage your availability, please complete your provider profile.",
+            "button": "Go to Profile"
+        },
+        "weekGrid": {
+            "title": "My Week",
+            "time": "Time"
+        },
+        "days": {
+            "mon": "Mon",
+            "tue": "Tue",
+            "wed": "Wed",
+            "thu": "Thu",
+            "fri": "Fri",
+            "sat": "Sat",
+            "sun": "Sun"
+        },
+        "actions": {
+            "title": "Quick Actions",
+            "recurring": "Set recurring slots",
+            "exception": "Add exception",
+            "sync": "Sync Calendar",
+            "settings": "Settings"
+        },
+        "autoBusy": {
+            "title": "Auto-Busy Rules",
+            "decline": "Automatically decline bookings during study blocks",
+            "markBusy": "Mark as 'Busy' when a slot is filled"
+        },
+        "exceptionModal": {
+            "title": "Add Exception",
+            "description": "Block a specific slot or make yourself available exceptionally.",
+            "date": "Date",
+            "startTime": "Start time",
+            "endTime": "End time",
+            "type": "Type",
+            "types": {
+                "blocked": "Blocked",
+                "available": "Exceptionally available"
+            },
+            "comment": "Comment (optional)",
+            "commentPlaceholder": "E.g., Doctor's appointment",
+            "cancel": "Cancel",
+            "save": "Save Exception"
+        },
+        "recurringModal": {
+            "title": "Recurring Availability",
+            "description": "Define your standard weekly schedule.",
+            "autoAccept": "Automatically accept missions in these slots",
+            "cancel": "Cancel",
+            "save": "Save"
+        },
+        "syncModal": {
+            "title": "Sync Calendar",
+            "description": "Connect your external calendars for simplified management.",
+            "google": "Connect Google Calendar",
+            "apple": "Connect Apple Calendar",
+            "export": "Export iCal"
+        }
+    },
+    "AvailabilitySettingsPage": {
+        "title": "Availability Settings",
+        "sync": {
+            "title": "Calendar Sync",
+            "description": "Connect your external calendars to automatically block out busy times.",
+            "google": "Google Calendar",
+            "apple": "Apple Calendar",
+            "export": "Export my availability (iCal)"
+        },
+        "rules": {
+            "title": "Auto-Busy Rules",
+            "description": "Set rules to automatically manage your schedule.",
+            "decline": "Automatically decline bookings during study blocks.",
+            "markBusy": "Mark as 'Busy' when a mission slot is filled."
+        },
+        "saveButton": "Save Settings",
+        "toast": {
+            "successTitle": "Settings Saved",
+            "successDescription": "Your availability settings have been updated."
+        }
+    },
+    "WalletPage": {
+        "title": "Wallet",
+        "subtitle": "Check your balance and manage your transactions.",
+        "viewTransactions": "View all transactions",
+        "viewPayouts": "View payouts",
+        "payoutsPageKycRequired": "Identity verification is required to make withdrawals.",
+        "balance": {
+            "title": "Balance",
+            "current": "Current balance",
+            "withdraw": "Make a withdrawal",
+            "viewInvoices": "View invoices"
+        },
+        "summary": {
+            "title": "Quick summary",
+            "earnedThisMonth": "Earnings this month",
+            "paidThisMonth": "Expenses this month"
+        }
+    },
+    "Countries": {
+        "fr": "France",
+        "en": "United States",
+        "jp": "Japan",
+        "es": "Spain",
+        "de": "Germany",
+        "zh": "China"
+    },
+    "Languages": {
+        "fr": "French",
+        "en": "English",
+        "jp": "Japanese",
+        "es": "Spanish",
+        "de": "German",
+        "zh": "Chinese (Simplified)"
+    },
+    "Currencies": {
+        "EUR": "Euro",
+        "USD": "US Dollar",
+        "JPY": "Japanese Yen"
+    }
+}
+
+  

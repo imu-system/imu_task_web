@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -81,5 +82,28 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-foreground;
+  }
+
+  .card, [role="dialog"], [role="menu"], [role="tooltip"], [role="popover"] {
+    @apply imu-glass;
+  }
+}
+
+@layer components {
+  .imu-glass {
+    background: var(--glass-bg) !important;
+    border-color: var(--glass-border) !important;
+    box-shadow: var(--glass-shadow) !important;
+    backdrop-filter: blur(var(--glass-blur)) saturate(120%) !important;
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(120%) !important;
+    background-clip: padding-box !important;
   }
 }

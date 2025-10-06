@@ -1,0 +1,545 @@
+
+{
+    "Header": {
+        "features": "特徴",
+        "howItWorks": "使い方",
+        "categories": "カテゴリー",
+        "signIn": "サインイン",
+        "signUp": "サインアップ",
+        "signOut": "サインアウト",
+        "dashboard": "ダッシュボード",
+        "profile": "プロフィール",
+        "openMenu": "メニューを開く",
+        "search": "検索",
+        "searchPlaceholder": "検索...",
+        "create": "作成",
+        "createTask": "タスクを作成",
+        "setAvailability": "利用可能性を設定",
+        "settings": "設定",
+        "support": "サポート",
+        "suggestedAction": "「買い物」タスクを作成（テンプレート）",
+        "notificationsTitle": "通知",
+        "viewAllNotifications": "すべての通知を表示",
+        "lastSync": "最終同期：たった今",
+        "status": {
+            "online": "オンラインで同期済み",
+            "offline": "オフライン",
+            "pending": "同期保留中の変更"
+        },
+        "availableForMissions": "新しいミッションに対応可能",
+        "favorites": {
+            "title": "お気に入り",
+            "myStats": "私の統計"
+        }
+    },
+    "Footer": {
+        "rights": "© {currentYear} ImuTask. 無断複写・転載を禁じます。",
+        "terms": "利用規約",
+        "privacy": "プライバシーポリシー"
+    },
+    "HomePage": {
+        "title": "ImuTask",
+        "subtitle": "あなたのニーズ、彼らのミッション。",
+        "description": "世代をつなぎ、日常のサービスをシンプルに、信頼性高く、安全に提供します。",
+        "signIn": "サインイン",
+        "signUp": "サインアップ",
+        "whyChoose": "ImuTaskを選ぶ理由",
+        "feature1Title": "世代間の相互扶助",
+        "feature1Desc": "コミュニティの人々を助けたり、助けられたりすることで、ユニークな絆を築きましょう。",
+        "feature2Title": "信頼と安全",
+        "feature2Desc": "検証済みのプロフィール（KYC）、安全な支払い、レビューにより、安心してミッションを完了できます。",
+        "feature3Title": "シンプルなコミュニケーション",
+        "feature3Desc": "統合されたメッセージングシステムでメンバーと簡単にチャットし、ミッションの詳細を調整できます。",
+        "howItWorksTitle": "それぞれのニーズに、解決策を",
+        "forClients": {
+            "title": "クライアント向け",
+            "description": "迅速かつ安全に助けを見つけましょう。タスクを投稿し、プロバイダーを選び、安心して物事を進めましょう。",
+            "button": "ミッションを投稿"
+        },
+        "forProviders": {
+            "title": "プロバイダー向け",
+            "description": "コミュニティを助けて副収入を得ましょう。ミッションを選び、スケジュールを管理し、安全に支払いを受け取りましょう。",
+            "button": "プロバイダーになる"
+        },
+        "categoriesTitle": "あらゆるニーズに応えるサービス",
+        "categoryShopping": "買い物",
+        "categoryGardening": "ガーデニング",
+        "categoryCleaning": "掃除",
+        "categoryAdmin": "事務手伝い",
+        "readyToStartTitle": "準備はいいですか？",
+        "readyToStartDesc": "思いやりのある支援的なコミュニティに参加しましょう。",
+        "signUpFree": "無料でサインアップ",
+        "testimonials": {
+            "title": "メンバーの声",
+            "testimonial1": {
+                "text": "ImuTaskのおかげで、2週間ごとに芝生を刈りに来てくれる素敵な学生のルーカス君を見つけました。本当に助かりますし、彼とのおしゃべりもいつも楽しいです！",
+                "name": "マリー＝エレーヌ、72歳",
+                "role": "クライアント"
+            },
+            "testimonial2": {
+                "text": "ImuTaskでちょっとした仕事をして、学費の一部を稼いでいます。柔軟に働けるし、給料もいいし、近所の人たちの役に立っていると実感できます。",
+                "name": "ルーカス、21歳",
+                "role": "プロバイダー"
+            }
+        },
+        "stats": {
+            "missions": "完了したミッション",
+            "members": "アクティブメンバー",
+            "rating": "プロバイダーの平均評価"
+        },
+        "faq": {
+            "title": "よくある質問",
+            "q1": {
+                "question": "価格はどのように設定されますか？",
+                "answer": "クライアントはタスクを投稿する際に予算を提案します。プロバイダーはその価格でオファーを出すか、別の価格を提案することができます。最終的な価格は、クライアントとプロバイダーの間で合意されたものです。"
+            },
+            "q2": {
+                "question": "プラットフォームは安全ですか？",
+                "answer": "はい、セキュリティは私たちの最優先事項です。プロバイダーの本人確認（KYC）を行い、すべての支払いはパートナーであるStripeを通じて安全に処理され、コミュニティ内の信頼を築くための評価システムがあります。"
+            },
+            "q3": {
+                "question": "ミッション中に問題が発生した場合はどうなりますか？",
+                "answer": "予約詳細ページから直接紛争を開始できます。その後、私たちのサポートチームが介入し、友好的な解決策を見つけるお手伝いをします。"
+            }
+        }
+    },
+    "LanguageSwitcher": {
+        "changeLanguage": "言語を変更",
+        "changeLanguageRegionCurrency": "言語、地域、通貨を変更",
+        "languageRegion": "言語と地域",
+        "currency": "通貨",
+        "languageRegionDescription": "ご希望の言語と地域を選択してください。",
+        "currencyDescription": "ご希望の通貨を選択してください。",
+        "searchPlaceholder": "言語を検索..."
+    },
+    "DashboardNav": {
+        "dashboard": "ダッシュボード",
+        "createTask": "タスクを作成",
+        "myTasks": "私のタスク",
+        "messages": "メッセージ",
+        "wallet": "ウォレット",
+        "profile": "プロフィール",
+        "logout": "ログアウト",
+        "admin": "管理",
+        "stats": "統計",
+        "academy": "アカデミー",
+        "referrals": "紹介",
+        "marketInsights": "市場インサイト",
+        "templates": "テンプレート",
+        "devTools": "開発者ツール",
+        "partnerships": "パートナーシップ",
+        "offline": "オフラインステータス",
+        "adminNav": {
+            "community": "コミュニティ",
+            "moderation": "モデレーション",
+            "platform": "プラットフォーム",
+            "finance": "ファイナンス",
+            "config": "設定"
+        }
+    },
+    "DashboardPage": {
+        "title": "利用可能なタスク",
+        "subtitle": "近くであなたに合ったタスクを見つけましょう。",
+        "createTask": "タスクを作成",
+        "noTasks": "現在利用可能なタスクはありません。",
+        "popularPacks": {
+            "title": "人気のプロバイダーオファー"
+        }
+    },
+    "ServicePackCard": {
+        "book": "予約"
+    },
+    "NewTaskPage": {
+        "title": "新しいタスクを作成",
+        "subtitle": "すぐに助けを見つけるために、以下の詳細を記入してください。"
+    },
+    "TaskCard": {
+        "viewTask": "タスクを表示",
+        "reviews": "({count}件のレビュー)"
+    },
+    "CreateTaskForm": {
+        "taskTitleLabel": "タスクのタイトル",
+        "taskTitlePlaceholder": "例：芝刈り",
+        "descriptionLabel": "詳細な説明",
+        "descriptionPlaceholder": "必要なことを正確に説明してください...",
+        "descriptionHelp": "詳細であるほど、より関連性の高いオファーを受け取ることができます。",
+        "suggestCategoriesButton": "AIでカテゴリを提案",
+        "suggestionsLabel": "提案：",
+        "categoryLabel": "カテゴリ",
+        "categoryPlaceholder": "カテゴリを選択",
+        "categoryLoading": "読み込み中...",
+        "locationLabel": "タスクの場所",
+        "locationPlaceholder": "保存された住所を選択",
+        "startTimeLabel": "開始時間",
+        "endTimeLabel": "終了時間",
+        "datePlaceholder": "日付を選択",
+        "budgetLabel": "提示価格（€）",
+        "budgetHelp": "これはプロバイダーに提供される金額です。",
+        "submitButton": "タスクを公開",
+        "toastSuccessTitle": "タスクが作成されました！",
+        "toastSuccessDescription": "あなたのタスクは正常に公開されました。",
+        "toastErrorTitle": "エラー",
+        "toastErrorDescription": "カテゴリの提案中にエラーが発生しました。",
+        "durationLabel": "推定時間（分）",
+        "durationPlaceholder": "例: 60",
+        "durationHelp": "タスクにかかる時間を推定してください。",
+        "providersLabel": "プロバイダーの数",
+        "providersHelp": "複数の人が必要なタスクの場合（例：引っ越し）。",
+        "attachmentsLabel": "添付ファイル",
+        "attachmentsPlaceholder": "ここをクリックまたはドラッグ＆ドロップしてファイルを追加"
+    },
+    "ImpersonationBanner": {
+        "impersonateWarning": "現在、{email}になりすましています。",
+        "stopImpersonation": "なりすましを停止"
+    },
+    "TaskDetailPage": {
+        "providersRequired": "{count}人のプロバイダーが必要です",
+        "providersNeeded": "{accepted} / {required} プロバイダー",
+        "notFound": "タスクが見つかりません",
+        "notFoundDescription": "お探しのタスクは存在しないか、削除されました。"
+    },
+    "TaskStatusTimeline": {
+        "published": "公開済み",
+        "partially_matched": "一部割り当て済み",
+        "matched": "割り当て済み",
+        "in_progress": "進行中",
+        "completed": "完了",
+        "canceled": "タスクキャンセル"
+    },
+    "OfferCard": {
+        "confirmAccept": {
+            "title": "オファーの受け入れを確認",
+            "description": "{name}からの{amount}€のオファーを本当に受け入れますか？支払いが承認されます。",
+            "cancel": "キャンセル",
+            "confirm": "確認して支払う"
+        }
+    },
+    "ThreadPage": {
+        "task": "タスク",
+        "placeholder": "メッセージを入力してください...",
+        "toastErrorTitle": "メッセージの送信エラー",
+        "toastErrorDescription": "接続を確認して再試行してください。"
+    },
+    "CallPage": {
+        "ringing": "呼び出し中...",
+        "callInProgress": "通話中",
+        "recordingConsent": "録音が有効です。すべての参加者の同意が必要です。"
+    },
+    "AttachmentPreview": {
+        "addAsEvidence": "証拠として追加",
+        "delete": "削除",
+        "open": "開く"
+    },
+    "ThreadRightPanel": {
+        "timeline": {
+            "title": "タイムライン"
+        },
+        "evidence": {
+            "title": "証拠"
+        },
+        "actions": {
+            "title": "クイックアクション",
+            "openDispute": "紛争を開始",
+            "createTask": "タスクを作成"
+        },
+        "moderator": {
+            "title": "モデレータービュー",
+            "threadId": "スレッドID",
+            "participants": "参加者",
+            "lastMessage": "最後のメッセージ",
+            "hide": "非表示",
+            "warn": "警告",
+            "suspend": "停止"
+        }
+    },
+    "OfflineBanner": {
+        "offlineMessage": "⚠️ 現在オフラインです。再接続を試みています..."
+    },
+    "OfflinePage": {
+        "title": "オフライン/同期ステータス",
+        "globalStatusCard": {
+            "title": "グローバルステータス",
+            "statusOffline": "現在オフラインです",
+            "statusOnline": "接続および同期済み",
+            "lastSync": "最終同期：{time}",
+            "forceSync": "同期を強制",
+            "purgeFiles": "ファイルをパージ"
+        },
+        "outbox": {
+            "title": "同期保留中 ({count})",
+            "retry": "再試行"
+        },
+        "purgeDialog": {
+            "title": "キャッシュされたファイルをパージしますか？",
+            "description": "この操作は、ローカルにキャッシュされたすべてのファイルとデータを削除します。元に戻すことはできません。",
+            "cancel": "キャンセル",
+            "confirm": "パージを確定"
+        },
+        "historyCard": {
+            "title": "同期履歴",
+            "history": {
+                "success": "同期成功（{count}アイテム送信）",
+                "partial": "部分的同期（{reason}）"
+            },
+            "advancedLogs": "高度なログを表示"
+        },
+        "toast": {
+            "sync": {
+                "title": "同期中...",
+                "description": "サーバーとのデータ同期を試みています。"
+            },
+            "syncSuccess": {
+                "title": "同期成功",
+                "description": "すべてのデータが最新です。"
+            },
+            "purge": {
+                "title": "キャッシュをパージ中..."
+            },
+            "purgeSuccess": {
+                "title": "キャッシュが正常にパージされました"
+            }
+        },
+        "advancedLogs": {
+            "title": "同期ログ",
+            "export": "JSONをエクスポート",
+            "close": "閉じる"
+        }
+    },
+    "WalletPage": {
+        "title": "ウォレット",
+        "subtitle": "残高を確認し、取引を管理します。",
+        "viewTransactions": "すべての取引を表示",
+        "viewPayouts": "支払い履歴を表示",
+        "payoutsPageKycRequired": "引き出しを行うには本人確認が必要です。",
+        "balance": {
+            "title": "残高",
+            "current": "現在の残高",
+            "withdraw": "引き出しを行う",
+            "viewInvoices": "請求書を表示"
+        },
+        "summary": {
+            "title": "クイックサマリー",
+            "earnedThisMonth": "今月の収益",
+            "paidThisMonth": "今月の支出"
+        }
+    },
+    "PayoutsPage": {
+        "title": "引き出し",
+        "subtitle": "引き出しを追跡し、設定を管理します。",
+        "schedule": {
+            "title": "次の引き出し",
+            "nextPayout": "次の予定されている引き出し",
+            "amount": "支払われる金額"
+        },
+        "history": {
+            "title": "引き出し履歴",
+            "table": {
+                "date": "日付",
+                "amount": "金額",
+                "status": "ステータス",
+                "provider": "プロバイダー"
+            },
+            "status": {
+                "paid": "支払い済み",
+                "in_progress": "処理中",
+                "failed": "失敗"
+            }
+        },
+        "requestPayout": "引き出しをリクエスト",
+        "kycRequired": "引き出しをリクエストするには、本人確認が必要です。"
+    },
+    "TransactionsPage": {
+        "title": "取引",
+        "subtitle": "支払いと取引の履歴を表示します。",
+        "table": {
+            "title": "取引履歴",
+            "date": "日付",
+            "description": "説明",
+            "status": "ステータス",
+            "amount": "金額",
+            "details": "詳細"
+        }
+    },
+    "TransactionDetailPage": {
+        "title": "取引 #{id}",
+        "backToList": "取引一覧に戻る",
+        "notFound": "取引が見つかりません。",
+        "status": {
+            "confirmed": "確認済み"
+        },
+        "details": {
+            "title": "詳細",
+            "client": "クライアント",
+            "provider": "プロバイダー",
+            "service": "サービス"
+        },
+        "actions": {
+            "title": "利用可能なアクション",
+            "downloadInvoice": "請求書をダウンロード (PDF)",
+            "requestRefund": "返金をリクエスト"
+        }
+    },
+    "WithdrawPage": {
+        "title": "引き出しを開始",
+        "availableBalance": "利用可能な残高",
+        "form": {
+            "amountLabel": "引き出し額",
+            "methodLabel": "方法",
+            "accountLabel": "アカウント",
+            "confirmButton": "引き出しを確定"
+        },
+        "kyc": {
+            "title": "KYCが必要です",
+            "description": "引き出しを行うには、本人確認が必要です。",
+            "link": "本人確認を行う"
+        },
+        "toast": {
+            "successTitle": "引き出し開始",
+            "successDescription": "引き出しリクエストが送信され、処理中です。"
+        }
+    },
+    "ProfilePage": {
+        "portfolio": {
+            "title": "私のポートフォリオ",
+            "empty": "あなたの仕事を追加して、信頼性を80％向上させましょう！",
+            "addWork": "仕事を追加",
+            "form": {
+                "title": "ポートフォリオに項目を追加",
+                "titleEdit": "ポートフォリオ項目を編集",
+                "description": "過去の仕事であなたのスキルを披露しましょう。",
+                "titleLabel": "タイトル",
+                "titlePlaceholder": "例：スタートアップのロゴ",
+                "typeLabel": "項目の種類",
+                "typeLink": "外部リンク",
+                "typeFile": "ファイル",
+                "urlLabel": "URL",
+                "fileLabel": "ファイル",
+                "fileCurrent": "現在のファイル：{file}。新しいファイルをアップロードして置き換えます。",
+                "descriptionLabel": "説明（任意）",
+                "descriptionPlaceholder": "このプロジェクトについて少し説明してください...",
+                "save": "保存",
+                "cancel": "キャンセル"
+            },
+            "deleteDialog": {
+                "title": "項目を削除しますか？",
+                "description": "'{title}'という項目を削除してもよろしいですか？この操作は元に戻せません。"
+            }
+        },
+        "edit": "編集"
+    },
+    "BadgesPage": {
+        "title": "私の証明書とバッジ",
+        "subtitle": "ロック解除したバッジはこちらです。",
+        "cardTitle": "私のバッジ",
+        "cardDescription": "バッジはプラットフォームでのあなたの活動と信頼性を報酬します。",
+        "history": {
+            "title": "ミッション履歴",
+            "description": "あなたの最後の完了したミッション。"
+        },
+        "shareProfile": "プロフィールを共有",
+        "badges": {
+            "firstMission": {
+                "title": "最初のミッション",
+                "description": "最初のミッションを完了しました。"
+            },
+            "verified": {
+                "title": "確認済み",
+                "description": "本人確認が正常に完了しました。"
+            },
+            "topRated": {
+                "title": "トップ評価",
+                "description": "平均評価4.8以上"
+            },
+            "communityHelper": {
+                "title": "コミュニティヘルパー",
+                "description": "25件のミッションを完了しました。"
+            },
+            "profileComplete": {
+                "title": "完全なプロフィール",
+                "description": "すべてのプロフィール情報を入力しました。"
+            },
+            "pioneer": {
+                "title": "パイオニア",
+                "description": "最初の年に参加しました。"
+            }
+        },
+        "filters": {
+            "all": "すべて",
+            "badges": "バッジ",
+            "certificates": "証明書"
+        },
+        "earnedOn": "{date}に獲得",
+        "share": "共有"
+    },
+    "KycPage": {
+        "title": "本人確認（KYC）",
+        "subtitle": "アカウントを保護し、すべての機能にアクセスするために本人確認を行ってください。",
+        "card": {
+            "title": "なぜ本人確認が必要なのですか？",
+            "description": "本人確認（KYC）は、以下の目的のための重要なセキュリティステップです：",
+            "item1": "詐欺からコミュニティを保護する。",
+            "item2": "プロバイダーの金融取引（引き出し）を可能にする。",
+            "item3": "メンバー間の信頼を高める。"
+        },
+        "startVerification": "確認を開始",
+        "status": {
+            "verified": {
+                "title": "本人確認済みです",
+                "description": "ありがとうございます！すべてのプラットフォーム機能にアクセスできます。"
+            },
+            "pending": {
+                "title": "確認中です",
+                "description": "あなたの書類は審査中です。通常、数時間かかります。"
+            },
+            "rejected": {
+                "title": "確認に失敗しました",
+                "description": "書類の審査中に問題が発生しました。もう一度お試しください。"
+            }
+        },
+        "toast": {
+            "title": "リダイレクト中...",
+            "description": "確認パートナーにリダイレクトされます。"
+        },
+        "documents": {
+            "title": "必要な書類",
+            "description": "以下の書類をアップロードしてください。",
+            "idCard": "IDカード（表/裏）",
+            "selfie": "セルフィー",
+            "proofOfAddress": "住所証明",
+            "upload": "アップロード",
+            "takePicture": "写真を撮る"
+        },
+        "history": {
+            "title": "確認履歴"
+        },
+        "stripe": {
+            "title": "支払い情報",
+            "description": "安全なパートナーであるStripeを介して銀行情報を追加し、支払いを受け取ります。",
+            "button": "Stripeで支払いを設定する"
+        },
+        "submitButton": "検証のために送信"
+    },
+    "Countries": {
+        "fr": "フランス",
+        "en": "アメリカ合衆国",
+        "jp": "日本",
+        "es": "スペイン",
+        "de": "ドイツ",
+        "zh": "中国"
+    },
+    "Languages": {
+        "fr": "フランス語",
+        "en": "英語",
+        "jp": "日本語",
+        "es": "スペイン語",
+        "de": "ドイツ語",
+        "zh": "中国語（簡体字）"
+    },
+    "Currencies": {
+        "EUR": "ユーロ",
+        "USD": "米ドル",
+        "JPY": "日本円"
+    }
+}
+
+  

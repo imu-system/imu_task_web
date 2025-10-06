@@ -1,0 +1,1017 @@
+
+{
+    "Header": {
+        "features": "Fonctionnalités",
+        "howItWorks": "Comment ça marche",
+        "categories": "Catégories",
+        "signIn": "Se connecter",
+        "signUp": "S'inscrire",
+        "signOut": "Se déconnecter",
+        "dashboard": "Dashboard",
+        "profile": "Profil",
+        "openMenu": "Ouvrir le menu",
+        "search": "Rechercher",
+        "searchPlaceholder": "Rechercher...",
+        "create": "Créer",
+        "createTask": "Créer une mission",
+        "setAvailability": "Définir disponibilités",
+        "settings": "Paramètres",
+        "support": "Support",
+        "suggestedAction": "Créer une mission 'Courses' (modèle)",
+        "notificationsTitle": "Notifications",
+        "viewAllNotifications": "Voir toutes les notifications",
+        "lastSync": "Dernière synchro : à l'instant",
+        "status": {
+            "online": "Connecté et synchronisé",
+            "offline": "Hors ligne",
+            "pending": "Changements en attente de synchronisation"
+        },
+        "availableForMissions": "Disponible pour de nouvelles missions",
+        "favorites": {
+            "title": "Favoris",
+            "myStats": "Mes statistiques"
+        },
+        "theme": {
+            "title": "Thème",
+            "light": "Clair",
+            "dark": "Sombre",
+            "system": "Système"
+        }
+    },
+    "Footer": {
+        "rights": "© {currentYear} ImuTask. Tous droits réservés.",
+        "terms": "Conditions d'utilisation",
+        "privacy": "Politique de confidentialité"
+    },
+    "HomePage": {
+        "title": "ImuTask",
+        "subtitle": "Vos besoins, leur mission.",
+        "description": "Connecter les générations pour des services du quotidien, en toute simplicité, fiabilité et sécurité.",
+        "signIn": "Se connecter",
+        "signUp": "S'inscrire",
+        "whyChoose": "Pourquoi choisir ImuTask ?",
+        "feature1Title": "Entraide Intergénérationnelle",
+        "feature1Desc": "Créez des liens uniques en aidant ou en recevant de l'aide de personnes de votre communauté.",
+        "feature2Title": "Confiance & Sécurité",
+        "feature2Desc": "Profils vérifiés (KYC), paiements sécurisés et avis pour garantir des missions en toute sérénité.",
+        "feature3Title": "Communication Simple",
+        "feature3Desc": "Discutez facilement avec les membres via notre messagerie intégrée pour organiser les détails de la mission.",
+        "howItWorksTitle": "À chaque besoin, sa solution",
+        "forClients": {
+            "title": "Pour les Clients",
+            "description": "Trouvez de l'aide rapidement et en toute sécurité. Postez votre mission, choisissez votre prestataire et avancez en toute sérénité.",
+            "button": "Publier une mission"
+        },
+        "forProviders": {
+            "title": "Pour les Prestataires",
+            "description": "Gagnez un revenu complémentaire en aidant votre communauté. Choisissez vos missions, gérez votre planning et soyez payé en toute sécurité.",
+            "button": "Devenir prestataire"
+        },
+        "categoriesTitle": "Des services pour tous vos besoins",
+        "categoryShopping": "Courses",
+        "categoryGardening": "Jardinage",
+        "categoryCleaning": "Ménage",
+        "categoryAdmin": "Aide administrative",
+        "readyToStartTitle": "Prêt à commencer ?",
+        "readyToStartDesc": "Rejoignez une communauté bienveillante et solidaire.",
+        "signUpFree": "Inscrivez-vous gratuitement",
+        "testimonials": {
+            "title": "Ce que nos membres en pensent",
+            "testimonial1": {
+                "text": "Grâce à ImuTask, j'ai trouvé Lucas, un étudiant adorable qui vient tondre ma pelouse toutes les deux semaines. C'est un vrai soulagement et nos discussions sont toujours un plaisir !",
+                "name": "Marie-Hélène, 72 ans",
+                "role": "Cliente"
+            },
+            "testimonial2": {
+                "text": "Je finance une partie de mes études en faisant des petites missions sur ImuTask. C'est flexible, bien payé, et j'ai l'impression d'être vraiment utile à mes voisins.",
+                "name": "Lucas, 21 ans",
+                "role": "Prestataire"
+            }
+        },
+        "stats": {
+            "missions": "Missions réalisées",
+            "members": "Membres actifs",
+            "rating": "Note moyenne des prestataires"
+        },
+        "faq": {
+            "title": "Foire Aux Questions",
+            "q1": {
+                "question": "Comment sont fixés les prix ?",
+                "answer": "Les clients proposent un budget en postant une mission. Les prestataires peuvent alors faire une offre à ce prix, ou en proposer un différent. Le prix final est celui sur lequel le client et le prestataire se sont mis d'accord."
+            },
+            "q2": {
+                "question": "La plateforme est-elle sécurisée ?",
+                "answer": "Oui, la sécurité est notre priorité. Nous vérifions l'identité des prestataires (KYC), sécurisons tous les paiements via notre partenaire Stripe, et disposons d'un système d'avis pour renforcer la confiance au sein de la communauté."
+            },
+            "q3": {
+                "question": "Que se passe-t-il en cas de problème pendant une mission ?",
+                "answer": "Vous pouvez ouvrir un litige directement depuis le détail de la réservation. Notre équipe de support interviendra alors pour vous aider à trouver une solution à l'amiable."
+            }
+        }
+    },
+    "LanguageSwitcher": {
+        "changeLanguage": "Changer de langue",
+        "changeLanguageRegionCurrency": "Changer de langue, de région ou de devise",
+        "languageRegion": "Langue & Région",
+        "currency": "Devise",
+        "languageRegionDescription": "Sélectionnez votre langue et région préférées.",
+        "currencyDescription": "Sélectionnez votre devise préférée.",
+        "searchPlaceholder": "Rechercher une langue..."
+    },
+    "DashboardNav": {
+        "dashboard": "Dashboard",
+        "createTask": "Créer une mission",
+        "myTasks": "Mes missions",
+        "messages": "Messages",
+        "wallet": "Portefeuille",
+        "profile": "Profil",
+        "logout": "Se déconnecter",
+        "admin": "Admin",
+        "findProvider": "Trouver un prestataire",
+        "findTask": "Trouver une mission",
+        "myBookings": "Mes Réservations",
+        "reviews": "Avis",
+        "referrals": "Parrainage",
+        "provider": "Espace Prestataire",
+        "availability": "Disponibilités",
+        "stats": "Statistiques",
+        "academy": "Académie",
+        "users": "Utilisateurs",
+        "tasks": "Missions",
+        "offers": "Offres",
+        "bookings": "Réservations",
+        "moderation": "Modération",
+        "kycVerification": "Vérification KYC",
+        "disputes": "Litiges",
+        "support": "Support",
+        "categories": "Catégories",
+        "cms": "CMS",
+        "notifications": "Notifications",
+        "translations": "Traductions",
+        "payments": "Paiements",
+        "pricing": "Tarification",
+        "reports": "Rapports",
+        "integrations": "Intégrations",
+        "settings": "Paramètres",
+        "auditLog": "Logs d'audit",
+        "marketInsights": "Infos Marché",
+        "templates": "Modèles",
+        "devTools": "Outils Développeur",
+        "partnerships": "Partenariats",
+        "offline": "Statut Hors-ligne",
+        "adminNav": {
+            "community": "Communauté",
+            "moderation": "Modération",
+            "platform": "Plateforme",
+            "finance": "Finance",
+            "config": "Configuration"
+        }
+    },
+    "DashboardPage": {
+        "title": "Missions disponibles",
+        "subtitle": "Trouvez une mission qui vous correspond près de chez vous.",
+        "createTask": "Créer une mission",
+        "noTasks": "Aucune mission disponible pour le moment.",
+        "welcome": "Bon retour, {name} !",
+        "welcomeSubtitle": "Voici ce qui se passe aujourd'hui.",
+        "kpi": {
+            "activeTasks": "Missions actives",
+            "pendingOffers": "Offres en attente",
+            "completedMissions": "Missions terminées",
+            "walletBalance": "Solde du portefeuille"
+        },
+        "recommendedTasks": {
+            "title": "Recommandé pour vous"
+        },
+        "upcomingBookings": {
+            "title": "Réservations à venir",
+            "description": "Vos prochaines missions planifiées.",
+            "noBookings": "Aucune réservation à venir."
+        },
+        "recentNotifications": {
+            "title": "Notifications récentes",
+            "description": "Restez à jour.",
+            "noNotifications": "Aucune nouvelle notification.",
+            "viewAll": "Voir toutes les notifications"
+        },
+        "popularPacks": {
+            "title": "Offres populaires de prestataires"
+        }
+    },
+    "ServicePackCard": {
+        "book": "Réserver"
+    },
+    "MyTasksPage": {
+        "title": "Mes demandes",
+        "subtitle": "Gérez les missions que vous avez créées.",
+        "createTask": "Créer une nouvelle mission",
+        "noTasks": "Vous n'avez pas encore créé de mission.",
+        "createFirstTask": "Créer votre première mission",
+        "searchPlaceholder": "Rechercher dans vos missions...",
+        "viewGrid": "Vue grille",
+        "viewList": "Vue liste",
+        "noSearchResults": "Aucun résultat pour votre recherche.",
+        "view": "Voir"
+    },
+    "NewTaskPage": {
+        "title": "Créer une nouvelle mission",
+        "subtitle": "Remplissez les détails ci-dessous pour trouver de l'aide rapidement."
+    },
+    "EditTaskPage": {
+        "title": "Modifier la mission",
+        "subtitle": "Mettez à jour les détails de votre mission ci-dessous.",
+        "submitButton": "Enregistrer les modifications",
+        "toastSuccessTitle": "Mission mise à jour",
+        "toastSuccessDescription": "Votre mission a été mise à jour avec succès.",
+        "toastErrorTitle": "Erreur",
+        "toastErrorDescription": "Une erreur est survenue lors de la mise à jour de la mission.",
+        "toastNotFoundTitle": "Mission non trouvée",
+        "toastNotFoundDescription": "La mission demandée n'a pas pu être trouvée ou vous n'avez pas la permission de la modifier."
+    },
+    "TaskCard": {
+        "viewTask": "Détails",
+        "reviews": "({count} avis)",
+        "makeOffer": "Faire une offre"
+    },
+    "TaskCategories": {
+        "shopping": "Courses",
+        "gardening": "Jardinage",
+        "lightCleaning": "Ménage léger",
+        "digitalHelp": "Aide numérique",
+        "administrativeHelp": "Aide administrative",
+        "handyman": "Petits bricolages",
+        "petSitting": "Garde d’animaux"
+    },
+    "CreateTaskForm": {
+        "taskTitleLabel": "Titre de la mission",
+        "taskTitlePlaceholder": "Ex: Tondre la pelouse",
+        "descriptionLabel": "Description détaillée",
+        "descriptionPlaceholder": "Décrivez précisément ce dont vous avez besoin...",
+        "descriptionHelp": "Plus vous serez précis, plus vous recevrez d'offres pertinentes.",
+        "suggestCategoriesButton": "Suggérer des catégories avec l'IA",
+        "suggestionsLabel": "Suggestions :",
+        "categoryLabel": "Catégorie",
+        "categoryPlaceholder": "Choisissez une catégorie",
+        "categoryLoading": "Chargement...",
+        "locationLabel": "Lieu de la mission",
+        "locationPlaceholder": "Choisissez une adresse enregistrée",
+        "startTimeLabel": "Début de la fenêtre horaire",
+        "endTimeLabel": "Fin de la fenêtre horaire",
+        "datePlaceholder": "Choisissez une date",
+        "budgetLabel": "Prix proposé (en €)",
+        "budgetHelp": "Ceci est le montant qui sera proposé au prestataire.",
+        "submitButton": "Publier la mission",
+        "toastSuccessTitle": "Mission créée !",
+        "toastSuccessDescription": "Votre mission a été publiée avec succès.",
+        "toastErrorTitle": "Erreur",
+        "toastErrorDescription": "Une erreur est survenue lors de la suggestion des catégories.",
+        "durationLabel": "Durée estimée (en minutes)",
+        "durationPlaceholder": "Ex: 60",
+        "durationHelp": "Estimez combien de temps la mission devrait prendre.",
+        "providersLabel": "Nombre de prestataires",
+        "providersHelp": "Pour les missions nécessitant plusieurs personnes (ex: déménagement).",
+        "attachmentsLabel": "Pièces jointes",
+        "attachmentsPlaceholder": "Cliquez ou glissez-déposez des fichiers ici"
+    },
+    "SignInPage": {
+        "title": "Connectez-vous à votre compte",
+        "orSignUp": "Ou",
+        "signUpLink": "créez un nouveau compte",
+        "emailLabel": "Adresse e-mail",
+        "passwordLabel": "Mot de passe",
+        "forgotPasswordLink": "Mot de passe oublié ?",
+        "submitButton": "Se connecter",
+        "errorTitle": "Erreur d'authentification",
+        "continueWithGoogle": "Continuer avec Google",
+        "orContinueWith": "Ou continuer avec"
+    },
+    "SignUpPage": {
+        "title": "Créez votre compte ImuTask",
+        "orSignIn": "Déjà membre ?",
+        "signInLink": "Connectez-vous",
+        "nameLabel": "Nom complet",
+        "emailLabel": "Adresse e-mail",
+        "passwordLabel": "Mot de passe",
+        "submitButton": "Créer le compte",
+        "termsPrefix": "En créant un compte, vous acceptez nos",
+        "termsLink": "Conditions d'utilisation",
+        "errorTitle": "Erreur d'inscription",
+        "continueWithGoogle": "Continuer avec Google",
+        "orContinueWith": "Ou continuer avec",
+        "referralCodeLabel": "Code de parrainage (Optionnel)",
+        "referralCodePlaceholder": "Entrez un code si vous en avez un"
+    },
+    "OfferCard": {
+        "toastAcceptTitle": "Offre acceptée !",
+        "toastAcceptDescription": "La mission est maintenant assignée à {name}.",
+        "reviews": "({count} avis)",
+        "accept": "Accepter l'offre",
+        "contact": "Contacter",
+        "confirmAccept": {
+            "title": "Confirmer l'acceptation de l'offre",
+            "description": "Êtes-vous sûr de vouloir accepter l'offre de {amount}€ de {name} ? Le paiement sera autorisé.",
+            "cancel": "Annuler",
+            "confirm": "Confirmer & Payer"
+        }
+    },
+    "OfferForm": {
+        "title": "Faire une offre",
+        "description": "Proposez vos services pour cette mission.",
+        "priceLabel": "Votre prix (€)",
+        "messageLabel": "Votre message",
+        "messagePlaceholder": "Présentez-vous et expliquez pourquoi vous êtes la bonne personne pour cette mission.",
+        "submit": "Envoyer mon offre",
+        "toastSuccessTitle": "Offre envoyée !",
+        "toastSuccessDescription": "Votre offre a bien été transmise au client."
+    },
+    "TaskDetailPage": {
+        "offersReceived": "Offres reçues ({count})",
+        "noOffers": "Vous n'avez pas encore reçu d'offres pour cette mission.",
+        "budget": "Budget du client",
+        "client": "Client",
+        "memberSince": "Membre depuis {year}",
+        "identityVerified": "Identité vérifiée",
+        "paymentVerified": "Paiement vérifié",
+        "actions": {
+            "title": "Actions",
+            "edit": "Modifier la mission",
+            "cancel": "Annuler la mission",
+            "receipt": "Voir le reçu",
+            "reportProblem": "Signaler un problème"
+        },
+        "messaging": {
+            "title": "Messagerie",
+            "contactProvider": "Contacter le prestataire",
+            "notMatched": "La messagerie sera disponible une fois que vous aurez accepté une offre."
+        },
+        "providerActions": {
+            "title": "Vos actions",
+            "makeOffer": "Faire une offre"
+        },
+        "providersRequired": "{count} prestataires requis",
+        "providersNeeded": "{accepted} / {required} prestataires",
+        "notFound": "Mission non trouvée",
+        "notFoundDescription": "La mission que vous cherchez n'existe pas ou a été supprimée."
+    },
+    "ProfilePage": {
+        "title": "Mon Profil",
+        "subtitle": "Gérez vos informations personnelles et préférences.",
+        "editProfile": "Modifier le profil",
+        "personalInfoDesc": "Mettez à jour vos informations pour que la communauté puisse mieux vous connaître.",
+        "personalInfo": "Informations Personnelles",
+        "changePhoto": "Changer de photo",
+        "fullName": "Nom complet",
+        "emailAddress": "Adresse e-mail",
+        "bio": "Biographie",
+        "bioPlaceholder": "Parlez un peu de vous...",
+        "providerInfo": "Informations Prestataire",
+        "languages": "Langues parlées",
+        "languagesPlaceholder": "Sélectionnez vos langues",
+        "skills": "Compétences",
+        "skillsPlaceholder": "Ajoutez des compétences (ex: Jardinage)",
+        "commaSeparated": "Séparer par des virgules",
+        "serviceRadius": "Rayon d'intervention",
+        "serviceRadiusPlaceholder": "Entrez un rayon en km",
+        "saveChanges": "Enregistrer les modifications",
+        "toastSuccessTitle": "Profil mis à jour",
+        "toastSuccessDescription": "Vos informations ont été enregistrées avec succès.",
+        "toastErrorTitle": "Erreur",
+        "toastErrorDescription": "Une erreur est survenue lors de la mise à jour de votre profil.",
+        "addressesTitle": "Mes Adresses",
+        "addressesDesc": "Gérez vos adresses pour les missions.",
+        "addAddress": "Ajouter une adresse",
+        "setDefault": "Définir par défaut",
+        "delete": "Supprimer",
+        "noAddresses": "Aucune adresse enregistrée.",
+        "kycVerification": "Vérification d'identité (KYC)",
+        "averageRating": "Note moyenne",
+        "basedOn": "Basé sur {count} avis",
+        "completedMissions": "Missions terminées",
+        "totalCompleted": "Au total depuis l'inscription",
+        "myBadges": "Mes Badges",
+        "earnedBadges": "Badges Obtenus",
+        "seeAllBadges": "Voir tous les badges",
+        "earnedOn": "Obtenu le {date}",
+        "noBio": "Cet utilisateur n'a pas encore de biographie.",
+        "serviceRadiusDisplay": "{km} km de rayon",
+        "edit": "Modifier",
+        "portfolio": {
+            "title": "Mon Portfolio",
+            "empty": "Augmentez votre crédibilité de 80% en ajoutant vos réalisations !",
+            "addWork": "Ajouter une réalisation",
+            "form": {
+                "title": "Ajouter une réalisation",
+                "titleEdit": "Modifier la réalisation",
+                "description": "Mettez en valeur vos compétences avec vos travaux passés.",
+                "titleLabel": "Titre",
+                "titlePlaceholder": "Ex: Logo pour une startup",
+                "typeLabel": "Type d'élément",
+                "typeLink": "Lien externe",
+                "typeFile": "Fichier",
+                "urlLabel": "URL",
+                "fileLabel": "Fichier",
+                "fileCurrent": "Fichier actuel : {file}. Téléversez un nouveau pour le remplacer.",
+                "descriptionLabel": "Description (optionnel)",
+                "descriptionPlaceholder": "Ajoutez du contexte sur ce projet...",
+                "save": "Enregistrer",
+                "cancel": "Annuler"
+            },
+            "deleteDialog": {
+                "title": "Supprimer la réalisation ?",
+                "description": "Êtes-vous sûr de vouloir supprimer la réalisation '{title}' ? Cette action est irréversible."
+            }
+        },
+        "addressForm": {
+            "title": "Ajouter une nouvelle adresse",
+            "label": "Nom de l'adresse",
+            "labelPlaceholder": "Ex: Maison, Bureau",
+            "address": "Adresse complète",
+            "addressPlaceholder": "Commencez à taper votre adresse...",
+            "cancel": "Annuler",
+            "save": "Enregistrer l'adresse"
+        }
+    },
+    "BadgesPage": {
+        "title": "Mes Certificats & Badges",
+        "subtitle": "Voici les badges que vous avez débloqués.",
+        "cardTitle": "Mes Badges",
+        "cardDescription": "Les badges récompensent votre activité et votre fiabilité sur la plateforme.",
+        "history": {
+            "title": "Historique des missions",
+            "description": "Vos dernières missions terminées."
+        },
+        "shareProfile": "Partager le profil",
+        "badges": {
+            "firstMission": {
+                "title": "Première Mission",
+                "description": "Avoir terminé votre première mission."
+            },
+            "verified": {
+                "title": "Vérifié",
+                "description": "Identité vérifiée avec succès."
+            },
+            "topRated": {
+                "title": "Top Noté",
+                "description": "Note moyenne supérieure à 4.8"
+            },
+            "communityHelper": {
+                "title": "Pilier de la Communauté",
+                "description": "Avoir terminé 25 missions."
+            },
+            "profileComplete": {
+                "title": "Profil Complet",
+                "description": "Avoir rempli toutes les informations du profil."
+            },
+            "pioneer": {
+                "title": "Pionnier",
+                "description": "Avoir rejoint la plateforme la première année."
+            }
+        },
+        "filters": {
+            "all": "Tous",
+            "badges": "Badges",
+            "certificates": "Certificats"
+        },
+        "earnedOn": "Obtenu le {date}",
+        "share": "Partager"
+    },
+    "AddressForm": {
+        "title": "Ajouter une nouvelle adresse",
+        "label": "Nom de l'adresse",
+        "labelPlaceholder": "Ex: Maison, Bureau",
+        "address": "Adresse complète",
+        "addressPlaceholder": "Commencez à taper votre adresse...",
+        "cancel": "Annuler",
+        "save": "Enregistrer l'adresse"
+    },
+    "ImpersonationBanner": {
+        "impersonateWarning": "Vous usurpez actuellement l'identité de {email}.",
+        "stopImpersonation": "Arrêter l'usurpation"
+    },
+    "TaskStatusTimeline": {
+        "published": "Publiée",
+        "partially_matched": "Partiellement Assignée",
+        "matched": "Assignée",
+        "in_progress": "En cours",
+        "completed": "Terminée",
+        "canceled": "Mission annulée"
+    },
+    "TaskActions": {
+        "cancelDialogTitle": "Êtes-vous sûr de vouloir annuler cette mission ?",
+        "cancelDialogDescription": "Cette action est irréversible. Toutes les offres seront refusées et la mission sera retirée du marché.",
+        "cancelDialogCancel": "Retour",
+        "cancelDialogConfirm": "Oui, annuler la mission",
+        "reportProblem": {
+            "title": "Signaler un problème",
+            "description": "Si vous avez rencontré un problème avec cette mission, veuillez nous en informer.",
+            "reasonLabel": "Raison du signalement",
+            "reasonPlaceholder": "Sélectionnez une raison",
+            "reasons": {
+                "noShow": "Le prestataire ne s'est pas présenté",
+                "quality": "Le travail n'a pas été fait correctement",
+                "delay": "Le prestataire était très en retard",
+                "other": "Autre"
+            },
+            "commentLabel": "Détails",
+            "commentPlaceholder": "Veuillez fournir autant de détails que possible...",
+            "attachmentsLabel": "Ajouter des pièces jointes",
+            "attachmentsButton": "Télécharger des photos ou documents",
+            "submitButton": "Envoyer le signalement",
+            "toastSuccessTitle": "Signalement envoyé",
+            "toastSuccessDescription": "Votre signalement a été envoyé et notre équipe l'examinera sous peu."
+        }
+    },
+    "SearchPage": {
+        "title": "Trouver un prestataire",
+        "subtitle": "Parcourez les profils et trouvez la personne idéale pour votre mission.",
+        "filters": {
+            "keywordLabel": "Mot-clé ou compétence",
+            "keywordPlaceholder": "Ex: jardinier, courses, bricolage...",
+            "addressLabel": "Lieu",
+            "addressPlaceholder": "Entrez une ville ou une adresse",
+            "distanceLabel": "Distance",
+            "availabilityLabel": "Disponibilité",
+            "availabilityPlaceholder": "Toutes disponibilités",
+            "categoryLabel": "Catégorie",
+            "categoryPlaceholder": "Toutes catégories",
+            "priceLabel": "Tarif horaire (€)",
+            "minPricePlaceholder": "Min",
+            "maxPricePlaceholder": "Max",
+            "searchButton": "Rechercher",
+            "moreFilters": "Plus de filtres",
+            "hideFilters": "Masquer les filtres"
+        }
+    },
+    "ProviderCard": {
+        "reviews": "avis",
+        "noBio": "Ce prestataire n'a pas encore de biographie.",
+        "viewProfile": "Voir le profil",
+        "contact": "Contacter"
+    },
+    "ProviderOffersPage": {
+        "title": "Missions & Offres",
+        "subtitle": "Trouvez des missions et gérez vos offres.",
+        "notProvider": {
+            "title": "Cette section est réservée aux prestataires.",
+            "description": "Pour proposer vos services, veuillez compléter votre profil de prestataire.",
+            "button": "Aller au profil"
+        },
+        "recommendedTasks": {
+            "title": "Missions recommandées",
+            "noTasks": "Aucune mission recommandée pour le moment."
+        },
+        "sentOffers": {
+            "title": "Mes offres envoyées",
+            "table": {
+                "task": "Mission",
+                "yourPrice": "Votre prix",
+                "status": "Statut",
+                "viewTask": "Voir la mission",
+                "editOffer": "Modifier l'offre",
+                "withdrawOffer": "Retirer l'offre"
+            },
+            "noOffers": "Vous n'avez pas encore envoyé d'offres.",
+            "dialog": {
+                "withdrawTitle": "Retirer l'offre",
+                "withdrawDescription": "Êtes-vous sûr de vouloir retirer votre offre pour cette mission ? Cette action est irréversible.",
+                "cancel": "Annuler",
+                "confirm": "Oui, retirer"
+            },
+            "toast": {
+                "withdrawSuccessTitle": "Offre retirée",
+                "withdrawSuccessDescription": "Votre offre a été retirée avec succès."
+            }
+        },
+        "tabs": {
+            "list": "Liste",
+            "calendar": "Calendrier"
+        },
+        "calendarView": {
+            "title": "Vue Calendrier",
+            "description": "Visualisez les missions disponibles sur un calendrier.",
+            "tasksFor": "Missions pour le {date}",
+            "noTasksForDay": "Aucune mission disponible pour ce jour."
+        }
+    },
+    "MyBookingsPage": {
+        "title": "Mes Réservations",
+        "subtitle": "Suivez vos missions planifiées et passées.",
+        "table": {
+            "title": "Historique des réservations",
+            "description": "Une liste de toutes vos missions, que vous soyez client ou prestataire.",
+            "task": "Mission",
+            "client": "Client",
+            "provider": "Prestataire",
+            "amount": "Montant",
+            "status": "Statut",
+            "actions": "Actions",
+            "details": "Détails"
+        },
+        "status": {
+            "scheduled": "Planifiée",
+            "in_progress": "En cours",
+            "completed": "Terminée",
+            "no_show_client": "Client absent",
+            "no_show_provider": "Prestataire absent",
+            "canceled": "Annulée"
+        },
+        "statusVariants": {
+            "scheduled": "secondary",
+            "in_progress": "secondary",
+            "completed": "default",
+            "no_show_client": "destructive",
+            "no_show_provider": "destructive",
+            "canceled": "destructive"
+        }
+    },
+    "BookingDetailPage": {
+        "title": "Détails de la réservation",
+        "notFound": "Réservation non trouvée.",
+        "backToList": "Retour à la liste des réservations",
+        "viewProfile": "Voir le profil",
+        "cards": {
+            "summary": {
+                "title": "Résumé de la mission",
+                "description": "Détails de la mission \"{taskTitle}\".",
+                "client": "Client",
+                "provider": "Prestataire",
+                "amount": "Montant convenu",
+                "date": "Date planifiée"
+            },
+            "timeline": {
+                "title": "Chronologie",
+                "description": "Historique des événements clés de la réservation.",
+                "events": {
+                    "offerAccepted": "Offre acceptée",
+                    "offerAcceptedDesc": "Le client a accepté l'offre du prestataire.",
+                    "paymentAuthorized": "Paiement autorisé",
+                    "paymentAuthorizedDesc": "Le paiement du client a été pré-autorisé et est conservé en toute sécurité.",
+                    "bookingConfirmed": "Réservation confirmée",
+                    "bookingConfirmedDesc": "La mission est officiellement planifiée.",
+                    "taskCompleted": "Mission terminée",
+                    "taskCompletedDesc": "La mission a été marquée comme terminée par le client."
+                }
+            },
+            "actions": {
+                "title": "Actions",
+                "description": "Gérez la réservation.",
+                "confirmCompletion": "Confirmer la réalisation",
+                "reschedule": "Demander une reprogrammation",
+                "cancel": "Annuler la réservation",
+                "openDispute": "Ouvrir un litige",
+                "rescheduleDialog": {
+                    "title": "Demander une reprogrammation",
+                    "description": "Proposez une nouvelle date et heure pour cette mission. L'autre partie devra approuver.",
+                    "startTime": "Nouvelle heure de début",
+                    "endTime": "Nouvelle heure de fin",
+                    "cancel": "Annuler",
+                    "confirm": "Envoyer la demande"
+                },
+                "cancelDialog": {
+                    "title": "Êtes-vous sûr de vouloir annuler ?",
+                    "description": "Cette action est irréversible. Des pénalités peuvent s'appliquer selon nos conditions de service.",
+                    "reasonLabel": "Raison de l'annulation",
+                    "reasonPlaceholder": "Veuillez préciser la raison de l'annulation...",
+                    "cancel": "Annuler",
+                    "confirm": "Confirmer l'annulation"
+                }
+            }
+        }
+    },
+    "MessagesPage": {
+        "title": "Sélectionnez une conversation",
+        "description": "Choisissez une conversation dans la liste pour commencer à échanger."
+    },
+    "ThreadPage": {
+        "task": "Mission",
+        "placeholder": "Écrivez votre message...",
+        "toastErrorTitle": "Erreur d'envoi du message",
+        "toastErrorDescription": "Veuillez vérifier votre connexion et réessayer."
+    },
+    "CallPage": {
+        "ringing": "Appel...",
+        "callInProgress": "Appel en cours",
+        "recordingConsent": "L'enregistrement est actif. Le consentement de tous les participants est requis."
+    },
+    "AttachmentPreview": {
+        "addAsEvidence": "Ajouter comme preuve",
+        "delete": "Supprimer",
+        "open": "Ouvrir",
+        "toastSuccessTitle": "Preuve ajoutée",
+        "toastSuccessDescription": "Le fichier '{filename}' a été ajouté comme preuve."
+    },
+    "ThreadRightPanel": {
+        "timeline": {
+            "title": "Chronologie"
+        },
+        "evidence": {
+            "title": "Preuves"
+        },
+        "actions": {
+            "title": "Actions Rapides",
+            "openDispute": "Ouvrir un litige",
+            "createTask": "Créer une tâche"
+        },
+        "moderator": {
+            "title": "Vue Modérateur",
+            "threadId": "ID du Fil",
+            "participants": "Participants",
+            "lastMessage": "Dernier Message",
+            "hide": "Masquer",
+            "warn": "Avertir",
+            "suspend": "Suspendre"
+        }
+    },
+    "OfflineBanner": {
+        "offlineMessage": "⚠️ Vous êtes hors ligne — tentative de reconnexion…"
+    },
+    "OfflinePage": {
+        "title": "Statut Hors-ligne / Synchronisation",
+        "globalStatusCard": {
+            "title": "Statut Global",
+            "statusOffline": "Vous êtes actuellement HORS-LIGNE",
+            "statusOnline": "Connecté et synchronisé",
+            "lastSync": "Dernière synchronisation : {time}",
+            "forceSync": "Forcer une synchronisation",
+            "purgeFiles": "Purger les fichiers"
+        },
+        "outbox": {
+            "title": "Files en attente de synchronisation ({count})",
+            "retry": "Réessayer"
+        },
+        "purgeDialog": {
+            "title": "Purger les fichiers mis en cache ?",
+            "description": "Cette action supprimera tous les fichiers et données mis en cache localement. Elle ne peut pas être annulée.",
+            "cancel": "Annuler",
+            "confirm": "Confirmer la purge"
+        },
+        "historyCard": {
+            "title": "Historique des synchronisations",
+            "history": {
+                "success": "Sync réussie ({count} items envoyés)",
+                "partial": "Sync partielle ({reason})"
+            },
+            "advancedLogs": "Voir logs avancés"
+        },
+        "toast": {
+            "sync": {
+                "title": "Synchronisation en cours...",
+                "description": "Tentative de synchronisation des données avec le serveur."
+            },
+            "syncSuccess": {
+                "title": "Synchronisation réussie",
+                "description": "Toutes vos données sont à jour."
+            },
+            "purge": {
+                "title": "Purge en cours..."
+            },
+            "purgeSuccess": {
+                "title": "Cache purgé avec succès"
+            }
+        },
+        "advancedLogs": {
+            "title": "Logs de synchronisation",
+            "export": "Exporter JSON",
+            "close": "Fermer"
+        }
+    },
+    "PartnershipsPage": {
+        "title": "Partenariats Universités",
+        "subtitle": "Gérez les partenariats avec les universités et les écoles.",
+        "searchPlaceholder": "Rechercher un partenariat...",
+        "createButton": "Créer un partenariat",
+        "table": {
+            "university": "Université",
+            "campus": "Campus",
+            "students": "Étudiants",
+            "status": "Statut",
+            "actions": "Actions",
+            "viewDetails": "Voir le détail",
+            "edit": "Modifier",
+            "delete": "Supprimer"
+        },
+        "status": {
+            "active": "Actif",
+            "pending": "En attente",
+            "expired": "Expiré"
+        },
+        "dialog": {
+            "title": "Supprimer le partenariat ?",
+            "description": "Êtes-vous sûr de vouloir supprimer le partenariat avec {name} ? Cette action est irréversible.",
+            "cancel": "Annuler",
+            "confirm": "Confirmer"
+        },
+        "detail": {
+            "info": {
+                "title": "Informations générales",
+                "campus": "Campus",
+                "contact": "Contact référent",
+                "status": "Statut",
+                "createdAt": "Date de création",
+                "expiresAt": "Date d’expiration",
+                "edit": "Modifier infos",
+                "terminate": "Résilier partenariat"
+            },
+            "promo": {
+                "title": "Codes promo étudiants",
+                "generate": "Générer nouveau code"
+            },
+            "audience": {
+                "title": "Audience connectée",
+                "students": "étudiants inscrits",
+                "hours": "heures validées au total",
+                "exportCsv": "Export CSV étudiants"
+            },
+            "stats": {
+                "title": "Statistiques campus",
+                "graphPlaceholder": "[Graphiques des métriques du campus]",
+                "exportPdf": "Exporter reporting PDF"
+            },
+            "ects": {
+                "title": "Validation des heures ECTS",
+                "student": "Étudiant",
+                "missions": "Missions complétées",
+                "hours": "Total heures demandées",
+                "status": {
+                    "pending": "En attente"
+                },
+                "validate": "Valider heures",
+                "reject": "Rejeter (motif)",
+                "export": "Exporter attestation"
+            }
+        }
+    },
+    "AcademyPage": {
+        "title": "ImuTask Academy",
+        "subtitle": "Améliorez vos compétences et débloquez de nouvelles opportunités.",
+        "searchPlaceholder": "Rechercher un cours...",
+        "filterPlaceholder": "Filtrer par rôle",
+        "filters": {
+            "all": "Tous les rôles",
+            "provider": "Prestataire",
+            "client": "Client"
+        },
+        "courseCard": {
+            "progress": "Progression",
+            "continue": "Continuer",
+            "start": "Commencer le cours"
+        }
+    },
+    "AcademyDetailPage": {
+        "notFound": "Cours non trouvé",
+        "backToAcademy": "Retour à l'académie",
+        "sections": {
+            "title": "Sections"
+        },
+        "downloadResources": "Télécharger les ressources",
+        "continueModule": "Continuer le module",
+        "startQuiz": "Commencer le quiz"
+    },
+    "AdminAcademyPage": {
+        "title": "Gestion de l'Académie",
+        "subtitle": "Créez, modifiez et gérez tous les cours de la plateforme.",
+        "manageBadges": "Gérer les badges",
+        "globalProgress": "Progrès global",
+        "createCourse": "Créer un cours",
+        "courseList": {
+            "title": "Liste des Cours",
+            "description": "Suivez la performance de chaque cours.",
+            "table": {
+                "course": "Cours",
+                "enrolled": "Inscrits",
+                "completed": "Terminés",
+                "completionRate": "Taux de réussite"
+            },
+            "actions": {
+                "edit": "Modifier",
+                "delete": "Supprimer"
+            }
+        }
+    },
+    "AvailabilityPage": {
+        "title": "Mon emploi du temps",
+        "subtitle": "Gérez votre planning pour recevoir des offres de missions pertinentes.",
+        "notProvider": {
+            "title": "Cette section est réservée aux prestataires.",
+            "description": "Pour gérer vos disponibilités, veuillez compléter votre profil prestataire.",
+            "button": "Aller au profil"
+        },
+        "weekGrid": {
+            "title": "Ma semaine",
+            "time": "Heure"
+        },
+        "days": {
+            "mon": "Lun",
+            "tue": "Mar",
+            "wed": "Mer",
+            "thu": "Jeu",
+            "fri": "Ven",
+            "sat": "Sam",
+            "sun": "Dim"
+        },
+        "actions": {
+            "title": "Actions rapides",
+            "recurring": "Définir les créneaux récurrents",
+            "exception": "Ajouter une exception",
+            "sync": "Synchroniser le calendrier",
+            "settings": "Paramètres"
+        },
+        "autoBusy": {
+            "title": "Règles d'occupation automatique",
+            "decline": "Décliner automatiquement les réservations pendant les blocs d'étude",
+            "markBusy": "Marquer \"Occupé\" si créneau rempli"
+        },
+        "exceptionModal": {
+            "title": "Ajouter une exception",
+            "description": "Bloquez un créneau spécifique ou rendez-vous exceptionnellement disponible.",
+            "date": "Date",
+            "startTime": "Heure de début",
+            "endTime": "Heure de fin",
+            "type": "Type",
+            "types": {
+                "blocked": "Bloqué",
+                "available": "Exceptionnellement disponible"
+            },
+            "comment": "Commentaire (optionnel)",
+            "commentPlaceholder": "Ex : Rendez-vous médical",
+            "cancel": "Annuler",
+            "save": "Enregistrer l'exception"
+        },
+        "recurringModal": {
+            "title": "Disponibilité récurrente",
+            "description": "Définissez votre planning hebdomadaire standard.",
+            "autoAccept": "Accepter automatiquement les missions dans ces créneaux",
+            "cancel": "Annuler",
+            "save": "Enregistrer"
+        },
+        "syncModal": {
+            "title": "Synchroniser le calendrier",
+            "description": "Connectez vos calendriers externes pour une gestion simplifiée.",
+            "google": "Connecter Google Calendar",
+            "apple": "Connecter Apple Calendar",
+            "export": "Exporter en iCal"
+        }
+    },
+    "AvailabilitySettingsPage": {
+        "title": "Paramètres de disponibilité",
+        "sync": {
+            "title": "Synchronisation des calendriers",
+            "description": "Connectez vos calendriers externes pour bloquer automatiquement les périodes d'indisponibilité.",
+            "google": "Google Calendar",
+            "apple": "Apple Calendar",
+            "export": "Exporter mes disponibilités (iCal)"
+        },
+        "rules": {
+            "title": "Règles d'occupation automatique",
+            "description": "Définissez des règles pour gérer automatiquement votre planning.",
+            "decline": "Décliner automatiquement les réservations pendant les blocs d'étude.",
+            "markBusy": "Marquer comme 'Occupé' lorsqu'un créneau de mission est rempli."
+        },
+        "saveButton": "Enregistrer les paramètres",
+        "toast": {
+            "successTitle": "Paramètres enregistrés",
+            "successDescription": "Vos paramètres de disponibilité ont été mis à jour."
+        }
+    },
+    "WalletPage": {
+        "title": "Portefeuille",
+        "subtitle": "Consultez votre solde et gérez vos transactions.",
+        "viewTransactions": "Voir toutes les transactions",
+        "viewPayouts": "Voir les versements",
+        "payoutsPageKycRequired": "La vérification d'identité est requise pour effectuer des retraits.",
+        "balance": {
+            "title": "Solde",
+            "current": "Solde actuel",
+            "withdraw": "Effectuer un retrait",
+            "viewInvoices": "Voir les factures"
+        },
+        "summary": {
+            "title": "Résumé rapide",
+            "earnedThisMonth": "Gains ce mois-ci",
+            "paidThisMonth": "Dépenses ce mois-ci"
+        }
+    },
+    "Countries": {
+        "fr": "France",
+        "en": "États-Unis",
+        "jp": "Japon",
+        "es": "Espagne",
+        "de": "Allemagne",
+        "zh": "Chine"
+    },
+    "Languages": {
+        "fr": "Français",
+        "en": "Anglais",
+        "jp": "Japonais",
+        "es": "Espagnol",
+        "de": "Allemand",
+        "zh": "Chinois (simplifié)"
+    },
+    "Currencies": {
+        "EUR": "Euro",
+        "USD": "Dollar américain",
+        "JPY": "Yen japonais"
+    }
+}
+
+  
