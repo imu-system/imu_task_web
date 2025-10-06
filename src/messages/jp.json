@@ -1,4 +1,3 @@
-
 {
     "Header": {
         "features": "特徴",
@@ -30,6 +29,12 @@
         "favorites": {
             "title": "お気に入り",
             "myStats": "私の統計"
+        },
+        "theme": {
+            "title": "テーマ",
+            "light": "ライト",
+            "dark": "ダーク",
+            "system": "システム"
         }
     },
     "Footer": {
@@ -121,9 +126,33 @@
         "profile": "プロフィール",
         "logout": "ログアウト",
         "admin": "管理",
+        "findProvider": "プロバイダーを探す",
+        "findTask": "タスクを探す",
+        "myBookings": "私の予約",
+        "reviews": "レビュー",
+        "referrals": "紹介",
+        "provider": "プロバイダースペース",
+        "availability": "利用可能性",
         "stats": "統計",
         "academy": "アカデミー",
-        "referrals": "紹介",
+        "users": "ユーザー",
+        "tasks": "タスク",
+        "offers": "オファー",
+        "bookings": "予約",
+        "moderation": "モデレーション",
+        "kycVerification": "KYC認証",
+        "disputes": "紛争",
+        "support": "サポート",
+        "categories": "カテゴリー",
+        "cms": "CMS",
+        "notifications": "通知",
+        "translations": "翻訳",
+        "payments": "支払い",
+        "pricing": "価格設定",
+        "reports": "レポート",
+        "integrations": "統合",
+        "settings": "設定",
+        "auditLog": "監査ログ",
         "marketInsights": "市場インサイト",
         "templates": "テンプレート",
         "devTools": "開発者ツール",
@@ -142,6 +171,28 @@
         "subtitle": "近くであなたに合ったタスクを見つけましょう。",
         "createTask": "タスクを作成",
         "noTasks": "現在利用可能なタスクはありません。",
+        "welcome": "おかえりなさい、{name}さん！",
+        "welcomeSubtitle": "今日の状況は以下の通りです。",
+        "kpi": {
+            "activeTasks": "アクティブなタスク",
+            "pendingOffers": "保留中のオファー",
+            "completedMissions": "完了したミッション",
+            "walletBalance": "ウォレット残高"
+        },
+        "recommendedTasks": {
+            "title": "あなたへのおすすめ"
+        },
+        "upcomingBookings": {
+            "title": "今後の予約",
+            "description": "次に予定されているミッション。",
+            "noBookings": "今後の予約はありません。"
+        },
+        "recentNotifications": {
+            "title": "最近の通知",
+            "description": "最新情報を確認。",
+            "noNotifications": "新しい通知はありません。",
+            "viewAll": "すべての通知を表示"
+        },
         "popularPacks": {
             "title": "人気のプロバイダーオファー"
         }
@@ -155,7 +206,8 @@
     },
     "TaskCard": {
         "viewTask": "タスクを表示",
-        "reviews": "({count}件のレビュー)"
+        "reviews": "({count}件のレビュー)",
+        "makeOffer": "Make Offer"
     },
     "CreateTaskForm": {
         "taskTitleLabel": "タスクのタイトル",
@@ -196,7 +248,30 @@
         "providersRequired": "{count}人のプロバイダーが必要です",
         "providersNeeded": "{accepted} / {required} プロバイダー",
         "notFound": "タスクが見つかりません",
-        "notFoundDescription": "お探しのタスクは存在しないか、削除されました。"
+        "notFoundDescription": "お探しのタスクは存在しないか、削除されました。",
+        "offersReceived": "Offers received ({count})",
+        "noOffers": "You haven't received any offers for this task yet.",
+        "budget": "Client budget",
+        "client": "Client",
+        "memberSince": "Member since {year}",
+        "identityVerified": "Identity verified",
+        "paymentVerified": "Payment verified",
+        "actions": {
+            "title": "Actions",
+            "edit": "Edit Task",
+            "cancel": "Cancel Task",
+            "receipt": "View Receipt",
+            "reportProblem": "Report a Problem"
+        },
+        "messaging": {
+            "title": "Messaging",
+            "contactProvider": "Contact Provider",
+            "notMatched": "Messaging will be available once you accept an offer."
+        },
+        "providerActions": {
+            "title": "Your Actions",
+            "makeOffer": "Make an Offer"
+        }
     },
     "TaskStatusTimeline": {
         "published": "公開済み",
@@ -212,7 +287,12 @@
             "description": "{name}からの{amount}€のオファーを本当に受け入れますか？支払いが承認されます。",
             "cancel": "キャンセル",
             "confirm": "確認して支払う"
-        }
+        },
+        "toastAcceptTitle": "Offer accepted!",
+        "toastAcceptDescription": "The task is now assigned to {name}.",
+        "reviews": "({count} reviews)",
+        "accept": "Accept offer",
+        "contact": "Contact"
     },
     "ThreadPage": {
         "task": "タスク",
@@ -228,7 +308,9 @@
     "AttachmentPreview": {
         "addAsEvidence": "証拠として追加",
         "delete": "削除",
-        "open": "開く"
+        "open": "開く",
+        "toastSuccessTitle": "Evidence added",
+        "toastSuccessDescription": "The file '{filename}' has been added as evidence."
     },
     "ThreadRightPanel": {
         "timeline": {
@@ -425,7 +507,56 @@
                 "description": "'{title}'という項目を削除してもよろしいですか？この操作は元に戻せません。"
             }
         },
-        "edit": "編集"
+        "edit": "編集",
+        "title": "My Profile",
+        "subtitle": "Manage your personal information and preferences.",
+        "editProfile": "Edit Profile",
+        "personalInfoDesc": "Update your information so the community can get to know you better.",
+        "personalInfo": "Personal Information",
+        "changePhoto": "Change Photo",
+        "fullName": "Full Name",
+        "emailAddress": "Email Address",
+        "bio": "Bio",
+        "bioPlaceholder": "Tell us a little about yourself...",
+        "providerInfo": "Provider Information",
+        "languages": "Languages Spoken",
+        "languagesPlaceholder": "Select your languages",
+        "skills": "Skills",
+        "skillsPlaceholder": "Add skills (e.g. Gardening)",
+        "commaSeparated": "Separate with commas",
+        "serviceRadius": "Service Radius",
+        "serviceRadiusPlaceholder": "Enter a radius in km",
+        "saveChanges": "Save Changes",
+        "toastSuccessTitle": "Profile Updated",
+        "toastSuccessDescription": "Your information has been successfully saved.",
+        "toastErrorTitle": "Error",
+        "toastErrorDescription": "An error occurred while updating your profile.",
+        "addressesTitle": "My Addresses",
+        "addressesDesc": "Manage your addresses for missions.",
+        "addAddress": "Add Address",
+        "setDefault": "Set as default",
+        "delete": "Delete",
+        "noAddresses": "No saved addresses.",
+        "kycVerification": "Identity Verification (KYC)",
+        "averageRating": "Average Rating",
+        "basedOn": "Based on {count} reviews",
+        "completedMissions": "Completed Missions",
+        "totalCompleted": "Total since registration",
+        "myBadges": "My Badges",
+        "earnedBadges": "Earned Badges",
+        "seeAllBadges": "See All Badges",
+        "earnedOn": "Earned on {date}",
+        "noBio": "This user does not have a bio yet.",
+        "serviceRadiusDisplay": "{km} km radius",
+        "addressForm": {
+            "title": "Add a new address",
+            "label": "Address Name",
+            "labelPlaceholder": "e.g. Home, Office",
+            "address": "Full Address",
+            "addressPlaceholder": "Start typing your address...",
+            "cancel": "Cancel",
+            "save": "Save Address"
+        }
     },
     "BadgesPage": {
         "title": "私の証明書とバッジ",
@@ -539,7 +670,468 @@
         "EUR": "ユーロ",
         "USD": "米ドル",
         "JPY": "日本円"
+    },
+    "MyTasksPage": {
+        "title": "My Requests",
+        "subtitle": "Manage the tasks you have created.",
+        "createTask": "Create new task",
+        "noTasks": "You haven't created any tasks yet.",
+        "createFirstTask": "Create your first task",
+        "searchPlaceholder": "Search in your tasks...",
+        "viewGrid": "Grid view",
+        "viewList": "List view",
+        "noSearchResults": "No results for your search.",
+        "view": "View"
+    },
+    "EditTaskPage": {
+        "title": "Edit Task",
+        "subtitle": "Update the details of your task below.",
+        "submitButton": "Save Changes",
+        "toastSuccessTitle": "Task Updated",
+        "toastSuccessDescription": "Your task has been successfully updated.",
+        "toastErrorTitle": "Error",
+        "toastErrorDescription": "An error occurred while updating the task.",
+        "toastNotFoundTitle": "Task Not Found",
+        "toastNotFoundDescription": "The requested task could not be found or you don't have permission to edit it."
+    },
+    "TaskCategories": {
+        "shopping": "Shopping",
+        "gardening": "Gardening",
+        "lightCleaning": "Light cleaning",
+        "digitalHelp": "Digital help",
+        "administrativeHelp": "Administrative help",
+        "handyman": "Handyman",
+        "petSitting": "Pet sitting"
+    },
+    "SignInPage": {
+        "title": "Sign in to your account",
+        "orSignUp": "Or",
+        "signUpLink": "create a new account",
+        "emailLabel": "Email address",
+        "passwordLabel": "Password",
+        "forgotPasswordLink": "Forgot password?",
+        "submitButton": "Sign in",
+        "errorTitle": "Authentication Error",
+        "continueWithGoogle": "Continue with Google",
+        "orContinueWith": "Or continue with"
+    },
+    "SignUpPage": {
+        "title": "Create your ImuTask account",
+        "orSignIn": "Already a member?",
+        "signInLink": "Sign in",
+        "nameLabel": "Full name",
+        "emailLabel": "Email address",
+        "passwordLabel": "Password",
+        "submitButton": "Create account",
+        "termsPrefix": "By creating an account, you agree to our",
+        "termsLink": "Terms of Service",
+        "errorTitle": "Registration Error",
+        "continueWithGoogle": "Continue with Google",
+        "orContinueWith": "Or continue with",
+        "referralCodeLabel": "Referral Code (Optional)",
+        "referralCodePlaceholder": "Enter code if you have one"
+    },
+    "OfferForm": {
+        "title": "Make an offer",
+        "description": "Propose your services for this task.",
+        "priceLabel": "Your price (€)",
+        "messageLabel": "Your message",
+        "messagePlaceholder": "Introduce yourself and explain why you're the right person for this task.",
+        "submit": "Send my offer",
+        "toastSuccessTitle": "Offer Sent!",
+        "toastSuccessDescription": "Your offer has been sent to the client."
+    },
+    "AddressForm": {
+        "title": "Add a new address",
+        "label": "Address Name",
+        "labelPlaceholder": "e.g. Home, Office",
+        "address": "Full Address",
+        "addressPlaceholder": "Start typing your address...",
+        "cancel": "Cancel",
+        "save": "Save Address"
+    },
+    "TaskActions": {
+        "cancelDialogTitle": "Are you sure you want to cancel this task?",
+        "cancelDialogDescription": "This action cannot be undone. All offers will be declined and the task will be removed from the marketplace.",
+        "cancelDialogCancel": "Go back",
+        "cancelDialogConfirm": "Yes, cancel task",
+        "reportProblem": {
+            "title": "Report a Problem",
+            "description": "If you've encountered an issue with this task, please let us know.",
+            "reasonLabel": "Reason for reporting",
+            "reasonPlaceholder": "Select a reason",
+            "reasons": {
+                "noShow": "The provider did not show up",
+                "quality": "The work was not done correctly",
+                "delay": "The provider was significantly late",
+                "other": "Other"
+            },
+            "commentLabel": "Details",
+            "commentPlaceholder": "Please provide as much detail as possible...",
+            "attachmentsLabel": "Add attachments",
+            "attachmentsButton": "Upload photos or documents",
+            "submitButton": "Submit Report",
+            "toastSuccessTitle": "Report Sent",
+            "toastSuccessDescription": "Your report has been submitted and our team will review it shortly."
+        }
+    },
+    "SearchPage": {
+        "title": "Find a Provider",
+        "subtitle": "Browse profiles and find the perfect person for your task.",
+        "filters": {
+            "keywordLabel": "Keyword or skill",
+            "keywordPlaceholder": "E.g. gardener, shopping, handyman...",
+            "addressLabel": "Location",
+            "addressPlaceholder": "Enter a city or address",
+            "distanceLabel": "Distance",
+            "availabilityLabel": "Availability",
+            "availabilityPlaceholder": "All availabilities",
+            "categoryLabel": "Category",
+            "categoryPlaceholder": "All categories",
+            "priceLabel": "Hourly rate (€)",
+            "minPricePlaceholder": "Min",
+            "maxPricePlaceholder": "Max",
+            "searchButton": "Search",
+            "moreFilters": "More Filters",
+            "hideFilters": "Hide Filters"
+        }
+    },
+    "ProviderCard": {
+        "reviews": "reviews",
+        "noBio": "This provider does not have a bio yet.",
+        "viewProfile": "View Profile",
+        "contact": "Contact"
+    },
+    "ProviderOffersPage": {
+        "title": "Tasks & Offers",
+        "subtitle": "Find tasks and manage your offers.",
+        "notProvider": {
+            "title": "This section is for providers.",
+            "description": "To offer your services, please complete your provider profile.",
+            "button": "Go to Profile"
+        },
+        "recommendedTasks": {
+            "title": "Recommended Tasks",
+            "noTasks": "No recommended tasks at the moment."
+        },
+        "sentOffers": {
+            "title": "My Sent Offers",
+            "table": {
+                "task": "Task",
+                "yourPrice": "Your Price",
+                "status": "Status",
+                "viewTask": "View Task",
+                "editOffer": "Edit Offer",
+                "withdrawOffer": "Withdraw Offer"
+            },
+            "noOffers": "You have not sent any offers yet.",
+            "dialog": {
+                "withdrawTitle": "Withdraw Offer",
+                "withdrawDescription": "Are you sure you want to withdraw your offer for this task? This action cannot be undone.",
+                "cancel": "Cancel",
+                "confirm": "Yes, withdraw"
+            },
+            "toast": {
+                "withdrawSuccessTitle": "Offer Withdrawn",
+                "withdrawSuccessDescription": "Your offer has been successfully withdrawn."
+            }
+        },
+        "tabs": {
+            "list": "List",
+            "calendar": "Calendar"
+        },
+        "calendarView": {
+            "title": "Calendar View",
+            "description": "See available tasks on a calendar.",
+            "tasksFor": "Tasks for {date}",
+            "noTasksForDay": "No tasks available for this day."
+        }
+    },
+    "MyBookingsPage": {
+        "title": "My Bookings",
+        "subtitle": "Track your scheduled and past missions.",
+        "table": {
+            "title": "Booking History",
+            "description": "A list of all your missions, whether you are the client or the provider.",
+            "task": "Task",
+            "client": "Client",
+            "provider": "Provider",
+            "amount": "Amount",
+            "status": "Status",
+            "actions": "Actions",
+            "details": "Details"
+        },
+        "status": {
+            "scheduled": "Scheduled",
+            "in_progress": "In Progress",
+            "completed": "Completed",
+            "no_show_client": "Client No-Show",
+            "no_show_provider": "Provider No-Show",
+            "canceled": "Canceled"
+        },
+        "statusVariants": {
+            "scheduled": "secondary",
+            "in_progress": "secondary",
+            "completed": "default",
+            "no_show_client": "destructive",
+            "no_show_provider": "destructive",
+            "canceled": "destructive"
+        }
+    },
+    "BookingDetailPage": {
+        "title": "Booking Details",
+        "notFound": "Booking not found.",
+        "backToList": "Back to bookings list",
+        "viewProfile": "View profile",
+        "cards": {
+            "summary": {
+                "title": "Mission Summary",
+                "description": "Details of the mission \"{taskTitle}\".",
+                "client": "Client",
+                "provider": "Provider",
+                "amount": "Agreed Amount",
+                "date": "Scheduled Date"
+            },
+            "timeline": {
+                "title": "Timeline",
+                "description": "History of the booking's key events.",
+                "events": {
+                    "offerAccepted": "Offer Accepted",
+                    "offerAcceptedDesc": "The client has accepted the provider's offer.",
+                    "paymentAuthorized": "Payment Authorized",
+                    "paymentAuthorizedDesc": "The client's payment has been pre-authorized and is held securely.",
+                    "bookingConfirmed": "Booking Confirmed",
+                    "bookingConfirmedDesc": "The mission is officially scheduled.",
+                    "taskCompleted": "Task Completed",
+                    "taskCompletedDesc": "The task has been marked as completed by the client."
+                }
+            },
+            "actions": {
+                "title": "Actions",
+                "description": "Manage the booking.",
+                "confirmCompletion": "Confirm Completion",
+                "reschedule": "Request Reschedule",
+                "cancel": "Cancel Booking",
+                "openDispute": "Open a Dispute",
+                "rescheduleDialog": {
+                    "title": "Request a Reschedule",
+                    "description": "Propose a new date and time for this mission. The other party will have to approve.",
+                    "startTime": "New start time",
+                    "endTime": "New end time",
+                    "cancel": "Cancel",
+                    "confirm": "Send Request"
+                },
+                "cancelDialog": {
+                    "title": "Are you sure you want to cancel?",
+                    "description": "This action cannot be undone. Penalties may apply according to our terms of service.",
+                    "reasonLabel": "Reason for cancellation",
+                    "reasonPlaceholder": "Please specify the reason for cancellation...",
+                    "cancel": "Cancel",
+                    "confirm": "Confirm Cancellation"
+                }
+            }
+        }
+    },
+    "MessagesPage": {
+        "title": "Select a conversation",
+        "description": "Choose a conversation from the list to start messaging."
+    },
+    "PartnershipsPage": {
+        "title": "University Partnerships",
+        "subtitle": "Manage partnerships with universities and schools.",
+        "searchPlaceholder": "Search partnerships...",
+        "createButton": "Create Partnership",
+        "table": {
+            "university": "University",
+            "campus": "Campus",
+            "students": "Students",
+            "status": "Status",
+            "actions": "Actions",
+            "viewDetails": "View Details",
+            "edit": "Edit",
+            "delete": "Delete"
+        },
+        "status": {
+            "active": "Active",
+            "pending": "Pending",
+            "expired": "Expired"
+        },
+        "dialog": {
+            "title": "Delete Partnership?",
+            "description": "Are you sure you want to delete the partnership with {name}? This action is irreversible.",
+            "cancel": "Cancel",
+            "confirm": "Confirm"
+        },
+        "detail": {
+            "info": {
+                "title": "General Information",
+                "campus": "Campus",
+                "contact": "Contact Person",
+                "status": "Status",
+                "createdAt": "Creation Date",
+                "expiresAt": "Expiration Date",
+                "edit": "Edit Info",
+                "terminate": "Terminate Partnership"
+            },
+            "promo": {
+                "title": "Student Promo Codes",
+                "generate": "Generate New Code"
+            },
+            "audience": {
+                "title": "Connected Audience",
+                "students": "registered students",
+                "hours": "total validated hours",
+                "exportCsv": "Export Students CSV"
+            },
+            "stats": {
+                "title": "Campus Statistics",
+                "graphPlaceholder": "[Graphs of campus metrics]",
+                "exportPdf": "Export PDF Report"
+            },
+            "ects": {
+                "title": "ECTS Credit Validation",
+                "student": "Student",
+                "missions": "Completed Missions",
+                "hours": "Total Requested Hours",
+                "status": {
+                    "pending": "Pending"
+                },
+                "validate": "Validate Hours",
+                "reject": "Reject",
+                "export": "Export Certificate"
+            }
+        }
+    },
+    "AcademyPage": {
+        "title": "ImuTask Academy",
+        "subtitle": "Improve your skills and unlock new opportunities.",
+        "searchPlaceholder": "Search for a course...",
+        "filterPlaceholder": "Filter by role",
+        "filters": {
+            "all": "All roles",
+            "provider": "Provider",
+            "client": "Client"
+        },
+        "courseCard": {
+            "progress": "Progress",
+            "continue": "Continue",
+            "start": "Start Course"
+        }
+    },
+    "AcademyDetailPage": {
+        "notFound": "Course not found",
+        "backToAcademy": "Back to academy",
+        "sections": {
+            "title": "Sections"
+        },
+        "downloadResources": "Download Resources",
+        "continueModule": "Continue Module",
+        "startQuiz": "Start Quiz"
+    },
+    "AdminAcademyPage": {
+        "title": "Academy Management",
+        "subtitle": "Create, edit, and manage all platform courses.",
+        "manageBadges": "Manage Badges",
+        "globalProgress": "Global Progress",
+        "createCourse": "Create Course",
+        "courseList": {
+            "title": "Course List",
+            "description": "Monitor the performance of each course.",
+            "table": {
+                "course": "Course",
+                "enrolled": "Enrolled",
+                "completed": "Completed",
+                "completionRate": "Completion Rate"
+            },
+            "actions": {
+                "edit": "Edit",
+                "delete": "Delete"
+            }
+        }
+    },
+    "AvailabilityPage": {
+        "title": "My Schedule",
+        "subtitle": "Manage your schedule to receive relevant mission offers.",
+        "notProvider": {
+            "title": "This section is for providers.",
+            "description": "To manage your availability, please complete your provider profile.",
+            "button": "Go to Profile"
+        },
+        "weekGrid": {
+            "title": "My Week",
+            "time": "Time"
+        },
+        "days": {
+            "mon": "Mon",
+            "tue": "Tue",
+            "wed": "Wed",
+            "thu": "Thu",
+            "fri": "Fri",
+            "sat": "Sat",
+            "sun": "Sun"
+        },
+        "actions": {
+            "title": "Quick Actions",
+            "recurring": "Set recurring slots",
+            "exception": "Add exception",
+            "sync": "Sync Calendar",
+            "settings": "Settings"
+        },
+        "autoBusy": {
+            "title": "Auto-Busy Rules",
+            "decline": "Automatically decline bookings during study blocks",
+            "markBusy": "Mark as 'Busy' when a slot is filled"
+        },
+        "exceptionModal": {
+            "title": "Add Exception",
+            "description": "Block a specific slot or make yourself available exceptionally.",
+            "date": "Date",
+            "startTime": "Start time",
+            "endTime": "End time",
+            "type": "Type",
+            "types": {
+                "blocked": "Blocked",
+                "available": "Exceptionally available"
+            },
+            "comment": "Comment (optional)",
+            "commentPlaceholder": "E.g., Doctor's appointment",
+            "cancel": "Cancel",
+            "save": "Save Exception"
+        },
+        "recurringModal": {
+            "title": "Recurring Availability",
+            "description": "Define your standard weekly schedule.",
+            "autoAccept": "Automatically accept missions in these slots",
+            "cancel": "Cancel",
+            "save": "Save"
+        },
+        "syncModal": {
+            "title": "Sync Calendar",
+            "description": "Connect your external calendars for simplified management.",
+            "google": "Connect Google Calendar",
+            "apple": "Connect Apple Calendar",
+            "export": "Export iCal"
+        }
+    },
+    "AvailabilitySettingsPage": {
+        "title": "Availability Settings",
+        "sync": {
+            "title": "Calendar Sync",
+            "description": "Connect your external calendars to automatically block out busy times.",
+            "google": "Google Calendar",
+            "apple": "Apple Calendar",
+            "export": "Export my availability (iCal)"
+        },
+        "rules": {
+            "title": "Auto-Busy Rules",
+            "description": "Set rules to automatically manage your schedule.",
+            "decline": "Automatically decline bookings during study blocks.",
+            "markBusy": "Mark as 'Busy' when a mission slot is filled."
+        },
+        "saveButton": "Save Settings",
+        "toast": {
+            "successTitle": "Settings Saved",
+            "successDescription": "Your availability settings have been updated."
+        }
     }
 }
-
-  

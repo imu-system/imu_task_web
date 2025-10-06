@@ -25,14 +25,14 @@ import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import { usePathname, Link } from '@/navigation';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import LanguageRegionSwitcher from './language-region-switcher';
 
 export default function Header() {
   const t = useTranslations('Header');
   const tLang = useTranslations('LanguageSwitcher');
   const pathname = usePathname();
-  const { user, signOut } = useAuth();
+  const { user, logout } = useAuth();
   const isAuthenticated = !!user;
 
   const navLinks = [
@@ -76,7 +76,7 @@ export default function Header() {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={signOut}>
+        <DropdownMenuItem onClick={logout}>
           <LogOut className="mr-2 h-4 w-4" />
           <span>{t('signOut')}</span>
         </DropdownMenuItem>
@@ -90,7 +90,7 @@ export default function Header() {
         <Link href="/sign-in">{t('signIn')}</Link>
       </Button>
       <Button asChild>
-        <Link href="/sign-up">{t('signUp')}</Link>
+        <Link href="/inscription">{t('signUp')}</Link>
       </Button>
     </div>
   );
@@ -148,12 +148,12 @@ export default function Header() {
                   {isAuthenticated ? (
                      <div className="flex flex-col gap-2">
                         <Link href="/dashboard" className="w-full"><Button className="w-full">{t('dashboard')}</Button></Link>
-                        <Button variant="secondary" onClick={signOut}>{t('signOut')}</Button>
+                        <Button variant="secondary" onClick={logout}>{t('signOut')}</Button>
                      </div>
                   ) : (
                     <div className="flex flex-col gap-2">
                       <Button variant="ghost" asChild><Link href="/sign-in" className="w-full">{t('signIn')}</Link></Button>
-                      <Button asChild><Link href="/sign-up" className="w-full">{t('signUp')}</Link></Button>
+                      <Button asChild><Link href="/inscription" className="w-full">{t('signUp')}</Link></Button>
                     </div>
                   )}
                 </div>

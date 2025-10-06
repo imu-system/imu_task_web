@@ -19,6 +19,17 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { RevenueChart } from '@/components/analytics/revenue-chart';
+import { ActivityMetricsCard } from '@/components/analytics/activity-metrics-card';
+import { ExportReports } from '@/components/analytics/export-reports';
+import { 
+  getProviderEarnings, 
+  getRevenueOverTime, 
+  getActivityMetrics,
+  type ProviderEarnings,
+  type RevenueData,
+  type ActivityMetrics
+} from '@/lib/analytics/dashboard-analytics';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -54,6 +65,41 @@ export default function ProviderDashboardPage() {
   const [availableTasks, setAvailableTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  // Analytics state
+  const [earnings, setEarnings] = useState<ProviderEarnings | null>(null);
+  const [revenueData, setRevenueData] = useState<RevenueData[]>([]);
+  const [activityMetrics, setActivityMetrics] = useState<ActivityMetrics | null>(null);
+  const [analyticsLoading, setAnalyticsLoading] = useState(true);
+
+  // Fetch analytics data
+  useEffect(() => {
+    const fetchAnalytics = async () => {
+      if (!user?.uid) return;
+      
+      try {
+        setAnalyticsLoading(true);
+        const now = new Date();
+        const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+
+        const [earningsData, revenueHistory, activityData] = await Promise.all([
+          getProviderEarnings(user.uid),
+          getRevenueOverTime(user.uid, 'provider', thirtyDaysAgo, now),
+          getActivityMetrics(user.uid, 'provider'),
+        ]);
+
+        setEarnings(earningsData);
+        setRevenueData(revenueHistory);
+        setActivityMetrics(activityData);
+      } catch (error) {
+        console.error('Error fetching analytics:', error);
+      } finally {
+        setAnalyticsLoading(false);
+      }
+    };
+
+    fetchAnalytics();
+  }, [user?.uid]);
 
   // Fetch available tasks (open tasks)
   useEffect(() => {
@@ -216,6 +262,28 @@ export default function ProviderDashboardPage() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Activity Metrics */}
+      {activityMetrics && (
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <ActivityMetricsCard metrics={activityMetrics} role="provider" />
+        </div>
+      )}
+
+      {/* Revenue Chart */}
+      {revenueData.length > 0 && (
+        <RevenueChart 
+          data={revenueData} 
+          title="Revenus des 30 derniers jours" 
+          type="area" 
+          showCount={false}
+        />
+      )}
+
+      {/* Export Reports */}
+      {user?.uid && (
+        <ExportReports userId={user.uid} role="provider" />
+      )}
 
       {/* Messages Stats */}
       <div className="grid gap-4 md:grid-cols-2 md:gap-8">
