@@ -1,0 +1,78 @@
+{
+    "general": {
+        "messages": "メッセージ",
+        "conversations": "会話",
+        "send": "送信",
+        "search": "検索",
+        "newMessage": "新しいメッセージ"
+    },
+    "status": {
+        "read": "既読",
+        "unread": "未読",
+        "typing": "入力中...",
+        "sent": "送信済み",
+        "delivered": "配信済み",
+        "online": "オンライン",
+        "offline": "オフライン",
+        "creating": "作成中..."
+    },
+    "labels": {
+        "from": "送信者",
+        "to": "宛先",
+        "message": "メッセージ",
+        "timestamp": "タイムスタンプ",
+        "lastMessage": "最後のメッセージ",
+        "unknown": "不明",
+        "selectConversation": "会話を選択",
+        "selectConversationDesc": "左から会話を選んでメッセージを開始してください",
+        "startConversation": "メッセージを送信して会話を開始",
+        "startNewConversation": "上のボタンをクリックして新しい会話を開始",
+        "startNewConversationDesc": "受信者のユーザーIDと最初のメッセージを入力してください",
+        "recipientUserId": "受信者ユーザーID",
+        "userIdHelp": "ユーザーIDは予約やタスク提案で確認できます",
+        "initialMessage": "最初のメッセージ",
+        "messagesPageDesc": "クライアントやプロバイダーとチャット"
+    },
+    "actions": {
+        "send": "送信",
+        "delete": "削除",
+        "markRead": "既読にする",
+        "newConversation": "新しい会話",
+        "startChat": "チャットを開始",
+        "cancel": "キャンセル",
+        "create": "作成"
+    },
+    "placeholders": {
+        "typeMessage": "メッセージを入力...",
+        "searchUser": "ユーザーを検索...",
+        "noMessages": "メッセージがありません",
+        "noConversations": "会話がありません",
+        "noArchivedConversations": "アーカイブされた会話がありません",
+        "searchConversations": "会話を検索...",
+        "noResults": "会話が見つかりません",
+        "enterUserId": "ユーザーIDを入力..."
+    },
+    "sort": {
+        "sortBy": "並べ替え",
+        "recent": "最近",
+        "alphabetical": "アルファベット順",
+        "unread": "未読を最初に"
+    },
+    "date": {
+        "today": "今日",
+        "yesterday": "昨日"
+    },
+    "success": {
+        "messageSent": "メッセージが送信されました",
+        "conversationCreated": "会話が作成されました"
+    },
+    "errors": {
+        "sendFailed": "メッセージの送信に失敗しました",
+        "loadFailed": "メッセージの読み込みに失敗しました",
+        "userNotFound": "ユーザーが見つかりません"
+    },
+    "hints": {
+        "enterToSend": "Enterで送信",
+        "shiftEnterNewLine": "Shift+Enterで改行"
+    }
+}

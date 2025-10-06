@@ -1,25 +1,102 @@
+// src/lib/firebase.ts
+import { initializeApp, getApps } from 'firebase/app';
+import { getAuth, connectAuthEmulator } from 'firebase/auth';
+import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
+import { getStorage, connectStorageEmulator } from 'firebase/storage';
+import { getMessaging, isSupported } from 'firebase/messaging';
 
-
-import { initializeApp, getApps, getApp } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
-
+// Configuration Firebase - ImuTask
 const firebaseConfig = {
-  apiKey: "AIzaSyDrkIAzZktPxCEZIbsHzRu-l00YPt3nSHY",
-  authDomain: "imutask.firebaseapp.com",
-  projectId: "imutask",
-  storageBucket: "imutask.firebasestorage.app",
-  messagingSenderId: "354457149125",
-  appId: "1:354457149125:web:4fe8dbfa3192de5aa75aac"
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
+// Validation de la configuration
+const requiredEnvVars = [
+    'NEXT_PUBLIC_FIREBASE_API_KEY',
+    'NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN',
+    'NEXT_PUBLIC_FIREBASE_PROJECT_ID',
+    'NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET',
+    'NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID',
+    'NEXT_PUBLIC_FIREBASE_APP_ID',
+];
 
-// Initialize Firebase
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+const missingVars = requiredEnvVars.filter(
+    (varName) => !process.env[varName]
+);
 
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+if (missingVars.length > 0) {
+    throw new Error(
+        `Missing required Firebase environment variables: ${missingVars.join(', ')}\n` +
+        'Please check your .env.local file.'
+    );
+}
 
-export { auth, db, storage };
+// Initialize Firebase (singleton pattern)
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+
+// Initialize services
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const storage = getStorage(app);
+
+// Initialize messaging (only on client-side)
+let messaging: ReturnType<typeof getMessaging> | null = null;
+if (typeof window !== 'undefined') {
+    isSupported().then((supported) => {
+        if (supported) {
+            messaging = getMessaging(app);
+        }
+    });
+}
+export { messaging };
+
+// Connect to emulators in development
+if (
+    typeof window !== 'undefined' &&
+    process.env.NODE_ENV === 'development' &&
+    process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATORS === 'true'
+) {
+    try {
+        // Auth emulator
+        if (process.env.NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_HOST) {
+            connectAuthEmulator(
+                auth,
+                `http://${process.env.NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_HOST}`,
+                { disableWarnings: true }
+            );
+            console.log('✅ Connected to Auth Emulator');
+        }
+
+        // Firestore emulator
+        if (process.env.NEXT_PUBLIC_FIREBASE_FIRESTORE_EMULATOR_HOST) {
+            const [host, port] = process.env.NEXT_PUBLIC_FIREBASE_FIRESTORE_EMULATOR_HOST.split(':');
+            connectFirestoreEmulator(db, host, parseInt(port));
+            console.log('✅ Connected to Firestore Emulator');
+        }
+
+        // Storage emulator
+        if (process.env.NEXT_PUBLIC_FIREBASE_STORAGE_EMULATOR_HOST) {
+            const [host, port] = process.env.NEXT_PUBLIC_FIREBASE_STORAGE_EMULATOR_HOST.split(':');
+            connectStorageEmulator(storage, host, parseInt(port));
+            console.log('✅ Connected to Storage Emulator');
+        }
+    } catch (error) {
+        console.warn('⚠️  Firebase emulators already connected or connection failed:', error);
+    }
+}
+
+// Log configuration status (only in development)
+if (process.env.NODE_ENV === 'development') {
+    console.log('🔥 Firebase initialized:', {
+        projectId: firebaseConfig.projectId,
+        authDomain: firebaseConfig.authDomain,
+        emulators: process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATORS === 'true',
+    });
+}
+
+export default app;

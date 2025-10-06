@@ -1,13 +1,20 @@
-import {getRequestConfig} from 'next-intl/server';
 import {notFound} from 'next/navigation';
-import {locales} from './lib/locales';
- 
+import {getRequestConfig} from 'next-intl/server';
+
+export const locales = ['en', 'fr', 'de', 'es', 'ja'];
+
 export default getRequestConfig(async ({locale}) => {
-  // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as any)) notFound();
 
+  const messages = await Promise.all([
+    import(`../public/locales/${locale}/common.json`).then((m) => m.default),
+    import(`../public/locales/${locale}/auth.json`).then((m) => m.default),
+    import(`../public/locales/${locale}/landing.json`).then((m) => m.default),
+    import(`../public/locales/${locale}/tasks.json`).then((m) => m.default),
+    import(`../public/locales/${locale}/payments.json`).then((m) => m.default)
+  ]);
+
   return {
-    locale,
-    messages: (await import(`./messages/${locale}.json`)).default
+    messages: Object.assign({}, ...messages)
   };
 });

@@ -1,30 +1,17 @@
+"use server";
 
-'use server';
+import { categorizeProviderSkills } from "@/ai/flows/categorize-provider-skills";
 
-import {
-  suggestTaskCategories as suggestTaskCategoriesFlow,
-  type SuggestTaskCategoriesInput,
-} from '@/ai/flows/automated-task-categorization';
-import { db } from '@/lib/firebase';
-import { Task } from '@/lib/types';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { z } from 'zod';
-import { ZodError } from 'zod';
-
-const inputSchema = z.object({
-  taskDescription: z.string().min(10, "La description doit contenir au moins 10 caractères."),
-});
-
-export async function suggestTaskCategories(input: SuggestTaskCategoriesInput) {
+export async function getCategorizedSkills(profileDescription: string) {
+  if (!profileDescription) {
+    return { success: false, error: "Profile description cannot be empty." };
+  }
+  
   try {
-    inputSchema.parse(input);
-    const result = await suggestTaskCategoriesFlow(input);
-    return { success: true, categories: result.suggestedCategories };
+    const result = await categorizeProviderSkills({ profileDescription });
+    return { success: true, skills: result.skills };
   } catch (error) {
-    if (error instanceof ZodError) {
-      return { success: false, error: error.errors[0].message };
-    }
-    console.error('Error suggesting task categories:', error);
-    return { success: false, error: 'Une erreur est survenue lors de la suggestion des catégories.' };
+    console.error("Error categorizing skills:", error);
+    return { success: false, error: "Failed to categorize skills due to an internal error." };
   }
 }

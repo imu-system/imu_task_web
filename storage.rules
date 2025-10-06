@@ -1,19 +1,40 @@
-
 rules_version = '2';
-
 service firebase.storage {
   match /b/{bucket}/o {
-    // Autorise la lecture des fichiers par n'importe qui (utile pour afficher les images/fichiers dans le chat)
-    // Pour une sécurité plus stricte en production, vous pourriez vouloir restreindre la lecture aux participants du thread.
-    match /{allPaths=**} {
-      allow read;
+    
+    // Avatars
+    match /avatars/{userId}/{fileName} {
+      allow read: if true; // Public read
+      allow write: if request.auth != null && 
+                      request.auth.uid == userId &&
+                      request.resource.size < 5 * 1024 * 1024 && // 5MB max
+                      request.resource.contentType.matches('image/.*');
     }
-
-    // Autorise l'écriture (upload) uniquement si l'utilisateur est authentifié.
-    // Cela empêche les uploads anonymes.
-    // Nous pourrions ajouter des règles plus fines plus tard, par exemple, pour limiter la taille des fichiers.
-    match /{allPaths=**} {
-        allow write: if request.auth != null;
+    
+    // Task images
+    match /tasks/{taskId}/{fileName} {
+      allow read: if true; // Public read
+      allow write: if request.auth != null &&
+                      request.resource.size < 10 * 1024 * 1024 && // 10MB max
+                      request.resource.contentType.matches('image/.*');
+    }
+    
+    // Chat files
+    match /chat/{conversationId}/{messageId}/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null &&
+                      request.resource.size < 20 * 1024 * 1024; // 20MB max
+    }
+    
+    // Message images
+    match /messages/{conversationId}/{userId}/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null &&
+                      request.auth.uid == userId &&
+                      request.resource.size < 5 * 1024 * 1024 && // 5MB max
+                      request.resource.contentType.matches('image/.*');
+      allow delete: if request.auth != null && 
+                       request.auth.uid == userId;
     }
   }
 }

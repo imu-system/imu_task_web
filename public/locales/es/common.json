@@ -1,0 +1,17 @@
+{
+  "Navigation": {
+    "dashboard": "Tablero",
+    "newTask": "Nueva tarea",
+    "providers": "Proveedores",
+    "messages": "Mensajes"
+  },
+  "UserMenu": {
+    "myAccount": "Mi cuenta",
+    "profile": "Perfil",
+    "support": "Soporte",
+    "logout": "Cerrar sesión"
+  },
+  "RootLayout": {
+    "searchPlaceholder": "Buscar tareas..."
+  }
+}

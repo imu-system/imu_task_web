@@ -1,0 +1,78 @@
+{
+    "general": {
+        "messages": "Mensajes",
+        "conversations": "Conversaciones",
+        "send": "Enviar",
+        "search": "Buscar",
+        "newMessage": "Nuevo Mensaje"
+    },
+    "status": {
+        "read": "Leído",
+        "unread": "No leído",
+        "typing": "Escribiendo...",
+        "sent": "Enviado",
+        "delivered": "Entregado",
+        "online": "En línea",
+        "offline": "Desconectado",
+        "creating": "Creando..."
+    },
+    "labels": {
+        "from": "De",
+        "to": "Para",
+        "message": "Mensaje",
+        "timestamp": "Marca de tiempo",
+        "lastMessage": "Último mensaje",
+        "unknown": "Desconocido",
+        "selectConversation": "Seleccionar una conversación",
+        "selectConversationDesc": "Elige una conversación de la izquierda para comenzar a enviar mensajes",
+        "startConversation": "Envía un mensaje para iniciar la conversación",
+        "startNewConversation": "Haz clic en el botón de arriba para iniciar una nueva conversación",
+        "startNewConversationDesc": "Ingresa el ID del destinatario y tu primer mensaje",
+        "recipientUserId": "ID del Destinatario",
+        "userIdHelp": "Puedes encontrar IDs de usuario en tus reservas o propuestas de tareas",
+        "initialMessage": "Mensaje Inicial",
+        "messagesPageDesc": "Chatea con clientes y proveedores"
+    },
+    "actions": {
+        "send": "Enviar",
+        "delete": "Eliminar",
+        "markRead": "Marcar como leído",
+        "newConversation": "Nueva Conversación",
+        "startChat": "Iniciar Chat",
+        "cancel": "Cancelar",
+        "create": "Crear"
+    },
+    "placeholders": {
+        "typeMessage": "Escribe un mensaje...",
+        "searchUser": "Buscar un usuario...",
+        "noMessages": "No hay mensajes",
+        "noConversations": "No hay conversaciones",
+        "noArchivedConversations": "No hay conversaciones archivadas",
+        "searchConversations": "Buscar conversaciones...",
+        "noResults": "No se encontraron conversaciones",
+        "enterUserId": "Ingrese ID de usuario..."
+    },
+    "sort": {
+        "sortBy": "Ordenar por",
+        "recent": "Más reciente",
+        "alphabetical": "Alfabético",
+        "unread": "No leídos primero"
+    },
+    "date": {
+        "today": "Hoy",
+        "yesterday": "Ayer"
+    },
+    "success": {
+        "messageSent": "Mensaje enviado con éxito",
+        "conversationCreated": "Conversación creada"
+    },
+    "errors": {
+        "sendFailed": "No se pudo enviar el mensaje",
+        "loadFailed": "No se pudieron cargar los mensajes",
+        "userNotFound": "Usuario no encontrado"
+    },
+    "hints": {
+        "enterToSend": "Enter para enviar",
+        "shiftEnterNewLine": "Shift+Enter para nueva línea"
+    }
+}

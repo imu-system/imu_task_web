@@ -1,0 +1,60 @@
+{
+    "notifications": {
+        "title": "Notificaciones",
+        "unread": "{{count}} sin leer",
+        "markAllAsRead": "Marcar todo como leído",
+        "clearAll": "Limpiar todo",
+        "noNotifications": "Aún no hay notificaciones",
+        "loading": "Cargando notificaciones...",
+        "error": "Error al cargar notificaciones",
+        "categories": {
+            "all": "Todas",
+            "messages": "Mensajes",
+            "tasks": "Tareas",
+            "proposals": "Propuestas",
+            "bookings": "Reservas",
+            "reviews": "Reseñas",
+            "profile": "Perfil",
+            "payments": "Pagos",
+            "system": "Sistema"
+        },
+        "emptyStates": {
+            "all": "Aún no hay notificaciones",
+            "messages": "No hay notificaciones de mensajes",
+            "tasks": "No hay notificaciones de tareas",
+            "proposals": "No hay notificaciones de propuestas",
+            "bookings": "No hay notificaciones de reservas",
+            "reviews": "No hay notificaciones de reseñas",
+            "profile": "No hay notificaciones de perfil",
+            "payments": "No hay notificaciones de pagos",
+            "system": "No hay notificaciones del sistema"
+        },
+        "actions": {
+            "view": "Ver",
+            "dismiss": "Descartar",
+            "markAsRead": "Marcar como leído",
+            "delete": "Eliminar"
+        },
+        "types": {
+            "newMessage": "Nuevo mensaje de {{name}}",
+            "newProposal": "Nueva propuesta recibida",
+            "proposalAccepted": "Propuesta aceptada",
+            "proposalRejected": "Propuesta no seleccionada",
+            "bookingConfirmed": "Reserva confirmada",
+            "bookingCancelled": "Reserva cancelada",
+            "taskCreated": "Nueva tarea disponible",
+            "taskCompleted": "Tarea completada",
+            "newReview": "Nueva reseña",
+            "paymentReceived": "Pago recibido",
+            "systemAnnouncement": "Anuncio del sistema"
+        },
+        "timeAgo": {
+            "justNow": "Ahora mismo",
+            "minutesAgo": "hace {{count}}min",
+            "hoursAgo": "hace {{count}}h",
+            "daysAgo": "hace {{count}}d",
+            "weeksAgo": "hace {{count}}sem",
+            "monthsAgo": "hace {{count}}mes"
+        }
+    }
+}

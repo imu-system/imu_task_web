@@ -1,0 +1,17 @@
+{
+  "Navigation": {
+    "dashboard": "Dashboard",
+    "newTask": "New Task",
+    "providers": "Providers",
+    "messages": "Messages"
+  },
+  "UserMenu": {
+    "myAccount": "My Account",
+    "profile": "Profile",
+    "support": "Support",
+    "logout": "Logout"
+  },
+  "RootLayout": {
+    "searchPlaceholder": "Search tasks..."
+  }
+}
