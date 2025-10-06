@@ -1,5 +1,6 @@
+import type { Config } from 'tailwindcss';
 
-import type {Config} from 'tailwindcss';
+const plugin = require('tailwindcss/plugin')
 
 export default {
   darkMode: ['class'],
@@ -68,14 +69,9 @@ export default {
         },
       },
       borderRadius: {
-        lg: '20px',
-        md: '12px',
-        sm: '6px',
-      },
-      backdropBlur: {
-        xs: '4px',
-        sm: '8px',
-        md: '12px'
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
         'accordion-down': {
@@ -94,10 +90,16 @@ export default {
             height: '0',
           },
         },
+        'shake': {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '10%, 30%, 50%, 70%, 90%': { transform: 'translateX(-2px)' },
+          '20%, 40%, 60%, 80%': { transform: 'translateX(2px)' },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'shake': 'shake 0.5s ease-in-out',
       },
     },
   },
