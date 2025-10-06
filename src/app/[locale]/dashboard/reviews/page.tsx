@@ -36,19 +36,19 @@ const ReviewCard = ({ review, type }: { review: Review, type: 'received' | 'give
     const [isReplying, setIsReplying] = useState(false);
     const [reportReason, setReportReason] = useState('');
 
-    const person = type === 'received' ? review.reviewer : review.reviewee;
+    const personId = type === 'received' ? review.reviewerId : review.reviewedUserId;
     const isProvider = user?.roles?.includes(UserRole.provider) ?? false;
 
     return (
         <div className="space-y-3">
             <div className="flex items-start gap-4">
                 <Avatar>
-                    <AvatarImage src={person.profile.photoUrl} />
-                    <AvatarFallback>{person.profile.displayName.charAt(0)}</AvatarFallback>
+                    <AvatarImage src={undefined} />
+                    <AvatarFallback>{personId.charAt(0).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
                     <div className="flex items-center justify-between">
-                        <p className="font-semibold">{person.profile.displayName}</p>
+                        <p className="font-semibold">{personId}</p>
                         <p className="text-sm text-muted-foreground">{new Date(review.createdAt).toLocaleDateString()}</p>
                     </div>
                     <div className="flex items-center gap-0.5">

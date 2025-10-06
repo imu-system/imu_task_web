@@ -105,10 +105,10 @@ export default function DetailedMissionsPage() {
                                     <TableCell><Badge variant="outline">{mission.category}</Badge></TableCell>
                                     <TableCell className="text-right">
                                         <Button asChild variant="ghost" size="sm">
-                                            <Link href={mission.conversationLink}>
+                                            <a href={mission.conversationLink}>
                                                 <MessageSquare className="mr-2"/>
                                                 {t('table.viewConversation')}
-                                            </Link>
+                                            </a>
                                         </Button>
                                     </TableCell>
                                 </TableRow>
