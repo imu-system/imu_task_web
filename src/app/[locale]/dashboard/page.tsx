@@ -3,7 +3,7 @@
 
 import TaskCard from '@/components/task-card';
 import { Button } from '@/components/ui/button';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { getTasks } from '@/lib/data';
 import { Task, TaskStatus } from '@/lib/types';
 import { BookMarked, Handshake, LayoutGrid, Loader2, PlusCircle, UserCheck, Star } from 'lucide-react';

@@ -37,7 +37,7 @@ import { type ServiceCategory, type Task } from '@/lib/types';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from './ui/card';
 import { useTranslations } from 'next-intl';
 import { createTask, getTaskTemplateById } from '@/lib/data';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from '@/navigation';
 import { useSearchParams } from 'next/navigation';
 import { collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';

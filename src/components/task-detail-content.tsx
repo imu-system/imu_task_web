@@ -47,7 +47,7 @@ import { useState } from 'react';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { OfferForm } from '@/components/offer-form';
 
@@ -188,7 +188,7 @@ export default function TaskDetailContent({ task: initialTask, offers: initialOf
   const { toast } = useToast();
 
   const isClient = user?.uid === task.clientId;
-  const isProvider = user?.roles.includes(UserRole.provider);
+  const isProvider = user?.roles?.includes(UserRole.provider) ?? false;
   const isMatched = task.status === TaskStatus.matched || task.status === TaskStatus.in_progress || task.status === TaskStatus.completed;
 
   const handleOfferAccepted = (acceptedOffer: Offer) => {

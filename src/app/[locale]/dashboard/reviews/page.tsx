@@ -1,7 +1,8 @@
 
 'use client';
 
-import { useAuth } from '@/hooks/use-auth';
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
 import { useTranslations } from 'next-intl';
 import { Loader2, Star, Download, MessageSquare, AlertTriangle, Send, Bookmark } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,7 +14,6 @@ import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recha
 import { cn } from '@/lib/utils';
 import { getReviews } from '@/lib/data';
 import { Review, UserRole } from '@/lib/types';
-import { useState, useEffect } from 'react';
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
@@ -36,19 +36,19 @@ const ReviewCard = ({ review, type }: { review: Review, type: 'received' | 'give
     const [isReplying, setIsReplying] = useState(false);
     const [reportReason, setReportReason] = useState('');
 
-    const person = type === 'received' ? review.reviewer : review.reviewee;
-    const isProvider = user?.roles.includes(UserRole.provider);
+    const personId = type === 'received' ? review.reviewerId : review.reviewedUserId;
+    const isProvider = user?.roles?.includes(UserRole.provider) ?? false;
 
     return (
         <div className="space-y-3">
             <div className="flex items-start gap-4">
                 <Avatar>
-                    <AvatarImage src={person.profile.photoUrl} />
-                    <AvatarFallback>{person.profile.displayName.charAt(0)}</AvatarFallback>
+                    <AvatarImage src={undefined} />
+                    <AvatarFallback>{personId.charAt(0).toUpperCase()}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1">
                     <div className="flex items-center justify-between">
-                        <p className="font-semibold">{person.profile.displayName}</p>
+                        <p className="font-semibold">{personId}</p>
                         <p className="text-sm text-muted-foreground">{new Date(review.createdAt).toLocaleDateString()}</p>
                     </div>
                     <div className="flex items-center gap-0.5">

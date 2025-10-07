@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Calendar, Repeat, CalendarPlus, Link as LinkIcon, Bot, Check, X, Clock as ClockIcon, Share2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { UserRole } from '@/lib/types';
 import { Loader2 } from 'lucide-react';
 import { Link } from '@/navigation';

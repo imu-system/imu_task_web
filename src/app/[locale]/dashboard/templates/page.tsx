@@ -20,7 +20,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { UserRole } from '@/lib/types';
 import ProviderTemplateCard from '@/components/provider-template-card';
 import { Loader2 } from 'lucide-react';

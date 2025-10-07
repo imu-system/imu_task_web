@@ -5,7 +5,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { getThreadById } from '@/lib/data';
 import { Attachment, AttachmentKind, Message, MessageType, Thread } from '@/lib/types';
 import { Link } from '@/navigation';

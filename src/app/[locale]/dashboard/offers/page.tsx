@@ -2,7 +2,7 @@
 'use client';
 
 import TaskCard from '@/components/task-card';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { getOffers, getTasks } from '@/lib/data';
 import { Offer, Task, TaskStatus, UserRole, OfferStatus } from '@/lib/types';
 import { useTranslations } from 'next-intl';

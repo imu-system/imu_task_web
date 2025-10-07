@@ -1,7 +1,8 @@
 
 'use client';
 
-import { useAuth } from '@/hooks/use-auth';
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
 import { useTranslations } from 'next-intl';
 import { Loader2, LineChart as LineChartIcon, Settings, Download, DollarSign, Clock, CheckCircle, Star, Columns, FileText, Target } from 'lucide-react';
 import { UserRole } from '@/lib/types';
@@ -47,7 +48,7 @@ export default function StatsPage() {
         );
     }
     
-    if (!user.roles.includes(UserRole.provider)) {
+    if (!user.roles?.includes(UserRole.provider)) {
         return (
             <div className="text-center p-8">
                 <h2 className="text-xl font-semibold">{t('notProvider.title')}</h2>

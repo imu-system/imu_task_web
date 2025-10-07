@@ -1,5 +1,5 @@
 
-export const locales = ['en', 'fr', 'jp'] as const;
+export const locales = ['en', 'fr', 'ja'] as const;
 export type Locale = (typeof locales)[number];
 
 // The `pathnames` object holds pairs of internal
@@ -12,12 +12,12 @@ export const pathnames = {
   '/sign-in': {
     en: '/sign-in',
     fr: '/connexion',
-    jp: '/sign-in',
+    ja: '/sign-in',
   },
   '/inscription': {
     en: '/sign-up',
     fr: '/inscription',
-    jp: '/sign-up',
+    ja: '/sign-up',
   },
   '/dashboard/profile': '/dashboard/profile',
   '/dashboard/profile/edit': '/dashboard/profile/edit',
@@ -79,12 +79,12 @@ export const pathnames = {
   '/about': {
     en: '/about',
     fr: '/a-propos',
-    jp: '/about',
+    ja: '/about',
   },
   '/legal': {
     en: '/legal',
     fr: '/legal',
-    jp: '/legal',
+    ja: '/legal',
   }
 
 };

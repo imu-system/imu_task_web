@@ -3,7 +3,7 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import {
-  User,
+  User as FirebaseUser,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
@@ -14,9 +14,19 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
+import { UserRole } from '@/lib/types';
+
+// Extended User type with custom properties
+export interface AppUser extends FirebaseUser {
+  roles?: UserRole[];
+  profile?: {
+    displayName?: string;
+    photoUrl?: string;
+  };
+}
 
 interface AuthContextType {
-  user: User | null;
+  user: AppUser | null;
   loading: boolean;
   signUp: (email: string, password: string, displayName?: string) => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
@@ -41,17 +51,31 @@ interface AuthProviderProps {
 }
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<AppUser | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Subscribe to auth state changes
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user);
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        // Extend the Firebase user with custom properties
+        // TODO: Fetch user roles and profile from Firestore
+        const appUser: AppUser = {
+          ...firebaseUser,
+          roles: [UserRole.client], // Default role, should be fetched from Firestore
+          profile: {
+            displayName: firebaseUser.displayName || undefined,
+            photoUrl: firebaseUser.photoURL || undefined,
+          },
+        };
+        setUser(appUser);
+      } else {
+        setUser(null);
+      }
       setLoading(false);
       
       // Gérer le cookie d'authentification pour le middleware
-      if (user) {
+      if (firebaseUser) {
         // Créer un cookie pour indiquer l'état d'authentification
         document.cookie = `firebaseAuth=true; path=/; max-age=2592000; SameSite=Lax`;
       } else {
@@ -60,7 +84,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       }
       
       if (process.env.NODE_ENV === 'development') {
-        console.log('🔐 Auth state changed:', user ? `User: ${user.email}` : 'No user');
+        console.log('🔐 Auth state changed:', firebaseUser ? `User: ${firebaseUser.email}` : 'No user');
       }
     });
 

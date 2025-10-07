@@ -1,7 +1,8 @@
 
 'use client';
 
-import { useAuth } from '@/hooks/use-auth';
+import { useRouter } from '@/navigation';
+import { useAuth } from '@/contexts/AuthContext';
 import { Button } from './ui/button';
 import { AlertCircle } from 'lucide-react';
 import { useTranslations } from 'next-intl';

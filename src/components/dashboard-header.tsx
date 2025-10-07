@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import {
   Bell,
   LayoutGrid,
@@ -63,7 +63,7 @@ export function DashboardHeader() {
   const t = useTranslations('Header');
   const tNav = useTranslations('DashboardNav');
   const tCreateTask = useTranslations('NewTaskPage');
-  const { user, signOut } = useAuth();
+  const { user, logout } = useAuth();
   const { toggleSidebar } = useSidebar();
   const [open, setOpen] = useState(false);
   const [isOffline, setIsOffline] = useState(false);
@@ -146,8 +146,8 @@ export function DashboardHeader() {
 
   if (!user) return null;
   
-  const isClient = user.roles.includes(UserRole.client);
-  const isProvider = user.roles.includes(UserRole.provider);
+  const isClient = user.roles?.includes(UserRole.client) ?? false;
+  const isProvider = user.roles?.includes(UserRole.provider) ?? false;
 
   const CreateButton = () => {
     // Client-first approach: If user is client (even if also provider), primary action is creating a task.
@@ -489,7 +489,7 @@ export function DashboardHeader() {
                     </DropdownMenuPortal>
                 </DropdownMenuSub>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={signOut}>
+                <DropdownMenuItem onClick={logout}>
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>{t('signOut')}</span>
                 </DropdownMenuItem>

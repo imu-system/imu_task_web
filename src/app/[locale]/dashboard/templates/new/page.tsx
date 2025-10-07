@@ -12,7 +12,7 @@ import { ArrowLeft, Loader2, BookCopy, Percent, Star } from 'lucide-react';
 import { Link, useRouter } from '@/navigation';
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { UserRole } from '@/lib/types';
 import { Checkbox } from '@/components/ui/checkbox';
 

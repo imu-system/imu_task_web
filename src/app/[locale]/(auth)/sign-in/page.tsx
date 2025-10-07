@@ -16,9 +16,10 @@ import { Zap, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { signInSchema, useAuth, type SignInFormValues } from '@/hooks/use-auth';
+import { signInSchema, type SignInFormValues } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Separator } from '@/components/ui/separator';
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -32,7 +33,8 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export default function SignInPage() {
   const t = useTranslations('SignInPage');
-  const { signIn, signInWithGoogle, loading, error, setError } = useAuth();
+  const { signIn, signInWithGoogle, loading } = useAuth();
+  const [error, setError] = useState<string | null>(null);
   
   const { register, handleSubmit, formState: { errors, isValid } } = useForm<SignInFormValues>({
     resolver: zodResolver(signInSchema),
@@ -43,7 +45,25 @@ export default function SignInPage() {
     return () => {
       setError(null);
     }
-  }, [setError]);
+  }, []);
+
+  const onSubmit = async (data: SignInFormValues) => {
+    setError(null);
+    try {
+      await signIn(data.email, data.password);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setError(null);
+    try {
+      await signInWithGoogle();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
+    }
+  };
 
   return (
     <>
@@ -62,7 +82,7 @@ export default function SignInPage() {
       <Card>
         <CardContent className="p-6">
           <div className="space-y-4">
-             <Button variant="outline" className="w-full" onClick={signInWithGoogle} disabled={loading}>
+             <Button variant="outline" className="w-full" onClick={handleGoogleSignIn} disabled={loading}>
                 <GoogleIcon className="mr-2"/>
                 {t('continueWithGoogle')}
             </Button>
@@ -78,7 +98,7 @@ export default function SignInPage() {
                 </div>
             </div>
             
-            <form className="space-y-6" onSubmit={handleSubmit(signIn)}>
+            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
                 {error && (
                     <Alert variant="destructive">
                         <AlertTitle>{t('errorTitle')}</AlertTitle>

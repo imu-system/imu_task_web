@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { useTranslations } from 'next-intl';
 import { Loader2, ArrowLeft, Download, ShieldAlert, FileText, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';

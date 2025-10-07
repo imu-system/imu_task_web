@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { useAuth } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
 import { Loader2, ArrowLeft, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from '@/navigation';
