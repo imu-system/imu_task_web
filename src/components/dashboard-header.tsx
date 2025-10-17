@@ -177,7 +177,7 @@ export function DashboardHeader() {
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem asChild>
-                          <Link href="/dashboard/tasks/new?template=shopping">
+                          <Link href={"/dashboard/tasks/new?template=shopping" as any}>
                             <Sparkles className="mr-2 h-4 w-4 text-primary" />
                             <span>{t('suggestedAction')}</span>
                           </Link>
@@ -221,7 +221,7 @@ export function DashboardHeader() {
                         </Dialog>
                          <DropdownMenuSeparator />
                          <DropdownMenuItem asChild>
-                           <Link href="/dashboard/tasks/new?template=shopping">
+                           <Link href={"/dashboard/tasks/new?template=shopping" as any}>
                              <Sparkles className="mr-2 h-4 w-4 text-primary" />
                              <span>{t('suggestedAction')}</span>
                            </Link>
@@ -257,7 +257,7 @@ export function DashboardHeader() {
             </DropdownMenuItem>
              <DropdownMenuSeparator />
              <DropdownMenuItem asChild>
-               <Link href="/dashboard/tasks/new?template=shopping">
+               <Link href={"/dashboard/tasks/new?template=shopping" as any}>
                  <Sparkles className="mr-2 h-4 w-4 text-primary" />
                  <span>{t('suggestedAction')}</span>
                </Link>
@@ -308,7 +308,7 @@ export function DashboardHeader() {
         <LanguageRegionSwitcher />
 
         <Button asChild variant="ghost" size="icon">
-          <Link href="/dashboard/messages">
+          <Link href={"/dashboard/messages" as any}>
             <MessageSquare />
             <span className="sr-only">{tNav('messages')}</span>
           </Link>

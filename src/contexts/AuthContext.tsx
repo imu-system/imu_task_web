@@ -20,6 +20,7 @@ import { createUserDocument, getUserDocument } from '@/lib/firestore-users';
 // Extended User type with custom properties
 export interface AppUser extends FirebaseUser {
   roles?: UserRole[];
+  kycStatus?: 'pending' | 'approved' | 'rejected';
   profile?: {
     displayName?: string;
     photoUrl?: string;
@@ -59,40 +60,46 @@ export function AuthProvider({ children }: AuthProviderProps) {
     // Subscribe to auth state changes
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        // Fetch user data from Firestore
-        const userDoc = await getUserDocument(firebaseUser.uid);
-        
-        if (userDoc) {
-          // User document exists, use Firestore data
-          const appUser: AppUser = {
-            ...firebaseUser,
-            roles: userDoc.roles,
-            profile: {
-              displayName: userDoc.profile.displayName || firebaseUser.displayName || undefined,
-              photoUrl: userDoc.profile.photoUrl || firebaseUser.photoURL || undefined,
-            },
-          };
-          setUser(appUser);
-          console.log('✅ User loaded from Firestore with roles:', userDoc.roles);
-        } else {
-          // User document doesn't exist yet (shouldn't happen after signup)
-          // Create it with default values
-          console.warn('⚠️ User document missing, creating with defaults');
-          await createUserDocument(
-            firebaseUser.uid,
-            firebaseUser.email || '',
-            firebaseUser.displayName || undefined
-          );
+        try {
+          // Fetch user data from Firestore
+          const userDoc = await getUserDocument(firebaseUser.uid);
           
-          const appUser: AppUser = {
-            ...firebaseUser,
-            roles: [UserRole.client],
-            profile: {
-              displayName: firebaseUser.displayName || undefined,
-              photoUrl: firebaseUser.photoURL || undefined,
-            },
-          };
-          setUser(appUser);
+          if (userDoc) {
+            // User document exists, use Firestore data
+            const appUser: AppUser = {
+              ...firebaseUser,
+              roles: userDoc.roles,
+              profile: {
+                displayName: userDoc.profile.displayName || firebaseUser.displayName || undefined,
+                photoUrl: userDoc.profile.photoUrl || firebaseUser.photoURL || undefined,
+              },
+            };
+            setUser(appUser);
+            console.log('✅ User loaded from Firestore with roles:', userDoc.roles);
+          } else {
+            // User document doesn't exist yet (shouldn't happen after signup)
+            // Create it with default values
+            console.warn('⚠️ User document missing, creating with defaults');
+            await createUserDocument(
+              firebaseUser.uid,
+              firebaseUser.email || '',
+              firebaseUser.displayName || undefined
+            );
+            
+            const appUser: AppUser = {
+              ...firebaseUser,
+              roles: [UserRole.client],
+              profile: {
+                displayName: firebaseUser.displayName || undefined,
+                photoUrl: firebaseUser.photoURL || undefined,
+              },
+            };
+            setUser(appUser);
+          }
+        } catch (error) {
+          console.error('❌ Error loading user data from Firestore:', error);
+          // Si erreur de permissions, déconnecter l'utilisateur
+          setUser(null);
         }
       } else {
         setUser(null);

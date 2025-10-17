@@ -40,6 +40,7 @@ export interface NotificationQueryResult {
     totalCount?: number;
 }
 
+
 /**
  * Get notifications with pagination and filters
  * Uses composite indexes for optimal performance

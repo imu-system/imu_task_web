@@ -10,6 +10,11 @@
  * Admin functions:
  * - Assign/remove user roles (admin only)
  * - List users with roles
+ *
+ * KYC functions:
+ * - Submit KYC documents
+ * - Approve/reject KYC (admin only, auto-assigns provider role)
+ * - List KYC submissions (admin only)
  */
 
 import * as admin from "firebase-admin";
@@ -18,14 +23,15 @@ import * as admin from "firebase-admin";
 admin.initializeApp();
 
 // Export all functions
-export { cleanupOldNotifications } from "./cleanup-old-notifications";
-export { updateNotificationCounters } from "./update-notification-counters";
-export { sendPushNotification } from "./send-push-notification";
-export { sendDailyDigest } from "./send-daily-digest";
+export {cleanupOldNotifications} from "./cleanup-old-notifications";
+export {updateNotificationCounters} from "./update-notification-counters";
+export {sendPushNotification} from "./send-push-notification";
+export {sendDailyDigest} from "./send-daily-digest";
 
 // Admin functions
-export {
-    assignUserRole,
-    removeUserRole,
-    listUsersWithRoles,
-} from "./admin/user-roles";
+export {assignUserRole, removeUserRole, listUsersWithRoles} from "./admin/user-roles";
+// KYC functions
+export {submitKYC, approveKYC, rejectKYC, listKYCSubmissions} from "./kyc/kyc-validation";
+
+// Export the Firestore instance
+export const db = admin.firestore();

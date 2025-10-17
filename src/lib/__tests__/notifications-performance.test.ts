@@ -1,5 +1,6 @@
 import { performance } from 'perf_hooks';
 import { getNotificationsPaginated, getUnreadCountOptimized } from '../firestore-notifications-optimized';
+import { NotificationCategory } from '../types/notifications';
 
 describe('Notification Performance Benchmarks', () => {
     const TEST_USER_ID = 'test-user-benchmark';
@@ -18,10 +19,9 @@ describe('Notification Performance Benchmarks', () => {
 
     test('getNotificationsPaginated with filters should complete in <600ms', async () => {
         const start = performance.now();
-
         await getNotificationsPaginated({
             userId: TEST_USER_ID,
-            category: 'task',
+            category: NotificationCategory.TASKS,
             unreadOnly: true,
             limit: 20,
         });
