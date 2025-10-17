@@ -1,10 +1,12 @@
 # ImuTask - Web Application
 
-**Version:** 0.1.0  
+**Version:** 0.2.0  
 **Statut:** 🟡 En développement actif  
-**Dernière mise à jour:** 3 octobre 2025
+**Dernière mise à jour:** 17 octobre 2025
 
-Une plateforme web moderne de mise en relation entre clients et prestataires de services, construite avec Next.js 15 et Firebase.
+Une plateforme web moderne de mise en relation pour **micro-services de proximité**, construite avec Next.js 15 et Firebase.
+
+ImuTask connecte des **jeunes motivés** (étudiants, auto-entrepreneurs) avec des **particuliers** ayant besoin d'aide ponctuelle pour des tâches du quotidien : courses, montage de meubles, aide numérique, jardinage, et bien plus.
 
 ---
 
@@ -55,18 +57,27 @@ La documentation complète du projet se trouve dans le dossier `/docs`:
 
 ### 🎯 Commencer Ici
 
-- **[NEXT_STEPS.md](./docs/NEXT_STEPS.md)** ⚡ — Guide de démarrage rapide avec actions immédiates
+- **[QUICK_START_GUIDE.md](./docs/QUICK_START_GUIDE.md)** ⚡ — Guide complet pour nouveaux développeurs
 - **[GETTING_STARTED.md](./docs/GETTING_STARTED.md)** — Setup environnement de développement
 - **[PROJECT_SUMMARY.md](./docs/PROJECT_SUMMARY.md)** — Synthèse exécutive et métriques
 
-### 📖 Documentation Complète
+### � Produit & Stratégie
 
-- **[PRODUCT_VISION.md](./docs/PRODUCT_VISION.md)** — Vision produit, business model, personas, MVP→V2
-- **[TECHNICAL_ARCHITECTURE.md](./docs/TECHNICAL_ARCHITECTURE.md)** — Architecture technique détaillée
-- **[ROADMAP.md](./docs/ROADMAP.md)** — Feuille de route développement (10 phases)
+- **[PRODUCT_VISION.md](./docs/PRODUCT_VISION.md)** — Vision produit, business model, personas
+- **[SERVICES_CATALOG.md](./docs/SERVICES_CATALOG.md)** 🆕 — Catalogue détaillé des 8 catégories de services MVP
+- **[IMUPRO_VISION.md](./docs/IMUPRO_VISION.md)** 🆕 — Roadmap V2 : Services professionnels certifiés
+- **[ROADMAP.md](./docs/ROADMAP.md)** — Feuille de route développement (phases MVP→V2)
+
+### 🔐 Fonctionnalités Clés
+
+- **[KYC_INTEGRATION_COMPLETED.md](./docs/KYC_INTEGRATION_COMPLETED.md)** 🆕 — Système de validation KYC complet
 - **[FIREBASE_SETUP.md](./docs/FIREBASE_SETUP.md)** — Configuration Firebase complète
+- **[TECHNICAL_ARCHITECTURE.md](./docs/TECHNICAL_ARCHITECTURE.md)** — Architecture technique
+
+### 📝 Sessions & Changelog
+
+- **[SESSION_2025-10-17_KYC_AND_DOCS.md](./docs/SESSION_2025-10-17_KYC_AND_DOCS.md)** 🆕 — Dernière session de dev
 - **[TASKS_TODO.md](./docs/TASKS_TODO.md)** — Tâches prioritaires et sprints
-- **[BUGS_AND_ISSUES.md](./docs/BUGS_AND_ISSUES.md)** — Bugs connus et solutions
 - **[INDEX.md](./docs/INDEX.md)** — Index de toute la documentation
 
 ### 🚀 Quick Start
