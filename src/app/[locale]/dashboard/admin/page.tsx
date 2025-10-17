@@ -12,6 +12,7 @@ import { useRouter, Link } from "@/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered, Handshake, CalendarCheck, Wallet, Star, Bell, FileText, SlidersHorizontal, LineChart as LineChartIcon, History, Shield, ShieldCheck, LayoutList } from "lucide-react";
+import { AdminUserRolesPanel } from "@/components/admin/user-roles-panel";
 
 const kpiData = [
   { title: "Revenus (Mensuel)", value: "€4,231.89", change: "+20.1% vs mois dernier", icon: <DollarSign className="h-4 w-4 text-muted-foreground" /> },
@@ -153,6 +154,9 @@ export default function AdminDashboardPage() {
                         <Button variant="outline" asChild><Link href="/dashboard/admin/audit"><History className="mr-2"/>{tNav('auditLog')}</Link></Button>
                     </CardContent>
                 </Card>
+
+                {/* Panel de gestion des rôles utilisateurs */}
+                <AdminUserRolesPanel />
             </div>
     </div>
   );

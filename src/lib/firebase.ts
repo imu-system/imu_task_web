@@ -4,6 +4,7 @@ import { getAuth, connectAuthEmulator } from 'firebase/auth';
 import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
 import { getStorage, connectStorageEmulator } from 'firebase/storage';
 import { getMessaging, isSupported } from 'firebase/messaging';
+import { getFunctions, connectFunctionsEmulator } from 'firebase/functions';
 
 // Configuration Firebase - ImuTask
 // Les variables NEXT_PUBLIC_* doivent être référencées directement (pas dynamiquement)
@@ -40,6 +41,7 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const storage = getStorage(app);
+export const functions = getFunctions(app);
 
 // Initialize messaging (only on client-side)
 let messaging: ReturnType<typeof getMessaging> | null = null;
@@ -81,6 +83,13 @@ if (
             const [host, port] = process.env.NEXT_PUBLIC_FIREBASE_STORAGE_EMULATOR_HOST.split(':');
             connectStorageEmulator(storage, host, parseInt(port));
             console.log('✅ Connected to Storage Emulator');
+        }
+
+        // Functions emulator
+        if (process.env.NEXT_PUBLIC_FIREBASE_FUNCTIONS_EMULATOR_HOST) {
+            const [host, port] = process.env.NEXT_PUBLIC_FIREBASE_FUNCTIONS_EMULATOR_HOST.split(':');
+            connectFunctionsEmulator(functions, host, parseInt(port));
+            console.log('✅ Connected to Functions Emulator');
         }
     } catch (error) {
         console.warn('⚠️  Firebase emulators already connected or connection failed:', error);

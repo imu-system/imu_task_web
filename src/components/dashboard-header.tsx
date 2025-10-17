@@ -154,9 +154,13 @@ export function DashboardHeader() {
     if (isClient) {
       return (
         <Dialog>
-            <div className="flex items-center">
+            <div className="flex items-center" data-testid="client-menu">
                 <DialogTrigger asChild>
-                    <Button size="sm" className="gap-1 rounded-r-none">
+                    <Button 
+                        data-testid="new-task-button"
+                        size="sm" 
+                        className="gap-1 rounded-r-none"
+                    >
                         <PlusCircle className="h-4 w-4" />
                         <span className="hidden sm:inline">{t('createTask')}</span>
                     </Button>
@@ -265,7 +269,10 @@ export function DashboardHeader() {
 
 
   return (
-    <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background/60 px-4 backdrop-blur-md supports-[backdrop-filter]:bg-background/60 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+    <header 
+      data-testid="dashboard-header"
+      className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background/60 px-4 backdrop-blur-md supports-[backdrop-filter]:bg-background/60 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6"
+    >
       <Button
         variant="outline"
         size="icon"
@@ -407,7 +414,11 @@ export function DashboardHeader() {
 
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                <Button 
+                    data-testid="user-menu"
+                    variant="ghost" 
+                    className="relative h-8 w-8 rounded-full"
+                >
                 <Avatar className="h-9 w-9">
                     <AvatarImage
                     src={user?.photoURL || undefined}
@@ -489,7 +500,10 @@ export function DashboardHeader() {
                     </DropdownMenuPortal>
                 </DropdownMenuSub>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={logout}>
+                <DropdownMenuItem 
+                    data-testid="logout-button"
+                    onClick={logout}
+                >
                 <LogOut className="mr-2 h-4 w-4" />
                 <span>{t('signOut')}</span>
                 </DropdownMenuItem>

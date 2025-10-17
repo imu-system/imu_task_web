@@ -6,6 +6,10 @@
  * - Update notification counters
  * - Send push notifications (FCM)
  * - Daily digest emails
+ *
+ * Admin functions:
+ * - Assign/remove user roles (admin only)
+ * - List users with roles
  */
 
 import * as admin from "firebase-admin";
@@ -14,7 +18,14 @@ import * as admin from "firebase-admin";
 admin.initializeApp();
 
 // Export all functions
-export {cleanupOldNotifications} from "./cleanup-old-notifications";
-export {updateNotificationCounters} from "./update-notification-counters";
-export {sendPushNotification} from "./send-push-notification";
-export {sendDailyDigest} from "./send-daily-digest";
+export { cleanupOldNotifications } from "./cleanup-old-notifications";
+export { updateNotificationCounters } from "./update-notification-counters";
+export { sendPushNotification } from "./send-push-notification";
+export { sendDailyDigest } from "./send-daily-digest";
+
+// Admin functions
+export {
+    assignUserRole,
+    removeUserRole,
+    listUsersWithRoles,
+} from "./admin/user-roles";

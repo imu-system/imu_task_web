@@ -15,6 +15,7 @@ import {
 } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { UserRole } from '@/lib/types';
+import { createUserDocument, getUserDocument } from '@/lib/firestore-users';
 
 // Extended User type with custom properties
 export interface AppUser extends FirebaseUser {
@@ -56,19 +57,43 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     // Subscribe to auth state changes
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
-        // Extend the Firebase user with custom properties
-        // TODO: Fetch user roles and profile from Firestore
-        const appUser: AppUser = {
-          ...firebaseUser,
-          roles: [UserRole.client], // Default role, should be fetched from Firestore
-          profile: {
-            displayName: firebaseUser.displayName || undefined,
-            photoUrl: firebaseUser.photoURL || undefined,
-          },
-        };
-        setUser(appUser);
+        // Fetch user data from Firestore
+        const userDoc = await getUserDocument(firebaseUser.uid);
+        
+        if (userDoc) {
+          // User document exists, use Firestore data
+          const appUser: AppUser = {
+            ...firebaseUser,
+            roles: userDoc.roles,
+            profile: {
+              displayName: userDoc.profile.displayName || firebaseUser.displayName || undefined,
+              photoUrl: userDoc.profile.photoUrl || firebaseUser.photoURL || undefined,
+            },
+          };
+          setUser(appUser);
+          console.log('✅ User loaded from Firestore with roles:', userDoc.roles);
+        } else {
+          // User document doesn't exist yet (shouldn't happen after signup)
+          // Create it with default values
+          console.warn('⚠️ User document missing, creating with defaults');
+          await createUserDocument(
+            firebaseUser.uid,
+            firebaseUser.email || '',
+            firebaseUser.displayName || undefined
+          );
+          
+          const appUser: AppUser = {
+            ...firebaseUser,
+            roles: [UserRole.client],
+            profile: {
+              displayName: firebaseUser.displayName || undefined,
+              photoUrl: firebaseUser.photoURL || undefined,
+            },
+          };
+          setUser(appUser);
+        }
       } else {
         setUser(null);
       }
@@ -95,10 +120,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       
-      // Update profile with display name if provided
+      // Update Firebase Auth profile with display name if provided
       if (displayName && userCredential.user) {
         await updateProfile(userCredential.user, { displayName });
       }
+      
+      // Create Firestore user document
+      await createUserDocument(
+        userCredential.user.uid,
+        userCredential.user.email || email,
+        displayName
+      );
       
       console.log('✅ User created:', userCredential.user.email);
     } catch (error: any) {
@@ -125,6 +157,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
       });
       
       const userCredential = await signInWithPopup(auth, provider);
+      
+      // Check if user document exists, create if not
+      const userDoc = await getUserDocument(userCredential.user.uid);
+      if (!userDoc) {
+        await createUserDocument(
+          userCredential.user.uid,
+          userCredential.user.email || '',
+          userCredential.user.displayName || undefined
+        );
+        console.log('✅ New Google user document created');
+      }
+      
       console.log('✅ User signed in with Google:', userCredential.user.email);
     } catch (error: any) {
       console.error('❌ Google sign in error:', error.message);

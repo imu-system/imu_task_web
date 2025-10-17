@@ -9,10 +9,34 @@ import {
     doc,
     getDoc,
     getDocs,
+    setDoc,
+    updateDoc,
     query,
     where,
+    serverTimestamp,
+    Timestamp,
 } from 'firebase/firestore';
 import { db } from './firebase';
+import { UserRole } from './types';
+
+export interface UserProfile {
+    displayName?: string;
+    photoUrl?: string;
+    phoneNumber?: string;
+    bio?: string;
+    location?: string;
+}
+
+export interface UserDocument {
+    uid: string;
+    email: string;
+    roles: UserRole[];
+    profile: UserProfile;
+    skills?: string[];
+    availability?: boolean;
+    createdAt: Timestamp;
+    updatedAt: Timestamp;
+}
 
 export interface User {
     id: string;
@@ -25,6 +49,111 @@ export interface User {
     availability?: boolean;
     createdAt?: Date;
     updatedAt?: Date;
+}
+
+/**
+ * Create a new user document in Firestore
+ * Called automatically when a user signs up
+ */
+export async function createUserDocument(
+    uid: string,
+    email: string,
+    displayName?: string
+): Promise<void> {
+    try {
+        const userRef = doc(db, 'users', uid);
+
+        const userData: UserDocument = {
+            uid,
+            email,
+            roles: [UserRole.client], // Default role
+            profile: {
+                displayName: displayName || email.split('@')[0],
+            },
+            createdAt: serverTimestamp() as Timestamp,
+            updatedAt: serverTimestamp() as Timestamp,
+        };
+
+        await setDoc(userRef, userData);
+        console.log('✅ User document created:', uid);
+    } catch (error) {
+        console.error('❌ Error creating user document:', error);
+        throw error;
+    }
+}
+
+/**
+ * Get user document from Firestore
+ * Returns roles and profile data
+ */
+export async function getUserDocument(uid: string): Promise<UserDocument | null> {
+    try {
+        const userRef = doc(db, 'users', uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+            console.warn('⚠️ User document not found:', uid);
+            return null;
+        }
+
+        const data = userSnap.data();
+        return {
+            uid: data.uid,
+            email: data.email,
+            roles: data.roles || [UserRole.client],
+            profile: data.profile || {},
+            skills: data.skills,
+            availability: data.availability,
+            createdAt: data.createdAt,
+            updatedAt: data.updatedAt,
+        };
+    } catch (error) {
+        console.error('❌ Error getting user document:', error);
+        return null;
+    }
+}
+
+/**
+ * Update user profile data
+ */
+export async function updateUserDocument(
+    uid: string,
+    updates: Partial<UserDocument>
+): Promise<void> {
+    try {
+        const userRef = doc(db, 'users', uid);
+
+        await updateDoc(userRef, {
+            ...updates,
+            updatedAt: serverTimestamp(),
+        });
+
+        console.log('✅ User document updated:', uid);
+    } catch (error) {
+        console.error('❌ Error updating user document:', error);
+        throw error;
+    }
+}
+
+/**
+ * Add a role to a user
+ */
+export async function addUserRole(uid: string, role: UserRole): Promise<void> {
+    try {
+        const userDoc = await getUserDocument(uid);
+        if (!userDoc) {
+            throw new Error('User not found');
+        }
+
+        if (!userDoc.roles.includes(role)) {
+            const updatedRoles = [...userDoc.roles, role];
+            await updateUserDocument(uid, { roles: updatedRoles });
+            console.log(`✅ Role ${role} added to user:`, uid);
+        }
+    } catch (error) {
+        console.error('❌ Error adding user role:', error);
+        throw error;
+    }
 }
 
 /**

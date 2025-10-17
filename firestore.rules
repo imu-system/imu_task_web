@@ -17,6 +17,10 @@ service cloud.firestore {
       allow create: if isAuthenticated() && isOwner(userId);
       allow update: if isAuthenticated() && isOwner(userId);
       allow delete: if false; // Soft delete only
+      
+      // Prevent users from modifying their own roles (admin only)
+      allow update: if isAuthenticated() && isOwner(userId) && 
+                       (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['roles']));
     }
     
     // Tasks collection
