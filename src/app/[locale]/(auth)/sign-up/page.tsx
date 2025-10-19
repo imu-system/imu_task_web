@@ -120,6 +120,7 @@ export default function SignUpPage() {
                     id="name"
                     type="text"
                     autoComplete="name"
+                    data-testid="signup-displayName"
                     {...register('name')}
                     />
                     {errors.name && <p className="text-xs text-destructive mt-1">{errors.name.message}</p>}
@@ -133,6 +134,7 @@ export default function SignUpPage() {
                     id="email"
                     type="email"
                     autoComplete="email"
+                    data-testid="signup-email"
                     {...register('email')}
                     />
                     {errors.email && <p className="text-xs text-destructive mt-1">{errors.email.message}</p>}
@@ -146,6 +148,7 @@ export default function SignUpPage() {
                     id="password"
                     type="password"
                     autoComplete="new-password"
+                    data-testid="signup-password"
                     {...register('password')}
                     />
                     {errors.password && <p className="text-xs text-destructive mt-1">{errors.password.message}</p>}
@@ -159,6 +162,7 @@ export default function SignUpPage() {
                         id="referralCode"
                         type="text"
                         placeholder={t('referralCodePlaceholder')}
+                        data-testid="signup-referralCode"
                         {...register('referralCode')}
                         />
                         {errors.referralCode && <p className="text-xs text-destructive mt-1">{errors.referralCode.message}</p>}
@@ -166,7 +170,7 @@ export default function SignUpPage() {
                 </div>
                 
                 <div>
-                <Button type="submit" className="w-full" disabled={loading || !isValid}>
+                <Button type="submit" className="w-full" data-testid="signup-submit" disabled={loading || !isValid}>
                     {loading && <Loader2 className="animate-spin" />}
                     {t('submitButton')}
                 </Button>

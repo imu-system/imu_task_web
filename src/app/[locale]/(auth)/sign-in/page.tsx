@@ -112,6 +112,7 @@ export default function SignInPage() {
                     id="email"
                     type="email"
                     autoComplete="email"
+                    data-testid="login-email"
                     {...register('email')}
                     />
                     {errors.email && <p className="text-xs text-destructive mt-1">{errors.email.message}</p>}
@@ -132,6 +133,7 @@ export default function SignInPage() {
                     id="password"
                     type="password"
                     autoComplete="current-password"
+                    data-testid="login-password"
                     {...register('password')}
                     />
                     {errors.password && <p className="text-xs text-destructive mt-1">{errors.password.message}</p>}
@@ -139,7 +141,7 @@ export default function SignInPage() {
                 </div>
 
                 <div>
-                <Button type="submit" className="w-full" disabled={loading || !isValid}>
+                <Button type="submit" className="w-full" data-testid="login-submit" disabled={loading || !isValid}>
                     {loading && <Loader2 className="animate-spin" />}
                     {t('submitButton')}
                 </Button>
