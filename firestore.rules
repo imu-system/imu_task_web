@@ -15,10 +15,9 @@ service cloud.firestore {
     match /users/{userId} {
       allow read: if isAuthenticated();
       allow create: if isAuthenticated() && isOwner(userId);
-      allow update: if isAuthenticated() && isOwner(userId);
       allow delete: if false; // Soft delete only
       
-      // Prevent users from modifying their own roles (admin only)
+      // Users can update their own data except roles (admin only)
       allow update: if isAuthenticated() && isOwner(userId) && 
                        (!request.resource.data.diff(resource.data).affectedKeys().hasAny(['roles']));
     }
@@ -117,6 +116,36 @@ service cloud.firestore {
       
       // Users can delete their own notifications
       allow delete: if isAuthenticated() && isOwner(resource.data.userId);
+    }
+    
+    // KYC Submissions collection
+    match /kyc_submissions/{submissionId} {
+      // Function to check if user is admin
+      function isAdmin() {
+        return isAuthenticated() && 
+               get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles.hasAny(['admin']);
+      }
+      
+      // Users can read their own submissions, admins can read all
+      allow read: if isAuthenticated() && (
+        isOwner(resource.data.userId) || 
+        isAdmin()
+      );
+      
+      // Users can create their own submissions
+      allow create: if isAuthenticated() && 
+                       request.resource.data.userId == request.auth.uid &&
+                       request.resource.data.status == 'pending' &&
+                       request.resource.data.documents.size() >= 1 &&
+                       request.resource.data.documents.size() <= 10;
+      
+      // Only admins can update submissions (approval/rejection)
+      allow update: if isAdmin() &&
+                       resource.data.userId == request.resource.data.userId &&
+                       request.resource.data.status in ['approved', 'rejected'];
+      
+      // Users cannot delete submissions
+      allow delete: if false;
     }
     
     // Transactions

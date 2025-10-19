@@ -1,8 +1,8 @@
 # ImuTask - Web Application
 
 **Version:** 0.2.0  
-**Statut:** 🟡 En développement actif  
-**Dernière mise à jour:** 17 octobre 2025
+**Statut:** � Prêt pour staging (13/15 fonctionnalités complètes)  
+**Dernière mise à jour:** 17 octobre 2025 - Partie 2
 
 Une plateforme web moderne de mise en relation pour **micro-services de proximité**, construite avec Next.js 15 et Firebase.
 
@@ -10,14 +10,40 @@ ImuTask connecte des **jeunes motivés** (étudiants, auto-entrepreneurs) avec d
 
 ---
 
-## 🎯 À propos du projet
+## � Nouveautés - Session du 17 octobre 2025
+
+### ✅ 1. Règles de Sécurité Firestore & Storage
+- Configuration complète des règles pour la collection `kyc_submissions`
+- Règles Storage pour documents KYC avec validation taille/type
+- Isolation des données utilisateurs + contrôle d'accès admin
+
+### ✅ 2. Tests E2E pour Flux KYC
+- 10 scénarios de test Playwright créés
+- Couverture complète : soumission → approbation/rejet → vérification
+- Gestion des erreurs (Storage, timeout, validation)
+- Fixtures générées automatiquement
+
+### ✅ 3. Catalogue de Services UI
+- **8 catégories de services** avec métadonnées complètes
+- **16 templates pré-remplis** pour création rapide de tâches
+- **Wizard 3 étapes** : Catégorie → Template → Détails
+- Composants réutilisables : `ServiceCategorySelector`, `TaskTemplates`
+- Interface responsive et moderne
+
+🔗 **Guide de test** : [TESTING_GUIDE_NEW_FEATURES.md](docs/TESTING_GUIDE_NEW_FEATURES.md)
+
+---
+
+## �🎯 À propos du projet
 
 ImuTask permet aux utilisateurs de:
 - 📝 Poster des tâches avec descriptions détaillées et budgets
+- 🎨 Choisir parmi 8 catégories de services avec templates
 - 🔍 Trouver des prestataires qualifiés automatiquement
 - 💬 Communiquer directement via messagerie intégrée
 - 💳 Gérer les paiements de manière sécurisée
 - ⭐ Évaluer et être évalué après chaque mission
+- 🔐 Système KYC pour devenir prestataire vérifié
 
 ---
 
@@ -26,7 +52,7 @@ ImuTask permet aux utilisateurs de:
 ### Prérequis
 
 - Node.js 20+
-- npm ou yarn
+- pnpm (recommandé) ou npm
 - Compte Firebase (pour la configuration backend)
 
 ### Installation
