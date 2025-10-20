@@ -1010,5 +1010,268 @@
         "EUR": "Euro",
         "USD": "US Dollar",
         "JPY": "Japanese Yen"
+    },
+    "Quotes": {
+        "title": "My Quotes",
+        "subtitle": "Manage all your client quotes",
+        "newQuote": "New Quote",
+        "createQuote": "Create a new quote",
+        "quoteNumber": "Quote Number",
+        "client": "Client",
+        "status": "Status",
+        "amount": "Amount",
+        "validUntil": "Valid Until",
+        "actions": "Actions",
+        "view": "View Details",
+        "edit": "Edit",
+        "send": "Send",
+        "resend": "Resend",
+        "cancel": "Cancel",
+        "accept": "Accept",
+        "decline": "Decline",
+        "statuses": {
+            "draft": "Draft",
+            "sent": "Sent",
+            "viewed": "Viewed",
+            "accepted": "Accepted",
+            "declined": "Declined",
+            "expired": "Expired",
+            "cancelled": "Cancelled"
+        },
+        "form": {
+            "selectClient": "Select a client",
+            "title": "Quote Title",
+            "titlePlaceholder": "Ex: Bathroom Renovation",
+            "description": "Description",
+            "descriptionPlaceholder": "Describe the project...",
+            "lineItems": "Quote Lines",
+            "addLine": "Add Line",
+            "removeLine": "Remove Line",
+            "lineDescription": "Description",
+            "quantity": "Quantity",
+            "unit": "Unit",
+            "unitPrice": "Unit Price",
+            "total": "Total",
+            "subtotal": "Subtotal (ex. VAT)",
+            "travelFee": "Travel Fee",
+            "discount": "Discount",
+            "totalHT": "Total (ex. VAT)",
+            "taxRate": "VAT Rate",
+            "taxAmount": "VAT Amount",
+            "totalTTC": "Total (incl. VAT)",
+            "paymentTerms": "Payment Terms",
+            "estimatedDuration": "Estimated Duration",
+            "validityDate": "Valid Until",
+            "generalTerms": "General Terms",
+            "saveDraft": "Save Draft",
+            "sendToClient": "Send to Client"
+        },
+        "units": {
+            "hour": "hour",
+            "day": "day",
+            "square_meter": "m²",
+            "linear_meter": "lm",
+            "unit": "unit",
+            "flat_rate": "flat rate"
+        },
+        "paymentTerms": {
+            "immediate": "Immediate Payment",
+            "upon_completion": "Upon Completion",
+            "net_7": "Net 7 Days",
+            "net_15": "Net 15 Days",
+            "net_30": "Net 30 Days",
+            "split_50_50": "50% Upfront / 50% After"
+        },
+        "stats": {
+            "totalSent": "Quotes Sent",
+            "acceptanceRate": "Acceptance Rate",
+            "totalValue": "Accepted Value"
+        },
+        "filters": {
+            "search": "Search (number, client, title)...",
+            "status": "Status",
+            "allStatuses": "All Statuses"
+        },
+        "empty": {
+            "title": "No Quotes",
+            "description": "Start by creating your first quote",
+            "noResults": "No quotes match the filters"
+        },
+        "dialogs": {
+            "sendConfirmTitle": "Send Quote",
+            "sendConfirmDesc": "Are you sure you want to send this quote?",
+            "acceptConfirmTitle": "Accept Quote",
+            "acceptConfirmDesc": "Are you sure you want to accept this quote?",
+            "acceptNote": "By accepting this quote, a booking will be automatically created.",
+            "declineTitle": "Decline Quote",
+            "declineDesc": "Please provide a reason for declining (optional but recommended)",
+            "declineReasonPlaceholder": "Ex: The price doesn't fit my budget...",
+            "cancelTitle": "Cancel Quote",
+            "cancelDesc": "Are you sure you want to cancel this quote?",
+            "cancelNote": "The client will be notified of the cancellation.",
+            "deleteTitle": "Delete Quote",
+            "deleteDesc": "Are you sure you want to permanently delete this quote?",
+            "deleteWarning": "This action is irreversible. The quote will be permanently deleted.",
+            "confirm": "Confirm",
+            "cancel": "Cancel"
+        },
+        "messages": {
+            "sent": "Quote sent successfully",
+            "accepted": "Quote accepted",
+            "declined": "Quote declined",
+            "cancelled": "Quote cancelled",
+            "error": "An error occurred"
+        }
+    },
+    "Invoices": {
+        "title": "Invoices",
+        "myInvoices": "My Invoices",
+        "uploadInvoice": "Upload Invoice",
+        "invoiceNumber": "Invoice Number",
+        "quote": "Quote",
+        "amount": "Amount",
+        "status": "Status",
+        "uploadedAt": "Upload Date",
+        "actions": "Actions",
+        "view": "View",
+        "download": "Download",
+        "validate": "Validate",
+        "reject": "Reject",
+        "markAsPaid": "Mark as Paid",
+        "statuses": {
+            "draft": "Draft",
+            "submitted": "Submitted",
+            "validated": "Validated",
+            "rejected": "Rejected",
+            "paid": "Paid"
+        },
+        "upload": {
+            "title": "Upload Invoice",
+            "selectQuote": "Select Quote",
+            "invoiceNumber": "Invoice Number",
+            "invoiceNumberPlaceholder": "INV-2025-00001",
+            "amount": "Total Amount (incl. VAT)",
+            "file": "Invoice File",
+            "dragDrop": "Drag and drop your invoice here, or click to select",
+            "acceptedFormats": "PDF or image (JPG, PNG) - Max 10 MB",
+            "uploading": "Uploading...",
+            "submit": "Submit Invoice",
+            "success": "Invoice uploaded successfully"
+        },
+        "validation": {
+            "title": "Invoice Validation",
+            "pending": "Pending Validation",
+            "validated": "Validated",
+            "rejected": "Rejected",
+            "viewFile": "View File",
+            "validateConfirm": "Are you sure you want to validate this invoice?",
+            "rejectReason": "Rejection Reason",
+            "rejectReasonPlaceholder": "Ex: Missing information, incorrect amount...",
+            "validatedSuccess": "Invoice validated successfully",
+            "rejectedSuccess": "Invoice rejected"
+        },
+        "admin": {
+            "title": "Invoice Management",
+            "stats": {
+                "pending": "Pending",
+                "validated": "Validated This Month",
+                "totalAmount": "Total Amount"
+            }
+        }
+    },
+    "Onboarding": {
+        "title": "Become a Professional",
+        "subtitle": "Complete your profile in {steps} steps",
+        "progress": "Step {current} of {total}",
+        "next": "Next",
+        "previous": "Previous",
+        "finish": "Finish",
+        "save": "Save",
+        "skip": "Skip",
+        "steps": {
+            "general": "General Information",
+            "kyb": "SIRET Verification",
+            "services": "Services & Rates",
+            "zones": "Service Areas",
+            "portfolio": "Portfolio",
+            "availability": "Availability",
+            "terms": "Terms & Conditions"
+        },
+        "step1": {
+            "title": "General Information",
+            "businessName": "Business Name",
+            "businessNamePlaceholder": "Ex: Renovation Plus",
+            "category": "Main Category",
+            "selectCategory": "Select a category",
+            "description": "Business Description",
+            "descriptionPlaceholder": "Describe your company and services...",
+            "phoneNumber": "Professional Phone Number",
+            "phonePlaceholder": "+33 6 12 34 56 78"
+        },
+        "step2": {
+            "title": "SIRET Verification",
+            "subtitle": "Verify your business with your SIRET number",
+            "siretNumber": "SIRET Number",
+            "siretPlaceholder": "14 digits",
+            "verify": "Verify SIRET",
+            "verifying": "Verifying...",
+            "verified": "SIRET verified successfully",
+            "error": "Verification error",
+            "companyInfo": "Company Information",
+            "legalName": "Legal Name",
+            "address": "Address",
+            "activity": "Activity"
+        },
+        "step3": {
+            "title": "Services & Rates",
+            "subtitle": "Select the services you offer and set your rates",
+            "addService": "Add Service",
+            "serviceName": "Service Name",
+            "serviceNamePlaceholder": "Ex: Lawn Mowing",
+            "rate": "Rate",
+            "ratePlaceholder": "Ex: 25",
+            "unit": "Unit",
+            "selectUnit": "Select a unit",
+            "remove": "Remove"
+        },
+        "step4": {
+            "title": "Service Areas",
+            "subtitle": "Define the geographic areas where you operate",
+            "address": "Reference Address",
+            "addressPlaceholder": "Enter your main address",
+            "radius": "Service Radius",
+            "radiusKm": "{radius} km",
+            "searchAddress": "Search for an address"
+        },
+        "step5": {
+            "title": "Portfolio",
+            "subtitle": "Add at least 3 photos of your work",
+            "addPhotos": "Add Photos",
+            "minPhotos": "Minimum 3 photos required",
+            "dragDrop": "Drag and drop your photos here",
+            "uploading": "Uploading...",
+            "uploaded": "{count} photo(s) uploaded"
+        },
+        "step6": {
+            "title": "Availability",
+            "subtitle": "Set your available time slots",
+            "selectSlots": "Click on the calendar to select your time slots",
+            "saveAvailability": "Save Availability"
+        },
+        "step7": {
+            "title": "Terms & Conditions",
+            "subtitle": "Accept the terms to become a professional",
+            "terms": "I accept the general terms and conditions for professionals",
+            "privacy": "I accept the privacy policy",
+            "readTerms": "Read Terms & Conditions",
+            "readPrivacy": "Read Privacy Policy",
+            "accept": "Accept and Finish"
+        },
+        "messages": {
+            "saved": "Progress saved",
+            "completed": "Congratulations! Your professional profile is complete",
+            "error": "An error occurred",
+            "requiredFields": "Please fill in all required fields"
+        }
     }
 }

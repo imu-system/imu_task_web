@@ -1,4 +1,3 @@
-
 {
     "Header": {
         "features": "Fonctionnalités",
@@ -1011,7 +1010,268 @@
         "EUR": "Euro",
         "USD": "Dollar américain",
         "JPY": "Yen japonais"
+    },
+    "Quotes": {
+        "title": "Mes devis",
+        "subtitle": "Gérez tous vos devis clients",
+        "newQuote": "Nouveau devis",
+        "createQuote": "Créer un nouveau devis",
+        "quoteNumber": "Numéro de devis",
+        "client": "Client",
+        "status": "Statut",
+        "amount": "Montant",
+        "validUntil": "Valide jusqu'au",
+        "actions": "Actions",
+        "view": "Voir le détail",
+        "edit": "Modifier",
+        "send": "Envoyer",
+        "resend": "Renvoyer",
+        "cancel": "Annuler",
+        "accept": "Accepter",
+        "decline": "Refuser",
+        "statuses": {
+            "draft": "Brouillon",
+            "sent": "Envoyé",
+            "viewed": "Consulté",
+            "accepted": "Accepté",
+            "declined": "Refusé",
+            "expired": "Expiré",
+            "cancelled": "Annulé"
+        },
+        "form": {
+            "selectClient": "Sélectionner un client",
+            "title": "Titre du devis",
+            "titlePlaceholder": "Ex: Rénovation salle de bain",
+            "description": "Description",
+            "descriptionPlaceholder": "Décrivez le projet...",
+            "lineItems": "Lignes du devis",
+            "addLine": "Ajouter une ligne",
+            "removeLine": "Supprimer la ligne",
+            "lineDescription": "Description",
+            "quantity": "Quantité",
+            "unit": "Unité",
+            "unitPrice": "Prix unitaire",
+            "total": "Total",
+            "subtotal": "Sous-total HT",
+            "travelFee": "Frais de déplacement",
+            "discount": "Remise",
+            "totalHT": "Total HT",
+            "taxRate": "Taux de TVA",
+            "taxAmount": "Montant TVA",
+            "totalTTC": "Total TTC",
+            "paymentTerms": "Conditions de paiement",
+            "estimatedDuration": "Durée estimée",
+            "validityDate": "Valable jusqu'au",
+            "generalTerms": "Conditions générales",
+            "saveDraft": "Enregistrer le brouillon",
+            "sendToClient": "Envoyer au client"
+        },
+        "units": {
+            "hour": "heure",
+            "day": "jour",
+            "square_meter": "m²",
+            "linear_meter": "ml",
+            "unit": "unité",
+            "flat_rate": "forfait"
+        },
+        "paymentTerms": {
+            "immediate": "Paiement immédiat",
+            "upon_completion": "À la fin des travaux",
+            "net_7": "Net 7 jours",
+            "net_15": "Net 15 jours",
+            "net_30": "Net 30 jours",
+            "split_50_50": "50% avant / 50% après"
+        },
+        "stats": {
+            "totalSent": "Devis envoyés",
+            "acceptanceRate": "Taux d'acceptation",
+            "totalValue": "Valeur acceptée"
+        },
+        "filters": {
+            "search": "Rechercher (numéro, client, titre)...",
+            "status": "Statut",
+            "allStatuses": "Tous les statuts"
+        },
+        "empty": {
+            "title": "Aucun devis",
+            "description": "Commencez par créer votre premier devis",
+            "noResults": "Aucun devis ne correspond aux filtres"
+        },
+        "dialogs": {
+            "sendConfirmTitle": "Envoyer le devis",
+            "sendConfirmDesc": "Êtes-vous sûr de vouloir envoyer ce devis ?",
+            "acceptConfirmTitle": "Accepter le devis",
+            "acceptConfirmDesc": "Êtes-vous sûr de vouloir accepter ce devis ?",
+            "acceptNote": "En acceptant ce devis, une réservation sera automatiquement créée.",
+            "declineTitle": "Refuser le devis",
+            "declineDesc": "Veuillez indiquer la raison du refus (optionnel mais recommandé)",
+            "declineReasonPlaceholder": "Ex: Le tarif ne correspond pas à mon budget...",
+            "cancelTitle": "Annuler le devis",
+            "cancelDesc": "Êtes-vous sûr de vouloir annuler ce devis ?",
+            "cancelNote": "Le client sera notifié de l'annulation.",
+            "deleteTitle": "Supprimer le devis",
+            "deleteDesc": "Êtes-vous sûr de vouloir supprimer définitivement ce devis ?",
+            "deleteWarning": "Cette action est irréversible. Le devis sera supprimé définitivement.",
+            "confirm": "Confirmer",
+            "cancel": "Annuler"
+        },
+        "messages": {
+            "sent": "Devis envoyé avec succès",
+            "accepted": "Devis accepté",
+            "declined": "Devis refusé",
+            "cancelled": "Devis annulé",
+            "error": "Une erreur s'est produite"
+        }
+    },
+    "Invoices": {
+        "title": "Factures",
+        "myInvoices": "Mes factures",
+        "uploadInvoice": "Télécharger une facture",
+        "invoiceNumber": "Numéro de facture",
+        "quote": "Devis",
+        "amount": "Montant",
+        "status": "Statut",
+        "uploadedAt": "Date de téléchargement",
+        "actions": "Actions",
+        "view": "Voir",
+        "download": "Télécharger",
+        "validate": "Valider",
+        "reject": "Rejeter",
+        "markAsPaid": "Marquer comme payée",
+        "statuses": {
+            "draft": "Brouillon",
+            "submitted": "Soumise",
+            "validated": "Validée",
+            "rejected": "Rejetée",
+            "paid": "Payée"
+        },
+        "upload": {
+            "title": "Télécharger une facture",
+            "selectQuote": "Sélectionner le devis",
+            "invoiceNumber": "Numéro de facture",
+            "invoiceNumberPlaceholder": "FACT-2025-00001",
+            "amount": "Montant TTC",
+            "file": "Fichier de la facture",
+            "dragDrop": "Glissez-déposez votre facture ici, ou cliquez pour sélectionner",
+            "acceptedFormats": "PDF ou image (JPG, PNG) - Max 10 MB",
+            "uploading": "Téléchargement en cours...",
+            "submit": "Soumettre la facture",
+            "success": "Facture téléchargée avec succès"
+        },
+        "validation": {
+            "title": "Validation des factures",
+            "pending": "En attente de validation",
+            "validated": "Validées",
+            "rejected": "Rejetées",
+            "viewFile": "Voir le fichier",
+            "validateConfirm": "Êtes-vous sûr de vouloir valider cette facture ?",
+            "rejectReason": "Raison du rejet",
+            "rejectReasonPlaceholder": "Ex: Informations manquantes, montant incorrect...",
+            "validatedSuccess": "Facture validée avec succès",
+            "rejectedSuccess": "Facture rejetée"
+        },
+        "admin": {
+            "title": "Gestion des factures",
+            "stats": {
+                "pending": "En attente",
+                "validated": "Validées ce mois",
+                "totalAmount": "Montant total"
+            }
+        }
+    },
+    "Onboarding": {
+        "title": "Devenez professionnel",
+        "subtitle": "Complétez votre profil en {steps} étapes",
+        "progress": "Étape {current} sur {total}",
+        "next": "Suivant",
+        "previous": "Précédent",
+        "finish": "Terminer",
+        "save": "Enregistrer",
+        "skip": "Passer",
+        "steps": {
+            "general": "Informations générales",
+            "kyb": "Vérification SIRET",
+            "services": "Services et tarifs",
+            "zones": "Zones d'intervention",
+            "portfolio": "Portfolio",
+            "availability": "Disponibilités",
+            "terms": "Conditions générales"
+        },
+        "step1": {
+            "title": "Informations générales",
+            "businessName": "Nom de l'entreprise",
+            "businessNamePlaceholder": "Ex: Rénovation Plus",
+            "category": "Catégorie principale",
+            "selectCategory": "Sélectionnez une catégorie",
+            "description": "Description de votre activité",
+            "descriptionPlaceholder": "Présentez votre entreprise et vos services...",
+            "phoneNumber": "Numéro de téléphone professionnel",
+            "phonePlaceholder": "+33 6 12 34 56 78"
+        },
+        "step2": {
+            "title": "Vérification SIRET",
+            "subtitle": "Vérifiez votre entreprise avec votre numéro SIRET",
+            "siretNumber": "Numéro SIRET",
+            "siretPlaceholder": "14 chiffres",
+            "verify": "Vérifier le SIRET",
+            "verifying": "Vérification en cours...",
+            "verified": "SIRET vérifié avec succès",
+            "error": "Erreur de vérification",
+            "companyInfo": "Informations de l'entreprise",
+            "legalName": "Raison sociale",
+            "address": "Adresse",
+            "activity": "Activité"
+        },
+        "step3": {
+            "title": "Services et tarifs",
+            "subtitle": "Sélectionnez les services que vous proposez et indiquez vos tarifs",
+            "addService": "Ajouter un service",
+            "serviceName": "Nom du service",
+            "serviceNamePlaceholder": "Ex: Tonte de pelouse",
+            "rate": "Tarif",
+            "ratePlaceholder": "Ex: 25",
+            "unit": "Unité",
+            "selectUnit": "Sélectionnez une unité",
+            "remove": "Supprimer"
+        },
+        "step4": {
+            "title": "Zones d'intervention",
+            "subtitle": "Définissez les zones géographiques où vous intervenez",
+            "address": "Adresse de référence",
+            "addressPlaceholder": "Entrez votre adresse principale",
+            "radius": "Rayon d'intervention",
+            "radiusKm": "{radius} km",
+            "searchAddress": "Rechercher une adresse"
+        },
+        "step5": {
+            "title": "Portfolio",
+            "subtitle": "Ajoutez au moins 3 photos de vos réalisations",
+            "addPhotos": "Ajouter des photos",
+            "minPhotos": "Minimum 3 photos requises",
+            "dragDrop": "Glissez-déposez vos photos ici",
+            "uploading": "Téléchargement...",
+            "uploaded": "{count} photo(s) téléchargée(s)"
+        },
+        "step6": {
+            "title": "Disponibilités",
+            "subtitle": "Définissez vos créneaux de disponibilité",
+            "selectSlots": "Cliquez sur le calendrier pour sélectionner vos créneaux",
+            "saveAvailability": "Enregistrer les disponibilités"
+        },
+        "step7": {
+            "title": "Conditions générales",
+            "subtitle": "Acceptez les conditions pour devenir professionnel",
+            "terms": "J'accepte les conditions générales de vente pour les professionnels",
+            "privacy": "J'accepte la politique de confidentialité",
+            "readTerms": "Lire les CGV",
+            "readPrivacy": "Lire la politique de confidentialité",
+            "accept": "Accepter et terminer"
+        },
+        "messages": {
+            "saved": "Progression enregistrée",
+            "completed": "Félicitations ! Votre profil professionnel est complet",
+            "error": "Une erreur s'est produite",
+            "requiredFields": "Veuillez remplir tous les champs requis"
+        }
     }
 }
-
-  

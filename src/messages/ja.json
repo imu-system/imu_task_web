@@ -671,6 +671,61 @@
         "USD": "米ドル",
         "JPY": "日本円"
     },
+    "Quotes": {
+        "title": "見積もり",
+        "newQuote": "新規見積もり",
+        "createQuote": "見積もりを作成",
+        "quoteNumber": "見積もり番号",
+        "client": "顧客",
+        "status": "ステータス",
+        "amount": "金額",
+        "validUntil": "有効期限",
+        "actions": "アクション",
+        "view": "詳細を表示",
+        "edit": "編集",
+        "send": "送信",
+        "accept": "承認",
+        "decline": "拒否",
+        "statuses": {
+            "draft": "下書き",
+            "sent": "送信済み",
+            "viewed": "閲覧済み",
+            "accepted": "承認済み",
+            "declined": "拒否済み",
+            "expired": "期限切れ",
+            "cancelled": "キャンセル"
+        }
+    },
+    "Invoices": {
+        "title": "請求書",
+        "uploadInvoice": "請求書をアップロード",
+        "invoiceNumber": "請求書番号",
+        "status": "ステータス",
+        "amount": "金額",
+        "statuses": {
+            "draft": "下書き",
+            "submitted": "提出済み",
+            "validated": "検証済み",
+            "rejected": "却下",
+            "paid": "支払い済み"
+        }
+    },
+    "Onboarding": {
+        "title": "プロフェッショナルになる",
+        "subtitle": "{steps}ステップでプロファイルを完成させる",
+        "next": "次へ",
+        "previous": "戻る",
+        "finish": "完了",
+        "steps": {
+            "general": "基本情報",
+            "kyb": "企業認証",
+            "services": "サービスと料金",
+            "zones": "サービスエリア",
+            "portfolio": "ポートフォリオ",
+            "availability": "スケジュール",
+            "terms": "利用規約"
+        }
+    },
     "MyTasksPage": {
         "title": "My Requests",
         "subtitle": "Manage the tasks you have created.",
