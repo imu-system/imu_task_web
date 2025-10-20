@@ -124,15 +124,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   const signUp = async (email: string, password: string, displayName?: string) => {
+    console.log('🔑 AuthContext.signUp appelé avec:', { email, displayName });
     try {
+      console.log('📝 Création utilisateur Firebase Auth...');
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      console.log('✅ Utilisateur Firebase créé:', userCredential.user.uid);
       
       // Update Firebase Auth profile with display name if provided
       if (displayName && userCredential.user) {
+        console.log('👤 Mise à jour du profil avec displayName...');
         await updateProfile(userCredential.user, { displayName });
       }
       
       // Create Firestore user document
+      console.log('💾 Création du document Firestore...');
       await createUserDocument(
         userCredential.user.uid,
         userCredential.user.email || email,

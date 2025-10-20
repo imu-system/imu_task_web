@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Link, useSearchParams } from '@/navigation';
+import { Link, useSearchParams, useRouter } from '@/navigation';
 import { Zap, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
@@ -34,6 +34,7 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function SignUpPage() {
     const t = useTranslations('SignUpPage');
     const { signUp, signInWithGoogle, loading } = useAuth();
+    const router = useRouter();
     const [error, setError] = useState<string | null>(null);
     const searchParams = useSearchParams();
     const refCode = searchParams.get('ref');
@@ -56,10 +57,17 @@ export default function SignUpPage() {
     }, []);
 
     const onSubmit = async (data: SignUpFormValues) => {
+        console.log('🚀 onSubmit appelé avec les données:', data);
         setError(null);
         try {
+            console.log('📞 Appel signUp...');
             await signUp(data.email, data.password, data.name);
+            console.log('✅ signUp terminé avec succès');
+            // Redirection vers le dashboard après inscription réussie
+            console.log('🔄 Redirection vers /dashboard');
+            router.push('/dashboard');
         } catch (err) {
+            console.error('❌ Erreur dans onSubmit:', err);
             setError(err instanceof Error ? err.message : 'Une erreur est survenue');
         }
     };
@@ -68,6 +76,8 @@ export default function SignUpPage() {
         setError(null);
         try {
             await signInWithGoogle();
+            // Redirection vers le dashboard après connexion Google réussie
+            router.push('/dashboard');
         } catch (err) {
             setError(err instanceof Error ? err.message : 'Une erreur est survenue');
         }
@@ -170,7 +180,12 @@ export default function SignUpPage() {
                 </div>
                 
                 <div>
-                <Button type="submit" className="w-full" data-testid="signup-submit" disabled={loading || !isValid}>
+                <Button 
+                    type="submit" 
+                    className="w-full" 
+                    data-testid="signup-submit" 
+                    disabled={loading}
+                >
                     {loading && <Loader2 className="animate-spin" />}
                     {t('submitButton')}
                 </Button>

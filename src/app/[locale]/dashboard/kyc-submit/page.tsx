@@ -197,7 +197,7 @@ export default function KYCSubmitPage() {
     return (
         <div className="container max-w-4xl py-8 space-y-6">
             <div>
-                <h1 className="text-3xl font-bold tracking-tight">Vérification KYC</h1>
+                <h1 className="text-3xl font-bold tracking-tight" data-testid="kyc-page-title">Vérification KYC</h1>
                 <p className="text-muted-foreground">
                     Soumettez vos documents pour devenir prestataire vérifié
                 </p>
@@ -251,6 +251,7 @@ export default function KYCSubmitPage() {
                                 <input
                                     type="file"
                                     id={`file-${doc.type}`}
+                                    data-testid={`kyc-upload-${doc.type}`}
                                     accept="image/*,application/pdf"
                                     onChange={(e) =>
                                         handleFileChange(index, e.target.files?.[0] || null)
@@ -272,7 +273,7 @@ export default function KYCSubmitPage() {
                                     </Button>
                                 </label>
                                 {doc.file && (
-                                    <div className="flex items-center text-sm text-muted-foreground">
+                                    <div className="flex items-center text-sm text-muted-foreground" data-testid={`kyc-file-${doc.type}`}>
                                         <FileText className="mr-2 h-4 w-4" />
                                         {doc.file.name}
                                     </div>
@@ -301,7 +302,7 @@ export default function KYCSubmitPage() {
                 <Button variant="outline" onClick={() => router.back()} disabled={uploading}>
                     Annuler
                 </Button>
-                <Button onClick={handleSubmit} disabled={uploading}>
+                <Button onClick={handleSubmit} disabled={uploading} data-testid="kyc-submit-button">
                     {uploading ? (
                         <>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />

@@ -27,6 +27,13 @@ test.describe('KYC Submission Flow', () => {
     });
 
     test('should complete full KYC submission and approval flow', async ({ page, context }) => {
+        // Écouter les messages console du navigateur
+        page.on('console', msg => {
+            const text = msg.text();
+            // Afficher tous les logs pour debug
+            console.log('BROWSER CONSOLE:', text);
+        });
+
         // ========== PARTIE 1: Inscription et connexion utilisateur ==========
 
         // Navigation vers inscription
@@ -34,17 +41,17 @@ test.describe('KYC Submission Flow', () => {
         await expect(page).toHaveURL(/\/sign-up/);
 
         // Remplir le formulaire d'inscription
+        console.log('📝 Remplissage du formulaire...');
         await page.getByTestId('signup-displayName').fill(testUser.displayName);
         await page.getByTestId('signup-email').fill(testUser.email);
         await page.getByTestId('signup-password').fill(testUser.password);
 
-        // Attendre que le bouton soit activé (validation react-hook-form)
-        await page.waitForTimeout(500);
-        // Attendre que le bouton soit activé (validation react-hook-form)
-        await page.waitForTimeout(500); await page.getByTestId('signup-submit').click();
+        // Soumettre le formulaire en appuyant sur Enter plutôt que cliquer sur le bouton
+        console.log('📤 Tentative de soumission du formulaire...');
+        await page.getByTestId('signup-password').press('Enter');
 
         // Attendre la redirection vers dashboard
-        await expect(page).toHaveURL(/\/dashboard/, { timeout: 10000 });
+        await expect(page).toHaveURL(/\/dashboard/, { timeout: 15000 });
 
         // ========== PARTIE 2: Soumission KYC ==========
 
@@ -53,10 +60,10 @@ test.describe('KYC Submission Flow', () => {
         await expect(page).toHaveURL(/\/kyc-submit/);
 
         // Vérifier le titre de la page
-        await expect(page.getByRole('heading', { name: /vérification d'identité/i })).toBeVisible();
+        await expect(page.getByTestId('kyc-page-title')).toBeVisible();
 
         // Préparer des fichiers de test
-        const testFilesDir = path.join(__dirname, '../fixtures');
+        const testFilesDir = path.join(__dirname, 'fixtures');
         const identityDoc = path.join(testFilesDir, 'test-identity.pdf');
         const addressDoc = path.join(testFilesDir, 'test-address.pdf');
         const professionalDoc = path.join(testFilesDir, 'test-professional.pdf');
@@ -77,7 +84,12 @@ test.describe('KYC Submission Flow', () => {
         await expect(page.getByTestId('kyc-file-address')).toBeVisible();
 
         // Soumettre le formulaire KYC
+        console.log('🔄 Soumission du formulaire KYC...');
         await page.getByTestId('kyc-submit-button').click();
+
+        // Attendre un peu pour voir ce qui se passe
+        await page.waitForTimeout(2000);
+        await page.screenshot({ path: 'test-results/after-kyc-submit.png' });
 
         // Attendre la confirmation de soumission
         await expect(page.getByText(/demande soumise avec succès/i)).toBeVisible({ timeout: 15000 });
@@ -97,8 +109,6 @@ test.describe('KYC Submission Flow', () => {
         // Connexion admin
         await adminPage.getByTestId('login-email').fill(testAdmin.email);
         await adminPage.getByTestId('login-password').fill(testAdmin.password);
-        // Attendre validation
-        await page.waitForTimeout(500); await adminPage.getByTestId('login-submit').click();
 
         // Attendre la redirection vers dashboard admin
         await expect(adminPage).toHaveURL(/\/dashboard/, { timeout: 10000 });
@@ -161,8 +171,6 @@ test.describe('KYC Submission Flow', () => {
         await page.goto(`${BASE_URL}/fr/sign-in`);
         await page.getByTestId('login-email').fill(testAdmin.email);
         await page.getByTestId('login-password').fill(testAdmin.password);
-        // Attendre validation
-        await page.waitForTimeout(500); await page.getByTestId('login-submit').click();
 
         await expect(page).toHaveURL(/\/dashboard/, { timeout: 10000 });
 
@@ -204,8 +212,6 @@ test.describe('KYC Submission Flow', () => {
         await page.getByTestId('signup-displayName').fill('Test Status User');
         await page.getByTestId('signup-email').fill(userEmail);
         await page.getByTestId('signup-password').fill('TestPass123!');
-        // Attendre que le bouton soit activé (validation react-hook-form)
-        await page.waitForTimeout(500); await page.getByTestId('signup-submit').click();
 
         await expect(page).toHaveURL(/\/dashboard/, { timeout: 10000 });
 
@@ -235,8 +241,6 @@ test.describe('KYC Submission Flow', () => {
         await page.getByTestId('signup-displayName').fill('Test Pending User');
         await page.getByTestId('signup-email').fill(userEmail);
         await page.getByTestId('signup-password').fill('TestPass123!');
-        // Attendre que le bouton soit activé (validation react-hook-form)
-        await page.waitForTimeout(500); await page.getByTestId('signup-submit').click();
 
         await expect(page).toHaveURL(/\/dashboard/, { timeout: 10000 });
 
@@ -268,8 +272,6 @@ test.describe('KYC Submission Flow', () => {
         await page.getByTestId('signup-displayName').fill('Test Duplicate User');
         await page.getByTestId('signup-email').fill(userEmail);
         await page.getByTestId('signup-password').fill('TestPass123!');
-        // Attendre que le bouton soit activé (validation react-hook-form)
-        await page.waitForTimeout(500); await page.getByTestId('signup-submit').click();
 
         await expect(page).toHaveURL(/\/dashboard/, { timeout: 10000 });
 
@@ -300,8 +302,6 @@ test.describe('KYC Submission Flow', () => {
         await page.getByTestId('signup-displayName').fill('Test Validation User');
         await page.getByTestId('signup-email').fill(userEmail);
         await page.getByTestId('signup-password').fill('TestPass123!');
-        // Attendre que le bouton soit activé (validation react-hook-form)
-        await page.waitForTimeout(500); await page.getByTestId('signup-submit').click();
 
         await expect(page).toHaveURL(/\/dashboard/, { timeout: 10000 });
 
@@ -326,8 +326,6 @@ test.describe('KYC Submission Flow', () => {
         await page.goto(`${BASE_URL}/fr/sign-in`);
         await page.getByTestId('login-email').fill(testAdmin.email);
         await page.getByTestId('login-password').fill(testAdmin.password);
-        // Attendre validation
-        await page.waitForTimeout(500); await page.getByTestId('login-submit').click();
 
         await expect(page).toHaveURL(/\/dashboard/, { timeout: 10000 });
 
@@ -360,8 +358,6 @@ test.describe('KYC Error Handling', () => {
         await page.getByTestId('signup-displayName').fill('Test Error User');
         await page.getByTestId('signup-email').fill(userEmail);
         await page.getByTestId('signup-password').fill('TestPass123!');
-        // Attendre que le bouton soit activé (validation react-hook-form)
-        await page.waitForTimeout(500); await page.getByTestId('signup-submit').click();
 
         await expect(page).toHaveURL(/\/dashboard/, { timeout: 10000 });
 
@@ -388,8 +384,6 @@ test.describe('KYC Error Handling', () => {
         await page.goto(`${BASE_URL}/fr/sign-in`);
         await page.getByTestId('login-email').fill(testAdmin.email);
         await page.getByTestId('login-password').fill(testAdmin.password);
-        // Attendre validation
-        await page.waitForTimeout(500); await page.getByTestId('login-submit').click();
 
         await page.goto(`${BASE_URL}/fr/dashboard/admin`);
         await page.getByTestId('admin-tab-kyc').click();

@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Link } from '@/navigation';
+import { Link, useRouter } from '@/navigation';
 import { Zap, Loader2 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useForm } from 'react-hook-form';
@@ -34,6 +34,7 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function SignInPage() {
   const t = useTranslations('SignInPage');
   const { signIn, signInWithGoogle, loading } = useAuth();
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   
   const { register, handleSubmit, formState: { errors, isValid } } = useForm<SignInFormValues>({
@@ -51,6 +52,8 @@ export default function SignInPage() {
     setError(null);
     try {
       await signIn(data.email, data.password);
+      // Redirection vers le dashboard après connexion réussie
+      router.push('/dashboard');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Une erreur est survenue');
     }
@@ -60,6 +63,8 @@ export default function SignInPage() {
     setError(null);
     try {
       await signInWithGoogle();
+      // Redirection vers le dashboard après connexion Google réussie
+      router.push('/dashboard');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Une erreur est survenue');
     }
@@ -141,7 +146,12 @@ export default function SignInPage() {
                 </div>
 
                 <div>
-                <Button type="submit" className="w-full" data-testid="login-submit" disabled={loading || !isValid}>
+                <Button 
+                    type="submit" 
+                    className="w-full" 
+                    data-testid="login-submit" 
+                    disabled={loading}
+                >
                     {loading && <Loader2 className="animate-spin" />}
                     {t('submitButton')}
                 </Button>

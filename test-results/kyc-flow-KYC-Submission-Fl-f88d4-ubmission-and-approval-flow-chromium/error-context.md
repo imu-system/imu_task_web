@@ -3,57 +3,199 @@
 ```yaml
 - generic [ref=e1]:
   - generic [ref=e3]:
-    - generic [ref=e4]:
-      - link [ref=e5] [cursor=pointer]:
+    - generic [ref=e7]:
+      - link "ImuTask" [ref=e9] [cursor=pointer]:
         - /url: /fr
-        - img [ref=e6]
-      - generic [ref=e8]: Créez votre compte ImuTask
-      - generic [ref=e9]:
-        - text: Déjà membre ?
-        - link "Connectez-vous" [ref=e10] [cursor=pointer]:
-          - /url: /fr
-    - generic [ref=e11]:
+        - img [ref=e10]
+        - generic [ref=e12]: ImuTask
       - generic [ref=e13]:
-        - button "Continuer avec Google" [ref=e14] [cursor=pointer]:
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - generic [ref=e18]: T
+            - generic [ref=e19]:
+              - paragraph [ref=e20]: Test User KYC
+              - paragraph [ref=e21]: test.user.kyc.1760943149586@example.com
+          - button [ref=e22] [cursor=pointer]:
+            - img
+        - list [ref=e23]:
+          - listitem [ref=e24]:
+            - link "Dashboard" [ref=e25] [cursor=pointer]:
+              - /url: /fr/dashboard
+              - button "Dashboard" [ref=e26]:
+                - img [ref=e27]
+                - generic [ref=e32]: Dashboard
+          - listitem [ref=e33]:
+            - link "Trouver un prestataire" [ref=e34] [cursor=pointer]:
+              - /url: /fr/dashboard/search
+              - button "Trouver un prestataire" [ref=e35]:
+                - img [ref=e36]
+                - generic [ref=e39]: Trouver un prestataire
+          - listitem [ref=e40]:
+            - link "Trouver une mission" [ref=e41] [cursor=pointer]:
+              - /url: /fr/dashboard/offers
+              - button "Trouver une mission" [ref=e42]:
+                - img [ref=e43]
+                - generic [ref=e46]: Trouver une mission
+          - listitem [ref=e47]:
+            - link "Mes missions" [ref=e48] [cursor=pointer]:
+              - /url: /fr/dashboard/tasks
+              - button "Mes missions" [ref=e49]:
+                - img [ref=e50]
+                - generic [ref=e53]: Mes missions
+          - listitem [ref=e54]:
+            - link "Mes Réservations" [ref=e55] [cursor=pointer]:
+              - /url: /fr/dashboard/bookings
+              - button "Mes Réservations" [ref=e56]:
+                - img [ref=e57]
+                - generic [ref=e60]: Mes Réservations
+          - listitem [ref=e61]:
+            - link "Messages" [ref=e62] [cursor=pointer]:
+              - /url: /fr/dashboard/messages
+              - button "Messages" [ref=e63]:
+                - img [ref=e64]
+                - generic [ref=e66]: Messages
+          - listitem [ref=e67]:
+            - link "Modèles" [ref=e68] [cursor=pointer]:
+              - /url: /fr/dashboard/templates
+              - button "Modèles" [ref=e69]:
+                - img [ref=e70]
+                - generic [ref=e74]: Modèles
+          - listitem [ref=e75]:
+            - link "Avis" [ref=e76] [cursor=pointer]:
+              - /url: /fr/dashboard/reviews
+              - button "Avis" [ref=e77]:
+                - img [ref=e78]
+                - generic [ref=e80]: Avis
+          - listitem [ref=e81]:
+            - link "Portefeuille" [ref=e82] [cursor=pointer]:
+              - /url: /fr/dashboard/wallet
+              - button "Portefeuille" [ref=e83]:
+                - img [ref=e84]
+                - generic [ref=e87]: Portefeuille
+          - listitem [ref=e88]:
+            - link "Académie" [ref=e89] [cursor=pointer]:
+              - /url: /fr/dashboard/academy
+              - button "Académie" [ref=e90]:
+                - img [ref=e91]
+                - generic [ref=e93]: Académie
+          - listitem [ref=e94]:
+            - link "Parrainage" [ref=e95] [cursor=pointer]:
+              - /url: /fr/dashboard/referrals
+              - button "Parrainage" [ref=e96]:
+                - img [ref=e97]
+                - generic [ref=e101]: Parrainage
+    - main [ref=e102]:
+      - generic [ref=e103]:
+        - button "Rechercher... ⌘ K" [ref=e104] [cursor=pointer]:
           - img
-          - text: Continuer avec Google
-        - generic [ref=e19]: Ou continuer avec
-        - generic [ref=e20]:
-          - generic [ref=e21]:
-            - text: Nom complet
-            - textbox "Nom complet" [ref=e23]: Test User KYC
-          - generic [ref=e24]:
-            - text: Adresse e-mail
-            - textbox "Adresse e-mail" [ref=e26]: test.user.kyc.1760871416317@example.com
-          - generic [ref=e27]:
-            - text: Mot de passe
-            - textbox "Mot de passe" [ref=e29]: TestPassword123!
-          - generic [ref=e30]:
-            - text: Code de parrainage (Optionnel)
-            - textbox "Code de parrainage (Optionnel)" [ref=e32]:
-              - /placeholder: Entrez un code si vous en avez un
-          - button "Créer le compte" [active] [ref=e34] [cursor=pointer]
-      - paragraph [ref=e36]:
-        - text: En créant un compte, vous acceptez nos
-        - link "Conditions d'utilisation" [ref=e37] [cursor=pointer]:
-          - /url: /fr/legal/terms
-        - text: .
+          - generic [ref=e105]: Rechercher...
+          - generic:
+            - generic: ⌘
+            - text: K
+        - generic [ref=e106]:
+          - generic [ref=e107]:
+            - button "Créer une mission" [ref=e108] [cursor=pointer]:
+              - img
+              - generic [ref=e109]: Créer une mission
+            - button [ref=e110] [cursor=pointer]:
+              - img
+          - button "FR | EUR Changer de langue, de région ou de devise" [ref=e111] [cursor=pointer]:
+            - img
+            - generic [ref=e112]: FR | EUR
+            - generic [ref=e113]: Changer de langue, de région ou de devise
+          - link "Messages" [ref=e114] [cursor=pointer]:
+            - /url: /fr/dashboard/messages
+            - img
+            - generic [ref=e115]: Messages
+          - button "Notifications" [ref=e116] [cursor=pointer]:
+            - img
+            - generic [ref=e117]: Notifications
+          - link "Statut Hors-ligne" [ref=e118] [cursor=pointer]:
+            - /url: /fr/dashboard/offline
+            - img
+            - generic [ref=e119]: Statut Hors-ligne
+          - button "T" [ref=e120] [cursor=pointer]:
+            - generic [ref=e122]: T
+      - main [ref=e123]:
+        - generic [ref=e124]:
+          - generic [ref=e125]:
+            - heading "Vérification KYC" [level=1] [ref=e126]
+            - paragraph [ref=e127]: Soumettez vos documents pour devenir prestataire vérifié
+          - alert [ref=e128]:
+            - img [ref=e129]
+            - generic [ref=e131]: "Veuillez sélectionner tous les documents requis: Document professionnel, Justificatif fiscal"
+          - generic [ref=e132]:
+            - generic [ref=e133]:
+              - generic [ref=e134]:
+                - img [ref=e135]
+                - text: Documents requis
+              - generic [ref=e138]: Tous les documents sont obligatoires et doivent être valides
+            - generic [ref=e139]:
+              - generic [ref=e140]:
+                - generic [ref=e141]:
+                  - generic [ref=e142]:
+                    - heading "Pièce d'identité" [level=3] [ref=e143]
+                    - paragraph [ref=e144]: Carte d'identité, passeport ou permis de conduire valide
+                  - generic [ref=e145]:
+                    - img [ref=e146]
+                    - text: Sélectionné
+                - generic [ref=e149]:
+                  - generic [ref=e151] [cursor=pointer]:
+                    - img
+                    - text: Changer
+                  - generic [ref=e152]:
+                    - img [ref=e153]
+                    - text: test-identity.pdf
+              - generic [ref=e156]:
+                - generic [ref=e157]:
+                  - generic [ref=e158]:
+                    - heading "Justificatif de domicile" [level=3] [ref=e159]
+                    - paragraph [ref=e160]: Facture de moins de 3 mois (électricité, gaz, internet...)
+                  - generic [ref=e161]:
+                    - img [ref=e162]
+                    - text: Sélectionné
+                - generic [ref=e165]:
+                  - generic [ref=e167] [cursor=pointer]:
+                    - img
+                    - text: Changer
+                  - generic [ref=e168]:
+                    - img [ref=e169]
+                    - text: test-address.pdf
+              - generic [ref=e172]:
+                - generic [ref=e174]:
+                  - heading "Document professionnel" [level=3] [ref=e175]
+                  - paragraph [ref=e176]: KBIS, certificat d'auto-entrepreneur ou autre justificatif
+                - generic [ref=e179] [cursor=pointer]:
+                  - img
+                  - text: Sélectionner
+              - generic [ref=e180]:
+                - generic [ref=e182]:
+                  - heading "Justificatif fiscal" [level=3] [ref=e183]
+                  - paragraph [ref=e184]: Numéro SIRET, TVA intracommunautaire ou avis d'imposition
+                - generic [ref=e187] [cursor=pointer]:
+                  - img
+                  - text: Sélectionner
+          - generic [ref=e188]:
+            - button "Annuler" [ref=e189] [cursor=pointer]
+            - button "Soumettre la demande" [active] [ref=e190] [cursor=pointer]:
+              - img
+              - text: Soumettre la demande
   - region "Notifications (F8)":
     - list
-  - generic [ref=e38]:
-    - img [ref=e40]
-    - button "Open Tanstack query devtools" [ref=e88] [cursor=pointer]:
-      - img [ref=e89]
-  - alert [ref=e137]
-  - generic [ref=e142] [cursor=pointer]:
-    - button "Open Next.js Dev Tools" [ref=e143]:
-      - img [ref=e144]
-    - generic [ref=e147]:
-      - button "Open issues overlay" [ref=e148]:
-        - generic [ref=e149]:
-          - generic [ref=e150]: "0"
-          - generic [ref=e151]: "1"
-        - generic [ref=e152]: Issue
-      - button "Collapse issues badge" [ref=e153]:
-        - img [ref=e154]
+  - generic [ref=e191]:
+    - img [ref=e193]
+    - button "Open Tanstack query devtools" [ref=e241] [cursor=pointer]:
+      - img [ref=e242]
+  - alert [ref=e290]
+  - generic [ref=e295] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e296]:
+      - img [ref=e297]
+    - generic [ref=e300]:
+      - button "Open issues overlay" [ref=e301]:
+        - generic [ref=e302]:
+          - generic [ref=e303]: "0"
+          - generic [ref=e304]: "1"
+        - generic [ref=e305]: Issue
+      - button "Collapse issues badge" [ref=e306]:
+        - img [ref=e307]
 ```
