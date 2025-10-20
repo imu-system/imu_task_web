@@ -15,6 +15,11 @@
  * - Submit KYC documents
  * - Approve/reject KYC (admin only, auto-assigns provider role)
  * - List KYC submissions (admin only)
+ *
+ * KYB functions (ImuPro):
+ * - Submit KYB documents for professional verification
+ * - Approve/reject KYB (admin only, creates pro profile)
+ * - List KYB submissions (admin only)
  */
 
 import * as admin from "firebase-admin";
@@ -30,8 +35,12 @@ export {sendDailyDigest} from "./send-daily-digest";
 
 // Admin functions
 export {assignUserRole, removeUserRole, listUsersWithRoles} from "./admin/user-roles";
+
 // KYC functions
 export {submitKYC, approveKYC, rejectKYC, listKYCSubmissions} from "./kyc/kyc-validation";
+
+// KYB functions (ImuPro)
+export {submitKYB, approveKYB, rejectKYB, listKYBSubmissions} from "./kyb/kyb-validation";
 
 // Export the Firestore instance
 export const db = admin.firestore();
