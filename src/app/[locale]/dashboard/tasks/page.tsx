@@ -19,12 +19,15 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import TaskListCard from '@/components/task-list-card';
+import { ServiceCategoryFilter } from '@/components/services/category-selector';
+import { ServiceCategory as ServiceCategoryEnum } from '@/types/services';
 
 export default function DashboardTasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryEnum[]>([]);
   const t = useTranslations('MyTasksPage');
   const { user } = useAuth();
   const router = useRouter();
@@ -54,29 +57,19 @@ export default function DashboardTasksPage() {
                 const categoryRef = doc(db, 'serviceCategories', taskData.categoryId);
                 const categorySnap = await getDoc(categoryRef);
                 if (categorySnap.exists()) {
-                    taskData.category = categorySnap.data() as ServiceCategory;
+                    const categoryData = categorySnap.data() as ServiceCategory;
+                    taskData.category = categoryData.name; // Store category name as string
                 }
             }
-            if (taskData.addressId) {
-                 const addressRef = doc(db, 'addresses', taskData.addressId);
-                 const addressSnap = await getDoc(addressRef);
-                 if (addressSnap.exists()) {
-                     taskData.address = addressSnap.data() as Address;
-                 }
-            }
-             if (taskData.clientId) {
-                const clientRef = doc(db, 'users', taskData.clientId);
-                const clientSnap = await getDoc(clientRef);
-                if (clientSnap.exists()) {
-                     const profileRef = doc(db, 'profiles', taskData.clientId);
-                     const profileSnap = await getDoc(profileRef);
-                     taskData.client = {
-                         id: clientSnap.id,
-                         ...clientSnap.data(),
-                         profile: profileSnap.exists() ? profileSnap.data() : undefined
-                     } as any;
+            if (taskData.id) {
+                const addressRef = doc(db, 'addresses', taskData.id);
+                const addressSnap = await getDoc(addressRef);
+                if (addressSnap.exists()) {
+                    taskData.adresse = addressSnap.data() as Address;
                 }
             }
+             // Skip client data fetching - Task type doesn't include client property
+             // Client info can be fetched separately if needed in TaskCard component
 
             tasksData.push(taskData);
         }
@@ -91,14 +84,22 @@ export default function DashboardTasksPage() {
   }, [user]);
 
   const filteredTasks = useMemo(() => {
-    return tasks.filter(task => 
-      task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      task.description.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }, [tasks, searchTerm]);
+    return tasks.filter(task => {
+      // Text search filter
+      const matchesSearch = task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        task.description.toLowerCase().includes(searchTerm.toLowerCase());
+      
+      // Category filter
+      const matchesCategory = selectedCategories.length === 0 || 
+        (typeof task.category === 'string' && selectedCategories.includes(task.category as ServiceCategoryEnum));
+      
+      return matchesSearch && matchesCategory;
+    });
+  }, [tasks, searchTerm, selectedCategories]);
   
   const handleOpenSheet = (taskId: string) => {
-    router.push(`?taskId=${taskId}`, { scroll: false });
+    // Navigate to task detail page
+    router.push(`/dashboard/tasks/${taskId}` as any);
   };
 
   return (
@@ -112,6 +113,20 @@ export default function DashboardTasksPage() {
               {t('subtitle')}
             </p>
           </div>
+          <Button asChild>
+            <Link href="/dashboard/tasks/new">
+              <PlusCircle className="mr-2 h-5 w-5" />
+              {t('createTask')}
+            </Link>
+          </Button>
+        </div>
+
+        {/* Filters Section */}
+        <div className="space-y-4">
+          <ServiceCategoryFilter
+            value={selectedCategories}
+            onChange={setSelectedCategories}
+          />
         </div>
 
         <div className="flex flex-col md:flex-row gap-4 justify-between">

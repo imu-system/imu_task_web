@@ -25,6 +25,7 @@ import {
   ShieldAlert,
   Paperclip,
   Users,
+  Tag,
 } from 'lucide-react';
 import {
   AlertDialog,
@@ -48,6 +49,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { useAuth } from '@/contexts/AuthContext';
+import { useRouter } from '@/navigation';
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { OfferForm } from '@/components/offer-form';
 
@@ -56,13 +58,17 @@ const OfferCard = ({ offer, onAccept, disabled }: { offer: Offer, onAccept: (off
   const t = useTranslations('OfferCard');
   const [isAccepting, setIsAccepting] = useState(false);
 
+  // Access extended properties via type assertion
+  const provider = (offer as any).provider;
+  const proposedPrice = (offer as any).proposedPrice || 0;
+
   const handleAccept = async () => {
     setIsAccepting(true);
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     toast({
         title: t('toastAcceptTitle'),
-        description: t('toastAcceptDescription', { name: offer.provider.profile?.displayName }),
+        description: t('toastAcceptDescription', { name: provider?.profile?.displayName || 'Provider' }),
     });
     onAccept(offer);
     setIsAccepting(false);
@@ -71,13 +77,13 @@ const OfferCard = ({ offer, onAccept, disabled }: { offer: Offer, onAccept: (off
   return (
     <div className="flex items-start gap-4 rounded-lg border p-4">
       <Avatar>
-        <AvatarImage src={offer.provider.profile?.photoUrl} />
-        <AvatarFallback>{offer.provider.profile?.displayName.charAt(0)}</AvatarFallback>
+        <AvatarImage src={provider?.profile?.photoUrl} />
+        <AvatarFallback>{provider?.profile?.displayName?.charAt(0) || 'P'}</AvatarFallback>
       </Avatar>
       <div className="flex-1 space-y-2">
         <div className="flex items-center justify-between">
           <div>
-            <p className="font-semibold">{offer.provider.profile?.displayName}</p>
+            <p className="font-semibold">{provider?.profile?.displayName || 'Provider'}</p>
             <div className="flex items-center gap-0.5 text-yellow-500">
                 <Star className='h-4 w-4 fill-current' />
                 <Star className='h-4 w-4 fill-current' />
@@ -87,7 +93,7 @@ const OfferCard = ({ offer, onAccept, disabled }: { offer: Offer, onAccept: (off
                 <span className="text-xs text-muted-foreground ml-1">{t('reviews', { count: 12 })}</span>
             </div>
           </div>
-          <p className="text-lg font-bold text-primary">{offer.proposedPrice}€</p>
+          <p className="text-lg font-bold text-primary">{proposedPrice}€</p>
         </div>
         <p className="text-sm text-muted-foreground bg-accent/20 p-3 rounded-md">
           {offer.message}
@@ -104,7 +110,7 @@ const OfferCard = ({ offer, onAccept, disabled }: { offer: Offer, onAccept: (off
                   <AlertDialogHeader>
                       <AlertDialogTitle>{t('confirmAccept.title')}</AlertDialogTitle>
                       <AlertDialogDescription>
-                          {t('confirmAccept.description', { amount: offer.proposedPrice, name: offer.provider.profile?.displayName })}
+                          {t('confirmAccept.description', { amount: proposedPrice, name: provider?.profile?.displayName || 'Provider' })}
                       </AlertDialogDescription>
                   </AlertDialogHeader>
                   <AlertDialogFooter>
@@ -150,7 +156,7 @@ const ProviderActions = ({ task }: { task: Task }) => {
 const ClientActions = ({ offers, onAccept, task }: { offers: Offer[], onAccept: (offer: Offer) => void, task: Task }) => {
     const t = useTranslations('TaskDetailPage');
     const acceptedOffersCount = offers.filter(o => o.status === OfferStatus.accepted).length;
-    const requiredProviders = task.numberOfProvidersRequired || 1;
+    const requiredProviders = (task as any).numberOfProvidersRequired || 1;
     const isFullyBooked = acceptedOffersCount >= requiredProviders;
 
     return (
@@ -183,13 +189,21 @@ export default function TaskDetailContent({ task: initialTask, offers: initialOf
   const t = useTranslations('TaskDetailPage');
   const tActions = useTranslations('TaskActions');
   const locale = useLocale();
+  const router = useRouter();
   const [task, setTask] = useState(initialTask);
   const [offers, setOffers] = useState(initialOffers);
   const { toast } = useToast();
 
   const isClient = user?.uid === task.clientId;
   const isProvider = user?.roles?.includes(UserRole.provider) ?? false;
-  const isMatched = task.status === TaskStatus.matched || task.status === TaskStatus.in_progress || task.status === TaskStatus.completed;
+  const isMatched = task.status === 'In Progress' || task.status === 'Completed';
+
+  // Extract all tags from task
+  const allTags = (task as any).tags || [];
+
+  const handleTagClick = (tag: string) => {
+    router.push(`/tasks/search?tag=${tag}` as any);
+  };
 
   const handleOfferAccepted = (acceptedOffer: Offer) => {
     const updatedOffers = offers.map(o => 
@@ -198,13 +212,11 @@ export default function TaskDetailContent({ task: initialTask, offers: initialOf
     setOffers(updatedOffers);
 
     const newAcceptedCount = updatedOffers.filter(o => o.status === OfferStatus.accepted).length;
-    const requiredCount = task.numberOfProvidersRequired || 1;
+    const requiredCount = (task as any).numberOfProvidersRequired || 1;
 
     let newStatus = task.status;
     if (newAcceptedCount >= requiredCount) {
-      newStatus = TaskStatus.matched;
-    } else {
-      newStatus = TaskStatus.partially_matched;
+      newStatus = 'In Progress' as any;
     }
 
     setTask(currentTask => ({ ...currentTask, status: newStatus }));
@@ -219,19 +231,19 @@ export default function TaskDetailContent({ task: initialTask, offers: initialOf
 
   return (
     <div className="p-2 space-y-8">
-      <TaskStatusTimeline currentStatus={task.status} />
+      <TaskStatusTimeline currentStatus={task.status as any} />
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-6">
           <Card>
             <CardHeader>
               <Badge variant="secondary" className="w-fit mb-2">
-                {task.category?.name[locale as 'fr' | 'en'] || task.categoryId}
+                {typeof task.category === 'string' ? task.category : task.categoryId}
               </Badge>
               <CardTitle className="text-3xl font-headline">{task.title}</CardTitle>
               <div className="flex flex-wrap gap-x-4 gap-y-2 text-muted-foreground pt-2">
                 <div className="flex items-center gap-2">
                   <MapPin className="h-4 w-4" />
-                  <span>{task.address?.formatted || task.location}</span>
+                  <span>{(task as any).address?.formatted || task.location}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
@@ -242,16 +254,40 @@ export default function TaskDetailContent({ task: initialTask, offers: initialOf
                     }).format(new Date(task.timeWindowStart))}
                   </span>
                 </div>
-                 {task.numberOfProvidersRequired && task.numberOfProvidersRequired > 1 && (
+                 {(task as any).numberOfProvidersRequired && (task as any).numberOfProvidersRequired > 1 && (
                     <div className="flex items-center gap-2">
                         <Users className="h-4 w-4" />
-                        <span>{t('providersRequired', { count: task.numberOfProvidersRequired })}</span>
+                        <span>{t('providersRequired', { count: (task as any).numberOfProvidersRequired })}</span>
                     </div>
                  )}
               </div>
             </CardHeader>
             <CardContent>
               <p className="text-foreground/80">{task.description}</p>
+              
+              {/* Tags section - Show all tags with click-to-search */}
+              {allTags.length > 0 && (
+                <div className="mt-6 pt-6 border-t">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Tag className="h-4 w-4 text-muted-foreground" />
+                    <h3 className="text-sm font-semibold text-muted-foreground">
+                      {t('tags', { defaultValue: 'Tags' })}
+                    </h3>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {allTags.map((tag: string) => (
+                      <Badge
+                        key={tag}
+                        variant="outline"
+                        className="cursor-pointer hover:bg-secondary hover:border-primary/50 transition-colors"
+                        onClick={() => handleTagClick(tag)}
+                      >
+                        {tag.replace(/_/g, ' ')}
+                      </Badge>
+                    ))}
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
 
@@ -262,7 +298,7 @@ export default function TaskDetailContent({ task: initialTask, offers: initialOf
         <div className="space-y-6">
           <Card>
             <CardHeader className="text-center">
-              <span className="text-4xl font-bold text-primary">{task.priceOffered}€</span>
+              <span className="text-4xl font-bold text-primary">{task.budget}€</span>
               <CardDescription>{t('budget')}</CardDescription>
             </CardHeader>
           </Card>
@@ -273,7 +309,7 @@ export default function TaskDetailContent({ task: initialTask, offers: initialOf
                 </CardHeader>
                 <CardContent className="grid grid-cols-1 gap-2">
                 <Button asChild variant="outline" disabled={isMatched}>
-                    <Link href={`/dashboard/tasks/${task.id}/edit`}>
+                    <Link href={`/dashboard/tasks/${task.id}/edit` as any}>
                     <Edit className="mr-2" />{t('actions.edit')}
                     </Link>
                 </Button>
@@ -296,7 +332,7 @@ export default function TaskDetailContent({ task: initialTask, offers: initialOf
                 </AlertDialog>
 
                 <Separator />
-                <Button variant="outline" disabled={task.status !== TaskStatus.completed}>
+                <Button variant="outline" disabled={task.status === 'Completed'}>
                     <Receipt className="mr-2" />{t('actions.receipt')}
                 </Button>
                 <AlertDialog>
@@ -368,14 +404,14 @@ export default function TaskDetailContent({ task: initialTask, offers: initialOf
             <CardContent className="space-y-4">
               <div className="flex items-center gap-3">
                 <Avatar className="h-12 w-12">
-                  <AvatarImage src={task.client?.profile?.photoUrl || undefined} />
+                  <AvatarImage src={(task as any).client?.profile?.photoUrl || undefined} />
                   <AvatarFallback>
-                    {task.client?.profile?.displayName.charAt(0)}
+                    {(task as any).client?.profile?.displayName.charAt(0)}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="font-semibold">{task.client?.profile?.displayName}</p>
-                  <p className="text-sm text-muted-foreground">{t('memberSince', { year: 2023 })}</p>
+                  <p className="font-semibold">{(task as any).client?.profile?.displayName}</p>
+                  <p className="text-sm text-muted-foreground">{t('clientSince', { defaultValue: 'Client depuis 2023' })}</p>
                 </div>
               </div>
               <Separator />

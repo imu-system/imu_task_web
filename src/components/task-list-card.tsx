@@ -16,6 +16,9 @@ import { Button } from './ui/button';
 import { useTranslations, useLocale } from 'next-intl';
 import { Dialog, DialogTrigger, DialogContent } from './ui/dialog';
 import { OfferForm } from './offer-form';
+import { ServiceCategoryBadge } from './services/category-selector';
+import { ServiceCategory } from '@/types/services';
+import { useRouter } from '@/navigation';
 
 type TaskListCardProps = {
   task: Task;
@@ -27,19 +30,37 @@ const getStatusVariant = (status: TaskStatus) => {
         case TaskStatus.published: return 'default';
         case TaskStatus.matched: return 'secondary';
         case TaskStatus.completed: return 'outline';
-        case TaskStatus.canceled: return 'destructive';
+        case TaskStatus.cancelled: return 'destructive';
         default: return 'outline';
     }
 }
 
 export default function TaskListCard({ task, onOpenSheet }: TaskListCardProps) {
-  const { title, category, timeWindowStart, priceOffered, id, status } = task;
+  const { title, category, timeWindowStart, budget, id, status } = task;
   const locale = useLocale();
   const t = useTranslations('MyTasksPage');
   const tCard = useTranslations('TaskCard');
   const tStatus = useTranslations('TaskStatusTimeline');
+  const router = useRouter();
 
-  const categoryLabel = category?.name?.[locale as keyof typeof category.name] || category?.slug || 'Catégorie';
+  const categoryLabel = typeof category === 'string' ? category : 'Catégorie';
+  
+  // Handle both old category (ServiceCategory from database) and new enum-based category
+  const categoryFromCatalog = typeof category === 'string' && Object.values(ServiceCategory).includes(category as ServiceCategory) 
+    ? category as ServiceCategory 
+    : null;
+
+  // Extract tags from task
+  const taskTags = (task as any).tags || [];
+  const displayTags = taskTags.slice(0, 3);
+  const hasMoreTags = taskTags.length > 3;
+
+  // Handle tag click
+  const handleTagClick = (tag: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    router.push(`/tasks/search?tag=${tag}` as any);
+  };
   
   return (
     <Card>
@@ -47,11 +68,16 @@ export default function TaskListCard({ task, onOpenSheet }: TaskListCardProps) {
         <div className="flex-1">
             <div className="flex items-center gap-2 mb-1">
                 { tStatus(status as any) ? (
-                    <Badge variant={getStatusVariant(status)}>
+                    <Badge variant={getStatusVariant(status as any)}>
                         {tStatus(status as any)}
                     </Badge>
                 ) : null}
-                <Badge variant="outline">{categoryLabel}</Badge>
+                {/* Use new catalog badge if category is from catalog, otherwise fallback */}
+                {categoryFromCatalog ? (
+                  <ServiceCategoryBadge category={categoryFromCatalog} showIcon={true} />
+                ) : (
+                  <Badge variant="outline">{categoryLabel}</Badge>
+                )}
             </div>
             <p className="font-semibold text-lg">{title}</p>
              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground mt-1">
@@ -60,10 +86,31 @@ export default function TaskListCard({ task, onOpenSheet }: TaskListCardProps) {
                     <span>{new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(timeWindowStart))}</span>
                 </div>
              </div>
+
+             {/* Tags Section */}
+             {displayTags.length > 0 && (
+               <div className="flex flex-wrap gap-1 mt-2">
+                 {displayTags.map((tag: string) => (
+                   <Badge
+                     key={tag}
+                     variant="outline"
+                     className="text-xs cursor-pointer hover:bg-secondary"
+                     onClick={(e) => handleTagClick(tag, e)}
+                   >
+                     {tag.replace(/_/g, ' ')}
+                   </Badge>
+                 ))}
+                 {hasMoreTags && (
+                   <Badge variant="outline" className="text-xs text-muted-foreground">
+                     +{taskTags.length - 3}
+                   </Badge>
+                 )}
+               </div>
+             )}
         </div>
         <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4">
             <div className="text-lg font-bold text-primary text-left md:text-right">
-                {priceOffered}€
+                {budget}€
             </div>
             <div className="flex gap-2">
                 <Button variant="outline" size="sm" onClick={() => onOpenSheet(id)}>

@@ -34,11 +34,12 @@ import { useState, useEffect } from 'react';
 import { suggestTaskCategories } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 import { type ServiceCategory, type Task } from '@/lib/types';
+import { TASK_TEMPLATES, ServiceCategory as ServiceCategoryEnum } from '@/types/services';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/contexts/AuthContext';
-import { useRouter, Link } from '@/navigation';
-import { useParams } from 'next/navigation';
+import { useRouter as useNextRouter, Link } from '@/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { collection, query, where, getDocs, doc, getDoc, updateDoc, serverTimestamp, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 
@@ -79,12 +80,37 @@ export default function EditTaskPage() {
   const tEdit = useTranslations('EditTaskPage');
   const { user } = useAuth();
   const router = useRouter();
+  const nextRouter = useNextRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   const descriptionValue = form.watch('description');
+  const selectedCategoryId = form.watch('categoryId');
+  
+  // Filter templates based on selected category
+  // Map category name to ServiceCategory enum value
+  const categoryNameToEnum: Record<string, ServiceCategoryEnum> = {
+    'Aide à domicile': ServiceCategoryEnum.HOME_HELP,
+    'Livraison/Courses': ServiceCategoryEnum.DELIVERY,
+    'Aide numérique': ServiceCategoryEnum.DIGITAL_HELP,
+    'Déménagement': ServiceCategoryEnum.MOVING,
+    'Accompagnement': ServiceCategoryEnum.ACCOMPANIMENT,
+    'Jardinage': ServiceCategoryEnum.GARDENING,
+    'Garde d\'animaux': ServiceCategoryEnum.PET_CARE,
+    'Aide événementielle': ServiceCategoryEnum.EVENT_HELP,
+  };
+  
+  const matchingTemplates = selectedCategoryId && taskCategories.length > 0
+    ? (() => {
+        const selectedCategory = taskCategories.find(cat => cat.id === selectedCategoryId);
+        if (!selectedCategory) return [];
+        const enumValue = categoryNameToEnum[selectedCategory.name];
+        if (!enumValue) return [];
+        return TASK_TEMPLATES.filter(template => template.category === enumValue);
+      })()
+    : [];
 
   useEffect(() => {
     const fetchInitialData = async () => {
@@ -114,7 +140,7 @@ export default function EditTaskPage() {
                 });
             } else {
                  toast({ variant: 'destructive', title: tEdit('toastNotFoundTitle'), description: tEdit('toastNotFoundDescription') });
-                 router.push('/dashboard/tasks');
+                 nextRouter.push('/dashboard');
             }
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -154,13 +180,35 @@ export default function EditTaskPage() {
     }
   }
 
+  const handleApplyTemplate = (template: typeof TASK_TEMPLATES[0]) => {
+    form.setValue('title', template.title);
+    form.setValue('description', template.description);
+    form.setValue('priceOffered', template.suggestedPrice);
+    if (template.suggestedDuration) {
+      form.setValue('estimatedDurationMin', template.suggestedDuration);
+    }
+    
+    toast({
+      title: tEdit('templateAppliedTitle') || 'Modèle appliqué',
+      description: tEdit('templateAppliedDescription') || `Le modèle "${template.title}" a été appliqué. Vous pouvez personnaliser les champs.`,
+    });
+    
+    // Track template usage (for analytics - task 9)
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'template_applied', {
+        template_id: `${template.category}_${template.title.toLowerCase().replace(/\s+/g, '_')}`,
+        category: template.category,
+      });
+    }
+  };
+
   const handleSuggestCategories = async () => {
     const description = form.getValues('description');
     if (description.length < 20) return;
     setIsSuggesting(true);
-    const result = await suggestTaskCategories({ taskDescription: description });
+    const result = await suggestTaskCategories(description);
     if (result.success && result.categories) {
-      const filtered = taskCategories.filter(tc => result.categories!.includes(tc.slug));
+      const filtered = taskCategories.filter(tc => result.categories!.includes(tc.name));
       setSuggestedCategories(filtered);
     } else {
       toast({
@@ -179,10 +227,12 @@ export default function EditTaskPage() {
   return (
     <div className="space-y-8 max-w-4xl mx-auto">
         <div className="flex items-center gap-4">
-            <Button variant="outline" size="icon" asChild>
-                <Link href={`/dashboard/tasks/${id}`}>
-                    <ArrowLeft className="h-4 w-4"/>
-                </Link>
+            <Button 
+              variant="outline" 
+              size="icon" 
+              onClick={() => router.back()}
+            >
+              <ArrowLeft className="h-4 w-4"/>
             </Button>
             <div>
                 <h1 className="text-3xl font-bold tracking-tight font-headline">
@@ -247,7 +297,7 @@ export default function EditTaskPage() {
                             <SelectContent>
                             {taskCategories.map((cat) => (
                                 <SelectItem key={cat.id} value={cat.id}>
-                                {cat.name.fr || cat.slug}
+                                {cat.name}
                                 </SelectItem>
                             ))}
                             </SelectContent>
@@ -256,6 +306,69 @@ export default function EditTaskPage() {
                         </FormItem>
                     )}
                     />
+                    
+                    {/* Template Suggestions */}
+                    {matchingTemplates.length > 0 && (
+                      <Card className="border-primary/20 bg-primary/5">
+                        <CardHeader>
+                          <CardTitle className="text-lg flex items-center gap-2">
+                            <Sparkles className="h-5 w-5 text-primary" />
+                            {tEdit('templateSuggestionsTitle') || 'Modèles suggérés pour cette catégorie'}
+                          </CardTitle>
+                          <CardDescription>
+                            {tEdit('templateSuggestionsDescription') || 'Gagnez du temps en utilisant un modèle pré-rempli. Vous pourrez le personnaliser ensuite.'}
+                          </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          {matchingTemplates.map((template, idx) => (
+                            <Card key={idx} className="bg-background hover:border-primary/40 transition-colors">
+                              <CardHeader className="pb-3">
+                                <div className="flex items-start justify-between gap-4">
+                                  <div className="flex-1">
+                                    <CardTitle className="text-base font-semibold mb-2">
+                                      {template.title}
+                                    </CardTitle>
+                                    <CardDescription className="text-sm line-clamp-2">
+                                      {template.description}
+                                    </CardDescription>
+                                  </div>
+                                  <Button 
+                                    type="button"
+                                    size="sm"
+                                    onClick={() => handleApplyTemplate(template)}
+                                    className="shrink-0"
+                                  >
+                                    {tEdit('applyTemplateButton') || 'Appliquer'}
+                                  </Button>
+                                </div>
+                              </CardHeader>
+                              <CardContent className="pt-0">
+                                <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
+                                  <div className="flex items-center gap-1">
+                                    <span className="font-medium">{template.suggestedPrice}€</span>
+                                  </div>
+                                  {template.suggestedDuration && (
+                                    <div className="flex items-center gap-1">
+                                      <span>⏱️</span>
+                                      <span>{template.suggestedDuration} min</span>
+                                    </div>
+                                  )}
+                                  {template.tags && template.tags.length > 0 && (
+                                    <div className="flex flex-wrap gap-1">
+                                      {template.tags.slice(0, 3).map(tag => (
+                                        <Badge key={tag} variant="secondary" className="text-xs">
+                                          {tag.replace(/_/g, ' ')}
+                                        </Badge>
+                                      ))}
+                                    </div>
+                                  )}
+                                </div>
+                              </CardContent>
+                            </Card>
+                          ))}
+                        </CardContent>
+                      </Card>
+                    )}
                     
                     <FormField
                     control={form.control}

@@ -6,6 +6,18 @@ export enum UserRole {
   moderator = 'moderator'
 }
 
+export type Address = {
+  street: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+  latitude?: number;
+  longitude?: number;
+  timeWindowStart?: Date;
+  timeWindowEnd?: Date;
+};
+
 export enum UserStatus {
   active = 'active',
   inactive = 'inactive',
@@ -81,12 +93,16 @@ export type LegacyUser = {
 export type Task = {
   id: string;
   title: string;
+  categoryId: string;
   description: string;
   category: string;
   location: string;
+  adresse: Address;
   budget: number;
   status: 'Open' | 'In Progress' | 'Completed';
   clientId: string;
+  timeWindowStart: Date;
+  timeWindowEnd: Date;
   providerId?: string;
   createdAt: Date;
 };
