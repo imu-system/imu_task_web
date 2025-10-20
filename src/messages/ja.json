@@ -726,6 +726,289 @@
             "terms": "利用規約"
         }
     },
+    "Legal": {
+        "backButton": "戻る",
+        "lastUpdated": "最終更新日",
+        "version": "バージョン 1.0",
+        "contact": "お問い合わせ",
+        "email": "メール",
+        "phone": "電話",
+        "address": "住所",
+        "Terms": {
+            "title": "利用規約",
+            "subtitle": "プラットフォーム利用者向け"
+        },
+        "Privacy": {
+            "back": "戻る",
+            "title": "プライバシーポリシー",
+            "subtitle": "個人情報の保護",
+            "version": "バージョン 1.0",
+            "lastUpdate": "最終更新",
+            "section1": {
+                "title": "はじめに",
+                "content": "IMU Task（以下「当社」または「プラットフォーム」）は、ユーザーのプライバシー保護に取り組んでいます。本プライバシーポリシーは、一般データ保護規則（GDPR）および適用されるデータ保護法に従って、個人データの収集、使用、保存、保護方法について説明します。"
+            },
+            "section2": {
+                "title": "データ管理者",
+                "intro": "個人データの管理者は以下の通りです：",
+                "companyName": "IMU Task",
+                "contactEmail": "contact@imutask.com",
+                "dpoEmail": "dpo@imutask.com"
+            },
+            "section3": {
+                "title": "収集されるデータ",
+                "subtitle1": "識別データ",
+                "item1_1": "氏名",
+                "item1_2": "メールアドレス",
+                "item1_3": "電話番号（任意）",
+                "item1_4": "アカウント作成日",
+                "subtitle2": "専門家データ",
+                "item2_1": "SIRET番号",
+                "item2_2": "会社名",
+                "item2_3": "事業所住所",
+                "item2_4": "業種",
+                "item2_5": "提供サービス",
+                "item2_6": "サービス提供地域",
+                "item2_7": "ポートフォリオ（写真、説明）",
+                "subtitle3": "ナビゲーションデータ",
+                "item3_1": "IPアドレス",
+                "item3_2": "ブラウザタイプ",
+                "item3_3": "閲覧ページ",
+                "item3_4": "接続日時",
+                "item3_5": "Cookie（専用セクション参照）",
+                "subtitle4": "取引データ",
+                "item4_1": "作成・承認された見積",
+                "item4_2": "アップロードされた請求書",
+                "item4_3": "予約",
+                "item4_4": "メッセージ交換",
+                "item4_5": "レビューと評価"
+            },
+            "section4": {
+                "title": "処理目的",
+                "intro": "以下の目的で個人データを収集・処理します：",
+                "purpose1": "アカウント管理",
+                "purpose1_desc": "ユーザープロフィールの作成、認証、管理",
+                "purpose2": "サービス提供",
+                "purpose2_desc": "専門家との連絡、メッセージ交換、見積・予約管理",
+                "purpose3": "KYB確認",
+                "purpose3_desc": "SIRET番号による専門家の本人確認",
+                "purpose4": "プラットフォーム改善",
+                "purpose4_desc": "サービス改善のための利用分析",
+                "purpose5": "コミュニケーション",
+                "purpose5_desc": "アカウントと予約に関する通知送信",
+                "purpose6": "セキュリティ",
+                "purpose6_desc": "不正防止と法的義務の遵守",
+                "purpose7": "マーケティング",
+                "purpose7_desc": "商業オファーの送信（事前同意が必要）"
+            },
+            "section5": {
+                "title": "処理の法的根拠",
+                "intro": "データ処理は以下の法的根拠に基づいています：",
+                "basis1": "契約履行",
+                "basis1_desc": "プラットフォームサービスの提供",
+                "basis2": "同意",
+                "basis2_desc": "マーケティング通信、非必須Cookie",
+                "basis3": "正当な利益",
+                "basis3_desc": "サービス改善、プラットフォームセキュリティ",
+                "basis4": "法的義務",
+                "basis4_desc": "請求データの保持、KYB確認"
+            },
+            "section6": {
+                "title": "データ受領者",
+                "intro": "個人データは以下の受領者に送信される場合があります：",
+                "recipient1": "承認された担当者",
+                "recipient1_desc": "プラットフォームの技術・カスタマーサポートチーム",
+                "recipient2": "専門家",
+                "recipient2_desc": "見積依頼または予約の一環として",
+                "recipient3": "技術サービスプロバイダー",
+                "recipient3_desc": "ホスティング（Firebase/Google Cloud）、決済サービス、分析ツール",
+                "recipient4": "管轄当局",
+                "recipient4_desc": "法的または司法的要請に基づく"
+            },
+            "section7": {
+                "title": "保存期間",
+                "intro": "個人データは以下の期間保存されます：",
+                "duration1": "アクティブアカウント",
+                "duration1_desc": "アカウント使用期間中",
+                "duration2": "アカウント削除後",
+                "duration2_desc": "30日間（復元可能、その後完全削除）",
+                "duration3": "請求データ",
+                "duration3_desc": "10年間（法的義務）",
+                "duration4": "ナビゲーションデータ",
+                "duration4_desc": "最大13ヶ月",
+                "duration5": "マーケティングデータ",
+                "duration5_desc": "最後の連絡から3年間"
+            },
+            "section8": {
+                "title": "ユーザーの権利",
+                "intro": "GDPRに従い、以下の権利があります：",
+                "right1": "アクセス権",
+                "right1_desc": "個人データのコピーを取得",
+                "right2": "修正権",
+                "right2_desc": "不正確または不完全なデータを修正",
+                "right3": "削除権",
+                "right3_desc": "データを削除（「忘れられる権利」）",
+                "right4": "制限権",
+                "right4_desc": "データ処理を制限",
+                "right5": "反対権",
+                "right5_desc": "データ処理に反対（特にマーケティング）",
+                "right6": "データポータビリティ権",
+                "right6_desc": "構造化された形式でデータを受け取る",
+                "right7": "同意撤回権",
+                "right7_desc": "いつでも可能",
+                "exerciseRights": "権利を行使するには、以下にご連絡ください：",
+                "complaint": "また、国のデータ保護機関に苦情を申し立てる権利もあります。"
+            },
+            "section9": {
+                "title": "データセキュリティ",
+                "intro": "不正アクセス、紛失、破壊、開示から個人データを保護するため、適切な技術的・組織的措置を実施しています：",
+                "measure1": "機密データの暗号化（SSL/TLS）",
+                "measure2": "セキュアな認証（Firebase認証）",
+                "measure3": "厳格なデータアクセス制御",
+                "measure4": "定期的なバックアップ",
+                "measure5": "定期的なセキュリティ監査"
+            },
+            "section10": {
+                "title": "Cookie",
+                "intro": "プラットフォームはユーザー体験を向上させるためにCookieを使用します。Cookieはデバイスに保存される小さなテキストファイルです。",
+                "typesTitle": "使用するCookieの種類：",
+                "type1": "必須Cookie",
+                "type1_desc": "プラットフォーム動作に必要（セッション、認証）",
+                "type2": "パフォーマンスCookie",
+                "type2_desc": "利用分析（Google Analytics）",
+                "type3": "機能Cookie",
+                "type3_desc": "設定の記憶",
+                "settings": "Cookieを拒否するようブラウザを設定できますが、プラットフォームの機能に影響する場合があります。"
+            },
+            "section11": {
+                "title": "国際転送",
+                "content": "データはGoogle Cloud（Firebase）サーバーにホストされており、欧州連合外に所在する場合があります。これらの転送は欧州委員会の標準契約条項に準拠し、適切な保護措置が講じられています。"
+            },
+            "section12": {
+                "title": "ポリシーの変更",
+                "content": "本プライバシーポリシーはいつでも変更する権利を留保します。変更があった場合は、プラットフォーム上の通知またはメールで連絡します。最終更新日は本文書の上部に表示されています。"
+            },
+            "section13": {
+                "title": "お問い合わせ",
+                "intro": "本プライバシーポリシーまたは個人データに関するご質問は、以下にご連絡ください：",
+                "dpoLabel": "DPOメール",
+                "generalLabel": "一般メール"
+            }
+        },
+        "Mentions": {
+            "back": "戻る",
+            "title": "法的事項",
+            "lastUpdate": "最終更新",
+            "section1": {
+                "title": "プラットフォーム発行者",
+                "legalName": "法人名",
+                "companyName": "IMU Task",
+                "legalForm": "法的形態",
+                "legalFormValue": "簡易株式会社（SAS）",
+                "capital": "資本金",
+                "capitalValue": "10,000ユーロ",
+                "siret": "SIRET番号",
+                "siretValue": "123 456 789 00010",
+                "rcs": "RCS番号",
+                "rcsValue": "Paris B 123 456 789",
+                "headquarters": "本社",
+                "headquartersValue": "123 Avenue des Champs-Élysées, 75008 Paris, France",
+                "vat": "EU VAT番号",
+                "vatValue": "FR 12 123456789",
+                "emailLabel": "メール",
+                "email": "contact@imutask.com",
+                "phoneLabel": "電話",
+                "phone": "+33 1 23 45 67 89",
+                "director": "発行責任者",
+                "directorName": "John Doe、IMU Task SAS社長",
+                "directorEmail": "direction@imutask.com"
+            },
+            "section2": {
+                "title": "ホスティングプロバイダー",
+                "nameLabel": "名前",
+                "name": "Google Cloud Platform（Firebase）",
+                "companyLabel": "会社",
+                "company": "Google LLC",
+                "addressLabel": "住所",
+                "address": "1600 Amphitheatre Parkway, Mountain View, CA 94043, United States",
+                "websiteLabel": "ウェブサイト",
+                "details": "サーバーはISO 27001認証を受けたデータセンターに配置され、欧州のセキュリティおよびデータ保護基準に準拠しています。データは主に欧州地域（europe-west1 - ベルギー）にホストされています。"
+            },
+            "section3": {
+                "title": "知的財産",
+                "paragraph1": "IMU Taskプラットフォームを構成するすべての要素（テキスト、グラフィックス、ソフトウェア、写真、画像、動画、音声、計画、名称、ロゴ、商標、様々な保護可能な創作物および著作物、データベースなど）およびプラットフォーム自体は、IMU Taskの独占的財産であるか、使用許可の対象となっています。",
+                "paragraph2": "いかなる手段によっても、またいかなる媒体によっても、プラットフォームまたはそのコンテンツの全部または一部の複製、表現、修正、公開、伝送、改変は、IMU Taskの事前書面による許可なしに禁止されています。",
+                "paragraph3": "プラットフォーム、そのコンテンツ、またはそれに組み込まれた要素の無許可の利用は、侵害行為とみなされ、知的財産法第L.335-2条以降の規定に従って訴追されます。"
+            },
+            "section4": {
+                "title": "Cookie",
+                "paragraph1": "プラットフォームは、ユーザー体験を向上させ、トラフィックを分析するためにCookieを使用します。プラットフォームの閲覧を続けることにより、これらのCookieの使用に同意したことになります。",
+                "paragraph2": "Cookieを拒否したり、Cookieが設置されたときに通知を受けるようブラウザを設定できます。ただし、特定のCookieを拒否すると、プラットフォームの正常な動作に影響する場合があります。",
+                "paragraph3": "Cookieとその管理の詳細については、当社の",
+                "privacyLink": "プライバシーポリシー"
+            },
+            "section5": {
+                "title": "個人データ",
+                "paragraph1": "IMU Taskは、一般データ保護規則（GDPR）および適用されるデータ保護法に従って個人データを収集・処理します。",
+                "paragraph2": "データ管理者は、社長John Doeが代表するIMU Taskです。",
+                "paragraph3": "個人データの処理に関するご質問は、当社のデータ保護責任者（DPO）にご連絡ください：",
+                "dpoLabel": "DPOメール",
+                "dpoEmail": "dpo@imutask.com",
+                "paragraph4": "権利とデータ処理の詳細については、当社の",
+                "privacyLink": "プライバシーポリシー"
+            },
+            "section6": {
+                "title": "クレジット",
+                "design": "設計・開発",
+                "designValue": "IMU Task",
+                "uiLabel": "UI/UXデザイン",
+                "framework": "フレームワーク",
+                "backend": "バックエンド・ホスティング",
+                "backendValue": "Firebase / Google Cloud Platform",
+                "icons": "アイコン"
+            },
+            "section7": {
+                "title": "責任の制限",
+                "paragraph1": "IMU Taskはプラットフォームの可用性とセキュリティを確保するために最善を尽くしますが、中断やエラーのないアクセスを保証することはできません。プラットフォームは、メンテナンス、更新、または当社の管理外の原因により一時的に利用できなくなる場合があります。",
+                "paragraph2": "IMU Taskは以下について責任を負いません：",
+                "item1": "プラットフォームの使用またはアクセス不能に起因する直接的または間接的な損害",
+                "item2": "コンピュータ機器に感染する可能性のあるウイルスや悪意のあるプログラム",
+                "item3": "第三者によるプラットフォームの不正または不適切な使用",
+                "item4": "ユーザーと専門家間の紛争",
+                "item5": "プラットフォームに登録されている専門家が提供するサービスの品質",
+                "item6": "ユーザーが公開したコンテンツ"
+            },
+            "section8": {
+                "title": "ハイパーリンク",
+                "paragraph1": "プラットフォームには他のウェブサイトへのリンクが含まれる場合があります。IMU Taskはこれらのサイトを管理しておらず、そのコンテンツ、可用性、プライバシーポリシーについて一切の責任を負いません。",
+                "paragraph2": "プラットフォームへのハイパーリンクの作成には、IMU Taskの事前書面による許可が必要です。リクエストについては、contact@imutask.comまでご連絡ください。"
+            },
+            "section9": {
+                "title": "準拠法と管轄裁判所",
+                "paragraph1": "本法的事項はフランス法に準拠します。紛争が発生した場合、友好的な合意が得られない限り、フランスの裁判所が唯一の管轄権を有します。",
+                "paragraph2": "紛争の友好的解決に関する消費者法の規定に従い、IMU Taskは所属する消費者調停サービスに加入しています。紛争が発生した場合は、次のウェブサイトで苦情を申し立てることができます："
+            },
+            "section10": {
+                "title": "法的事項の変更",
+                "paragraph1": "IMU Taskは、本法的事項をいつでも変更する権利を留保します。変更はプラットフォームでの公開時に有効になります。最終更新日は本文書の上部に表示されています。"
+            },
+            "section11": {
+                "title": "お問い合わせ",
+                "intro": "本法的事項に関するご質問は、以下にご連絡ください：",
+                "emailLabel": "メール",
+                "email": "contact@imutask.com",
+                "legalEmailLabel": "法務メール",
+                "legalEmail": "legal@imutask.com",
+                "phoneLabel": "電話",
+                "phone": "+33 1 23 45 67 89",
+                "mailLabel": "郵便",
+                "mailAddress": "IMU Task - 法務部",
+                "mailStreet": "123 Avenue des Champs-Élysées",
+                "mailCity": "75008 Paris",
+                "mailCountry": "France"
+            }
+        }
+    },
     "MyTasksPage": {
         "title": "My Requests",
         "subtitle": "Manage the tasks you have created.",

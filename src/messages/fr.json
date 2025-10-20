@@ -1273,5 +1273,354 @@
             "error": "Une erreur s'est produite",
             "requiredFields": "Veuillez remplir tous les champs requis"
         }
+    },
+    "Legal": {
+        "backButton": "Retour",
+        "lastUpdated": "Date de mise à jour",
+        "version": "Version 1.0",
+        "contact": "Contact",
+        "email": "Email",
+        "phone": "Téléphone",
+        "address": "Adresse",
+        "Terms": {
+            "title": "Conditions Générales d'Utilisation",
+            "subtitle": "Pour les utilisateurs de la plateforme",
+            "section1": {
+                "title": "Objet",
+                "content1": "Les présentes Conditions Générales d'Utilisation (ci-après « CGU ») ont pour objet de définir les modalités et conditions d'utilisation de la plateforme IMU Task (ci-après « la Plateforme »), ainsi que les droits et obligations des utilisateurs (ci-après « l'Utilisateur » ou « les Utilisateurs »).",
+                "content2": "La Plateforme est un service de mise en relation entre des particuliers recherchant des services professionnels et des professionnels offrant leurs services dans divers domaines (travaux, rénovation, entretien, etc.)."
+            },
+            "section2": {
+                "title": "Acceptation des CGU",
+                "content1": "L'accès et l'utilisation de la Plateforme sont soumis à l'acceptation et au respect des présentes CGU. En vous inscrivant sur la Plateforme, vous reconnaissez avoir pris connaissance des CGU et vous vous engagez à les respecter.",
+                "content2": "Si vous n'acceptez pas les présentes CGU, vous ne devez pas utiliser la Plateforme."
+            },
+            "section3": {
+                "title": "Inscription et compte utilisateur",
+                "subtitle1": "Création de compte",
+                "content1": "Pour accéder aux fonctionnalités de la Plateforme, l'Utilisateur doit créer un compte en fournissant des informations exactes et à jour (nom, prénom, adresse email, etc.).",
+                "subtitle2": "Sécurité du compte",
+                "content2": "L'Utilisateur est responsable de la confidentialité de ses identifiants de connexion. Toute utilisation de votre compte sera présumée avoir été effectuée par vous. En cas d'utilisation frauduleuse, vous devez immédiatement nous en informer.",
+                "subtitle3": "Exactitude des informations",
+                "content3": "Vous vous engagez à fournir des informations exactes, complètes et à jour. Vous devez mettre à jour vos informations personnelles en cas de changement."
+            },
+            "section4": {
+                "title": "Services proposés",
+                "subtitle1": "Mise en relation",
+                "content1": "La Plateforme permet aux Utilisateurs de rechercher des professionnels et de solliciter des devis pour leurs projets. Les professionnels peuvent répondre aux demandes et proposer leurs services.",
+                "subtitle2": "Messagerie",
+                "content2": "La Plateforme met à disposition un système de messagerie intégré permettant aux Utilisateurs et aux professionnels d'échanger dans le cadre de leurs projets.",
+                "subtitle3": "Gestion des réservations",
+                "content3": "Les Utilisateurs peuvent confirmer des réservations avec des professionnels. La Plateforme facilite la gestion de ces réservations mais n'est pas partie aux contrats conclus entre Utilisateurs et professionnels."
+            },
+            "section5": {
+                "title": "Obligations de l'Utilisateur",
+                "intro": "L'Utilisateur s'engage à :",
+                "item1": "Utiliser la Plateforme de manière conforme à sa destination et aux présentes CGU",
+                "item2": "Ne pas utiliser la Plateforme à des fins illégales ou non autorisées",
+                "item3": "Respecter les droits de propriété intellectuelle de la Plateforme et des autres Utilisateurs",
+                "item4": "Ne pas diffuser de contenu injurieux, diffamatoire, discriminatoire ou illicite",
+                "item5": "Ne pas perturber le fonctionnement de la Plateforme",
+                "item6": "Respecter les autres Utilisateurs et les professionnels",
+                "item7": "Fournir des informations exactes et sincères"
+            },
+            "section6": {
+                "title": "Responsabilité",
+                "subtitle1": "Responsabilité de la Plateforme",
+                "content1": "La Plateforme est un service de mise en relation. Elle ne garantit pas la qualité des services fournis par les professionnels, ni l'exactitude des informations fournies par les Utilisateurs et les professionnels.",
+                "content2": "La Plateforme ne saurait être tenue responsable des litiges qui pourraient survenir entre Utilisateurs et professionnels dans le cadre de l'exécution des prestations.",
+                "subtitle2": "Responsabilité de l'Utilisateur",
+                "content3": "L'Utilisateur est seul responsable de l'utilisation qu'il fait de la Plateforme et des conséquences qui en découlent. Il est responsable de la véracité des informations qu'il communique."
+            },
+            "section7": {
+                "title": "Propriété intellectuelle",
+                "content": "L'ensemble des éléments de la Plateforme (structure, design, textes, images, logos, etc.) est protégé par le droit d'auteur et le droit des bases de données. Toute reproduction, représentation, modification ou exploitation de tout ou partie de ces éléments sans autorisation préalable est interdite."
+            },
+            "section8": {
+                "title": "Données personnelles",
+                "content": "Les données personnelles collectées dans le cadre de l'utilisation de la Plateforme font l'objet d'un traitement informatique conforme au Règlement Général sur la Protection des Données (RGPD). Pour plus d'informations, veuillez consulter notre",
+                "privacyLink": "Politique de confidentialité"
+            },
+            "section9": {
+                "title": "Résiliation",
+                "content": "L'Utilisateur peut résilier son compte à tout moment depuis les paramètres de son compte. La Plateforme se réserve le droit de suspendre ou de supprimer le compte d'un Utilisateur en cas de violation des présentes CGU, sans préavis ni indemnité."
+            },
+            "section10": {
+                "title": "Modification des CGU",
+                "content": "La Plateforme se réserve le droit de modifier les présentes CGU à tout moment. Les Utilisateurs seront informés de toute modification substantielle par email ou via une notification sur la Plateforme. L'utilisation continue de la Plateforme après modification vaut acceptation des nouvelles CGU."
+            },
+            "section11": {
+                "title": "Droit applicable et juridiction",
+                "content": "Les présentes CGU sont soumises au droit français. En cas de litige, et à défaut d'accord amiable, les tribunaux français seront seuls compétents."
+            },
+            "section12": {
+                "title": "Contact",
+                "content": "Pour toute question relative aux présentes CGU, vous pouvez nous contacter à l'adresse suivante :",
+                "legalEmail": "legal@imutask.com"
+            }
+        },
+        "Privacy": {
+            "title": "Politique de confidentialité",
+            "subtitle": "Protection de vos données personnelles",
+            "section1": {
+                "title": "Introduction",
+                "content": "IMU Task (ci-après « nous » ou « la Plateforme ») s'engage à protéger la vie privée de ses utilisateurs. Cette Politique de confidentialité décrit comment nous collectons, utilisons, stockons et protégeons vos données personnelles conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés."
+            },
+            "section2": {
+                "title": "Responsable du traitement",
+                "intro": "Le responsable du traitement de vos données personnelles est :",
+                "companyName": "IMU Task",
+                "contactEmail": "contact@imutask.com",
+                "dpoEmail": "dpo@imutask.com"
+            },
+            "section3": {
+                "title": "Données collectées",
+                "subtitle1": "Données d'identification",
+                "item1_1": "Nom et prénom",
+                "item1_2": "Adresse email",
+                "item1_3": "Numéro de téléphone (optionnel)",
+                "item1_4": "Date de création du compte",
+                "subtitle2": "Données des professionnels",
+                "item2_1": "Numéro SIRET",
+                "item2_2": "Raison sociale",
+                "item2_3": "Adresse professionnelle",
+                "item2_4": "Secteur d'activité",
+                "item2_5": "Services proposés",
+                "item2_6": "Zones d'intervention",
+                "item2_7": "Portfolio (photos, descriptions)",
+                "subtitle3": "Données de navigation",
+                "item3_1": "Adresse IP",
+                "item3_2": "Type de navigateur",
+                "item3_3": "Pages visitées",
+                "item3_4": "Date et heure de connexion",
+                "item3_5": "Cookies (voir section dédiée)",
+                "subtitle4": "Données de transaction",
+                "item4_1": "Devis créés et acceptés",
+                "item4_2": "Factures uploadées",
+                "item4_3": "Réservations effectuées",
+                "item4_4": "Messages échangés",
+                "item4_5": "Avis et notes"
+            },
+            "section4": {
+                "title": "Finalités du traitement",
+                "intro": "Nous collectons et traitons vos données personnelles pour les finalités suivantes :",
+                "purpose1": "Gestion de votre compte",
+                "purpose1_desc": "Création, authentification et gestion de votre profil utilisateur",
+                "purpose2": "Fourniture des services",
+                "purpose2_desc": "Mise en relation avec des professionnels, échange de messages, gestion des devis et réservations",
+                "purpose3": "Vérification KYB",
+                "purpose3_desc": "Validation de l'identité des professionnels via leur numéro SIRET",
+                "purpose4": "Amélioration de la Plateforme",
+                "purpose4_desc": "Analyse de l'utilisation pour améliorer nos services",
+                "purpose5": "Communication",
+                "purpose5_desc": "Envoi de notifications relatives à votre compte et vos réservations",
+                "purpose6": "Sécurité",
+                "purpose6_desc": "Prévention de la fraude et respect de nos obligations légales",
+                "purpose7": "Marketing",
+                "purpose7_desc": "Envoi d'offres commerciales (avec votre consentement préalable)"
+            },
+            "section5": {
+                "title": "Base légale du traitement",
+                "intro": "Le traitement de vos données repose sur les bases légales suivantes :",
+                "basis1": "Exécution du contrat",
+                "basis1_desc": "Fourniture des services de la Plateforme",
+                "basis2": "Consentement",
+                "basis2_desc": "Communications marketing, cookies non essentiels",
+                "basis3": "Intérêt légitime",
+                "basis3_desc": "Amélioration des services, sécurité de la Plateforme",
+                "basis4": "Obligation légale",
+                "basis4_desc": "Conservation des données de facturation, vérification KYB"
+            },
+            "section6": {
+                "title": "Destinataires des données",
+                "intro": "Vos données personnelles peuvent être transmises aux destinataires suivants :",
+                "recipient1": "Personnel autorisé",
+                "recipient1_desc": "Équipes techniques et support client de la Plateforme",
+                "recipient2": "Professionnels",
+                "recipient2_desc": "Dans le cadre d'une demande de devis ou d'une réservation",
+                "recipient3": "Prestataires techniques",
+                "recipient3_desc": "Hébergement (Firebase/Google Cloud), services de paiement, outils d'analyse",
+                "recipient4": "Autorités compétentes",
+                "recipient4_desc": "Sur demande légale ou judiciaire"
+            },
+            "section7": {
+                "title": "Durée de conservation",
+                "intro": "Nous conservons vos données personnelles pendant les durées suivantes :",
+                "duration1": "Compte actif",
+                "duration1_desc": "Pendant toute la durée d'utilisation de votre compte",
+                "duration2": "Après suppression du compte",
+                "duration2_desc": "30 jours pour permettre une récupération (puis suppression définitive)",
+                "duration3": "Données de facturation",
+                "duration3_desc": "10 ans (obligation légale)",
+                "duration4": "Données de navigation",
+                "duration4_desc": "13 mois maximum",
+                "duration5": "Données marketing",
+                "duration5_desc": "3 ans à compter du dernier contact"
+            },
+            "section8": {
+                "title": "Vos droits",
+                "intro": "Conformément au RGPD, vous disposez des droits suivants :",
+                "right1": "Droit d'accès",
+                "right1_desc": "Obtenir une copie de vos données personnelles",
+                "right2": "Droit de rectification",
+                "right2_desc": "Corriger vos données inexactes ou incomplètes",
+                "right3": "Droit à l'effacement",
+                "right3_desc": "Supprimer vos données (« droit à l'oubli »)",
+                "right4": "Droit à la limitation",
+                "right4_desc": "Restreindre le traitement de vos données",
+                "right5": "Droit d'opposition",
+                "right5_desc": "Vous opposer au traitement de vos données (notamment marketing)",
+                "right6": "Droit à la portabilité",
+                "right6_desc": "Recevoir vos données dans un format structuré",
+                "right7": "Droit de retirer votre consentement",
+                "right7_desc": "À tout moment",
+                "exerciseRights": "Pour exercer vos droits, contactez-nous à :",
+                "complaint": "Vous disposez également du droit d'introduire une réclamation auprès de la CNIL (Commission Nationale de l'Informatique et des Libertés)."
+            },
+            "section9": {
+                "title": "Sécurité des données",
+                "intro": "Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données personnelles contre tout accès non autorisé, perte, destruction ou divulgation :",
+                "measure1": "Chiffrement des données sensibles (SSL/TLS)",
+                "measure2": "Authentification sécurisée (Firebase Authentication)",
+                "measure3": "Contrôle d'accès strict aux données",
+                "measure4": "Sauvegardes régulières",
+                "measure5": "Audits de sécurité périodiques"
+            },
+            "section10": {
+                "title": "Cookies",
+                "intro": "La Plateforme utilise des cookies pour améliorer votre expérience utilisateur. Les cookies sont de petits fichiers texte stockés sur votre appareil.",
+                "typesTitle": "Types de cookies utilisés :",
+                "type1": "Cookies essentiels",
+                "type1_desc": "Nécessaires au fonctionnement de la Plateforme (session, authentification)",
+                "type2": "Cookies de performance",
+                "type2_desc": "Analyse de l'utilisation (Google Analytics)",
+                "type3": "Cookies fonctionnels",
+                "type3_desc": "Mémorisation de vos préférences",
+                "settings": "Vous pouvez configurer votre navigateur pour refuser les cookies, mais cela peut affecter le fonctionnement de la Plateforme."
+            },
+            "section11": {
+                "title": "Transferts internationaux",
+                "content": "Vos données sont hébergées sur les serveurs de Google Cloud (Firebase), qui peuvent être situés en dehors de l'Union européenne. Ces transferts sont encadrés par les clauses contractuelles types de la Commission européenne et bénéficient de garanties appropriées."
+            },
+            "section12": {
+                "title": "Modifications de la politique",
+                "content": "Nous nous réservons le droit de modifier cette Politique de confidentialité à tout moment. Toute modification sera communiquée via une notification sur la Plateforme ou par email. La date de dernière mise à jour est indiquée en haut de ce document."
+            },
+            "section13": {
+                "title": "Contact",
+                "intro": "Pour toute question relative à cette Politique de confidentialité ou à vos données personnelles, contactez-nous :",
+                "dpoLabel": "Email DPO",
+                "generalLabel": "Email général"
+            }
+        },
+        "Mentions": {
+            "title": "Mentions légales",
+            "section1": {
+                "title": "Éditeur de la Plateforme",
+                "companyName": "Raison sociale",
+                "companyNameValue": "IMU Task",
+                "legalForm": "Forme juridique",
+                "legalFormValue": "Société par Actions Simplifiée (SAS)",
+                "capital": "Capital social",
+                "capitalValue": "10 000 €",
+                "siret": "Numéro SIRET",
+                "siretValue": "123 456 789 00010",
+                "rcs": "Numéro RCS",
+                "rcsValue": "Paris B 123 456 789",
+                "headquarters": "Siège social",
+                "headquartersValue": "123 Avenue des Champs-Élysées, 75008 Paris, France",
+                "vat": "Numéro de TVA intracommunautaire",
+                "vatValue": "FR 12 123456789",
+                "email": "Email",
+                "emailValue": "contact@imutask.com",
+                "phone": "Téléphone",
+                "phoneValue": "+33 1 23 45 67 89",
+                "director": "Directeur de la publication",
+                "directorValue": "John Doe, Président de la SAS IMU Task",
+                "directorEmail": "direction@imutask.com"
+            },
+            "section2": {
+                "title": "Hébergeur",
+                "name": "Nom",
+                "nameValue": "Google Cloud Platform (Firebase)",
+                "company": "Société",
+                "companyValue": "Google LLC",
+                "address": "Adresse",
+                "addressValue": "1600 Amphitheatre Parkway, Mountain View, CA 94043, États-Unis",
+                "website": "Site web",
+                "description": "Les serveurs sont situés dans des centres de données certifiés ISO 27001, conformes aux normes de sécurité et de protection des données européennes. Les données sont hébergées principalement dans la région Europe (europe-west1 - Belgique)."
+            },
+            "section3": {
+                "title": "Propriété intellectuelle",
+                "content1": "L'ensemble des éléments composant la Plateforme IMU Task (textes, graphismes, logiciels, photographies, images, vidéos, sons, plans, noms, logos, marques, créations et œuvres protégeables diverses, bases de données, etc.) ainsi que la Plateforme elle-même sont la propriété exclusive de IMU Task ou font l'objet d'une autorisation d'utilisation.",
+                "content2": "Toute reproduction, représentation, modification, publication, transmission, dénaturation, totale ou partielle de la Plateforme ou de son contenu, par quelque procédé que ce soit, et sur quelque support que ce soit, est interdite sans l'autorisation préalable et écrite de IMU Task.",
+                "content3": "Toute exploitation non autorisée de la Plateforme, de son contenu ou de tout élément qui y est incorporé sera considérée comme constitutive d'une contrefaçon et poursuivie conformément aux dispositions des articles L.335-2 et suivants du Code de la Propriété Intellectuelle."
+            },
+            "section4": {
+                "title": "Cookies",
+                "content1": "La Plateforme utilise des cookies pour améliorer l'expérience utilisateur et analyser le trafic. En continuant à naviguer sur la Plateforme, vous acceptez l'utilisation de ces cookies.",
+                "content2": "Vous pouvez configurer votre navigateur pour refuser les cookies ou être averti lorsqu'un cookie est déposé. Toutefois, le refus de certains cookies peut affecter le bon fonctionnement de la Plateforme.",
+                "content3": "Pour plus d'informations sur les cookies et leur gestion, consultez notre",
+                "privacyLink": "Politique de confidentialité"
+            },
+            "section5": {
+                "title": "Données personnelles",
+                "content1": "IMU Task collecte et traite des données personnelles dans le respect du Règlement Général sur la Protection des Données (RGPD) et de la loi Informatique et Libertés.",
+                "content2": "Le responsable du traitement est IMU Task, représentée par son Président, John Doe.",
+                "content3": "Pour toute question relative au traitement de vos données personnelles, vous pouvez contacter notre Délégué à la Protection des Données (DPO) :",
+                "dpoLabel": "Email DPO",
+                "content4": "Pour en savoir plus sur vos droits et le traitement de vos données, consultez notre",
+                "privacyLink": "Politique de confidentialité"
+            },
+            "section6": {
+                "title": "Crédits",
+                "design": "Conception et développement",
+                "designValue": "IMU Task",
+                "ui": "Design UI/UX",
+                "framework": "Framework",
+                "backend": "Backend et hébergement",
+                "backendValue": "Firebase / Google Cloud Platform",
+                "icons": "Icônes"
+            },
+            "section7": {
+                "title": "Limitation de responsabilité",
+                "content1": "IMU Task met tout en œuvre pour assurer la disponibilité et la sécurité de la Plateforme, mais ne peut garantir un accès ininterrompu ou exempt d'erreurs. La Plateforme peut être temporairement indisponible en raison de maintenance, de mises à jour ou de causes indépendantes de notre volonté.",
+                "content2": "IMU Task ne saurait être tenue responsable :",
+                "item1": "Des dommages directs ou indirects résultant de l'utilisation de la Plateforme ou de l'impossibilité d'y accéder",
+                "item2": "Des virus ou programmes malveillants qui pourraient infecter votre équipement informatique",
+                "item3": "De l'utilisation frauduleuse ou abusive de la Plateforme par des tiers",
+                "item4": "Des litiges entre utilisateurs et professionnels",
+                "item5": "De la qualité des services fournis par les professionnels référencés sur la Plateforme",
+                "item6": "Des contenus publiés par les utilisateurs"
+            },
+            "section8": {
+                "title": "Liens hypertextes",
+                "content1": "La Plateforme peut contenir des liens vers d'autres sites web. IMU Task n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu, leur disponibilité ou leur politique de confidentialité.",
+                "content2": "La création de liens hypertextes vers la Plateforme nécessite l'autorisation préalable écrite de IMU Task. Pour toute demande, contactez-nous à : contact@imutask.com"
+            },
+            "section9": {
+                "title": "Droit applicable et juridiction compétente",
+                "content1": "Les présentes mentions légales sont soumises au droit français. En cas de litige, et à défaut d'accord amiable, les tribunaux français seront seuls compétents pour en connaître.",
+                "content2": "Conformément aux dispositions du Code de la consommation concernant le règlement amiable des litiges, IMU Task adhère au Service du Médiateur de la consommation dont elle dépend. En cas de litige, vous pouvez déposer votre réclamation sur le site :",
+                "mediationLink": "https://www.economie.gouv.fr/mediation-conso"
+            },
+            "section10": {
+                "title": "Modification des mentions légales",
+                "content": "IMU Task se réserve le droit de modifier les présentes mentions légales à tout moment. Les modifications prendront effet dès leur publication sur la Plateforme. La date de dernière mise à jour est indiquée en haut de ce document."
+            },
+            "section11": {
+                "title": "Contact",
+                "intro": "Pour toute question relative aux présentes mentions légales, vous pouvez nous contacter :",
+                "emailLabel": "Email",
+                "legalEmailLabel": "Email juridique",
+                "legalEmail": "legal@imutask.com",
+                "phoneLabel": "Téléphone",
+                "addressLabel": "Courrier",
+                "addressLine1": "IMU Task - Service Juridique",
+                "addressLine2": "123 Avenue des Champs-Élysées",
+                "addressLine3": "75008 Paris",
+                "addressLine4": "France"
+            }
+        }
     }
 }
