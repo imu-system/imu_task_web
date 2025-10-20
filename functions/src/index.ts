@@ -42,5 +42,14 @@ export {submitKYC, approveKYC, rejectKYC, listKYCSubmissions} from "./kyc/kyc-va
 // KYB functions (ImuPro)
 export {submitKYB, approveKYB, rejectKYB, listKYBSubmissions} from "./kyb/kyb-validation";
 
+// Quote functions (ImuPro)
+export {
+  createQuote,
+  sendQuote,
+  acceptQuote,
+  declineQuote,
+  cancelQuote,
+} from "./quotes/quotes-management";
+
 // Export the Firestore instance
 export const db = admin.firestore();
