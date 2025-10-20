@@ -51,5 +51,13 @@ export {
   cancelQuote,
 } from "./quotes/quotes-management";
 
+// Invoice functions (ImuPro)
+export {
+  uploadInvoice,
+  validateInvoice,
+  generateInvoiceFromQuote,
+  markInvoiceAsPaid,
+} from "./invoices/invoices-management";
+
 // Export the Firestore instance
 export const db = admin.firestore();
