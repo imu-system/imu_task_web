@@ -421,6 +421,114 @@ export interface Transfer {
     reversedAt?: Timestamp;
 }
 
+// ==================== DISPUTES ====================
+
+export type DisputeStatus =
+    | 'opened'         // Ouvert
+    | 'under_review'   // En cours d'examen
+    | 'waiting_response' // En attente réponse
+    | 'won'            // Gagné
+    | 'lost'           // Perdu
+    | 'closed';        // Fermé
+
+export const DisputeStatusValues = {
+    opened: 'opened' as DisputeStatus,
+    under_review: 'under_review' as DisputeStatus,
+    waiting_response: 'waiting_response' as DisputeStatus,
+    won: 'won' as DisputeStatus,
+    lost: 'lost' as DisputeStatus,
+    closed: 'closed' as DisputeStatus,
+};
+
+export type DisputeReason =
+    | 'fraudulent'              // Frauduleux
+    | 'duplicate'               // Doublon
+    | 'product_not_received'    // Produit non reçu
+    | 'product_unacceptable'    // Produit inacceptable
+    | 'subscription_canceled'   // Abonnement annulé
+    | 'unrecognized'            // Non reconnu
+    | 'credit_not_processed'    // Crédit non traité
+    | 'general';                // Général
+
+export interface DisputeEvidence {
+    id: string;
+    type: 'document' | 'image' | 'message';
+    url: string;
+    fileName: string;
+    uploadedBy: string;
+    uploadedAt: Timestamp;
+    description?: string;
+}
+
+export interface DisputeNote {
+    id: string;
+    content: string;
+    authorId: string;
+    authorName: string;
+    isInternal: boolean;        // Visible seulement par admin
+    createdAt: Timestamp;
+}
+
+export interface Dispute {
+    id: string;
+
+    // Transaction liée
+    transactionId: string;
+    paymentIntentId?: string;
+    chargeId?: string;
+
+    // Parties
+    userId: string;                    // Client qui dispute
+    professionalId?: string;           // Professionnel concerné
+
+    // Montants (en centimes)
+    amount: number;                    // Montant disputé
+    currency: string;
+
+    // Détails du litige
+    reason: DisputeReason;
+    status: DisputeStatus;
+    description?: string;              // Description du problème
+
+    // Stripe
+    stripeDisputeId?: string;
+
+    // Preuves et documents
+    evidence: DisputeEvidence[];
+    customerEvidence?: {
+        customerEmailAddress?: string;
+        customerName?: string;
+        customerPurchaseIp?: string;
+        billingAddress?: string;
+        receipt?: string;
+        shippingAddress?: string;
+        shippingDate?: string;
+        shippingTrackingNumber?: string;
+        uncategorizedText?: string;
+    };
+
+    // Notes administratives
+    notes: DisputeNote[];
+
+    // Dates importantes
+    dueBy?: Timestamp;                 // Date limite réponse
+    respondBy?: Timestamp;             // Date limite Stripe
+
+    // Résolution
+    resolvedAt?: Timestamp;
+    resolvedBy?: string;               // ID admin
+    resolution?: string;               // Explication résolution
+    outcome?: 'won' | 'lost' | 'accepted';
+
+    // Métadonnées
+    metadata?: Record<string, any>;
+
+    // Dates
+    createdAt: Timestamp;
+    updatedAt: Timestamp;
+    closedAt?: Timestamp;
+}
+
 // ==================== RECONCILIATION ====================
 
 export type ReconciliationStatus =
