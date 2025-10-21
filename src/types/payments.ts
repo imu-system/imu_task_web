@@ -64,6 +64,53 @@ export const PaymentMethodValues = {
     stripe: 'stripe' as PaymentMethod,
 };
 
+// ==================== PAYMENT METHOD DETAILS ====================
+
+export type PaymentMethodStatus =
+    | 'active'         // Actif
+    | 'expired'        // Expiré
+    | 'inactive';      // Inactif
+
+export const PaymentMethodStatusValues = {
+    active: 'active' as PaymentMethodStatus,
+    expired: 'expired' as PaymentMethodStatus,
+    inactive: 'inactive' as PaymentMethodStatus,
+};
+
+/**
+ * Interface pour les détails d'un moyen de paiement stocké
+ * Utilisé pour gérer les cartes bancaires et autres moyens de paiement des utilisateurs
+ */
+export interface PaymentMethodDetails {
+    id: string;
+    userId: string;                    // ID utilisateur propriétaire
+
+    // Type et statut
+    type: PaymentMethod;               // Type de moyen de paiement
+    status: PaymentMethodStatus;       // Statut actif/expiré/inactif
+    isDefault: boolean;                // Moyen de paiement par défaut
+
+    // Détails carte (si type = 'card')
+    brand?: 'visa' | 'mastercard' | 'amex' | 'discover' | 'unknown'; // Marque carte
+    last4?: string;                    // 4 derniers chiffres
+    cardholderName?: string;           // Nom titulaire
+    expiryMonth?: number;              // Mois expiration (1-12)
+    expiryYear?: number;               // Année expiration (YYYY)
+
+    // Stripe
+    stripePaymentMethodId?: string;    // ID Stripe Payment Method
+    stripeCustomerId?: string;         // ID Stripe Customer
+
+    // Métadonnées
+    nickname?: string;                 // Surnom personnalisé
+    metadata?: Record<string, any>;    // Métadonnées additionnelles
+
+    // Dates
+    createdAt: Timestamp;
+    updatedAt: Timestamp;
+    lastUsedAt?: Timestamp;            // Dernière utilisation
+}
+
 export interface Transaction {
     id: string;
 
