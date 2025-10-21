@@ -5,8 +5,11 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Link, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState, useMemo } from 'react';
-import { Loader2, Wallet, ExternalLink, MoreHorizontal, Eye, Download, Undo2, X, CalendarIcon as CalendarIconLucide } from 'lucide-react';
-import { UserRole, PaymentStatus } from '@/lib/types';
+import { Loader2, Wallet, ExternalLink, MoreHorizontal, Eye, Download, Undo2, X, CalendarIcon as CalendarIconLucide, DollarSign, TrendingUp, CreditCard, AlertCircle } from 'lucide-react';
+import { UserRole } from '@/lib/types';
+import { Transaction, TransactionStatus, TransactionStatusValues, TransactionType, PaymentMethod, formatAmount } from '@/types/payments';
+import { collection, query, where, orderBy, limit, getDocs, startAfter, Timestamp, QueryDocumentSnapshot } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
@@ -34,14 +37,14 @@ import { format } from 'date-fns';
 import { DateRange } from 'react-day-picker';
 import { useToast } from '@/hooks/use-toast';
 
-
-const mockTransactions = [
-    { id: 'pi_3PjY3fLqgLzJ7fV01Z6A3f9a', bookingId: 'booking1', amount: 2000, currency: 'eur', feesPlatform: 200, feesStripe: 85, status: PaymentStatus.authorized, createdAt: '2024-08-17T10:00:00Z' },
-    { id: 'pi_3PjY4oLqgLzJ7fV01A4B9c8d', bookingId: 'booking2', amount: 1500, currency: 'eur', feesPlatform: 150, feesStripe: 70, status: PaymentStatus.captured, createdAt: '2024-08-19T14:00:00Z' },
-    { id: 'pi_3PkZ5tLqgLzJ7fV01B5C6d7e', bookingId: 'booking3', amount: 3500, currency: 'eur', feesPlatform: 350, feesStripe: 120, status: PaymentStatus.captured, createdAt: '2024-08-21T11:00:00Z' },
-    { id: 'pi_3PlA6uLqgLzJ7fV01C6D7e8f', bookingId: 'booking4', amount: 5000, currency: 'eur', feesPlatform: 500, feesStripe: 150, status: PaymentStatus.refunded, createdAt: '2024-08-22T16:30:00Z' },
-    { id: 'pi_3PmB7vLqgLzJ7fV01D7E8f9g', bookingId: 'booking5', amount: 1000, currency: 'eur', feesPlatform: 100, feesStripe: 65, status: PaymentStatus.failed, createdAt: '2024-08-23T09:00:00Z' },
-];
+interface Analytics {
+    totalVolume: number;
+    totalCount: number;
+    successRate: number;
+    failedCount: number;
+    platformRevenue: number;
+    avgAmount: number;
+}
 
 export default function AdminTransactionsPage() {
     const { user, loading: authLoading } = useAuth();
@@ -49,22 +52,107 @@ export default function AdminTransactionsPage() {
     const t = useTranslations('AdminPaymentsPage.transactions');
     const { toast } = useToast();
     
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [transactions, setTransactions] = useState<Transaction[]>([]);
+    const [analytics, setAnalytics] = useState<Analytics>({
+        totalVolume: 0,
+        totalCount: 0,
+        successRate: 0,
+        failedCount: 0,
+        platformRevenue: 0,
+        avgAmount: 0,
+    });
+    const [lastDoc, setLastDoc] = useState<QueryDocumentSnapshot | null>(null);
+    const [hasMore, setHasMore] = useState(true);
     const [exportDateRange, setExportDateRange] = useState<DateRange | undefined>(undefined);
     const [searchTerm, setSearchTerm] = useState('');
-    const [statusFilter, setStatusFilter] = useState<PaymentStatus | 'all'>('all');
+    const [statusFilter, setStatusFilter] = useState<TransactionStatus | 'all'>('all');
     const [dateFilter, setDateFilter] = useState<DateRange | undefined>(undefined);
 
-    const filteredTransactions = useMemo(() => {
-        return mockTransactions.filter(tx => {
-            const txDate = new Date(tx.createdAt);
-            const matchesSearch = searchTerm ? tx.id.includes(searchTerm) || tx.bookingId.includes(searchTerm) : true;
-            const matchesStatus = statusFilter !== 'all' ? tx.status === statusFilter : true;
-            const matchesDate = !dateFilter?.from || (txDate >= dateFilter.from && txDate <= (dateFilter.to || new Date()));
+    // Fetch transactions from Firestore
+    const fetchTransactions = async (loadMore = false) => {
+        try {
+            setLoading(true);
+            const transactionsRef = collection(db, 'transactions');
+            let q = query(transactionsRef, orderBy('createdAt', 'desc'), limit(25));
 
-            return matchesSearch && matchesStatus && matchesDate;
+            // Apply filters
+            if (statusFilter !== 'all') {
+                q = query(transactionsRef, where('status', '==', statusFilter), orderBy('createdAt', 'desc'), limit(25));
+            }
+            if (dateFilter?.from) {
+                const fromTimestamp = Timestamp.fromDate(dateFilter.from);
+                q = query(q, where('createdAt', '>=', fromTimestamp));
+            }
+            if (dateFilter?.to) {
+                const toTimestamp = Timestamp.fromDate(dateFilter.to);
+                q = query(q, where('createdAt', '<=', toTimestamp));
+            }
+
+            // Pagination
+            if (loadMore && lastDoc) {
+                q = query(q, startAfter(lastDoc));
+            }
+
+            const snapshot = await getDocs(q);
+            const txData = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data(),
+                createdAt: doc.data().createdAt?.toDate?.() || new Date(),
+                updatedAt: doc.data().updatedAt?.toDate?.() || new Date(),
+            })) as Transaction[];
+
+            if (loadMore) {
+                setTransactions(prev => [...prev, ...txData]);
+            } else {
+                setTransactions(txData);
+            }
+
+            setLastDoc(snapshot.docs[snapshot.docs.length - 1] || null);
+            setHasMore(snapshot.docs.length === 25);
+
+            // Calculate analytics
+            calculateAnalytics(loadMore ? [...transactions, ...txData] : txData);
+        } catch (error) {
+            console.error('Error fetching transactions:', error);
+            toast({
+                title: 'Erreur',
+                description: 'Impossible de charger les transactions.',
+                variant: 'destructive',
+            });
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const calculateAnalytics = (txs: Transaction[]) => {
+        const totalVolume = txs.reduce((sum, tx) => sum + tx.amount, 0);
+        const totalCount = txs.length;
+        const successCount = txs.filter(tx => tx.status === TransactionStatusValues.succeeded).length;
+        const failedCount = txs.filter(tx => tx.status === TransactionStatusValues.failed).length;
+        const platformRevenue = txs.reduce((sum, tx) => sum + (tx.platformFee || 0), 0);
+        const avgAmount = totalCount > 0 ? totalVolume / totalCount : 0;
+        const successRate = totalCount > 0 ? (successCount / totalCount) * 100 : 0;
+
+        setAnalytics({
+            totalVolume,
+            totalCount,
+            successRate,
+            failedCount,
+            platformRevenue,
+            avgAmount,
         });
-    }, [searchTerm, statusFilter, dateFilter]);
+    };
+
+    const filteredTransactions = useMemo(() => {
+        return transactions.filter(tx => {
+            const matchesSearch = searchTerm ? 
+                tx.id.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                tx.bookingId?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                tx.stripePaymentIntentId?.toLowerCase().includes(searchTerm.toLowerCase()) : true;
+            return matchesSearch;
+        });
+    }, [transactions, searchTerm]);
     
     const clearFilters = () => {
         setSearchTerm('');
@@ -73,14 +161,96 @@ export default function AdminTransactionsPage() {
     }
     
     const handleRefund = async (txId: string) => {
-        // Here you would call your API to process the refund.
-        // We'll simulate it with a toast.
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        toast({
-            title: t('actions.refundDialog.toastSuccessTitle'),
-            description: t('actions.refundDialog.toastSuccessDescription', { txId }),
-        })
+        try {
+            const response = await fetch('/api/stripe/refund', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ transactionId: txId }),
+            });
+
+            if (!response.ok) throw new Error('Refund failed');
+
+            toast({
+                title: t('actions.refundDialog.toastSuccessTitle'),
+                description: t('actions.refundDialog.toastSuccessDescription', { txId }),
+            });
+
+            // Refresh transactions
+            fetchTransactions();
+        } catch (error) {
+            console.error('Error processing refund:', error);
+            toast({
+                title: 'Erreur',
+                description: 'Impossible de traiter le remboursement.',
+                variant: 'destructive',
+            });
+        }
     }
+
+    const handleExport = async () => {
+        try {
+            setLoading(true);
+            const transactionsRef = collection(db, 'transactions');
+            let q = query(transactionsRef, orderBy('createdAt', 'desc'));
+
+            if (exportDateRange?.from) {
+                q = query(q, where('createdAt', '>=', Timestamp.fromDate(exportDateRange.from)));
+            }
+            if (exportDateRange?.to) {
+                q = query(q, where('createdAt', '<=', Timestamp.fromDate(exportDateRange.to)));
+            }
+
+            const snapshot = await getDocs(q);
+            const allTxs = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data(),
+                createdAt: doc.data().createdAt?.toDate?.() || new Date(),
+            })) as Transaction[];
+
+            // Generate CSV
+            const headers = ['ID', 'Booking ID', 'Amount', 'Currency', 'Platform Fee', 'Stripe Fee', 'Status', 'Type', 'Method', 'Created At'];
+            const rows = allTxs.map(tx => [
+                tx.id,
+                tx.bookingId || '',
+                formatAmount(tx.amount),
+                tx.currency,
+                formatAmount(tx.platformFee || 0),
+                formatAmount(tx.stripeFee || 0),
+                tx.status,
+                tx.type,
+                tx.paymentMethod,
+                (tx.createdAt instanceof Date ? tx.createdAt : new Date()).toISOString(),
+            ]);
+
+            const csv = [headers, ...rows].map(row => row.join(',')).join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `transactions-${new Date().toISOString()}.csv`;
+            link.click();
+
+            toast({
+                title: 'Export réussi',
+                description: `${allTxs.length} transactions exportées.`,
+            });
+        } catch (error) {
+            console.error('Error exporting:', error);
+            toast({
+                title: 'Erreur',
+                description: "Impossible d'exporter les transactions.",
+                variant: 'destructive',
+            });
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (!authLoading && user && user.roles?.includes(UserRole.admin)) {
+            fetchTransactions();
+        }
+    }, [statusFilter, dateFilter, authLoading, user]);
 
 
     useEffect(() => {
@@ -97,13 +267,13 @@ export default function AdminTransactionsPage() {
         );
     }
     
-    const getStatusVariant = (status: PaymentStatus) => {
+    const getStatusVariant = (status: TransactionStatus): "default" | "secondary" | "outline" | "destructive" => {
         switch (status) {
-            case PaymentStatus.captured: return 'default';
-            case PaymentStatus.authorized: return 'secondary';
-            case PaymentStatus.refunded: return 'outline';
-            case PaymentStatus.failed:
-            case PaymentStatus.canceled:
+            case TransactionStatusValues.succeeded: return 'default';
+            case TransactionStatusValues.pending: return 'secondary';
+            case TransactionStatusValues.refunded: return 'outline';
+            case TransactionStatusValues.failed:
+            case TransactionStatusValues.canceled:
                 return 'destructive';
             default: return 'outline';
         }
@@ -118,6 +288,40 @@ export default function AdminTransactionsPage() {
             <p className="text-muted-foreground">
             {t('subtitle')}
             </p>
+        </div>
+
+        {/* Analytics Cards */}
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Volume Total</CardTitle>
+                    <DollarSign className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                    <div className="text-2xl font-bold">{formatAmount(analytics.totalVolume)}</div>
+                    <p className="text-xs text-muted-foreground">{analytics.totalCount} transactions</p>
+                </CardContent>
+            </Card>
+            <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Taux de Réussite</CardTitle>
+                    <TrendingUp className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                    <div className="text-2xl font-bold">{analytics.successRate.toFixed(1)}%</div>
+                    <p className="text-xs text-muted-foreground">{analytics.failedCount} échecs</p>
+                </CardContent>
+            </Card>
+            <Card>
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Revenus Plateforme</CardTitle>
+                    <Wallet className="h-4 w-4 text-muted-foreground" />
+                </CardHeader>
+                <CardContent>
+                    <div className="text-2xl font-bold">{formatAmount(analytics.platformRevenue)}</div>
+                    <p className="text-xs text-muted-foreground">Montant moyen: {formatAmount(analytics.avgAmount)}</p>
+                </CardContent>
+            </Card>
         </div>
         
         <Card>
@@ -190,7 +394,7 @@ export default function AdminTransactionsPage() {
                                 </div>
                                 <AlertDialogFooter>
                                     <AlertDialogCancel>{t('actions.exportDialog.cancel')}</AlertDialogCancel>
-                                    <AlertDialogAction>{t('actions.exportDialog.confirm')}</AlertDialogAction>
+                                    <AlertDialogAction onClick={handleExport}>{t('actions.exportDialog.confirm')}</AlertDialogAction>
                                 </AlertDialogFooter>
                             </AlertDialogContent>
                         </AlertDialog>
@@ -205,13 +409,13 @@ export default function AdminTransactionsPage() {
                         value={searchTerm}
                         onChange={e => setSearchTerm(e.target.value)}
                     />
-                    <Select value={statusFilter} onValueChange={(value) => setStatusFilter(value as PaymentStatus | 'all')}>
+                    <Select value={statusFilter} onValueChange={(value) => setStatusFilter(value as TransactionStatus | 'all')}>
                         <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder={t('filters.status')} />
                         </SelectTrigger>
                         <SelectContent>
                             <SelectItem value="all">{t('filters.allStatuses')}</SelectItem>
-                            {Object.values(PaymentStatus).map(status => (
+                            {Object.values(TransactionStatusValues).map(status => (
                                 <SelectItem key={status} value={status}>{t(`status.${status}`)}</SelectItem>
                             ))}
                         </SelectContent>
@@ -274,22 +478,26 @@ export default function AdminTransactionsPage() {
                                 </TableCell>
                                 <TableCell>
                                     <Button variant="link" asChild className="p-0 h-auto">
-                                        <Link href={`/dashboard/admin/bookings/${tx.bookingId}`}>{tx.bookingId}</Link>
+                                        <Link href={`/dashboard/admin/bookings/${tx.bookingId}` as any}>{tx.bookingId}</Link>
                                     </Button>
                                 </TableCell>
                                 <TableCell>
-                                    <div className="font-medium">{(tx.amount / 100).toFixed(2)} {t('currency')}</div>
+                                    <div className="font-medium">{formatAmount(tx.amount)}</div>
                                 </TableCell>
                                 <TableCell>
                                     <div className="text-sm">
-                                        <div>{t('table.feesPlatform')}: {(tx.feesPlatform / 100).toFixed(2)} {t('currency')}</div>
-                                        <div className="text-muted-foreground">{t('table.feesStripe')}: {(tx.feesStripe / 100).toFixed(2)} {t('currency')}</div>
+                                        <div>{t('table.feesPlatform')}: {formatAmount(tx.platformFee || 0)}</div>
+                                        <div className="text-muted-foreground">{t('table.feesStripe')}: {formatAmount(tx.stripeFee || 0)}</div>
                                     </div>
                                 </TableCell>
                                 <TableCell>
                                     <Badge variant={getStatusVariant(tx.status)}>{t(`status.${tx.status}`)}</Badge>
                                 </TableCell>
-                                <TableCell>{new Date(tx.createdAt).toLocaleString()}</TableCell>
+                                <TableCell>
+                                    {tx.createdAt instanceof Date 
+                                        ? tx.createdAt.toLocaleString() 
+                                        : tx.createdAt.toDate ? tx.createdAt.toDate().toLocaleString() : 'N/A'}
+                                </TableCell>
                                 <TableCell>
                                     <DropdownMenu>
                                         <DropdownMenuTrigger asChild>
@@ -307,7 +515,7 @@ export default function AdminTransactionsPage() {
                                              <DropdownMenuSeparator/>
                                              <AlertDialog>
                                                 <AlertDialogTrigger asChild>
-                                                    <DropdownMenuItem onSelect={(e) => e.preventDefault()} disabled={tx.status !== PaymentStatus.captured && tx.status !== PaymentStatus.authorized}>
+                                                    <DropdownMenuItem onSelect={(e) => e.preventDefault()} disabled={tx.status !== TransactionStatusValues.succeeded}>
                                                         <Undo2 className="mr-2"/>
                                                         {t('actions.refund')}
                                                     </DropdownMenuItem>
@@ -315,7 +523,7 @@ export default function AdminTransactionsPage() {
                                                 <AlertDialogContent>
                                                     <AlertDialogHeader>
                                                         <AlertDialogTitle>{t('actions.refundDialog.title')}</AlertDialogTitle>
-                                                        <AlertDialogDescription>{t('actions.refundDialog.description', { amount: (tx.amount / 100).toFixed(2) })}</AlertDialogDescription>
+                                                        <AlertDialogDescription>{t('actions.refundDialog.description', { amount: formatAmount(tx.amount) })}</AlertDialogDescription>
                                                     </AlertDialogHeader>
                                                     <div className="grid gap-4 py-4">
                                                         <div className="space-y-2">
@@ -351,6 +559,20 @@ export default function AdminTransactionsPage() {
                         ))}
                     </TableBody>
                 </Table>
+
+                {/* Pagination */}
+                {hasMore && (
+                    <div className="mt-4 flex justify-center">
+                        <Button 
+                            variant="outline" 
+                            onClick={() => fetchTransactions(true)}
+                            disabled={loading}
+                        >
+                            {loading ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : null}
+                            Charger plus
+                        </Button>
+                    </div>
+                )}
             </CardContent>
         </Card>
     </div>
