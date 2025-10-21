@@ -130,6 +130,16 @@ export type PayoutStatus =
     | 'cancelled'      // Annulé
     | 'rejected';      // Rejeté par admin
 
+export const PayoutStatusValues = {
+    pending: 'pending' as PayoutStatus,
+    approved: 'approved' as PayoutStatus,
+    processing: 'processing' as PayoutStatus,
+    paid: 'paid' as PayoutStatus,
+    failed: 'failed' as PayoutStatus,
+    cancelled: 'cancelled' as PayoutStatus,
+    rejected: 'rejected' as PayoutStatus,
+};
+
 export type PayoutFrequency =
     | 'daily'          // Quotidien
     | 'weekly'         // Hebdomadaire
@@ -212,6 +222,13 @@ export type BankAccountStatus =
     | 'verified'       // Vérifié
     | 'failed'         // Échec vérification
     | 'disabled';      // Désactivé
+
+export const BankAccountStatusValues = {
+    pending: 'pending' as BankAccountStatus,
+    verified: 'verified' as BankAccountStatus,
+    failed: 'failed' as BankAccountStatus,
+    disabled: 'disabled' as BankAccountStatus,
+};
 
 export interface BankAccount {
     id: string;
