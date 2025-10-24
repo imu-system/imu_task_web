@@ -2165,6 +2165,110 @@
                 "title": "Historique de facturation",
                 "empty": "Aucune facture disponible"
             }
+        },
+        "BrowseTasks": {
+            "title": "Découvrir les tâches",
+            "subtitle": "Trouvez des opportunités qui correspondent à vos compétences",
+            "stats": {
+                "availableTasks": "Tâches disponibles",
+                "newToday": "Nouvelles aujourd'hui",
+                "averageBudget": "Budget moyen"
+            },
+            "search": {
+                "placeholder": "Rechercher par titre ou description...",
+                "sortBy": "Trier par",
+                "viewMode": "Mode d'affichage",
+                "filters": "Filtres",
+                "showFilters": "Afficher les filtres",
+                "hideFilters": "Masquer les filtres"
+            },
+            "sort": {
+                "newest": "Plus récentes",
+                "oldest": "Plus anciennes",
+                "budget_high": "Budget décroissant",
+                "budget_low": "Budget croissant"
+            },
+            "view": {
+                "list": "Liste",
+                "map": "Carte"
+            },
+            "filters": {
+                "title": "Filtres avancés",
+                "category": "Catégorie",
+                "allCategories": "Toutes les catégories",
+                "budget": "Budget",
+                "minBudget": "Budget minimum",
+                "maxBudget": "Budget maximum",
+                "clear": "Effacer les filtres"
+            },
+            "badge": {
+                "new": "Nouveau"
+            },
+            "messages": {
+                "loading": "Chargement des tâches...",
+                "error": "Erreur lors du chargement des tâches",
+                "noTasks": "Aucune tâche trouvée",
+                "noTasksMessage": "Aucune tâche ne correspond à vos critères de recherche.",
+                "clearFilters": "Effacer les filtres"
+            }
+        },
+        "LandingPage": {
+            "hero": {
+                "title": "Trouvez l'aide dont vous avez besoin,",
+                "titleHighlight": "près de chez vous",
+                "subtitle": "Des milliers de prestataires qualifiés prêts à vous aider au quotidien",
+                "search": {
+                    "whatPlaceholder": "Que cherchez-vous ?",
+                    "wherePlaceholder": "Où ?",
+                    "categoryPlaceholder": "Catégorie",
+                    "budgetPlaceholder": "Budget max (€)",
+                    "allCategories": "Toutes les catégories",
+                    "button": "Rechercher",
+                    "popular": "Recherches populaires"
+                },
+                "cta": {
+                    "client": "Poster une tâche",
+                    "provider": "Devenir prestataire"
+                }
+            },
+            "categories": {
+                "cleaning": "Ménage",
+                "moving": "Déménagement",
+                "gardening": "Jardinage",
+                "delivery": "Livraison",
+                "handyman": "Bricolage",
+                "petCare": "Garde d'animaux",
+                "tutoring": "Cours particuliers",
+                "shopping": "Courses",
+                "other": "Autres"
+            },
+            "tasksGrid": {
+                "title": "Tâches récentes",
+                "subtitle": "Découvrez les dernières opportunités près de chez vous",
+                "viewAll": "Voir toutes les tâches",
+                "noTasks": "Aucune tâche disponible pour le moment",
+                "postFirstTask": "Poster la première tâche"
+            },
+            "howItWorks": {
+                "title": "Comment ça marche ?",
+                "subtitle": "Trouvez de l'aide ou proposez vos services en 3 étapes simples",
+                "step1": {
+                    "title": "1. Publiez votre tâche",
+                    "description": "Décrivez votre besoin en quelques clics : type de service, localisation, budget et date souhaitée."
+                },
+                "step2": {
+                    "title": "2. Recevez des offres",
+                    "description": "Des prestataires qualifiés vous envoient leurs propositions. Consultez leurs profils et évaluations."
+                },
+                "step3": {
+                    "title": "3. Choisissez et réservez",
+                    "description": "Sélectionnez le prestataire idéal et réservez en toute sécurité. Paiement protégé jusqu'à la fin de la mission."
+                },
+                "cta": {
+                    "client": "Publier une tâche",
+                    "provider": "Devenir prestataire"
+                }
+            }
         }
     }
 }

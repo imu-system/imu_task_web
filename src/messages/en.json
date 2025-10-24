@@ -2023,6 +2023,110 @@
                 "title": "Billing History",
                 "empty": "No invoices available"
             }
+        },
+        "BrowseTasks": {
+            "title": "Discover Tasks",
+            "subtitle": "Find opportunities that match your skills",
+            "stats": {
+                "availableTasks": "Available Tasks",
+                "newToday": "New Today",
+                "averageBudget": "Average Budget"
+            },
+            "search": {
+                "placeholder": "Search by title or description...",
+                "sortBy": "Sort by",
+                "viewMode": "View mode",
+                "filters": "Filters",
+                "showFilters": "Show filters",
+                "hideFilters": "Hide filters"
+            },
+            "sort": {
+                "newest": "Newest",
+                "oldest": "Oldest",
+                "budget_high": "Budget: High to Low",
+                "budget_low": "Budget: Low to High"
+            },
+            "view": {
+                "list": "List",
+                "map": "Map"
+            },
+            "filters": {
+                "title": "Advanced Filters",
+                "category": "Category",
+                "allCategories": "All Categories",
+                "budget": "Budget",
+                "minBudget": "Minimum Budget",
+                "maxBudget": "Maximum Budget",
+                "clear": "Clear Filters"
+            },
+            "badge": {
+                "new": "New"
+            },
+            "messages": {
+                "loading": "Loading tasks...",
+                "error": "Error loading tasks",
+                "noTasks": "No tasks found",
+                "noTasksMessage": "No tasks match your search criteria.",
+                "clearFilters": "Clear Filters"
+            }
+        },
+        "LandingPage": {
+            "hero": {
+                "title": "Find the help you need,",
+                "titleHighlight": "near you",
+                "subtitle": "Thousands of qualified providers ready to help you every day",
+                "search": {
+                    "whatPlaceholder": "What are you looking for?",
+                    "wherePlaceholder": "Where?",
+                    "categoryPlaceholder": "Category",
+                    "budgetPlaceholder": "Max budget (€)",
+                    "allCategories": "All categories",
+                    "button": "Search",
+                    "popular": "Popular searches"
+                },
+                "cta": {
+                    "client": "Post a task",
+                    "provider": "Become a provider"
+                }
+            },
+            "categories": {
+                "cleaning": "Cleaning",
+                "moving": "Moving",
+                "gardening": "Gardening",
+                "delivery": "Delivery",
+                "handyman": "Handyman",
+                "petCare": "Pet Care",
+                "tutoring": "Tutoring",
+                "shopping": "Shopping",
+                "other": "Other"
+            },
+            "tasksGrid": {
+                "title": "Recent Tasks",
+                "subtitle": "Discover the latest opportunities near you",
+                "viewAll": "View all tasks",
+                "noTasks": "No tasks available at the moment",
+                "postFirstTask": "Post the first task"
+            },
+            "howItWorks": {
+                "title": "How it works?",
+                "subtitle": "Find help or offer your services in 3 simple steps",
+                "step1": {
+                    "title": "1. Post your task",
+                    "description": "Describe your need in a few clicks: service type, location, budget and desired date."
+                },
+                "step2": {
+                    "title": "2. Receive offers",
+                    "description": "Qualified providers send you their proposals. Check their profiles and ratings."
+                },
+                "step3": {
+                    "title": "3. Choose and book",
+                    "description": "Select the ideal provider and book securely. Payment protected until the end of the mission."
+                },
+                "cta": {
+                    "client": "Post a task",
+                    "provider": "Become a provider"
+                }
+            }
         }
     }
 }

@@ -24,6 +24,7 @@ import {
   Users,
   HardHat,
   Star,
+  ArrowRight,
 } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from '@/navigation';
@@ -40,6 +41,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { HeroSearchBar } from '@/components/landing/hero-search-bar';
+import { CategoryPills } from '@/components/landing/category-pills';
+import { TasksGrid } from '@/components/landing/tasks-grid';
+import { HowItWorks } from '@/components/landing/how-it-works';
 
 const categoryIcons: Record<string, ReactNode> = {
   'shopping-basket': <ShoppingBasket className="h-8 w-8" />,
@@ -97,39 +102,69 @@ export default function Home() {
     },
   ];
 
+  const tLanding = useTranslations('LandingPage');
+
   return (
     <>
       <div className="flex flex-col">
-        <section className="relative w-full py-20 md:py-32 lg:py-40 bg-card">
-          <div className="container mx-auto px-4 md:px-6 text-center">
-            <div className="max-w-3xl mx-auto">
-              <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl font-headline">
-                {t('title')}
+        {/* Hero Section - Airbnb/BlaBlaCar Style */}
+        <section className="relative w-full min-h-[600px] md:min-h-[700px] flex items-center bg-gradient-to-br from-primary/5 via-background to-accent/5">
+          {/* Background Image with Overlay */}
+          <div className="absolute inset-0 -z-10">
+            <Image
+              src={placeholderImages.hero.src}
+              alt="Helping hands"
+              data-ai-hint={placeholderImages.hero.hint}
+              fill
+              className="object-cover opacity-20"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90" />
+          </div>
+
+          <div className="container mx-auto px-4 md:px-6 py-12 md:py-20">
+            <div className="max-w-5xl mx-auto text-center">
+              {/* Main Headline */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight font-headline">
+                {tLanding('hero.title')}{' '}
+                <span className="text-primary bg-clip-text">
+                  {tLanding('hero.titleHighlight')}
+                </span>
               </h1>
-              <p className="mt-4 text-lg md:text-xl text-muted-foreground">
-                {t('subtitle')}
+
+              {/* Subtitle */}
+              <p className="mt-6 text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto">
+                {tLanding('hero.subtitle')}
               </p>
-              <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
-                {t('description')}
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
-                <Button asChild size="lg">
-                  <Link href="/sign-up">{tHeader('signUp')}</Link>
+
+              {/* Hero Search Bar */}
+              <div className="mt-10 md:mt-14">
+                <HeroSearchBar variant="hero" />
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <Button asChild size="lg" className="text-base px-8 py-6 shadow-lg hover:shadow-xl transition-shadow">
+                  <Link href="/dashboard/tasks/new">
+                    <Sparkles className="mr-2 h-5 w-5" />
+                    {tLanding('hero.cta.client')}
+                  </Link>
                 </Button>
-                <Button asChild variant="secondary" size="lg">
-                  <Link href="/sign-in">{tHeader('signIn')}</Link>
+                <Button asChild variant="outline" size="lg" className="text-base px-8 py-6 shadow-md hover:shadow-lg transition-shadow">
+                  <Link href="/inscription">
+                    <Briefcase className="mr-2 h-5 w-5" />
+                    {tLanding('hero.cta.provider')}
+                  </Link>
                 </Button>
               </div>
             </div>
           </div>
-          <Image
-            src={placeholderImages.hero.src}
-            alt="Helping hands"
-            data-ai-hint={placeholderImages.hero.hint}
-            fill
-            className="absolute inset-0 -z-10 object-cover opacity-10"
-          />
         </section>
+
+        {/* Category Pills Section - Horizontal Scroll */}
+        <CategoryPills />
+
+        {/* Tasks Grid Section - Recent/Popular Tasks */}
+        <TasksGrid maxTasks={8} showViewAll={true} filterByStatus="pending" />
 
         <section id="features" className="w-full py-12 md:py-24 lg:py-32">
           <div className="container mx-auto px-4 md:px-6">
@@ -176,59 +211,8 @@ export default function Home() {
             </div>
         </section>
 
-        <section id="how-it-works" className="w-full py-12 md:py-24 lg:py-32 bg-card">
-          <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl font-headline mb-12">
-              {t('howItWorksTitle')}
-            </h2>
-            <div className="grid gap-8 lg:grid-cols-2">
-                <Card className="flex flex-col">
-                    <CardHeader className="items-center text-center">
-                        <Users className="h-12 w-12 text-primary"/>
-                        <CardTitle className="text-2xl mt-4">{t('forClients.title')}</CardTitle>
-                        <CardDescription>{t('forClients.description')}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-grow flex items-center justify-center">
-                       <Image
-                          src={placeholderImages.forClients.src}
-                          alt={t('forClients.title')}
-                          data-ai-hint={placeholderImages.forClients.hint}
-                          width={400}
-                          height={300}
-                          className="rounded-xl shadow-lg"
-                        />
-                    </CardContent>
-                    <CardContent>
-                        <Button asChild size="lg" className="w-full">
-                            <Link href="/inscription?role=client">{t('forClients.button')}</Link>
-                        </Button>
-                    </CardContent>
-                </Card>
-                 <Card className="flex flex-col">
-                    <CardHeader className="items-center text-center">
-                        <HardHat className="h-12 w-12 text-primary"/>
-                        <CardTitle className="text-2xl mt-4">{t('forProviders.title')}</CardTitle>
-                        <CardDescription>{t('forProviders.description')}</CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex-grow flex items-center justify-center">
-                        <Image
-                          src={placeholderImages.forProviders.src}
-                          alt={t('forProviders.title')}
-                          data-ai-hint={placeholderImages.forProviders.hint}
-                          width={400}
-                          height={300}
-                          className="rounded-xl shadow-lg"
-                        />
-                    </CardContent>
-                    <CardContent>
-                       <Button asChild size="lg" className="w-full">
-                            <Link href="/inscription?role=provider">{t('forProviders.button')}</Link>
-                        </Button>
-                    </CardContent>
-                </Card>
-            </div>
-          </div>
-        </section>
+        {/* How It Works Section - 3 Steps */}
+        <HowItWorks />
 
         <section id="testimonials" className="w-full py-12 md:py-24 lg:py-32">
           <div className="container mx-auto px-4 md:px-6">
@@ -270,7 +254,7 @@ export default function Home() {
                 categories.map((category) => (
                     <Card key={category.id} className="flex flex-col items-center justify-center p-6 text-center">
                     <div className="text-primary">{categoryIcons[category.icon || 'default']}</div>
-                    <p className="mt-2 font-semibold">{category.name.fr || category.slug}</p>
+                    <p className="mt-2 font-semibold">{category.name}</p>
                     </Card>
                 ))
               )}
@@ -310,7 +294,7 @@ export default function Home() {
             </p>
             <div className="mt-8">
               <Button asChild size="lg">
-                <Link href="/sign-up">{t('signUpFree')}</Link>
+                <Link href="/inscription">{t('signUpFree')}</Link>
               </Button>
             </div>
           </div>
