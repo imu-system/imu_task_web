@@ -36,16 +36,16 @@ export default function AdminCategoriesPage() {
             if (querySnapshot.empty) {
                 // If firestore is empty, use mock data
                 const mockCategories: ServiceCategory[] = [
-                    { id: '1', slug: 'Faire les courses alimentaires', isActive: true, createdAt: new Date(), updatedAt: new Date() },
-                    { id: '2', slug: 'Livraison à domicile', isActive: true, createdAt: new Date(), updatedAt: new Date() },
-                    { id: '3', slug: 'Ménage léger', isActive: true, createdAt: new Date(), updatedAt: new Date() },
-                    { id: '4', slug: 'Petits bricolages', isActive: true, createdAt: new Date(), updatedAt: new Date() },
-                    { id: '5', slug: 'Jardinage simple', isActive: true, createdAt: new Date(), updatedAt: new Date() },
-                    { id: '6', slug: 'Visites de convivialité', isActive: true, createdAt: new Date(), updatedAt: new Date() },
-                    { id: '7', slug: 'Assistance numérique', isActive: true, createdAt: new Date(), updatedAt: new Date() },
-                    { id: '8', slug: 'Soutien scolaire', isActive: true, createdAt: new Date(), updatedAt: new Date() },
-                    { id: '9', slug: 'Promenade de chiens', isActive: true, createdAt: new Date(), updatedAt: new Date() },
-                    { id: '10', slug: 'Aide pour déménagement léger', isActive: false, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '1', name: 'Faire les courses alimentaires', icon: '🛒', slug: 'Faire les courses alimentaires', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '2', name: 'Livraison à domicile', icon: '📦', slug: 'Livraison à domicile', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '3', name: 'Ménage léger', icon: '🧹', slug: 'Ménage léger', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '4', name: 'Petits bricolages', icon: '🔧', slug: 'Petits bricolages', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '5', name: 'Jardinage simple', icon: '🌱', slug: 'Jardinage simple', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '6', name: 'Visites de convivialité', icon: '👋', slug: 'Visites de convivialité', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '7', name: 'Assistance numérique', icon: '💻', slug: 'Assistance numérique', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '8', name: 'Soutien scolaire', icon: '📚', slug: 'Soutien scolaire', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '9', name: 'Promenade de chiens', icon: '🐕', slug: 'Promenade de chiens', isActive: true, createdAt: new Date(), updatedAt: new Date() },
+                    { id: '10', name: 'Aide pour déménagement léger', icon: '📦', slug: 'Aide pour déménagement léger', isActive: false, createdAt: new Date(), updatedAt: new Date() },
                 ];
                 setCategories(mockCategories);
             } else {

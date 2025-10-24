@@ -92,7 +92,7 @@ export default function AdminGuidancePage() {
                 const catSnapshot = await getDocs(catQuery);
                 const fetchedCategories = catSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as ServiceCategory));
                 
-                const sortedCategories = fetchedCategories.sort((a,b) => a.displayOrder - b.displayOrder);
+                const sortedCategories = fetchedCategories.sort((a,b) => (a.displayOrder || 0) - (b.displayOrder || 0));
                 setCategories(sortedCategories);
 
                 form.reset({
@@ -124,8 +124,8 @@ export default function AdminGuidancePage() {
 
         for (const categoryData of data.categories) {
             const ref = doc(db, 'serviceCategories', categoryData.id);
-            const minPrice = categoryData.recommendedPriceMin === '' ? null : Number(categoryData.recommendedPriceMin);
-            const maxPrice = categoryData.recommendedPriceMax === '' ? null : Number(categoryData.recommendedPriceMax);
+            const minPrice = categoryData.recommendedPriceMin === '' ? undefined : Number(categoryData.recommendedPriceMin);
+            const maxPrice = categoryData.recommendedPriceMax === '' ? undefined : Number(categoryData.recommendedPriceMax);
 
             const updatePayload: Partial<ServiceCategory> = {
                 recommendedPriceMin: minPrice,
@@ -187,7 +187,7 @@ export default function AdminGuidancePage() {
                          <TableBody>
                             {categories.map((category, index) => (
                                 <TableRow key={category.id}>
-                                    <TableCell className="font-medium">{category.name?.fr || category.slug}</TableCell>
+                                    <TableCell className="font-medium">{typeof category.name === 'string' ? category.name : (category.name?.fr || category.slug)}</TableCell>
                                     <TableCell>
                                         <FormField
                                             control={form.control}

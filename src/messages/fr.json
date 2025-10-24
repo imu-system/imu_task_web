@@ -1,6 +1,7 @@
 {
     "Header": {
         "features": "Fonctionnalités",
+        "becomeHost": "Devenir prestataire",
         "howItWorks": "Comment ça marche",
         "categories": "Catégories",
         "signIn": "Se connecter",
@@ -8,13 +9,16 @@
         "signOut": "Se déconnecter",
         "dashboard": "Dashboard",
         "profile": "Profil",
+        "bookings": "Mes réservations",
+        "notifications": "Notifications",
+        "settings": "Paramètres",
+        "help": "Aide",
         "openMenu": "Ouvrir le menu",
         "search": "Rechercher",
         "searchPlaceholder": "Rechercher...",
         "create": "Créer",
         "createTask": "Créer une mission",
         "setAvailability": "Définir disponibilités",
-        "settings": "Paramètres",
         "support": "Support",
         "suggestedAction": "Créer une mission 'Courses' (modèle)",
         "notificationsTitle": "Notifications",
@@ -87,10 +91,35 @@
                 "role": "Prestataire"
             }
         },
+        "finalCta": {
+            "title": "Rejoignez la communauté et commencez aujourd'hui",
+            "description": "Publiez une mission ou devenez prestataire — des centaines d'entraides vous attendent.",
+            "cta": "S'inscrire"
+        },
         "stats": {
             "missions": "Missions réalisées",
             "members": "Membres actifs",
-            "rating": "Note moyenne des prestataires"
+            "rating": "Note moyenne des prestataires",
+            "securePayments": "Paiements sécurisés",
+            "trust": {
+                "badge1": {
+                    "title": "Prestataires vérifiés",
+                    "desc": "Identité confirmée pour plus de sérénité"
+                },
+                "badge2": {
+                    "title": "Paiements sécurisés",
+                    "desc": "Partenaire de paiement certifié"
+                },
+                "badge3": {
+                    "title": "Support 24/7",
+                    "desc": "Assistance en cas de besoin"
+                },
+                "badge4": {
+                    "title": "Satisfaction garantie",
+                    "desc": "Remboursements et garanties selon les cas"
+                },
+                "learnMore": "En savoir plus"
+            }
         },
         "faq": {
             "title": "Foire Aux Questions",
@@ -258,7 +287,14 @@
         "digitalHelp": "Aide numérique",
         "administrativeHelp": "Aide administrative",
         "handyman": "Petits bricolages",
-        "petSitting": "Garde d’animaux"
+        "petSitting": "Garde d’animaux",
+        "home_services": "Services à domicile",
+        "delivery": "Livraison",
+        "tutoring": "Cours particuliers",
+        "digital_help": "Aide numérique",
+        "pet_care": "Garde d'animaux",
+        "event_help": "Aide événementielle",
+        "moving": "Déménagement"
     },
     "CreateTaskForm": {
         "taskTitleLabel": "Titre de la mission",
@@ -2211,63 +2247,63 @@
                 "noTasksMessage": "Aucune tâche ne correspond à vos critères de recherche.",
                 "clearFilters": "Effacer les filtres"
             }
+        }
+    },
+    "LandingPage": {
+        "hero": {
+            "title": "Trouvez l'aide dont vous avez besoin,",
+            "titleHighlight": "près de chez vous",
+            "subtitle": "Des milliers de prestataires qualifiés prêts à vous aider au quotidien",
+            "search": {
+                "whatPlaceholder": "Que cherchez-vous ?",
+                "wherePlaceholder": "Où ?",
+                "categoryPlaceholder": "Catégorie",
+                "budgetPlaceholder": "Budget max (€)",
+                "allCategories": "Toutes les catégories",
+                "button": "Rechercher",
+                "popular": "Recherches populaires"
+            },
+            "cta": {
+                "client": "Poster une tâche",
+                "provider": "Devenir prestataire"
+            }
         },
-        "LandingPage": {
-            "hero": {
-                "title": "Trouvez l'aide dont vous avez besoin,",
-                "titleHighlight": "près de chez vous",
-                "subtitle": "Des milliers de prestataires qualifiés prêts à vous aider au quotidien",
-                "search": {
-                    "whatPlaceholder": "Que cherchez-vous ?",
-                    "wherePlaceholder": "Où ?",
-                    "categoryPlaceholder": "Catégorie",
-                    "budgetPlaceholder": "Budget max (€)",
-                    "allCategories": "Toutes les catégories",
-                    "button": "Rechercher",
-                    "popular": "Recherches populaires"
-                },
-                "cta": {
-                    "client": "Poster une tâche",
-                    "provider": "Devenir prestataire"
-                }
+        "categories": {
+            "cleaning": "Ménage",
+            "moving": "Déménagement",
+            "gardening": "Jardinage",
+            "delivery": "Livraison",
+            "handyman": "Bricolage",
+            "petCare": "Garde d'animaux",
+            "tutoring": "Cours particuliers",
+            "shopping": "Courses",
+            "other": "Autres"
+        },
+        "tasksGrid": {
+            "title": "Tâches récentes",
+            "subtitle": "Découvrez les dernières opportunités près de chez vous",
+            "viewAll": "Voir toutes les tâches",
+            "noTasks": "Aucune tâche disponible pour le moment",
+            "postFirstTask": "Poster la première tâche"
+        },
+        "howItWorks": {
+            "title": "Comment ça marche ?",
+            "subtitle": "Trouvez de l'aide ou proposez vos services en 3 étapes simples",
+            "step1": {
+                "title": "1. Publiez votre tâche",
+                "description": "Décrivez votre besoin en quelques clics : type de service, localisation, budget et date souhaitée."
             },
-            "categories": {
-                "cleaning": "Ménage",
-                "moving": "Déménagement",
-                "gardening": "Jardinage",
-                "delivery": "Livraison",
-                "handyman": "Bricolage",
-                "petCare": "Garde d'animaux",
-                "tutoring": "Cours particuliers",
-                "shopping": "Courses",
-                "other": "Autres"
+            "step2": {
+                "title": "2. Recevez des offres",
+                "description": "Des prestataires qualifiés vous envoient leurs propositions. Consultez leurs profils et évaluations."
             },
-            "tasksGrid": {
-                "title": "Tâches récentes",
-                "subtitle": "Découvrez les dernières opportunités près de chez vous",
-                "viewAll": "Voir toutes les tâches",
-                "noTasks": "Aucune tâche disponible pour le moment",
-                "postFirstTask": "Poster la première tâche"
+            "step3": {
+                "title": "3. Choisissez et réservez",
+                "description": "Sélectionnez le prestataire idéal et réservez en toute sécurité. Paiement protégé jusqu'à la fin de la mission."
             },
-            "howItWorks": {
-                "title": "Comment ça marche ?",
-                "subtitle": "Trouvez de l'aide ou proposez vos services en 3 étapes simples",
-                "step1": {
-                    "title": "1. Publiez votre tâche",
-                    "description": "Décrivez votre besoin en quelques clics : type de service, localisation, budget et date souhaitée."
-                },
-                "step2": {
-                    "title": "2. Recevez des offres",
-                    "description": "Des prestataires qualifiés vous envoient leurs propositions. Consultez leurs profils et évaluations."
-                },
-                "step3": {
-                    "title": "3. Choisissez et réservez",
-                    "description": "Sélectionnez le prestataire idéal et réservez en toute sécurité. Paiement protégé jusqu'à la fin de la mission."
-                },
-                "cta": {
-                    "client": "Publier une tâche",
-                    "provider": "Devenir prestataire"
-                }
+            "cta": {
+                "client": "Publier une tâche",
+                "provider": "Devenir prestataire"
             }
         }
     }

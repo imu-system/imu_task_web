@@ -164,12 +164,14 @@ export default function ClientDashboardPage() {
     }).format(amount);
   };
 
-  const formatDate = (date: Date) => {
+  const formatDate = (date?: string | Date | null) => {
+    if (!date) return '';
+    const d = typeof date === 'string' ? new Date(date) : date;
     return new Intl.DateTimeFormat('fr-FR', {
       day: 'numeric',
       month: 'short',
       year: 'numeric',
-    }).format(date);
+    }).format(d);
   };
 
   return (

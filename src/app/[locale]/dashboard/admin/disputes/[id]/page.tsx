@@ -32,7 +32,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import { Input } from '@/components/ui/input';
 
-const moderators = users.filter(u => u.roles.includes(UserRole.moderator));
+const moderators = users.filter(u => u.roles?.includes(UserRole.moderator));
 
 export default function AdminDisputeDetailPage() {
     const { user: adminUser, loading: authLoading } = useAuth();

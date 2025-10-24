@@ -116,7 +116,7 @@ export default function MyBookingsPage() {
                                     </div>
                                 </TableCell>
                                  <TableCell>
-                                    <div className="font-medium">{booking.agreedAmount / 100} {booking.currency}</div>
+                                    <div className="font-medium">{(booking.agreedAmount ?? booking.amount) / 100} {booking.currency}</div>
                                 </TableCell>
                                 <TableCell>
                                     <Badge variant={t(`statusVariants.${booking.status}`) as any}>{t(`status.${booking.status}`)}</Badge>

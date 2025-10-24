@@ -1,6 +1,7 @@
 {
     "Header": {
         "features": "Features",
+        "becomeHost": "Become a provider",
         "howItWorks": "How it works",
         "categories": "Categories",
         "signIn": "Sign In",
@@ -8,13 +9,16 @@
         "signOut": "Sign Out",
         "dashboard": "Dashboard",
         "profile": "Profile",
+        "bookings": "My bookings",
+        "notifications": "Notifications",
+        "settings": "Settings",
+        "help": "Help",
         "openMenu": "Open menu",
         "search": "Search",
         "searchPlaceholder": "Search...",
         "create": "Create",
         "createTask": "Create a task",
         "setAvailability": "Set availability",
-        "settings": "Settings",
         "support": "Support",
         "suggestedAction": "Create 'Shopping' task (template)",
         "notificationsTitle": "Notifications",
@@ -87,10 +91,35 @@
                 "role": "Provider"
             }
         },
+        "finalCta": {
+            "title": "Join the community and get started today",
+            "description": "Post a task or become a provider — hundreds of helpful connections await.",
+            "cta": "Sign up"
+        },
         "stats": {
             "missions": "Missions completed",
             "members": "Active members",
-            "rating": "Average provider rating"
+            "rating": "Average provider rating",
+            "securePayments": "Secure payments",
+            "trust": {
+                "badge1": {
+                    "title": "Verified providers",
+                    "desc": "Identity checks for peace of mind"
+                },
+                "badge2": {
+                    "title": "Secure payments",
+                    "desc": "Trusted payment partner"
+                },
+                "badge3": {
+                    "title": "24/7 support",
+                    "desc": "Help whenever you need it"
+                },
+                "badge4": {
+                    "title": "Satisfaction guaranteed",
+                    "desc": "Refunds & guarantees where applicable"
+                },
+                "learnMore": "Learn more"
+            }
         },
         "faq": {
             "title": "Frequently Asked Questions",
@@ -239,7 +268,14 @@
         "digitalHelp": "Digital help",
         "administrativeHelp": "Administrative help",
         "handyman": "Handyman",
-        "petSitting": "Pet sitting"
+        "petSitting": "Pet sitting",
+        "home_services": "Home Services",
+        "delivery": "Delivery",
+        "tutoring": "Tutoring",
+        "digital_help": "Digital Help",
+        "pet_care": "Pet Care",
+        "event_help": "Event Help",
+        "moving": "Moving"
     },
     "CreateTaskForm": {
         "taskTitleLabel": "Task title",
@@ -2069,63 +2105,63 @@
                 "noTasksMessage": "No tasks match your search criteria.",
                 "clearFilters": "Clear Filters"
             }
+        }
+    },
+    "LandingPage": {
+        "hero": {
+            "title": "Find the help you need,",
+            "titleHighlight": "near you",
+            "subtitle": "Thousands of qualified providers ready to help you every day",
+            "search": {
+                "whatPlaceholder": "What are you looking for?",
+                "wherePlaceholder": "Where?",
+                "categoryPlaceholder": "Category",
+                "budgetPlaceholder": "Max budget (€)",
+                "allCategories": "All categories",
+                "button": "Search",
+                "popular": "Popular searches"
+            },
+            "cta": {
+                "client": "Post a task",
+                "provider": "Become a provider"
+            }
         },
-        "LandingPage": {
-            "hero": {
-                "title": "Find the help you need,",
-                "titleHighlight": "near you",
-                "subtitle": "Thousands of qualified providers ready to help you every day",
-                "search": {
-                    "whatPlaceholder": "What are you looking for?",
-                    "wherePlaceholder": "Where?",
-                    "categoryPlaceholder": "Category",
-                    "budgetPlaceholder": "Max budget (€)",
-                    "allCategories": "All categories",
-                    "button": "Search",
-                    "popular": "Popular searches"
-                },
-                "cta": {
-                    "client": "Post a task",
-                    "provider": "Become a provider"
-                }
+        "categories": {
+            "cleaning": "Cleaning",
+            "moving": "Moving",
+            "gardening": "Gardening",
+            "delivery": "Delivery",
+            "handyman": "Handyman",
+            "petCare": "Pet Care",
+            "tutoring": "Tutoring",
+            "shopping": "Shopping",
+            "other": "Other"
+        },
+        "tasksGrid": {
+            "title": "Recent Tasks",
+            "subtitle": "Discover the latest opportunities near you",
+            "viewAll": "View all tasks",
+            "noTasks": "No tasks available at the moment",
+            "postFirstTask": "Post the first task"
+        },
+        "howItWorks": {
+            "title": "How it works?",
+            "subtitle": "Find help or offer your services in 3 simple steps",
+            "step1": {
+                "title": "1. Post your task",
+                "description": "Describe your need in a few clicks: service type, location, budget and desired date."
             },
-            "categories": {
-                "cleaning": "Cleaning",
-                "moving": "Moving",
-                "gardening": "Gardening",
-                "delivery": "Delivery",
-                "handyman": "Handyman",
-                "petCare": "Pet Care",
-                "tutoring": "Tutoring",
-                "shopping": "Shopping",
-                "other": "Other"
+            "step2": {
+                "title": "2. Receive offers",
+                "description": "Qualified providers send you their proposals. Check their profiles and ratings."
             },
-            "tasksGrid": {
-                "title": "Recent Tasks",
-                "subtitle": "Discover the latest opportunities near you",
-                "viewAll": "View all tasks",
-                "noTasks": "No tasks available at the moment",
-                "postFirstTask": "Post the first task"
+            "step3": {
+                "title": "3. Choose and book",
+                "description": "Select the ideal provider and book securely. Payment protected until the end of the mission."
             },
-            "howItWorks": {
-                "title": "How it works?",
-                "subtitle": "Find help or offer your services in 3 simple steps",
-                "step1": {
-                    "title": "1. Post your task",
-                    "description": "Describe your need in a few clicks: service type, location, budget and desired date."
-                },
-                "step2": {
-                    "title": "2. Receive offers",
-                    "description": "Qualified providers send you their proposals. Check their profiles and ratings."
-                },
-                "step3": {
-                    "title": "3. Choose and book",
-                    "description": "Select the ideal provider and book securely. Payment protected until the end of the mission."
-                },
-                "cta": {
-                    "client": "Post a task",
-                    "provider": "Become a provider"
-                }
+            "cta": {
+                "client": "Post a task",
+                "provider": "Become a provider"
             }
         }
     }

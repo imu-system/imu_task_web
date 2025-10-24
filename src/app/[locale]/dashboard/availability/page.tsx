@@ -143,7 +143,7 @@ export default function AvailabilityPage() {
                                             <TableCell key={dayIndex} className="p-1">
                                                 {event ? (
                                                     <div className={cn("w-full h-12 rounded-md p-1.5 text-xs border", getEventStyle(event.type))}>
-                                                        {event.label}
+                                                        {'label' in event ? event.label : ''}
                                                     </div>
                                                 ) : <div className="w-full h-12 rounded-md bg-muted/30"></div>}
                                             </TableCell>

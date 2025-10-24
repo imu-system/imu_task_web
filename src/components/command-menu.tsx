@@ -22,6 +22,7 @@ import {
 } from '@/components/ui/command';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/navigation';
+import { useRouter } from 'next/navigation';
 
 interface CommandMenuProps {
     open: boolean;
@@ -30,6 +31,7 @@ interface CommandMenuProps {
 
 export function CommandMenu({ open, setOpen }: CommandMenuProps) {
     const t = useTranslations('DashboardNav');
+  const router = useRouter();
 
     const runCommand = (command: () => unknown) => {
         setOpen(false);

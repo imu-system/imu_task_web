@@ -10,36 +10,36 @@
     --card-foreground: 210 15% 20%;
     --popover: 0 0% 100%;
     --popover-foreground: 210 15% 20%;
-    /* Primary: Turquoise from logo (cyan-teal gradient center) */
-    --primary: 180 65% 50%;
+    /* Primary: Modern blue (#3B82F6 - blue-500) - refined from logo */
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
-    /* Secondary: Light blue from logo */
-    --secondary: 195 85% 60%;
+    /* Secondary: Subtle teal (#14B8A6 - teal-500) - from logo gradient */
+    --secondary: 173 80% 40%;
     --secondary-foreground: 0 0% 100%;
     --muted: 210 20% 96%;
     --muted-foreground: 210 10% 45%;
-    /* Accent: Lime green from logo */
-    --accent: 85 70% 55%;
-    --accent-foreground: 210 15% 20%;
+    /* Accent: Lime green (#22C55E - green-500) - from logo arrow */
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
     --border: 210 15% 90%;
     --input: 210 15% 92%;
-    --ring: 180 65% 50%;
+    --ring: 217 91% 60%;
     --radius: 0.5rem;
-    --chart-1: 195 85% 60%;
-    --chart-2: 180 65% 50%;
-    --chart-3: 85 70% 55%;
+    --chart-1: 217 91% 60%;
+    --chart-2: 173 80% 40%;
+    --chart-3: 142 71% 45%;
     --chart-4: 160 60% 45%;
     --chart-5: 200 75% 55%;
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 210 15% 20%;
-    --sidebar-primary: 180 65% 50%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 210 15% 95%;
     --sidebar-accent-foreground: 210 15% 20%;
     --sidebar-border: 210 15% 88%;
-    --sidebar-ring: 180 65% 50%;
+    --sidebar-ring: 217 91% 60%;
   }
 
   .dark {
@@ -49,35 +49,35 @@
     --card-foreground: 210 15% 95%;
     --popover: 215 18% 16%;
     --popover-foreground: 210 15% 95%;
-    /* Primary: Brighter turquoise for dark mode */
-    --primary: 180 70% 55%;
+    /* Primary: Brighter blue for dark mode (#60A5FA - blue-400) */
+    --primary: 213 94% 68%;
     --primary-foreground: 215 20% 12%;
-    /* Secondary: Lighter blue for dark mode */
-    --secondary: 195 75% 65%;
+    /* Secondary: Lighter teal for dark mode (#2DD4BF - teal-400) */
+    --secondary: 172 66% 50%;
     --secondary-foreground: 215 20% 12%;
     --muted: 215 15% 22%;
     --muted-foreground: 210 15% 65%;
-    /* Accent: Vibrant lime green for dark mode */
-    --accent: 85 65% 60%;
+    /* Accent: Vibrant lime green for dark mode (#4ADE80 - green-400) */
+    --accent: 142 69% 58%;
     --accent-foreground: 215 20% 12%;
     --destructive: 0 72% 55%;
     --destructive-foreground: 0 0% 100%;
     --border: 215 15% 25%;
     --input: 215 15% 25%;
-    --ring: 180 70% 55%;
-    --chart-1: 195 75% 65%;
-    --chart-2: 180 70% 55%;
-    --chart-3: 85 65% 60%;
+    --ring: 213 94% 68%;
+    --chart-1: 213 94% 68%;
+    --chart-2: 172 66% 50%;
+    --chart-3: 142 69% 58%;
     --chart-4: 160 55% 50%;
     --chart-5: 200 65% 60%;
     --sidebar-background: 215 18% 16%;
     --sidebar-foreground: 210 15% 95%;
-    --sidebar-primary: 180 70% 55%;
+    --sidebar-primary: 213 94% 68%;
     --sidebar-primary-foreground: 215 20% 12%;
     --sidebar-accent: 215 15% 22%;
     --sidebar-accent-foreground: 210 15% 95%;
     --sidebar-border: 215 15% 25%;
-    --sidebar-ring: 180 70% 55%;
+    --sidebar-ring: 213 94% 68%;
   }
 }
 
@@ -92,14 +92,14 @@
     background: hsla(var(--background), 0.6);
     border-color: hsla(var(--border), 0.5);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-    backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
   }
 
   /* Fallback for browsers that don't support backdrop-filter */
   .no-backdrop .imu-glass {
-    backdrop-filter: none;
     -webkit-backdrop-filter: none;
+    backdrop-filter: none;
     background: hsl(var(--card));
   }
 }

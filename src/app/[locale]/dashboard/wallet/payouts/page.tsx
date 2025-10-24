@@ -125,12 +125,12 @@ export default function PayoutsPage() {
             </Card>
 
              <div className="flex justify-center">
-                <Button size="lg" disabled={user.KYCStatus !== 'verified'}>
+                <Button size="lg" disabled={user.kycStatus !== 'approved'}>
                     <Banknote className="mr-2"/>
                     {t('requestPayout')}
                 </Button>
             </div>
-             {user.KYCStatus !== 'verified' && (
+             {user.kycStatus !== 'approved' && (
                 <p className="text-center text-sm text-muted-foreground">
                     {t('kycRequired')} <Link href="/dashboard/profile" className="underline text-primary">Vérifiez votre identité</Link>.
                 </p>

@@ -34,6 +34,7 @@ import { db } from '@/lib/firebase';
 import { useEffect, useState, ReactNode } from 'react';
 import type { ServiceCategory } from '@/lib/types';
 import TestimonialCard from '@/components/testimonial-card';
+import TestimonialsFinalCTA from '@/components/landing/testimonials-final-cta';
 import placeholderImages from '@/app/lib/placeholder-images.json';
 import {
   Accordion,
@@ -45,6 +46,7 @@ import { HeroSearchBar } from '@/components/landing/hero-search-bar';
 import { CategoryPills } from '@/components/landing/category-pills';
 import { TasksGrid } from '@/components/landing/tasks-grid';
 import { HowItWorks } from '@/components/landing/how-it-works';
+import { StatsTrust } from '@/components/landing/stats-trust';
 
 const categoryIcons: Record<string, ReactNode> = {
   'shopping-basket': <ShoppingBasket className="h-8 w-8" />,
@@ -189,54 +191,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="stats" className="w-full py-12 md:py-24 lg:py-32 bg-primary/5">
-            <div className="container mx-auto px-4 md:px-6">
-                <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3 text-center">
-                    <div className="flex flex-col items-center">
-                        <HardHat className="h-10 w-10 text-primary mb-4" />
-                        <p className="text-4xl font-bold tracking-tighter">1500+</p>
-                        <p className="text-muted-foreground">{t('stats.missions')}</p>
-                    </div>
-                    <div className="flex flex-col items-center">
-                        <Users className="h-10 w-10 text-primary mb-4" />
-                        <p className="text-4xl font-bold tracking-tighter">800+</p>
-                        <p className="text-muted-foreground">{t('stats.members')}</p>
-                    </div>
-                    <div className="flex flex-col items-center">
-                        <Star className="h-10 w-10 text-primary mb-4" />
-                        <p className="text-4xl font-bold tracking-tighter">4.8/5</p>
-                        <p className="text-muted-foreground">{t('stats.rating')}</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <StatsTrust />
 
         {/* How It Works Section - 3 Steps */}
         <HowItWorks />
 
-        <section id="testimonials" className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl font-headline mb-12">
-              {t('testimonials.title')}
-            </h2>
-            <div className="grid gap-8 lg:grid-cols-2">
-                <TestimonialCard
-                    name={t('testimonials.testimonial1.name')}
-                    role={t('testimonials.testimonial1.role')}
-                    avatarUrl={placeholderImages.testimonial1.src}
-                    avatarFallback="M"
-                    testimonial={t('testimonials.testimonial1.text')}
-                />
-                <TestimonialCard
-                    name={t('testimonials.testimonial2.name')}
-                    role={t('testimonials.testimonial2.role')}
-                    avatarUrl={placeholderImages.testimonial2.src}
-                    avatarFallback="L"
-                    testimonial={t('testimonials.testimonial2.text')}
-                />
-            </div>
-          </div>
-        </section>
+        <TestimonialsFinalCTA />
 
         <section id="categories" className="w-full py-12 md:py-24 lg:py-32 bg-card">
           <div className="container mx-auto px-4 md:px-6">
@@ -254,7 +214,7 @@ export default function Home() {
                 categories.map((category) => (
                     <Card key={category.id} className="flex flex-col items-center justify-center p-6 text-center">
                     <div className="text-primary">{categoryIcons[category.icon || 'default']}</div>
-                    <p className="mt-2 font-semibold">{category.name}</p>
+                    <p className="mt-2 font-semibold">{typeof category.name === 'string' ? category.name : (category.name?.fr || category.slug)}</p>
                     </Card>
                 ))
               )}

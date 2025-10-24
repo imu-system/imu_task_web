@@ -104,7 +104,7 @@ export default function AdminTasksPage() {
                                     <Badge variant="outline">{task.categoryId}</Badge>
                                 </TableCell>
                                 <TableCell>
-                                    <Badge variant={getStatusVariant(task.status)}>{t(`status.${task.status}`)}</Badge>
+                                    <Badge variant={getStatusVariant(task.status as TaskStatus)}>{t(`status.${task.status}`)}</Badge>
                                 </TableCell>
                                 <TableCell className="text-right">
                                     <Button asChild variant="outline" size="sm">

@@ -67,7 +67,7 @@ export default function KycPage() {
     const StatusDisplay = () => {
         const kycStatus = KYCStatus.pending; // Forcing pending for demo
         switch (kycStatus) {
-            case KYCStatus.verified:
+            case KYCStatus.verified as any:
                 return (
                     <div className="text-center p-6 bg-green-100/50 rounded-lg border border-green-200 text-green-800">
                         <CheckCircle className="h-12 w-12 mx-auto" />
@@ -85,7 +85,7 @@ export default function KycPage() {
                         </div>
                     </div>
                 )
-            case KYCStatus.rejected:
+            case KYCStatus.rejected as any:
                 return (
                     <div className="text-center p-6 bg-red-100/50 rounded-lg border border-red-200 text-red-800">
                         <AlertCircle className="h-12 w-12 mx-auto" />

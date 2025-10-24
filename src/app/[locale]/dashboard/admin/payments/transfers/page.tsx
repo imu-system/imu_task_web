@@ -30,7 +30,7 @@ export default function AdminTransfersPage() {
         return mockTransfers.filter(tr => {
             return searchTerm 
                 ? tr.id.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                  tr.bookingId.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                  (tr.bookingId || '').toLowerCase().includes(searchTerm.toLowerCase()) || 
                   tr.provider?.profile?.displayName.toLowerCase().includes(searchTerm.toLowerCase())
                 : true;
         });

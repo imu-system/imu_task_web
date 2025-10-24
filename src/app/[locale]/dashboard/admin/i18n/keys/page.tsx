@@ -12,6 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 import fr from '@/messages/fr.json';
 import en from '@/messages/en.json';
 import ja from '@/messages/ja.json';
+import jp from '@/messages/ja.json'; // Legacy alias
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 type Translations = { [key: string]: string | Translations };
@@ -45,7 +46,7 @@ export default function AdminKeysPage() {
     const { toast } = useToast();
     const [isSaving, setIsSaving] = useState(false);
 
-    const [translations, setTranslations] = useState({ fr, en, jp });
+    const [translations, setTranslations] = useState({ fr, en, ja: jp });
 
     const handleSave = () => {
         setIsSaving(true);
@@ -60,13 +61,14 @@ export default function AdminKeysPage() {
         }, 1500);
     }
     
-    const allKeys = [...new Set([...Object.keys(flattenKeys(fr)), ...Object.keys(flattenKeys(en)), ...Object.keys(flattenKeys(jp))])].sort();
+    const allKeys = [...new Set([...Object.keys(flattenKeys(fr)), ...Object.keys(flattenKeys(en)), ...Object.keys(flattenKeys(translations.ja))])].sort();
     const groupedKeys = groupKeys(allKeys);
 
 
-    const getValue = (lang: 'fr' | 'en' | 'jp', key: string): string => {
+    const getValue = (lang: 'fr' | 'en' | 'ja' | 'jp', key: string): string => {
         const keys = key.split('.');
-        let current: any = translations[lang];
+        const langKey = lang === 'jp' ? 'ja' : lang; // Map jp to ja
+        let current: any = translations[langKey];
         for (const k of keys) {
             current = current?.[k];
         }

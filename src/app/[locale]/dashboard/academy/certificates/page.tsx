@@ -22,7 +22,7 @@ const mockCertificates = [
     { id: 'cert-starter', name: 'Certificat Gestion de Tâches 101', date: '10/09/2025', type: 'certificate' }
 ];
 
-constallItems = [...mockBadges, ...mockCertificates];
+const allItems = [...mockBadges, ...mockCertificates];
 
 export default function CertificatesPage() {
     const t = useTranslations('BadgesPage');

@@ -42,7 +42,7 @@ export default function NewTaskTemplatePage() {
         );
     }
     
-    const isProvider = user.roles.includes(UserRole.provider);
+    const isProvider = user.roles?.includes(UserRole.provider) ?? false;
 
     if (isProvider) {
          return (

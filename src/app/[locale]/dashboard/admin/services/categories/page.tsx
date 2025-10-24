@@ -61,7 +61,7 @@ export default function AdminCategoriesPage() {
                     updatedAt: (data.updatedAt as Timestamp)?.toDate ? (data.updatedAt as Timestamp).toDate() : new Date(),
                 } as ServiceCategory);
             });
-            setCategories(categoriesData.sort((a,b) => a.displayOrder - b.displayOrder));
+            setCategories(categoriesData.sort((a,b) => (a.displayOrder || 0) - (b.displayOrder || 0)));
             setLoading(false);
         }, (error) => {
             console.error("Error fetching service categories: ", error);
@@ -189,7 +189,7 @@ export default function AdminCategoriesPage() {
                                 <TableRow key={category.id}>
                                     <TableCell className="font-mono text-xs text-muted-foreground">{category.id.substring(0, 6)}...</TableCell>
                                     <TableCell className="font-medium">{category.slug}</TableCell>
-                                    <TableCell>{category.name}</TableCell>
+                                    <TableCell>{typeof category.name === 'string' ? category.name : (category.name?.fr || category.slug)}</TableCell>
                                     <TableCell>
                                         <Badge variant={category.isActive ? 'default' : 'destructive'}>
                                             {category.isActive ? t('statusActive') : t('statusInactive')}

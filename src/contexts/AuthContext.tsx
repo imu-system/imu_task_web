@@ -34,8 +34,11 @@ interface AuthContextType {
   signIn: (email: string, password: string) => Promise<void>;
   signInWithGoogle: () => Promise<void>;
   logout: () => Promise<void>;
+  signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   updateUserProfile: (data: { displayName?: string; photoURL?: string }) => Promise<void>;
+  startImpersonation?: (userId: string) => Promise<void>;
+  stopImpersonation?: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -229,6 +232,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     signIn,
     signInWithGoogle,
     logout,
+    signOut: logout, // alias for compatibility
     resetPassword,
     updateUserProfile,
   };

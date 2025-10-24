@@ -119,7 +119,7 @@ export default function AdminTaskDetailPage() {
                             <div className="flex items-center gap-2">
                                 <BadgeInfo className="h-4 w-4 text-primary"/>
                                 <strong>{t('details.status')}:</strong>
-                                <Badge variant={getStatusVariant(task.status)}>{tTaskStatus(task.status)}</Badge>
+                                <Badge variant={getStatusVariant(task.status as TaskStatus)}>{tTaskStatus(task.status as TaskStatus)}</Badge>
                             </div>
                             <div className="flex items-center gap-2">
                                 <Euro className="h-4 w-4 text-primary"/>

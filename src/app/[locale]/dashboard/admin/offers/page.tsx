@@ -117,7 +117,7 @@ export default function AdminOffersPage() {
                                     <Badge variant={getStatusVariant(offer.status)}>{t(`status.${offer.status}`)}</Badge>
                                 </TableCell>
                                  <TableCell>
-                                    {new Intl.DateTimeFormat(locale).format(offer.expiresAt)}
+                                    {offer.expiresAt ? new Intl.DateTimeFormat(locale).format(new Date(offer.expiresAt)) : 'N/A'}
                                 </TableCell>
                                 <TableCell className="text-right">
                                     <Button asChild variant="outline" size="sm">

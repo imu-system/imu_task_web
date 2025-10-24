@@ -196,7 +196,7 @@ export default function AdminFeesPage() {
                             <TableBody>
                                 {categories.map((category, index) => (
                                     <TableRow key={category.id}>
-                                        <TableCell className="font-medium">{category.name?.fr || category.slug}</TableCell>
+                                        <TableCell className="font-medium">{typeof category.name === 'string' ? category.name : (category.name?.fr || category.slug)}</TableCell>
                                         <TableCell>
                                              <FormField
                                                 control={form.control}

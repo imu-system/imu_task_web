@@ -140,7 +140,7 @@ export default function AdminOfferDetailPage() {
                             <div className="flex items-center gap-2">
                                 <Calendar className="h-4 w-4 text-primary"/>
                                 <strong>{t('cards.offer.expires')}:</strong>
-                                <span>{new Intl.DateTimeFormat(locale).format(offer.expiresAt)}</span>
+                                <span>{offer.expiresAt ? new Intl.DateTimeFormat(locale).format(new Date(offer.expiresAt)) : 'N/A'}</span>
                             </div>
                         </div>
                     </CardContent>

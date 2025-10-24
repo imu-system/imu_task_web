@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
@@ -110,6 +110,17 @@ const SERVICE_CATEGORY_LABELS: Record<ProServiceCategory, string> = {
 const MAX_PORTFOLIO_ITEMS = 20;
 const MAX_IMAGES_PER_ITEM = 5;
 const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+
+// Small helper to render a progress fill without inline JSX styles (uses ref to set width)
+function ProgressFill({ progress }: { progress: number }) {
+    const ref = useRef<HTMLDivElement | null>(null);
+    useEffect(() => {
+        if (ref.current) {
+            ref.current.style.width = `${progress}%`;
+        }
+    }, [progress]);
+    return <div ref={ref} className="absolute top-0 left-0 bg-primary h-full transition-all" />;
+}
 
 export default function ProPortfolioPage() {
     const { user } = useAuth();
@@ -642,12 +653,7 @@ export default function ProPortfolioPage() {
                             {uploading && (
                                 <div className="space-y-2">
                                     <div className="relative w-full bg-muted h-2 rounded-full overflow-hidden">
-                                        <div
-                                            className="absolute top-0 left-0 bg-primary h-full transition-all"
-                                            style={{
-                                                width: `${uploadProgress}%`,
-                                            }}
-                                        />
+                                        <ProgressFill progress={uploadProgress} />
                                     </div>
                                     <p className="text-xs text-center text-muted-foreground">
                                         Upload en cours... {Math.round(uploadProgress)}%

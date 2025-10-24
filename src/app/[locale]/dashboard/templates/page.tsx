@@ -43,7 +43,7 @@ export default function TaskTemplatesPage() {
         );
     }
     
-    const isProvider = user.roles.includes(UserRole.provider);
+    const isProvider = user.roles?.includes(UserRole.provider) ?? false;
 
     // Client View
     const ClientTemplatesView = () => (

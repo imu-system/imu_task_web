@@ -92,7 +92,7 @@ export default function AdminDisputesPage() {
                                 </TableCell>
                                 <TableCell>
                                     <Button variant="link" asChild className="p-0 h-auto font-mono">
-                                        <Link href={`/dashboard/admin/bookings/${dispute.bookingId}`}>{dispute.bookingId.substring(0,6)}...</Link>
+                                        <Link href={`/dashboard/admin/bookings/${dispute.bookingId || 'unknown'}`}>{(dispute.bookingId || 'N/A').substring(0,6)}...</Link>
                                     </Button>
                                 </TableCell>
                                 <TableCell>

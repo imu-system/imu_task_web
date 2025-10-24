@@ -130,7 +130,7 @@ export default function AdminEditCategoryPage() {
                         description: categoryData.description || { fr: '', en: '' },
                         recommendedPriceMin: categoryData.recommendedPriceMin,
                         recommendedPriceMax: categoryData.recommendedPriceMax,
-                        targetCities: categoryData.targetCities,
+                        targetCities: Array.isArray(categoryData.targetCities) ? categoryData.targetCities.join(', ') : (categoryData.targetCities || ''),
                         internalNotes: categoryData.internalNotes,
                     };
                     form.reset(defaultValues);
@@ -160,7 +160,12 @@ export default function AdminEditCategoryPage() {
         if (!categoryId) return;
         setIsSaving(true);
         try {
-            await updateServiceCategory(categoryId, data);
+            // Convert targetCities string to array before submitting
+            const submitData = {
+                ...data,
+                targetCities: data.targetCities ? (data.targetCities as string).split(',').map(s => s.trim()) : []
+            };
+            await updateServiceCategory(categoryId, submitData as any);
             try {
                 localStorage.removeItem(localStorageKey);
             } catch (e) {

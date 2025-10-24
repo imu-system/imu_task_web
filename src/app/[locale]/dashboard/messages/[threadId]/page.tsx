@@ -180,6 +180,7 @@ export default function ThreadPage() {
 
         const newAttachment: Attachment = {
             id: fileId,
+            name: file.name,
             filename: file.name,
             size: file.size,
             mimeType: file.type,
@@ -267,8 +268,8 @@ export default function ThreadPage() {
       <main className="flex-1 overflow-y-auto p-6 space-y-4">
         {messages.map((message, index) => {
             const isSender = message.senderId === user.uid;
-            const currentMessageDate = new Date(message.sentAt);
-            const prevMessageDate = index > 0 ? new Date(messages[index - 1].sentAt) : null;
+            const currentMessageDate = message.sentAt ? new Date(message.sentAt) : new Date();
+            const prevMessageDate = index > 0 && messages[index - 1].sentAt ? new Date(messages[index - 1].sentAt as string | Date) : null;
             const showDateSeparator = !prevMessageDate || !isSameDay(currentMessageDate, prevMessageDate);
 
             return (
@@ -285,7 +286,7 @@ export default function ThreadPage() {
                             {message.body && <p>{message.body}</p>}
                             {message.attachments?.map((att, i) => <AttachmentPreview key={i} attachment={att} threadId={threadId}/>)}
                             <p className={`text-xs mt-1 ${isSender ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
-                                {new Date(message.sentAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                                {message.sentAt ? new Date(message.sentAt as string | Date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''}
                             </p>
                         </div>
                     </div>
@@ -336,6 +337,8 @@ export default function ThreadPage() {
                 onChange={handleFileSelect}
                 className="hidden"
                 multiple
+                aria-label="Sélectionner des fichiers"
+                title="Sélectionner des fichiers"
             />
             <Button variant="ghost" size="icon" type="button" onClick={() => fileInputRef.current?.click()}>
                 <Paperclip/>

@@ -22,8 +22,8 @@ export default function WalletPage() {
         );
     }
 
-    const isProvider = user.roles.includes(UserRole.provider);
-    const isClient = user.roles.includes(UserRole.client);
+    const isProvider = user.roles?.includes(UserRole.provider) ?? false;
+    const isClient = user.roles?.includes(UserRole.client) ?? false;
 
     return (
         <div className="space-y-8 max-w-4xl mx-auto">
@@ -37,7 +37,7 @@ export default function WalletPage() {
                 </p>
             </div>
 
-            <BalanceCard isProvider={isProvider} isClient={isClient} kycStatus={user.KYCStatus} />
+            <BalanceCard isProvider={isProvider} isClient={isClient} kycStatus={user.kycStatus ?? 'pending' as any} />
 
             <QuickSummary isProvider={isProvider} isClient={isClient} />
             

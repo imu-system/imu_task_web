@@ -21,7 +21,7 @@ export default function WithdrawPage() {
     const { toast } = useToast();
 
     useEffect(() => {
-        if (!loading && (!user || !user.roles.includes(UserRole.provider))) {
+        if (!loading && (!user || !user.roles?.includes(UserRole.provider))) {
             router.push('/dashboard/wallet');
         }
     }, [user, loading, router]);
@@ -97,7 +97,7 @@ export default function WithdrawPage() {
                 </CardContent>
             </Card>
 
-             {user.KYCStatus !== 'verified' && (
+             {user.kycStatus !== 'approved' && (
                 <Card className="border-amber-500 bg-amber-500/5 text-amber-800">
                     <CardHeader className="flex flex-row items-center gap-3">
                         <ShieldAlert className="h-6 w-6"/>
@@ -113,7 +113,7 @@ export default function WithdrawPage() {
             )}
 
             <div className="flex justify-end">
-                <Button size="lg" onClick={handleWithdraw} disabled={user.KYCStatus !== 'verified'}>
+                <Button size="lg" onClick={handleWithdraw} disabled={user.kycStatus !== 'approved'}>
                     {t('form.confirmButton')}
                 </Button>
             </div>

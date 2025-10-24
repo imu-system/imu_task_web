@@ -39,7 +39,13 @@ export enum BookingStatus {
   in_progress = 'in_progress',
   completed = 'completed',
   cancelled = 'cancelled',
-  disputed = 'disputed'
+  // alias used in some legacy code
+  canceled = 'canceled',
+  disputed = 'disputed',
+  // legacy
+  scheduled = 'scheduled',
+  no_show_client = 'no_show_client',
+  no_show_provider = 'no_show_provider'
 }
 
 export enum PaymentStatus {
@@ -52,30 +58,40 @@ export enum PaymentStatus {
 
 // Profile type
 export type Profile = {
-  displayName: string;
+  displayName?: string;
   photoUrl?: string;
-  userId: string;
-  languages: string[];
-  averageRating: number;
-  reviewsCount: number;
-  skills: string[];
-  verifiedBadges: string[];
+  userId?: string;
+  languages?: string[];
+  averageRating?: number;
+  reviewsCount?: number;
+  skills?: string[];
+  verifiedBadges?: string[];
   bio?: string;
   phone?: string;
-  createdAt: string;
-  updatedAt: string;
+  city?: string;
+  serviceRadiusKm?: number;
+  createdAt?: string | Date;
+  updatedAt?: string | Date;
 };
 
-// User type with Profile
+// User: Full model with all fields
 export type User = {
   id: string;
   email: string;
   profile: Profile;
-  roles: UserRole[];
-  status: UserStatus;
-  KYCStatus: KYCStatus;
-  createdAt: string;
-  updatedAt: string;
+  roles?: UserRole[];
+  status?: UserStatus;
+  KYCStatus?: KYCStatus;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+};
+
+// AppUser type (alias for compatibility with auth context)
+export type AppUser = User & {
+  phone?: string;
+  kycStatus?: KYCStatus;
+  status?: UserStatus;
+  roles?: UserRole[];
 };
 
 // Legacy User type for compatibility
@@ -93,18 +109,21 @@ export type LegacyUser = {
 export type Task = {
   id: string;
   title: string;
-  categoryId: string;
+  categoryId?: string;
   description: string;
-  category: string;
+  category?: string;
   location: string;
-  adresse: Address;
-  budget: number;
-  status: 'Open' | 'In Progress' | 'Completed';
+  adresse?: Address;
+  budget?: number;
+  // Accept either the legacy literal status or the TaskStatus enum
+  status: 'Open' | 'In Progress' | 'Completed' | TaskStatus | string;
   clientId: string;
-  timeWindowStart: Date;
-  timeWindowEnd: Date;
+  timeWindowStart?: Date | string;
+  timeWindowEnd?: Date | string;
   providerId?: string;
-  createdAt: Date;
+  createdAt: string | Date;
+  // Allow extra legacy/mock properties (priceOffered, client, attachments, etc.)
+  [k: string]: any;
 };
 
 export type Proposal = {
@@ -123,15 +142,24 @@ export type Booking = {
   providerId: string;
   proposalId: string;
   amount: number;
-  status: 'pending' | 'confirmed' | 'in_progress' | 'completed' | 'cancelled' | 'disputed';
-  scheduledDate?: Date;
-  startedAt?: Date;
-  completedAt?: Date;
-  cancelledAt?: Date;
+  status: BookingStatus | 'pending' | 'confirmed' | 'in_progress' | 'completed' | 'cancelled' | 'disputed' | string;
+  scheduledDate?: Date | string;
+  startAt?: Date | string; // alias used in some components
+  startedAt?: Date | string;
+  endAt?: Date | string; // alias
+  completedAt?: Date | string;
+  cancelledAt?: Date | string;
   cancellationReason?: string;
   notes?: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+  // legacy helper objects present in fixtures
+  task?: any;
+  client?: any;
+  provider?: any;
+  // legacy/alias fields observed in the codebase
+  agreedAmount?: number;
+  currency?: string;
 };
 
 // Note: Full Message and Conversation types are defined in:
@@ -141,17 +169,26 @@ export type Booking = {
 
 export type Message = {
   id: string;
-  conversationId: string;
+  // Support both conversationId (new) and threadId (legacy), and both content/body
+  conversationId?: string;
+  threadId?: string;
   senderId: string;
-  content: string;
-  timestamp: Date;
+  content?: string;
+  body?: string;
+  // message kind (text, image, audio, file, system)
+  type?: MessageType;
+  // timestamp in mocks may be Date or string, and some code uses sentAt
+  timestamp?: string | Date;
+  sentAt?: string | Date;
+  // allow attachments in mock messages
+  attachments?: Attachment[] | any[];
 };
 
 export type Conversation = {
   id: string;
   participants: string[];
-  lastMessage: string;
-  lastMessageAt: Date;
+  lastMessage?: string;
+  lastMessageAt?: string | Date;
 };
 
 // Task-related enums
@@ -161,7 +198,10 @@ export enum TaskStatus {
   matched = 'matched',
   in_progress = 'in_progress',
   completed = 'completed',
-  cancelled = 'cancelled'
+  cancelled = 'cancelled',
+  // legacy / alternate statuses used in mock data
+  partially_matched = 'partially_matched',
+  canceled = 'canceled'
 }
 
 export enum TaskVisibility {
@@ -174,7 +214,8 @@ export enum OfferStatus {
   pending = 'pending',
   accepted = 'accepted',
   declined = 'declined',
-  withdrawn = 'withdrawn'
+  withdrawn = 'withdrawn',
+  expired = 'expired'
 }
 
 // Transfer-related enums
@@ -183,7 +224,8 @@ export enum TransferStatus {
   processing = 'processing',
   succeeded = 'succeeded',
   failed = 'failed',
-  cancelled = 'cancelled'
+  cancelled = 'cancelled',
+  canceled = 'canceled'
 }
 
 // Payout-related enums
@@ -207,7 +249,13 @@ export enum DisputeStatus {
   open = 'open',
   in_review = 'in_review',
   resolved = 'resolved',
-  closed = 'closed'
+  closed = 'closed',
+  // legacy / detailed statuses
+  under_review = 'under_review',
+  resolved_refund_full = 'resolved_refund_full',
+  resolved_no_refund = 'resolved_no_refund',
+  resolved_refund_partial = 'resolved_refund_partial',
+  canceled = 'canceled'
 }
 
 export enum DisputeType {
@@ -216,6 +264,9 @@ export enum DisputeType {
   communication = 'communication',
   safety = 'safety',
   other = 'other'
+  ,
+  // legacy
+  no_show = 'no_show'
 }
 
 // Notification-related enums
@@ -228,6 +279,11 @@ export enum NotificationType {
   payment_received = 'payment_received',
   review_received = 'review_received',
   system = 'system'
+  ,
+  // legacy / additional
+  task_offer_received = 'task_offer_received',
+  booking_reminder = 'booking_reminder',
+  dispute_update = 'dispute_update'
 }
 
 export enum NotificationChannel {
@@ -243,6 +299,8 @@ export enum DeliveryStatus {
   delivered = 'delivered',
   failed = 'failed',
   read = 'read'
+  ,
+  queued = 'queued'
 }
 
 // Content/CMS-related enums
@@ -257,12 +315,16 @@ export enum ThreadStatus {
   active = 'active',
   archived = 'archived',
   closed = 'closed'
+  ,
+  // legacy
+  open = 'open'
 }
 
 export enum MessageType {
   text = 'text',
   image = 'image',
   file = 'file',
+  audio = 'audio',
   system = 'system'
 }
 
@@ -270,7 +332,8 @@ export enum AttachmentKind {
   image = 'image',
   video = 'video',
   document = 'document',
-  audio = 'audio'
+  audio = 'audio',
+  file = 'file'
 }
 
 // Device-related enums
@@ -288,31 +351,53 @@ export type Offer = {
   amount: number;
   message: string;
   status: OfferStatus;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+  // allow linked task for mock objects
+  task?: any;
+  // legacy mock object reference
+  provider?: any;
+  // legacy proposed price field used in fixtures
+  proposedPrice?: number;
+  // expiration field used in admin pages
+  expiresAt?: string | Date;
 };
 
 export type ServiceCategory = {
   id: string;
-  name: string;
+  name: string | Record<string, string>;
   icon: string;
-  description?: string;
-  createdAt: string;
-  updatedAt: string;
+  description?: string | Record<string, string>;
+  slug?: string;
+  isActive?: boolean;
+  displayOrder?: number;
+  recommendedPriceMin?: number;
+  recommendedPriceMax?: number;
+  targetCities?: string[];
+  internalNotes?: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
 };
 
 export type ServiceCategoryCreation = Omit<ServiceCategory, 'id' | 'createdAt' | 'updatedAt'>;
+
 
 export type Transfer = {
   id: string;
   amount: number;
   currency: string;
   status: TransferStatus;
-  fromUserId: string;
-  toUserId: string;
+  fromUserId?: string;
+  toUserId?: string;
   taskId?: string;
-  createdAt: string;
-  updatedAt: string;
+  // optional legacy fields in mocks
+  bookingId?: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+  // legacy mock object reference
+  provider?: any;
+  // legacy transfer identifier in fixtures
+  transferId?: string;
 };
 
 export type Payout = {
@@ -321,8 +406,16 @@ export type Payout = {
   currency: string;
   status: PayoutStatus;
   userId: string;
-  createdAt: string;
-  updatedAt: string;
+  // legacy field in mocks
+  providerId?: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+  // legacy mock object reference
+  provider?: any;
+  // legacy payout identifier in fixtures
+  payoutId?: string;
+  // optional legacy arrival date used in fixtures
+  arrivalDate?: string | Date;
 };
 
 export type Review = {
@@ -333,8 +426,16 @@ export type Review = {
   rating: number;
   comment?: string;
   visibility: ReviewVisibility;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+  // optional legacy fields
+  bookingId?: string;
+  // legacy mock object reference
+  reviewer?: any;
+  // alternate fixture key
+  revieweeId?: string;
+  // legacy reviewee object reference
+  reviewee?: any;
 };
 
 export type Dispute = {
@@ -347,8 +448,21 @@ export type Dispute = {
   status: DisputeStatus;
   description: string;
   resolution?: string;
-  createdAt: string;
-  updatedAt: string;
+  // legacy field used in fixtures
+  openedById?: string;
+  // legacy object reference used in fixtures
+  openedBy?: any;
+  // legacy resolved time
+  resolvedAt?: string | Date;
+  // legacy assigned admin
+  assignedTo?: any;
+  assignedToId?: string;
+  // legacy attachments array
+  attachments?: any[];
+  // legacy booking object reference
+  booking?: any;
+  createdAt: string | Date;
+  updatedAt: string | Date;
 };
 
 export type Notification = {
@@ -358,48 +472,72 @@ export type Notification = {
   title: string;
   message: string;
   data?: Record<string, any>;
+  // legacy payload field
+  payload?: Record<string, any>;
   channels: NotificationChannel[];
+  // legacy singular channel in fixtures
+  channel?: NotificationChannel;
   deliveryStatus: DeliveryStatus;
   read: boolean;
-  createdAt: string;
+  createdAt: string | Date;
+  // legacy helper reference used in mock fixtures
+  user?: any;
+  // legacy sentAt timestamp in fixtures
+  sentAt?: string | Date;
 };
 
 export type ContentPage = {
   id: string;
   slug: string;
-  title: string;
-  content: string;
+  // localized content (prefer object with locales)
+  title: Record<string, string>;
+  content: Record<string, string>;
+  // legacy seo fields in fixtures
+  seoTitle?: string | Record<string, string>;
+  seoDescription?: string | Record<string, string>;
   status: PageStatus;
-  authorId: string;
-  createdAt: string;
-  updatedAt: string;
+  authorId?: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
+  // arbitrary indexing flag used in fixtures
+  isIndexed?: boolean;
 };
 
 export type Thread = {
   id: string;
   participants: string[];
+  // helper used in mocks to attach resolved participant data
+  participantsData?: any[];
   taskId?: string;
   status: ThreadStatus;
-  lastMessageAt: string;
-  createdAt: string;
-  updatedAt: string;
+  lastMessageAt: string | Date;
+  // legacy helper used in fixtures
+  lastMessage?: any;
+  // legacy attached task used in fixtures
+  task?: any;
+  createdAt: string | Date;
+  updatedAt: string | Date;
 };
 
-export type Attachment = {
+export interface Attachment {
   id: string;
-  messageId: string;
-  kind: AttachmentKind;
+  name: string;
   url: string;
-  filename: string;
   size: number;
-  createdAt: string;
-};
+  uploadedBy: string;
+  uploadedAt: string | Date;
+  mimeType?: string;
+  progress?: number;
+  error?: string;
+  filename?: string; // legacy alias for name
+  kind?: AttachmentKind; // type of attachment
+}
 
 export type Device = {
   id: string;
   userId: string;
   platform: DevicePlatform;
   token: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: string | Date;
+  updatedAt: string | Date;
 };

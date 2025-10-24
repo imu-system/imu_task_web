@@ -21,13 +21,13 @@ import { Dialog, DialogTrigger, DialogContent } from './ui/dialog';
 import { OfferForm } from './offer-form';
 import { ServiceCategoryBadge } from './services/category-selector';
 import { ServiceCategory } from '@/types/services';
-import { useRouter } from '@/navigation';
+import { useRouter } from 'next/navigation';
 import { formatDistance } from '@/lib/geolocation';
 import { TaskStatusBadge } from './task-detail/task-status-badge';
 
 type TaskListCardProps = {
   task: Task;
-  onOpenSheet: (taskId: string) => void;
+  onOpenSheet?: (taskId: string) => void;
   showDistance?: boolean;
   distance?: number | null;
 };
@@ -122,7 +122,7 @@ export default function TaskListCard({ task, onOpenSheet, showDistance = false, 
                 </div>
                 <div className="flex items-center gap-2">
                     <Calendar className="h-4 w-4 shrink-0" />
-                    <span>{new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(timeWindowStart))}</span>
+                    <span>{new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(timeWindowStart || new Date()))}</span>
                 </div>
              </div>
 
@@ -152,7 +152,7 @@ export default function TaskListCard({ task, onOpenSheet, showDistance = false, 
                 {budget}€
             </div>
             <div className="flex gap-2">
-                <Button variant="outline" size="sm" onClick={() => onOpenSheet(id)}>
+        <Button variant="outline" size="sm" onClick={() => onOpenSheet?.(id)}>
                     <Eye className="mr-2"/>
                     {t('view')}
                 </Button>

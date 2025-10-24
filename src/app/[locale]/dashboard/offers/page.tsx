@@ -27,6 +27,8 @@ import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog';
 import { OfferForm } from '@/components/offer-form';
 import { useToast } from '@/hooks/use-toast';
 
+// Extend DayProps to include className for styling
+type ExtendedDayProps = DayProps & { className?: string };
 
 export default function ProviderOffersPage() {
     const t = useTranslations('ProviderOffersPage');
@@ -40,7 +42,7 @@ export default function ProviderOffersPage() {
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
     const { toast } = useToast();
 
-    const isProvider = user?.roles.includes(UserRole.provider);
+    const isProvider = user?.roles?.includes(UserRole.provider);
 
     useEffect(() => {
         if (user && isProvider) {
@@ -70,7 +72,7 @@ export default function ProviderOffersPage() {
     const tasksByDay = useMemo(() => {
         const tasksMap: { [key: string]: Task[] } = {};
         recommendedTasks.forEach(task => {
-            const date = new Date(task.timeWindowStart).toDateString();
+            const date = task.timeWindowStart ? new Date(task.timeWindowStart).toDateString() : new Date().toDateString();
             if (!tasksMap[date]) {
                 tasksMap[date] = [];
             }
@@ -108,7 +110,7 @@ export default function ProviderOffersPage() {
         )
     }
     
-    const DayWithTasks = (dayProps: DayProps) => {
+    const DayWithTasks = (dayProps: ExtendedDayProps) => {
         const { date } = dayProps;
         const dateString = date.toDateString();
         const tasksForDay = tasksByDay[dateString];

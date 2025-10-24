@@ -44,7 +44,7 @@ export default function EditTaskTemplatePage() {
     const [isSaving, setIsSaving] = useState(false);
     const { user, loading } = useAuth();
     
-    const isProvider = user?.roles.includes(UserRole.provider);
+    const isProvider = user?.roles?.includes(UserRole.provider) ?? false;
 
 
     const handleSave = async () => {

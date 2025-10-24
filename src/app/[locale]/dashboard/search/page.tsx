@@ -18,7 +18,7 @@ import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
 import { loadGoogleMapsScript } from '@/lib/google-maps-config';
 
-const mockProviders = users.filter(u => u.roles.includes(UserRole.provider));
+const mockProviders = users.filter(u => u.roles?.includes(UserRole.provider) ?? false);
 
 export default function SearchPage() {
     const t = useTranslations('SearchPage');

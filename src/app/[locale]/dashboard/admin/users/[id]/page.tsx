@@ -115,19 +115,19 @@ export default function AdminUserDetailPage() {
             if (adminUser && userId === adminUser.uid) {
                  setUser({
                     id: adminUser.uid,
-                    displayName: adminUser.profile?.displayName || adminUser.displayName,
+                    displayName: (adminUser as any).profile?.displayName || adminUser.displayName,
                     email: adminUser.email,
-                    roles: adminUser.roles,
-                    status: adminUser.status,
-                    kycStatus: adminUser.KYCStatus,
+                    roles: adminUser.roles || [],
+                    status: (adminUser as any).status || 'active',
+                    kycStatus: adminUser.kycStatus || (adminUser as any).KYCStatus || 'not_required',
                     createdAt: adminUser.metadata.creationTime,
-                    profile: adminUser.profile
+                    profile: (adminUser as any).profile
                 });
                 profileForm.reset({
-                    displayName: adminUser.profile?.displayName || adminUser.displayName || '',
-                    city: adminUser.profile?.city || '',
-                    languages: (adminUser.profile?.languages || []).join(', '),
-                    verifiedBadges: (adminUser.profile?.verifiedBadges || []).join(', '),
+                    displayName: (adminUser as any).profile?.displayName || adminUser.displayName || '',
+                    city: (adminUser as any).profile?.city || '',
+                    languages: ((adminUser as any).profile?.languages || []).join(', '),
+                    verifiedBadges: ((adminUser as any).profile?.verifiedBadges || []).join(', '),
                 });
                 rolesForm.reset({ roles: adminUser.roles });
             } else {
@@ -190,7 +190,7 @@ export default function AdminUserDetailPage() {
     }
 
     const handleImpersonate = () => {
-        if (user) {
+        if (user && startImpersonation) {
             startImpersonation(user);
             router.push('/dashboard');
         }

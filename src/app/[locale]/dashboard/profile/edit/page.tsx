@@ -184,7 +184,7 @@ export default function ProfileEditPage() {
                                         <FormLabel>{t('languages')}</FormLabel>
                                         <MultiSelect
                                             options={availableLanguages}
-                                            selected={field.value}
+                                            selected={field.value ?? []}
                                             onChange={field.onChange}
                                             placeholder={t('languagesPlaceholder')}
                                         />
@@ -199,7 +199,7 @@ export default function ProfileEditPage() {
                                     <FormItem>
                                         <FormLabel>{t('skills')}</FormLabel>
                                          <TagInput
-                                            tags={field.value}
+                                            tags={field.value ?? []}
                                             onChange={field.onChange}
                                             placeholder={t('skillsPlaceholder')}
                                         />
