@@ -1,9 +1,18 @@
 {
     "Header": {
         "features": "Fonctionnalités",
-        "becomeHost": "Devenir prestataire",
+        "becomeHost": "Proposer mes services",
         "howItWorks": "Comment ça marche",
         "categories": "Catégories",
+        "services": "Nos services",
+        "servicesMenu": {
+            "imutask": "ImuTask - Particuliers",
+            "imutaskDesc": "Micro-missions du quotidien",
+            "imupro": "ImuPro - Professionnels",
+            "imuproDesc": "Services professionnels certifiés",
+            "carelink": "CareLink - Seniors",
+            "carelinkDesc": "Maintien à domicile"
+        },
         "signIn": "Se connecter",
         "signUp": "S'inscrire",
         "signOut": "Se déconnecter",
@@ -2170,7 +2179,7 @@
         "hero": {
             "title": "Trouvez l'aide dont vous avez besoin,",
             "titleHighlight": "près de chez vous",
-            "subtitle": "Des milliers de prestataires qualifiés prêts à vous aider au quotidien",
+            "subtitle": "Une communauté de prestataires qualifiés prêts à vous aider au quotidien",
             "search": {
                 "whatPlaceholder": "Que cherchez-vous ?",
                 "wherePlaceholder": "Où ?",
@@ -2181,8 +2190,8 @@
                 "popular": "Recherches populaires"
             },
             "cta": {
-                "client": "Poster une tâche",
-                "provider": "Devenir prestataire"
+                "client": "Publier une mission",
+                "provider": "Proposer mes services"
             }
         },
         "categories": {
@@ -2198,12 +2207,12 @@
             "other": "Autres"
         },
         "tasksGrid": {
-            "title": "Tâches récentes",
+            "title": "Missions récentes",
             "subtitle": "Découvrez les dernières opportunités près de chez vous",
-            "viewAll": "Voir toutes les tâches",
-            "noTasks": "Aucune tâche disponible pour le moment",
-            "postFirstTask": "Poster la première tâche",
-            "signupToPoster": "S'inscrire pour poster",
+            "viewAll": "Voir toutes les missions",
+            "noTasks": "Aucune mission disponible pour le moment",
+            "postFirstTask": "Publier la première mission",
+            "signupToPoster": "S'inscrire pour publier",
             "login": "Se connecter"
         },
         "features": {
@@ -2269,7 +2278,7 @@
             "title": "Comment ça marche ?",
             "subtitle": "Trouvez de l'aide ou proposez vos services en 3 étapes simples",
             "step1": {
-                "title": "1. Publiez votre tâche",
+                "title": "1. Publiez votre mission",
                 "description": "Décrivez votre besoin en quelques clics : type de service, localisation, budget et date souhaitée."
             },
             "step2": {
@@ -2281,8 +2290,8 @@
                 "description": "Sélectionnez le prestataire idéal et réservez en toute sécurité. Paiement protégé jusqu'à la fin de la mission."
             },
             "cta": {
-                "client": "Publier une tâche",
-                "provider": "Devenir prestataire"
+                "client": "Publier une mission",
+                "provider": "Proposer mes services"
             }
         },
         "faq": {
@@ -2311,7 +2320,7 @@
             "professional": {
                 "title": "Professionnels",
                 "description": "Artisans, auto-entrepreneurs : développez votre activité avec ImuPro, notre plateforme dédiée aux services professionnels certifiés.",
-                "cta": "Devenir Pro"
+                "cta": "Devenir Pro certifié"
             },
             "senior": {
                 "title": "Seniors & Aidants",

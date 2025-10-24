@@ -43,7 +43,27 @@ export default function Header() {
   const navLinks = [
     { href: '#features', label: t('features') },
     { href: '#how-it-works', label: t('howItWorks') },
-    { href: '#categories', label: t('categories') },
+  ];
+
+  const servicesMenuItems = [
+    { 
+      href: '/#particuliers', 
+      label: t('servicesMenu.imutask'),
+      desc: t('servicesMenu.imutaskDesc'),
+      gradient: 'from-blue-500 to-cyan-500'
+    },
+    { 
+      href: '/#imupro', 
+      label: t('servicesMenu.imupro'),
+      desc: t('servicesMenu.imuproDesc'),
+      gradient: 'from-purple-500 to-pink-500'
+    },
+    { 
+      href: '/#carelink', 
+      label: t('servicesMenu.carelink'),
+      desc: t('servicesMenu.carelinkDesc'),
+      gradient: 'from-orange-500 to-red-500'
+    },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -187,6 +207,29 @@ export default function Header() {
               {link.label}
             </a>
           ))}
+          
+          {/* Services Dropdown Menu */}
+          <DropdownMenu>
+            <DropdownMenuTrigger className="text-foreground/70 transition-colors hover:text-foreground hover:underline underline-offset-4 flex items-center gap-1">
+              {t('services')}
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-50">
+                <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-72 rounded-2xl shadow-xl border-border/50 p-3" align="start">
+              {servicesMenuItems.map((item) => (
+                <DropdownMenuItem key={item.href} asChild className="rounded-xl cursor-pointer p-3 mb-2 last:mb-0 focus:bg-accent/50">
+                  <Link href={item.href} className="flex flex-col gap-1">
+                    <div className="flex items-center gap-2">
+                      <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${item.gradient}`} />
+                      <span className="font-semibold text-sm">{item.label}</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground ml-4">{item.desc}</p>
+                  </Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
         
         {/* Right Side: Auth/User Menu */}
@@ -231,6 +274,25 @@ export default function Header() {
                         {link.label}
                       </a>
                     ))}
+                    
+                    {/* Mobile Services Section */}
+                    <div className="border-t pt-3 mt-2">
+                      <p className="text-xs font-semibold text-muted-foreground px-3 mb-2">{t('services')}</p>
+                      {servicesMenuItems.map((item) => (
+                        <Link 
+                          key={item.href}
+                          href={item.href}
+                          className="flex flex-col gap-1 py-2 px-3 rounded-xl hover:bg-muted/60 transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          <div className="flex items-center gap-2">
+                            <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${item.gradient}`} />
+                            <span className="font-semibold text-sm">{item.label}</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground ml-4">{item.desc}</p>
+                        </Link>
+                      ))}
+                    </div>
                   </nav>
                   
                   {/* Mobile Auth Section */}

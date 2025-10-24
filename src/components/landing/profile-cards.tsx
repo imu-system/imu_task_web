@@ -14,26 +14,26 @@ export function ProfileCards() {
       icon: User,
       gradient: "from-blue-500 to-cyan-500",
       borderColor: "hover:border-blue-500",
-      href: "/signup",
+      href: "/signup", // Signup for individuals
     },
     {
       key: "professional" as const,
       icon: Briefcase,
       gradient: "from-purple-500 to-pink-500",
       borderColor: "hover:border-purple-500",
-      href: "/signup?type=pro",
+      href: "/signup?type=pro", // Signup for professionals (ImuPro)
     },
     {
       key: "senior" as const,
       icon: Heart,
       gradient: "from-orange-500 to-red-500",
       borderColor: "hover:border-orange-500",
-      href: "#carelink",
+      href: "#carelink", // Scroll to CareLink section
     },
   ];
 
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-background to-accent/5">
+    <section id="particuliers" className="py-16 md:py-24 bg-gradient-to-b from-background to-accent/5">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
