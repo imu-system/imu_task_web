@@ -1622,5 +1622,473 @@
                 "addressLine4": "France"
             }
         }
+    },
+    "Payments": {
+        "status": {
+            "pending": "En attente",
+            "processing": "En cours",
+            "succeeded": "Réussie",
+            "failed": "Échouée",
+            "canceled": "Annulée",
+            "refunded": "Remboursée",
+            "partially_refunded": "Partiellement remboursée",
+            "approved": "Approuvé",
+            "rejected": "Rejeté",
+            "paid": "Payé",
+            "opened": "Ouvert",
+            "under_review": "En examen",
+            "waiting_response": "En attente de réponse",
+            "won": "Gagné",
+            "lost": "Perdu",
+            "closed": "Fermé",
+            "verified": "Vérifié",
+            "active": "Actif",
+            "expired": "Expiré",
+            "inactive": "Inactif"
+        },
+        "types": {
+            "payment": "Paiement",
+            "payout": "Virement",
+            "refund": "Remboursement",
+            "transfer": "Transfert",
+            "withdrawal": "Retrait",
+            "deposit": "Dépôt",
+            "fee": "Frais",
+            "commission": "Commission"
+        },
+        "methods": {
+            "card": "Carte bancaire",
+            "bank_transfer": "Virement bancaire",
+            "wallet": "Portefeuille",
+            "sepa_debit": "Prélèvement SEPA",
+            "paypal": "PayPal",
+            "stripe": "Stripe"
+        },
+        "common": {
+            "amount": "Montant",
+            "currency": "Devise",
+            "date": "Date",
+            "status": "Statut",
+            "actions": "Actions",
+            "details": "Détails",
+            "search": "Rechercher",
+            "filter": "Filtrer",
+            "export": "Exporter",
+            "refresh": "Actualiser",
+            "loading": "Chargement...",
+            "noData": "Aucune donnée disponible",
+            "error": "Une erreur est survenue",
+            "success": "Opération réussie",
+            "cancel": "Annuler",
+            "confirm": "Confirmer",
+            "save": "Enregistrer",
+            "delete": "Supprimer",
+            "edit": "Modifier",
+            "view": "Voir",
+            "close": "Fermer",
+            "back": "Retour"
+        }
+    },
+    "AdminPayments": {
+        "nav": {
+            "transactions": "Transactions",
+            "payouts": "Virements",
+            "bankAccounts": "Comptes bancaires",
+            "disputes": "Litiges"
+        },
+        "transactions": {
+            "title": "Gestion des transactions",
+            "subtitle": "Consultez et gérez toutes les transactions de la plateforme",
+            "cards": {
+                "total": "Total des transactions",
+                "succeeded": "Transactions réussies",
+                "refunded": "Montant remboursé",
+                "failed": "Transactions échouées"
+            },
+            "table": {
+                "id": "ID",
+                "user": "Utilisateur",
+                "type": "Type",
+                "amount": "Montant",
+                "status": "Statut",
+                "method": "Méthode",
+                "date": "Date",
+                "actions": "Actions"
+            },
+            "filters": {
+                "all": "Tous",
+                "status": "Statut",
+                "type": "Type",
+                "dateFrom": "Du",
+                "dateTo": "Au",
+                "reset": "Réinitialiser"
+            },
+            "actions": {
+                "refund": "Rembourser",
+                "viewDetails": "Voir détails",
+                "downloadReceipt": "Télécharger reçu"
+            },
+            "refund": {
+                "title": "Rembourser la transaction",
+                "amount": "Montant à rembourser",
+                "reason": "Raison du remboursement",
+                "partial": "Remboursement partiel",
+                "full": "Remboursement total",
+                "confirm": "Confirmer le remboursement",
+                "success": "Transaction remboursée avec succès",
+                "error": "Erreur lors du remboursement"
+            }
+        },
+        "payouts": {
+            "title": "Gestion des virements",
+            "subtitle": "Approuvez et gérez les virements vers les professionnels",
+            "cards": {
+                "pending": "En attente",
+                "approved": "Approuvés ce mois",
+                "paid": "Payés ce mois",
+                "rejected": "Rejetés"
+            },
+            "table": {
+                "id": "ID",
+                "professional": "Professionnel",
+                "grossAmount": "Montant brut",
+                "fee": "Commission",
+                "netAmount": "Montant net",
+                "status": "Statut",
+                "date": "Date",
+                "actions": "Actions"
+            },
+            "actions": {
+                "approve": "Approuver",
+                "reject": "Rejeter",
+                "initiate": "Initier le virement",
+                "viewDetails": "Voir détails"
+            },
+            "approve": {
+                "title": "Approuver le virement",
+                "message": "Êtes-vous sûr de vouloir approuver ce virement ?",
+                "success": "Virement approuvé avec succès",
+                "error": "Erreur lors de l'approbation"
+            },
+            "reject": {
+                "title": "Rejeter le virement",
+                "reason": "Raison du rejet",
+                "reasonPlaceholder": "Expliquez pourquoi ce virement est rejeté...",
+                "success": "Virement rejeté",
+                "error": "Erreur lors du rejet"
+            },
+            "initiate": {
+                "title": "Initier le virement Stripe",
+                "message": "Déclencher le transfert vers le compte Stripe du professionnel ?",
+                "success": "Virement initié avec succès",
+                "error": "Erreur lors du virement"
+            }
+        },
+        "bankAccounts": {
+            "title": "Comptes bancaires",
+            "subtitle": "Validez et gérez les comptes bancaires des professionnels",
+            "cards": {
+                "total": "Total des comptes",
+                "verified": "Comptes vérifiés",
+                "pending": "En attente",
+                "failed": "Échoués"
+            },
+            "table": {
+                "professional": "Professionnel",
+                "accountHolder": "Titulaire",
+                "bank": "Banque",
+                "iban": "IBAN",
+                "status": "Statut",
+                "default": "Défaut",
+                "actions": "Actions"
+            },
+            "actions": {
+                "approve": "Approuver",
+                "reject": "Rejeter",
+                "viewDetails": "Voir détails"
+            },
+            "approve": {
+                "title": "Approuver le compte bancaire",
+                "message": "Valider ce compte bancaire ?",
+                "success": "Compte approuvé",
+                "error": "Erreur lors de l'approbation"
+            },
+            "reject": {
+                "title": "Rejeter le compte bancaire",
+                "reason": "Raison du rejet",
+                "success": "Compte rejeté",
+                "error": "Erreur lors du rejet"
+            }
+        },
+        "disputes": {
+            "title": "Gestion des litiges",
+            "subtitle": "Gérez les litiges et contestations de paiement",
+            "cards": {
+                "total": "Total des litiges",
+                "opened": "Ouverts",
+                "underReview": "En examen",
+                "won": "Gagnés",
+                "lost": "Perdus"
+            },
+            "table": {
+                "id": "ID",
+                "transaction": "Transaction",
+                "reason": "Raison",
+                "amount": "Montant",
+                "status": "Statut",
+                "dueBy": "Échéance",
+                "actions": "Actions"
+            },
+            "tabs": {
+                "evidence": "Preuves",
+                "notes": "Notes"
+            },
+            "evidence": {
+                "title": "Preuves",
+                "customer": "Preuves client",
+                "merchant": "Preuves marchand",
+                "upload": "Télécharger",
+                "noEvidence": "Aucune preuve disponible"
+            },
+            "notes": {
+                "title": "Notes",
+                "add": "Ajouter une note",
+                "internal": "Note interne",
+                "public": "Note publique",
+                "placeholder": "Écrivez votre note...",
+                "success": "Note ajoutée",
+                "error": "Erreur lors de l'ajout de la note",
+                "noNotes": "Aucune note"
+            },
+            "actions": {
+                "updateStatus": "Mettre à jour le statut",
+                "addNote": "Ajouter une note",
+                "viewDetails": "Voir détails"
+            },
+            "reasons": {
+                "fraudulent": "Frauduleux",
+                "duplicate": "Doublon",
+                "product_not_received": "Produit non reçu",
+                "product_unacceptable": "Produit inacceptable",
+                "subscription_canceled": "Abonnement annulé",
+                "unrecognized": "Non reconnu",
+                "credit_not_processed": "Crédit non traité",
+                "general": "Général"
+            }
+        }
+    },
+    "ProPayments": {
+        "payouts": {
+            "title": "Mes virements",
+            "subtitle": "Suivez vos gains et virements",
+            "cards": {
+                "totalEarnings": "Gains totaux",
+                "pending": "En attente",
+                "paidThisMonth": "Payé ce mois",
+                "nextPayout": "Prochain virement"
+            },
+            "bankAccount": {
+                "title": "Compte bancaire",
+                "default": "Par défaut",
+                "manage": "Gérer mes comptes"
+            },
+            "table": {
+                "period": "Période",
+                "grossAmount": "Montant brut",
+                "fee": "Commission",
+                "netAmount": "Montant net",
+                "status": "Statut",
+                "paidDate": "Date paiement"
+            },
+            "empty": "Aucun virement disponible",
+            "frequency": {
+                "daily": "Quotidien",
+                "weekly": "Hebdomadaire",
+                "biweekly": "Bi-mensuel",
+                "monthly": "Mensuel",
+                "manual": "Manuel"
+            }
+        },
+        "transactions": {
+            "title": "Mes transactions",
+            "subtitle": "Historique de vos revenus",
+            "cards": {
+                "totalRevenue": "Revenu total",
+                "thisMonth": "Ce mois",
+                "totalCommission": "Commission totale",
+                "netEarnings": "Gains nets"
+            },
+            "table": {
+                "date": "Date",
+                "booking": "Réservation",
+                "type": "Type",
+                "amount": "Montant",
+                "fee": "Commission",
+                "net": "Net",
+                "status": "Statut",
+                "invoice": "Facture"
+            },
+            "actions": {
+                "viewBooking": "Voir réservation",
+                "downloadInvoice": "Télécharger facture",
+                "exportCSV": "Exporter CSV",
+                "exportPDF": "Exporter PDF"
+            },
+            "empty": "Aucune transaction disponible"
+        }
+    },
+    "UserPayments": {
+        "transactions": {
+            "title": "Mes paiements",
+            "subtitle": "Historique de vos transactions",
+            "cards": {
+                "totalSpent": "Dépenses totales",
+                "thisMonth": "Ce mois",
+                "transactionCount": "Nombre de transactions",
+                "avgAmount": "Montant moyen"
+            },
+            "table": {
+                "date": "Date",
+                "booking": "Réservation",
+                "description": "Description",
+                "amount": "Montant",
+                "method": "Méthode",
+                "status": "Statut",
+                "receipt": "Reçu"
+            },
+            "actions": {
+                "viewBooking": "Voir réservation",
+                "downloadReceipt": "Télécharger reçu"
+            },
+            "empty": "Aucune transaction disponible"
+        }
+    },
+    "Settings": {
+        "payment": {
+            "title": "Moyens de paiement",
+            "subtitle": "Gérez vos comptes bancaires et virements",
+            "tabs": {
+                "accounts": "Comptes bancaires",
+                "schedule": "Fréquence de virement"
+            },
+            "alert": {
+                "title": "Vérification des comptes",
+                "message": "La vérification de votre compte bancaire peut prendre 24 à 48 heures. Vous serez notifié une fois la vérification terminée."
+            },
+            "accounts": {
+                "add": "Ajouter un compte",
+                "table": {
+                    "holder": "Titulaire",
+                    "bank": "Banque",
+                    "iban": "IBAN",
+                    "status": "Statut",
+                    "default": "Défaut",
+                    "actions": "Actions"
+                },
+                "actions": {
+                    "setDefault": "Définir par défaut",
+                    "delete": "Supprimer"
+                },
+                "form": {
+                    "title": "Ajouter un compte bancaire",
+                    "accountHolder": "Titulaire du compte",
+                    "accountHolderPlaceholder": "Jean Dupont",
+                    "iban": "IBAN",
+                    "ibanPlaceholder": "FR76 1234 1234 1234 1234 1234 123",
+                    "bic": "Code BIC/SWIFT",
+                    "bicPlaceholder": "BNPAFRPP",
+                    "bankName": "Nom de la banque",
+                    "bankNamePlaceholder": "BNP Paribas",
+                    "country": "Pays",
+                    "cancel": "Annuler",
+                    "submit": "Ajouter le compte",
+                    "success": "Compte bancaire ajouté avec succès",
+                    "error": "Erreur lors de l'ajout du compte"
+                },
+                "delete": {
+                    "title": "Supprimer le compte bancaire",
+                    "message": "Êtes-vous sûr de vouloir supprimer ce compte ?",
+                    "warning": "Cette action est irréversible.",
+                    "details": "Détails du compte :",
+                    "confirm": "Supprimer",
+                    "success": "Compte supprimé",
+                    "error": "Erreur lors de la suppression"
+                },
+                "empty": "Aucun compte bancaire ajouté",
+                "emptyMessage": "Ajoutez un compte bancaire pour recevoir vos virements"
+            },
+            "schedule": {
+                "title": "Configuration des virements",
+                "frequency": "Fréquence",
+                "daily": "Quotidien",
+                "weekly": "Hebdomadaire",
+                "monthly": "Mensuel",
+                "dayOfWeek": "Jour de la semaine",
+                "dayOfMonth": "Jour du mois",
+                "minimumAmount": "Montant minimum",
+                "minimumAmountHelp": "Montant minimum pour déclencher un virement automatique",
+                "save": "Enregistrer",
+                "success": "Configuration enregistrée",
+                "error": "Erreur lors de l'enregistrement",
+                "days": {
+                    "monday": "Lundi",
+                    "tuesday": "Mardi",
+                    "wednesday": "Mercredi",
+                    "thursday": "Jeudi",
+                    "friday": "Vendredi"
+                }
+            }
+        },
+        "billing": {
+            "title": "Facturation",
+            "subtitle": "Gérez vos moyens de paiement",
+            "tabs": {
+                "methods": "Méthodes de paiement",
+                "history": "Historique"
+            },
+            "alert": {
+                "title": "Paiements sécurisés",
+                "message": "Vos informations de paiement sont sécurisées avec Stripe. Nous ne stockons jamais votre numéro de carte complet."
+            },
+            "methods": {
+                "add": "Ajouter une carte",
+                "default": "Par défaut",
+                "expired": "Expirée",
+                "form": {
+                    "title": "Ajouter une carte bancaire",
+                    "note": "Note : En production, ce formulaire utiliserait Stripe Elements pour une tokenisation sécurisée.",
+                    "cardNumber": "Numéro de carte",
+                    "cardNumberPlaceholder": "1234 5678 9012 3456",
+                    "cardHolder": "Titulaire de la carte",
+                    "cardHolderPlaceholder": "Jean Dupont",
+                    "expiryMonth": "Mois d'expiration",
+                    "expiryYear": "Année d'expiration",
+                    "cvc": "CVC",
+                    "cvcPlaceholder": "123",
+                    "cancel": "Annuler",
+                    "submit": "Ajouter la carte",
+                    "success": "Carte ajoutée avec succès",
+                    "error": "Erreur lors de l'ajout de la carte"
+                },
+                "actions": {
+                    "setDefault": "Définir par défaut",
+                    "delete": "Supprimer"
+                },
+                "delete": {
+                    "title": "Supprimer la carte",
+                    "message": "Êtes-vous sûr de vouloir supprimer cette carte ?",
+                    "details": "Carte :",
+                    "confirm": "Supprimer",
+                    "success": "Carte supprimée",
+                    "error": "Erreur lors de la suppression"
+                },
+                "empty": "Aucune méthode de paiement ajoutée",
+                "emptyMessage": "Ajoutez une carte bancaire pour faciliter vos paiements"
+            },
+            "history": {
+                "title": "Historique de facturation",
+                "empty": "Aucune facture disponible"
+            }
+        }
     }
 }

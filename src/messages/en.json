@@ -1556,5 +1556,473 @@
                 "mailCountry": "France"
             }
         }
+    },
+    "Payments": {
+        "status": {
+            "pending": "Pending",
+            "processing": "Processing",
+            "succeeded": "Succeeded",
+            "failed": "Failed",
+            "canceled": "Canceled",
+            "refunded": "Refunded",
+            "partially_refunded": "Partially refunded",
+            "approved": "Approved",
+            "rejected": "Rejected",
+            "paid": "Paid",
+            "opened": "Opened",
+            "under_review": "Under review",
+            "waiting_response": "Waiting response",
+            "won": "Won",
+            "lost": "Lost",
+            "closed": "Closed",
+            "verified": "Verified",
+            "active": "Active",
+            "expired": "Expired",
+            "inactive": "Inactive"
+        },
+        "types": {
+            "payment": "Payment",
+            "payout": "Payout",
+            "refund": "Refund",
+            "transfer": "Transfer",
+            "withdrawal": "Withdrawal",
+            "deposit": "Deposit",
+            "fee": "Fee",
+            "commission": "Commission"
+        },
+        "methods": {
+            "card": "Credit card",
+            "bank_transfer": "Bank transfer",
+            "wallet": "Wallet",
+            "sepa_debit": "SEPA direct debit",
+            "paypal": "PayPal",
+            "stripe": "Stripe"
+        },
+        "common": {
+            "amount": "Amount",
+            "currency": "Currency",
+            "date": "Date",
+            "status": "Status",
+            "actions": "Actions",
+            "details": "Details",
+            "search": "Search",
+            "filter": "Filter",
+            "export": "Export",
+            "refresh": "Refresh",
+            "loading": "Loading...",
+            "noData": "No data available",
+            "error": "An error occurred",
+            "success": "Operation successful",
+            "cancel": "Cancel",
+            "confirm": "Confirm",
+            "save": "Save",
+            "delete": "Delete",
+            "edit": "Edit",
+            "view": "View",
+            "close": "Close",
+            "back": "Back"
+        }
+    },
+    "AdminPayments": {
+        "nav": {
+            "transactions": "Transactions",
+            "payouts": "Payouts",
+            "bankAccounts": "Bank accounts",
+            "disputes": "Disputes"
+        },
+        "transactions": {
+            "title": "Transaction Management",
+            "subtitle": "View and manage all platform transactions",
+            "cards": {
+                "total": "Total transactions",
+                "succeeded": "Successful transactions",
+                "refunded": "Refunded amount",
+                "failed": "Failed transactions"
+            },
+            "table": {
+                "id": "ID",
+                "user": "User",
+                "type": "Type",
+                "amount": "Amount",
+                "status": "Status",
+                "method": "Method",
+                "date": "Date",
+                "actions": "Actions"
+            },
+            "filters": {
+                "all": "All",
+                "status": "Status",
+                "type": "Type",
+                "dateFrom": "From",
+                "dateTo": "To",
+                "reset": "Reset"
+            },
+            "actions": {
+                "refund": "Refund",
+                "viewDetails": "View details",
+                "downloadReceipt": "Download receipt"
+            },
+            "refund": {
+                "title": "Refund transaction",
+                "amount": "Amount to refund",
+                "reason": "Refund reason",
+                "partial": "Partial refund",
+                "full": "Full refund",
+                "confirm": "Confirm refund",
+                "success": "Transaction refunded successfully",
+                "error": "Refund error"
+            }
+        },
+        "payouts": {
+            "title": "Payout Management",
+            "subtitle": "Approve and manage payouts to professionals",
+            "cards": {
+                "pending": "Pending",
+                "approved": "Approved this month",
+                "paid": "Paid this month",
+                "rejected": "Rejected"
+            },
+            "table": {
+                "id": "ID",
+                "professional": "Professional",
+                "grossAmount": "Gross amount",
+                "fee": "Commission",
+                "netAmount": "Net amount",
+                "status": "Status",
+                "date": "Date",
+                "actions": "Actions"
+            },
+            "actions": {
+                "approve": "Approve",
+                "reject": "Reject",
+                "initiate": "Initiate payout",
+                "viewDetails": "View details"
+            },
+            "approve": {
+                "title": "Approve payout",
+                "message": "Are you sure you want to approve this payout?",
+                "success": "Payout approved successfully",
+                "error": "Approval error"
+            },
+            "reject": {
+                "title": "Reject payout",
+                "reason": "Rejection reason",
+                "reasonPlaceholder": "Explain why this payout is rejected...",
+                "success": "Payout rejected",
+                "error": "Rejection error"
+            },
+            "initiate": {
+                "title": "Initiate Stripe payout",
+                "message": "Trigger transfer to professional's Stripe account?",
+                "success": "Payout initiated successfully",
+                "error": "Payout error"
+            }
+        },
+        "bankAccounts": {
+            "title": "Bank Accounts",
+            "subtitle": "Validate and manage professionals' bank accounts",
+            "cards": {
+                "total": "Total accounts",
+                "verified": "Verified accounts",
+                "pending": "Pending",
+                "failed": "Failed"
+            },
+            "table": {
+                "professional": "Professional",
+                "accountHolder": "Account holder",
+                "bank": "Bank",
+                "iban": "IBAN",
+                "status": "Status",
+                "default": "Default",
+                "actions": "Actions"
+            },
+            "actions": {
+                "approve": "Approve",
+                "reject": "Reject",
+                "viewDetails": "View details"
+            },
+            "approve": {
+                "title": "Approve bank account",
+                "message": "Validate this bank account?",
+                "success": "Account approved",
+                "error": "Approval error"
+            },
+            "reject": {
+                "title": "Reject bank account",
+                "reason": "Rejection reason",
+                "success": "Account rejected",
+                "error": "Rejection error"
+            }
+        },
+        "disputes": {
+            "title": "Dispute Management",
+            "subtitle": "Manage payment disputes and chargebacks",
+            "cards": {
+                "total": "Total disputes",
+                "opened": "Opened",
+                "underReview": "Under review",
+                "won": "Won",
+                "lost": "Lost"
+            },
+            "table": {
+                "id": "ID",
+                "transaction": "Transaction",
+                "reason": "Reason",
+                "amount": "Amount",
+                "status": "Status",
+                "dueBy": "Due date",
+                "actions": "Actions"
+            },
+            "tabs": {
+                "evidence": "Evidence",
+                "notes": "Notes"
+            },
+            "evidence": {
+                "title": "Evidence",
+                "customer": "Customer evidence",
+                "merchant": "Merchant evidence",
+                "upload": "Upload",
+                "noEvidence": "No evidence available"
+            },
+            "notes": {
+                "title": "Notes",
+                "add": "Add note",
+                "internal": "Internal note",
+                "public": "Public note",
+                "placeholder": "Write your note...",
+                "success": "Note added",
+                "error": "Error adding note",
+                "noNotes": "No notes"
+            },
+            "actions": {
+                "updateStatus": "Update status",
+                "addNote": "Add note",
+                "viewDetails": "View details"
+            },
+            "reasons": {
+                "fraudulent": "Fraudulent",
+                "duplicate": "Duplicate",
+                "product_not_received": "Product not received",
+                "product_unacceptable": "Product unacceptable",
+                "subscription_canceled": "Subscription canceled",
+                "unrecognized": "Unrecognized",
+                "credit_not_processed": "Credit not processed",
+                "general": "General"
+            }
+        }
+    },
+    "ProPayments": {
+        "payouts": {
+            "title": "My Payouts",
+            "subtitle": "Track your earnings and payouts",
+            "cards": {
+                "totalEarnings": "Total earnings",
+                "pending": "Pending",
+                "paidThisMonth": "Paid this month",
+                "nextPayout": "Next payout"
+            },
+            "bankAccount": {
+                "title": "Bank Account",
+                "default": "Default",
+                "manage": "Manage accounts"
+            },
+            "table": {
+                "period": "Period",
+                "grossAmount": "Gross amount",
+                "fee": "Commission",
+                "netAmount": "Net amount",
+                "status": "Status",
+                "paidDate": "Payment date"
+            },
+            "empty": "No payouts available",
+            "frequency": {
+                "daily": "Daily",
+                "weekly": "Weekly",
+                "biweekly": "Bi-weekly",
+                "monthly": "Monthly",
+                "manual": "Manual"
+            }
+        },
+        "transactions": {
+            "title": "My Transactions",
+            "subtitle": "Revenue history",
+            "cards": {
+                "totalRevenue": "Total revenue",
+                "thisMonth": "This month",
+                "totalCommission": "Total commission",
+                "netEarnings": "Net earnings"
+            },
+            "table": {
+                "date": "Date",
+                "booking": "Booking",
+                "type": "Type",
+                "amount": "Amount",
+                "fee": "Commission",
+                "net": "Net",
+                "status": "Status",
+                "invoice": "Invoice"
+            },
+            "actions": {
+                "viewBooking": "View booking",
+                "downloadInvoice": "Download invoice",
+                "exportCSV": "Export CSV",
+                "exportPDF": "Export PDF"
+            },
+            "empty": "No transactions available"
+        }
+    },
+    "UserPayments": {
+        "transactions": {
+            "title": "My Payments",
+            "subtitle": "Transaction history",
+            "cards": {
+                "totalSpent": "Total spent",
+                "thisMonth": "This month",
+                "transactionCount": "Transaction count",
+                "avgAmount": "Average amount"
+            },
+            "table": {
+                "date": "Date",
+                "booking": "Booking",
+                "description": "Description",
+                "amount": "Amount",
+                "method": "Method",
+                "status": "Status",
+                "receipt": "Receipt"
+            },
+            "actions": {
+                "viewBooking": "View booking",
+                "downloadReceipt": "Download receipt"
+            },
+            "empty": "No transactions available"
+        }
+    },
+    "Settings": {
+        "payment": {
+            "title": "Payment Methods",
+            "subtitle": "Manage your bank accounts and payouts",
+            "tabs": {
+                "accounts": "Bank Accounts",
+                "schedule": "Payout Schedule"
+            },
+            "alert": {
+                "title": "Account Verification",
+                "message": "Bank account verification may take 24 to 48 hours. You will be notified once verification is complete."
+            },
+            "accounts": {
+                "add": "Add account",
+                "table": {
+                    "holder": "Account holder",
+                    "bank": "Bank",
+                    "iban": "IBAN",
+                    "status": "Status",
+                    "default": "Default",
+                    "actions": "Actions"
+                },
+                "actions": {
+                    "setDefault": "Set as default",
+                    "delete": "Delete"
+                },
+                "form": {
+                    "title": "Add Bank Account",
+                    "accountHolder": "Account holder",
+                    "accountHolderPlaceholder": "John Doe",
+                    "iban": "IBAN",
+                    "ibanPlaceholder": "GB29 NWBK 6016 1331 9268 19",
+                    "bic": "BIC/SWIFT Code",
+                    "bicPlaceholder": "NWBKGB2L",
+                    "bankName": "Bank name",
+                    "bankNamePlaceholder": "National Westminster Bank",
+                    "country": "Country",
+                    "cancel": "Cancel",
+                    "submit": "Add account",
+                    "success": "Bank account added successfully",
+                    "error": "Error adding account"
+                },
+                "delete": {
+                    "title": "Delete Bank Account",
+                    "message": "Are you sure you want to delete this account?",
+                    "warning": "This action cannot be undone.",
+                    "details": "Account details:",
+                    "confirm": "Delete",
+                    "success": "Account deleted",
+                    "error": "Deletion error"
+                },
+                "empty": "No bank accounts added",
+                "emptyMessage": "Add a bank account to receive payouts"
+            },
+            "schedule": {
+                "title": "Payout Configuration",
+                "frequency": "Frequency",
+                "daily": "Daily",
+                "weekly": "Weekly",
+                "monthly": "Monthly",
+                "dayOfWeek": "Day of week",
+                "dayOfMonth": "Day of month",
+                "minimumAmount": "Minimum amount",
+                "minimumAmountHelp": "Minimum amount to trigger automatic payout",
+                "save": "Save",
+                "success": "Configuration saved",
+                "error": "Save error",
+                "days": {
+                    "monday": "Monday",
+                    "tuesday": "Tuesday",
+                    "wednesday": "Wednesday",
+                    "thursday": "Thursday",
+                    "friday": "Friday"
+                }
+            }
+        },
+        "billing": {
+            "title": "Billing",
+            "subtitle": "Manage your payment methods",
+            "tabs": {
+                "methods": "Payment Methods",
+                "history": "History"
+            },
+            "alert": {
+                "title": "Secure Payments",
+                "message": "Your payment information is secured with Stripe. We never store your full card number."
+            },
+            "methods": {
+                "add": "Add card",
+                "default": "Default",
+                "expired": "Expired",
+                "form": {
+                    "title": "Add Credit Card",
+                    "note": "Note: In production, this form would use Stripe Elements for secure tokenization.",
+                    "cardNumber": "Card number",
+                    "cardNumberPlaceholder": "1234 5678 9012 3456",
+                    "cardHolder": "Cardholder name",
+                    "cardHolderPlaceholder": "John Doe",
+                    "expiryMonth": "Expiry month",
+                    "expiryYear": "Expiry year",
+                    "cvc": "CVC",
+                    "cvcPlaceholder": "123",
+                    "cancel": "Cancel",
+                    "submit": "Add card",
+                    "success": "Card added successfully",
+                    "error": "Error adding card"
+                },
+                "actions": {
+                    "setDefault": "Set as default",
+                    "delete": "Delete"
+                },
+                "delete": {
+                    "title": "Delete Card",
+                    "message": "Are you sure you want to delete this card?",
+                    "details": "Card:",
+                    "confirm": "Delete",
+                    "success": "Card deleted",
+                    "error": "Deletion error"
+                },
+                "empty": "No payment methods added",
+                "emptyMessage": "Add a credit card to facilitate payments"
+            },
+            "history": {
+                "title": "Billing History",
+                "empty": "No invoices available"
+            }
+        }
     }
 }

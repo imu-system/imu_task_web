@@ -497,6 +497,17 @@ export type DisputeReason =
     | 'credit_not_processed'    // Crédit non traité
     | 'general';                // Général
 
+export const DisputeReasonValues = {
+    fraudulent: 'fraudulent' as DisputeReason,
+    duplicate: 'duplicate' as DisputeReason,
+    product_not_received: 'product_not_received' as DisputeReason,
+    product_unacceptable: 'product_unacceptable' as DisputeReason,
+    subscription_canceled: 'subscription_canceled' as DisputeReason,
+    unrecognized: 'unrecognized' as DisputeReason,
+    credit_not_processed: 'credit_not_processed' as DisputeReason,
+    general: 'general' as DisputeReason,
+};
+
 export interface DisputeEvidence {
     id: string;
     type: 'document' | 'image' | 'message';
