@@ -14,17 +14,7 @@ import {
 } from '@/components/ui/select';
 import { Search, MapPin, DollarSign } from 'lucide-react';
 import { Card } from '@/components/ui/card';
-
-const TASK_CATEGORIES = [
-  'home_services',
-  'delivery',
-  'tutoring',
-  'digital_help',
-  'gardening',
-  'pet_care',
-  'event_help',
-  'moving',
-] as const;
+import { TASK_CATEGORIES } from '@/lib/constants/categories';
 
 interface HeroSearchBarProps {
   variant?: 'hero' | 'compact';
@@ -92,8 +82,8 @@ export function HeroSearchBar({ variant = 'hero', className = '' }: HeroSearchBa
               <SelectContent>
                 <SelectItem value="all">{t('hero.search.allCategories')}</SelectItem>
                 {TASK_CATEGORIES.map((cat) => (
-                  <SelectItem key={cat} value={cat}>
-                    {tCategories(cat)}
+                  <SelectItem key={cat.id} value={cat.id}>
+                    {tCategories(cat.nameKey)}
                   </SelectItem>
                 ))}
               </SelectContent>

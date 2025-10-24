@@ -3,83 +3,9 @@
 import { Button } from '@/components/ui/button';
 import { useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
-import {
-  ShoppingBasket,
-  Truck,
-  Spade,
-  Package,
-  Wrench,
-  PawPrint,
-  GraduationCap,
-  MoreHorizontal,
-  Sparkles,
-} from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-
-interface Category {
-  id: string;
-  nameKey: string;
-  icon: React.ReactNode;
-  slug: string;
-}
-
-const categories: Category[] = [
-  {
-    id: '1',
-    nameKey: 'cleaning',
-    icon: <Sparkles className="h-5 w-5" />,
-    slug: 'menage',
-  },
-  {
-    id: '2',
-    nameKey: 'moving',
-    icon: <Truck className="h-5 w-5" />,
-    slug: 'demenagement',
-  },
-  {
-    id: '3',
-    nameKey: 'gardening',
-    icon: <Spade className="h-5 w-5" />,
-    slug: 'jardinage',
-  },
-  {
-    id: '4',
-    nameKey: 'delivery',
-    icon: <Package className="h-5 w-5" />,
-    slug: 'livraison',
-  },
-  {
-    id: '5',
-    nameKey: 'handyman',
-    icon: <Wrench className="h-5 w-5" />,
-    slug: 'bricolage',
-  },
-  {
-    id: '6',
-    nameKey: 'petCare',
-    icon: <PawPrint className="h-5 w-5" />,
-    slug: 'garde-animaux',
-  },
-  {
-    id: '7',
-    nameKey: 'tutoring',
-    icon: <GraduationCap className="h-5 w-5" />,
-    slug: 'cours-particuliers',
-  },
-  {
-    id: '8',
-    nameKey: 'shopping',
-    icon: <ShoppingBasket className="h-5 w-5" />,
-    slug: 'courses',
-  },
-  {
-    id: '9',
-    nameKey: 'other',
-    icon: <MoreHorizontal className="h-5 w-5" />,
-    slug: 'autres',
-  },
-];
+import { TASK_CATEGORIES } from '@/lib/constants/categories';
 
 export function CategoryPills() {
   const router = useRouter();
@@ -156,22 +82,25 @@ export function CategoryPills() {
           className="flex gap-3 overflow-x-auto scrollbar-hide scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none]"
           onScroll={checkScroll}
         >
-          {categories.map((category) => (
-            <Button
-              key={category.id}
-              variant={selectedCategory === category.slug ? 'default' : 'outline'}
-              className={cn(
-                'flex-shrink-0 h-12 px-6 gap-2 rounded-full font-medium transition-all duration-200',
-                selectedCategory === category.slug
-                  ? 'shadow-md'
-                  : 'hover:bg-accent hover:shadow-sm'
-              )}
-              onClick={() => handleCategoryClick(category.slug)}
-            >
-              {category.icon}
-              <span className="whitespace-nowrap">{t(category.nameKey)}</span>
-            </Button>
-          ))}
+          {TASK_CATEGORIES.map((category) => {
+            const IconComponent = category.icon;
+            return (
+              <Button
+                key={category.id}
+                variant={selectedCategory === category.slug ? 'default' : 'outline'}
+                className={cn(
+                  'flex-shrink-0 h-12 px-6 gap-2 rounded-full font-medium transition-all duration-200',
+                  selectedCategory === category.slug
+                    ? 'shadow-md'
+                    : 'hover:bg-accent hover:shadow-sm'
+                )}
+                onClick={() => handleCategoryClick(category.slug)}
+              >
+                <IconComponent className="h-5 w-5" />
+                <span className="whitespace-nowrap">{t(category.nameKey)}</span>
+              </Button>
+            );
+          })}
         </div>
 
         {/* Scroll Right Button */}

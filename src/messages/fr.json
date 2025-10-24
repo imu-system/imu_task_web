@@ -53,6 +53,7 @@
         "signIn": "Se connecter",
         "signUp": "S'inscrire",
         "whyChoose": "Pourquoi choisir ImuTask ?",
+        "whyChooseSubtitle": "Une plateforme pensée pour faciliter l'entraide et créer du lien entre les générations",
         "feature1Title": "Entraide Intergénérationnelle",
         "feature1Desc": "Créez des liens uniques en aidant ou en recevant de l'aide de personnes de votre communauté.",
         "feature2Title": "Confiance & Sécurité",
@@ -2284,6 +2285,7 @@
             "handyman": "Bricolage",
             "petCare": "Garde d'animaux",
             "tutoring": "Cours particuliers",
+            "homeServices": "Services à domicile",
             "shopping": "Courses",
             "other": "Autres"
         },

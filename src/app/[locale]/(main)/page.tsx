@@ -10,30 +10,15 @@ import {
   CardDescription,
 } from '@/components/ui/card';
 import {
-  ShoppingBasket,
-  Spade,
   HeartHandshake,
   ShieldCheck,
   MessagesSquare,
   Sparkles,
-  HelpCircle,
   Briefcase,
-  Wrench,
-  PawPrint,
-  Loader2,
-  Users,
-  HardHat,
-  Star,
-  ArrowRight,
 } from 'lucide-react';
 import Image from 'next/image';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
-import { collection, getDocs, limit, query } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
-import { useEffect, useState, ReactNode } from 'react';
-import type { ServiceCategory } from '@/lib/types';
-import TestimonialCard from '@/components/testimonial-card';
 import TestimonialsFinalCTA from '@/components/landing/testimonials-final-cta';
 import placeholderImages from '@/app/lib/placeholder-images.json';
 import {
@@ -48,43 +33,10 @@ import { TasksGrid } from '@/components/landing/tasks-grid';
 import { HowItWorks } from '@/components/landing/how-it-works';
 import { StatsTrust } from '@/components/landing/stats-trust';
 
-const categoryIcons: Record<string, ReactNode> = {
-  'shopping-basket': <ShoppingBasket className="h-8 w-8" />,
-  spade: <Spade className="h-8 w-8" />,
-  sparkles: <Sparkles className="h-8 w-8" />,
-  'file-text': <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8"><path d="M17 14h.01"/><path d="M12.5 4.5h-5a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6.5l-4-4Z"/><path d="M15 4.5V8h3.5"/></svg>,
-  'help-circle': <HelpCircle className="h-8 w-8" />,
-  briefcase: <Briefcase className="h-8 w-8" />,
-  wrench: <Wrench className="h-8 w-8" />,
-  'paw-print': <PawPrint className="h-8 w-8" />,
-  default: <HelpCircle className="h-8 w-8" />,
-};
-
 
 export default function Home() {
   const t = useTranslations('HomePage');
   const tHeader = useTranslations('Header');
-  const [categories, setCategories] = useState<ServiceCategory[]>([]);
-  const [loadingCategories, setLoadingCategories] = useState(true);
-  
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const q = query(collection(db, 'serviceCategories'), limit(4));
-        const querySnapshot = await getDocs(q);
-        const categoriesData: ServiceCategory[] = [];
-        querySnapshot.forEach((doc) => {
-          categoriesData.push({ id: doc.id, ...doc.data() } as ServiceCategory);
-        });
-        setCategories(categoriesData);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      } finally {
-        setLoadingCategories(false);
-      }
-    };
-    fetchCategories();
-  }, []);
 
   const features = [
     {
@@ -168,22 +120,30 @@ export default function Home() {
         {/* Tasks Grid Section - Recent/Popular Tasks */}
         <TasksGrid maxTasks={8} showViewAll={true} filterByStatus="pending" />
 
-        <section id="features" className="w-full py-12 md:py-24 lg:py-32">
+        <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-accent/5 to-background">
           <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl font-headline">
-              {t('whyChoose')}
-            </h2>
-            <div className="mx-auto mt-12 grid gap-8 sm:grid-cols-1 md:grid-cols-3">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl font-headline mb-4">
+                {t('whyChoose')}
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                {t('whyChooseSubtitle')}
+              </p>
+            </div>
+            <div className="mx-auto grid gap-8 sm:grid-cols-1 md:grid-cols-3">
               {features.map((feature, index) => (
-                <Card key={index} className="text-center">
+                <Card 
+                  key={index} 
+                  className="text-center overflow-hidden border-2 hover:border-primary transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                >
                   <CardHeader>
-                    <div className="mx-auto bg-accent/30 p-4 rounded-full w-fit">
+                    <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit transition-transform duration-300 hover:scale-110">
                       {feature.icon}
                     </div>
-                    <CardTitle className="mt-4 font-headline">{feature.title}</CardTitle>
+                    <CardTitle className="mt-4 font-headline text-xl">{feature.title}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-muted-foreground">{feature.description}</p>
+                    <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -197,30 +157,6 @@ export default function Home() {
         <HowItWorks />
 
         <TestimonialsFinalCTA />
-
-        <section id="categories" className="w-full py-12 md:py-24 lg:py-32 bg-card">
-          <div className="container mx-auto px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl font-headline">
-              {t('categoriesTitle')}
-            </h2>
-            <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
-              {loadingCategories ? (
-                Array.from({ length: 4 }).map((_, index) => (
-                    <Card key={index} className="flex flex-col items-center justify-center p-6 h-32">
-                       <Loader2 className="h-8 w-8 animate-spin text-muted-foreground"/>
-                    </Card>
-                ))
-              ) : (
-                categories.map((category) => (
-                    <Card key={category.id} className="flex flex-col items-center justify-center p-6 text-center">
-                    <div className="text-primary">{categoryIcons[category.icon || 'default']}</div>
-                    <p className="mt-2 font-semibold">{typeof category.name === 'string' ? category.name : (category.name?.fr || category.slug)}</p>
-                    </Card>
-                ))
-              )}
-            </div>
-          </div>
-        </section>
 
         <section id="faq" className="w-full py-12 md:py-24 lg:py-32">
             <div className="container mx-auto px-4 md:px-6 max-w-3xl">
@@ -242,22 +178,6 @@ export default function Home() {
                     </AccordionItem>
                 </Accordion>
             </div>
-        </section>
-
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-primary/10">
-          <div className="container mx-auto px-4 md:px-6 text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl font-headline">
-              {t('readyToStartTitle')}
-            </h2>
-            <p className="mt-4 max-w-xl mx-auto text-muted-foreground">
-              {t('readyToStartDesc')}
-            </p>
-            <div className="mt-8">
-              <Button asChild size="lg">
-                <Link href="/inscription">{t('signUpFree')}</Link>
-              </Button>
-            </div>
-          </div>
         </section>
       </div>
     </>
