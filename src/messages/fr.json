@@ -140,11 +140,14 @@
     "LanguageSwitcher": {
         "changeLanguage": "Changer de langue",
         "changeLanguageRegionCurrency": "Changer de langue, de région ou de devise",
+        "title": "Langue & Devise",
+        "description": "Personnalisez votre expérience en sélectionnant votre langue et devise préférées.",
         "languageRegion": "Langue & Région",
         "currency": "Devise",
         "languageRegionDescription": "Sélectionnez votre langue et région préférées.",
-        "currencyDescription": "Sélectionnez votre devise préférée.",
-        "searchPlaceholder": "Rechercher une langue..."
+        "currencyDescription": "Sélectionnez votre devise préférée pour afficher les prix.",
+        "searchPlaceholder": "Rechercher une langue...",
+        "noResults": "Aucune langue trouvée"
     },
     "DashboardNav": {
         "dashboard": "Dashboard",
@@ -1105,7 +1108,7 @@
     "Countries": {
         "fr": "France",
         "en": "États-Unis",
-        "jp": "Japon",
+        "ja": "Japon",
         "es": "Espagne",
         "de": "Allemagne",
         "zh": "Chine"
@@ -1113,7 +1116,7 @@
     "Languages": {
         "fr": "Français",
         "en": "Anglais",
-        "jp": "Japonais",
+        "ja": "Japonais",
         "es": "Espagnol",
         "de": "Allemand",
         "zh": "Chinois (simplifié)"
@@ -1121,7 +1124,12 @@
     "Currencies": {
         "EUR": "Euro",
         "USD": "Dollar américain",
-        "JPY": "Yen japonais"
+        "GBP": "Livre sterling",
+        "JPY": "Yen japonais",
+        "CAD": "Dollar canadien",
+        "AUD": "Dollar australien",
+        "CHF": "Franc suisse",
+        "CNY": "Yuan chinois"
     },
     "Quotes": {
         "title": "Mes devis",

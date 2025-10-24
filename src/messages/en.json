@@ -140,11 +140,14 @@
     "LanguageSwitcher": {
         "changeLanguage": "Change language",
         "changeLanguageRegionCurrency": "Change language, region, or currency",
+        "title": "Language & Currency",
+        "description": "Customize your experience by selecting your preferred language and currency.",
         "languageRegion": "Language & Region",
         "currency": "Currency",
         "languageRegionDescription": "Select your preferred language and region.",
-        "currencyDescription": "Select your preferred currency.",
-        "searchPlaceholder": "Search for a language..."
+        "currencyDescription": "Select your preferred currency to display prices.",
+        "searchPlaceholder": "Search for a language...",
+        "noResults": "No languages found"
     },
     "DashboardNav": {
         "dashboard": "Dashboard",
@@ -1029,7 +1032,7 @@
     "Countries": {
         "fr": "France",
         "en": "United States",
-        "jp": "Japan",
+        "ja": "Japan",
         "es": "Spain",
         "de": "Germany",
         "zh": "China"
@@ -1037,7 +1040,7 @@
     "Languages": {
         "fr": "French",
         "en": "English",
-        "jp": "Japanese",
+        "ja": "Japanese",
         "es": "Spanish",
         "de": "German",
         "zh": "Chinese (Simplified)"
@@ -1045,7 +1048,12 @@
     "Currencies": {
         "EUR": "Euro",
         "USD": "US Dollar",
-        "JPY": "Japanese Yen"
+        "GBP": "British Pound",
+        "JPY": "Japanese Yen",
+        "CAD": "Canadian Dollar",
+        "AUD": "Australian Dollar",
+        "CHF": "Swiss Franc",
+        "CNY": "Chinese Yuan"
     },
     "Quotes": {
         "title": "My Quotes",

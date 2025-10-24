@@ -86,7 +86,7 @@ export function ImageUploadButton({
       />
 
       {preview && (
-        <div className="absolute bottom-full left-0 mb-2 p-2 bg-background border rounded-lg shadow-lg">
+        <div className="absolute bottom-full left-0 mb-2 p-2 bg-background border rounded-2xl shadow-lg">
           <div className="relative">
             <img
               src={preview}

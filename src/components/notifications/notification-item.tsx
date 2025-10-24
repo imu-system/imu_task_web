@@ -74,7 +74,7 @@ export function NotificationItem({
     return (
         <div
             className={cn(
-                'group relative flex items-start gap-3 p-4 rounded-lg border transition-colors cursor-pointer',
+                'group relative flex items-start gap-3 p-4 rounded-2xl border transition-colors cursor-pointer',
                 notification.read
                     ? 'bg-card hover:bg-accent'
                     : 'bg-blue-50 dark:bg-blue-950/20 border-blue-200 dark:border-blue-900 hover:bg-blue-100 dark:hover:bg-blue-950/30'

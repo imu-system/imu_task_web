@@ -86,7 +86,7 @@ export function BookingCard({
   const [cancelReason, setCancelReason] = useState('');
   const [notes, setNotes] = useState(booking.notes || '');
   const [scheduledDate, setScheduledDate] = useState(
-    booking.scheduledDate ? booking.scheduledDate.toISOString().split('T')[0] : ''
+    booking.scheduledDate ? new Date(booking.scheduledDate).toISOString().split('T')[0] : ''
   );
   const [showNotesDialog, setShowNotesDialog] = useState(false);
   const [showDateDialog, setShowDateDialog] = useState(false);
@@ -208,13 +208,14 @@ export function BookingCard({
       completed: 'bg-green-100 text-green-800',
       cancelled: 'bg-red-100 text-red-800',
       disputed: 'bg-orange-100 text-orange-800',
-    };
-    return classes[status];
+    } as const;
+    return classes[status as keyof typeof classes];
   };
 
-  const formatDate = (date: Date | undefined) => {
+  const formatDate = (date: string | Date | undefined) => {
     if (!date) return t('notSet');
-    return new Date(date).toLocaleDateString('fr-FR', {
+    const d = new Date(date);
+    return d.toLocaleDateString('fr-FR', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -288,7 +289,7 @@ export function BookingCard({
 
         {/* Notes */}
         {booking.notes && (
-          <div className="rounded-md bg-muted p-3">
+          <div className="rounded-2xl bg-muted p-3">
             <div className="flex items-center gap-2 mb-2">
               <FileText className="h-4 w-4" />
               <span className="text-sm font-medium">{t('notes')}</span>
@@ -299,7 +300,7 @@ export function BookingCard({
 
         {/* Cancellation Reason */}
         {booking.status === 'cancelled' && booking.cancellationReason && (
-          <div className="rounded-md bg-red-50 border border-red-200 p-3">
+          <div className="rounded-2xl bg-red-50 border border-red-200 p-3">
             <div className="flex items-center gap-2 mb-2">
               <XCircle className="h-4 w-4 text-red-600" />
               <span className="text-sm font-medium text-red-600">{t('cancellationReason')}</span>

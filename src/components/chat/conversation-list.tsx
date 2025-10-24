@@ -175,7 +175,7 @@ export function ConversationList({
         {/* Conversations Skeleton */}
         <div className="flex-1 p-2 space-y-2">
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="flex gap-3 p-3 rounded-lg">
+            <div key={i} className="flex gap-3 p-3 rounded-2xl">
               <Skeleton className="h-12 w-12 rounded-full shrink-0" />
               <div className="flex-1 space-y-2">
                 <div className="flex items-center justify-between">
@@ -209,7 +209,7 @@ export function ConversationList({
       <div
         key={conversation.id}
         className={cn(
-          'flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-colors relative group',
+          'flex items-center gap-3 p-3 rounded-2xl cursor-pointer transition-colors relative group',
           isSelected
             ? 'bg-primary/10 border border-primary/20'
             : 'hover:bg-muted/50'

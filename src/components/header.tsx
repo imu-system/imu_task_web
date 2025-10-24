@@ -30,7 +30,7 @@ import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 import { usePathname, Link } from '@/navigation';
 import { useAuth } from '@/contexts/AuthContext';
-import LanguageRegionSwitcher from './language-region-switcher';
+import LanguageCurrencyModal from './language-currency-modal';
 import Image from 'next/image';
 
 export default function Header() {
@@ -49,21 +49,32 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const UserMenu = () => (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button 
-          variant="ghost" 
-          className="relative h-auto px-3 py-2 rounded-3xl hover:shadow-md transition-all border border-border/40 hover:border-border"
-        >
-          <div className="flex items-center gap-2">
-            <Menu className="h-4 w-4" />
-            <Avatar className="h-8 w-8">
-              <AvatarImage src={user?.photoURL || "https://picsum.photos/id/1005/100/100"} alt="User" />
-              <AvatarFallback>{user?.email?.charAt(0).toUpperCase()}</AvatarFallback>
-            </Avatar>
-          </div>
-        </Button>
-      </DropdownMenuTrigger>
+    <div className="hidden md:flex items-center gap-3">
+      <Button 
+        variant="ghost" 
+        asChild 
+        className="rounded-3xl font-medium hover:bg-muted/60"
+      >
+        <Link href="/become-provider" className="flex items-center gap-2">
+          <span>{t('becomeHost') || 'Devenir prestataire'}</span>
+        </Link>
+      </Button>
+      <LanguageCurrencyModal />
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button 
+            variant="ghost" 
+            className="relative h-auto px-3 py-2 rounded-3xl hover:shadow-md transition-all border border-border/40 hover:border-border"
+          >
+            <div className="flex items-center gap-2">
+              <Menu className="h-4 w-4" />
+              <Avatar className="h-8 w-8">
+                <AvatarImage src={user?.photoURL || "https://picsum.photos/id/1005/100/100"} alt="User" />
+                <AvatarFallback>{user?.email?.charAt(0).toUpperCase()}</AvatarFallback>
+              </Avatar>
+            </div>
+          </Button>
+        </DropdownMenuTrigger>
       <DropdownMenuContent className="w-64 rounded-2xl shadow-xl border-border/50 p-2" align="end" forceMount>
         <DropdownMenuLabel className="font-normal px-3 py-2">
           <div className="flex flex-col space-y-1">
@@ -117,23 +128,22 @@ export default function Header() {
           <span>{t('signOut')}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
-    </DropdownMenu>
+      </DropdownMenu>
+    </div>
   );
 
   const AuthButtons = () => (
-    <div className="hidden md:flex items-center gap-3">
+    <div className="hidden sm:flex items-center gap-3">
       <Button 
         variant="ghost" 
         asChild 
-        className="rounded-3xl font-medium hover:bg-muted/60"
+        className="rounded-3xl font-medium hover:bg-muted/60 hidden md:flex"
       >
         <Link href="/become-provider" className="flex items-center gap-2">
           <span>{t('becomeHost') || 'Devenir prestataire'}</span>
         </Link>
       </Button>
-      <div className="hidden lg:block">
-        <LanguageRegionSwitcher />
-      </div>
+      <LanguageCurrencyModal />
       <Button 
         variant="ghost" 
         asChild
@@ -275,7 +285,7 @@ export default function Header() {
                   
                   {/* Mobile Language Switcher */}
                   <div className="border-t pt-4">
-                    <LanguageRegionSwitcher />
+                    <LanguageCurrencyModal variant="outline" className="w-full justify-start" />
                   </div>
                 </div>
               </SheetContent>

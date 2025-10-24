@@ -50,7 +50,7 @@ export function NotificationCard({
   return (
     <div
       className={cn(
-        'group relative rounded-lg border p-4 transition-all hover:border-primary/50',
+        'group relative rounded-2xl border p-4 transition-all hover:border-primary/50',
         !read && 'bg-primary/5 border-primary/20'
       )}
     >

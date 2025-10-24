@@ -57,7 +57,7 @@ import { Switch } from './ui/switch';
 import { Dialog, DialogTrigger, DialogContent } from './ui/dialog';
 import { CreateTaskForm } from './create-task-form';
 import { useSettingsModal } from '@/context/settings-modal-context';
-import LanguageRegionSwitcher from './language-region-switcher';
+import LanguageCurrencyModal from './language-currency-modal';
 
 export function DashboardHeader() {
   const t = useTranslations('Header');
@@ -305,7 +305,7 @@ export function DashboardHeader() {
       <div className="flex items-center gap-2">
         <CreateButton/>
 
-        <LanguageRegionSwitcher />
+        <LanguageCurrencyModal />
 
         <Button asChild variant="ghost" size="icon">
           <Link href={"/dashboard/messages" as any}>
@@ -338,7 +338,7 @@ export function DashboardHeader() {
                     </div>
                     <TabsContent value="all">
                         <div className="p-2 space-y-2 max-h-96 overflow-y-auto">
-                            <div className="p-2 rounded-md hover:bg-muted">
+                            <div className="p-2 rounded-2xl hover:bg-muted">
                                 <div className="flex items-start gap-3">
                                     <Handshake className="h-4 w-4 mt-1 text-muted-foreground"/>
                                     <div className="flex-1">
@@ -352,7 +352,7 @@ export function DashboardHeader() {
                                 </div>
                             </div>
                             <DropdownMenuSeparator />
-                            <div className="p-2 rounded-md hover:bg-muted">
+                            <div className="p-2 rounded-2xl hover:bg-muted">
                                 <div className="flex items-start gap-3">
                                     <Star className="h-4 w-4 mt-1 text-muted-foreground"/>
                                     <div className="flex-1">
@@ -368,7 +368,7 @@ export function DashboardHeader() {
                     </TabsContent>
                     <TabsContent value="unread">
                          <div className="p-2 space-y-2 max-h-96 overflow-y-auto">
-                           <div className="p-2 rounded-md hover:bg-muted">
+                           <div className="p-2 rounded-2xl hover:bg-muted">
                                 <div className="flex items-start gap-3">
                                     <MessageSquare className="h-4 w-4 mt-1 text-muted-foreground"/>
                                     <div className="flex-1">

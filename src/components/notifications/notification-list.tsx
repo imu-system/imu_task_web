@@ -40,7 +40,7 @@ export function NotificationList({
                 {Array.from({ length: 5 }).map((_, i) => (
                     <div
                         key={i}
-                        className="flex items-start gap-3 p-4 rounded-lg border bg-card animate-pulse"
+                        className="flex items-start gap-3 p-4 rounded-2xl border bg-card animate-pulse"
                     >
                         <div className="h-10 w-10 rounded-full bg-muted" />
                         <div className="flex-1 space-y-2">

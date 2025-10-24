@@ -19,13 +19,13 @@ export default function QuickSummary({ isProvider, isClient }: QuickSummaryProps
             </CardHeader>
             <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {isProvider && (
-                    <div className="p-4 bg-muted rounded-lg">
+                    <div className="p-4 bg-muted rounded-2xl">
                         <p className="text-sm text-muted-foreground">{t('summary.earnedThisMonth')}</p>
                         <p className="text-2xl font-semibold">450,00 €</p>
                     </div>
                 )}
                 {isClient && (
-                        <div className="p-4 bg-muted rounded-lg">
+                        <div className="p-4 bg-muted rounded-2xl">
                         <p className="text-sm text-muted-foreground">{t('summary.paidThisMonth')}</p>
                         <p className="text-2xl font-semibold">320,00 €</p>
                     </div>
