@@ -6,10 +6,10 @@ import { Button } from '@/components/ui/button';
 import { db } from '@/lib/firebase';
 import { Address, ServiceCategory, Task } from '@/lib/types';
 import { collection, onSnapshot, query, where, doc, getDoc, Timestamp } from 'firebase/firestore';
-import { PlusCircle, Loader2, LayoutGrid, List } from 'lucide-react';
+import { PlusCircle, Loader2, LayoutGrid, List, Navigation } from 'lucide-react';
 import { Link, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Input } from '@/components/ui/input';
 import {
@@ -21,6 +21,9 @@ import {
 import TaskListCard from '@/components/task-list-card';
 import { ServiceCategoryFilter } from '@/components/services/category-selector';
 import { ServiceCategory as ServiceCategoryEnum } from '@/types/services';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { getCurrentPosition, sortTasksByDistance } from '@/lib/geolocation';
+import { Badge } from '@/components/ui/badge';
 
 export default function DashboardTasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -28,9 +31,26 @@ export default function DashboardTasksPage() {
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryEnum[]>([]);
+  const [sortBy, setSortBy] = useState<'date' | 'distance' | 'budget'>('date');
+  const [userLocation, setUserLocation] = useState<{lat: number; lng: number} | null>(null);
+  const [locating, setLocating] = useState(false);
   const t = useTranslations('MyTasksPage');
   const { user } = useAuth();
   const router = useRouter();
+
+  // Get user's location
+  const handleGetLocation = useCallback(async () => {
+    setLocating(true);
+    const position = await getCurrentPosition();
+    if (position) {
+      setUserLocation({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+      setSortBy('distance'); // Auto-switch to distance sort
+    }
+    setLocating(false);
+  }, []);
 
   useEffect(() => {
     if (!user) {
@@ -83,8 +103,9 @@ export default function DashboardTasksPage() {
     return () => unsubscribe();
   }, [user]);
 
-  const filteredTasks = useMemo(() => {
-    return tasks.filter(task => {
+  const filteredAndSortedTasks = useMemo(() => {
+    // Filter tasks
+    let filtered = tasks.filter(task => {
       // Text search filter
       const matchesSearch = task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         task.description.toLowerCase().includes(searchTerm.toLowerCase());
@@ -95,7 +116,29 @@ export default function DashboardTasksPage() {
       
       return matchesSearch && matchesCategory;
     });
-  }, [tasks, searchTerm, selectedCategories]);
+
+    // Sort tasks
+    switch (sortBy) {
+      case 'distance':
+        if (userLocation) {
+          filtered = sortTasksByDistance(filtered, userLocation.lat, userLocation.lng);
+        }
+        break;
+      case 'budget':
+        filtered.sort((a, b) => (b.budget || 0) - (a.budget || 0));
+        break;
+      case 'date':
+      default:
+        filtered.sort((a, b) => {
+          const dateA = a.timeWindowStart ? new Date(a.timeWindowStart).getTime() : 0;
+          const dateB = b.timeWindowStart ? new Date(b.timeWindowStart).getTime() : 0;
+          return dateB - dateA;
+        });
+        break;
+    }
+
+    return filtered;
+  }, [tasks, searchTerm, selectedCategories, sortBy, userLocation]);
   
   const handleOpenSheet = (taskId: string) => {
     // Navigate to task detail page
@@ -129,14 +172,46 @@ export default function DashboardTasksPage() {
           />
         </div>
 
-        <div className="flex flex-col md:flex-row gap-4 justify-between">
-            <Input 
-              placeholder={t('searchPlaceholder')}
-              className="max-w-sm"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <div className="flex items-center gap-2">
+        <div className="flex flex-col md:flex-row gap-4 justify-between items-start md:items-center">
+            <div className="flex-1 w-full md:max-w-sm">
+              <Input 
+                placeholder={t('searchPlaceholder')}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+            <div className="flex items-center gap-2 w-full md:w-auto">
+              {/* Location button */}
+              <Button
+                variant={userLocation ? "default" : "outline"}
+                size="sm"
+                onClick={handleGetLocation}
+                disabled={locating}
+                className="flex-1 md:flex-initial"
+              >
+                {locating ? (
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                ) : (
+                  <Navigation className="h-4 w-4 mr-2" />
+                )}
+                {userLocation ? 'Position active' : 'Ma position'}
+              </Button>
+
+              {/* Sort selector */}
+              <Select value={sortBy} onValueChange={(value: any) => setSortBy(value)}>
+                <SelectTrigger className="w-[160px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="date">Plus récentes</SelectItem>
+                  <SelectItem value="budget">Budget (élevé)</SelectItem>
+                  {userLocation && (
+                    <SelectItem value="distance">Distance</SelectItem>
+                  )}
+                </SelectContent>
+              </Select>
+
+              {/* View toggles */}
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
@@ -164,11 +239,24 @@ export default function DashboardTasksPage() {
             </div>
           </div>
         
+        {/* Results info */}
+        {!loading && filteredAndSortedTasks.length > 0 && (
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <span>{filteredAndSortedTasks.length} tâche{filteredAndSortedTasks.length > 1 ? 's' : ''}</span>
+            {sortBy === 'distance' && userLocation && (
+              <Badge variant="outline" className="text-xs">
+                <Navigation className="h-3 w-3 mr-1" />
+                Triées par distance
+              </Badge>
+            )}
+          </div>
+        )}
+
         {loading ? (
           <div className="flex justify-center items-center h-64">
             <Loader2 className="h-16 w-16 animate-spin text-primary" />
           </div>
-        ) : filteredTasks.length === 0 ? (
+        ) : filteredAndSortedTasks.length === 0 ? (
           <div className="text-center py-12 rounded-lg border bg-card">
               <p className="text-muted-foreground">{searchTerm ? t('noSearchResults') : t('noTasks')}</p>
           </div>
@@ -176,14 +264,26 @@ export default function DashboardTasksPage() {
           <>
               {view === 'grid' ? (
                   <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                      {filteredTasks.map((task) => (
-                          <TaskCard key={task.id} task={task} onOpenSheet={handleOpenSheet} />
+                      {filteredAndSortedTasks.map((task) => (
+                          <TaskCard 
+                            key={task.id} 
+                            task={task} 
+                            onOpenSheet={handleOpenSheet}
+                            showDistance={sortBy === 'distance' && !!userLocation}
+                            distance={(task as any).distance}
+                          />
                       ))}
                   </div>
               ) : (
                   <div className="space-y-4">
-                      {filteredTasks.map((task) => (
-                          <TaskListCard key={task.id} task={task} onOpenSheet={handleOpenSheet}/>
+                      {filteredAndSortedTasks.map((task) => (
+                          <TaskListCard 
+                            key={task.id} 
+                            task={task} 
+                            onOpenSheet={handleOpenSheet}
+                            showDistance={sortBy === 'distance' && !!userLocation}
+                            distance={(task as any).distance}
+                          />
                       ))}
                   </div>
               )}

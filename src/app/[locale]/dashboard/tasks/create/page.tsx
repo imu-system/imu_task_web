@@ -50,6 +50,7 @@ import {
 import { useToast } from '@/hooks/use-toast';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { MapPicker, type TaskLocation } from '@/components/maps';
 
 type Step = 'category' | 'template' | 'details';
 
@@ -66,7 +67,7 @@ export default function CreateTaskPage() {
   // État du formulaire
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState<TaskLocation | null>(null);
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [duration, setDuration] = useState<number>(60);
@@ -124,7 +125,7 @@ export default function CreateTaskPage() {
       return;
     }
 
-    if (!title.trim() || !description.trim() || !location.trim()) {
+    if (!title.trim() || !description.trim() || !location) {
       toast({
         title: 'Erreur',
         description: 'Veuillez remplir tous les champs obligatoires',
@@ -141,7 +142,7 @@ export default function CreateTaskPage() {
         category: selectedCategory,
         title: title.trim(),
         description: description.trim(),
-        location: location.trim(),
+        location: location, // TaskLocation object with address and coordinates
         date: date || null,
         time: time || null,
         duration,
@@ -367,22 +368,15 @@ export default function CreateTaskPage() {
                 />
               </div>
 
-              {/* Localisation */}
-              <div className="space-y-2">
-                <Label htmlFor="location">Localisation *</Label>
-                <div className="relative">
-                  <MapPin className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Input
-                    id="location"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    placeholder="Adresse, ville ou code postal"
-                    className="pl-10"
-                    required
-                    data-testid="task-location-input"
-                  />
-                </div>
-              </div>
+              {/* Localisation avec MapPicker */}
+              <MapPicker
+                value={location || undefined}
+                onChange={(loc) => setLocation(loc)}
+                label="Localisation *"
+                description="Recherchez une adresse ou cliquez sur la carte pour sélectionner un emplacement"
+                mapHeight={350}
+                showMap={true}
+              />
 
               {/* Date et heure */}
               <div className="grid grid-cols-2 gap-4">

@@ -1,0 +1,21 @@
+.mapContainer {
+    width: 100%;
+    border-radius: 0 0 calc(var(--radius) - 2px) calc(var(--radius) - 2px);
+}
+
+/* Hauteurs prédéfinies pour éviter les inline styles */
+.height300 {
+    height: 300px;
+}
+
+.height400 {
+    height: 400px;
+}
+
+.height500 {
+    height: 500px;
+}
+
+.height600 {
+    height: 600px;
+}

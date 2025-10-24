@@ -224,6 +224,85 @@ export async function getOpenTasks(): Promise<Task[]> {
 }
 
 /**
+ * Get tasks with filters
+ * @param filters - Object with optional filters
+ * @returns Array of filtered tasks
+ */
+export async function getTasksWithFilters(filters?: {
+    status?: string | string[];
+    category?: string;
+    minBudget?: number;
+    maxBudget?: number;
+}): Promise<Task[]> {
+    try {
+        const tasksRef = collection(db, 'tasks');
+        const constraints: any[] = [];
+
+        // Status filter (can be single or multiple)
+        if (filters?.status) {
+            if (Array.isArray(filters.status)) {
+                // Multiple statuses - we'll filter client-side
+                // Firestore doesn't support 'in' with multiple where clauses
+            } else {
+                constraints.push(where('status', '==', filters.status));
+            }
+        }
+
+        // Category filter
+        if (filters?.category) {
+            constraints.push(where('category', '==', filters.category));
+        }
+
+        // Budget filters (client-side filtering)
+        // Firestore doesn't support multiple range queries
+
+        // Default ordering
+        constraints.push(orderBy('createdAt', 'desc'));
+
+        const q = query(tasksRef, ...constraints);
+        const snapshot = await getDocs(q);
+
+        let tasks: Task[] = snapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+                id: doc.id,
+                title: data.title,
+                description: data.description,
+                category: data.category,
+                location: data.location,
+                budget: data.budget,
+                status: data.status,
+                clientId: data.clientId,
+                providerId: data.providerId,
+                images: data.images || [],
+                deadline: data.deadline?.toDate() || null,
+                createdAt: data.createdAt?.toDate() || new Date(),
+                updatedAt: data.updatedAt?.toDate() || new Date(),
+            };
+        });
+
+        // Client-side filtering for multiple statuses
+        if (filters?.status && Array.isArray(filters.status)) {
+            tasks = tasks.filter(task => filters.status!.includes(task.status));
+        }
+
+        // Client-side budget filtering
+        if (filters?.minBudget !== undefined) {
+            tasks = tasks.filter(task => task.budget >= filters.minBudget!);
+        }
+        if (filters?.maxBudget !== undefined) {
+            tasks = tasks.filter(task => task.budget <= filters.maxBudget!);
+        }
+
+        console.log(`✅ Retrieved ${tasks.length} tasks with filters:`, filters);
+        return tasks;
+    } catch (error) {
+        console.error('❌ Error fetching tasks with filters:', error);
+        throw new Error('Failed to fetch tasks. Please try again.');
+    }
+}
+
+/**
  * Get a single task by ID
  * @param taskId - The ID of the task
  * @returns The task data or null if not found

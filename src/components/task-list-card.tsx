@@ -10,6 +10,8 @@ import { type Task, TaskStatus } from '@/lib/types';
 import {
   Calendar,
   Eye,
+  Navigation,
+  MapPin,
 } from 'lucide-react';
 import { Link } from '@/navigation';
 import { Button } from './ui/button';
@@ -19,10 +21,13 @@ import { OfferForm } from './offer-form';
 import { ServiceCategoryBadge } from './services/category-selector';
 import { ServiceCategory } from '@/types/services';
 import { useRouter } from '@/navigation';
+import { formatDistance } from '@/lib/geolocation';
 
 type TaskListCardProps = {
   task: Task;
   onOpenSheet: (taskId: string) => void;
+  showDistance?: boolean;
+  distance?: number | null;
 };
 
 const getStatusVariant = (status: TaskStatus) => {
@@ -35,7 +40,7 @@ const getStatusVariant = (status: TaskStatus) => {
     }
 }
 
-export default function TaskListCard({ task, onOpenSheet }: TaskListCardProps) {
+export default function TaskListCard({ task, onOpenSheet, showDistance = false, distance = null }: TaskListCardProps) {
   const { title, category, timeWindowStart, budget, id, status } = task;
   const locale = useLocale();
   const t = useTranslations('MyTasksPage');
@@ -49,6 +54,24 @@ export default function TaskListCard({ task, onOpenSheet }: TaskListCardProps) {
   const categoryFromCatalog = typeof category === 'string' && Object.values(ServiceCategory).includes(category as ServiceCategory) 
     ? category as ServiceCategory 
     : null;
+
+  // Get location from new TaskLocation format or old format
+  const taskLocation = task.location;
+  let locationLabel = 'N/A';
+  if (typeof taskLocation === 'string') {
+    locationLabel = taskLocation;
+  } else if (taskLocation && typeof taskLocation === 'object') {
+    // New TaskLocation format
+    locationLabel = (taskLocation as any).city 
+      ? `${(taskLocation as any).city}${(taskLocation as any).country ? ', ' + (taskLocation as any).country : ''}`
+      : (taskLocation as any).address || 'N/A';
+  } else if ((task as any).address?.city) {
+    // Old address format
+    locationLabel = (task as any).address.city;
+  }
+  
+  // Get distance from task (may have been added by sorting/filtering)
+  const taskDistance = distance !== null ? distance : (task as any).distance;
 
   // Extract tags from task
   const taskTags = (task as any).tags || [];
@@ -66,7 +89,7 @@ export default function TaskListCard({ task, onOpenSheet }: TaskListCardProps) {
     <Card>
       <CardContent className="p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex-1">
-            <div className="flex items-center gap-2 mb-1">
+            <div className="flex items-center gap-2 mb-1 flex-wrap">
                 { tStatus(status as any) ? (
                     <Badge variant={getStatusVariant(status as any)}>
                         {tStatus(status as any)}
@@ -78,11 +101,22 @@ export default function TaskListCard({ task, onOpenSheet }: TaskListCardProps) {
                 ) : (
                   <Badge variant="outline">{categoryLabel}</Badge>
                 )}
+                {/* Distance badge */}
+                {showDistance && taskDistance !== null && taskDistance !== undefined && (
+                  <Badge variant="outline" className="text-xs">
+                    <Navigation className="h-3 w-3 mr-1" />
+                    {formatDistance(taskDistance)}
+                  </Badge>
+                )}
             </div>
             <p className="font-semibold text-lg">{title}</p>
              <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground mt-1">
                 <div className="flex items-center gap-2">
-                    <Calendar className="h-4 w-4" />
+                    <MapPin className="h-4 w-4 shrink-0" />
+                    <span className="line-clamp-1">{locationLabel}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                    <Calendar className="h-4 w-4 shrink-0" />
                     <span>{new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(timeWindowStart))}</span>
                 </div>
              </div>

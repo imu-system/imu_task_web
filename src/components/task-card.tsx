@@ -15,6 +15,7 @@ import {
   Calendar,
   MapPin,
   Eye,
+  Navigation,
 } from 'lucide-react';
 import { Link } from '@/navigation';
 import { Button } from './ui/button';
@@ -22,14 +23,17 @@ import { useTranslations, useLocale } from 'next-intl';
 import { ServiceCategoryBadge } from './services/category-selector';
 import { ServiceCategory } from '@/types/services';
 import { useRouter } from '@/navigation';
+import { formatDistance } from '@/lib/geolocation';
 
 
 type TaskCardProps = {
   task: Task;
   onOpenSheet?: (taskId: string) => void;
+  showDistance?: boolean;
+  distance?: number | null;
 };
 
-export default function TaskCard({ task, onOpenSheet }: TaskCardProps) {
+export default function TaskCard({ task, onOpenSheet, showDistance = false, distance = null }: TaskCardProps) {
   const { title, category, timeWindowStart, budget, id } = task;
   const locale = useLocale();
   const t = useTranslations('TaskCard');
@@ -47,7 +51,24 @@ export default function TaskCard({ task, onOpenSheet }: TaskCardProps) {
     : null;
   
   const categoryLabel = typeof category === 'string' ? category : 'Catégorie';
-  const locationLabel = (task as any).address?.city || task.location;
+  
+  // Get location from new TaskLocation format or old format
+  const taskLocation = task.location;
+  let locationLabel = 'N/A';
+  if (typeof taskLocation === 'string') {
+    locationLabel = taskLocation;
+  } else if (taskLocation && typeof taskLocation === 'object') {
+    // New TaskLocation format
+    locationLabel = (taskLocation as any).city 
+      ? `${(taskLocation as any).city}${(taskLocation as any).country ? ', ' + (taskLocation as any).country : ''}`
+      : (taskLocation as any).address || 'N/A';
+  } else if ((task as any).address?.city) {
+    // Old address format
+    locationLabel = (task as any).address.city;
+  }
+  
+  // Get distance from task (may have been added by sorting/filtering)
+  const taskDistance = distance !== null ? distance : (task as any).distance;
 
   // Extract tags from task (may not exist in type but can exist in data)
   const taskTags = (task as any).tags || [];
@@ -76,17 +97,26 @@ export default function TaskCard({ task, onOpenSheet }: TaskCardProps) {
   );
 
   return (
-    <Card className="flex flex-col h-full">
+    <Card className="flex flex-col h-full hover:shadow-lg transition-shadow">
       <CardHeader>
-        <div className="flex items-center justify-between">
-            {/* Use new catalog badge if category is from catalog, otherwise fallback */}
-            {categoryFromCatalog ? (
-              <ServiceCategoryBadge category={categoryFromCatalog} showIcon={true} />
-            ) : (
-              <Badge variant="secondary">
-                <span>{categoryLabel}</span>
-              </Badge>
-            )}
+        <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-2 flex-wrap">
+              {/* Use new catalog badge if category is from catalog, otherwise fallback */}
+              {categoryFromCatalog ? (
+                <ServiceCategoryBadge category={categoryFromCatalog} showIcon={true} />
+              ) : (
+                <Badge variant="secondary">
+                  <span>{categoryLabel}</span>
+                </Badge>
+              )}
+              {/* Distance badge */}
+              {showDistance && taskDistance !== null && taskDistance !== undefined && (
+                <Badge variant="outline" className="text-xs">
+                  <Navigation className="h-3 w-3 mr-1" />
+                  {formatDistance(taskDistance)}
+                </Badge>
+              )}
+            </div>
             <span className="text-xl font-bold text-primary">{budget}€</span>
         </div>
         <CardTitle className="pt-2 font-headline">{title}</CardTitle>
@@ -94,11 +124,11 @@ export default function TaskCard({ task, onOpenSheet }: TaskCardProps) {
       <CardContent className="flex-grow">
         <div className="space-y-2 text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <MapPin className="h-4 w-4" />
-            <span>{locationLabel}</span>
+            <MapPin className="h-4 w-4 shrink-0" />
+            <span className="line-clamp-1">{locationLabel}</span>
           </div>
           <div className="flex items-center gap-2">
-            <Calendar className="h-4 w-4" />
+            <Calendar className="h-4 w-4 shrink-0" />
             <span>{new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(timeWindowStart))}</span>
           </div>
         </div>

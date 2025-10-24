@@ -8,6 +8,9 @@ import { useAuth } from '@/contexts/AuthContext';
 import { getTaskById, updateTask, deleteTask, Task } from '@/lib/firestore-tasks';
 import { ProposalForm } from '@/components/proposals/proposal-form';
 import { ProposalList } from '@/components/proposals/proposal-list';
+import { ProviderSuggestions } from '@/components/task-detail/provider-suggestions';
+import { TaskMapDisplay } from '@/components/task-detail/task-map-display';
+import { TaskImageGallery } from '@/components/task-detail/task-image-gallery';
 import {
   Card,
   CardContent,
@@ -32,7 +35,6 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import {
-  MapPin,
   DollarSign,
   Calendar,
   User,
@@ -43,6 +45,7 @@ import {
   CheckCircle2,
   XCircle,
   Clock,
+  Tag,
 } from 'lucide-react';
 
 const statusColors: Record<Task['status'], string> = {
@@ -202,23 +205,31 @@ export default function TaskDetailPage() {
 
       {/* Error alert */}
       {error && (
-        <Alert variant="destructive" className="mb-4">
+        <Alert variant="destructive" className="mb-6">
           <AlertDescription>{error}</AlertDescription>
         </Alert>
       )}
 
-      {/* Main task card */}
-      <Card>
+      {/* Main content grid */}
+      <div className="grid gap-6 lg:grid-cols-3">
+        {/* Left column: Task details */}
+        <div className="lg:col-span-2 space-y-6">
+          {/* Main task card */}
+          <Card>
         <CardHeader>
-          <div className="flex items-start justify-between">
-            <div className="flex-1">
-              <div className="mb-2 flex items-center gap-2">
-                <CardTitle className="text-3xl">{task.title}</CardTitle>
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1 min-w-0">
+              <CardTitle className="text-2xl md:text-3xl mb-2">{task.title}</CardTitle>
+              
+              <div className="flex flex-wrap items-center gap-2">
                 <Badge className={statusColors[task.status]}>
                   {statusLabels[task.status]}
                 </Badge>
+                <Badge variant="outline" className="gap-1">
+                  <Tag className="h-3 w-3" />
+                  {task.category}
+                </Badge>
               </div>
-              <CardDescription className="text-lg">{task.category}</CardDescription>
             </div>
 
             {/* Action buttons (owner only) */}
@@ -267,51 +278,32 @@ export default function TaskDetailPage() {
         <CardContent className="space-y-6">
           {/* Description */}
           <div>
-            <h3 className="mb-2 text-lg font-semibold">{t('description')}</h3>
-
-            <p className="whitespace-pre-wrap text-muted-foreground">{task.description}</p>
+            <h3 className="mb-3 text-lg font-semibold">{t('description')}</h3>
+            <p className="whitespace-pre-wrap text-muted-foreground leading-relaxed">
+              {task.description}
+            </p>
           </div>
 
           {/* Task details */}
-          <div className="grid gap-4 md:grid-cols-2">
-            {/* Location */}
-            <div className="flex items-start gap-3">
-              <MapPin className="mt-0.5 h-5 w-5 text-muted-foreground" />
-              <div>
-                <p className="font-medium">{t('location')}</p>
-                <p className="text-sm text-muted-foreground">
-                  {typeof task.location === 'string'
-                    ? task.location
-                    : task.location.address || t('noProvider')}
-                </p>
-              </div>
-            </div>
-
+          <div className="grid gap-4 sm:grid-cols-2">
             {/* Budget */}
-            <div className="flex items-start gap-3">
-              <DollarSign className="mt-0.5 h-5 w-5 text-green-600" />
-              <div>
-                <p className="font-medium">{t('budget')}</p>
-                <p className="text-lg font-semibold text-green-600">{task.budget} €</p>
-              </div>
-            </div>
-
-            {/* Client */}
-            <div className="flex items-start gap-3">
-              <User className="mt-0.5 h-5 w-5 text-muted-foreground" />
-              <div>
-                <p className="font-medium">{t('client')}</p>
-                <p className="text-sm text-muted-foreground">
-                  {isOwner ? t('you') : `Client ID: ${task.clientId.slice(0, 8)}...`}
-                </p>
-              </div>
-            </div>
+            <Card className="bg-muted/50">
+              <CardContent className="pt-6">
+                <div className="flex items-start gap-3">
+                  <DollarSign className="mt-0.5 h-5 w-5 text-primary" />
+                  <div>
+                    <p className="text-sm font-medium text-muted-foreground">{t('budget')}</p>
+                    <p className="text-2xl font-bold text-primary">{task.budget} €</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
             {/* Created date */}
             <div className="flex items-start gap-3">
               <Calendar className="mt-0.5 h-5 w-5 text-muted-foreground" />
               <div>
-                <p className="font-medium">{t('createdAt')}</p>
+                <p className="text-sm font-medium">{t('createdAt')}</p>
                 <p className="text-sm text-muted-foreground">
                   {new Date(task.createdAt).toLocaleDateString('fr-FR', {
                     year: 'numeric',
@@ -327,7 +319,7 @@ export default function TaskDetailPage() {
               <div className="flex items-start gap-3">
                 <Clock className="mt-0.5 h-5 w-5 text-orange-600" />
                 <div>
-                  <p className="font-medium">{t('deadline')}</p>
+                  <p className="text-sm font-medium">{t('deadline')}</p>
                   <p className="text-sm text-muted-foreground">
                     {new Date(task.deadline).toLocaleDateString('fr-FR', {
                       year: 'numeric',
@@ -339,12 +331,23 @@ export default function TaskDetailPage() {
               </div>
             )}
 
+            {/* Client */}
+            <div className="flex items-start gap-3">
+              <User className="mt-0.5 h-5 w-5 text-muted-foreground" />
+              <div>
+                <p className="text-sm font-medium">{t('client')}</p>
+                <p className="text-sm text-muted-foreground">
+                  {isOwner ? t('you') : `Client ID: ${task.clientId.slice(0, 8)}...`}
+                </p>
+              </div>
+            </div>
+
             {/* Provider if assigned */}
             {task.providerId && (
               <div className="flex items-start gap-3">
-                <User className="mt-0.5 h-5 w-5 text-blue-600" />
+                <User className="mt-0.5 h-5 w-5 text-primary" />
                 <div>
-                  <p className="font-medium">{t('provider')}</p>
+                  <p className="text-sm font-medium">{t('provider')}</p>
                   <p className="text-sm text-muted-foreground">
                     Provider ID: {task.providerId.slice(0, 8)}...
                   </p>
@@ -352,24 +355,6 @@ export default function TaskDetailPage() {
               </div>
             )}
           </div>
-
-          {/* Images if any */}
-          {task.images && task.images.length > 0 && (
-            <div>
-              <h3 className="mb-3 text-lg font-semibold">{t('images')}</h3>
-              <div className="grid gap-4 md:grid-cols-3">
-                {task.images.map((imageUrl, index) => (
-                  <div key={index} className="overflow-hidden rounded-lg border">
-                    <img
-                      src={imageUrl}
-                      alt={`Task image ${index + 1}`}
-                      className="h-48 w-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
         </CardContent>
 
         {/* Status actions (owner only) */}
@@ -430,11 +415,13 @@ export default function TaskDetailPage() {
         )}
       </Card>
 
-      {/* Provider proposals section */}
-      {task.status === 'open' && user && (
-        <div className="mt-6 space-y-6">
-          {/* Proposal form for providers (not task owner) */}
-          {!isOwner && (
+          {/* Image gallery */}
+          {task.images && task.images.length > 0 && (
+            <TaskImageGallery images={task.images} title={task.title} />
+          )}
+
+          {/* Provider proposals section */}
+          {task.status === 'open' && user && !isOwner && (
             <ProposalForm
               taskId={taskId}
               taskTitle={task.title}
@@ -445,17 +432,34 @@ export default function TaskDetailPage() {
           )}
 
           {/* Proposal list for task owner or providers who submitted */}
-          <ProposalList
-            taskId={taskId}
-            isTaskOwner={isOwner}
-            currentUserId={user.uid}
-            onProposalAccepted={() => {
-              // Refresh task to show updated status
-              window.location.reload();
-            }}
-          />
+          {task.status === 'open' && user && (
+            <ProposalList
+              taskId={taskId}
+              isTaskOwner={isOwner}
+              currentUserId={user.uid}
+              onProposalAccepted={() => {
+                // Refresh task to show updated status
+                window.location.reload();
+              }}
+            />
+          )}
         </div>
-      )}
+
+        {/* Right column: Map and provider suggestions */}
+        <div className="lg:col-span-1 space-y-6">
+          {/* Location map */}
+          <TaskMapDisplay location={task.location} />
+
+          {/* Provider suggestions (only for task owners) */}
+          {isOwner && task.status === 'open' && (
+            <ProviderSuggestions
+              taskCategory={task.category}
+              taskLocation={task.location}
+              currentUserId={user?.uid}
+            />
+          )}
+        </div>
+      </div>
     </div>
   );
 }
