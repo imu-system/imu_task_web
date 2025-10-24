@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Button } from '@/components/ui/button';
 import { Image as ImageIcon, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
@@ -77,6 +78,11 @@ export function TaskImageGallery({ images, title }: TaskImageGalleryProps) {
       {/* Image viewer dialog */}
       <Dialog open={selectedIndex !== null} onOpenChange={(open) => !open && closeImage()}>
         <DialogContent className="max-w-7xl w-full h-[90vh] p-0">
+          <VisuallyHidden>
+            <DialogTitle>
+              {title || 'Task'} - Image {selectedIndex !== null ? selectedIndex + 1 : 1} of {images.length}
+            </DialogTitle>
+          </VisuallyHidden>
           <div className="relative h-full flex items-center justify-center bg-black">
             {/* Close button */}
             <Button

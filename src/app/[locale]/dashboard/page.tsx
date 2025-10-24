@@ -120,7 +120,7 @@ export default function DashboardPage() {
            <div className="flex items-center justify-between">
              <h2 className="text-2xl font-bold tracking-tight font-headline flex items-center gap-2">
                {userLocation && <Navigation className="h-6 w-6 text-primary" />}
-               {userLocation ? t('nearbyTasks', { default: 'Tâches à proximité' }) : t('recommendedTasks.title')}
+               {userLocation ? t('nearbyTasks') : t('recommendedTasks.title')}
              </h2>
              {locating && (
                <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />

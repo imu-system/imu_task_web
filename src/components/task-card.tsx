@@ -24,6 +24,8 @@ import { ServiceCategoryBadge } from './services/category-selector';
 import { ServiceCategory } from '@/types/services';
 import { useRouter } from '@/navigation';
 import { formatDistance } from '@/lib/geolocation';
+import { TaskStatusBadge } from './task-detail/task-status-badge';
+import { type Task as FirestoreTask } from '@/lib/firestore-tasks';
 
 
 type TaskCardProps = {
@@ -101,6 +103,10 @@ export default function TaskCard({ task, onOpenSheet, showDistance = false, dist
       <CardHeader>
         <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2 flex-wrap">
+              {/* Status badge */}
+              {task.status && typeof task.status === 'string' && ['open', 'assigned', 'in-progress', 'completed', 'cancelled'].includes(task.status) && (
+                <TaskStatusBadge status={task.status as FirestoreTask['status']} size="sm" />
+              )}
               {/* Use new catalog badge if category is from catalog, otherwise fallback */}
               {categoryFromCatalog ? (
                 <ServiceCategoryBadge category={categoryFromCatalog} showIcon={true} />

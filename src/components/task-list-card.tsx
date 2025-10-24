@@ -7,6 +7,7 @@ import {
   CardContent,
 } from '@/components/ui/card';
 import { type Task, TaskStatus } from '@/lib/types';
+import { type Task as FirestoreTask } from '@/lib/firestore-tasks';
 import {
   Calendar,
   Eye,
@@ -22,6 +23,7 @@ import { ServiceCategoryBadge } from './services/category-selector';
 import { ServiceCategory } from '@/types/services';
 import { useRouter } from '@/navigation';
 import { formatDistance } from '@/lib/geolocation';
+import { TaskStatusBadge } from './task-detail/task-status-badge';
 
 type TaskListCardProps = {
   task: Task;
@@ -90,10 +92,13 @@ export default function TaskListCard({ task, onOpenSheet, showDistance = false, 
       <CardContent className="p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex-1">
             <div className="flex items-center gap-2 mb-1 flex-wrap">
-                { tStatus(status as any) ? (
-                    <Badge variant={getStatusVariant(status as any)}>
-                        {tStatus(status as any)}
-                    </Badge>
+                {/* Status badge - support both Task types */}
+                {status && typeof status === 'string' && ['open', 'assigned', 'in-progress', 'completed', 'cancelled'].includes(status) ? (
+                  <TaskStatusBadge status={status as FirestoreTask['status']} size="sm" />
+                ) : status ? (
+                  <Badge variant={getStatusVariant(status as any)}>
+                    {tStatus(status as any)}
+                  </Badge>
                 ) : null}
                 {/* Use new catalog badge if category is from catalog, otherwise fallback */}
                 {categoryFromCatalog ? (

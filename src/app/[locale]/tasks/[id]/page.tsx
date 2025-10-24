@@ -5,12 +5,14 @@ import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/contexts/AuthContext';
-import { getTaskById, updateTask, deleteTask, Task } from '@/lib/firestore-tasks';
+import { getTaskById, updateTask, deleteTask, updateTaskStatus, Task } from '@/lib/firestore-tasks';
 import { ProposalForm } from '@/components/proposals/proposal-form';
 import { ProposalList } from '@/components/proposals/proposal-list';
 import { ProviderSuggestions } from '@/components/task-detail/provider-suggestions';
 import { TaskMapDisplay } from '@/components/task-detail/task-map-display';
 import { TaskImageGallery } from '@/components/task-detail/task-image-gallery';
+import { TaskStatusActions } from '@/components/task-detail/task-status-actions';
+import { TaskStatusBadge } from '@/components/task-detail/task-status-badge';
 import {
   Card,
   CardContent,
@@ -48,14 +50,6 @@ import {
   Tag,
 } from 'lucide-react';
 
-const statusColors: Record<Task['status'], string> = {
-  open: 'bg-green-100 text-green-800',
-  assigned: 'bg-blue-100 text-blue-800',
-  'in-progress': 'bg-yellow-100 text-yellow-800',
-  completed: 'bg-purple-100 text-purple-800',
-  cancelled: 'bg-red-100 text-red-800',
-};
-
 export default function TaskDetailPage() {
   const params = useParams();
   const router = useRouter();
@@ -66,18 +60,8 @@ export default function TaskDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [deleting, setDeleting] = useState(false);
-  const [updating, setUpdating] = useState(false);
 
   const taskId = params.id as string;
-
-  // Status labels using translations
-  const statusLabels: Record<Task['status'], string> = {
-    open: t('statusOpen'),
-    assigned: t('statusAssigned'),
-    'in-progress': t('statusInProgress'),
-    completed: t('statusCompleted'),
-    cancelled: t('statusCancelled'),
-  };
 
   useEffect(() => {
     const fetchTask = async () => {
@@ -124,14 +108,16 @@ export default function TaskDetailPage() {
     if (!task || !user) return;
 
     try {
-      setUpdating(true);
-      await updateTask(taskId, { status: newStatus });
-      setTask({ ...task, status: newStatus });
+      await updateTaskStatus(taskId, newStatus, user.uid);
+      
+      // Refresh task data
+      const updatedTask = await getTaskById(taskId);
+      if (updatedTask) {
+        setTask(updatedTask);
+      }
     } catch (err: any) {
       console.error('Error updating status:', err);
-      setError(err.message || t('error'));
-    } finally {
-      setUpdating(false);
+      throw err; // Re-throw to let TaskStatusActions handle the error
     }
   };
 
@@ -222,9 +208,7 @@ export default function TaskDetailPage() {
               <CardTitle className="text-2xl md:text-3xl mb-2">{task.title}</CardTitle>
               
               <div className="flex flex-wrap items-center gap-2">
-                <Badge className={statusColors[task.status]}>
-                  {statusLabels[task.status]}
-                </Badge>
+                <TaskStatusBadge status={task.status} size="md" />
                 <Badge variant="outline" className="gap-1">
                   <Tag className="h-3 w-3" />
                   {task.category}
@@ -283,6 +267,17 @@ export default function TaskDetailPage() {
               {task.description}
             </p>
           </div>
+
+          {/* Status Actions */}
+          {user && (
+            <TaskStatusActions
+              task={task}
+              userId={user.uid}
+              isOwner={isOwner}
+              isProvider={task.providerId === user.uid}
+              onStatusChange={handleStatusChange}
+            />
+          )}
 
           {/* Task details */}
           <div className="grid gap-4 sm:grid-cols-2">
@@ -356,63 +351,6 @@ export default function TaskDetailPage() {
             )}
           </div>
         </CardContent>
-
-        {/* Status actions (owner only) */}
-        {isOwner && task.status !== 'completed' && task.status !== 'cancelled' && (
-          <CardFooter className="flex gap-2 border-t pt-6">
-            <p className="mr-4 text-sm font-medium">Changer le statut :</p>
-
-            {task.status === 'open' && (
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => handleStatusChange('cancelled')}
-                disabled={updating}
-              >
-                <XCircle className="mr-2 h-4 w-4" />
-                {t('cancelTask')}
-              </Button>
-            )}
-
-            {task.status === 'assigned' && (
-              <>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() => handleStatusChange('in-progress')}
-                  disabled={updating}
-                >
-                  <Clock className="mr-2 h-4 w-4" />
-                  {t('markInProgress')}
-                </Button>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() => handleStatusChange('cancelled')}
-                  disabled={updating}
-                >
-                  <XCircle className="mr-2 h-4 w-4" />
-                  {t('cancelTask')}
-                </Button>
-              </>
-            )}
-
-            {task.status === 'in-progress' && (
-              <Button
-                size="sm"
-                onClick={() => handleStatusChange('completed')}
-                disabled={updating}
-              >
-                {updating ? (
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                ) : (
-                  <CheckCircle2 className="mr-2 h-4 w-4" />
-                )}
-                {t('markCompleted')}
-              </Button>
-            )}
-          </CardFooter>
-        )}
       </Card>
 
           {/* Image gallery */}

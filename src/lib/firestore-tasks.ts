@@ -479,6 +479,59 @@ export async function assignTask(
 }
 
 /**
+ * Update task status with validation
+ * @param taskId - The ID of the task
+ * @param newStatus - The new status
+ * @param userId - The ID of the user making the change
+ */
+export async function updateTaskStatus(
+    taskId: string,
+    newStatus: Task['status'],
+    userId: string
+): Promise<void> {
+    try {
+        const taskRef = doc(db, 'tasks', taskId);
+        const taskSnap = await getDoc(taskRef);
+
+        if (!taskSnap.exists()) {
+            throw new Error('Task not found');
+        }
+
+        const task = { id: taskSnap.id, ...taskSnap.data() } as Task;
+
+        // Validate user permissions
+        if (task.clientId !== userId && task.providerId !== userId) {
+            throw new Error('You do not have permission to update this task status');
+        }
+
+        // Validate status transitions
+        const validTransitions: Record<Task['status'], Task['status'][]> = {
+            'open': ['assigned', 'cancelled'],
+            'assigned': ['in-progress', 'cancelled'],
+            'in-progress': ['completed', 'cancelled'],
+            'completed': [],
+            'cancelled': []
+        };
+
+        const currentStatus = task.status;
+        if (!validTransitions[currentStatus]?.includes(newStatus)) {
+            throw new Error(`Invalid status transition from ${currentStatus} to ${newStatus}`);
+        }
+
+        // Update status
+        await updateDoc(taskRef, {
+            status: newStatus,
+            updatedAt: Timestamp.now(),
+        });
+
+        console.log(`✅ Task status updated from ${currentStatus} to ${newStatus}`);
+    } catch (error) {
+        console.error('❌ Error updating task status:', error);
+        throw error;
+    }
+}
+
+/**
  * Alias for getTaskById for consistency with other libraries
  */
 export const getTask = getTaskById;

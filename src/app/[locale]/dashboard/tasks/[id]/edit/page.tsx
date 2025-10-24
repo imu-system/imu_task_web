@@ -25,8 +25,11 @@ import {
 } from '@/components/ui/select';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar } from '@/components/ui/calendar';
-import { CalendarIcon, Loader2, Sparkles, Paperclip, ArrowLeft } from 'lucide-react';
+import { CalendarIcon, Loader2, Sparkles, Paperclip, ArrowLeft, Trash2, MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { MapPicker, type TaskLocation } from '@/components/maps';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { Separator } from '@/components/ui/separator';
 import { format, setHours, setMinutes } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { Badge } from '@/components/ui/badge';
@@ -40,7 +43,7 @@ import { useTranslations } from 'next-intl';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter as useNextRouter, Link } from '@/navigation';
 import { useParams, useRouter } from 'next/navigation';
-import { collection, query, where, getDocs, doc, getDoc, updateDoc, serverTimestamp, Timestamp } from 'firebase/firestore';
+import { collection, query, where, getDocs, doc, getDoc, updateDoc, serverTimestamp, Timestamp, deleteDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 
 const formSchema = z.object({
@@ -75,6 +78,8 @@ export default function EditTaskPage() {
   const [isSuggesting, setIsSuggesting] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [location, setLocation] = useState<TaskLocation | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
   const { toast } = useToast();
   const t = useTranslations('CreateTaskForm'); // Re-use translations from create form
   const tEdit = useTranslations('EditTaskPage');
@@ -130,7 +135,24 @@ export default function EditTaskPage() {
 
             if (taskSnap.exists() && taskSnap.data().clientId === user.uid) {
                 const taskData = { id: taskSnap.id, ...taskSnap.data() } as Task;
+                
+                // Check if task can be edited (only 'Open' or 'In Progress' status)
+                if (taskData.status === 'Completed') {
+                  toast({ 
+                    variant: 'destructive', 
+                    title: tEdit('cannotEditTitle') || 'Modification impossible',
+                    description: tEdit('cannotEditDescription') || 'Cette tâche ne peut plus être modifiée.' 
+                  });
+                  router.push('/dashboard/tasks');
+                  return;
+                }
+                
                 setTask(taskData);
+                
+                // Load location if available
+                if (taskData.location && typeof taskData.location === 'object' && 'coordinates' in taskData.location) {
+                  setLocation(taskData.location as TaskLocation);
+                }
                 
                 // Populate form
                 form.reset({
@@ -154,25 +176,33 @@ export default function EditTaskPage() {
 
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    if (!user || !id) return;
+    if (!user || !id || !location) {
+      toast({
+        variant: 'destructive',
+        title: t('toastErrorTitle'),
+        description: 'Veuillez sélectionner une localisation sur la carte.',
+      });
+      return;
+    }
     
     setIsSubmitting(true);
     try {
         const taskRef = doc(db, 'tasks', id);
         await updateDoc(taskRef, {
             ...values,
+            location: location,
             updatedAt: serverTimestamp()
         });
         toast({
-            title: tEdit('toastSuccessTitle'),
-            description: tEdit('toastSuccessDescription'),
+            title: tEdit('toastSuccessTitle') || 'Tâche mise à jour',
+            description: tEdit('toastSuccessDescription') || 'Votre tâche a été mise à jour avec succès.',
         });
-        router.push(`/dashboard/tasks/${id}`);
+        router.push('/dashboard/tasks');
     } catch (error) {
         console.error("Error updating task:", error);
         toast({
             variant: 'destructive',
-            title: tEdit('toastErrorTitle'),
+            title: tEdit('toastErrorTitle') || 'Erreur',
             description: tEdit('toastErrorDescription'),
         });
     } finally {
@@ -218,6 +248,51 @@ export default function EditTaskPage() {
       });
     }
     setIsSuggesting(false);
+  };
+
+  const handleDelete = async () => {
+    if (!user || !id) return;
+    
+    setIsDeleting(true);
+    try {
+      // Check if there are active proposals
+      const proposalsQuery = query(
+        collection(db, 'proposals'),
+        where('taskId', '==', id),
+        where('status', 'in', ['pending', 'accepted'])
+      );
+      const proposalsSnap = await getDocs(proposalsQuery);
+      
+      if (!proposalsSnap.empty) {
+        toast({
+          variant: 'destructive',
+          title: tEdit('cannotDeleteTitle') || 'Suppression impossible',
+          description: tEdit('cannotDeleteDescription') || 'Cette tâche a des offres actives. Veuillez les gérer avant de supprimer la tâche.',
+        });
+        setIsDeleting(false);
+        return;
+      }
+
+      // Delete task
+      const taskRef = doc(db, 'tasks', id);
+      await deleteDoc(taskRef);
+      
+      toast({
+        title: tEdit('deleteSuccessTitle') || 'Tâche supprimée',
+        description: tEdit('deleteSuccessDescription') || 'La tâche a été supprimée avec succès.',
+      });
+      
+      router.push('/dashboard/tasks');
+    } catch (error) {
+      console.error('Error deleting task:', error);
+      toast({
+        variant: 'destructive',
+        title: tEdit('deleteErrorTitle') || 'Erreur',
+        description: tEdit('deleteErrorDescription') || 'Impossible de supprimer la tâche.',
+      });
+    } finally {
+      setIsDeleting(false);
+    }
   };
   
   if (isLoading) {
@@ -370,11 +445,36 @@ export default function EditTaskPage() {
                       </Card>
                     )}
                     
+                    <Separator className="my-6" />
+                    
+                    {/* Map Picker Section */}
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2">
+                        <MapPin className="h-5 w-5 text-primary" />
+                        <div>
+                          <FormLabel className="text-lg font-semibold">{t('locationLabel')}</FormLabel>
+                          <p className="text-sm text-muted-foreground mt-1">
+                            {t('locationHelp') || 'Sélectionnez l\'emplacement exact où la tâche doit être effectuée'}
+                          </p>
+                        </div>
+                      </div>
+                      <MapPicker 
+                        value={location || undefined} 
+                        onChange={setLocation}
+                        className="h-[400px]"
+                      />
+                      {!location && (
+                        <p className="text-sm text-destructive">
+                          Veuillez sélectionner une localisation sur la carte.
+                        </p>
+                      )}
+                    </div>
+
                     <FormField
                     control={form.control}
                     name="addressId"
                     render={({ field }) => (
-                        <FormItem>
+                        <FormItem className="hidden">
                         <FormLabel>{t('locationLabel')}</FormLabel>
                         <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
@@ -394,6 +494,8 @@ export default function EditTaskPage() {
                         </FormItem>
                     )}
                     />
+                    
+                    <Separator className="my-6" />
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <FormField
@@ -503,10 +605,60 @@ export default function EditTaskPage() {
                         />
                     </div>
 
-                    <Button type="submit" size="lg" disabled={isSubmitting}>
+                    <Separator className="my-8" />
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row gap-4 justify-between items-stretch sm:items-center pt-4">
+                      <Button 
+                        type="submit" 
+                        size="lg" 
+                        disabled={isSubmitting || !location}
+                        className="order-1 sm:order-1"
+                      >
                         {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                        {tEdit('submitButton')}
-                    </Button>
+                        {tEdit('submitButton') || 'Enregistrer les modifications'}
+                      </Button>
+
+                      <AlertDialog>
+                        <AlertDialogTrigger asChild>
+                          <Button 
+                            type="button"
+                            variant="destructive" 
+                            size="lg"
+                            disabled={isDeleting}
+                            className="order-2 sm:order-2"
+                          >
+                            {isDeleting ? (
+                              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            ) : (
+                              <Trash2 className="mr-2 h-4 w-4" />
+                            )}
+                            {tEdit('deleteButton') || 'Supprimer la tâche'}
+                          </Button>
+                        </AlertDialogTrigger>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>
+                              {tEdit('deleteConfirmTitle') || 'Êtes-vous sûr ?'}
+                            </AlertDialogTitle>
+                            <AlertDialogDescription>
+                              {tEdit('deleteConfirmDescription') || 'Cette action est irréversible. La tâche sera définitivement supprimée.'}
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>
+                              {tEdit('deleteCancel') || 'Annuler'}
+                            </AlertDialogCancel>
+                            <AlertDialogAction 
+                              onClick={handleDelete}
+                              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                            >
+                              {tEdit('deleteConfirm') || 'Supprimer'}
+                            </AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                      </AlertDialog>
+                    </div>
                 </form>
                 </Form>
             </CardContent>
