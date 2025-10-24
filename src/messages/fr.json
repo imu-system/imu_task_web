@@ -46,98 +46,6 @@
         "terms": "Conditions d'utilisation",
         "privacy": "Politique de confidentialité"
     },
-    "HomePage": {
-        "title": "ImuTask",
-        "subtitle": "Vos besoins, leur mission.",
-        "description": "Connecter les générations pour des services du quotidien, en toute simplicité, fiabilité et sécurité.",
-        "signIn": "Se connecter",
-        "signUp": "S'inscrire",
-        "whyChoose": "Pourquoi choisir ImuTask ?",
-        "whyChooseSubtitle": "Une plateforme pensée pour faciliter l'entraide et créer du lien entre les générations",
-        "feature1Title": "Entraide Intergénérationnelle",
-        "feature1Desc": "Créez des liens uniques en aidant ou en recevant de l'aide de personnes de votre communauté.",
-        "feature2Title": "Confiance & Sécurité",
-        "feature2Desc": "Profils vérifiés (KYC), paiements sécurisés et avis pour garantir des missions en toute sérénité.",
-        "feature3Title": "Communication Simple",
-        "feature3Desc": "Discutez facilement avec les membres via notre messagerie intégrée pour organiser les détails de la mission.",
-        "howItWorksTitle": "À chaque besoin, sa solution",
-        "forClients": {
-            "title": "Pour les Clients",
-            "description": "Trouvez de l'aide rapidement et en toute sécurité. Postez votre mission, choisissez votre prestataire et avancez en toute sérénité.",
-            "button": "Publier une mission"
-        },
-        "forProviders": {
-            "title": "Pour les Prestataires",
-            "description": "Gagnez un revenu complémentaire en aidant votre communauté. Choisissez vos missions, gérez votre planning et soyez payé en toute sécurité.",
-            "button": "Devenir prestataire"
-        },
-        "categoriesTitle": "Des services pour tous vos besoins",
-        "categoryShopping": "Courses",
-        "categoryGardening": "Jardinage",
-        "categoryCleaning": "Ménage",
-        "categoryAdmin": "Aide administrative",
-        "readyToStartTitle": "Prêt à commencer ?",
-        "readyToStartDesc": "Rejoignez une communauté bienveillante et solidaire.",
-        "signUpFree": "Inscrivez-vous gratuitement",
-        "testimonials": {
-            "title": "Ce que nos membres en pensent",
-            "testimonial1": {
-                "text": "Grâce à ImuTask, j'ai trouvé Lucas, un étudiant adorable qui vient tondre ma pelouse toutes les deux semaines. C'est un vrai soulagement et nos discussions sont toujours un plaisir !",
-                "name": "Marie-Hélène, 72 ans",
-                "role": "Cliente"
-            },
-            "testimonial2": {
-                "text": "Je finance une partie de mes études en faisant des petites missions sur ImuTask. C'est flexible, bien payé, et j'ai l'impression d'être vraiment utile à mes voisins.",
-                "name": "Lucas, 21 ans",
-                "role": "Prestataire"
-            }
-        },
-        "finalCta": {
-            "title": "Rejoignez la communauté et commencez aujourd'hui",
-            "description": "Publiez une mission ou devenez prestataire — des centaines d'entraides vous attendent.",
-            "cta": "S'inscrire"
-        },
-        "stats": {
-            "missions": "Missions réalisées",
-            "members": "Membres actifs",
-            "rating": "Note moyenne des prestataires",
-            "securePayments": "Paiements sécurisés",
-            "trust": {
-                "badge1": {
-                    "title": "Prestataires vérifiés",
-                    "desc": "Identité confirmée pour plus de sérénité"
-                },
-                "badge2": {
-                    "title": "Paiements sécurisés",
-                    "desc": "Partenaire de paiement certifié"
-                },
-                "badge3": {
-                    "title": "Support 24/7",
-                    "desc": "Assistance en cas de besoin"
-                },
-                "badge4": {
-                    "title": "Satisfaction garantie",
-                    "desc": "Remboursements et garanties selon les cas"
-                },
-                "learnMore": "En savoir plus"
-            }
-        },
-        "faq": {
-            "title": "Foire Aux Questions",
-            "q1": {
-                "question": "Comment sont fixés les prix ?",
-                "answer": "Les clients proposent un budget en postant une mission. Les prestataires peuvent alors faire une offre à ce prix, ou en proposer un différent. Le prix final est celui sur lequel le client et le prestataire se sont mis d'accord."
-            },
-            "q2": {
-                "question": "La plateforme est-elle sécurisée ?",
-                "answer": "Oui, la sécurité est notre priorité. Nous vérifions l'identité des prestataires (KYC), sécurisons tous les paiements via notre partenaire Stripe, et disposons d'un système d'avis pour renforcer la confiance au sein de la communauté."
-            },
-            "q3": {
-                "question": "Que se passe-t-il en cas de problème pendant une mission ?",
-                "answer": "Vous pouvez ouvrir un litige directement depuis le détail de la réservation. Notre équipe de support interviendra alors pour vous aider à trouver une solution à l'amiable."
-            }
-        }
-    },
     "LanguageSwitcher": {
         "changeLanguage": "Changer de langue",
         "changeLanguageRegionCurrency": "Changer de langue, de région ou de devise",
@@ -2294,7 +2202,68 @@
             "subtitle": "Découvrez les dernières opportunités près de chez vous",
             "viewAll": "Voir toutes les tâches",
             "noTasks": "Aucune tâche disponible pour le moment",
-            "postFirstTask": "Poster la première tâche"
+            "postFirstTask": "Poster la première tâche",
+            "signupToPoster": "S'inscrire pour poster",
+            "login": "Se connecter"
+        },
+        "features": {
+            "title": "Pourquoi choisir ImuTask ?",
+            "subtitle": "Une plateforme pensée pour faciliter l'entraide et créer du lien entre les générations",
+            "feature1": {
+                "title": "Entraide Intergénérationnelle",
+                "description": "Créez des liens uniques en aidant ou en recevant de l'aide de personnes de votre communauté."
+            },
+            "feature2": {
+                "title": "Confiance & Sécurité",
+                "description": "Profils vérifiés (KYC), paiements sécurisés et avis pour garantir des missions en toute sérénité."
+            },
+            "feature3": {
+                "title": "Communication Simple",
+                "description": "Discutez facilement avec les membres via notre messagerie intégrée pour organiser les détails de la mission."
+            }
+        },
+        "stats": {
+            "missions": "Missions réalisées",
+            "members": "Membres actifs",
+            "rating": "Note moyenne des prestataires",
+            "securePayments": "Paiements sécurisés",
+            "trust": {
+                "badge1": {
+                    "title": "Prestataires vérifiés",
+                    "desc": "Identité confirmée pour plus de sérénité"
+                },
+                "badge2": {
+                    "title": "Paiements sécurisés",
+                    "desc": "Partenaire de paiement certifié"
+                },
+                "badge3": {
+                    "title": "Support 24/7",
+                    "desc": "Assistance en cas de besoin"
+                },
+                "badge4": {
+                    "title": "Satisfaction garantie",
+                    "desc": "Remboursements et garanties selon les cas"
+                },
+                "learnMore": "En savoir plus"
+            }
+        },
+        "testimonials": {
+            "title": "Ce que nos membres en pensent",
+            "testimonial1": {
+                "text": "Grâce à ImuTask, j'ai trouvé Lucas, un étudiant adorable qui vient tondre ma pelouse toutes les deux semaines. C'est un vrai soulagement et nos discussions sont toujours un plaisir !",
+                "name": "Marie-Hélène, 72 ans",
+                "role": "Cliente"
+            },
+            "testimonial2": {
+                "text": "Je finance une partie de mes études en faisant des petites missions sur ImuTask. C'est flexible, bien payé, et j'ai l'impression d'être vraiment utile à mes voisins.",
+                "name": "Lucas, 21 ans",
+                "role": "Prestataire"
+            }
+        },
+        "finalCta": {
+            "title": "Rejoignez la communauté et commencez aujourd'hui",
+            "description": "Publiez une mission ou devenez prestataire — des centaines d'entraides vous attendent.",
+            "cta": "S'inscrire"
         },
         "howItWorks": {
             "title": "Comment ça marche ?",
@@ -2315,6 +2284,64 @@
                 "client": "Publier une tâche",
                 "provider": "Devenir prestataire"
             }
+        },
+        "faq": {
+            "title": "Foire Aux Questions",
+            "q1": {
+                "question": "Comment sont fixés les prix ?",
+                "answer": "Les clients proposent un budget en postant une mission. Les prestataires peuvent alors faire une offre à ce prix, ou en proposer un différent. Le prix final est celui sur lequel le client et le prestataire se sont mis d'accord."
+            },
+            "q2": {
+                "question": "La plateforme est-elle sécurisée ?",
+                "answer": "Oui, la sécurité est notre priorité. Nous vérifions l'identité des prestataires (KYC), sécurisons tous les paiements via notre partenaire Stripe, et disposons d'un système d'avis pour renforcer la confiance au sein de la communauté."
+            },
+            "q3": {
+                "question": "Que se passe-t-il en cas de problème pendant une mission ?",
+                "answer": "Vous pouvez ouvrir un litige directement depuis le détail de la réservation. Notre équipe de support interviendra alors pour vous aider à trouver une solution à l'amiable."
+            }
+        },
+        "profiles": {
+            "title": "Pour qui ?",
+            "subtitle": "ImuTask s'adapte à vos besoins, que vous soyez particulier, professionnel ou aidant.",
+            "individual": {
+                "title": "Particuliers",
+                "description": "Trouvez rapidement de l'aide pour vos tâches quotidiennes : ménage, courses, bricolage, jardinage et bien plus encore.",
+                "cta": "Découvrir"
+            },
+            "professional": {
+                "title": "Professionnels",
+                "description": "Artisans, auto-entrepreneurs : développez votre activité avec ImuPro, notre plateforme dédiée aux services professionnels certifiés.",
+                "cta": "Devenir Pro"
+            },
+            "senior": {
+                "title": "Seniors & Aidants",
+                "description": "Services adaptés pour le maintien à domicile : portage de repas, aide ménagère, accompagnement. Découvrez CareLink.",
+                "cta": "En savoir plus"
+            }
+        },
+        "carelink": {
+            "badge": "Bientôt disponible",
+            "title": "Besoin de services pour un proche ?",
+            "subtitle": "CareLink, notre plateforme dédiée au maintien à domicile pour les seniors et personnes à mobilité réduite.",
+            "services": {
+                "meals": {
+                    "title": "Portage de repas",
+                    "description": "Menus adaptés aux régimes spéciaux"
+                },
+                "housekeeping": {
+                    "title": "Aide ménagère",
+                    "description": "Entretien du domicile en toute confiance"
+                },
+                "companionship": {
+                    "title": "Accompagnement",
+                    "description": "Sorties, rendez-vous médicaux"
+                },
+                "teleassistance": {
+                    "title": "Téléassistance",
+                    "description": "Sécurité et sérénité 24/7"
+                }
+            },
+            "cta": "Découvrir CareLink"
         }
     }
 }

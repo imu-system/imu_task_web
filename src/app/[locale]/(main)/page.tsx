@@ -32,31 +32,30 @@ import { CategoryPills } from '@/components/landing/category-pills';
 import { TasksGrid } from '@/components/landing/tasks-grid';
 import { HowItWorks } from '@/components/landing/how-it-works';
 import { StatsTrust } from '@/components/landing/stats-trust';
+import { ProfileCards } from '@/components/landing/profile-cards';
+import { CarelinkPreview } from '@/components/landing/carelink-preview';
 
 
 export default function Home() {
-  const t = useTranslations('HomePage');
-  const tHeader = useTranslations('Header');
+  const t = useTranslations('LandingPage');
 
   const features = [
     {
       icon: <HeartHandshake className="h-10 w-10 text-primary" />,
-      title: t('feature1Title'),
-      description: t('feature1Desc'),
+      title: t('features.feature1.title'),
+      description: t('features.feature1.description'),
     },
     {
       icon: <ShieldCheck className="h-10 w-10 text-primary" />,
-      title: t('feature2Title'),
-      description: t('feature2Desc'),
+      title: t('features.feature2.title'),
+      description: t('features.feature2.description'),
     },
     {
       icon: <MessagesSquare className="h-10 w-10 text-primary" />,
-      title: t('feature3Title'),
-      description: t('feature3Desc'),
+      title: t('features.feature3.title'),
+      description: t('features.feature3.description'),
     },
   ];
-
-  const tLanding = useTranslations('LandingPage');
 
   return (
     <>
@@ -79,15 +78,15 @@ export default function Home() {
             <div className="max-w-5xl mx-auto text-center">
               {/* Main Headline */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight font-headline">
-                {tLanding('hero.title')}{' '}
+                {t('hero.title')}{' '}
                 <span className="text-primary bg-clip-text">
-                  {tLanding('hero.titleHighlight')}
+                  {t('hero.titleHighlight')}
                 </span>
               </h1>
 
               {/* Subtitle */}
               <p className="mt-6 text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto">
-                {tLanding('hero.subtitle')}
+                {t('hero.subtitle')}
               </p>
 
               {/* Hero Search Bar */}
@@ -100,19 +99,22 @@ export default function Home() {
                 <Button asChild size="lg" className="text-base px-8 py-6 shadow-lg hover:shadow-xl transition-shadow">
                   <Link href="/dashboard/tasks/new">
                     <Sparkles className="mr-2 h-5 w-5" />
-                    {tLanding('hero.cta.client')}
+                    {t('hero.cta.client')}
                   </Link>
                 </Button>
                 <Button asChild variant="outline" size="lg" className="text-base px-8 py-6 shadow-md hover:shadow-lg transition-shadow">
                   <Link href="/inscription">
                     <Briefcase className="mr-2 h-5 w-5" />
-                    {tLanding('hero.cta.provider')}
+                    {t('hero.cta.provider')}
                   </Link>
                 </Button>
               </div>
             </div>
           </div>
         </section>
+
+        {/* Profile Segmentation Section - Who is it for? */}
+        <ProfileCards />
 
         {/* Category Pills Section - Horizontal Scroll */}
         <CategoryPills />
@@ -124,10 +126,10 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl font-headline mb-4">
-                {t('whyChoose')}
+                {t('features.title')}
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                {t('whyChooseSubtitle')}
+                {t('features.subtitle')}
               </p>
             </div>
             <div className="mx-auto grid gap-8 sm:grid-cols-1 md:grid-cols-3">
@@ -179,6 +181,9 @@ export default function Home() {
                 </Accordion>
             </div>
         </section>
+
+        {/* CareLink Preview Section - For seniors and caregivers */}
+        <CarelinkPreview />
       </div>
     </>
   );

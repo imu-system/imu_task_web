@@ -98,6 +98,15 @@ export function CategoryPills() {
               >
                 <IconComponent className="h-5 w-5" />
                 <span className="whitespace-nowrap">{t(category.nameKey)}</span>
+                {category.isAccessible && (
+                  <span 
+                    className="text-sm" 
+                    title="Adapté aux personnes à mobilité réduite"
+                    aria-label="Adapté aux personnes à mobilité réduite"
+                  >
+                    ♿
+                  </span>
+                )}
               </Button>
             );
           })}

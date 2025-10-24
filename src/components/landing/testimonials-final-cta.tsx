@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 
 export default function TestimonialsFinalCTA() {
-  const t = useTranslations('HomePage');
+  const t = useTranslations('LandingPage');
 
   const testimonials = [
     {

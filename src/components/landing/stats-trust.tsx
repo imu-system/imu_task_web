@@ -4,7 +4,7 @@ import { ShieldCheck, CreditCard, Clock, Users, Star } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 export function StatsTrust() {
-  const t = useTranslations('HomePage.stats');
+  const t = useTranslations('LandingPage.stats');
 
   return (
     <section id="stats" className="w-full py-12 md:py-20 lg:py-28 bg-primary/5">

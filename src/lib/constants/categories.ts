@@ -16,6 +16,7 @@ export interface TaskCategory {
     nameKey: string;
     icon: React.ComponentType<{ className?: string }>;
     color?: string;
+    isAccessible?: boolean; // Adapté aux personnes à mobilité réduite (PMR)
 }
 
 /**
@@ -29,6 +30,7 @@ export const TASK_CATEGORIES: readonly TaskCategory[] = [
         nameKey: 'cleaning',
         icon: Sparkles,
         color: '#3B82F6', // blue
+        isAccessible: true, // PMR-friendly
     },
     {
         id: 'moving',
@@ -50,6 +52,7 @@ export const TASK_CATEGORIES: readonly TaskCategory[] = [
         nameKey: 'delivery',
         icon: Package,
         color: '#F59E0B', // amber
+        isAccessible: true, // PMR-friendly
     },
     {
         id: 'handyman',
@@ -71,6 +74,7 @@ export const TASK_CATEGORIES: readonly TaskCategory[] = [
         nameKey: 'tutoring',
         icon: GraduationCap,
         color: '#10B981', // emerald
+        isAccessible: true, // PMR-friendly
     },
     {
         id: 'home_services',
@@ -78,6 +82,7 @@ export const TASK_CATEGORIES: readonly TaskCategory[] = [
         nameKey: 'homeServices',
         icon: Home,
         color: '#6366F1', // indigo
+        isAccessible: true, // PMR-friendly
     },
     {
         id: 'other',

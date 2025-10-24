@@ -89,11 +89,19 @@ export function TasksGrid({
             <p className="text-muted-foreground mb-6">
               {error || t('noTasks')}
             </p>
-            <Button asChild>
-              <Link href="/dashboard/tasks/new">
-                {t('postFirstTask')}
-              </Link>
-            </Button>
+            <div className="flex gap-3 justify-center flex-wrap">
+              <Button asChild size="lg" className="rounded-3xl">
+                <Link href="/signup">
+                  {t('signupToPoster')}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-3xl">
+                <Link href="/login">
+                  {t('login')}
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </div>
