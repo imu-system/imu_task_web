@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { User, Briefcase, Heart, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { logProfileCardClick } from "@/lib/analytics";
 
 export function ProfileCards() {

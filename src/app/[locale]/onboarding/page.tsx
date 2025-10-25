@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { AccountType } from '@/lib/types';
 import { AccountTypeSelector } from '@/components/auth/account-type-selector';
