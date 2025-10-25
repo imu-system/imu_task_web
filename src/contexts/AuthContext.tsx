@@ -26,6 +26,7 @@ export interface AppUser extends FirebaseUser {
   profile?: {
     displayName?: string;
     photoUrl?: string;
+    photoPath?: string; // Chemin dans Firebase Storage
   };
 }
 

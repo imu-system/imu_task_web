@@ -1,5 +1,6 @@
 /**
  * Dashboard ImuPro - Vue professionnelle avec stats, revenus, agenda
+ * Version modernisée avec animations et analytics
  */
 'use client';
 
@@ -38,6 +39,26 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { DashboardHeader } from '@/components/dashboard/dashboard-header';
+import { QuickActions } from '@/components/dashboard/quick-actions';
+import { 
+  AnimatedDiv, 
+  AnimatedList, 
+  AnimatedListItem, 
+  AnimatedCard,
+  GradientBackground,
+  GlowCard,
+  ShimmerCard
+} from '@/components/ui/animated';
+import { 
+  logDashboardPageView, 
+  logKpiCardClick,
+  logTabChange,
+  logGlowCardClick,
+  logGradientSectionView,
+  logAnimatedElementInteraction
+} from '@/lib/analytics';
+import { getMonthlyRevenue, getMonthlyMissions, getProviderStats } from '@/lib/firestore-analytics';
 
 interface ProProfile {
     userId: string;
@@ -218,43 +239,16 @@ export default function ProDashboardPage() {
                 setQuotes(quotesData);
                 setNotifications(notificationsData);
                 
-                // 4. Générer les données de graphiques (simulées pour l'instant)
-                // TODO: Remplacer par vraies données d'une collection 'revenue_history' ou aggregation
-                const monthNames = ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Jun', 'Jul', 'Aoû', 'Sep', 'Oct', 'Nov', 'Déc'];
-                const currentMonth = new Date().getMonth();
-                const revenueData = [];
-                const missionsData = [];
-                
-                for (let i = 5; i >= 0; i--) {
-                    const monthIndex = (currentMonth - i + 12) % 12;
-                    const monthName = monthNames[monthIndex];
-                    
-                    // Données de revenus (simulation basée sur les stats réelles)
-                    let revenue = 0;
-                    if (i === 0) {
-                        revenue = proProfile?.stats?.revenue?.thisMonth || 0;
-                    } else if (i === 1) {
-                        revenue = proProfile?.stats?.revenue?.lastMonth || 0;
-                    } else {
-                        // Simulation pour les mois précédents
-                        revenue = Math.max(0, (proProfile?.stats?.revenue?.total || 0) / 12 + (Math.random() - 0.5) * 500);
-                    }
-                    
-                    revenueData.push({
-                        mois: monthName,
-                        revenus: Math.round(revenue)
-                    });
-                    
-                    // Données de missions
-                    const totalMissions = Math.floor((proProfile?.stats?.totalJobs || 0) / 6 + (Math.random() * 3));
-                    missionsData.push({
-                        mois: monthName,
-                        missions: totalMissions
-                    });
-                }
+                // 4. Charger les données réelles des graphiques depuis Firestore
+                const revenueData = await getMonthlyRevenue(user.uid, 6);
+                const missionsData = await getMonthlyMissions(user.uid, 6);
                 
                 setRevenueChartData(revenueData);
                 setMissionsChartData(missionsData);
+
+                // 5. Log analytics après chargement réussi
+                logDashboardPageView(AccountType.professional, 'professional');
+                logGradientSectionView('pro_header', AccountType.professional);
             } catch (err: any) {
                 console.error('Erreur chargement dashboard pro:', err);
                 setError(err.message || 'Erreur de chargement');
@@ -326,142 +320,222 @@ export default function ProDashboardPage() {
 
     return (
         <div className="container py-8 space-y-6">
-            {/* En-tête avec badge vérifié */}
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div className="space-y-1">
-                    <div className="flex items-center gap-2">
-                        <h1 className="text-3xl font-bold tracking-tight">
-                            Dashboard ImuPro
-                        </h1>
-                        {proProfile.badges.verified && (
-                            <Badge variant="default" className="bg-green-500">
-                                <ShieldCheck className="mr-1 h-3 w-3" />
-                                Vérifié
-                            </Badge>
-                        )}
-                        {proProfile.badges.topRated && (
-                            <Badge variant="secondary">
-                                <Star className="mr-1 h-3 w-3" />
-                                Top Rated
-                            </Badge>
-                        )}
-                    </div>
-                    <p className="text-muted-foreground">
-                        {proProfile.businessInfo.businessName}
-                    </p>
-                </div>
+            {/* Header moderne avec DashboardHeader */}
+            <DashboardHeader 
+                accountType={AccountType.professional}
+                title="Dashboard ImuPro"
+                showSearch={true}
+            />
 
-                <div className="flex gap-2">
-                    <Button variant="outline" asChild>
-                        <Link href="/dashboard/pro/portfolio">
-                            <Award className="mr-2 h-4 w-4" />
-                            Portfolio
-                        </Link>
-                    </Button>
-                    <Button asChild>
-                        <Link href={`/pro/${user?.uid}`}>
-                            <ArrowUpRight className="mr-2 h-4 w-4" />
-                            Voir mon profil public
-                        </Link>
-                    </Button>
-                </div>
-            </div>
+            {/* QuickActions pour professionnels */}
+            <QuickActions accountType={AccountType.professional} />
+
+            {/* En-tête avec badge vérifié et gradient animé */}
+            <GradientBackground 
+                className="rounded-2xl p-8 -mx-4 md:mx-0"
+                colors={['#667eea', '#764ba2', '#f093fb']}
+            >
+                <AnimatedDiv variant="fadeInUp" className="space-y-4">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        <div className="space-y-2">
+                            <div className="flex items-center gap-2 flex-wrap">
+                                <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-white">
+                                    {proProfile.businessInfo.businessName}
+                                </h1>
+                                {proProfile.badges.verified && (
+                                    <Badge variant="default" className="bg-white/20 text-white border-white/30 backdrop-blur-sm">
+                                        <ShieldCheck className="mr-1 h-3 w-3" />
+                                        Vérifié
+                                    </Badge>
+                                )}
+                                {proProfile.badges.topRated && (
+                                    <Badge variant="secondary" className="bg-yellow-400/90 text-yellow-900 border-yellow-500">
+                                        <Star className="mr-1 h-3 w-3" />
+                                        Top Rated
+                                    </Badge>
+                                )}
+                            </div>
+                            <p className="text-white/90 text-lg">
+                                Tableau de bord professionnel ImuTask
+                            </p>
+                        </div>
+
+                        <div className="flex gap-2 flex-wrap">
+                            <ShimmerCard>
+                                <Button variant="outline" className="bg-white/10 text-white border-white/20 hover:bg-white/20 backdrop-blur-sm" asChild>
+                                    <Link href="/dashboard/pro/portfolio">
+                                        <Award className="mr-2 h-4 w-4" />
+                                        Portfolio
+                                    </Link>
+                                </Button>
+                            </ShimmerCard>
+                            <ShimmerCard>
+                                <Button className="bg-white text-primary hover:bg-white/90" asChild>
+                                    <Link href={`/pro/${user?.uid}`}>
+                                        <ArrowUpRight className="mr-2 h-4 w-4" />
+                                        Profil public
+                                    </Link>
+                                </Button>
+                            </ShimmerCard>
+                        </div>
+                    </div>
+                </AnimatedDiv>
+            </GradientBackground>
 
             {/* Notifications non lues */}
             {notifications.length > 0 && (
-                <Alert>
-                    <Bell className="h-4 w-4" />
-                    <AlertDescription>
-                        Vous avez <strong>{notifications.length}</strong> notification(s) non lue(s).{' '}
-                        <Link href="/dashboard/notifications" className="underline">
-                            Voir tout
-                        </Link>
-                    </AlertDescription>
-                </Alert>
+                <AnimatedDiv variant="fadeInUp">
+                    <Alert className="border-primary/50 bg-primary/5">
+                        <Bell className="h-4 w-4 text-primary" />
+                        <AlertDescription>
+                            Vous avez <strong className="text-primary">{notifications.length}</strong> notification(s) non lue(s).{' '}
+                            <Link href="/dashboard/notifications" className="underline text-primary hover:text-primary/80">
+                                Voir tout
+                            </Link>
+                        </AlertDescription>
+                    </Alert>
+                </AnimatedDiv>
             )}
 
-            {/* KPI Cards */}
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {/* KPI Cards avec animations */}
+            <AnimatedList className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {/* Revenus du mois */}
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Revenus ce mois</CardTitle>
-                        <DollarSign className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">
-                            {stats.revenue.thisMonth.toLocaleString()} €
-                        </div>
-                        <p className="text-xs text-muted-foreground flex items-center gap-1">
-                            {revenueGrowth >= 0 ? (
-                                <>
-                                    <TrendingUp className="h-3 w-3 text-green-500" />
-                                    <span className="text-green-500">
-                                        +{revenueGrowth.toFixed(1)}%
-                                    </span>
-                                </>
-                            ) : (
-                                <>
-                                    <span className="text-red-500">
-                                        {revenueGrowth.toFixed(1)}%
-                                    </span>
-                                </>
-                            )}{' '}
-                            vs mois dernier
-                        </p>
-                    </CardContent>
-                </Card>
+                <AnimatedListItem>
+                    <GlowCard glowColor="rgba(34, 197, 94, 0.5)">
+                        <AnimatedCard 
+                            clickable 
+                            onClick={() => {
+                                logKpiCardClick(AccountType.professional, 'revenue', stats.revenue.thisMonth);
+                                logGlowCardClick('kpi_revenue_pro', stats.revenue.thisMonth);
+                            }}
+                        >
+                            <Card className="border-2 bg-gradient-to-br from-green-50 to-white dark:from-green-950 dark:to-background">
+                                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                                    <CardTitle className="text-sm font-medium">Revenus ce mois</CardTitle>
+                                    <DollarSign className="h-4 w-4 text-green-600 dark:text-green-400" />
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="text-2xl font-bold text-green-700 dark:text-green-300">
+                                        {stats.revenue.thisMonth.toLocaleString()} €
+                                    </div>
+                                    <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
+                                        {revenueGrowth >= 0 ? (
+                                            <>
+                                                <TrendingUp className="h-3 w-3 text-green-500" />
+                                                <span className="text-green-500">
+                                                    +{revenueGrowth.toFixed(1)}%
+                                                </span>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <TrendingDown className="h-3 w-3 text-red-500" />
+                                                <span className="text-red-500">
+                                                    {revenueGrowth.toFixed(1)}%
+                                                </span>
+                                            </>
+                                        )} vs mois dernier
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </AnimatedCard>
+                    </GlowCard>
+                </AnimatedListItem>
 
                 {/* Missions actives */}
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Missions actives</CardTitle>
-                        <Briefcase className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">
-                            {stats.totalJobs - stats.completedJobs - stats.cancelledJobs}
-                        </div>
-                        <p className="text-xs text-muted-foreground">
-                            {stats.completedJobs} terminées au total
-                        </p>
-                    </CardContent>
-                </Card>
+                <AnimatedListItem>
+                    <GlowCard glowColor="rgba(59, 130, 246, 0.5)">
+                        <AnimatedCard 
+                            clickable 
+                            onClick={() => {
+                                const activeMissions = stats.totalJobs - stats.completedJobs - stats.cancelledJobs;
+                                logKpiCardClick(AccountType.professional, 'active_missions', activeMissions);
+                                logGlowCardClick('kpi_active_missions_pro', activeMissions);
+                            }}
+                        >
+                            <Card className="border-2 bg-gradient-to-br from-blue-50 to-white dark:from-blue-950 dark:to-background">
+                                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                                    <CardTitle className="text-sm font-medium">Missions actives</CardTitle>
+                                    <Briefcase className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="text-2xl font-bold text-blue-700 dark:text-blue-300">
+                                        {stats.totalJobs - stats.completedJobs - stats.cancelledJobs}
+                                    </div>
+                                    <p className="text-xs text-muted-foreground">
+                                        {stats.completedJobs} terminées au total
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </AnimatedCard>
+                    </GlowCard>
+                </AnimatedListItem>
 
                 {/* Note moyenne */}
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Note moyenne</CardTitle>
-                        <Star className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold flex items-center gap-1">
-                            {stats.averageRating.toFixed(1)}
-                            <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
-                        </div>
-                        <p className="text-xs text-muted-foreground">
-                            Sur {stats.totalReviews} avis
-                        </p>
-                    </CardContent>
-                </Card>
+                <AnimatedListItem>
+                    <GlowCard glowColor="rgba(251, 191, 36, 0.5)">
+                        <AnimatedCard 
+                            clickable 
+                            onClick={() => {
+                                logKpiCardClick(AccountType.professional, 'average_rating', stats.averageRating);
+                                logGlowCardClick('kpi_rating_pro', stats.averageRating);
+                            }}
+                        >
+                            <Card className="border-2 bg-gradient-to-br from-yellow-50 to-white dark:from-yellow-950 dark:to-background">
+                                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                                    <CardTitle className="text-sm font-medium">Note moyenne</CardTitle>
+                                    <Star className="h-4 w-4 text-yellow-600 dark:text-yellow-400" />
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="text-2xl font-bold flex items-center gap-1 text-yellow-700 dark:text-yellow-300">
+                                        {stats.averageRating.toFixed(1)}
+                                        <Star className="h-5 w-5 fill-yellow-400 text-yellow-400" />
+                                    </div>
+                                    <p className="text-xs text-muted-foreground">
+                                        Sur {stats.totalReviews} avis
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </AnimatedCard>
+                    </GlowCard>
+                </AnimatedListItem>
 
                 {/* Taux d'acceptation */}
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Taux d&apos;acceptation</CardTitle>
-                        <CheckCircle2 className="h-4 w-4 text-muted-foreground" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{stats.acceptanceRate}%</div>
-                        <p className="text-xs text-muted-foreground">
-                            Temps de réponse : {stats.responseTime}h
-                        </p>
-                    </CardContent>
-                </Card>
-            </div>
+                <AnimatedListItem>
+                    <GlowCard glowColor="rgba(139, 92, 246, 0.5)">
+                        <AnimatedCard 
+                            clickable 
+                            onClick={() => {
+                                logKpiCardClick(AccountType.professional, 'acceptance_rate', stats.acceptanceRate);
+                                logGlowCardClick('kpi_acceptance_pro', stats.acceptanceRate);
+                            }}
+                        >
+                            <Card className="border-2 bg-gradient-to-br from-purple-50 to-white dark:from-purple-950 dark:to-background">
+                                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                                    <CardTitle className="text-sm font-medium">Taux d&apos;acceptation</CardTitle>
+                                    <CheckCircle2 className="h-4 w-4 text-purple-600 dark:text-purple-400" />
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="text-2xl font-bold text-purple-700 dark:text-purple-300">
+                                        {stats.acceptanceRate}%
+                                    </div>
+                                    <p className="text-xs text-muted-foreground">
+                                        Temps de réponse : {stats.responseTime}h
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </AnimatedCard>
+                    </GlowCard>
+                </AnimatedListItem>
+            </AnimatedList>
 
             {/* Tabs : Devis, Missions, Analyses */}
-            <Tabs defaultValue="quotes" className="space-y-4">
+            <Tabs 
+                defaultValue="quotes" 
+                className="space-y-4"
+                onValueChange={(value) => {
+                    logTabChange(AccountType.professional, 'pro_dashboard_tabs', value);
+                }}
+            >
                 <TabsList>
                     <TabsTrigger value="quotes">Devis récents</TabsTrigger>
                     <TabsTrigger value="missions">Missions</TabsTrigger>
@@ -711,94 +785,128 @@ export default function ProDashboardPage() {
                 </TabsContent>
             </Tabs>
 
-            {/* Actions rapides */}
-            <Card>
-                <CardHeader>
-                    <CardTitle>Actions rapides</CardTitle>
-                    <CardDescription>
-                        Gérez votre activité professionnelle ImuPro
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                        <Button variant="outline" className="h-auto py-4" asChild>
-                            <Link href="/dashboard/pro/portfolio" className="flex flex-col items-start">
-                                <Award className="h-5 w-5 mb-2" />
-                                <span className="font-semibold">Portfolio</span>
-                                <span className="text-xs text-muted-foreground">
-                                    Gérer mes réalisations
-                                </span>
-                            </Link>
-                        </Button>
+            {/* Actions rapides avec animations */}
+            <AnimatedDiv variant="fadeInUp">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Actions rapides</CardTitle>
+                        <CardDescription>
+                            Gérez votre activité professionnelle ImuPro
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                            <ShimmerCard>
+                                <Button 
+                                    variant="outline" 
+                                    className="h-auto py-4 w-full" 
+                                    asChild
+                                    onClick={() => logAnimatedElementInteraction('shimmer_button', 'shimmer', 'pro_portfolio')}
+                                >
+                                    <Link href="/dashboard/pro/portfolio" className="flex flex-col items-start">
+                                        <Award className="h-5 w-5 mb-2" />
+                                        <span className="font-semibold">Portfolio</span>
+                                        <span className="text-xs text-muted-foreground">
+                                            Gérer mes réalisations
+                                        </span>
+                                    </Link>
+                                </Button>
+                            </ShimmerCard>
 
-                        <Button variant="outline" className="h-auto py-4" asChild>
-                            <Link href="/dashboard/pro/quotes" className="flex flex-col items-start">
-                                <FileText className="h-5 w-5 mb-2" />
-                                <span className="font-semibold">Devis</span>
-                                <span className="text-xs text-muted-foreground">
-                                    Créer et gérer des devis
-                                </span>
-                            </Link>
-                        </Button>
+                            <ShimmerCard>
+                                <Button 
+                                    variant="outline" 
+                                    className="h-auto py-4 w-full" 
+                                    asChild
+                                    onClick={() => logAnimatedElementInteraction('shimmer_button', 'shimmer', 'pro_quotes')}
+                                >
+                                    <Link href="/dashboard/pro/quotes" className="flex flex-col items-start">
+                                        <FileText className="h-5 w-5 mb-2" />
+                                        <span className="font-semibold">Devis</span>
+                                        <span className="text-xs text-muted-foreground">
+                                            Créer et gérer des devis
+                                        </span>
+                                    </Link>
+                                </Button>
+                            </ShimmerCard>
 
-                        <Button variant="outline" className="h-auto py-4" asChild>
-                            <Link href="/dashboard/pro/calendar" className="flex flex-col items-start">
-                                <Calendar className="h-5 w-5 mb-2" />
-                                <span className="font-semibold">Agenda</span>
-                                <span className="text-xs text-muted-foreground">
-                                    Planning et disponibilités
-                                </span>
-                            </Link>
-                        </Button>
+                            <ShimmerCard>
+                                <Button 
+                                    variant="outline" 
+                                    className="h-auto py-4 w-full" 
+                                    asChild
+                                    onClick={() => logAnimatedElementInteraction('shimmer_button', 'shimmer', 'pro_calendar')}
+                                >
+                                    <Link href="/dashboard/pro/calendar" className="flex flex-col items-start">
+                                        <Calendar className="h-5 w-5 mb-2" />
+                                        <span className="font-semibold">Agenda</span>
+                                        <span className="text-xs text-muted-foreground">
+                                            Planning et disponibilités
+                                        </span>
+                                    </Link>
+                                </Button>
+                            </ShimmerCard>
 
-                        <Button variant="outline" className="h-auto py-4" asChild>
-                            <Link href="/dashboard/messages" className="flex flex-col items-start">
-                                <MessageSquare className="h-5 w-5 mb-2" />
-                                <span className="font-semibold">Messages</span>
-                                <span className="text-xs text-muted-foreground">
-                                    {notifications.filter((n) => n.type === 'message').length} non lu(s)
-                                </span>
-                            </Link>
-                        </Button>
-                    </div>
-                </CardContent>
-            </Card>
+                            <ShimmerCard>
+                                <Button 
+                                    variant="outline" 
+                                    className="h-auto py-4 w-full" 
+                                    asChild
+                                    onClick={() => logAnimatedElementInteraction('shimmer_button', 'shimmer', 'pro_messages')}
+                                >
+                                    <Link href="/dashboard/messages" className="flex flex-col items-start">
+                                        <MessageSquare className="h-5 w-5 mb-2" />
+                                        <span className="font-semibold">Messages</span>
+                                        <span className="text-xs text-muted-foreground">
+                                            {notifications.filter((n) => n.type === 'message').length} non lu(s)
+                                        </span>
+                                    </Link>
+                                </Button>
+                            </ShimmerCard>
+                        </div>
+                    </CardContent>
+                </Card>
+            </AnimatedDiv>
 
             {/* Abonnement */}
-            <Card>
-                <CardHeader>
-                    <CardTitle>Votre abonnement ImuPro</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                    <div className="flex items-center justify-between">
-                        <div>
-                            <p className="font-semibold text-lg capitalize">
-                                Forfait {proProfile.subscription.tier}
-                            </p>
-                            <p className="text-sm text-muted-foreground">
-                                Actif depuis le{' '}
-                                {new Date(proProfile.subscription.startDate).toLocaleDateString()}
-                            </p>
+            <AnimatedDiv variant="fadeInUp">
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Votre abonnement ImuPro</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-4">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="font-semibold text-lg capitalize">
+                                    Forfait {proProfile.subscription.tier}
+                                </p>
+                                <p className="text-sm text-muted-foreground">
+                                    Actif depuis le{' '}
+                                    {new Date(proProfile.subscription.startDate).toLocaleDateString()}
+                                </p>
+                            </div>
+                            <ShimmerCard>
+                                <Button variant="outline" asChild>
+                                    <Link href="/dashboard/pro/subscription">
+                                        Gérer mon abonnement
+                                    </Link>
+                                </Button>
+                            </ShimmerCard>
                         </div>
-                        <Button variant="outline" asChild>
-                            <Link href="/dashboard/pro/subscription">
-                                Gérer mon abonnement
-                            </Link>
-                        </Button>
-                    </div>
 
-                    {proProfile.subscription.tier === 'basic' && (
-                        <Alert>
-                            <TrendingUp className="h-4 w-4" />
-                            <AlertDescription>
-                                Passez au forfait <strong>Premium</strong> pour débloquer plus de
-                                fonctionnalités : mise en avant dans les résultats, badges supplémentaires,
-                                statistiques avancées...
-                            </AlertDescription>
-                        </Alert>
-                    )}
-                </CardContent>
-            </Card>
+                        {proProfile.subscription.tier === 'basic' && (
+                            <Alert className="border-primary/50 bg-primary/5">
+                                <TrendingUp className="h-4 w-4 text-primary" />
+                                <AlertDescription>
+                                    Passez au forfait <strong>Premium</strong> pour débloquer plus de
+                                    fonctionnalités : mise en avant dans les résultats, badges supplémentaires,
+                                    statistiques avancées...
+                                </AlertDescription>
+                            </Alert>
+                        )}
+                    </CardContent>
+                </Card>
+            </AnimatedDiv>
         </div>
     );
 }

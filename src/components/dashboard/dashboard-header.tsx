@@ -15,10 +15,12 @@ import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/contexts/AuthContext';
 import { Link } from '@/navigation';
 import { AccountType } from '@/lib/types';
+import { AlgoliaSearchBox } from './algolia-search-box';
 import { ContextualSearch } from './contextual-search';
 import { useState, useEffect } from 'react';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { isAlgoliaConfigured } from '@/lib/algolia-config';
 
 interface DashboardHeaderProps {
   accountType: AccountType;
@@ -43,6 +45,12 @@ export function DashboardHeader({
   const { user, signOut } = useAuth();
   const [unreadCount, setUnreadCount] = useState(0);
   const [unreadMessages, setUnreadMessages] = useState(0);
+  const [useAlgolia, setUseAlgolia] = useState(false);
+
+  // Vérifier si Algolia est configuré
+  useEffect(() => {
+    setUseAlgolia(isAlgoliaConfigured());
+  }, []);
 
   // Écouter les notifications non lues
   useEffect(() => {
@@ -117,7 +125,11 @@ export function DashboardHeader({
         {/* Search Bar - Desktop */}
         {showSearch && (
           <div className="hidden md:flex flex-1 max-w-2xl mx-auto">
-            <ContextualSearch accountType={accountType} />
+            {useAlgolia ? (
+              <AlgoliaSearchBox accountType={accountType} />
+            ) : (
+              <ContextualSearch accountType={accountType} />
+            )}
           </div>
         )}
 
@@ -212,7 +224,11 @@ export function DashboardHeader({
       {/* Search Bar - Mobile */}
       {showSearch && (
         <div className="md:hidden px-4 pb-4">
-          <ContextualSearch accountType={accountType} />
+          {useAlgolia ? (
+            <AlgoliaSearchBox accountType={accountType} />
+          ) : (
+            <ContextualSearch accountType={accountType} />
+          )}
         </div>
       )}
     </header>

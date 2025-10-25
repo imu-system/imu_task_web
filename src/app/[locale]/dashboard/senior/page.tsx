@@ -1,3 +1,16 @@
+/**
+ * Dashboard Senior - Interface Simplifiée et Moderne
+ * Version modernisée avec animations accessibles et analytics
+ * 
+ * Caractéristiques :
+ * - Texte 24px minimum
+ * - Contraste élevé (7:1)
+ * - Boutons larges (60x60px minimum)
+ * - Navigation linéaire simple
+ * - Gros icônes
+ * - Animations réduites (respect prefers-reduced-motion)
+ * - Analytics pour interactions seniors
+ */
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -21,22 +34,33 @@ import {
   Volume2,
   VolumeX,
   UserPlus,
-  Loader2
+  Loader2,
+  MapPin,
+  Shield
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { doc, getDoc, updateDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-
-/**
- * Dashboard Senior - Interface Simplifiée
- * 
- * Caractéristiques :
- * - Texte 24px minimum
- * - Contraste élevé (7:1)
- * - Boutons larges (60x60px minimum)
- * - Navigation linéaire simple
- * - Gros icônes
- */
+import { AccountType } from '@/lib/types';
+import { DashboardHeader } from '@/components/dashboard/dashboard-header';
+import { QuickActions } from '@/components/dashboard/quick-actions';
+import { 
+  AnimatedDiv, 
+  AnimatedList, 
+  AnimatedListItem, 
+  AnimatedCard,
+  GradientBackground,
+  GlowCard,
+  ShimmerCard
+} from '@/components/ui/animated';
+import { 
+  logDashboardPageView,
+  logGradientSectionView,
+  logGlowCardClick,
+  logAnimatedElementInteraction
+} from '@/lib/analytics';
+import { SOSButton } from '@/components/senior/sos-button';
+import { VoiceControlPanel } from '@/components/senior/voice-control-panel';
 
 interface CareContact {
   id: string;
@@ -104,6 +128,10 @@ export default function SeniorDashboardPage() {
         })) as RecurringService[];
         
         setRecurringServices(services);
+
+        // Log analytics après chargement réussi
+        logDashboardPageView(AccountType.senior, 'senior');
+        logGradientSectionView('senior_header', AccountType.senior);
       } catch (error) {
         console.error('Error loading senior data:', error);
       } finally {
@@ -214,96 +242,169 @@ export default function SeniorDashboardPage() {
 
   return (
     <div className="container mx-auto px-4 py-6 max-w-6xl">
-      {/* Header - Gros texte, simple */}
-      <div className="mb-8 space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-bold">
-              Bonjour {firstName} 👋
-            </h1>
-            <p className="text-2xl text-muted-foreground">
-              Voici vos services pour aujourd'hui
-            </p>
+      {/* Header moderne avec DashboardHeader */}
+      <DashboardHeader 
+        accountType={AccountType.senior}
+        title="Mon espace personnel"
+        showSearch={false}
+      />
+
+      {/* QuickActions pour seniors */}
+      <QuickActions accountType={AccountType.senior} />
+
+      {/* Header - Gros texte, simple avec gradient doux */}
+      <GradientBackground 
+        className="rounded-2xl p-8 mb-8 -mx-4 md:mx-0"
+        colors={['#86efac', '#bef264', '#fde047']}
+      >
+        <AnimatedDiv variant="fadeIn" className="space-y-4">
+          <div className="flex items-center justify-between flex-wrap gap-4">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+                Bonjour {firstName} 👋
+              </h1>
+              <p className="text-2xl text-gray-700 mt-2">
+                Voici vos services pour aujourd'hui
+              </p>
+            </div>
+            <ShimmerCard>
+              <Button
+                size="lg"
+                variant={voiceMode ? 'default' : 'outline'}
+                onClick={() => {
+                  toggleVoiceMode();
+                  logAnimatedElementInteraction('voice_button', 'shimmer', 'senior_voice_toggle');
+                }}
+                className="h-16 w-16 bg-white/90 hover:bg-white border-2"
+                title={voiceMode ? 'Désactiver le mode vocal' : 'Activer le mode vocal'}
+              >
+                {voiceMode ? <Volume2 className="h-8 w-8" /> : <VolumeX className="h-8 w-8" />}
+              </Button>
+            </ShimmerCard>
           </div>
-          <Button
-            size="lg"
-            variant={voiceMode ? 'default' : 'outline'}
-            onClick={toggleVoiceMode}
-            className="h-16 w-16"
-            title={voiceMode ? 'Désactiver le mode vocal' : 'Activer le mode vocal'}
-          >
-            {voiceMode ? <Volume2 className="h-8 w-8" /> : <VolumeX className="h-8 w-8" />}
-          </Button>
-        </div>
-      </div>
+        </AnimatedDiv>
+      </GradientBackground>
 
-      {/* Bouton SOS en haut - Toujours visible */}
-      <Alert className="mb-8 border-red-200 bg-red-50 dark:bg-red-950/20">
-        <Phone className="h-6 w-6 text-red-600" />
-        <AlertDescription className="flex items-center justify-between">
-          <span className="text-xl font-semibold text-red-900 dark:text-red-100">
-            Besoin d'aide urgente ?
-          </span>
-          <Button 
-            size="lg" 
-            variant="destructive"
-            className="text-xl px-8 py-6 h-auto"
-            onClick={handleSOSCall}
-          >
-            <Phone className="mr-2 h-6 w-6" />
-            {careContacts.length > 0 ? `Appeler ${careContacts[0].name}` : 'Appeler le 112'}
-          </Button>
-        </AlertDescription>
-      </Alert>
+      {/* Panneau de Contrôle Vocal - Nouveau */}
+      <AnimatedDiv variant="fadeInUp" className="mb-8">
+        <GlowCard glowColor="rgba(59, 130, 246, 0.4)">
+          <Card className="border-2 bg-gradient-to-br from-blue-50 to-white dark:from-blue-950 dark:to-background">
+            <CardHeader>
+              <CardTitle className="text-3xl flex items-center gap-3">
+                <Volume2 className="h-8 w-8" />
+                Commandes Vocales
+              </CardTitle>
+              <CardDescription className="text-xl">
+                Contrôlez le tableau de bord avec votre voix
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <VoiceControlPanel 
+                onCommandExecuted={(command) => {
+                  console.log('Commande vocale exécutée:', command);
+                  logAnimatedElementInteraction('voice_command', 'voice', `senior_voice_${command}`);
+                }}
+              />
+            </CardContent>
+          </Card>
+        </GlowCard>
+      </AnimatedDiv>
 
-      {/* Contacts aidants */}
+      {/* Bouton SOS avec Géolocalisation - Nouveau */}
+      <AnimatedDiv variant="fadeInUp" className="mb-8">
+        <GlowCard glowColor="rgba(239, 68, 68, 0.6)">
+          <Card className="border-4 border-red-500 bg-gradient-to-br from-red-50 to-white dark:from-red-950 dark:to-background">
+            <CardHeader>
+              <CardTitle className="text-3xl flex items-center gap-3 text-red-700">
+                <Shield className="h-8 w-8" />
+                Aide d&apos;Urgence
+              </CardTitle>
+              <CardDescription className="text-xl">
+                En cas d&apos;urgence, appuyez sur le bouton SOS pour envoyer votre position GPS à vos contacts
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <SOSButton 
+                emergencyContacts={careContacts.map(c => ({ 
+                  name: c.name, 
+                  phone: c.phone 
+                }))}
+                onSOSActivated={(coords) => {
+                  console.log('SOS activé avec coordonnées:', coords);
+                  logAnimatedElementInteraction('sos_activated', 'geolocation', 'senior_emergency_gps');
+                  
+                  // TODO: Envoyer alerte réelle via API/SMS
+                  // Exemple: sendSOSAlert(user.uid, coords, careContacts)
+                }}
+              />
+            </CardContent>
+          </Card>
+        </GlowCard>
+      </AnimatedDiv>
+
+      {/* Contacts aidants avec animations */}
       {careContacts.length > 0 && (
-        <div className="mb-8 space-y-4">
+        <AnimatedDiv variant="fadeInUp" className="mb-8 space-y-4">
           <h2 className="text-3xl font-bold flex items-center gap-3">
             <Users className="h-8 w-8" />
             Mes contacts
           </h2>
           
-          <div className="grid gap-4 md:grid-cols-2">
+          <AnimatedList className="grid gap-4 md:grid-cols-2">
             {careContacts.map((contact) => (
-              <Card key={contact.id} className="border-2">
-                <CardHeader>
-                  <CardTitle className="text-2xl">{contact.name}</CardTitle>
-                  <CardDescription className="text-xl">
-                    {contact.relation}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  <Button 
-                    size="lg" 
-                    className="w-full text-xl py-6"
-                    onClick={() => window.location.href = `tel:${contact.phone}`}
-                  >
-                    <Phone className="mr-2 h-6 w-6" />
-                    Appeler
-                  </Button>
-                  {contact.email && (
-                    <Button 
-                      size="lg" 
-                      variant="outline"
-                      className="w-full text-xl py-6"
-                      onClick={() => window.location.href = `mailto:${contact.email}`}
-                    >
-                      Envoyer un email
-                    </Button>
-                  )}
-                </CardContent>
-              </Card>
+              <AnimatedListItem key={contact.id}>
+                <GlowCard glowColor="rgba(59, 130, 246, 0.4)">
+                  <Card className="border-2 bg-gradient-to-br from-blue-50 to-white dark:from-blue-950 dark:to-background">
+                    <CardHeader>
+                      <CardTitle className="text-2xl">{contact.name}</CardTitle>
+                      <CardDescription className="text-xl">
+                        {contact.relation}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-3">
+                      <ShimmerCard>
+                        <Button 
+                          size="lg" 
+                          className="w-full text-xl py-6"
+                          onClick={() => {
+                            window.location.href = `tel:${contact.phone}`;
+                            logGlowCardClick('senior_contact_call', contact.phone);
+                          }}
+                        >
+                          <Phone className="mr-2 h-6 w-6" />
+                          Appeler
+                        </Button>
+                      </ShimmerCard>
+                      {contact.email && (
+                        <ShimmerCard>
+                          <Button 
+                            size="lg" 
+                            variant="outline"
+                            className="w-full text-xl py-6"
+                            onClick={() => {
+                              window.location.href = `mailto:${contact.email}`;
+                              logAnimatedElementInteraction('email_button', 'shimmer', 'senior_contact_email');
+                            }}
+                          >
+                            Envoyer un email
+                          </Button>
+                        </ShimmerCard>
+                      )}
+                    </CardContent>
+                  </Card>
+                </GlowCard>
+              </AnimatedListItem>
             ))}
-          </div>
+          </AnimatedList>
           
-          <Dialog open={isAddingContact} onOpenChange={setIsAddingContact}>
-            <DialogTrigger asChild>
-              <Button size="lg" variant="outline" className="w-full md:w-auto text-xl py-6">
-                <UserPlus className="mr-2 h-6 w-6" />
-                Ajouter un contact
-              </Button>
-            </DialogTrigger>
+          <ShimmerCard>
+            <Dialog open={isAddingContact} onOpenChange={setIsAddingContact}>
+              <DialogTrigger asChild>
+                <Button size="lg" variant="outline" className="w-full md:w-auto text-xl py-6">
+                  <UserPlus className="mr-2 h-6 w-6" />
+                  Ajouter un contact
+                </Button>
+              </DialogTrigger>
             <DialogContent className="sm:max-w-[500px]">
               <DialogHeader>
                 <DialogTitle className="text-2xl">Ajouter un contact</DialogTitle>
@@ -357,111 +458,136 @@ export default function SeniorDashboardPage() {
                 </Button>
               </DialogFooter>
             </DialogContent>
-          </Dialog>
-        </div>
+            </Dialog>
+          </ShimmerCard>
+        </AnimatedDiv>
       )}
 
-      {/* Services récurrents */}
+      {/* Services récurrents avec animations */}
       {recurringServices.length > 0 && (
-        <div className="mb-8 space-y-4">
+        <AnimatedDiv variant="fadeInUp" className="mb-8 space-y-4">
           <h2 className="text-3xl font-bold flex items-center gap-3">
             <Calendar className="h-8 w-8" />
             Services programmés
           </h2>
           
-          <div className="grid gap-4 md:grid-cols-2">
+          <AnimatedList className="grid gap-4 md:grid-cols-2">
             {recurringServices.map((service) => (
-              <Card key={service.id} className="border-2">
-                <CardHeader>
-                  <CardTitle className="text-2xl">{service.type}</CardTitle>
-                  <CardDescription className="text-xl">
-                    {service.providerName}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-lg mb-4">
-                    <strong>Prochaine intervention:</strong><br />
-                    {service.nextDate.toLocaleDateString('fr-FR', { 
-                      weekday: 'long', 
-                      year: 'numeric', 
-                      month: 'long', 
-                      day: 'numeric',
-                      hour: '2-digit',
-                      minute: '2-digit'
-                    })}
-                  </p>
-                  <p className="text-lg text-muted-foreground">
-                    Fréquence: {service.frequency}
-                  </p>
-                </CardContent>
-              </Card>
+              <AnimatedListItem key={service.id}>
+                <GlowCard glowColor="rgba(34, 197, 94, 0.4)">
+                  <Card className="border-2 bg-gradient-to-br from-green-50 to-white dark:from-green-950 dark:to-background">
+                    <CardHeader>
+                      <CardTitle className="text-2xl">{service.type}</CardTitle>
+                      <CardDescription className="text-xl">
+                        {service.providerName}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-lg mb-4">
+                        <strong>Prochaine intervention:</strong><br />
+                        {service.nextDate.toLocaleDateString('fr-FR', { 
+                          weekday: 'long', 
+                          year: 'numeric', 
+                          month: 'long', 
+                          day: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </p>
+                      <p className="text-lg text-muted-foreground">
+                        Fréquence: {service.frequency}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </GlowCard>
+              </AnimatedListItem>
             ))}
-          </div>
-        </div>
+          </AnimatedList>
+        </AnimatedDiv>
       )}
 
-      {/* Actions rapides - Gros boutons */}
-      <div className="mb-8 space-y-4">
+      {/* Actions rapides - Gros boutons avec animations */}
+      <AnimatedDiv variant="fadeInUp" className="mb-8 space-y-4">
         <h2 className="text-3xl font-bold flex items-center gap-3">
-          <Heart className="h-8 w-8" />
+          <Heart className="h-8 w-8 text-pink-600" />
           Actions rapides
         </h2>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <AnimatedList className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {quickActions.map((action) => {
             const Icon = action.icon;
             return (
-              <Button
-                key={action.id}
-                variant="outline"
-                className="h-40 flex-col gap-4 text-lg font-semibold hover:shadow-lg transition-all border-2"
-                asChild
-              >
-                <a href={action.href}>
-                  <div className={`w-16 h-16 rounded-lg bg-gradient-to-br ${action.color} flex items-center justify-center`}>
-                    <Icon className="h-10 w-10 text-white" />
-                  </div>
-                  <span className="text-center leading-tight">{action.label}</span>
-                </a>
-              </Button>
+              <AnimatedListItem key={action.id}>
+                <ShimmerCard>
+                  <Button
+                    variant="outline"
+                    className="h-40 w-full flex-col gap-4 text-lg font-semibold hover:shadow-lg transition-all border-2"
+                    asChild
+                  >
+                    <a 
+                      href={action.href}
+                      onClick={() => logAnimatedElementInteraction('quick_action', 'shimmer', `senior_${action.id}`)}
+                    >
+                      <div className={`w-16 h-16 rounded-lg bg-gradient-to-br ${action.color} flex items-center justify-center`}>
+                        <Icon className="h-10 w-10 text-white" />
+                      </div>
+                      <span className="text-center leading-tight">{action.label}</span>
+                    </a>
+                  </Button>
+                </ShimmerCard>
+              </AnimatedListItem>
             );
           })}
-        </div>
-      </div>
+        </AnimatedList>
+      </AnimatedDiv>
 
-      {/* Aide et paramètres - Toujours accessibles */}
-      <div className="grid gap-4 md:grid-cols-2">
-        <Button
-          variant="outline"
-          size="lg"
-          className="h-24 text-xl border-2"
-          asChild
-        >
-          <a href="/dashboard/settings">
-            <Settings className="mr-3 h-8 w-8" />
-            Paramètres
-          </a>
-        </Button>
-        
-        <Button
-          variant="outline"
-          size="lg"
-          className="h-24 text-xl border-2"
-          asChild
-        >
-          <a href="/help">
-            <HelpCircle className="mr-3 h-8 w-8" />
-            Aide & Support
-          </a>
-        </Button>
-      </div>
+      {/* Aide et paramètres - Toujours accessibles avec animations */}
+      <AnimatedDiv variant="fadeInUp" className="mb-8">
+        <div className="grid gap-4 md:grid-cols-2">
+          <ShimmerCard>
+            <Button
+              variant="outline"
+              size="lg"
+              className="h-24 w-full text-xl border-2"
+              asChild
+            >
+              <a 
+                href="/dashboard/settings"
+                onClick={() => logAnimatedElementInteraction('settings_button', 'shimmer', 'senior_settings')}
+              >
+                <Settings className="mr-3 h-8 w-8" />
+                Paramètres
+              </a>
+            </Button>
+          </ShimmerCard>
+          
+          <ShimmerCard>
+            <Button
+              variant="outline"
+              size="lg"
+              className="h-24 w-full text-xl border-2"
+              asChild
+            >
+              <a 
+                href="/help"
+                onClick={() => logAnimatedElementInteraction('help_button', 'shimmer', 'senior_help')}
+              >
+                <HelpCircle className="mr-3 h-8 w-8" />
+                Aide & Support
+              </a>
+            </Button>
+          </ShimmerCard>
+        </div>
+      </AnimatedDiv>
 
       {/* Note pour aidant */}
-      <div className="mt-8 p-6 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200">
-        <p className="text-xl text-blue-900 dark:text-blue-100">
-          💡 <strong>Aidant familial ?</strong> Vous pouvez gérer ce compte depuis vos paramètres.
-        </p>
-      </div>
+      <AnimatedDiv variant="fadeIn">
+        <Alert className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-950/20 dark:to-cyan-950/20 border-blue-200">
+          <AlertDescription className="text-xl text-blue-900 dark:text-blue-100">
+            💡 <strong>Aidant familial ?</strong> Vous pouvez gérer ce compte depuis vos paramètres.
+          </AlertDescription>
+        </Alert>
+      </AnimatedDiv>
     </div>
   );
 }

@@ -24,6 +24,7 @@ import { Badge } from '@/components/ui/badge';
 import { DashboardHeader } from '@/components/dashboard/dashboard-header';
 import { QuickActions } from '@/components/dashboard/quick-actions';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { getClientProposals } from '@/lib/firestore-proposals';
 import { 
   logDashboardPageView, 
   logKpiCardClick, 
@@ -47,16 +48,22 @@ import {
   ShimmerCard
 } from '@/components/ui/animated';
 
-const mockServicePacks = [
-  { id: 'sp1', name: 'Nettoyage Airbnb 2h', price: 40, providerName: 'Marie Dupont', providerRating: 4.9 },
-  { id: 'sp2', name: 'Assistance numérique - PC lent', price: 25, providerName: 'Yuki Tanaka', providerRating: 4.7 },
-];
+interface ServicePack {
+  id: string;
+  name: string;
+  price: number;
+  providerName: string;
+  providerRating: number;
+  providerId?: string;
+}
 
 export default function DashboardPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [myPostedTasks, setMyPostedTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMyTasks, setLoadingMyTasks] = useState(true);
+  const [loadingServicePacks, setLoadingServicePacks] = useState(true);
+  const [servicePacks, setServicePacks] = useState<ServicePack[]>([]);
   const [userLocation, setUserLocation] = useState<{lat: number; lng: number} | null>(null);
   const [locating, setLocating] = useState(false);
   const [favorites, setFavorites] = useState<string[]>([]);
@@ -98,9 +105,18 @@ export default function DashboardPage() {
         const active = userTasks.filter(t => t.status === 'open' || t.status === 'in_progress').length;
         const completed = userTasks.filter(t => t.status === 'completed').length;
         
+        // Fetch pending proposals count
+        let pendingCount = 0;
+        try {
+          const proposals = await getClientProposals(user.uid);
+          pendingCount = proposals.filter(p => p.status === 'pending').length;
+        } catch (error) {
+          console.error('Error fetching proposals:', error);
+        }
+        
         setStats({
           activeTasks: active,
-          pendingOffers: 0, // TODO: Count proposals when implemented
+          pendingOffers: pendingCount,
           completedMissions: completed
         });
       } catch (error) {
@@ -112,6 +128,44 @@ export default function DashboardPage() {
 
     fetchMyTasks();
   }, [user]);
+
+  // Fetch popular service packs
+  useEffect(() => {
+    const fetchServicePacks = async () => {
+      setLoadingServicePacks(true);
+      try {
+        const packsQuery = query(
+          collection(db, 'service_packages'),
+          where('active', '==', true),
+          orderBy('bookingCount', 'desc'),
+          limit(2)
+        );
+        
+        const snapshot = await getDocs(packsQuery);
+        const packs = snapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            name: data.name || 'Service',
+            price: data.price || 0,
+            providerName: data.providerName || 'Prestataire',
+            providerRating: data.providerRating || 4.5,
+            providerId: data.providerId
+          };
+        }) as ServicePack[];
+        
+        setServicePacks(packs);
+      } catch (error) {
+        console.error('Error fetching service packs:', error);
+        // Fallback to empty array
+        setServicePacks([]);
+      } finally {
+        setLoadingServicePacks(false);
+      }
+    };
+
+    fetchServicePacks();
+  }, []);
 
   // Load favorites from localStorage (TODO: migrate to Firestore)
   useEffect(() => {
@@ -506,12 +560,14 @@ export default function DashboardPage() {
                   <p className="text-sm text-muted-foreground text-center max-w-md mb-4">
                     Commencez par poster votre première tâche pour trouver des prestataires qualifiés.
                   </p>
-                  <Link href="/tasks/create">
-                    <Button>
-                      <PlusCircle className="h-4 w-4 mr-2" />
-                      Poster ma première tâche
-                    </Button>
-                  </Link>
+                  <ShimmerCard>
+                    <Link href="/tasks/create">
+                      <Button onClick={() => logShimmerButtonClick('Poster ma première tâche', 'create_first_task')}>
+                        <PlusCircle className="h-4 w-4 mr-2" />
+                        Poster ma première tâche
+                      </Button>
+                    </Link>
+                  </ShimmerCard>
                 </CardContent>
               </Card>
             )}
@@ -553,18 +609,37 @@ export default function DashboardPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                {mockServicePacks.map(pack => (
-                  <ServicePackCard key={pack.id} pack={pack} />
-                ))}
-                <ShimmerCard>
-                  <Button 
-                    variant="outline" 
-                    className="w-full border-2 hover:border-primary/50 hover:bg-primary/5" 
-                    onClick={() => router.push('/market' as any)}
-                  >
-                    Découvrir tous les services →
-                  </Button>
-                </ShimmerCard>
+                {loadingServicePacks ? (
+                  <div className="flex justify-center py-8">
+                    <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                  </div>
+                ) : servicePacks.length > 0 ? (
+                  <>
+                    {servicePacks.map(pack => (
+                      <ServicePackCard key={pack.id} pack={pack} />
+                    ))}
+                    <ShimmerCard>
+                      <Button 
+                        variant="outline" 
+                        className="w-full border-2 hover:border-primary/50 hover:bg-primary/5" 
+                        onClick={() => {
+                          logAnimatedElementInteraction('discover_services', 'shimmer', 'client_market_navigation');
+                          router.push('/market' as any);
+                        }}
+                      >
+                        Découvrir tous les services →
+                      </Button>
+                    </ShimmerCard>
+                  </>
+                ) : (
+                  <div className="text-center py-8">
+                    <Star className="h-12 w-12 mx-auto mb-3 text-muted-foreground" />
+                    <p className="font-medium mb-1">Aucun service disponible</p>
+                    <p className="text-sm text-muted-foreground">
+                      Les services populaires apparaîtront ici
+                    </p>
+                  </div>
+                )}
               </CardContent>
             </Card>
 
@@ -600,21 +675,37 @@ export default function DashboardPage() {
                                 </div>
                               </div>
                             </div>
-                            <Button
-                              size="sm"
-                              variant="ghost"
-                              onClick={() => toggleFavorite(providerId)}
-                            >
-                              <Heart className="h-4 w-4 fill-red-500 text-red-500" />
-                            </Button>
+                            <ShimmerCard>
+                              <Button
+                                size="sm"
+                                variant="ghost"
+                                onClick={() => {
+                                  toggleFavorite(providerId);
+                                  logFavoriteToggle('remove', providerId, `Prestataire ${providerId.slice(0, 8)}`);
+                                  logAnimatedElementInteraction('favorite_button', 'shimmer', 'remove_favorite');
+                                }}
+                              >
+                                <Heart className="h-4 w-4 fill-red-500 text-red-500" />
+                              </Button>
+                            </ShimmerCard>
                           </div>
                         </CardContent>
                       </Card>
                     ))}
                     {favorites.length > 3 && (
-                      <Button variant="outline" className="w-full" size="sm">
-                        Voir tous mes favoris ({favorites.length})
-                      </Button>
+                      <ShimmerCard>
+                        <Button 
+                          variant="outline" 
+                          className="w-full" 
+                          size="sm"
+                          onClick={() => {
+                            logAnimatedElementInteraction('view_all_favorites', 'shimmer', 'client_favorites_expand');
+                            router.push('/dashboard/favorites' as any);
+                          }}
+                        >
+                          Voir tous mes favoris ({favorites.length})
+                        </Button>
+                      </ShimmerCard>
                     )}
                   </div>
                 ) : (
