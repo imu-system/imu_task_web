@@ -8,6 +8,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from '@/navigation';
 import { collection, query, where, getDocs, doc, getDoc, orderBy, limit } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { AccountType } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -108,17 +109,75 @@ export default function ProDashboardPage() {
                 setLoading(true);
                 setError(null);
 
-                // 1. Vérifier le profil pro
-                const proProfileRef = doc(db, 'pro_profiles', user.uid);
-                const proProfileSnap = await getDoc(proProfileRef);
+                // 1. Vérifier le accountType dans users/{uid}/profile
+                const userRef = doc(db, 'users', user.uid);
+                const userSnap = await getDoc(userRef);
 
-                if (!proProfileSnap.exists()) {
-                    // Pas encore professionnel
-                    setError('not_pro');
+                if (!userSnap.exists()) {
+                    setError('no_user');
                     return;
                 }
 
-                const profileData = proProfileSnap.data() as ProProfile;
+                const userData = userSnap.data();
+                const accountType = userData?.profile?.accountType as AccountType | undefined;
+
+                // Vérifier si accountType === 'professional'
+                if (accountType !== AccountType.professional) {
+                    // Fallback: vérifier ancien système pro_profiles
+                    const proProfileRef = doc(db, 'pro_profiles', user.uid);
+                    const proProfileSnap = await getDoc(proProfileRef);
+
+                    if (!proProfileSnap.exists()) {
+                        setError('not_pro');
+                        return;
+                    }
+
+                    const profileData = proProfileSnap.data() as ProProfile;
+                    setProProfile(profileData);
+                } else {
+                    // Nouveau système: accountType === 'professional'
+                    // Charger depuis pro_profiles ou créer un profil par défaut
+                    const proProfileRef = doc(db, 'pro_profiles', user.uid);
+                    const proProfileSnap = await getDoc(proProfileRef);
+
+                    if (proProfileSnap.exists()) {
+                        const profileData = proProfileSnap.data() as ProProfile;
+                        setProProfile(profileData);
+                    } else {
+                        // Créer un profil pro par défaut
+                        const defaultProfile: ProProfile = {
+                            userId: user.uid,
+                            businessInfo: {
+                                businessName: userData?.profile?.professionalInfo?.companyName || 'Mon Entreprise',
+                                siret: userData?.profile?.professionalInfo?.siret || '',
+                                businessType: 'services',
+                            },
+                            verificationStatus: userData?.profile?.professionalInfo?.isVerified ? 'verified' : 'pending',
+                            badges: {
+                                verified: userData?.profile?.professionalInfo?.isVerified || false,
+                            },
+                            subscription: {
+                                tier: 'basic',
+                                startDate: new Date(),
+                            },
+                            stats: {
+                                totalJobs: 0,
+                                completedJobs: 0,
+                                cancelledJobs: 0,
+                                averageRating: 0,
+                                totalReviews: 0,
+                                responseTime: 0,
+                                acceptanceRate: 0,
+                                revenue: {
+                                    total: 0,
+                                    thisMonth: 0,
+                                    lastMonth: 0,
+                                },
+                            },
+                        };
+                        setProProfile(defaultProfile);
+                    }
+                }
 
                 // 2. Charger les devis récents
                 const quotesRef = collection(db, 'quotes');
@@ -152,7 +211,6 @@ export default function ProDashboardPage() {
                     createdAt: doc.data().createdAt?.toDate(),
                 })) as Notification[];
 
-                setProProfile(profileData);
                 setQuotes(quotesData);
                 setNotifications(notificationsData);
             } catch (err: any) {

@@ -17,7 +17,7 @@ import {
     Timestamp,
 } from 'firebase/firestore';
 import { db } from './firebase';
-import { UserRole } from './types';
+import { UserRole, AccountType } from './types';
 
 export interface UserProfile {
     displayName?: string;
@@ -25,6 +25,26 @@ export interface UserProfile {
     phoneNumber?: string;
     bio?: string;
     location?: string;
+
+    // Account Type - NEW
+    accountType?: AccountType;
+
+    // Professional-specific info
+    professionalInfo?: {
+        companyName?: string;
+        siret?: string;
+        isVerified: boolean;
+        categories?: string[];
+        yearsOfExperience?: number;
+    };
+
+    // Senior-specific info
+    seniorInfo?: {
+        needsAccessibility: boolean;
+        hasCaregiver: boolean;
+        caregiverEmail?: string;
+        caregiverPhone?: string;
+    };
 }
 
 export interface UserDocument {

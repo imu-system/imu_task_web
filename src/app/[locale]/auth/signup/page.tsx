@@ -52,7 +52,7 @@ export default function SignupPage() {
       
       setSuccess('✅ Compte créé avec succès ! Redirection...');
       setTimeout(() => {
-        router.push('/dashboard');
+        router.push('/onboarding');
       }, 1500);
     } catch (err: any) {
       console.error('Signup error:', err);
@@ -80,7 +80,7 @@ export default function SignupPage() {
       await signInWithGoogle();
       setSuccess('✅ Connexion Google réussie ! Redirection...');
       setTimeout(() => {
-        router.push('/dashboard');
+        router.push('/onboarding');
       }, 1500);
     } catch (err: any) {
       console.error('Google signup error:', err);

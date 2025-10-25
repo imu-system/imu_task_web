@@ -6,6 +6,13 @@ export enum UserRole {
   moderator = 'moderator'
 }
 
+// Account types for profile differentiation
+export enum AccountType {
+  individual = 'individual',
+  professional = 'professional',
+  senior = 'senior'
+}
+
 export type Address = {
   street: string;
   city: string;
@@ -72,6 +79,26 @@ export type Profile = {
   serviceRadiusKm?: number;
   createdAt?: string | Date;
   updatedAt?: string | Date;
+
+  // Account Type - NEW
+  accountType?: AccountType;
+
+  // Professional-specific info (when accountType === 'professional')
+  professionalInfo?: {
+    companyName?: string;
+    siret?: string;
+    isVerified: boolean;
+    categories?: string[];
+    yearsOfExperience?: number;
+  };
+
+  // Senior-specific info (when accountType === 'senior')
+  seniorInfo?: {
+    needsAccessibility: boolean;
+    hasCaregiver: boolean;
+    caregiverEmail?: string;
+    caregiverPhone?: string;
+  };
 };
 
 // User: Full model with all fields

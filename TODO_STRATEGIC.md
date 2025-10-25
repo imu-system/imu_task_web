@@ -44,6 +44,55 @@
 
 ### ✅ COMPLÉTÉ RÉCEMMENT (25 octobre 2025)
 
+#### Session 5 - Phase 1: Système AccountType - Dashboards Différenciés 🎉
+**Date:** 25 octobre 2025  
+**Résultat:** Système complet de différenciation des utilisateurs par profil (Individual, Professional, Senior) ✅
+
+**Fichiers créés (6):**
+- ✅ `src/components/auth/account-type-selector.tsx` - Composant sélection (3 cards)
+- ✅ `src/app/[locale]/onboarding/page.tsx` - Flow onboarding post-signup
+- ✅ `src/app/[locale]/dashboard/client/page.tsx` - Dashboard particuliers
+- ✅ `src/app/[locale]/dashboard/senior/page.tsx` - Dashboard seniors (accessible)
+- ✅ `src/hooks/use-account-type.ts` - Hook récupération accountType
+- ✅ `docs/ACCOUNT_TYPE_TESTING_GUIDE.md` - Guide tests (7 scénarios)
+
+**Fichiers modifiés (6):**
+- ✅ `src/lib/types.ts` - AccountType enum + Profile extension
+- ✅ `src/lib/firestore-users.ts` - UserProfile extension
+- ✅ `src/app/[locale]/auth/signup/page.tsx` - Redirect /onboarding
+- ✅ `src/app/[locale]/dashboard/page.tsx` - Router intelligent
+- ✅ `src/app/[locale]/dashboard/pro/page.tsx` - Support accountType
+- ✅ `src/components/dashboard-nav.tsx` - Navigation dynamique
+
+**Features implémentées:**
+- ✅ Onboarding après signup (sélection type de compte)
+- ✅ 3 dashboards différenciés (Client, Pro, Senior)
+- ✅ Router intelligent basé sur accountType
+- ✅ Navigation sidebar adaptée (3 sets de liens)
+- ✅ Dashboard Senior accessible (texte XXL, bouton SOS)
+- ✅ Dashboard Client simplifié (focus tâches + services)
+- ✅ Dashboard Pro avec support nouveau système
+- ✅ Fallback ancien système pro_profiles
+- ✅ Hook useAccountType réutilisable
+- ✅ 0 erreur TypeScript ✨
+
+**UX par profil:**
+- **Client:** 6 liens nav, 3 KPIs, "Poster une tâche"
+- **Pro:** 9 liens nav, stats business, missions, planning
+- **Senior:** 6 liens simplifiés, texte 24px+, bouton SOS rouge
+
+**Documentation:**
+- ✅ `docs/PHASE1_ACCOUNT_TYPE_COMPLETE.md` - Récap complet
+- ✅ Guide de test avec 7 scénarios
+
+**Impact:**
+- Dashboards différenciés: 1 → 3 (+200%)
+- Navigation personnalisée: ✅ 3 sets
+- Accessibilité Senior: Standard → XXL
+- TypeScript errors: 0 → 0 (maintenu)
+
+---
+
 #### Session 4 - Traductions Pages de Profils (EN) - 100% Bilingue
 **Résultat** : 155+ clés anglaises ajoutées → Toutes les pages de profils 100% bilingues (FR/EN) ✅
 
@@ -181,13 +230,55 @@
 
 ### 🔥 EN COURS (Priorité Immédiate)
 
+#### 0. Phase 2 - Dashboards Personnalisés (Suite Phase 1)
+**Objectif** : Affiner l'expérience utilisateur par type de profil
+
+**Phase 1 Complétée ✅** : Système accountType, 3 dashboards, navigation adaptée
+
+**Prochaines étapes Phase 2** :
+
+- [ ] **Dashboard Client - Données Réelles** (2h)
+  - Fetch vraies tâches postées (Firestore query userId)
+  - Système favoris prestataires (hearts, localStorage/Firestore)
+  - Historique services utilisés
+
+- [ ] **Dashboard Pro - Stats Temps Réel** (3h)
+  - Aggregation Firestore (CA, missions, taux acceptation)
+  - Graphiques revenus (Chart.js ou Recharts)
+  - Calendrier planning intégré
+
+- [ ] **Dashboard Senior - Accessibilité Avancée** (2h)
+  - Liste contacts aidant (fetch, appel rapide)
+  - Configuration services récurrents
+  - Bouton SOS fonctionnel (API call ou tel:)
+  - Mode vocal (option)
+
+- [ ] **Page Profil - Édition AccountType** (1h30)
+  - Afficher accountType actuel
+  - Permettre changement (avec confirmation)
+  - Update Firestore + navigation refresh
+
+- [ ] **Upload Photo Profil** (1h)
+  - Firebase Storage upload
+  - Crop & resize (react-image-crop)
+  - Update photoUrl dans users/{uid}/profile
+
+- [ ] **Système KYC par Type** (4h)
+  - Pro: SIRET, Kbis, assurance
+  - Senior: Documents santé (optionnel)
+  - Vérification manuelle admin
+
+**Total estimé Phase 2** : 13h30
+
+---
+
 #### 1. Landing Page - Segmentation par Profils Utilisateurs
 **Objectif** : Afficher clairement les 3 segments cibles
 
 **Note** : Les traductions pour les pages de profils sont maintenant **100% complètes** (FR + EN) ✅
 
 - [ ] **Améliorer section "Pour qui ?" après Hero** (30 min)
-  - Rendre les 3 cartes plus visibles : "Particuliers", "Professionnels", "Seniors & Aidants"
+  - Rendre les 3 cardes plus visibles : "Particuliers", "Professionnels", "Seniors & Aidants"
   - Design : Cards avec gradients, icons, CTA clair
   - Liens vers pages dédiées (déjà traduites)
 

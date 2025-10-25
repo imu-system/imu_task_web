@@ -57,9 +57,13 @@ import {
   Palette,
   MoreVertical,
   Edit,
+  Heart,
+  UtensilsCrossed,
+  Home,
+  Phone,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
-import { UserRole } from '@/lib/types';
+import { UserRole, AccountType } from '@/lib/types';
 import { Button } from './ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from './ui/dropdown-menu';
@@ -69,6 +73,7 @@ import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Switch } from './ui/switch';
 import { Label } from './ui/label';
+import { useAccountType } from '@/hooks/use-account-type';
 
 export function DashboardNav() {
   const pathname = usePathname();
@@ -77,13 +82,48 @@ export function DashboardNav() {
   const { user, signOut } = useAuth();
   const router = useRouter();
   const { setIsOpen } = useSettingsModal();
+  const { accountType, loading: loadingAccountType } = useAccountType();
 
   const handleSignOut = async () => {
     await signOut();
     router.push('/');
   }
 
-  const navItems = [
+  // Navigation pour CLIENTS (Particuliers)
+  const clientNavItems = [
+    { href: '/dashboard', icon: <LayoutGrid />, label: 'Tableau de bord', exact: true },
+    { href: '/dashboard/tasks', icon: <BookMarked />, label: 'Mes tâches' },
+    { href: '/dashboard/messages', icon: <MessageSquare />, label: 'Messages' },
+    { href: '/dashboard/bookings', icon: <CalendarCheck />, label: 'Mes réservations' },
+    { href: '/dashboard/search', icon: <Search />, label: 'Trouver un prestataire' },
+    { href: '/dashboard/wallet', icon: <Wallet />, label: 'Portefeuille' },
+  ];
+
+  // Navigation pour PROFESSIONNELS
+  const proNavItems = [
+    { href: '/dashboard', icon: <LayoutGrid />, label: 'Tableau de bord', exact: true },
+    { href: '/dashboard/offers', icon: <Briefcase />, label: 'Missions disponibles' },
+    { href: '/dashboard/tasks', icon: <BookMarked />, label: 'Mes offres' },
+    { href: '/dashboard/bookings', icon: <CalendarCheck />, label: 'Planning' },
+    { href: '/dashboard/messages', icon: <MessageSquare />, label: 'Messages' },
+    { href: '/dashboard/stats', icon: <LineChart />, label: 'Statistiques' },
+    { href: '/dashboard/availability', icon: <CalendarIcon />, label: 'Disponibilités' },
+    { href: '/dashboard/wallet', icon: <Wallet />, label: 'Revenus' },
+    { href: '/dashboard/market', icon: <LineChart />, label: 'Marché' },
+  ];
+
+  // Navigation pour SENIORS (Simplifiée)
+  const seniorNavItems = [
+    { href: '/dashboard', icon: <Heart />, label: 'Accueil', exact: true },
+    { href: '/dashboard/services/meals', icon: <UtensilsCrossed />, label: 'Repas' },
+    { href: '/dashboard/services/home-help', icon: <Home />, label: 'Aide à domicile' },
+    { href: '/dashboard/contacts', icon: <Users />, label: 'Mes contacts' },
+    { href: '/dashboard/calendar', icon: <CalendarIcon />, label: 'Mon planning' },
+    { href: '/help', icon: <Phone />, label: 'Aide & Support' },
+  ];
+
+  // Navigation par défaut (fallback)
+  const defaultNavItems = [
     { href: '/dashboard', icon: <LayoutGrid />, label: t('dashboard'), exact: true },
     { href: '/dashboard/search', icon: <Search />, label: t('findProvider') },
     { href: '/dashboard/offers', icon: <Briefcase />, label: t('findTask') },
@@ -96,6 +136,18 @@ export function DashboardNav() {
     { href: '/dashboard/academy', icon: <BookOpen />, label: t('academy') },
     { href: '/dashboard/referrals', icon: <Gift />, label: t('referrals') },
   ];
+
+  // Sélection des items selon accountType
+  let navItems = defaultNavItems;
+  if (!loadingAccountType) {
+    if (accountType === AccountType.individual) {
+      navItems = clientNavItems;
+    } else if (accountType === AccountType.professional) {
+      navItems = proNavItems;
+    } else if (accountType === AccountType.senior) {
+      navItems = seniorNavItems;
+    }
+  }
   
   const providerNavItems = [
     { href: '/dashboard/availability', icon: <CalendarIcon />, label: t('availability') },
@@ -240,6 +292,14 @@ export function DashboardNav() {
                         <Label htmlFor="availability-switch" className="text-sm">
                             {tHeader('availableForMissions')}
                         </Label>
+                    </div>
+                )}
+                {accountType === AccountType.senior && (
+                    <div className="p-2 bg-red-50 dark:bg-red-950/20 rounded-md border border-red-200">
+                        <Button variant="destructive" size="sm" className="w-full">
+                            <Phone className="h-4 w-4 mr-2" />
+                            Appel d'urgence
+                        </Button>
                     </div>
                 )}
             </div>
