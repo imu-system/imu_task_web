@@ -11,7 +11,7 @@ import {
   getDocs,
   getDoc,
 } from 'firebase/firestore';
-// import { CallSignal, IceCandidateSignal } from './types';
+import { CallSignal, IceCandidateSignal } from './types';
 
 const servers = {
   iceServers: [
@@ -70,7 +70,7 @@ export class WebRTCService {
     const offerDescription = await this.pc.createOffer();
     await this.pc.setLocalDescription(offerDescription);
 
-    const offer: any = {
+    const offer: CallSignal = {
       sdp: offerDescription.sdp!,
       type: offerDescription.type,
     };
@@ -115,7 +115,7 @@ export class WebRTCService {
       const answerDescription = await this.pc.createAnswer();
       await this.pc.setLocalDescription(answerDescription);
 
-      const answer: any = {
+      const answer: CallSignal = {
         sdp: answerDescription.sdp!,
         type: answerDescription.type,
       };

@@ -548,3 +548,15 @@ export type Device = {
   createdAt: string | Date;
   updatedAt: string | Date;
 };
+
+// WebRTC Types
+export type CallSignal = {
+  sdp: string;
+  type: RTCSdpType;
+};
+
+export type IceCandidateSignal = {
+  candidate: string;
+  sdpMLineIndex: number | null;
+  sdpMid: string | null;
+};

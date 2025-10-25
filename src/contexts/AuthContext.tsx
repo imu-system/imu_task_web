@@ -17,10 +17,12 @@ import { auth } from '@/lib/firebase';
 import { UserRole } from '@/lib/types';
 import { createUserDocument, getUserDocument } from '@/lib/firestore-users';
 
-// Extended User type with custom properties
+// Extended Firebase User type with custom properties
+// Note: This is different from AppUser in lib/types.ts which is based on Firestore User
 export interface AppUser extends FirebaseUser {
   roles?: UserRole[];
   kycStatus?: 'pending' | 'approved' | 'rejected';
+  phone?: string;
   profile?: {
     displayName?: string;
     photoUrl?: string;
