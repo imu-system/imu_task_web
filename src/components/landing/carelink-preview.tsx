@@ -92,9 +92,8 @@ export function CarelinkPreview() {
               asChild
               size="lg"
               className="rounded-3xl bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white shadow-lg"
-              onClick={() => logCarelinkServiceClick('all_services', 'main_cta')}
             >
-              <Link href="#carelink">
+              <Link href="/carelink">
                 {t("cta")}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>

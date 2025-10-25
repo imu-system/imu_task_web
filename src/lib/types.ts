@@ -374,6 +374,7 @@ export type ServiceCategory = {
   description?: string | Record<string, string>;
   slug?: string;
   isActive?: boolean;
+  isAccessible?: boolean; // PMR/Accessibility certified services (♿)
   displayOrder?: number;
   recommendedPriceMin?: number;
   recommendedPriceMax?: number;

@@ -34,17 +34,30 @@ import { HowItWorks } from '@/components/landing/how-it-works';
 import { StatsTrust } from '@/components/landing/stats-trust';
 import { ProfileCards } from '@/components/landing/profile-cards';
 import { CarelinkPreview } from '@/components/landing/carelink-preview';
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { logLandingPageView } from '@/lib/analytics';
+import { useScrollPosition } from '@/hooks/use-scroll-position';
+import { motion } from 'framer-motion';
 
 
 export default function Home() {
   const t = useTranslations('LandingPage');
+  const { scrollY } = useScrollPosition();
+  const [showStickySearch, setShowStickySearch] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Track landing page view on mount
     logLandingPageView();
   }, []);
+
+  useEffect(() => {
+    // Show sticky search when scrolled past hero section
+    if (heroRef.current) {
+      const heroHeight = heroRef.current.offsetHeight;
+      setShowStickySearch(scrollY > heroHeight - 100);
+    }
+  }, [scrollY]);
 
   const features = [
     {
@@ -66,9 +79,22 @@ export default function Home() {
 
   return (
     <>
+      {/* Sticky Search Bar */}
+      <div 
+        className={`
+          fixed top-16 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-b shadow-lg
+          transition-all duration-300
+          ${showStickySearch ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
+        `}
+      >
+        <div className="container mx-auto px-4 py-3">
+          <HeroSearchBar variant="compact" />
+        </div>
+      </div>
+
       <div className="flex flex-col">
         {/* Hero Section - Airbnb/BlaBlaCar Style */}
-        <section className="relative w-full min-h-[600px] md:min-h-[700px] flex items-center bg-gradient-to-br from-primary/5 via-background to-accent/5">
+        <section ref={heroRef} className="relative w-full min-h-[600px] md:min-h-[700px] flex items-center bg-gradient-to-br from-primary/5 via-background to-accent/5">
           {/* Background Image with Overlay */}
           <div className="absolute inset-0 -z-10">
             <Image
@@ -84,25 +110,45 @@ export default function Home() {
           <div className="container mx-auto px-4 md:px-6 py-12 md:py-20">
             <div className="max-w-5xl mx-auto text-center">
               {/* Main Headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight font-headline">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight font-headline"
+              >
                 {t('hero.title')}{' '}
                 <span className="text-primary bg-clip-text">
                   {t('hero.titleHighlight')}
                 </span>
-              </h1>
+              </motion.h1>
 
               {/* Subtitle */}
-              <p className="mt-6 text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto">
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="mt-6 text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto"
+              >
                 {t('hero.subtitle')}
-              </p>
+              </motion.p>
 
               {/* Hero Search Bar */}
-              <div className="mt-10 md:mt-14">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="mt-10 md:mt-14"
+              >
                 <HeroSearchBar variant="hero" />
-              </div>
+              </motion.div>
 
               {/* CTA Buttons */}
-              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center"
+              >
                 <Button asChild size="lg" className="text-base px-8 py-6 shadow-lg hover:shadow-xl transition-shadow">
                   <Link href="/dashboard/tasks/new">
                     <Sparkles className="mr-2 h-5 w-5" />
@@ -115,7 +161,7 @@ export default function Home() {
                     {t('hero.cta.provider')}
                   </Link>
                 </Button>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
@@ -129,36 +175,56 @@ export default function Home() {
         {/* Tasks Grid Section - Recent/Popular Tasks */}
         <TasksGrid maxTasks={8} showViewAll={true} filterByStatus="pending" />
 
-        <section id="features" className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-accent/5 to-background">
+        <motion.section 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, margin: "-100px" }}
+          id="features" 
+          className="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-b from-accent/5 to-background"
+        >
           <div className="container mx-auto px-4 md:px-6">
-            <div className="text-center mb-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl font-headline mb-4">
                 {t('features.title')}
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                 {t('features.subtitle')}
               </p>
-            </div>
+            </motion.div>
             <div className="mx-auto grid gap-8 sm:grid-cols-1 md:grid-cols-3">
               {features.map((feature, index) => (
-                <Card 
-                  key={index} 
-                  className="text-center overflow-hidden border-2 hover:border-primary transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
                 >
-                  <CardHeader>
-                    <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit transition-transform duration-300 hover:scale-110">
-                      {feature.icon}
-                    </div>
-                    <CardTitle className="mt-4 font-headline text-xl">{feature.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
-                  </CardContent>
-                </Card>
+                  <Card 
+                    className="h-full text-center overflow-hidden border-2 hover:border-primary transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                  >
+                    <CardHeader>
+                      <div className="mx-auto bg-primary/10 p-4 rounded-full w-fit transition-transform duration-300 hover:scale-110">
+                        {feature.icon}
+                      </div>
+                      <CardTitle className="mt-4 font-headline text-xl">{feature.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
     <StatsTrust />
 

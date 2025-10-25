@@ -33,6 +33,7 @@ import { usePathname, Link } from '@/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import LanguageCurrencyModal from './language-currency-modal';
 import Image from 'next/image';
+import { BecomeProviderModal } from './modals/become-provider-modal';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -48,21 +49,21 @@ export default function Header() {
 
   const servicesMenuItems = [
     { 
-      href: '/#particuliers', 
+      href: '/particuliers', 
       label: t('servicesMenu.imutask'),
       desc: t('servicesMenu.imutaskDesc'),
       gradient: 'from-blue-500 to-cyan-500',
       platform: 'imutask' as const
     },
     { 
-      href: '/#imupro', 
+      href: '/professionnels', 
       label: t('servicesMenu.imupro'),
       desc: t('servicesMenu.imuproDesc'),
       gradient: 'from-purple-500 to-pink-500',
       platform: 'imupro' as const
     },
     { 
-      href: '/#carelink', 
+      href: '/carelink', 
       label: t('servicesMenu.carelink'),
       desc: t('servicesMenu.carelinkDesc'),
       gradient: 'from-orange-500 to-red-500',
@@ -71,17 +72,16 @@ export default function Header() {
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isProviderModalOpen, setIsProviderModalOpen] = useState(false);
 
   const UserMenu = () => (
     <div className="hidden md:flex items-center gap-3">
       <Button 
         variant="ghost" 
-        asChild 
+        onClick={() => setIsProviderModalOpen(true)}
         className="rounded-3xl font-medium hover:bg-muted/60"
       >
-        <Link href="/become-provider" className="flex items-center gap-2">
-          <span>{t('becomeHost') || 'Devenir prestataire'}</span>
-        </Link>
+        <span>{t('becomeHost') || 'Devenir prestataire'}</span>
       </Button>
       <LanguageCurrencyModal />
       <DropdownMenu>
@@ -370,6 +370,12 @@ export default function Header() {
           {isAuthenticated ? <UserMenu /> : <AuthButtons />}
         </div>
       </div>
+
+      {/* Provider Modal */}
+      <BecomeProviderModal 
+        open={isProviderModalOpen} 
+        onOpenChange={setIsProviderModalOpen} 
+      />
     </header>
   );
 }

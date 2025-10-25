@@ -2315,17 +2315,198 @@
             "individual": {
                 "title": "Particuliers",
                 "description": "Trouvez rapidement de l'aide pour vos tâches quotidiennes : ménage, courses, bricolage, jardinage et bien plus encore.",
-                "cta": "Découvrir"
+                "cta": "Découvrir",
+                "hero": {
+                    "title": "Trouvez de l'aide pour vos tâches quotidiennes",
+                    "subtitle": "Une communauté de prestataires qualifiés prêts à vous aider au quotidien",
+                    "cta": "Publier une mission gratuitement"
+                },
+                "benefits": {
+                    "title": "Pourquoi choisir ImuTask ?",
+                    "timeGain": {
+                        "title": "Gain de temps",
+                        "description": "Déléguez vos tâches quotidiennes et libérez du temps pour ce qui compte vraiment."
+                    },
+                    "flexiblePrices": {
+                        "title": "Prix flexibles",
+                        "description": "Définissez votre budget et recevez des offres adaptées à vos moyens."
+                    },
+                    "localHelp": {
+                        "title": "Entraide locale",
+                        "description": "Faites appel à des membres de votre communauté et créez du lien social."
+                    },
+                    "securePayment": {
+                        "title": "Paiement sécurisé",
+                        "description": "Votre argent est protégé jusqu'à la validation de la mission."
+                    },
+                    "easyComm": {
+                        "title": "Communication facile",
+                        "description": "Discutez directement avec les prestataires via notre messagerie intégrée."
+                    },
+                    "quality": {
+                        "title": "Qualité garantie",
+                        "description": "Tous nos prestataires sont évalués par la communauté."
+                    }
+                },
+                "categories": {
+                    "title": "Services populaires",
+                    "subtitle": "Les catégories les plus demandées par les particuliers"
+                },
+                "ctas": {
+                    "postMission": "Publier une mission",
+                    "signup": "S'inscrire gratuitement"
+                }
             },
             "professional": {
                 "title": "Professionnels",
                 "description": "Artisans, auto-entrepreneurs : développez votre activité avec ImuPro, notre plateforme dédiée aux services professionnels certifiés.",
-                "cta": "Devenir Pro certifié"
+                "cta": "Devenir Pro certifié",
+                "badge": "🚀 ImuPro - Plateforme Professionnelle",
+                "hero": {
+                    "title": "Boostez votre activité avec ImuPro",
+                    "subtitle": "La plateforme dédiée aux professionnels : artisans, auto-entrepreneurs, prestataires de services",
+                    "cta": "Devenir Pro certifié"
+                },
+                "categories": {
+                    "title": "Catégories professionnelles",
+                    "plumbing": "Plomberie",
+                    "electricity": "Électricité",
+                    "handyman": "Homme à tout faire",
+                    "itSupport": "Dépannage informatique",
+                    "tutoring": "Soutien scolaire",
+                    "coaching": "Coaching sportif",
+                    "more": "Et bien plus..."
+                },
+                "features": {
+                    "title": "Fonctionnalités professionnelles",
+                    "growth": {
+                        "title": "Développez votre activité",
+                        "description": "Accédez à une clientèle qualifiée recherchant des services professionnels dans votre zone."
+                    },
+                    "badge": {
+                        "title": "Badge Pro Vérifié",
+                        "description": "Profil certifié avec SIRET, RC Pro et certifications métier pour rassurer vos clients."
+                    },
+                    "clientManagement": {
+                        "title": "Gestion de clients simplifiée",
+                        "description": "CRM intégré pour suivre vos missions, historique client et communications."
+                    },
+                    "smartPlanning": {
+                        "title": "Planning intelligent",
+                        "description": "Organisez votre emploi du temps et gérez vos disponibilités facilement."
+                    },
+                    "securePayments": {
+                        "title": "Paiements sécurisés",
+                        "description": "Facturation automatisée et virements fiabilisés directement sur votre compte."
+                    },
+                    "portfolio": {
+                        "title": "Portfolio professionnel",
+                        "description": "Présentez vos réalisations et mettez en avant votre savoir-faire."
+                    }
+                },
+                "advantages": {
+                    "title": "Vos avantages",
+                    "commission": "Commission réduite pour pros certifiés",
+                    "leads": "Leads qualifiés dans votre zone",
+                    "billing": "Facturation automatisée conforme",
+                    "analytics": "Statistiques avancées et analytics",
+                    "support": "Support prioritaire 7j/7",
+                    "flexible": "Abonnement flexible sans engagement"
+                },
+                "pricing": {
+                    "title": "Tarifs professionnels",
+                    "subtitle": "Choisissez la formule qui correspond à votre activité",
+                    "starter": {
+                        "name": "Starter",
+                        "price": "0€",
+                        "period": "/mois",
+                        "commission": "Commission 15%",
+                        "feature1": "Profil professionnel",
+                        "feature2": "Portfolio 5 photos max",
+                        "feature3": "Leads standards",
+                        "cta": "Commencer"
+                    },
+                    "plus": {
+                        "name": "Plus",
+                        "badge": "Populaire",
+                        "price": "29€",
+                        "period": "/mois",
+                        "commission": "Commission 10%",
+                        "feature1": "Tout Starter +",
+                        "feature2": "Portfolio illimité",
+                        "feature3": "Leads prioritaires",
+                        "feature4": "Statistiques avancées",
+                        "cta": "Choisir Plus"
+                    },
+                    "elite": {
+                        "name": "Elite",
+                        "price": "79€",
+                        "period": "/mois",
+                        "commission": "Commission 8%",
+                        "feature1": "Tout Plus +",
+                        "feature2": "Leads exclusifs",
+                        "feature3": "Support prioritaire",
+                        "feature4": "Formation & webinaires",
+                        "cta": "Devenir Elite"
+                    }
+                }
             },
             "senior": {
                 "title": "Seniors & Aidants",
                 "description": "Services adaptés pour le maintien à domicile : portage de repas, aide ménagère, accompagnement. Découvrez CareLink.",
-                "cta": "En savoir plus"
+                "cta": "En savoir plus",
+                "badge": "♿ Services adaptés PMR",
+                "hero": {
+                    "title": "Services à domicile pour votre bien-être",
+                    "subtitle": "Des services adaptés aux seniors et personnes à mobilité réduite",
+                    "footer": "💰 Crédit d'impôt 50% • 💳 Paiement CESU accepté • ♿ Certifié PMR"
+                },
+                "services": {
+                    "title": "Nos services certifiés PMR",
+                    "subtitle": "Tous nos prestataires sont formés aux besoins spécifiques",
+                    "homeHelp": {
+                        "title": "Aide à domicile",
+                        "description": "Ménage, repassage, entretien adapté à vos besoins"
+                    },
+                    "mealDelivery": {
+                        "title": "Portage de repas",
+                        "description": "Menus adaptés aux régimes spéciaux"
+                    },
+                    "companionship": {
+                        "title": "Accompagnement",
+                        "description": "Sorties, rendez-vous médicaux, promenades"
+                    },
+                    "groceries": {
+                        "title": "Courses & livraisons",
+                        "description": "Approvisionnement sans déplacement"
+                    },
+                    "care": {
+                        "title": "Soins & bien-être",
+                        "description": "Coiffure, pédicure, esthétique à domicile"
+                    },
+                    "teleassistance": {
+                        "title": "Téléassistance",
+                        "description": "Sécurité 24/7, détection de chute"
+                    }
+                },
+                "advantages": {
+                    "title": "Pourquoi nous choisir ?",
+                    "trained": "Prestataires formés aux besoins des seniors",
+                    "pmr": "Services adaptés PMR",
+                    "cesu": "Paiement CESU accepté",
+                    "tax": "Crédit d'impôt 50% sur services à la personne",
+                    "proxy": "Gestion par un proche/aidant possible",
+                    "simple": "Interface simplifiée et accessible"
+                },
+                "accessibility": {
+                    "title": "Interface accessible",
+                    "subtitle": "Une plateforme pensée pour tous",
+                    "largeText": "Gros caractères (24px minimum) et contraste élevé",
+                    "largeButtons": "Boutons larges faciles à cliquer",
+                    "simpleNav": "Navigation simplifiée sans menus complexes",
+                    "proxyMode": "Mode 'Gestion par un proche' disponible",
+                    "phoneSupport": "Support téléphonique disponible (pas que digital)"
+                }
             }
         },
         "carelink": {
@@ -2350,7 +2531,102 @@
                     "description": "Sécurité et sérénité 24/7"
                 }
             },
-            "cta": "Découvrir CareLink"
+            "cta": "Découvrir CareLink",
+            "page": {
+                "badge": "❤️ Bientôt disponible",
+                "hero": {
+                    "title": "CareLink",
+                    "subtitle": "Plateforme dédiée au maintien à domicile",
+                    "description": "Des services adaptés aux seniors et personnes à mobilité réduite, avec des prestataires formés et certifiés.",
+                    "trust": {
+                        "pmr": "Certifié PMR",
+                        "cesu": "Paiement CESU",
+                        "tax": "Crédit impôt 50%",
+                        "certified": "Agréé SAP"
+                    }
+                },
+                "services": {
+                    "title": "Services dédiés au bien-être de vos proches",
+                    "subtitle": "Une gamme complète de services pour le maintien à domicile",
+                    "mealDelivery": {
+                        "title": "Portage de repas",
+                        "feature1": "Menus adaptés régimes spéciaux (diabétique, sans sel, mixé)",
+                        "feature2": "Livraison 7j/7 en créneau du matin",
+                        "feature3": "Nutritionniste qualifié pour les menus",
+                        "feature4": "Traçabilité complète des ingrédients",
+                        "feature5": "Portions adaptées aux besoins"
+                    },
+                    "housekeeping": {
+                        "title": "Aide ménagère",
+                        "feature1": "Personnel formé aux besoins des seniors",
+                        "feature2": "Ménage, repassage, entretien régulier",
+                        "feature3": "Matériel adapté fourni",
+                        "feature4": "Fréquence flexible selon vos besoins",
+                        "feature5": "Intervenants fixes pour la continuité"
+                    },
+                    "accompaniment": {
+                        "title": "Accompagnement",
+                        "feature1": "Accompagnement rendez-vous médicaux",
+                        "feature2": "Sorties et promenades sécurisées",
+                        "feature3": "Activités stimulantes (jeux, lecture)",
+                        "feature4": "Conversation et lien social",
+                        "feature5": "Véhicule adapté PMR disponible"
+                    },
+                    "teleassistance": {
+                        "title": "Téléassistance",
+                        "feature1": "Bracelet ou pendentif d'urgence",
+                        "feature2": "Détection automatique de chute",
+                        "feature3": "Plateau téléphonique 24/7",
+                        "feature4": "Contacts d'urgence configurables",
+                        "feature5": "Application pour les aidants"
+                    }
+                },
+                "accessibility": {
+                    "title": "Interface simplifiée et accessible",
+                    "subtitle": "Une plateforme pensée pour les seniors et leurs aidants",
+                    "feature1": "Gros caractères et contraste élevé",
+                    "feature2": "Navigation simplifiée sans menus complexes",
+                    "feature3": "Mode gestion par un proche/aidant",
+                    "feature4": "Support téléphonique disponible 7j/7"
+                },
+                "roadmap": {
+                    "title": "Feuille de route",
+                    "subtitle": "Notre déploiement progressif",
+                    "phase1": {
+                        "quarter": "Q4 2025",
+                        "title": "Phase Pilote",
+                        "description": "Portage de repas, 2 villes tests"
+                    },
+                    "phase2": {
+                        "quarter": "Q1 2026",
+                        "title": "Extension services",
+                        "description": "Aide ménagère, accompagnement"
+                    },
+                    "phase3": {
+                        "quarter": "Q2-Q3 2026",
+                        "title": "Déploiement national",
+                        "description": "10 grandes villes"
+                    },
+                    "phase4": {
+                        "quarter": "Q4 2026",
+                        "title": "Services complets",
+                        "description": "Téléassistance, soins domicile, plateforme complète"
+                    }
+                },
+                "waitlist": {
+                    "title": "Inscrivez-vous à la liste d'attente",
+                    "subtitle": "Soyez informé du lancement de CareLink",
+                    "emailLabel": "Adresse e-mail",
+                    "emailPlaceholder": "votre@email.com",
+                    "messageLabel": "Vos besoins (optionnel)",
+                    "messagePlaceholder": "Décrivez brièvement vos besoins ou ceux de votre proche...",
+                    "gdpr": "En vous inscrivant, vous acceptez d'être contacté par ImuTask concernant le lancement de CareLink. Vos données ne seront jamais partagées avec des tiers.",
+                    "submitButton": "M'inscrire à la liste d'attente",
+                    "submitting": "Inscription en cours...",
+                    "successTitle": "Inscription réussie !",
+                    "successDescription": "Merci de votre intérêt. Nous vous contacterons dès le lancement de CareLink."
+                }
+            }
         }
     }
 }

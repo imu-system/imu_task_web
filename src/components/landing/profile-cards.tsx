@@ -15,21 +15,21 @@ export function ProfileCards() {
       icon: User,
       gradient: "from-blue-500 to-cyan-500",
       borderColor: "hover:border-blue-500",
-      href: "/signup", // Signup for individuals
+      href: "/particuliers", // Dedicated page for individuals
     },
     {
       key: "professional" as const,
       icon: Briefcase,
       gradient: "from-purple-500 to-pink-500",
       borderColor: "hover:border-purple-500",
-      href: "/signup?type=pro", // Signup for professionals (ImuPro)
+      href: "/professionnels", // Dedicated page for professionals (ImuPro)
     },
     {
       key: "senior" as const,
       icon: Heart,
       gradient: "from-orange-500 to-red-500",
       borderColor: "hover:border-orange-500",
-      href: "#carelink", // Scroll to CareLink section
+      href: "/seniors", // Dedicated page for seniors and caregivers
     },
   ];
 

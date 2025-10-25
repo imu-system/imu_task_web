@@ -1,0 +1,46 @@
+{
+    "BecomeProviderModal": {
+        "title": "Proposer mes services",
+        "subtitle": "Choisissez le type de compte qui correspond à votre profil",
+        "individual": {
+            "title": "Particulier",
+            "description": "Proposez vos services ponctuellement dans vos temps libres",
+            "badge": "0€ de frais",
+            "benefits": {
+                "noCertification": "Aucune certification requise",
+                "flexible": "Horaires 100% flexibles",
+                "freeSignup": "Inscription gratuite",
+                "securePayment": "Paiement sécurisé"
+            },
+            "cta": "Commencer"
+        },
+        "professional": {
+            "title": "Professionnel",
+            "description": "Développez votre activité avec ImuPro, notre plateforme pro",
+            "badge": "⭐ Populaire",
+            "benefits": {
+                "verifiedBadge": "Badge Pro Vérifié",
+                "qualifiedLeads": "Leads qualifiés",
+                "autoInvoicing": "Facturation automatisée",
+                "managementTools": "Outils de gestion"
+            },
+            "cta": "Découvrir ImuPro"
+        },
+        "benefits": {
+            "simple": {
+                "title": "Simple & Rapide",
+                "description": "Inscription en 2 minutes"
+            },
+            "grow": {
+                "title": "Développez-vous",
+                "description": "Accédez à des milliers de clients"
+            },
+            "secure": {
+                "title": "100% Sécurisé",
+                "description": "Paiements garantis"
+            }
+        },
+        "footer": "Vous avez déjà un compte ?",
+        "signIn": "Se connecter"
+    }
+}
