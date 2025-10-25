@@ -85,9 +85,32 @@ export default function AdminEditPagePage() {
             setIsLoading(true);
             const pageData = getPages().find(p => p.id === pageId);
             if (pageData) {
-                const defaultValues = {
-                    ...pageData,
+                // Transform Record<string, string> to the expected format
+                const normalizeI18nField = (
+                    field: string | Record<string, string> | undefined,
+                    required: boolean = false
+                ): { fr?: string; en?: string; jp?: string } | { fr: string; en?: string; jp?: string } => {
+                    if (!field) {
+                        return required ? { fr: '' } : {};
+                    }
+                    if (typeof field === 'string') {
+                        return { fr: field };
+                    }
+                    return {
+                        fr: field.fr || (required ? '' : undefined),
+                        en: field.en,
+                        jp: field.jp,
+                    } as any;
+                };
+                
+                const defaultValues: PageFormValues = {
+                    slug: pageData.slug,
                     status: pageData.status || PageStatus.draft,
+                    title: normalizeI18nField(pageData.title, true) as { fr: string; en?: string; jp?: string },
+                    content: normalizeI18nField(pageData.content),
+                    seoTitle: normalizeI18nField(pageData.seoTitle),
+                    seoDescription: normalizeI18nField(pageData.seoDescription),
+                    isIndexed: pageData.isIndexed ?? true,
                 };
                 form.reset(defaultValues);
             } else {

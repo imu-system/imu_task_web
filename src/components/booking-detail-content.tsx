@@ -123,12 +123,12 @@ export default function BookingDetailContent({ booking }: { booking: Booking }) 
                             <div className="flex items-center gap-2">
                                 <Euro className="h-4 w-4 text-muted-foreground"/>
                                 <strong>{t('cards.summary.amount')}:</strong>
-                                <span>{booking.agreedAmount / 100} {booking.currency}</span>
+                                <span>{(booking.agreedAmount ?? 0) / 100} {booking.currency}</span>
                             </div>
                             <div className="flex items-center gap-2 col-span-full">
                                 <Calendar className="h-4 w-4 text-muted-foreground"/>
                                 <strong>{t('cards.summary.date')}:</strong>
-                                <span>{new Intl.DateTimeFormat(locale, { dateStyle: 'full', timeStyle: 'short' }).format(new Date(booking.startAt))}</span>
+                                <span>{booking.startAt && new Intl.DateTimeFormat(locale, { dateStyle: 'full', timeStyle: 'short' }).format(new Date(booking.startAt))}</span>
                             </div>
                         </div>
                     </CardContent>
@@ -186,17 +186,17 @@ export default function BookingDetailContent({ booking }: { booking: Booking }) 
                                     <div className="flex justify-center">
                                         <CalendarPicker
                                             mode="single"
-                                            selected={new Date(booking.startAt)}
+                                            selected={booking.startAt ? new Date(booking.startAt) : undefined}
                                         />
                                     </div>
                                     <div className="grid grid-cols-2 gap-4">
                                         <div className="space-y-2">
                                             <Label htmlFor="start-time">{t('cards.actions.rescheduleDialog.startTime')}</Label>
-                                            <Input id="start-time" type="time" defaultValue={new Date(booking.startAt).toTimeString().substring(0,5)} />
+                                            <Input id="start-time" type="time" defaultValue={booking.startAt ? new Date(booking.startAt).toTimeString().substring(0,5) : ''} />
                                         </div>
                                         <div className="space-y-2">
                                             <Label htmlFor="end-time">{t('cards.actions.rescheduleDialog.endTime')}</Label>
-                                            <Input id="end-time" type="time" defaultValue={new Date(booking.endAt).toTimeString().substring(0,5)} />
+                                            <Input id="end-time" type="time" defaultValue={booking.endAt ? new Date(booking.endAt).toTimeString().substring(0,5) : ''} />
                                         </div>
                                     </div>
                                 </div>

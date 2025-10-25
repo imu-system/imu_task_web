@@ -27,7 +27,7 @@ export default function ProviderCard({ provider }: ProviderCardProps) {
             <CardHeader className="flex-row items-center gap-4">
                 <Avatar className="h-16 w-16">
                     <AvatarImage src={provider.profile?.photoUrl || undefined} />
-                    <AvatarFallback>{provider.profile?.displayName.charAt(0)}</AvatarFallback>
+                    <AvatarFallback>{provider.profile?.displayName?.charAt(0) || '?'}</AvatarFallback>
                 </Avatar>
                 <div>
                     <CardTitle className="text-xl">{provider.profile?.displayName}</CardTitle>

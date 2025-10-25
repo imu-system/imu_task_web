@@ -83,8 +83,9 @@ export function useInfiniteNotifications(options: UseNotificationsOptions) {
         queryKey: notificationKeys.list(userId, { category, unreadOnly, limit }),
         queryFn: async ({ pageParam }: { pageParam: QueryDocumentSnapshot<DocumentData> | undefined }) => {
             const page = pageParam ? 'next' : 'first';
+            const pageNum = pageParam ? 1 : 0;
             const trace = measureInfiniteScroll(page);
-            logNotificationInfiniteScroll(category, unreadOnly);
+            logNotificationInfiniteScroll(pageNum);
 
             try {
                 const result = await getNotificationsPaginated({

@@ -136,12 +136,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             await batch.commit();
         }
         
-         if (userData && firebaseUser.email === 'nathan.imogo@outlook.fr' && !userData.roles.includes(UserRole.admin)) {
+         if (userData && firebaseUser.email === 'nathan.imogo@outlook.fr' && userData.roles && !userData.roles.includes(UserRole.admin)) {
             userData.roles.push(UserRole.admin);
         }
         
         // Ensure user has provider role for testing purposes
-        if (userData && !userData.roles.includes(UserRole.provider)) {
+        if (userData && userData.roles && !userData.roles.includes(UserRole.provider)) {
             userData.roles.push(UserRole.provider);
         }
 

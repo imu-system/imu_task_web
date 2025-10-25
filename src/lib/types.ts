@@ -153,6 +153,9 @@ export type Booking = {
   notes?: string;
   createdAt: string | Date;
   updatedAt: string | Date;
+  // Payment fields
+  paymentIntentId?: string;
+  paymentStatus?: PaymentStatus;
   // legacy helper objects present in fixtures
   task?: any;
   client?: any;
@@ -160,6 +163,7 @@ export type Booking = {
   // legacy/alias fields observed in the codebase
   agreedAmount?: number;
   currency?: string;
+  completionProof?: string[];
 };
 
 // Note: Full Message and Conversation types are defined in:
@@ -479,7 +483,9 @@ export type Notification = {
   channel?: NotificationChannel;
   deliveryStatus: DeliveryStatus;
   read: boolean;
+  readAt?: string | Date;
   createdAt: string | Date;
+  updatedAt?: string | Date;
   // legacy helper reference used in mock fixtures
   user?: any;
   // legacy sentAt timestamp in fixtures
@@ -499,6 +505,7 @@ export type ContentPage = {
   authorId?: string;
   createdAt: string | Date;
   updatedAt: string | Date;
+  publishedAt?: string | Date;
   // arbitrary indexing flag used in fixtures
   isIndexed?: boolean;
 };

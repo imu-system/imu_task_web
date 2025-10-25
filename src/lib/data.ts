@@ -2,219 +2,219 @@
 
 import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole, Notification, NotificationType, NotificationChannel, DeliveryStatus, ContentPage, PageStatus, Thread, ThreadStatus, Message, MessageType, Attachment, AttachmentKind, Device, DevicePlatform } from './types';
 import { db } from './firebase';
-import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc, Timestamp } from 'firebase/firestore';
 
 
 export const users: User[] = [
-  {
-    id: 'user1',
-    email: 'anne-marie.dupont@email.com',
-    profile: {
-      displayName: 'Anne-Marie Dupont',
-      photoUrl: 'https://picsum.photos/id/1027/100/100',
-      userId: 'user1',
-      languages: ['Français'],
-      averageRating: 4.5,
-      reviewsCount: 12,
-      skills: ['Organisation'],
-      verifiedBadges: ['ID Verified'],
-      createdAt: '',
-      updatedAt: ''
+    {
+        id: 'user1',
+        email: 'anne-marie.dupont@email.com',
+        profile: {
+            displayName: 'Anne-Marie Dupont',
+            photoUrl: 'https://picsum.photos/id/1027/100/100',
+            userId: 'user1',
+            languages: ['Français'],
+            averageRating: 4.5,
+            reviewsCount: 12,
+            skills: ['Organisation'],
+            verifiedBadges: ['ID Verified'],
+            createdAt: '',
+            updatedAt: ''
+        },
+        roles: [UserRole.client],
+        status: UserStatus.active,
+        KYCStatus: KYCStatus.not_required,
+        createdAt: '',
+        updatedAt: ''
     },
-    roles: [UserRole.client],
-    status: UserStatus.active,
-    KYCStatus: KYCStatus.not_required,
-    createdAt: '',
-    updatedAt: ''
-  },
-  {
-    id: 'user2',
-    email: 'lucas.bernard@email.com',
-    profile: {
-      displayName: 'Lucas Bernard',
-      photoUrl: 'https://picsum.photos/id/1005/100/100',
-      userId: 'user2',
-      languages: ['Français', 'Anglais'],
-      averageRating: 4.8,
-      reviewsCount: 25,
-      skills: ['Jardinage', 'Bricolage'],
-      verifiedBadges: ['ID Verified', 'Payment Verified'],
-      createdAt: '',
-      updatedAt: ''
+    {
+        id: 'user2',
+        email: 'lucas.bernard@email.com',
+        profile: {
+            displayName: 'Lucas Bernard',
+            photoUrl: 'https://picsum.photos/id/1005/100/100',
+            userId: 'user2',
+            languages: ['Français', 'Anglais'],
+            averageRating: 4.8,
+            reviewsCount: 25,
+            skills: ['Jardinage', 'Bricolage'],
+            verifiedBadges: ['ID Verified', 'Payment Verified'],
+            createdAt: '',
+            updatedAt: ''
+        },
+        roles: [UserRole.provider],
+        status: UserStatus.active,
+        KYCStatus: KYCStatus.verified,
+        createdAt: '',
+        updatedAt: ''
     },
-    roles: [UserRole.provider],
-    status: UserStatus.active,
-    KYCStatus: KYCStatus.verified,
-    createdAt: '',
-    updatedAt: ''
-  },
-  {
-    id: 'user3',
-    email: 'chloe.petit@email.com',
-    profile: {
-      displayName: 'Chloé Petit',
-      photoUrl: 'https://picsum.photos/id/1011/100/100',
-      userId: 'user3',
-      languages: ['Français'],
-      averageRating: 4.9,
-      reviewsCount: 38,
-      skills: ['Courses', 'Ménage'],
-      verifiedBadges: ['ID Verified', 'Payment Verified'],
-      createdAt: '',
-      updatedAt: ''
+    {
+        id: 'user3',
+        email: 'chloe.petit@email.com',
+        profile: {
+            displayName: 'Chloé Petit',
+            photoUrl: 'https://picsum.photos/id/1011/100/100',
+            userId: 'user3',
+            languages: ['Français'],
+            averageRating: 4.9,
+            reviewsCount: 38,
+            skills: ['Courses', 'Ménage'],
+            verifiedBadges: ['ID Verified', 'Payment Verified'],
+            createdAt: '',
+            updatedAt: ''
+        },
+        roles: [UserRole.provider],
+        status: UserStatus.active,
+        KYCStatus: KYCStatus.verified,
+        createdAt: '',
+        updatedAt: ''
     },
-    roles: [UserRole.provider],
-    status: UserStatus.active,
-    KYCStatus: KYCStatus.verified,
-    createdAt: '',
-    updatedAt: ''
-  },
-  {
-    id: 'user4',
-    email: 'marc.dubois@email.com',
-    profile: {
-      displayName: 'Marc Dubois',
-      photoUrl: 'https://picsum.photos/id/1012/100/100',
-      userId: 'user4',
-      languages: ['Français'],
-      averageRating: 4.2,
-      reviewsCount: 5,
-      skills: [],
-      verifiedBadges: ['ID Verified'],
-      createdAt: '',
-      updatedAt: ''
+    {
+        id: 'user4',
+        email: 'marc.dubois@email.com',
+        profile: {
+            displayName: 'Marc Dubois',
+            photoUrl: 'https://picsum.photos/id/1012/100/100',
+            userId: 'user4',
+            languages: ['Français'],
+            averageRating: 4.2,
+            reviewsCount: 5,
+            skills: [],
+            verifiedBadges: ['ID Verified'],
+            createdAt: '',
+            updatedAt: ''
+        },
+        roles: [UserRole.client],
+        status: UserStatus.active,
+        KYCStatus: KYCStatus.not_required,
+        createdAt: '',
+        updatedAt: ''
     },
-    roles: [UserRole.client],
-    status: UserStatus.active,
-    KYCStatus: KYCStatus.not_required,
-    createdAt: '',
-    updatedAt: ''
-  },
-   {
-    id: 'user5',
-    email: 'moderator.emma@email.com',
-    profile: {
-      displayName: 'Emma Moreau (Support)',
-      photoUrl: 'https://picsum.photos/id/1015/100/100',
-      userId: 'user5',
-      languages: ['Français', 'Anglais'],
-      averageRating: 0,
-      reviewsCount: 0,
-      skills: [],
-      verifiedBadges: [],
-      createdAt: '',
-      updatedAt: ''
-    },
-    roles: [UserRole.moderator],
-    status: UserStatus.active,
-    KYCStatus: KYCStatus.not_required,
-    createdAt: '',
-    updatedAt: ''
-  }
+    {
+        id: 'user5',
+        email: 'moderator.emma@email.com',
+        profile: {
+            displayName: 'Emma Moreau (Support)',
+            photoUrl: 'https://picsum.photos/id/1015/100/100',
+            userId: 'user5',
+            languages: ['Français', 'Anglais'],
+            averageRating: 0,
+            reviewsCount: 0,
+            skills: [],
+            verifiedBadges: [],
+            createdAt: '',
+            updatedAt: ''
+        },
+        roles: [UserRole.moderator],
+        status: UserStatus.active,
+        KYCStatus: KYCStatus.not_required,
+        createdAt: '',
+        updatedAt: ''
+    }
 ];
 
 
 export const getTasks = (): Task[] => [
-  {
-    id: 'task1',
-    title: 'Aide pour les courses hebdomadaires',
-    description: "J'ai besoin de quelqu'un pour aller chercher mes courses au supermarché et me les livrer à domicile. La liste sera fournie. Idéalement une personne véhiculée.",
-    categoryId: 'groceries',
-    location: 'Metz, France',
-    timeWindowStart: new Date('2024-08-15T10:00:00'),
-    timeWindowEnd: new Date('2024-08-15T12:00:00'),
-    priceOffered: 25,
-    clientId: 'user1',
-    client: users.find(u => u.id === 'user1')!,
-    status: TaskStatus.published,
-    addressId: '',
-    latitude: 0,
-    longitude: 0,
-    attachments: [],
-    visibility: TaskVisibility.public,
-    createdAt: '',
-    updatedAt: ''
-  },
-  {
-    id: 'task2',
-    title: 'Tondre la pelouse et désherber',
-    description: "Mon jardin a besoin d'un bon rafraîchissement. Il faut tondre la pelouse (environ 50m²) et enlever les mauvaises herbes des parterres de fleurs.",
-    categoryId: 'gardening',
-    location: 'Montigny-lès-Metz, France',
-    timeWindowStart: new Date('2024-08-16T14:00:00'),
-    timeWindowEnd: new Date('2024-08-16T17:00:00'),
-    priceOffered: 40,
-    clientId: 'user4',
-    client: users.find(u => u.id === 'user4')!,
-    status: TaskStatus.published,
-    addressId: '',
-    latitude: 0,
-    longitude: 0,
-    attachments: [],
-    visibility: TaskVisibility.public,
-    createdAt: '',
-    updatedAt: ''
-  },
-  {
-    id: 'task3',
-    title: "Installer une nouvelle étagère murale",
-    description: "Je ne suis pas très bricoleur et j'ai besoin d'aide pour fixer solidement une étagère dans mon salon. J'ai déjà l'étagère et les vis.",
-    categoryId: 'handyman',
-    location: 'Metz, France',
-    timeWindowStart: new Date('2024-08-18T11:00:00'),
-    timeWindowEnd: new Date('2024-08-18T12:00:00'),
-    priceOffered: 20,
-    clientId: 'user1',
-    client: users.find(u => u.id === 'user1')!,
-    status: TaskStatus.matched,
-    addressId: '',
-    latitude: 0,
-    longitude: 0,
-    attachments: [],
-    visibility: TaskVisibility.public,
-    createdAt: '',
-    updatedAt: ''
-  },
     {
-      id: 'task4',
-      title: 'Promener mon chien pendant mes vacances',
-      description: 'Je cherche une personne de confiance pour promener mon golden retriever, Oscar, deux fois par jour pendant une semaine.',
-      categoryId: 'pet-care',
-      location: 'Thionville, France',
-      timeWindowStart: new Date('2024-08-20T09:00:00'),
-      timeWindowEnd: new Date('2024-08-20T10:00:00'),
-      priceOffered: 15,
-      clientId: 'user4',
-      client: users.find(u => u.id === 'user4')!,
-      status: TaskStatus.completed,
-      addressId: '',
-      latitude: 0,
-      longitude: 0,
-      attachments: [],
-      visibility: TaskVisibility.public,
-      createdAt: '',
-      updatedAt: ''
+        id: 'task1',
+        title: 'Aide pour les courses hebdomadaires',
+        description: "J'ai besoin de quelqu'un pour aller chercher mes courses au supermarché et me les livrer à domicile. La liste sera fournie. Idéalement une personne véhiculée.",
+        categoryId: 'groceries',
+        location: 'Metz, France',
+        timeWindowStart: new Date('2024-08-15T10:00:00'),
+        timeWindowEnd: new Date('2024-08-15T12:00:00'),
+        priceOffered: 25,
+        clientId: 'user1',
+        client: users.find(u => u.id === 'user1')!,
+        status: TaskStatus.published,
+        addressId: '',
+        latitude: 0,
+        longitude: 0,
+        attachments: [],
+        visibility: TaskVisibility.public,
+        createdAt: '',
+        updatedAt: ''
     },
-  {
-    id: 'task5',
-    title: 'Configurer une nouvelle imprimante',
-    description: "Je viens d'acheter une nouvelle imprimante Wi-Fi et je n'arrive pas à la connecter à mon ordinateur. J'aurais besoin d'un coup de main.",
-    categoryId: 'digital-assistance',
-    location: 'Metz, France',
-    timeWindowStart: new Date('2024-08-22T16:00:00'),
-    timeWindowEnd: new Date('2024-08-22T18:00:00'),
-    priceOffered: 30,
-    clientId: 'user1',
-    client: users.find(u => u.id === 'user1')!,
-    status: TaskStatus.published,
-    addressId: '',
-    latitude: 0,
-    longitude: 0,
-    attachments: [],
-    visibility: TaskVisibility.public,
-    createdAt: '',
-    updatedAt: ''
-  },
+    {
+        id: 'task2',
+        title: 'Tondre la pelouse et désherber',
+        description: "Mon jardin a besoin d'un bon rafraîchissement. Il faut tondre la pelouse (environ 50m²) et enlever les mauvaises herbes des parterres de fleurs.",
+        categoryId: 'gardening',
+        location: 'Montigny-lès-Metz, France',
+        timeWindowStart: new Date('2024-08-16T14:00:00'),
+        timeWindowEnd: new Date('2024-08-16T17:00:00'),
+        priceOffered: 40,
+        clientId: 'user4',
+        client: users.find(u => u.id === 'user4')!,
+        status: TaskStatus.published,
+        addressId: '',
+        latitude: 0,
+        longitude: 0,
+        attachments: [],
+        visibility: TaskVisibility.public,
+        createdAt: '',
+        updatedAt: ''
+    },
+    {
+        id: 'task3',
+        title: "Installer une nouvelle étagère murale",
+        description: "Je ne suis pas très bricoleur et j'ai besoin d'aide pour fixer solidement une étagère dans mon salon. J'ai déjà l'étagère et les vis.",
+        categoryId: 'handyman',
+        location: 'Metz, France',
+        timeWindowStart: new Date('2024-08-18T11:00:00'),
+        timeWindowEnd: new Date('2024-08-18T12:00:00'),
+        priceOffered: 20,
+        clientId: 'user1',
+        client: users.find(u => u.id === 'user1')!,
+        status: TaskStatus.matched,
+        addressId: '',
+        latitude: 0,
+        longitude: 0,
+        attachments: [],
+        visibility: TaskVisibility.public,
+        createdAt: '',
+        updatedAt: ''
+    },
+    {
+        id: 'task4',
+        title: 'Promener mon chien pendant mes vacances',
+        description: 'Je cherche une personne de confiance pour promener mon golden retriever, Oscar, deux fois par jour pendant une semaine.',
+        categoryId: 'pet-care',
+        location: 'Thionville, France',
+        timeWindowStart: new Date('2024-08-20T09:00:00'),
+        timeWindowEnd: new Date('2024-08-20T10:00:00'),
+        priceOffered: 15,
+        clientId: 'user4',
+        client: users.find(u => u.id === 'user4')!,
+        status: TaskStatus.completed,
+        addressId: '',
+        latitude: 0,
+        longitude: 0,
+        attachments: [],
+        visibility: TaskVisibility.public,
+        createdAt: '',
+        updatedAt: ''
+    },
+    {
+        id: 'task5',
+        title: 'Configurer une nouvelle imprimante',
+        description: "Je viens d'acheter une nouvelle imprimante Wi-Fi et je n'arrive pas à la connecter à mon ordinateur. J'aurais besoin d'un coup de main.",
+        categoryId: 'digital-assistance',
+        location: 'Metz, France',
+        timeWindowStart: new Date('2024-08-22T16:00:00'),
+        timeWindowEnd: new Date('2024-08-22T18:00:00'),
+        priceOffered: 30,
+        clientId: 'user1',
+        client: users.find(u => u.id === 'user1')!,
+        status: TaskStatus.published,
+        addressId: '',
+        latitude: 0,
+        longitude: 0,
+        attachments: [],
+        visibility: TaskVisibility.public,
+        createdAt: '',
+        updatedAt: ''
+    },
 ];
 
 export async function createTask(taskData: Omit<Task, 'id' | 'client' | 'status' | 'createdAt' | 'updatedAt' | 'latitude' | 'longitude' | 'attachments' | 'visibility' | 'category' | 'bookings'>) {
@@ -259,7 +259,7 @@ export async function duplicateServiceCategory(id: string) {
     if (docSnap.exists()) {
         const data = docSnap.data() as ServiceCategory;
         const newSlug = `${data.slug}-copy`;
-        
+
         // We only need the creation data, not the full object with id, etc.
         const { id: categoryId, createdAt, updatedAt, ...creationData } = data;
 
@@ -284,6 +284,7 @@ export const getOffers = (): Offer[] => [
         providerId: 'user2',
         provider: users.find(u => u.id === 'user2')!,
         message: 'Bonjour, je suis disponible et véhiculé. Je peux faire vos courses cet après-midi si vous le souhaitez.',
+        amount: 25,
         proposedPrice: 25,
         status: OfferStatus.pending,
         expiresAt: new Date('2024-08-30T23:59:59'),
@@ -297,32 +298,35 @@ export const getOffers = (): Offer[] => [
         providerId: 'user3',
         provider: users.find(u => u.id === 'user3')!,
         message: "Bonjour, j'habite juste à côté et je serais ravie de vous aider pour vos courses. Je suis disponible demain matin.",
+        amount: 23,
         proposedPrice: 23,
         status: OfferStatus.pending,
         expiresAt: new Date('2024-08-30T23:59:59'),
         createdAt: '',
         updatedAt: ''
     },
-     {
+    {
         id: 'offer3',
         taskId: 'task3',
         task: getTasks().find(t => t.id === 'task3'),
         providerId: 'user2',
         provider: users.find(u => u.id === 'user2')!,
         message: "Bonjour, j'ai tout le matériel nécessaire pour fixer votre étagère solidement. Je peux passer dans l'après-midi.",
+        amount: 20,
         proposedPrice: 20,
         status: OfferStatus.accepted,
         expiresAt: new Date('2024-08-25T23:59:59'),
         createdAt: '',
         updatedAt: ''
     },
-     {
+    {
         id: 'offer4',
         taskId: 'task2',
         task: getTasks().find(t => t.id === 'task2'),
         providerId: 'user3',
         provider: users.find(u => u.id === 'user3')!,
         message: "Le jardinage c'est ma passion ! Je serais heureux de m'occuper de votre jardin.",
+        amount: 45,
         proposedPrice: 45,
         status: OfferStatus.declined,
         expiresAt: new Date('2024-08-20T23:59:59'),
@@ -363,6 +367,7 @@ export const getTransfers = (): Transfer[] => [
 export const getPayouts = (): Payout[] => [
     {
         id: 'po_1',
+        userId: 'user3',
         providerId: 'user3',
         provider: users.find(u => u.id === 'user3')!,
         payoutId: 'po_1PkWaTLqgLzJ7fV0123ABCD',
@@ -375,6 +380,7 @@ export const getPayouts = (): Payout[] => [
     },
     {
         id: 'po_2',
+        userId: 'user2',
         providerId: 'user2',
         provider: users.find(u => u.id === 'user2')!,
         payoutId: 'po_1PlXbULqgLzJ7fV0456EFGH',
@@ -385,8 +391,9 @@ export const getPayouts = (): Payout[] => [
         createdAt: '2024-08-22T14:00:00Z',
         updatedAt: '2024-08-22T14:00:00Z',
     },
-     {
+    {
         id: 'po_3',
+        userId: 'user2',
         providerId: 'user2',
         provider: users.find(u => u.id === 'user2')!,
         payoutId: 'po_1PmYcVLqgLzJ7fV0789IJKL',
@@ -403,38 +410,47 @@ export const getReviews = (): Review[] => [
     {
         id: 'rev1',
         bookingId: 'booking2',
+        taskId: 'task4',
         reviewerId: 'user4',
         reviewer: users.find(u => u.id === 'user4')!,
+        reviewedUserId: 'user3',
         revieweeId: 'user3',
         reviewee: users.find(u => u.id === 'user3')!,
         rating: 5,
         comment: 'Chloé a été fantastique avec mon chien Oscar. Très professionnelle et ponctuelle. Je recommande vivement !',
         visibility: ReviewVisibility.public,
         createdAt: new Date('2024-08-21T10:00:00Z'),
+        updatedAt: new Date('2024-08-21T10:00:00Z'),
     },
     {
         id: 'rev2',
         bookingId: 'booking2',
+        taskId: 'task4',
         reviewerId: 'user3',
         reviewer: users.find(u => u.id === 'user3')!,
+        reviewedUserId: 'user4',
         revieweeId: 'user4',
         reviewee: users.find(u => u.id === 'user4')!,
         rating: 5,
         comment: 'Marc a été un client très agréable, et Oscar est adorable. Mission parfaite.',
         visibility: ReviewVisibility.public,
         createdAt: new Date('2024-08-21T11:00:00Z'),
+        updatedAt: new Date('2024-08-21T11:00:00Z'),
     },
     {
         id: 'rev3',
         bookingId: 'booking1',
+        taskId: 'task3',
         reviewerId: 'user1',
         reviewer: users.find(u => u.id === 'user1')!,
+        reviewedUserId: 'user2',
         revieweeId: 'user2',
         reviewee: users.find(u => u.id === 'user2')!,
         rating: 4,
         comment: "Lucas a bien installé l'étagère, mais il est arrivé un peu en retard.",
         visibility: ReviewVisibility.public,
         createdAt: new Date('2024-08-19T14:00:00Z'),
+        updatedAt: new Date('2024-08-19T14:00:00Z'),
     }
 ];
 
@@ -445,21 +461,27 @@ export const getReviewById = (id: string): Review | undefined => {
 export const getDisputes = (): Dispute[] => [
     {
         id: 'dispute1',
+        taskId: 'task3',
         bookingId: 'booking1',
+        raisedById: 'user1',
+        againstUserId: 'user2',
         openedById: 'user1',
         openedBy: users.find(u => u.id === 'user1')!,
         type: DisputeType.quality,
         description: "L'étagère n'est pas droite et semble peu solide. Je ne suis pas satisfait du travail.",
         attachments: ['https://picsum.photos/seed/shelf_dispute/600/400'],
         status: DisputeStatus.open,
-        assignedToId: null,
-        assignedTo: null,
+        assignedToId: undefined,
+        assignedTo: undefined,
         createdAt: new Date('2024-08-19T18:00:00Z'),
         updatedAt: new Date('2024-08-19T18:00:00Z'),
     },
     {
         id: 'dispute2',
+        taskId: 'task4',
         bookingId: 'booking2',
+        raisedById: 'user4',
+        againstUserId: 'user3',
         openedById: 'user4',
         openedBy: users.find(u => u.id === 'user4')!,
         type: DisputeType.no_show,
@@ -471,9 +493,12 @@ export const getDisputes = (): Dispute[] => [
         createdAt: new Date('2024-08-20T10:00:00Z'),
         updatedAt: new Date('2024-08-20T11:30:00Z'),
     },
-     {
+    {
         id: 'dispute3',
+        taskId: 'task5',
         bookingId: 'booking3',
+        raisedById: 'user2',
+        againstUserId: 'user1',
         openedById: 'user2',
         openedBy: users.find(u => u.id === 'user2')!,
         type: DisputeType.other,
@@ -482,7 +507,6 @@ export const getDisputes = (): Dispute[] => [
         status: DisputeStatus.resolved_refund_full,
         assignedToId: 'user5',
         assignedTo: users.find(u => u.id === 'user5'),
-        resolvedById: 'user5',
         resolvedAt: new Date('2024-08-23T15:00:00Z'),
         createdAt: new Date('2024-08-22T09:00:00Z'),
         updatedAt: new Date('2024-08-23T15:00:00Z'),
@@ -499,8 +523,12 @@ export const getNotifications = (): Notification[] => [
         userId: 'user1',
         user: users.find(u => u.id === 'user1'),
         type: NotificationType.task_offer_received,
+        title: 'Nouvelle proposition reçue',
+        message: 'Chloé Petit a fait une proposition pour votre tâche',
+        channels: [NotificationChannel.in_app],
         channel: NotificationChannel.in_app,
         deliveryStatus: DeliveryStatus.sent,
+        read: true,
         sentAt: new Date('2024-08-25T10:00:00Z'),
         readAt: new Date('2024-08-25T10:05:00Z'),
         createdAt: new Date('2024-08-25T10:00:00Z'),
@@ -516,8 +544,12 @@ export const getNotifications = (): Notification[] => [
         userId: 'user2',
         user: users.find(u => u.id === 'user2'),
         type: NotificationType.offer_accepted,
+        title: 'Proposition acceptée',
+        message: 'Votre proposition a été acceptée par Anne-Marie Dupont',
+        channels: [NotificationChannel.email],
         channel: NotificationChannel.email,
         deliveryStatus: DeliveryStatus.sent,
+        read: false,
         sentAt: new Date('2024-08-25T11:00:00Z'),
         createdAt: new Date('2024-08-25T11:00:00Z'),
         updatedAt: new Date('2024-08-25T11:00:00Z'),
@@ -532,8 +564,12 @@ export const getNotifications = (): Notification[] => [
         userId: 'user4',
         user: users.find(u => u.id === 'user4'),
         type: NotificationType.booking_reminder,
+        title: 'Rappel de réservation',
+        message: 'N\'oubliez pas votre réservation demain à 9h',
+        channels: [NotificationChannel.push],
         channel: NotificationChannel.push,
         deliveryStatus: DeliveryStatus.queued,
+        read: false,
         sentAt: new Date('2024-08-26T09:00:00Z'),
         createdAt: new Date('2024-08-26T09:00:00Z'),
         updatedAt: new Date('2024-08-26T09:00:00Z'),
@@ -548,8 +584,12 @@ export const getNotifications = (): Notification[] => [
         userId: 'user1',
         user: users.find(u => u.id === 'user1'),
         type: NotificationType.dispute_update,
+        title: 'Mise à jour du litige',
+        message: 'Le statut de votre litige a été mis à jour',
+        channels: [NotificationChannel.in_app],
         channel: NotificationChannel.in_app,
         deliveryStatus: DeliveryStatus.failed,
+        read: false,
         sentAt: new Date('2024-08-24T14:00:00Z'),
         createdAt: new Date('2024-08-24T14:00:00Z'),
         updatedAt: new Date('2024-08-24T14:00:00Z'),
@@ -609,10 +649,10 @@ const mockMessages: Message[] = [
     { id: 'msg1', threadId: 'thread1', senderId: 'user2', body: 'Bonjour, je suis intéressé par votre mission de jardinage. Je suis disponible demain.', type: MessageType.text, sentAt: new Date('2024-08-27T10:00:00Z') },
     { id: 'msg2', threadId: 'thread1', senderId: 'user4', body: 'Bonjour Lucas, merci pour votre message. Demain 14h vous conviendrait ?', type: MessageType.text, sentAt: new Date('2024-08-27T10:05:00Z') },
     { id: 'msg3', threadId: 'thread1', senderId: 'user2', body: 'Parfait pour moi !', type: MessageType.text, sentAt: new Date('2024-08-27T10:06:00Z') },
-    { 
-        id: 'msg4', 
-        threadId: 'thread2', 
-        senderId: 'user3', 
+    {
+        id: 'msg4',
+        threadId: 'thread2',
+        senderId: 'user3',
         type: MessageType.image,
         body: 'Voici une photo du jardin actuel.',
         attachments: [{
@@ -625,7 +665,7 @@ const mockMessages: Message[] = [
             uploadedBy: 'user3',
             uploadedAt: new Date('2024-08-27T10:07:00Z')
         }],
-        sentAt: new Date('2024-08-27T10:07:00Z') 
+        sentAt: new Date('2024-08-27T10:07:00Z')
     },
     {
         id: 'msg5',
@@ -671,63 +711,63 @@ const mockMessages: Message[] = [
 ];
 
 export var mockThreads: Thread[] = [
-    { 
-        id: 'thread1', 
-        taskId: 'task2', 
+    {
+        id: 'thread1',
+        taskId: 'task2',
         participants: ['user4', 'user2'],
-        participantsData: [users.find(u => u.id === 'user4')!, users.find(u => u.id === 'user2')!], 
-        lastMessage: mockMessages.find(m => m.id === 'msg3')!, 
-        lastMessageAt: new Date('2024-08-27T10:06:00Z'), 
-        status: ThreadStatus.open, 
-        createdAt: new Date(), 
-        updatedAt: new Date(), 
-        task: getTasks().find(t => t.id === 'task2')! 
+        participantsData: [users.find(u => u.id === 'user4')!, users.find(u => u.id === 'user2')!],
+        lastMessage: mockMessages.find(m => m.id === 'msg3')!,
+        lastMessageAt: new Date('2024-08-27T10:06:00Z'),
+        status: ThreadStatus.open,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        task: getTasks().find(t => t.id === 'task2')!
     },
-    { 
-        id: 'thread2', 
-        taskId: 'task1', 
+    {
+        id: 'thread2',
+        taskId: 'task1',
         participants: ['user1', 'user3'],
-        participantsData: [users.find(u => u.id === 'user1')!, users.find(u => u.id === 'user3')!], 
-        lastMessage: mockMessages.find(m => m.id === 'msg10')!, 
-        lastMessageAt: new Date('2024-08-27T10:09:00Z'), 
-        status: ThreadStatus.open, 
-        createdAt: new Date(), 
-        updatedAt: new Date(), 
-        task: getTasks().find(t => t.id === 'task1')! 
+        participantsData: [users.find(u => u.id === 'user1')!, users.find(u => u.id === 'user3')!],
+        lastMessage: mockMessages.find(m => m.id === 'msg10')!,
+        lastMessageAt: new Date('2024-08-27T10:09:00Z'),
+        status: ThreadStatus.open,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        task: getTasks().find(t => t.id === 'task1')!
     },
-    { 
-        id: 'thread3', 
-        taskId: 'task4', 
-        participants: ['user4', 'user1'], 
-        participantsData: [users.find(u => u.id === 'user4')!, users.find(u => u.id === 'user1')!], 
-        lastMessage: mockMessages.find(m => m.id === 'msg7')!, 
-        lastMessageAt: new Date('2024-08-19T15:05:00Z'), 
-        status: ThreadStatus.archived, 
-        createdAt: new Date(), 
-        updatedAt: new Date(), 
-        task: getTasks().find(t => t.id === 'task4')! 
+    {
+        id: 'thread3',
+        taskId: 'task4',
+        participants: ['user4', 'user1'],
+        participantsData: [users.find(u => u.id === 'user4')!, users.find(u => u.id === 'user1')!],
+        lastMessage: mockMessages.find(m => m.id === 'msg7')!,
+        lastMessageAt: new Date('2024-08-19T15:05:00Z'),
+        status: ThreadStatus.archived,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        task: getTasks().find(t => t.id === 'task4')!
     },
-     { 
-        id: 'thread4', 
+    {
+        id: 'thread4',
         participants: ['user1', 'user5'],
-        participantsData: [users.find(u => u.id === 'user1')!, users.find(u => u.id === 'user5')!], 
-        lastMessage: mockMessages.find(m => m.id === 'msg9')!, 
-        lastMessageAt: new Date('2024-08-28T09:02:00Z'), 
-        status: ThreadStatus.open, 
-        createdAt: new Date(), 
-        updatedAt: new Date(), 
+        participantsData: [users.find(u => u.id === 'user1')!, users.find(u => u.id === 'user5')!],
+        lastMessage: mockMessages.find(m => m.id === 'msg9')!,
+        lastMessageAt: new Date('2024-08-28T09:02:00Z'),
+        status: ThreadStatus.open,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     },
 ];
 
 
 export const getThreadsForUser = (userId: string, callback: (threads: Thread[]) => void): Unsubscribe => {
     const q = query(collection(db, 'threads'), where('participants', 'array-contains', userId));
-    
+
     const unsubscribe = onSnapshot(q, async (snapshot) => {
-        const threadsData: Thread[] = await Promise.all(snapshot.docs.map(async (doc) => {
-            const data = doc.data();
+        const threadsData: Thread[] = await Promise.all(snapshot.docs.map(async (docSnap) => {
+            const data = docSnap.data();
             const lastMessage = data.lastMessage || {};
-            
+
             // Populate participantsData
             const participantsData = await Promise.all(
                 data.participants.map(async (id: string) => {
@@ -748,7 +788,7 @@ export const getThreadsForUser = (userId: string, callback: (threads: Thread[]) 
             }
 
             return {
-                id: doc.id,
+                id: docSnap.id,
                 ...data,
                 participantsData: participantsData.filter(Boolean),
                 task: taskData,
@@ -778,7 +818,11 @@ export const getThreadById = (threadId: string): Thread | undefined => {
 }
 
 export const getMessagesForThread = (threadId: string): Message[] => {
-    return mockMessages.filter(m => m.threadId === threadId).sort((a, b) => new Date(a.sentAt).getTime() - new Date(b.sentAt).getTime());
+    return mockMessages.filter(m => m.threadId === threadId).sort((a, b) => {
+        const dateA = a.sentAt ? new Date(a.sentAt).getTime() : 0;
+        const dateB = b.sentAt ? new Date(b.sentAt).getTime() : 0;
+        return dateA - dateB;
+    });
 }
 
 export const getTaskTemplateById = (templateId: string) => {

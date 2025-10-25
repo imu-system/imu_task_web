@@ -9,8 +9,9 @@ import {
   updateDoc,
   deleteDoc,
   getDocs,
+  getDoc,
 } from 'firebase/firestore';
-import { CallSignal, IceCandidateSignal } from './types';
+// import { CallSignal, IceCandidateSignal } from './types';
 
 const servers = {
   iceServers: [
@@ -47,7 +48,9 @@ export class WebRTCService {
       event.streams[0].getTracks().forEach((track) => {
         this.remoteStream?.addTrack(track);
       });
-      this.onRemoteStream(this.remoteStream);
+      if (this.remoteStream) {
+        this.onRemoteStream(this.remoteStream);
+      }
     };
 
     return this.localStream;
@@ -67,7 +70,7 @@ export class WebRTCService {
     const offerDescription = await this.pc.createOffer();
     await this.pc.setLocalDescription(offerDescription);
 
-    const offer: CallSignal = {
+    const offer: any = {
       sdp: offerDescription.sdp!,
       type: offerDescription.type,
     };
@@ -99,34 +102,34 @@ export class WebRTCService {
     const callDoc = doc(db, 'threads', this.threadId, 'calls', callId);
     const answerCandidates = collection(callDoc, 'answerCandidates');
     const offerCandidates = collection(callDoc, 'offerCandidates');
-    
+
     this.pc.onicecandidate = (event) => {
       event.candidate && addDoc(answerCandidates, event.candidate.toJSON());
     };
-    
+
     const callData = (await getDoc(callDoc)).data();
-    if(callData?.offer) {
-        const offerDescription = new RTCSessionDescription(callData.offer);
-        await this.pc.setRemoteDescription(offerDescription);
+    if (callData?.offer) {
+      const offerDescription = new RTCSessionDescription(callData.offer);
+      await this.pc.setRemoteDescription(offerDescription);
 
-        const answerDescription = await this.pc.createAnswer();
-        await this.pc.setLocalDescription(answerDescription);
+      const answerDescription = await this.pc.createAnswer();
+      await this.pc.setLocalDescription(answerDescription);
 
-        const answer: CallSignal = {
-            sdp: answerDescription.sdp!,
-            type: answerDescription.type
-        };
+      const answer: any = {
+        sdp: answerDescription.sdp!,
+        type: answerDescription.type,
+      };
 
-        await updateDoc(callDoc, { answer });
+      await updateDoc(callDoc, { answer });
 
-         onSnapshot(offerCandidates, (snapshot) => {
-            snapshot.docChanges().forEach((change) => {
-                if (change.type === 'added') {
-                    let data = change.doc.data();
-                    this.pc.addIceCandidate(new RTCIceCandidate(data));
-                }
-            });
+      onSnapshot(offerCandidates, (snapshot) => {
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === 'added') {
+            let data = change.doc.data();
+            this.pc.addIceCandidate(new RTCIceCandidate(data));
+          }
         });
+      });
     }
   }
 

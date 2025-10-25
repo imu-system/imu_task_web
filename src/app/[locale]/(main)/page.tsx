@@ -34,10 +34,17 @@ import { HowItWorks } from '@/components/landing/how-it-works';
 import { StatsTrust } from '@/components/landing/stats-trust';
 import { ProfileCards } from '@/components/landing/profile-cards';
 import { CarelinkPreview } from '@/components/landing/carelink-preview';
+import { useEffect } from 'react';
+import { logLandingPageView } from '@/lib/analytics';
 
 
 export default function Home() {
   const t = useTranslations('LandingPage');
+
+  useEffect(() => {
+    // Track landing page view on mount
+    logLandingPageView();
+  }, []);
 
   const features = [
     {

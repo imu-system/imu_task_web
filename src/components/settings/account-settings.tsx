@@ -61,9 +61,9 @@ export default function AccountSettings() {
                     <div className="flex items-center justify-between p-4 border rounded-lg bg-muted/50">
                         <div className="flex items-center gap-3">
                             <Phone className="h-5 w-5 text-muted-foreground"/>
-                            <span>{user.phone || t('phone.notProvided')}</span>
+                            <span>{(user as any)?.phone || t('phone.notProvided')}</span>
                         </div>
-                        <Button variant="outline">{user.phone ? t('phone.buttonEdit') : t('phone.buttonAdd')}</Button>
+                        <Button variant="outline">{(user as any)?.phone ? t('phone.buttonEdit') : t('phone.buttonAdd')}</Button>
                     </div>
                 </CardContent>
             </Card>

@@ -65,6 +65,20 @@ const formSchema = z.object({
     path: ['timeWindowEnd'],
 });
 
+/**
+ * Helper function to extract localized text from string or Record<string, string>
+ * @param text - The text field (can be string or Record<string, string>)
+ * @param locale - Preferred locale (default: 'fr')
+ * @returns Localized string
+ */
+function getLocalizedText(text: string | Record<string, string>, locale: string = 'fr'): string {
+    if (typeof text === 'string') {
+        return text;
+    }
+    // If it's a Record, try to get the locale, fallback to 'fr', then first available value
+    return text[locale] || text.fr || text.en || Object.values(text)[0] || '';
+}
+
 const mockAddresses = [
     { id: '1', label: 'Maison', formatted: '123 Rue Principale, 75001 Paris, France', isDefault: true },
     { id: '2', label: 'Travail', formatted: '456 Avenue des Champs-Élysées, 75008 Paris, France', isDefault: false },
@@ -111,7 +125,8 @@ export default function EditTaskPage() {
     ? (() => {
         const selectedCategory = taskCategories.find(cat => cat.id === selectedCategoryId);
         if (!selectedCategory) return [];
-        const enumValue = categoryNameToEnum[selectedCategory.name];
+        const categoryName = getLocalizedText(selectedCategory.name, 'fr');
+        const enumValue = categoryNameToEnum[categoryName];
         if (!enumValue) return [];
         return TASK_TEMPLATES.filter(template => template.category === enumValue);
       })()
@@ -157,8 +172,12 @@ export default function EditTaskPage() {
                 // Populate form
                 form.reset({
                     ...taskData,
-                    timeWindowStart: taskData.timeWindowStart instanceof Timestamp ? taskData.timeWindowStart.toDate() : new Date(taskData.timeWindowStart),
-                    timeWindowEnd: taskData.timeWindowEnd instanceof Timestamp ? taskData.timeWindowEnd.toDate() : new Date(taskData.timeWindowEnd),
+                    timeWindowStart: taskData.timeWindowStart 
+                        ? (taskData.timeWindowStart instanceof Timestamp ? taskData.timeWindowStart.toDate() : new Date(taskData.timeWindowStart))
+                        : undefined,
+                    timeWindowEnd: taskData.timeWindowEnd 
+                        ? (taskData.timeWindowEnd instanceof Timestamp ? taskData.timeWindowEnd.toDate() : new Date(taskData.timeWindowEnd))
+                        : undefined,
                 });
             } else {
                  toast({ variant: 'destructive', title: tEdit('toastNotFoundTitle'), description: tEdit('toastNotFoundDescription') });
@@ -238,7 +257,10 @@ export default function EditTaskPage() {
     setIsSuggesting(true);
     const result = await suggestTaskCategories(description);
     if (result.success && result.categories) {
-      const filtered = taskCategories.filter(tc => result.categories!.includes(tc.name));
+      const filtered = taskCategories.filter(tc => {
+        const localizedName = getLocalizedText(tc.name, 'fr');
+        return result.categories!.includes(localizedName);
+      });
       setSuggestedCategories(filtered);
     } else {
       toast({
@@ -372,7 +394,7 @@ export default function EditTaskPage() {
                             <SelectContent>
                             {taskCategories.map((cat) => (
                                 <SelectItem key={cat.id} value={cat.id}>
-                                {cat.name}
+                                {getLocalizedText(cat.name, 'fr')}
                                 </SelectItem>
                             ))}
                             </SelectContent>

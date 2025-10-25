@@ -22,7 +22,7 @@ export function measureNotificationLoad(userId: string) {
     };
 }
 
-export function measureInfiniteScroll(page: number) {
+export function measureInfiniteScroll(page: string | number) {
     if (!perf) return;
 
     const trace = createTrace(perf, 'notification_infinite_scroll');
@@ -31,6 +31,7 @@ export function measureInfiniteScroll(page: number) {
 
     return {
         stop: () => trace.stop(),
+        incrementMetric: (name: string, value: number) => trace.incrementMetric(name, value),
     };
 }
 

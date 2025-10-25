@@ -6,6 +6,7 @@ import { useTranslations } from 'next-intl';
 import { useState, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { TASK_CATEGORIES } from '@/lib/constants/categories';
+import { logCategoryClick } from '@/lib/analytics';
 
 export function CategoryPills() {
   const router = useRouter();
@@ -41,8 +42,9 @@ export function CategoryPills() {
     }
   };
 
-  const handleCategoryClick = (slug: string) => {
+  const handleCategoryClick = (slug: string, categoryName: string, isAccessible: boolean = false) => {
     setSelectedCategory(slug);
+    logCategoryClick(slug, categoryName, isAccessible);
     router.push({
       pathname: '/tasks/browse',
       query: { category: slug },
@@ -94,7 +96,7 @@ export function CategoryPills() {
                     ? 'shadow-md'
                     : 'hover:bg-accent hover:shadow-sm'
                 )}
-                onClick={() => handleCategoryClick(category.slug)}
+                onClick={() => handleCategoryClick(category.slug, t(category.nameKey), category.isAccessible || false)}
               >
                 <IconComponent className="h-5 w-5" />
                 <span className="whitespace-nowrap">{t(category.nameKey)}</span>

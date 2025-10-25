@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 import { User, Briefcase, Heart, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { logProfileCardClick } from "@/lib/analytics";
 
 export function ProfileCards() {
   const t = useTranslations("LandingPage.profiles");
@@ -83,6 +84,7 @@ export function ProfileCards() {
                   variant="outline"
                   size="lg"
                   className="w-full rounded-2xl group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
+                  onClick={() => logProfileCardClick(profile.key, 'card_cta')}
                 >
                   <Link href={profile.href}>
                     {t(`${profile.key}.cta`)}

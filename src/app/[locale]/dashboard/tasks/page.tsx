@@ -25,6 +25,20 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { getCurrentPosition, sortTasksByDistance } from '@/lib/geolocation';
 import { Badge } from '@/components/ui/badge';
 
+/**
+ * Helper function to extract localized text from string or Record<string, string>
+ * @param text - The text field (can be string or Record<string, string>)
+ * @param locale - Preferred locale (default: 'fr')
+ * @returns Localized string
+ */
+function getLocalizedText(text: string | Record<string, string>, locale: string = 'fr'): string {
+    if (typeof text === 'string') {
+        return text;
+    }
+    // If it's a Record, try to get the locale, fallback to 'fr', then first available value
+    return text[locale] || text.fr || text.en || Object.values(text)[0] || '';
+}
+
 export default function DashboardTasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
@@ -78,7 +92,7 @@ export default function DashboardTasksPage() {
                 const categorySnap = await getDoc(categoryRef);
                 if (categorySnap.exists()) {
                     const categoryData = categorySnap.data() as ServiceCategory;
-                    taskData.category = categoryData.name; // Store category name as string
+                    taskData.category = getLocalizedText(categoryData.name, 'fr'); // Store localized category name
                 }
             }
             if (taskData.id) {

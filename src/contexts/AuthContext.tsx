@@ -39,6 +39,7 @@ interface AuthContextType {
   updateUserProfile: (data: { displayName?: string; photoURL?: string }) => Promise<void>;
   startImpersonation?: (userId: string) => Promise<void>;
   stopImpersonation?: () => void;
+  impersonatingUser?: AppUser | null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);

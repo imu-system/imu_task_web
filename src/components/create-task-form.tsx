@@ -44,6 +44,19 @@ import { collection, query, where, getDocs, onSnapshot } from 'firebase/firestor
 import { db } from '@/lib/firebase';
 import { DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 
+/**
+ * Helper function to extract localized text from string or Record<string, string>
+ * @param text - The text field (can be string or Record<string, string>)
+ * @param locale - Preferred locale (default: 'fr')
+ * @returns Localized string
+ */
+function getLocalizedText(text: string | Record<string, string>, locale: string = 'fr'): string {
+    if (typeof text === 'string') {
+        return text;
+    }
+    // If it's a Record, try to get the locale, fallback to 'fr', then first available value
+    return text[locale] || text.fr || text.en || Object.values(text)[0] || '';
+}
 
 const formSchema = z.object({
   title: z.string().min(5, 'Le titre doit faire au moins 5 caractères.'),
@@ -111,7 +124,7 @@ export function CreateTaskForm() {
         if (templateId) {
             const template = getTaskTemplateById(templateId);
             if (template) {
-                const category = categories.find(c => c.name.fr === template.category);
+                const category = categories.find(c => getLocalizedText(c.name, 'fr') === template.category);
                 form.reset({
                     title: template.name,
                     description: template.description,
@@ -182,9 +195,9 @@ export function CreateTaskForm() {
     const description = form.getValues('description');
     if (description.length < 20) return;
     setIsSuggesting(true);
-    const result = await suggestTaskCategories({ taskDescription: description });
+    const result = await suggestTaskCategories(description);
     if (result.success && result.categories) {
-      const filtered = taskCategories.filter(tc => result.categories!.includes(tc.slug));
+      const filtered = taskCategories.filter(tc => result.categories!.includes(tc.slug || ''));
       setSuggestedCategories(filtered);
     } else {
       toast({
@@ -266,7 +279,7 @@ export function CreateTaskForm() {
                         className="cursor-pointer"
                         onClick={() => form.setValue('categoryId', cat.id, { shouldValidate: true })}
                     >
-                        {cat.name.fr || cat.slug}
+                        {getLocalizedText(cat.name, 'fr') || cat.slug}
                     </Badge>
                     ))}
                 </div>
@@ -290,7 +303,7 @@ export function CreateTaskForm() {
                 <SelectContent>
                   {taskCategories.map((cat) => (
                     <SelectItem key={cat.id} value={cat.id}>
-                      {cat.name.fr || cat.slug}
+                      {getLocalizedText(cat.name, 'fr') || cat.slug}
                     </SelectItem>
                   ))}
                 </SelectContent>

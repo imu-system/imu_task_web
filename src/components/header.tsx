@@ -28,6 +28,7 @@ import { useState } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
+import { logHeaderServicesMenuClick } from '@/lib/analytics';
 import { usePathname, Link } from '@/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import LanguageCurrencyModal from './language-currency-modal';
@@ -50,19 +51,22 @@ export default function Header() {
       href: '/#particuliers', 
       label: t('servicesMenu.imutask'),
       desc: t('servicesMenu.imutaskDesc'),
-      gradient: 'from-blue-500 to-cyan-500'
+      gradient: 'from-blue-500 to-cyan-500',
+      platform: 'imutask' as const
     },
     { 
       href: '/#imupro', 
       label: t('servicesMenu.imupro'),
       desc: t('servicesMenu.imuproDesc'),
-      gradient: 'from-purple-500 to-pink-500'
+      gradient: 'from-purple-500 to-pink-500',
+      platform: 'imupro' as const
     },
     { 
       href: '/#carelink', 
       label: t('servicesMenu.carelink'),
       desc: t('servicesMenu.carelinkDesc'),
-      gradient: 'from-orange-500 to-red-500'
+      gradient: 'from-orange-500 to-red-500',
+      platform: 'carelink' as const
     },
   ];
 
@@ -218,7 +222,12 @@ export default function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-72 rounded-2xl shadow-xl border-border/50 p-3" align="start">
               {servicesMenuItems.map((item) => (
-                <DropdownMenuItem key={item.href} asChild className="rounded-xl cursor-pointer p-3 mb-2 last:mb-0 focus:bg-accent/50">
+                <DropdownMenuItem 
+                  key={item.href} 
+                  asChild 
+                  className="rounded-xl cursor-pointer p-3 mb-2 last:mb-0 focus:bg-accent/50"
+                  onClick={() => logHeaderServicesMenuClick(item.platform, 'desktop')}
+                >
                   <Link href={item.href} className="flex flex-col gap-1">
                     <div className="flex items-center gap-2">
                       <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${item.gradient}`} />
@@ -283,7 +292,10 @@ export default function Header() {
                           key={item.href}
                           href={item.href}
                           className="flex flex-col gap-1 py-2 px-3 rounded-xl hover:bg-muted/60 transition-colors"
-                          onClick={() => setIsMobileMenuOpen(false)}
+                          onClick={() => {
+                            logHeaderServicesMenuClick(item.platform, 'mobile');
+                            setIsMobileMenuOpen(false);
+                          }}
                         >
                           <div className="flex items-center gap-2">
                             <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${item.gradient}`} />

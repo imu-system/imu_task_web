@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useAuth, profileSchema, ProfileFormValues } from "@/hooks/use-auth";
+import { UserRole } from "@/lib/types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
@@ -466,7 +467,7 @@ export default function ProfilePage() {
                                                 <FormField control={form.control} name="languages" render={({field}) => (
                                                     <MultiSelect
                                                         options={availableLanguages}
-                                                        selected={field.value}
+                                                        selected={field.value ?? []}
                                                         onChange={field.onChange}
                                                         placeholder={t('languagesPlaceholder')}
                                                     />
@@ -485,7 +486,7 @@ export default function ProfilePage() {
                                     <span>{user.profile.city}</span>
                                 </div>
                             )}
-                             {user.roles.includes('provider') && user.profile?.serviceRadiusKm && (
+                             {user.roles.includes(UserRole.provider) && user.profile?.serviceRadiusKm && (
                                 <div className="flex items-center gap-2">
                                     <SatelliteDish className="h-4 w-4"/>
                                     <span>{t('serviceRadiusDisplay', {km: user.profile.serviceRadiusKm})}</span>
@@ -520,7 +521,7 @@ export default function ProfilePage() {
                                         <form onSubmit={handleSubmit(d => handleQuickSave('skills', stringToArray(d.skills)))}>
                                             <FormField control={form.control} name="skills" render={({field}) => (
                                                 <TagInput
-                                                    tags={field.value}
+                                                    tags={field.value ?? []}
                                                     onChange={field.onChange}
                                                     placeholder={t('skillsPlaceholder')}
                                                 />
@@ -609,7 +610,7 @@ export default function ProfilePage() {
                     <Star className="h-4 w-4 text-muted-foreground"/>
                 </CardHeader>
                 <CardContent>
-                    <div className="text-2xl font-bold">{user.profile?.averageRating.toFixed(1) || 'N/A'}</div>
+                    <div className="text-2xl font-bold">{user.profile?.averageRating?.toFixed(1) || 'N/A'}</div>
                     <p className="text-xs text-muted-foreground">{t('basedOn', {count: user.profile?.reviewsCount || 0})}</p>
                 </CardContent>
             </Card>

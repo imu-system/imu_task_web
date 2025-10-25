@@ -27,10 +27,7 @@ type LanguageOption = {
 const languageOptions: LanguageOption[] = [
   { code: 'fr', name: 'Français', region: 'France' },
   { code: 'en', name: 'English', region: 'United States' },
-  { code: 'jp', name: '日本語', region: '日本' },
-  { code: 'es', name: 'Español', region: 'España' },
-  { code: 'de', name: 'Deutsch', region: 'Deutschland' },
-  { code: 'zh', name: '中文 (简体)', region: '中国' },
+  { code: 'ja', name: '日本語', region: '日本' },
 ];
 
 type CurrencyOption = {

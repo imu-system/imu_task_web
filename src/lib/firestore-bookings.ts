@@ -257,13 +257,13 @@ export async function updateBookingStatus(
                     booking.clientId,
                     bookingId,
                     'Task', // TODO: Get task title
-                    booking.scheduledDate
+                    booking.scheduledDate ? new Date(booking.scheduledDate) : new Date()
                 );
                 await notifyBookingConfirmed(
                     booking.providerId,
                     bookingId,
                     'Task', // TODO: Get task title
-                    booking.scheduledDate
+                    booking.scheduledDate ? new Date(booking.scheduledDate) : new Date()
                 );
             }
         } else if (status === 'cancelled') {

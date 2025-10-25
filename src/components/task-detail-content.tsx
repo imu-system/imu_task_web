@@ -248,7 +248,7 @@ export default function TaskDetailContent({ task: initialTask, offers: initialOf
                 <div className="flex items-center gap-2">
                   <Calendar className="h-4 w-4" />
                   <span>
-                    {new Intl.DateTimeFormat(locale, {
+                    {task.timeWindowStart && new Intl.DateTimeFormat(locale, {
                       dateStyle: 'long',
                       timeStyle: 'short',
                     }).format(new Date(task.timeWindowStart))}

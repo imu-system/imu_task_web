@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { UtensilsCrossed, Sparkles, Users, Phone, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { logCarelinkServiceClick } from "@/lib/analytics";
 
 export function CarelinkPreview() {
   const t = useTranslations("LandingPage.carelink");
@@ -59,7 +60,8 @@ export function CarelinkPreview() {
               return (
                 <div
                   key={service.key}
-                  className="bg-card rounded-2xl p-6 border border-border hover:shadow-lg transition-shadow"
+                  className="bg-card rounded-2xl p-6 border border-border hover:shadow-lg transition-shadow cursor-pointer"
+                  onClick={() => logCarelinkServiceClick(service.key, 'service_card')}
                 >
                   {/* Icon with Gradient */}
                   <div
@@ -90,6 +92,7 @@ export function CarelinkPreview() {
               asChild
               size="lg"
               className="rounded-3xl bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white shadow-lg"
+              onClick={() => logCarelinkServiceClick('all_services', 'main_cta')}
             >
               <Link href="#carelink">
                 {t("cta")}

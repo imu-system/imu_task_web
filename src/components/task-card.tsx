@@ -135,7 +135,7 @@ export default function TaskCard({ task, onOpenSheet, showDistance = false, dist
           </div>
           <div className="flex items-center gap-2">
             <Calendar className="h-4 w-4 shrink-0" />
-            <span>{new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(timeWindowStart))}</span>
+            <span>{timeWindowStart && new Intl.DateTimeFormat(locale, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(timeWindowStart))}</span>
           </div>
         </div>
 

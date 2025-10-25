@@ -48,3 +48,52 @@ export function logNotificationFilter(category?: string, unreadOnly?: boolean) {
 export function logNotificationInfiniteScroll(page: number) {
     logEvent('notification_infinite_scroll', { page });
 }
+
+// Landing Page events - 3-Platform Strategy Tracking
+export function logProfileCardClick(profileType: 'individual' | 'professional' | 'senior', source: 'card_cta') {
+    logEvent('landing_profile_card_click', {
+        profile_type: profileType,
+        source,
+        timestamp: new Date().toISOString()
+    });
+}
+
+export function logCarelinkServiceClick(service: string, source: 'service_card' | 'main_cta') {
+    logEvent('landing_carelink_click', {
+        service,
+        source,
+        timestamp: new Date().toISOString()
+    });
+}
+
+export function logHeaderServicesMenuClick(platform: 'imutask' | 'imupro' | 'carelink', device: 'desktop' | 'mobile') {
+    logEvent('landing_header_services_click', {
+        platform,
+        device,
+        timestamp: new Date().toISOString()
+    });
+}
+
+export function logCategoryClick(categorySlug: string, categoryName: string, isAccessible: boolean) {
+    logEvent('landing_category_click', {
+        category_slug: categorySlug,
+        category_name: categoryName,
+        is_pmr_accessible: isAccessible,
+        timestamp: new Date().toISOString()
+    });
+}
+
+export function logLandingPageView(source?: string) {
+    logEvent('landing_page_view', {
+        source: source || 'direct',
+        timestamp: new Date().toISOString()
+    });
+}
+
+export function logSearchBarInteraction(action: 'focus' | 'search', query?: string) {
+    logEvent('landing_search_interaction', {
+        action,
+        query_length: query?.length || 0,
+        timestamp: new Date().toISOString()
+    });
+}
