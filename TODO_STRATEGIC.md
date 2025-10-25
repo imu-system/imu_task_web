@@ -222,9 +222,44 @@
   - Hooks react-query mutations complets
   - 100% type-safe, production ready
 
-### Priorité #1 : Fondations Critiques
+### Priorité #1 : Fondations Critiques & Dashboards Adaptés
 
-#### A. Profil Utilisateur & Firebase (Semaine 1-2)
+#### A. Profil Utilisateur & Type de Compte (Semaine 1-2)
+
+**🎯 Objectif** : Différencier les 3 types d'utilisateurs dès le profil
+
+- [ ] **Extension UserProfile avec accountType** (2h)
+  ```typescript
+  interface UserProfile {
+    // Existant
+    uid: string;
+    email: string;
+    displayName: string;
+    photoUrl?: string;
+    
+    // NOUVEAU - Type de compte
+    accountType: 'individual' | 'professional' | 'senior';
+    
+    // Profil spécifique (optionnel selon type)
+    professionalInfo?: {
+      companyName?: string;
+      siret?: string;
+      isVerified: boolean;
+      categories: ServiceCategory[];
+    };
+    seniorInfo?: {
+      needsAccessibility: boolean;
+      hasCaregiver: boolean;
+      caregiverEmail?: string;
+    };
+  }
+  ```
+
+- [ ] **Choix du type lors du Signup** (3h)
+  - Ajouter étape "Choisissez votre profil" après email/password
+  - 3 cartes : Particulier, Professionnel, Senior
+  - Rediriger vers onboarding adapté
+
 - [ ] **Sauvegarde Profil Utilisateur** (2h)
   - Implémenter `updateUserProfile` dans edit/page.tsx
   - Connexion Firestore collection `profiles`
@@ -242,16 +277,57 @@
   - États : pending, approved, rejected
   - Interface admin de validation
 
-#### B. UX Dashboard (Semaine 2-3)
-- [ ] **Refonte Navigation Admin** (4h)
-  - Groupes Collapsible : Communauté, Modération, Finance, Config
-  - Auto-expand du groupe actif
-  - Compteurs de notifications
+#### B. Dashboards Adaptés par Profil (Semaine 3-4)
 
-- [ ] **Modales au lieu de Pages** (6h)
-  - Create Task → Dialog modal
-  - Edit Task → Sheet/Drawer
-  - Quick actions : Accept offer, Send message
+**🎯 Objectif** : Chaque type de profil a son dashboard optimisé
+
+- [ ] **Dashboard Router Intelligent** (2h)
+  ```typescript
+  // src/app/[locale]/(protected)/dashboard/page.tsx
+  // Redirection automatique selon accountType
+  ```
+  - Lit `userProfile.accountType`
+  - Redirige vers `/dashboard/client` | `/dashboard/pro` | `/dashboard/senior`
+
+- [ ] **Dashboard Client (Particuliers)** (1 jour)
+  - Page : `/dashboard/client/page.tsx`
+  - Sections :
+    * Mes tâches postées
+    * Offres reçues (avec comparaison prix/délai/avis)
+    * Quick action : "Poster une nouvelle tâche"
+    * Prestataires favoris
+  - Design : Cards modernes, focus simplicité
+
+- [ ] **Dashboard Pro (Professionnels)** (2 jours)
+  - Page : `/dashboard/pro/page.tsx`
+  - Sections :
+    * Feed missions disponibles (filtrées par catégories)
+    * Mes offres envoyées (statut : pending/accepted/rejected)
+    * Missions en cours
+    * Statistiques : CA, taux acceptation, note moyenne
+    * Calendrier planning
+  - Design : Pro, business-oriented, data-driven
+
+- [ ] **Dashboard Senior (Seniors/Aidants)** (1,5 jour)
+  - Page : `/dashboard/senior/page.tsx`
+  - Sections :
+    * Mes services récurrents (repas, aide ménagère)
+    * Prochaines interventions (calendrier simplifié)
+    * Contacts favoris (prestataires réguliers)
+    * Bouton SOS / Urgence (call to action)
+  - Design : **Accessibilité max**
+    * Texte 24px minimum
+    * Contraste 7:1
+    * Boutons 60x60px
+    * Navigation linéaire (pas de menus complexes)
+    * Mode "Gestion par aidant"
+
+- [ ] **Navigation Adaptée** (1 jour)
+  - Sidebar différente selon profil :
+    * Client : Mes tâches, Messages, Favoris, Profil
+    * Pro : Missions, Mes offres, Calendrier, Stats, Portfolio
+    * Senior : Services, Interventions, Contacts, Aide
+  - Compteurs de notifications par section
 
 ### Priorité #2 : Fonctionnalités Core (Semaine 3-6)
 
