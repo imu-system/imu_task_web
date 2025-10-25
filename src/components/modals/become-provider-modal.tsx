@@ -38,31 +38,33 @@ export function BecomeProviderModal({ open, onOpenChange }: BecomeProviderModalP
     {
       type: 'individual' as const,
       icon: User,
-      title: 'Particulier',
-      description: 'Proposez vos services ponctuellement dans vos temps libres',
+      title: t('individual.title'),
+      description: t('individual.description'),
       gradient: 'from-blue-500 to-cyan-500',
       benefits: [
-        'Aucune certification requise',
-        'Horaires 100% flexibles',
-        'Inscription gratuite',
-        'Paiement sécurisé',
+        t('individual.benefits.noCertification'),
+        t('individual.benefits.flexible'),
+        t('individual.benefits.freeSignup'),
+        t('individual.benefits.securePayment'),
       ],
-      badge: '0€ de frais',
+      badge: t('individual.badge'),
+      cta: t('individual.cta'),
       href: '/auth/signup?type=individual&role=provider',
     },
     {
       type: 'professional' as const,
       icon: Briefcase,
-      title: 'Professionnel',
-      description: 'Développez votre activité avec ImuPro, notre plateforme pro',
+      title: t('professional.title'),
+      description: t('professional.description'),
       gradient: 'from-purple-500 to-pink-500',
       benefits: [
-        'Badge Pro Vérifié',
-        'Leads qualifiés',
-        'Facturation automatisée',
-        'Outils de gestion',
+        t('professional.benefits.verifiedBadge'),
+        t('professional.benefits.qualifiedLeads'),
+        t('professional.benefits.autoInvoicing'),
+        t('professional.benefits.managementTools'),
       ],
-      badge: '⭐ Populaire',
+      badge: t('professional.badge'),
+      cta: t('professional.cta'),
       href: '/professionnels',
     },
   ];
@@ -82,11 +84,11 @@ export function BecomeProviderModal({ open, onOpenChange }: BecomeProviderModalP
         <DialogHeader>
           <DialogTitle className="text-3xl font-bold text-center mb-2">
             <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              Proposer mes services
+              {t('title')}
             </span>
           </DialogTitle>
           <DialogDescription className="text-center text-base">
-            Choisissez le type de compte qui correspond à votre profil
+            {t('subtitle')}
           </DialogDescription>
         </DialogHeader>
 
@@ -146,7 +148,7 @@ export function BecomeProviderModal({ open, onOpenChange }: BecomeProviderModalP
                     `}
                     size="lg"
                   >
-                    {provider.type === 'individual' ? 'Commencer' : 'Découvrir ImuPro'}
+                    {provider.cta}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </CardContent>
@@ -162,31 +164,31 @@ export function BecomeProviderModal({ open, onOpenChange }: BecomeProviderModalP
               <div className="p-3 rounded-full bg-primary/10">
                 <Sparkles className="h-6 w-6 text-primary" />
               </div>
-              <h4 className="font-semibold">Simple & Rapide</h4>
-              <p className="text-sm text-muted-foreground">Inscription en 2 minutes</p>
+              <h4 className="font-semibold">{t('globalBenefits.simple.title')}</h4>
+              <p className="text-sm text-muted-foreground">{t('globalBenefits.simple.description')}</p>
             </div>
             <div className="flex flex-col items-center gap-2">
               <div className="p-3 rounded-full bg-primary/10">
                 <TrendingUp className="h-6 w-6 text-primary" />
               </div>
-              <h4 className="font-semibold">Développez-vous</h4>
-              <p className="text-sm text-muted-foreground">Accédez à des milliers de clients</p>
+              <h4 className="font-semibold">{t('globalBenefits.grow.title')}</h4>
+              <p className="text-sm text-muted-foreground">{t('globalBenefits.grow.description')}</p>
             </div>
             <div className="flex flex-col items-center gap-2">
               <div className="p-3 rounded-full bg-primary/10">
                 <Shield className="h-6 w-6 text-primary" />
               </div>
-              <h4 className="font-semibold">100% Sécurisé</h4>
-              <p className="text-sm text-muted-foreground">Paiements garantis</p>
+              <h4 className="font-semibold">{t('globalBenefits.secure.title')}</h4>
+              <p className="text-sm text-muted-foreground">{t('globalBenefits.secure.description')}</p>
             </div>
           </div>
         </div>
 
         <p className="text-center text-sm text-muted-foreground mt-4">
-          Vous avez déjà un compte ? <Button variant="link" className="p-0 h-auto" onClick={() => {
+          {t('footer')} <Button variant="link" className="p-0 h-auto" onClick={() => {
             router.push('/auth/signin');
             onOpenChange(false);
-          }}>Se connecter</Button>
+          }}>{t('signIn')}</Button>
         </p>
       </DialogContent>
     </Dialog>

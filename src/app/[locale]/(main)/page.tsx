@@ -28,6 +28,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { HeroSearchBar } from '@/components/landing/hero-search-bar';
+import { StickySearchBar } from '@/components/landing/sticky-search-bar';
 import { CategoryPills } from '@/components/landing/category-pills';
 import { TasksGrid } from '@/components/landing/tasks-grid';
 import { HowItWorks } from '@/components/landing/how-it-works';
@@ -42,9 +43,23 @@ import { motion } from 'framer-motion';
 
 export default function Home() {
   const t = useTranslations('LandingPage');
-  const { scrollY } = useScrollPosition();
+  const { scrollY, scrollDirection } = useScrollPosition();
   const [showStickySearch, setShowStickySearch] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const heroRef = useRef<HTMLDivElement>(null);
+
+  // Track header visibility based on scroll
+  useEffect(() => {
+    if (scrollY > 100) {
+      if (scrollDirection === 'down') {
+        setIsHeaderVisible(false);
+      } else if (scrollDirection === 'up') {
+        setIsHeaderVisible(true);
+      }
+    } else {
+      setIsHeaderVisible(true);
+    }
+  }, [scrollY, scrollDirection]);
 
   useEffect(() => {
     // Track landing page view on mount
@@ -80,17 +95,23 @@ export default function Home() {
   return (
     <>
       {/* Sticky Search Bar */}
-      <div 
+      <motion.div 
+        initial={false}
+        animate={{
+          y: showStickySearch ? 0 : -100,
+          opacity: showStickySearch ? 1 : 0,
+          top: isHeaderVisible ? '4rem' : '0rem', // 4rem = 64px (header height)
+        }}
+        transition={{ duration: 0.3, ease: 'easeInOut' }}
         className={`
-          fixed top-16 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-b shadow-lg
-          transition-all duration-300
-          ${showStickySearch ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}
+          fixed left-0 right-0 z-40 bg-background/98 backdrop-blur-lg border-b shadow-xl
+          ${showStickySearch ? 'pointer-events-auto' : 'pointer-events-none'}
         `}
       >
         <div className="container mx-auto px-4 py-3">
-          <HeroSearchBar variant="compact" />
+          <StickySearchBar />
         </div>
-      </div>
+      </motion.div>
 
       <div className="flex flex-col">
         {/* Hero Section - Airbnb/BlaBlaCar Style */}

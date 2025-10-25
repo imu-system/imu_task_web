@@ -24,7 +24,7 @@ import {
   Bell,
   Star,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
@@ -34,6 +34,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import LanguageCurrencyModal from './language-currency-modal';
 import Image from 'next/image';
 import { BecomeProviderModal } from './modals/become-provider-modal';
+import { useScrollPosition } from '@/hooks/use-scroll-position';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -41,6 +42,23 @@ export default function Header() {
   const pathname = usePathname();
   const { user, logout } = useAuth();
   const isAuthenticated = !!user;
+  const { scrollY, scrollDirection } = useScrollPosition();
+
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    // Hide header when scrolling down past 100px, show when scrolling up
+    if (scrollY > 100) {
+      if (scrollDirection === 'down') {
+        setIsVisible(false);
+      } else if (scrollDirection === 'up') {
+        setIsVisible(true);
+      }
+    } else {
+      setIsVisible(true);
+    }
+  }, [scrollY, scrollDirection]);
 
   const navLinks = [
     { href: '#features', label: t('features') },
@@ -182,7 +200,13 @@ export default function Header() {
   );
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80">
+    <header 
+      className={cn(
+        "fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/80",
+        "transition-transform duration-300 ease-in-out",
+        isVisible ? "translate-y-0" : "-translate-y-full"
+      )}
+    >
       <div className="container flex h-20 items-center px-4 md:px-8">
         {/* Logo - Desktop & Mobile */}
         <Link href="/" className="flex items-center gap-2 mr-6 md:mr-10">

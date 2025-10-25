@@ -2187,7 +2187,83 @@
                 "budgetPlaceholder": "Budget max (€)",
                 "allCategories": "Toutes les catégories",
                 "button": "Rechercher",
-                "popular": "Recherches populaires"
+                "popular": "Recherches populaires",
+                "badge": "Plus de 10,000 missions disponibles",
+                "quickSuggestions": {
+                    "cleaning": "Ménage",
+                    "moving": "Déménagement",
+                    "gardening": "Jardinage",
+                    "delivery": "Livraison",
+                    "handyman": "Bricolage",
+                    "cooking": "Cuisine"
+                }
+            },
+            "stickySearch": {
+                "searchPlaceholder": "Que recherchez-vous ?",
+                "locationPlaceholder": "Ville",
+                "advancedFilters": "Filtres",
+                "searchButton": "Rechercher",
+                "popularSearches": "Recherches populaires",
+                "activeFilters": "filtre(s)",
+                "clearAll": "Tout effacer",
+                "quickSuggestions": {
+                    "cleaning": "Ménage",
+                    "moving": "Déménagement",
+                    "gardening": "Jardinage",
+                    "delivery": "Livraison",
+                    "handyman": "Bricolage",
+                    "cooking": "Cuisine"
+                }
+            },
+            "advancedFilters": {
+                "title": "Filtres avancés",
+                "description": "Affinez votre recherche pour trouver exactement ce dont vous avez besoin",
+                "category": {
+                    "label": "Catégorie",
+                    "placeholder": "Toutes catégories",
+                    "all": "Toutes catégories"
+                },
+                "budget": {
+                    "label": "Budget",
+                    "min": "Min (€)",
+                    "max": "Max (€)",
+                    "range": "{min}€ - {max}€"
+                },
+                "distance": {
+                    "label": "Distance maximale",
+                    "unit": "{distance} km"
+                },
+                "urgency": {
+                    "label": "Urgence",
+                    "options": {
+                        "any": "Toutes",
+                        "asap": "Au plus vite",
+                        "today": "Aujourd'hui",
+                        "thisWeek": "Cette semaine",
+                        "flexible": "Flexible"
+                    }
+                },
+                "availability": {
+                    "label": "Disponibilité",
+                    "options": {
+                        "any": "Toutes",
+                        "weekdays": "Jours de semaine",
+                        "weekends": "Week-ends",
+                        "evenings": "Soirées"
+                    }
+                },
+                "quality": {
+                    "label": "Qualité",
+                    "verifiedOnly": "Prestataires vérifiés uniquement",
+                    "verifiedDesc": "Profils avec identité vérifiée",
+                    "topRatedOnly": "Prestataires mieux notés",
+                    "topRatedDesc": "Note 4.5+ uniquement"
+                },
+                "actions": {
+                    "apply": "Appliquer les filtres",
+                    "reset": "Réinitialiser",
+                    "activeCount": "{count} filtre(s) actif(s)"
+                }
             },
             "cta": {
                 "client": "Publier une mission",
@@ -2628,5 +2704,49 @@
                 }
             }
         }
+    },
+    "BecomeProviderModal": {
+        "title": "Proposer mes services",
+        "subtitle": "Choisissez le type de compte qui correspond à votre profil",
+        "individual": {
+            "title": "Particulier",
+            "description": "Proposez vos services ponctuellement dans vos temps libres",
+            "badge": "0€ de frais",
+            "benefits": {
+                "noCertification": "Aucune certification requise",
+                "flexible": "Horaires 100% flexibles",
+                "freeSignup": "Inscription gratuite",
+                "securePayment": "Paiement sécurisé"
+            },
+            "cta": "Commencer"
+        },
+        "professional": {
+            "title": "Professionnel",
+            "description": "Développez votre activité avec ImuPro, notre plateforme pro",
+            "badge": "⭐ Populaire",
+            "benefits": {
+                "verifiedBadge": "Badge Pro Vérifié",
+                "qualifiedLeads": "Leads qualifiés",
+                "autoInvoicing": "Facturation automatisée",
+                "managementTools": "Outils de gestion"
+            },
+            "cta": "Découvrir ImuPro"
+        },
+        "globalBenefits": {
+            "simple": {
+                "title": "Simple & Rapide",
+                "description": "Inscription en 2 minutes"
+            },
+            "grow": {
+                "title": "Développez-vous",
+                "description": "Accédez à des milliers de clients"
+            },
+            "secure": {
+                "title": "100% Sécurisé",
+                "description": "Paiements garantis"
+            }
+        },
+        "footer": "Vous avez déjà un compte ?",
+        "signIn": "Se connecter"
     }
 }

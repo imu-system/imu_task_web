@@ -2127,7 +2127,82 @@
                 "budgetPlaceholder": "Max budget (€)",
                 "allCategories": "All categories",
                 "button": "Search",
-                "popular": "Popular searches"
+                "popular": "Popular searches",
+                "badge": "Over 10,000 missions available",
+                "quickSuggestions": {
+                    "cleaning": "Cleaning",
+                    "moving": "Moving",
+                    "gardening": "Gardening",
+                    "delivery": "Delivery",
+                    "handyman": "Handyman",
+                    "cooking": "Cooking"
+                }
+            },
+            "stickySearch": {
+                "searchPlaceholder": "What are you looking for?",
+                "locationPlaceholder": "City",
+                "advancedFilters": "Filters",
+                "searchButton": "Search",
+                "popularSearches": "Popular searches",
+                "activeFilters": "filter(s)",
+                "clearAll": "Clear all",
+                "quickSuggestions": {
+                    "cleaning": "Cleaning",
+                    "moving": "Moving",
+                    "gardening": "Gardening",
+                    "delivery": "Delivery",
+                    "handyman": "Handyman",
+                    "cooking": "Cooking"
+                }
+            },
+            "advancedFilters": {
+                "title": "Advanced filters",
+                "description": "Refine your search to find exactly what you need",
+                "category": {
+                    "label": "Category",
+                    "placeholder": "All categories",
+                    "all": "All categories"
+                },
+                "budget": {
+                    "label": "Budget",
+                    "min": "Min (€)",
+                    "max": "Max (€)",
+                    "range": "{min}€ - {max}€"
+                },
+                "distance": {
+                    "label": "Maximum distance",
+                    "unit": "{distance} km"
+                },
+                "urgency": {
+                    "label": "Urgency",
+                    "options": {
+                        "any": "Any",
+                        "asap": "ASAP",
+                        "today": "Today",
+                        "thisWeek": "This week",
+                        "flexible": "Flexible"
+                    }
+                },
+                "availability": {
+                    "label": "Availability",
+                    "options": {
+                        "any": "Any",
+                        "weekdays": "Weekdays",
+                        "weekends": "Weekends",
+                        "evenings": "Evenings"
+                    }
+                },
+                "quality": {
+                    "label": "Quality",
+                    "verifiedOnly": "Verified providers only",
+                    "verifiedDesc": "Profiles with verified identity",
+                    "topRatedOnly": "Top rated providers",
+                    "topRatedDesc": "Rating 4.5+ stars"
+                },
+                "actions": {
+                    "apply": "Apply filters",
+                    "reset": "Reset"
+                }
             },
             "cta": {
                 "client": "Post a task",
@@ -2171,6 +2246,418 @@
                 "client": "Post a task",
                 "provider": "Become a provider"
             }
+        },
+        "profiles": {
+            "title": "Who is it for?",
+            "subtitle": "ImuTask adapts to your needs, whether you're an individual, professional or caregiver",
+            "individual": {
+                "title": "Individuals",
+                "description": "Quickly find help for your daily tasks: cleaning, shopping, handyman work, gardening and much more",
+                "cta": "Learn more",
+                "hero": {
+                    "title": "Find help for your daily tasks",
+                    "subtitle": "A community of qualified providers ready to help you every day",
+                    "cta": "Post a task for free"
+                },
+                "benefits": {
+                    "title": "Why choose ImuTask?",
+                    "timeGain": {
+                        "title": "Time Savings",
+                        "description": "Delegate your daily tasks and free up time for what really matters."
+                    },
+                    "flexiblePrices": {
+                        "title": "Flexible Prices",
+                        "description": "Set your budget and receive offers that match your means."
+                    },
+                    "localHelp": {
+                        "title": "Local Mutual Aid",
+                        "description": "Connect with members of your community and create social bonds."
+                    },
+                    "securePayment": {
+                        "title": "Secure Payment",
+                        "description": "Your money is protected until the mission is validated."
+                    },
+                    "easyComm": {
+                        "title": "Easy Communication",
+                        "description": "Chat directly with providers via our integrated messaging."
+                    },
+                    "quality": {
+                        "title": "Quality Guaranteed",
+                        "description": "All our providers are rated by the community."
+                    }
+                },
+                "categories": {
+                    "title": "Popular Services",
+                    "subtitle": "The most requested categories by individuals"
+                },
+                "ctas": {
+                    "postMission": "Post a task",
+                    "signup": "Sign up for free"
+                }
+            },
+            "professional": {
+                "title": "Professionals",
+                "description": "Grow your business with ImuPro: qualified leads, automated invoicing and management tools",
+                "cta": "Discover ImuPro",
+                "badge": "🚀 ImuPro - Professional Platform",
+                "hero": {
+                    "title": "Boost your business with ImuPro",
+                    "subtitle": "The platform dedicated to professionals: craftsmen, self-employed, service providers",
+                    "cta": "Become a certified Pro"
+                },
+                "categories": {
+                    "title": "Professional Categories",
+                    "plumbing": "Plumbing",
+                    "electricity": "Electrical work",
+                    "handyman": "Handyman services",
+                    "itSupport": "IT support",
+                    "tutoring": "Tutoring",
+                    "coaching": "Sports coaching",
+                    "more": "And much more..."
+                },
+                "features": {
+                    "title": "Professional Features",
+                    "growth": {
+                        "title": "Grow Your Business",
+                        "description": "Access a qualified clientele looking for professional services in your area."
+                    },
+                    "badge": {
+                        "title": "Verified Pro Badge",
+                        "description": "Certified profile with SIRET, professional liability insurance and trade certifications to reassure your clients."
+                    },
+                    "clientManagement": {
+                        "title": "Simplified Client Management",
+                        "description": "Integrated CRM to track your missions, client history and communications."
+                    },
+                    "smartPlanning": {
+                        "title": "Smart Scheduling",
+                        "description": "Organize your schedule and manage your availability easily."
+                    },
+                    "securePayments": {
+                        "title": "Secure Payments",
+                        "description": "Automated invoicing and reliable transfers directly to your account."
+                    },
+                    "portfolio": {
+                        "title": "Professional Portfolio",
+                        "description": "Showcase your work and highlight your expertise."
+                    }
+                },
+                "advantages": {
+                    "title": "Your Advantages",
+                    "commission": "Reduced commission for certified pros",
+                    "leads": "Qualified leads in your area",
+                    "billing": "Compliant automated billing",
+                    "analytics": "Advanced statistics and analytics",
+                    "support": "Priority support 7/7",
+                    "flexible": "Flexible subscription without commitment"
+                },
+                "pricing": {
+                    "title": "Professional Pricing",
+                    "subtitle": "Choose the plan that matches your business",
+                    "starter": {
+                        "name": "Starter",
+                        "price": "€0",
+                        "period": "/month",
+                        "commission": "15% commission",
+                        "feature1": "Professional profile",
+                        "feature2": "Portfolio 5 photos max",
+                        "feature3": "Standard leads",
+                        "cta": "Get started"
+                    },
+                    "plus": {
+                        "name": "Plus",
+                        "badge": "Popular",
+                        "price": "€29",
+                        "period": "/month",
+                        "commission": "10% commission",
+                        "feature1": "Everything in Starter +",
+                        "feature2": "Unlimited portfolio",
+                        "feature3": "Priority leads",
+                        "feature4": "Advanced statistics",
+                        "cta": "Choose Plus"
+                    },
+                    "elite": {
+                        "name": "Elite",
+                        "price": "€79",
+                        "period": "/month",
+                        "commission": "8% commission",
+                        "feature1": "Everything in Plus +",
+                        "feature2": "Exclusive leads",
+                        "feature3": "Priority support",
+                        "feature4": "Training & webinars",
+                        "cta": "Become Elite"
+                    }
+                }
+            },
+            "senior": {
+                "title": "Seniors & Caregivers",
+                "description": "Find trusted help for seniors: home care, companionship, healthcare coordination with CareLink",
+                "cta": "Discover CareLink",
+                "badge": "♿ Accessible services for people with reduced mobility",
+                "hero": {
+                    "title": "Home services for your well-being",
+                    "subtitle": "Services adapted to seniors and people with reduced mobility",
+                    "footer": "💰 50% tax credit • 💳 CESU payment accepted • ♿ Certified accessible"
+                },
+                "services": {
+                    "title": "Our certified accessible services",
+                    "subtitle": "All our providers are trained for specific needs",
+                    "homeHelp": {
+                        "title": "Home Help",
+                        "description": "Cleaning, ironing, maintenance adapted to your needs"
+                    },
+                    "mealDelivery": {
+                        "title": "Meal Delivery",
+                        "description": "Menus adapted to special diets"
+                    },
+                    "companionship": {
+                        "title": "Companionship",
+                        "description": "Outings, medical appointments, walks"
+                    },
+                    "groceries": {
+                        "title": "Groceries & Deliveries",
+                        "description": "Supply without having to move"
+                    },
+                    "care": {
+                        "title": "Care & Wellness",
+                        "description": "Hairdressing, pedicure, beauty at home"
+                    },
+                    "teleassistance": {
+                        "title": "Telecare",
+                        "description": "24/7 safety, fall detection"
+                    }
+                },
+                "advantages": {
+                    "title": "Why choose us?",
+                    "trained": "Providers trained in senior needs",
+                    "pmr": "Accessible services for people with reduced mobility",
+                    "cesu": "CESU payment accepted",
+                    "tax": "50% tax credit on personal services",
+                    "proxy": "Management by a relative/caregiver possible",
+                    "simple": "Simplified and accessible interface"
+                },
+                "accessibility": {
+                    "title": "Accessible Interface",
+                    "subtitle": "A platform designed for everyone",
+                    "largeText": "Large fonts (24px minimum) and high contrast",
+                    "largeButtons": "Large buttons easy to click",
+                    "simpleNav": "Simplified navigation without complex menus",
+                    "proxyMode": "'Management by a relative' mode available",
+                    "phoneSupport": "Phone support available (not just digital)"
+                }
+            }
+        },
+        "carelink": {
+            "badge": "Coming soon",
+            "title": "Need services for a loved one?",
+            "subtitle": "CareLink, our platform dedicated to home care for seniors and people with reduced mobility.",
+            "services": {
+                "meals": {
+                    "title": "Meal Delivery",
+                    "description": "Menus adapted to special diets"
+                },
+                "housekeeping": {
+                    "title": "Housekeeping",
+                    "description": "Home maintenance with confidence"
+                },
+                "companionship": {
+                    "title": "Companionship",
+                    "description": "Outings, medical appointments"
+                },
+                "teleassistance": {
+                    "title": "Telecare",
+                    "description": "Safety and peace of mind 24/7"
+                }
+            },
+            "cta": "Discover CareLink",
+            "page": {
+                "badge": "❤️ Coming soon",
+                "hero": {
+                    "title": "CareLink",
+                    "subtitle": "Platform dedicated to home care",
+                    "description": "Services adapted to seniors and people with reduced mobility, with trained and certified providers.",
+                    "trust": {
+                        "pmr": "Certified accessible",
+                        "cesu": "CESU payment",
+                        "tax": "50% tax credit",
+                        "certified": "Certified personal services"
+                    }
+                },
+                "services": {
+                    "title": "Services dedicated to your loved ones' well-being",
+                    "subtitle": "A complete range of services for home care",
+                    "mealDelivery": {
+                        "title": "Meal Delivery",
+                        "feature1": "Menus adapted to special diets (diabetic, low-salt, pureed)",
+                        "feature2": "Delivery 7 days a week in morning slots",
+                        "feature3": "Qualified nutritionist for menus",
+                        "feature4": "Complete ingredient traceability",
+                        "feature5": "Portions adapted to needs"
+                    },
+                    "housekeeping": {
+                        "title": "Housekeeping",
+                        "feature1": "Staff trained in senior needs",
+                        "feature2": "Cleaning, ironing, regular maintenance",
+                        "feature3": "Adapted equipment provided",
+                        "feature4": "Flexible frequency according to your needs",
+                        "feature5": "Fixed staff for continuity"
+                    },
+                    "accompaniment": {
+                        "title": "Companionship",
+                        "feature1": "Medical appointment accompaniment",
+                        "feature2": "Safe outings and walks",
+                        "feature3": "Stimulating activities (games, reading)",
+                        "feature4": "Conversation and social connection",
+                        "feature5": "Adapted vehicle available"
+                    },
+                    "teleassistance": {
+                        "title": "Telecare",
+                        "feature1": "Emergency bracelet or pendant",
+                        "feature2": "Automatic fall detection",
+                        "feature3": "24/7 call center",
+                        "feature4": "Configurable emergency contacts",
+                        "feature5": "App for caregivers"
+                    }
+                },
+                "accessibility": {
+                    "title": "Simplified and accessible interface",
+                    "subtitle": "A platform designed for seniors and their caregivers",
+                    "feature1": "Large fonts and high contrast",
+                    "feature2": "Simplified navigation without complex menus",
+                    "feature3": "Management mode by a relative/caregiver",
+                    "feature4": "Phone support available 7 days a week"
+                },
+                "roadmap": {
+                    "title": "Roadmap",
+                    "subtitle": "Our progressive deployment",
+                    "phase1": {
+                        "quarter": "Q4 2025",
+                        "title": "Pilot Phase",
+                        "description": "Meal delivery, 2 test cities"
+                    },
+                    "phase2": {
+                        "quarter": "Q1 2026",
+                        "title": "Service Extension",
+                        "description": "Housekeeping, companionship"
+                    },
+                    "phase3": {
+                        "quarter": "Q2-Q3 2026",
+                        "title": "National Deployment",
+                        "description": "10 major cities"
+                    },
+                    "phase4": {
+                        "quarter": "Q4 2026",
+                        "title": "Complete Services",
+                        "description": "Telecare, home care, complete platform"
+                    }
+                },
+                "waitlist": {
+                    "title": "Join the waiting list",
+                    "subtitle": "Be notified of CareLink's launch",
+                    "emailLabel": "Email address",
+                    "emailPlaceholder": "your@email.com",
+                    "messageLabel": "Your needs (optional)",
+                    "messagePlaceholder": "Briefly describe your needs or those of your loved one...",
+                    "gdpr": "By signing up, you agree to be contacted by ImuTask regarding the launch of CareLink. Your data will never be shared with third parties.",
+                    "submitButton": "Join the waiting list",
+                    "submitting": "Submitting...",
+                    "successTitle": "Successfully registered!",
+                    "successDescription": "Thank you for your interest. We will contact you as soon as CareLink launches."
+                }
+            }
+        },
+        "features": {
+            "title": "Why choose ImuTask?",
+            "subtitle": "A platform designed to facilitate mutual aid and create connections between generations",
+            "feature1": {
+                "title": "Intergenerational Mutual Aid",
+                "description": "Create unique bonds by helping or receiving help from people in your community"
+            },
+            "feature2": {
+                "title": "Secure & Verified",
+                "description": "Identity verification (KYC), secure payments, and reviews for peace of mind"
+            },
+            "feature3": {
+                "title": "Simple & Accessible",
+                "description": "An intuitive interface accessible to everyone, regardless of age or digital skills"
+            }
+        },
+        "testimonials": {
+            "title": "What our members say",
+            "testimonial1": {
+                "text": "Thanks to ImuTask, I found Lucas, an adorable student who comes to mow my lawn every two weeks. It's a real relief and our conversations are always a pleasure!",
+                "name": "Marie-Hélène, 72 years old",
+                "role": "Client"
+            },
+            "testimonial2": {
+                "text": "I'm financing part of my studies by doing small missions on ImuTask. It's flexible, well paid, and I feel like I'm really useful to my neighbors.",
+                "name": "Lucas, 21 years old",
+                "role": "Provider"
+            }
+        },
+        "finalCta": {
+            "title": "Join the community and start today",
+            "description": "Post a task or become a provider — hundreds of mutual aid opportunities await you",
+            "cta": "Sign up"
+        },
+        "faq": {
+            "title": "Frequently Asked Questions",
+            "q1": {
+                "question": "How are prices set?",
+                "answer": "Clients propose a budget when posting a task. Providers can then make an offer at this price, or propose a different one. The final price is the one agreed upon by the client and provider."
+            },
+            "q2": {
+                "question": "Is the platform secure?",
+                "answer": "Yes, security is our priority. We verify provider identities (KYC), secure all payments via our Stripe partner, and have a review system to strengthen trust within the community."
+            },
+            "q3": {
+                "question": "What happens if there's a problem during a mission?",
+                "answer": "You can open a dispute directly from the booking details. Our support team will then help you find an amicable solution."
+            }
         }
+    },
+    "BecomeProviderModal": {
+        "title": "Offer my services",
+        "subtitle": "Choose the account type that matches your profile",
+        "individual": {
+            "title": "Individual",
+            "description": "Offer your services occasionally in your free time",
+            "badge": "€0 fees",
+            "benefits": {
+                "noCertification": "No certification required",
+                "flexible": "100% flexible hours",
+                "freeSignup": "Free registration",
+                "securePayment": "Secure payment"
+            },
+            "cta": "Get started"
+        },
+        "professional": {
+            "title": "Professional",
+            "description": "Grow your business with ImuPro, our pro platform",
+            "badge": "⭐ Popular",
+            "benefits": {
+                "verifiedBadge": "Verified Pro Badge",
+                "qualifiedLeads": "Qualified leads",
+                "autoInvoicing": "Automated invoicing",
+                "managementTools": "Management tools"
+            },
+            "cta": "Discover ImuPro"
+        },
+        "globalBenefits": {
+            "simple": {
+                "title": "Simple & Fast",
+                "description": "2-minute registration"
+            },
+            "grow": {
+                "title": "Grow your business",
+                "description": "Access thousands of customers"
+            },
+            "secure": {
+                "title": "100% Secure",
+                "description": "Guaranteed payments"
+            }
+        },
+        "footer": "Already have an account?",
+        "signIn": "Sign in"
     }
 }
