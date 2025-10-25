@@ -1,8 +1,31 @@
 # Mapping Complet - Pages Admin & Dashboard à Implémenter
 
 **Date**: 20 octobre 2025  
+**Dernière mise à jour**: Session 5 - Phase 1 AccountType System  
 **Projet**: IMU Task Web  
 **Objectif**: Inventaire exhaustif des pages à connecter à Firebase/Firestore
+
+---
+
+## 🆕 Nouveautés Session 5 - Phase 1
+
+### Système AccountType implémenté ✅
+
+**Nouvelles pages ajoutées** :
+- `/onboarding/page.tsx` - Sélection type de compte après signup
+- `/dashboard/page.tsx` - Router intelligent (redirection selon accountType)
+- `/dashboard/client/page.tsx` - Dashboard particuliers
+- `/dashboard/senior/page.tsx` - Dashboard seniors (CareLink)
+
+**Hook créé** :
+- `useAccountType()` - Lecture temps réel du accountType depuis Firestore
+
+**Navigation adaptée** :
+- `DashboardNav` affiche des menus différents selon le type de compte (Individual, Professional, Senior)
+
+**i18n fixes appliqués** :
+- 4 fichiers corrigés pour utiliser `@/navigation` au lieu de `next/navigation`
+- Documentation complète dans `I18N_LINKS_AUDIT.md`
 
 ---
 
@@ -13,8 +36,8 @@
 | Catégorie | Pages identifiées | Implémentées | À implémenter | Priorité |
 |-----------|------------------|--------------|---------------|----------|
 | **Admin** | 95 pages | ~15 (16%) | ~80 (84%) | 🔴 Haute |
-| **Dashboard User** | 68 pages | ~20 (29%) | ~48 (71%) | 🟡 Moyenne |
-| **TOTAL** | **163 pages** | **~35 (21%)** | **~128 (79%)** | - |
+| **Dashboard User** | 71 pages | ~24 (34%) | ~47 (66%) | 🟡 Moyenne |
+| **TOTAL** | **166 pages** | **~39 (23%)** | **~127 (77%)** | - |
 
 ---
 
@@ -508,53 +531,94 @@
 
 ---
 
-## 🔵 PAGES DASHBOARD UTILISATEUR (68 pages totales)
+## 🔵 PAGES DASHBOARD UTILISATEUR (71 pages totales)
 
-### ✅ DÉJÀ IMPLÉMENTÉES (20 pages - 29%)
+### ✅ DÉJÀ IMPLÉMENTÉES (24 pages - 34%)
+
+#### Onboarding
+1. ✅ `/onboarding/page.tsx` - Sélection type de compte (AccountType)
+   - **Collections**: `users`
+   - **Fonctionnalités**:
+     * Choix entre Individual, Professional, Senior
+     * Enregistrement du accountType dans Firestore
+     * Redirection vers dashboard approprié
+   - **Complexité**: 🟢 Faible
+
+2. ✅ `/dashboard/become-pro/onboarding/page.tsx` - Onboarding professionnel
+   - **Collections**: `users`, `professionals`
+   - **Fonctionnalités**:
+     * Multi-step (SIRET, services, planning)
+     * Validation KYC basique
+     * Configuration initiale profil pro
+   - **Complexité**: 🟡 Moyenne
 
 #### Profil & KYC
-1. ✅ `/dashboard/profile/page.tsx` - Profil utilisateur
-2. ✅ `/dashboard/profile/edit/page.tsx` - Édition profil
-3. ✅ `/dashboard/kyc-submit/page.tsx` - Soumission KYC
+3. ✅ `/dashboard/profile/page.tsx` - Profil utilisateur
+4. ✅ `/dashboard/profile/edit/page.tsx` - Édition profil
+5. ✅ `/dashboard/kyc-submit/page.tsx` - Soumission KYC
+
+#### Dashboards par type de compte (System AccountType - Phase 1)
+6. ✅ `/dashboard/page.tsx` - Router intelligent basé sur accountType
+   - **Fonctionnalités**:
+     * Lecture accountType depuis Firestore
+     * Redirection vers /client, /pro ou /senior
+     * Gestion états de chargement
+   - **Hook**: `useAccountType` (lecture temps réel)
+   - **Complexité**: 🟢 Faible
+
+7. ✅ `/dashboard/client/page.tsx` - Dashboard particulier (Individual)
+   - **Collections**: `tasks`, `bookings`, `messages`
+   - **Fonctionnalités**:
+     * Focus publication tâches
+     * Statistiques simplifiées (tâches actives, réservations)
+     * Accès rapide création tâche
+   - **Complexité**: 🟢 Faible
+
+8. ✅ `/dashboard/senior/page.tsx` - Dashboard senior (CareLink)
+   - **Collections**: `tasks`, `bookings`, `careProviders`
+   - **Fonctionnalités**:
+     * Interface simplifiée (grande typo, contraste élevé)
+     * Tâches d'assistance quotidienne
+     * Contact rapide aidants
+   - **Complexité**: 🟢 Faible
 
 #### Professionnel
-4. ✅ `/dashboard/pro/page.tsx` - Dashboard pro
-5. ✅ `/dashboard/pro/invoices/page.tsx` - Factures pro (Task 6)
-6. ✅ `/dashboard/pro/quotes/page.tsx` - Devis pro (Task 5)
-7. ✅ `/dashboard/pro/portfolio/page.tsx` - Portfolio (Task 4)
+9. ✅ `/dashboard/pro/page.tsx` - Dashboard pro (Professional)
+   - **Utilise**: accountType system
+   - **Fonctionnalités**: Statistiques revenus, réservations à venir, avis clients
+10. ✅ `/dashboard/pro/invoices/page.tsx` - Factures pro (Task 6)
+11. ✅ `/dashboard/pro/quotes/page.tsx` - Devis pro (Task 5)
+12. ✅ `/dashboard/pro/portfolio/page.tsx` - Portfolio (Task 4)
 
 #### Réservations
-8. ✅ `/dashboard/bookings/page.tsx` - Réservations
-9. ✅ `/dashboard/bookings/[id]/page.tsx` - Détail réservation
+13. ✅ `/dashboard/bookings/page.tsx` - Réservations
+14. ✅ `/dashboard/bookings/[id]/page.tsx` - Détail réservation
 
 #### Messages
-10. ✅ `/dashboard/messages/page.tsx` - Messagerie
-11. ✅ `/dashboard/messages/[threadId]/page.tsx` - Thread message
+15. ✅ `/dashboard/messages/page.tsx` - Messagerie
+16. ✅ `/dashboard/messages/[threadId]/page.tsx` - Thread message
 
 #### Notifications
-12. ✅ `/dashboard/notifications/page.tsx` - Notifications
+17. ✅ `/dashboard/notifications/page.tsx` - Notifications
 
 #### Tâches
-13. ✅ `/dashboard/tasks/page.tsx` - Liste tâches
-14. ✅ `/dashboard/tasks/[id]/page.tsx` - Détail tâche
-15. ✅ `/dashboard/tasks/create/page.tsx` - Créer tâche
-16. ✅ `/dashboard/tasks/new/page.tsx` - Nouvelle tâche
-
-#### Dashboard Principal
-17. ✅ `/dashboard/page.tsx` - Dashboard principal
+18. ✅ `/dashboard/tasks/page.tsx` - Liste tâches
+19. ✅ `/dashboard/tasks/[id]/page.tsx` - Détail tâche
+20. ✅ `/dashboard/tasks/create/page.tsx` - Créer tâche
+21. ✅ `/dashboard/tasks/new/page.tsx` - Nouvelle tâche
 
 #### Avis
-18. ✅ `/dashboard/reviews/page.tsx` - Avis
+22. ✅ `/dashboard/reviews/page.tsx` - Avis
 
 #### Recherche
-19. ✅ `/dashboard/search/page.tsx` - Recherche
+23. ✅ `/dashboard/search/page.tsx` - Recherche
 
 #### Hors ligne
-20. ✅ `/dashboard/offline/page.tsx` - Mode offline
+24. ✅ `/dashboard/offline/page.tsx` - Mode offline
 
 ---
 
-### 🔴 À IMPLÉMENTER (48 pages - 71%)
+### 🔴 À IMPLÉMENTER (47 pages - 66%)
 
 #### 🟥 PRIORITÉ CRITIQUE (12 pages)
 
@@ -894,8 +958,8 @@
 | 🔴 **CRITIQUE** | 15 | 12 | **27** | 8-10 semaines |
 | 🟠 **HAUTE** | 25 | 15 | **40** | 10-12 semaines |
 | 🟡 **MOYENNE** | 25 | 12 | **37** | 6-8 semaines |
-| 🟢 **BASSE** | 15 | 9 | **24** | 3-4 semaines |
-| **TOTAL** | **80** | **48** | **128** | **27-34 semaines** |
+| 🟢 **BASSE** | 15 | 8 | **23** | 3-4 semaines |
+| **TOTAL** | **80** | **47** | **127** | **27-34 semaines** |
 
 ### Roadmap suggérée
 

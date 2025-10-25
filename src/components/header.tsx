@@ -178,24 +178,54 @@ export default function Header() {
     <div className="hidden sm:flex items-center gap-3">
       <Button 
         variant="ghost" 
-        asChild 
+        onClick={() => setIsProviderModalOpen(true)}
         className="rounded-3xl font-medium hover:bg-muted/60 hidden md:flex"
       >
-        <Link href="/become-provider" className="flex items-center gap-2">
-          <span>{t('becomeHost') || 'Devenir prestataire'}</span>
-        </Link>
+        <span>{t('becomeHost') || 'Devenir prestataire'}</span>
       </Button>
       <LanguageCurrencyModal />
-      <Button 
-        variant="ghost" 
-        asChild
-        className="relative h-auto px-3 py-2 rounded-3xl hover:shadow-md transition-all border border-border/40 hover:border-border"
-      >
-        <Link href="/sign-in" className="flex items-center gap-2">
-          <Menu className="h-4 w-4" />
-          <User className="h-5 w-5 text-muted-foreground" />
-        </Link>
-      </Button>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button 
+            variant="ghost" 
+            className="relative h-auto px-3 py-2 rounded-3xl hover:shadow-md transition-all border border-border/40 hover:border-border"
+          >
+            <div className="flex items-center gap-2">
+              <Menu className="h-4 w-4" />
+              <User className="h-5 w-5 text-muted-foreground" />
+            </div>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56 rounded-2xl shadow-xl border-border/50 p-2" align="end" forceMount>
+          <DropdownMenuItem asChild className="rounded-xl cursor-pointer py-2.5">
+            <Link href="/auth/signup" className="flex items-center">
+              <User className="mr-3 h-4 w-4" />
+              <span>{t('signUp')}</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild className="rounded-xl cursor-pointer py-2.5">
+            <Link href="/auth/login" className="flex items-center">
+              <LogOut className="mr-3 h-4 w-4 rotate-180" />
+              <span>{t('signIn')}</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator className="my-2" />
+          <DropdownMenuItem 
+            onClick={() => setIsProviderModalOpen(true)}
+            className="rounded-xl cursor-pointer py-2.5"
+          >
+            <Zap className="mr-3 h-4 w-4" />
+            <span>{t('becomeHost')}</span>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator className="my-2" />
+          <DropdownMenuItem asChild className="rounded-xl cursor-pointer py-2.5">
+            <Link href="/help" className="flex items-center">
+              <LifeBuoy className="mr-3 h-4 w-4" />
+              <span>{t('help')}</span>
+            </Link>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 
@@ -363,19 +393,20 @@ export default function Header() {
                     ) : (
                       <div className="flex flex-col gap-3">
                         <Button variant="outline" asChild className="w-full rounded-2xl font-medium" size="lg">
-                          <Link href="/sign-in" onClick={() => setIsMobileMenuOpen(false)}>
+                          <Link href="/auth/login" onClick={() => setIsMobileMenuOpen(false)}>
                             {t('signIn')}
                           </Link>
                         </Button>
                         <Button asChild className="w-full rounded-2xl font-medium" size="lg">
-                          <Link href="/inscription" onClick={() => setIsMobileMenuOpen(false)}>
+                          <Link href="/auth/signup" onClick={() => setIsMobileMenuOpen(false)}>
                             {t('signUp')}
                           </Link>
                         </Button>
-                        <Button variant="ghost" asChild className="w-full rounded-2xl font-medium mt-2">
-                          <Link href="/become-provider" onClick={() => setIsMobileMenuOpen(false)}>
-                            {t('becomeHost') || 'Devenir prestataire'}
-                          </Link>
+                        <Button variant="ghost" onClick={() => {
+                          setIsProviderModalOpen(true);
+                          setIsMobileMenuOpen(false);
+                        }} className="w-full rounded-2xl font-medium mt-2">
+                          {t('becomeHost') || 'Devenir prestataire'}
                         </Button>
                       </div>
                     )}
