@@ -49,7 +49,7 @@ export function DashboardHeader({
 
   // Vérifier si Algolia est configuré
   useEffect(() => {
-    setUseAlgolia(isAlgoliaConfigured());
+    setUseAlgolia(isAlgoliaConfigured);
   }, []);
 
   // Écouter les notifications non lues

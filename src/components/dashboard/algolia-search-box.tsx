@@ -117,7 +117,7 @@ export function AlgoliaSearchBox({
 
   // Vérifier si Algolia est configuré
   useEffect(() => {
-    setAlgoliaEnabled(isAlgoliaConfigured());
+    setAlgoliaEnabled(isAlgoliaConfigured);
   }, []);
 
   // Charger les recherches récentes

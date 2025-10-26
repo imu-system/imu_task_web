@@ -19,7 +19,7 @@
  */
 
 import { useState, useCallback, useRef, useEffect } from 'react';
-import { searchClient, ALGOLIA_INDICES, defaultSearchOptions, getContextualFilters } from '@/lib/algolia-config';
+import { searchClient, ALGOLIA_INDICES, defaultSearchOptions, getContextualFilters, isAlgoliaConfigured } from '@/lib/algolia-config';
 import type { AlgoliaTask, AlgoliaUser, AlgoliaService } from '@/lib/algolia-config';
 import { AccountType } from '@/lib/types';
 import { logDashboardSearch } from '@/lib/analytics';
@@ -158,6 +158,16 @@ export function useAlgoliaSearch(options: UseAlgoliaSearchOptions): UseAlgoliaSe
      */
     const search = useCallback(
         async (query: string) => {
+            // Vérifier si Algolia est configuré
+            if (!isAlgoliaConfigured || !searchClient) {
+                console.warn('⚠️ Algolia is not configured. Please add credentials to .env.local');
+                setError('Search service is not configured. Please add Algolia credentials.');
+                setResults([]);
+                setTotalHits(0);
+                setIsSearching(false);
+                return;
+            }
+
             // Clear previous timeout
             if (searchTimeoutRef.current) {
                 clearTimeout(searchTimeoutRef.current);
@@ -204,7 +214,7 @@ export function useAlgoliaSearch(options: UseAlgoliaSearchOptions): UseAlgoliaSe
 
                     // Rechercher dans tous les indices en parallèle
                     const searchPromises = indices.map(async (indexName) => {
-                        const response = await searchClient.searchSingleIndex({
+                        const response = await searchClient!.searchSingleIndex({
                             indexName: ALGOLIA_INDICES[indexName],
                             searchParams: {
                                 query,

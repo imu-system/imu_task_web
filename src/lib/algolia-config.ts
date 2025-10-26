@@ -20,6 +20,13 @@ const ALGOLIA_APP_ID = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || '';
 const ALGOLIA_SEARCH_API_KEY = process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY || '';
 const ALGOLIA_ADMIN_API_KEY = process.env.ALGOLIA_ADMIN_API_KEY || ''; // Server-side only
 
+// Vérification de la configuration
+export const isAlgoliaConfigured = !!(ALGOLIA_APP_ID && ALGOLIA_SEARCH_API_KEY);
+
+if (!isAlgoliaConfigured) {
+    console.warn('⚠️ Algolia credentials are missing. Search functionality will be limited.');
+}
+
 // Noms des indices
 export const ALGOLIA_INDICES = {
     tasks: 'tasks',
@@ -28,10 +35,12 @@ export const ALGOLIA_INDICES = {
 } as const;
 
 // Client de recherche (public - lecture seule)
-export const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_API_KEY);
+export const searchClient = isAlgoliaConfigured
+    ? algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_API_KEY)
+    : null;
 
 // Client d'administration (server-side only - écriture)
-export const adminClient = typeof window === 'undefined' && ALGOLIA_ADMIN_API_KEY
+export const adminClient = typeof window === 'undefined' && ALGOLIA_ADMIN_API_KEY && isAlgoliaConfigured
     ? algoliasearch(ALGOLIA_APP_ID, ALGOLIA_ADMIN_API_KEY)
     : null;
 
@@ -157,13 +166,6 @@ export const defaultSearchOptions = {
     snippetEllipsisText: '…',
     removeWordsIfNoResults: 'lastWords' as const,
 };
-
-/**
- * Vérifier si Algolia est configuré
- */
-export function isAlgoliaConfigured(): boolean {
-    return Boolean(ALGOLIA_APP_ID && ALGOLIA_SEARCH_API_KEY);
-}
 
 /**
  * Types pour les résultats Algolia
