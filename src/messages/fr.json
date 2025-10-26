@@ -2790,9 +2790,119 @@
         "footer": "Vous avez déjà un compte ?",
         "signIn": "Se connecter"
     },
+    "Auth": {
+        "signup": {
+            "title": "Créer un compte",
+            "subtitle": "Rejoignez ImuTask et trouvez de l'aide en 5 minutes",
+            "footerText": "En créant un compte, vous acceptez nos conditions d'utilisation et notre politique de confidentialité.",
+            "googleButton": "Continuer avec Google",
+            "appleButton": "Continuer avec Apple",
+            "firstNameLabel": "Prénom",
+            "firstNamePlaceholder": "Entrez votre prénom",
+            "lastNameLabel": "Nom",
+            "lastNamePlaceholder": "Entrez votre nom",
+            "emailLabel": "Adresse email",
+            "emailPlaceholder": "nom@exemple.com",
+            "passwordLabel": "Mot de passe",
+            "passwordPlaceholder": "Minimum 6 caractères",
+            "submitButton": "Créer mon compte",
+            "submittingButton": "Création en cours...",
+            "successMessage": "Compte créé avec succès ! Redirection...",
+            "successMessageGoogle": "Connexion Google réussie ! Redirection...",
+            "redirecting": "Redirection en cours...",
+            "termsText": "En créant un compte, vous acceptez nos",
+            "termsLink": "Conditions d'utilisation",
+            "privacyLink": "Politique de confidentialité",
+            "alreadyHaveAccount": "Vous avez déjà un compte ?",
+            "signInLink": "Connectez-vous",
+            "validation": {
+                "firstNameMin": "Le prénom doit contenir au moins 2 caractères",
+                "lastNameMin": "Le nom doit contenir au moins 2 caractères",
+                "emailInvalid": "Adresse email invalide",
+                "passwordMin": "Le mot de passe doit contenir au moins 6 caractères"
+            },
+            "errors": {
+                "emailInUse": "Cette adresse email est déjà utilisée",
+                "invalidEmail": "Adresse email invalide",
+                "weakPassword": "Mot de passe trop faible. Utilisez au moins 6 caractères",
+                "generic": "Une erreur est survenue. Veuillez réessayer",
+                "popupClosed": "La fenêtre de connexion a été fermée",
+                "popupBlocked": "Veuillez autoriser les pop-ups pour vous connecter avec Google",
+                "googleGeneric": "Erreur de connexion avec Google. Veuillez réessayer"
+            }
+        },
+        "signin": {
+            "title": "Bon retour !",
+            "subtitle": "Connectez-vous à votre compte ImuTask",
+            "footerText": "Accédez à votre dashboard et gérez vos missions en toute simplicité.",
+            "googleButton": "Continuer avec Google",
+            "appleButton": "Continuer avec Apple",
+            "emailLabel": "Adresse email",
+            "emailPlaceholder": "nom@exemple.com",
+            "passwordLabel": "Mot de passe",
+            "passwordPlaceholder": "Entrez votre mot de passe",
+            "forgotPasswordLink": "Mot de passe oublié ?",
+            "rememberMeLabel": "Se souvenir de moi",
+            "submitButton": "Se connecter",
+            "submittingButton": "Connexion...",
+            "successMessage": "Connexion réussie ! Redirection...",
+            "successMessageGoogle": "Connexion Google réussie ! Redirection...",
+            "noAccount": "Pas encore inscrit ?",
+            "signUpLink": "Créez un compte",
+            "redirecting": "Redirection en cours...",
+            "validation": {
+                "emailInvalid": "Adresse email invalide",
+                "passwordMin": "Le mot de passe doit contenir au moins 6 caractères"
+            },
+            "errors": {
+                "userNotFound": "Aucun compte trouvé avec cette adresse email",
+                "wrongPassword": "Mot de passe incorrect",
+                "invalidEmail": "Adresse email invalide",
+                "userDisabled": "Ce compte a été désactivé",
+                "generic": "Une erreur est survenue. Veuillez réessayer",
+                "popupClosed": "La fenêtre de connexion a été fermée",
+                "popupBlocked": "Veuillez autoriser les pop-ups pour vous connecter avec Google",
+                "googleGeneric": "Erreur de connexion avec Google. Veuillez réessayer"
+            }
+        },
+        "forgotPassword": {
+            "title": "Mot de passe oublié ?",
+            "subtitle": "Pas de souci, nous vous enverrons un lien de réinitialisation",
+            "footerText": "Vous recevrez un email avec les instructions pour réinitialiser votre mot de passe.",
+            "emailLabel": "Adresse email",
+            "emailPlaceholder": "nom@exemple.com",
+            "submitButton": "Envoyer le lien de réinitialisation",
+            "submittingButton": "Envoi en cours...",
+            "backToSignin": "Retour à la connexion",
+            "successTitle": "Email envoyé !",
+            "successMessage": "Un email de réinitialisation a été envoyé à {email}",
+            "checkInbox": "Vérifiez votre boîte de réception et suivez les instructions pour réinitialiser votre mot de passe.",
+            "nextSteps": "Prochaines étapes :",
+            "resendEmail": "Renvoyer l'email",
+            "noEmail": "Vous n'avez pas reçu l'email ?",
+            "contactSupport": "Contactez le support",
+            "helpTitle": "Besoin d'aide ?",
+            "help1": "Vérifiez votre dossier spam/courrier indésirable",
+            "help2": "Assurez-vous que l'adresse email est correcte",
+            "help3": "Attendez quelques minutes (délai de livraison)",
+            "noAccount": "Pas encore inscrit ?",
+            "signUpLink": "Créez un compte",
+            "validation": {
+                "emailInvalid": "Adresse email invalide"
+            },
+            "errors": {
+                "userNotFound": "Aucun compte trouvé avec cette adresse email",
+                "invalidEmail": "Adresse email invalide",
+                "tooManyRequests": "Trop de tentatives. Veuillez réessayer plus tard",
+                "generic": "Une erreur est survenue lors de l'envoi de l'email"
+            }
+        }
+    },
     "common": {
         "badges": {
             "accessible": "Certifié PMR"
-        }
+        },
+        "or": "OU",
+        "and": "et"
     }
 }

@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/contexts/AuthContext';
+import { useAuthRedirect } from '@/hooks/use-auth-redirect';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
@@ -35,6 +36,7 @@ export function SignupForm({ locale = 'fr' }: SignupFormProps) {
   const t = useTranslations('Auth.signup');
   const tCommon = useTranslations('common');
   const { signUp, signInWithGoogle } = useAuth();
+  const { isRedirecting } = useAuthRedirect(locale);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -59,9 +61,7 @@ export function SignupForm({ locale = 'fr' }: SignupFormProps) {
       await signUp(data.email, data.password, displayName);
 
       setSuccess(t('successMessage'));
-      setTimeout(() => {
-        router.push(`/${locale}/onboarding`);
-      }, 1500);
+      // Le hook useAuthRedirect gérera la redirection automatiquement
     } catch (err: any) {
       console.error('Signup error:', err);
 
@@ -87,9 +87,7 @@ export function SignupForm({ locale = 'fr' }: SignupFormProps) {
     try {
       await signInWithGoogle();
       setSuccess(t('successMessageGoogle'));
-      setTimeout(() => {
-        router.push(`/${locale}/onboarding`);
-      }, 1500);
+      // Le hook useAuthRedirect gérera la redirection automatiquement
     } catch (err: any) {
       console.error('Google signup error:', err);
 
@@ -103,6 +101,16 @@ export function SignupForm({ locale = 'fr' }: SignupFormProps) {
       setLoading(false);
     }
   };
+
+  // Afficher un loader pendant la redirection
+  if (isRedirecting) {
+    return (
+      <div className="flex flex-col items-center justify-center py-12">
+        <Loader2 className="h-8 w-8 animate-spin text-primary mb-4" />
+        <p className="text-muted-foreground">{t('redirecting')}</p>
+      </div>
+    );
+  }
 
   return (
     <motion.div

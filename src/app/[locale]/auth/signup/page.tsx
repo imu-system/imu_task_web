@@ -3,9 +3,9 @@
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { SignupForm } from '@/components/auth/signup-form';
 import { AuthIllustration } from '@/components/auth/auth-illustration';
-import { ImuTaskLogo } from '@/components/icons';
 
 export default function SignupPage() {
   const params = useParams();
@@ -26,7 +26,14 @@ export default function SignupPage() {
             {/* Logo & Header */}
             <div className="mb-8">
               <div className="flex justify-center lg:justify-start mb-6">
-                <ImuTaskLogo className="h-12 w-12 text-primary" />
+                <Image
+                  src="/images/logo_imutask_v2_no_background.png"
+                  alt="ImuTask"
+                  width={120}
+                  height={48}
+                  className="h-12 w-auto"
+                  priority
+                />
               </div>
               <h1 className="text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
                 {t('title')}

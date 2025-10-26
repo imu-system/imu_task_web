@@ -103,6 +103,28 @@ export async function createUserDocument(
 }
 
 /**
+ * Get user's account type from Firestore
+ * Used for smart redirections after authentication
+ */
+export async function getAccountType(uid: string): Promise<AccountType | null> {
+    try {
+        const userRef = doc(db, 'users', uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+            console.warn('⚠️ User document not found:', uid);
+            return null;
+        }
+
+        const data = userSnap.data();
+        return data?.profile?.accountType || null;
+    } catch (error) {
+        console.error('❌ Error getting account type:', error);
+        return null;
+    }
+}
+
+/**
  * Get user document from Firestore
  * Returns roles and profile data
  */

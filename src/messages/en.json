@@ -2701,9 +2701,119 @@
         "footer": "Already have an account?",
         "signIn": "Sign in"
     },
+    "Auth": {
+        "signup": {
+            "title": "Create an account",
+            "subtitle": "Join ImuTask and find help in 5 minutes",
+            "footerText": "By creating an account, you agree to our terms of service and privacy policy.",
+            "googleButton": "Continue with Google",
+            "appleButton": "Continue with Apple",
+            "firstNameLabel": "First name",
+            "firstNamePlaceholder": "Enter your first name",
+            "lastNameLabel": "Last name",
+            "lastNamePlaceholder": "Enter your last name",
+            "emailLabel": "Email address",
+            "emailPlaceholder": "name@example.com",
+            "passwordLabel": "Password",
+            "passwordPlaceholder": "Minimum 6 characters",
+            "submitButton": "Create my account",
+            "submittingButton": "Creating...",
+            "successMessage": "Account created successfully! Redirecting...",
+            "successMessageGoogle": "Google sign-in successful! Redirecting...",
+            "redirecting": "Redirecting...",
+            "termsText": "By creating an account, you agree to our",
+            "termsLink": "Terms of Service",
+            "privacyLink": "Privacy Policy",
+            "alreadyHaveAccount": "Already have an account?",
+            "signInLink": "Sign in",
+            "validation": {
+                "firstNameMin": "First name must be at least 2 characters",
+                "lastNameMin": "Last name must be at least 2 characters",
+                "emailInvalid": "Invalid email address",
+                "passwordMin": "Password must be at least 6 characters"
+            },
+            "errors": {
+                "emailInUse": "This email address is already in use",
+                "invalidEmail": "Invalid email address",
+                "weakPassword": "Password is too weak. Use at least 6 characters",
+                "generic": "An error occurred. Please try again",
+                "popupClosed": "The sign-in window was closed",
+                "popupBlocked": "Please allow pop-ups to sign in with Google",
+                "googleGeneric": "Google sign-in error. Please try again"
+            }
+        },
+        "signin": {
+            "title": "Welcome back!",
+            "subtitle": "Sign in to your ImuTask account",
+            "footerText": "Access your dashboard and manage your tasks with ease.",
+            "googleButton": "Continue with Google",
+            "appleButton": "Continue with Apple",
+            "emailLabel": "Email address",
+            "emailPlaceholder": "name@example.com",
+            "passwordLabel": "Password",
+            "passwordPlaceholder": "Enter your password",
+            "forgotPasswordLink": "Forgot password?",
+            "rememberMeLabel": "Remember me",
+            "submitButton": "Sign in",
+            "submittingButton": "Signing in...",
+            "successMessage": "✅ Sign-in successful! Redirecting...",
+            "successMessageGoogle": "✅ Google sign-in successful! Redirecting...",
+            "noAccount": "Don't have an account?",
+            "signUpLink": "Sign up",
+            "redirecting": "Redirecting...",
+            "validation": {
+                "emailInvalid": "Invalid email address",
+                "passwordMin": "Password must be at least 6 characters"
+            },
+            "errors": {
+                "userNotFound": "No account found with this email address",
+                "wrongPassword": "Incorrect password",
+                "invalidEmail": "Invalid email address",
+                "userDisabled": "This account has been disabled",
+                "generic": "An error occurred. Please try again",
+                "popupClosed": "The sign-in window was closed",
+                "popupBlocked": "Please allow pop-ups to sign in with Google",
+                "googleGeneric": "Google sign-in error. Please try again"
+            }
+        },
+        "forgotPassword": {
+            "title": "Forgot password?",
+            "subtitle": "No worries, we'll send you a reset link",
+            "footerText": "You will receive an email with instructions to reset your password.",
+            "emailLabel": "Email address",
+            "emailPlaceholder": "name@example.com",
+            "submitButton": "Send reset link",
+            "submittingButton": "Sending...",
+            "backToSignin": "Back to sign in",
+            "successTitle": "Email sent!",
+            "successMessage": "A password reset email has been sent to {email}",
+            "checkInbox": "Check your inbox and follow the instructions to reset your password.",
+            "nextSteps": "Next steps:",
+            "resendEmail": "Resend email",
+            "noEmail": "Didn't receive the email?",
+            "contactSupport": "Contact support",
+            "helpTitle": "Need help?",
+            "help1": "Check your spam/junk folder",
+            "help2": "Make sure the email address is correct",
+            "help3": "Wait a few minutes (delivery delay)",
+            "noAccount": "Don't have an account?",
+            "signUpLink": "Sign up",
+            "validation": {
+                "emailInvalid": "Invalid email address"
+            },
+            "errors": {
+                "userNotFound": "No account found with this email address",
+                "invalidEmail": "Invalid email address",
+                "tooManyRequests": "Too many attempts. Please try again later",
+                "generic": "An error occurred while sending the email"
+            }
+        }
+    },
     "common": {
         "badges": {
             "accessible": "PMR Certified"
-        }
+        },
+        "or": "OR",
+        "and": "and"
     }
 }
