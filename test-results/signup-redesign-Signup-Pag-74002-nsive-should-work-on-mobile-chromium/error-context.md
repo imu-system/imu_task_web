@@ -1,0 +1,79 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - img [ref=e8]
+        - heading "Auth.signup.title" [level=1] [ref=e12]
+        - paragraph [ref=e13]: Auth.signup.subtitle
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - button "Auth.signup.googleButton" [ref=e16] [cursor=pointer]:
+            - img
+            - text: Auth.signup.googleButton
+          - button "Auth.signup.appleButton" [disabled]:
+            - img
+            - text: Auth.signup.appleButton
+        - generic [ref=e21]: common.or
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - generic [ref=e24]:
+              - text: Auth.signup.firstNameLabel
+              - generic [ref=e25]:
+                - img [ref=e26]
+                - textbox "Auth.signup.firstNameLabel" [ref=e29]:
+                  - /placeholder: Auth.signup.firstNamePlaceholder
+            - generic [ref=e30]:
+              - text: Auth.signup.lastNameLabel
+              - generic [ref=e31]:
+                - img [ref=e32]
+                - textbox "Auth.signup.lastNameLabel" [ref=e35]:
+                  - /placeholder: Auth.signup.lastNamePlaceholder
+          - generic [ref=e36]:
+            - text: Auth.signup.emailLabel
+            - generic [ref=e37]:
+              - img [ref=e38]
+              - textbox "Auth.signup.emailLabel" [ref=e41]:
+                - /placeholder: Auth.signup.emailPlaceholder
+          - generic [ref=e42]:
+            - text: Auth.signup.passwordLabel
+            - generic [ref=e43]:
+              - img [ref=e44]
+              - textbox "Auth.signup.passwordLabel" [ref=e47]:
+                - /placeholder: Auth.signup.passwordPlaceholder
+          - button "Auth.signup.submitButton" [ref=e48] [cursor=pointer]
+        - paragraph [ref=e49]:
+          - text: Auth.signup.termsText
+          - link "Auth.signup.termsLink" [ref=e50] [cursor=pointer]:
+            - /url: /fr/legal/terms
+          - text: common.and
+          - link "Auth.signup.privacyLink" [ref=e51] [cursor=pointer]:
+            - /url: /fr/legal/privacy
+        - generic [ref=e52]:
+          - text: Auth.signup.alreadyHaveAccount
+          - link "Auth.signup.signInLink" [ref=e53] [cursor=pointer]:
+            - /url: /fr/auth/signin
+    - paragraph [ref=e55]: Auth.signup.footerText
+  - region "Notifications (F8)":
+    - list
+  - generic [ref=e56]:
+    - img [ref=e58]
+    - button "Open Tanstack query devtools" [ref=e106] [cursor=pointer]:
+      - img [ref=e107]
+  - alert [ref=e155]
+  - generic [ref=e160] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e161]:
+      - img [ref=e162]
+    - generic [ref=e165]:
+      - button "Open issues overlay" [ref=e166]:
+        - generic [ref=e167]:
+          - generic [ref=e168]: "7"
+          - generic [ref=e169]: "8"
+        - generic [ref=e170]:
+          - text: Issue
+          - generic [ref=e171]: s
+      - button "Collapse issues badge" [ref=e172]:
+        - img [ref=e173]
+```
