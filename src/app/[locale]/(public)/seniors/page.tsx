@@ -17,6 +17,7 @@ import {
 import Image from 'next/image';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
+import { Hero } from '@/components/landing/hero';
 import { CarelinkPreview } from '@/components/landing/carelink-preview';
 import { CategoryPills } from '@/components/landing/category-pills';
 import placeholderImages from '@/app/lib/placeholder-images.json';
@@ -75,55 +76,8 @@ export default function SeniorsPage() {
 
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative w-full min-h-[600px] flex items-center bg-gradient-to-br from-orange-500/10 via-background to-red-500/10">
-        <div className="absolute inset-0 -z-10">
-          <Image
-            src={placeholderImages.hero.src}
-            alt="Services pour seniors"
-            data-ai-hint="Seniors souriants recevant de l'aide à domicile"
-            fill
-            className="object-cover opacity-20"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90" />
-        </div>
-
-        <div className="container mx-auto px-4 md:px-6 py-16">
-          <div className="max-w-4xl mx-auto text-center">
-            <Badge variant="secondary" className="mb-6 px-4 py-2 text-base bg-orange-500/10 text-orange-700 dark:text-orange-400 border-orange-500/20">
-              <Accessibility className="mr-2 h-5 w-5" />
-              {tSenior('badge')}
-            </Badge>
-
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight font-headline mb-6">
-              {tSenior('hero.title')}
-            </h1>
-
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
-              {tSenior('hero.subtitle')}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="px-8 py-6 text-lg bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600">
-                <Link href="#services">
-                  <Heart className="mr-2 h-5 w-5" />
-                  {tSenior('cta')}
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="px-8 py-6 text-lg">
-                <Link href="/carelink">
-                  {tCarelink('cta')}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-
-            <p className="text-sm text-muted-foreground mt-6">
-              {tSenior('hero.footer')}
-            </p>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section - Seniors Variant */}
+      <Hero variant="seniors" />
 
       {/* Categories avec filtre PMR */}
       <section className="py-12 bg-accent/5">

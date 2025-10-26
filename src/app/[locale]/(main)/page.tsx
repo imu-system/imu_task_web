@@ -28,6 +28,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { HeroSearchBar } from '@/components/landing/hero-search-bar';
+import { Hero } from '@/components/landing/hero';
 import { StickySearchBar } from '@/components/landing/sticky-search-bar';
 import { CategoryPills } from '@/components/landing/category-pills';
 import { TasksGrid } from '@/components/landing/tasks-grid';
@@ -115,77 +116,9 @@ export default function Home() {
 
       <div className="flex flex-col">
         {/* Hero Section - Airbnb/BlaBlaCar Style */}
-        <section ref={heroRef} className="relative w-full min-h-[600px] md:min-h-[700px] flex items-center bg-gradient-to-br from-primary/5 via-background to-accent/5">
-          {/* Background Image with Overlay */}
-          <div className="absolute inset-0 -z-10">
-            <Image
-              src={placeholderImages.hero.src}
-              alt="Helping hands"
-              data-ai-hint={placeholderImages.hero.hint}
-              fill
-              className="object-cover opacity-20"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background/90" />
-          </div>
-
-          <div className="container mx-auto px-4 md:px-6 py-12 md:py-20">
-            <div className="max-w-5xl mx-auto text-center">
-              {/* Main Headline */}
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight font-headline"
-              >
-                {t('hero.title')}{' '}
-                <span className="text-primary bg-clip-text">
-                  {t('hero.titleHighlight')}
-                </span>
-              </motion.h1>
-
-              {/* Subtitle */}
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="mt-6 text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto"
-              >
-                {t('hero.subtitle')}
-              </motion.p>
-
-              {/* Hero Search Bar */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="mt-10 md:mt-14"
-              >
-                <HeroSearchBar variant="hero" />
-              </motion.div>
-
-              {/* CTA Buttons */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center"
-              >
-                <Button asChild size="lg" className="text-base px-8 py-6 shadow-lg hover:shadow-xl transition-shadow">
-                  <Link href="/dashboard/tasks/new">
-                    <Sparkles className="mr-2 h-5 w-5" />
-                    {t('hero.cta.client')}
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="text-base px-8 py-6 shadow-md hover:shadow-lg transition-shadow">
-                  <Link href="/inscription">
-                    <Briefcase className="mr-2 h-5 w-5" />
-                    {t('hero.cta.provider')}
-                  </Link>
-                </Button>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+        <div ref={heroRef}>
+          <Hero variant="default" />
+        </div>
 
         {/* Profile Segmentation Section - Who is it for? */}
         <ProfileCards />

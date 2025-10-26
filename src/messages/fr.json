@@ -214,8 +214,12 @@
         "tutoring": "Cours particuliers",
         "digital_help": "Aide numérique",
         "pet_care": "Garde d'animaux",
+        "petCare": "Garde d'animaux",
         "event_help": "Aide événementielle",
-        "moving": "Déménagement"
+        "moving": "Déménagement",
+        "cleaning": "Ménage",
+        "homeServices": "Services à domicile",
+        "other": "Autres"
     },
     "CreateTaskForm": {
         "taskTitleLabel": "Titre de la mission",
@@ -1724,7 +1728,10 @@
             "edit": "Modifier",
             "view": "Voir",
             "close": "Fermer",
-            "back": "Retour"
+            "back": "Retour",
+            "badges": {
+                "accessible": "Certifié PMR"
+            }
         }
     },
     "AdminPayments": {
@@ -2268,6 +2275,22 @@
             "cta": {
                 "client": "Publier une mission",
                 "provider": "Proposer mes services"
+            },
+            "seniorVariant": {
+                "badge": "Services adaptés seniors & aidants",
+                "title": "Services à domicile",
+                "titleHighlight": "adaptés seniors ♿",
+                "subtitle": "Aide quotidienne bienveillante, professionnelle et sécurisée pour votre autonomie",
+                "imageAlt": "Senior souriant avec aide à domicile",
+                "cta": {
+                    "primary": "Découvrir CareLink",
+                    "secondary": "Devenir aide à domicile"
+                },
+                "features": {
+                    "accessible": "Certifié PMR",
+                    "secure": "100% sécurisé",
+                    "simple": "Interface simple"
+                }
             }
         },
         "categories": {
@@ -2392,6 +2415,12 @@
                 "title": "Particuliers",
                 "description": "Trouvez rapidement de l'aide pour vos tâches quotidiennes : ménage, courses, bricolage, jardinage et bien plus encore.",
                 "cta": "Découvrir",
+                "features": {
+                    "findLocalProviders": "Trouvez des prestataires locaux qualifiés",
+                    "securePayments": "Paiement sécurisé après service",
+                    "verifiedReviews": "Avis et notes vérifiés par la communauté",
+                    "customerSupport": "Support client disponible 7j/7"
+                },
                 "hero": {
                     "title": "Trouvez de l'aide pour vos tâches quotidiennes",
                     "subtitle": "Une communauté de prestataires qualifiés prêts à vous aider au quotidien",
@@ -2438,6 +2467,12 @@
                 "description": "Artisans, auto-entrepreneurs : développez votre activité avec ImuPro, notre plateforme dédiée aux services professionnels certifiés.",
                 "cta": "Devenir Pro certifié",
                 "badge": "🚀 ImuPro - Plateforme Professionnelle",
+                "features": {
+                    "qualifiedClients": "Clients qualifiés près de chez vous",
+                    "integratedCalendar": "Calendrier et planning intégré",
+                    "automaticPayments": "Paiements automatiques sécurisés",
+                    "liabilityInsurance": "Assurance responsabilité civile incluse"
+                },
                 "hero": {
                     "title": "Boostez votre activité avec ImuPro",
                     "subtitle": "La plateforme dédiée aux professionnels : artisans, auto-entrepreneurs, prestataires de services",
@@ -2453,7 +2488,7 @@
                     "coaching": "Coaching sportif",
                     "more": "Et bien plus..."
                 },
-                "features": {
+                "detailedFeatures": {
                     "title": "Fonctionnalités professionnelles",
                     "growth": {
                         "title": "Développez votre activité",
@@ -2532,6 +2567,12 @@
                 "description": "Services adaptés pour le maintien à domicile : portage de repas, aide ménagère, accompagnement. Découvrez CareLink.",
                 "cta": "En savoir plus",
                 "badge": "♿ Services adaptés PMR",
+                "features": {
+                    "accessibleServices": "Services certifiés PMR ♿",
+                    "emergencyContacts": "Contacts aidants d'urgence",
+                    "quickSOS": "Bouton SOS rapide intégré",
+                    "voiceInterface": "Interface vocale disponible"
+                },
                 "hero": {
                     "title": "Services à domicile pour votre bien-être",
                     "subtitle": "Des services adaptés aux seniors et personnes à mobilité réduite",
@@ -2748,5 +2789,10 @@
         },
         "footer": "Vous avez déjà un compte ?",
         "signIn": "Se connecter"
+    },
+    "common": {
+        "badges": {
+            "accessible": "Certifié PMR"
+        }
     }
 }

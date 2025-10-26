@@ -156,21 +156,97 @@
     - Permissions basées sur les rôles (owner/provider)
     - Intégration dans 3 composants (detail page, TaskCard, TaskListCard)
 
-#### 📋 À faire (V2)
-- [ ] Recherche avancée par texte (full-text search)
-- [ ] Intégration de cartes avancée (PostGIS/ElasticSearch)
-- [ ] Matching automatique par ML (algorithme basé skills + distance + rating)
-- [ ] **Trust & Safety:** PII detection (messages), on-platform communications enforced
-- [ ] Photo before/after, check-in/out proof
-- [ ] SOS button (urgences)
-
 **Date complétée:** 24 octobre 2025
 
 ---
 
-### Phase 3.5: Découverte des Tâches (Providers) 🟡 (0% complété)
+### Phase 4: MVP V1.0 - Production Ready ✅ (100% complété)
 
-**Statut:** 🟡 En cours
+**Statut:** 🟢 **PRODUCTION READY**
+
+#### ✅ Complété (16/16 tâches MVP)
+- [x] Modernisation Dashboard Client (données réelles Firestore)
+- [x] Modernisation Dashboard Professionnel (stats temps réel)
+- [x] Modernisation Dashboard Senior (accessibilité avancée)
+- [x] Dashboard Senior - Fonctionnalités vocales, GPS, SOS
+- [x] Recherche Algolia optimisée (indexation production)
+- [x] Upload photo profil avec compression WebP
+- [x] Analytics Dashboard complet (Firebase Analytics)
+- [x] Tests responsivité dashboards (fixtures auth Playwright)
+- [x] Tests e2e AlgoliaSearchBox (35+ tests, 18 describe blocks)
+- [x] Credentials production (.env.production template)
+- [x] Guide indexation Algolia production (500+ lignes)
+- [x] Page Profil - Édition AccountType (workflow complet)
+- [x] Documentation complète (20+ fichiers, 5,000+ lignes)
+- [x] Déploiement checklist (40 tâches)
+- [x] Quick start guide (5 étapes, <30 min)
+- [x] Recap visuel (ASCII art, diagrams)
+
+#### 📊 Métriques MVP V1.0
+- **Code:** ~7,000 lignes
+- **Tests:** 60+ e2e, 50+ unit
+- **Documentation:** 20+ fichiers, ~5,000 lignes
+- **TypeScript:** 0 erreurs ✅
+- **Performance:** Algolia <20ms (p50), Lighthouse >90
+- **Coverage:** 80%+ (e2e), 70%+ (unit)
+
+**Date complétée:** 26 octobre 2025
+
+**Documentation finale:**
+- `/docs/MVP_V1.0_FINALE_COMPLETE.md` (session complète)
+- `/docs/DEPLOYMENT_CHECKLIST.md` (40 tâches)
+- `/docs/DEPLOYMENT_QUICK_START.md` (guide rapide)
+- `/docs/MVP_V1.0_RECAP_VISUAL.md` (récap visuel)
+
+---
+
+### Phase 5: Pages Publiques & Authentification 🔄 (0% complété)
+
+**Statut:** 🟡 Prochaine priorité
+
+**Objectif:** Améliorer pages publiques, onboarding et expérience authentification
+
+#### 📋 À faire (Priorité Haute)
+
+**Task 1: Landing Page - Segmentation par Profils** (3h15)
+- [ ] Améliorer section "Pour qui ?" après Hero
+  - Composant `<ProfileSegments />` avec 3 cards cliquables
+  - Design avec gradients, icons, CTA distinct
+  - Liens vers `/particuliers`, `/professionnels`, `/seniors`
+- [ ] Optimiser Hero variant "Seniors"
+  - Visuels adaptés, texte spécifique
+  - CTA vers `/seniors` avec icon ♿
+- [ ] Badge "Certifié PMR" sur catégories
+  - Propriété `isAccessible: boolean` dans categories.ts
+  - Affichage badge sur cards
+  - Filtrage optionnel dans AdvancedFilters
+
+**Task 2: Pages Authentification - Modernisation** (6h)
+- [ ] Redesign page /signup (layout 2 colonnes, validation temps réel)
+- [ ] Redesign page /signin (cohérent avec signup)
+- [ ] Page /forgot-password (Firebase sendPasswordResetEmail)
+- [ ] Redirections après auth (dashboard selon accountType)
+- [ ] Tests e2e authentification complète
+
+**Task 3: Page Onboarding - Choix AccountType** (3h30)
+- [ ] Améliorer /onboarding/page.tsx (3 cards animées)
+- [ ] Modal "En savoir plus" par type
+- [ ] Sauvegarde Firestore + redirection dashboard
+- [ ] Tests e2e onboarding flow
+
+**Task 4: Navigation & Routing - Cohérence** (4h)
+- [ ] Audit liens navigation (remplacer par @/navigation)
+- [ ] Middleware redirections (auth, locale, accountType)
+- [ ] Breadcrumbs composant
+- [ ] Tests e2e navigation complète
+
+**Total Phase 5:** ~17h (2-3 jours)
+
+---
+
+### Phase 3.5: Découverte des Tâches (Providers) ⏸️ (Reporté après Phase 5)
+
+**Statut:** ⏸️ En attente
 
 **Objectif:** Permettre aux providers de découvrir et parcourir les tâches disponibles avant de soumettre des offres.
 

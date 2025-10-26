@@ -1,8 +1,11 @@
-
 {
   "hero": {
     "src": "https://picsum.photos/1920/1080",
     "hint": "helping hands"
+  },
+  "seniors": {
+    "src": "https://picsum.photos/seed/seniors/1920/1080",
+    "hint": "senior woman smiling with caregiver at home"
   },
   "forClients": {
     "src": "https://picsum.photos/seed/client/600/400",

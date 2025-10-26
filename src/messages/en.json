@@ -277,8 +277,12 @@
         "tutoring": "Tutoring",
         "digital_help": "Digital Help",
         "pet_care": "Pet Care",
+        "petCare": "Pet Care",
         "event_help": "Event Help",
-        "moving": "Moving"
+        "moving": "Moving",
+        "cleaning": "Cleaning",
+        "homeServices": "Home Services",
+        "other": "Other"
     },
     "CreateTaskForm": {
         "taskTitleLabel": "Task title",
@@ -1664,7 +1668,10 @@
             "edit": "Edit",
             "view": "View",
             "close": "Close",
-            "back": "Back"
+            "back": "Back",
+            "badges": {
+                "accessible": "PMR Certified"
+            }
         }
     },
     "AdminPayments": {
@@ -2207,6 +2214,22 @@
             "cta": {
                 "client": "Post a task",
                 "provider": "Become a provider"
+            },
+            "seniorVariant": {
+                "badge": "Senior & caregiver adapted services",
+                "title": "Home care services",
+                "titleHighlight": "adapted for seniors ♿",
+                "subtitle": "Caring, professional and secure daily assistance for your independence",
+                "imageAlt": "Smiling senior with home care assistant",
+                "cta": {
+                    "primary": "Discover CareLink",
+                    "secondary": "Become a home care assistant"
+                },
+                "features": {
+                    "accessible": "PMR certified",
+                    "secure": "100% secure",
+                    "simple": "Simple interface"
+                }
             }
         },
         "categories": {
@@ -2254,6 +2277,12 @@
                 "title": "Individuals",
                 "description": "Quickly find help for your daily tasks: cleaning, shopping, handyman work, gardening and much more",
                 "cta": "Learn more",
+                "features": {
+                    "findLocalProviders": "Find qualified local providers",
+                    "securePayments": "Secure payment after service",
+                    "verifiedReviews": "Community-verified reviews and ratings",
+                    "customerSupport": "Customer support available 7/7"
+                },
                 "hero": {
                     "title": "Find help for your daily tasks",
                     "subtitle": "A community of qualified providers ready to help you every day",
@@ -2300,6 +2329,12 @@
                 "description": "Grow your business with ImuPro: qualified leads, automated invoicing and management tools",
                 "cta": "Discover ImuPro",
                 "badge": "🚀 ImuPro - Professional Platform",
+                "features": {
+                    "qualifiedClients": "Qualified clients near you",
+                    "integratedCalendar": "Integrated calendar and planning",
+                    "automaticPayments": "Secure automatic payments",
+                    "liabilityInsurance": "Liability insurance included"
+                },
                 "hero": {
                     "title": "Boost your business with ImuPro",
                     "subtitle": "The platform dedicated to professionals: craftsmen, self-employed, service providers",
@@ -2315,7 +2350,7 @@
                     "coaching": "Sports coaching",
                     "more": "And much more..."
                 },
-                "features": {
+                "detailedFeatures": {
                     "title": "Professional Features",
                     "growth": {
                         "title": "Grow Your Business",
@@ -2394,6 +2429,12 @@
                 "description": "Find trusted help for seniors: home care, companionship, healthcare coordination with CareLink",
                 "cta": "Discover CareLink",
                 "badge": "♿ Accessible services for people with reduced mobility",
+                "features": {
+                    "accessibleServices": "PMR certified services ♿",
+                    "emergencyContacts": "Emergency caregiver contacts",
+                    "quickSOS": "Quick SOS button integrated",
+                    "voiceInterface": "Voice interface available"
+                },
                 "hero": {
                     "title": "Home services for your well-being",
                     "subtitle": "Services adapted to seniors and people with reduced mobility",
@@ -2659,5 +2700,10 @@
         },
         "footer": "Already have an account?",
         "signIn": "Sign in"
+    },
+    "common": {
+        "badges": {
+            "accessible": "PMR Certified"
+        }
     }
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
+import { AccessibleBadge } from '@/components/ui/accessible-badge';
 import { useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useState, useRef, useEffect } from 'react';
@@ -87,29 +88,26 @@ export function CategoryPills() {
           {TASK_CATEGORIES.map((category) => {
             const IconComponent = category.icon;
             return (
-              <Button
-                key={category.id}
-                variant={selectedCategory === category.slug ? 'default' : 'outline'}
-                className={cn(
-                  'flex-shrink-0 h-12 px-6 gap-2 rounded-full font-medium transition-all duration-200',
-                  selectedCategory === category.slug
-                    ? 'shadow-md'
-                    : 'hover:bg-accent hover:shadow-sm'
-                )}
-                onClick={() => handleCategoryClick(category.slug, t(category.nameKey), category.isAccessible || false)}
-              >
-                <IconComponent className="h-5 w-5" />
-                <span className="whitespace-nowrap">{t(category.nameKey)}</span>
+              <div key={category.id} className="relative flex-shrink-0">
+                <Button
+                  variant={selectedCategory === category.slug ? 'default' : 'outline'}
+                  className={cn(
+                    'h-12 px-6 gap-2 rounded-full font-medium transition-all duration-200',
+                    selectedCategory === category.slug
+                      ? 'shadow-md'
+                      : 'hover:bg-accent hover:shadow-sm'
+                  )}
+                  onClick={() => handleCategoryClick(category.slug, t(category.nameKey), category.isAccessible || false)}
+                >
+                  <IconComponent className="h-5 w-5" />
+                  <span className="whitespace-nowrap">{t(category.nameKey)}</span>
+                </Button>
                 {category.isAccessible && (
-                  <span 
-                    className="text-sm" 
-                    title="Adapté aux personnes à mobilité réduite"
-                    aria-label="Adapté aux personnes à mobilité réduite"
-                  >
-                    ♿
-                  </span>
+                  <div className="absolute -top-2 -right-2">
+                    <AccessibleBadge variant="solid" className="shadow-sm" showIcon={false} />
+                  </div>
                 )}
-              </Button>
+              </div>
             );
           })}
         </div>
