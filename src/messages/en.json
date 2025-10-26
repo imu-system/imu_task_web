@@ -1228,8 +1228,49 @@
         }
     },
     "Onboarding": {
+        "welcome": "Welcome to ImuTask",
+        "subtitle": "To personalize your experience, which profile type suits you?",
+        "step1of2": "Step 1 of 2 - Profile Selection",
+        "continue": "Continue",
+        "saving": "Saving...",
+        "selectPrompt": "👆 Select an account type to continue",
+        "selectAccountTypeError": "Please select an account type",
+        "successTitle": "✅ Profile Configured",
+        "successDescription": "Your account type has been successfully saved",
+        "errorSaving": "Error saving. Please try again.",
+        "tip": {
+            "label": "Tip",
+            "text": "You can change your account type later in your settings"
+        },
+        "security": "Your data is secure and will never be shared",
+        "accountType": {
+            "selected": "Selected",
+            "individual": {
+                "title": "Individual",
+                "description": "I'm looking for help with my daily tasks",
+                "feature1": "Find qualified local service providers",
+                "feature2": "Secure payment after service completion",
+                "feature3": "Verified reviews and ratings from community",
+                "feature4": "Customer support available 7 days a week"
+            },
+            "professional": {
+                "title": "Professional",
+                "description": "I offer my services and want to grow my business",
+                "feature1": "Qualified clients near you",
+                "feature2": "Integrated calendar and scheduling",
+                "feature3": "Secure automatic payments",
+                "feature4": "Liability insurance included"
+            },
+            "senior": {
+                "title": "Senior / Caregiver",
+                "description": "I need adapted services and caring support",
+                "feature1": "Certified accessible PMR ♿ services",
+                "feature2": "Configurable emergency caregiver contacts",
+                "feature3": "Integrated quick SOS button in app",
+                "feature4": "Simplified voice interface (optional)"
+            }
+        },
         "title": "Become a Professional",
-        "subtitle": "Complete your profile in {steps} steps",
         "progress": "Step {current} of {total}",
         "next": "Next",
         "previous": "Previous",

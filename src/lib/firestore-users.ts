@@ -125,6 +125,27 @@ export async function getAccountType(uid: string): Promise<AccountType | null> {
 }
 
 /**
+ * Save user's account type to Firestore
+ * Updates profile.accountType and accountTypeChangedAt timestamp
+ */
+export async function saveAccountType(uid: string, accountType: AccountType): Promise<void> {
+    try {
+        const userRef = doc(db, 'users', uid);
+
+        await updateDoc(userRef, {
+            'profile.accountType': accountType,
+            'profile.accountTypeChangedAt': serverTimestamp(),
+            updatedAt: serverTimestamp(),
+        });
+
+        console.log('✅ Account type saved:', accountType);
+    } catch (error) {
+        console.error('❌ Error saving account type:', error);
+        throw error;
+    }
+}
+
+/**
  * Get user document from Firestore
  * Returns roles and profile data
  */

@@ -1,30 +1,40 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from '@/navigation';
+import { useRouter, useParams } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { AccountType } from '@/lib/types';
-import { AccountTypeSelector } from '@/components/auth/account-type-selector';
+import { AccountTypeCard } from '@/components/onboarding/account-type-card';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Loader2, ArrowRight } from 'lucide-react';
-import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
+import { Loader2, ArrowRight, Sparkles } from 'lucide-react';
+import { saveAccountType } from '@/lib/firestore-users';
 import { useToast } from '@/hooks/use-toast';
+import { useTranslations } from 'next-intl';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function OnboardingPage() {
   const router = useRouter();
+  const params = useParams();
+  const locale = params.locale as string;
   const { user } = useAuth();
   const { toast } = useToast();
+  const t = useTranslations('Onboarding');
   
   const [selectedType, setSelectedType] = useState<AccountType | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const accountTypes: AccountType[] = [
+    AccountType.individual,
+    AccountType.professional,
+    AccountType.senior,
+  ];
+
   const handleContinue = async () => {
     if (!selectedType || !user) {
-      setError('Veuillez sélectionner un type de compte');
+      setError(t('selectAccountTypeError'));
       return;
     }
 
@@ -32,32 +42,24 @@ export default function OnboardingPage() {
     setError('');
 
     try {
-      // Update user profile with account type
-      const userRef = doc(db, 'users', user.uid);
-      await updateDoc(userRef, {
-        'profile.accountType': selectedType,
-        updatedAt: new Date(),
-      });
+      // Save account type to Firestore
+      await saveAccountType(user.uid, selectedType);
 
       toast({
-        title: '✅ Profil mis à jour',
-        description: 'Votre type de compte a été configuré avec succès.',
+        title: t('successTitle'),
+        description: t('successDescription'),
       });
 
       // Redirect to appropriate dashboard
       setTimeout(() => {
-        router.push('/dashboard');
+        const dashboardPath = `/${locale}/dashboard/${selectedType}`;
+        router.push(dashboardPath);
       }, 500);
     } catch (err: any) {
       console.error('Error updating account type:', err);
-      setError('Erreur lors de la mise à jour du profil. Veuillez réessayer.');
+      setError(t('errorSaving'));
       setLoading(false);
     }
-  };
-
-  const handleSkip = () => {
-    // Skip for now, redirect to dashboard
-    router.push('/dashboard');
   };
 
   if (!user) {
@@ -69,80 +71,133 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12 max-w-5xl">
-      <div className="space-y-8">
-        {/* Header */}
-        <div className="text-center space-y-2">
-          <h1 className="text-3xl font-bold">
-            Bienvenue sur ImuTask ! 👋
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Pour personnaliser votre expérience, quel type de profil vous correspond ?
-          </p>
-        </div>
-
-        {/* Account Type Selector */}
-        <AccountTypeSelector
-          selectedType={selectedType}
-          onSelect={setSelectedType}
-          locale="fr"
-        />
-
-        {/* Error Message */}
-        {error && (
-          <Alert variant="destructive">
-            <AlertDescription>{error}</AlertDescription>
-          </Alert>
-        )}
-
-        {/* Actions */}
-        <Card>
-          <CardContent className="pt-6">
-            <div className="flex flex-col sm:flex-row gap-4 justify-between items-center">
-              <Button
-                variant="ghost"
-                onClick={handleSkip}
-                disabled={loading}
-              >
-                Passer pour l'instant
-              </Button>
-
-              <Button
-                size="lg"
-                onClick={handleContinue}
-                disabled={!selectedType || loading}
-                className="min-w-[200px]"
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Configuration...
-                  </>
-                ) : (
-                  <>
-                    Continuer
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </>
-                )}
-              </Button>
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20 py-12 px-4">
+      <div className="container mx-auto max-w-7xl">
+        <div className="space-y-12">
+          {/* Header with Logo */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-center space-y-6"
+          >
+            {/* Logo */}
+            <div className="flex justify-center mb-6">
+              <Image
+                src="/images/logo_imutask_v2_no_background.png"
+                alt="ImuTask"
+                width={180}
+                height={60}
+                priority
+                className="h-16 w-auto"
+              />
             </div>
 
+            {/* Welcome Message */}
+            <div className="space-y-3">
+              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-blue-600 to-cyan-600 bg-clip-text text-transparent">
+                {t('welcome')} 👋
+              </h1>
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
+                {t('subtitle')}
+              </p>
+            </div>
+
+            {/* Progress Indicator */}
+            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+              <Sparkles className="h-4 w-4 text-primary" />
+              <span>{t('step1of2')}</span>
+            </div>
+          </motion.div>
+
+          {/* Account Type Cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div className="grid gap-6 md:grid-cols-3 mb-8">
+              {accountTypes.map((type, index) => (
+                <motion.div
+                  key={type}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                >
+                  <AccountTypeCard
+                    type={type}
+                    selected={selectedType === type}
+                    onSelect={setSelectedType}
+                  />
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Error Message */}
+          {error && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+            >
+              <Alert variant="destructive" className="max-w-2xl mx-auto">
+                <AlertDescription>{error}</AlertDescription>
+              </Alert>
+            </motion.div>
+          )}
+
+          {/* Continue Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+            className="flex flex-col items-center gap-6"
+          >
+            <Button
+              size="lg"
+              onClick={handleContinue}
+              disabled={!selectedType || loading}
+              className="min-w-[280px] h-14 text-lg font-semibold shadow-lg hover:shadow-xl transition-all"
+            >
+              {loading ? (
+                <>
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  {t('saving')}
+                </>
+              ) : (
+                <>
+                  {t('continue')}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </>
+              )}
+            </Button>
+
             {!selectedType && (
-              <p className="text-center text-sm text-muted-foreground mt-4">
-                Sélectionnez un type de compte pour continuer
+              <p className="text-sm text-muted-foreground animate-pulse">
+                {t('selectPrompt')}
               </p>
             )}
-          </CardContent>
-        </Card>
+          </motion.div>
 
-        {/* Benefits */}
-        <div className="text-center text-sm text-muted-foreground space-y-2">
-          <p>
-            💡 <strong>Astuce :</strong> Vous pourrez modifier votre type de compte plus tard dans vos paramètres
-          </p>
-          <p>
-            🔒 Vos données sont sécurisées et ne seront jamais partagées
-          </p>
+          {/* Benefits Footer */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+            className="text-center space-y-3 max-w-2xl mx-auto"
+          >
+            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+              <div className="flex items-center gap-1.5">
+                <span>💡</span>
+                <span className="font-medium">{t('tip.label')}:</span>
+                <span>{t('tip.text')}</span>
+              </div>
+            </div>
+            <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+              <span>🔒</span>
+              <span>{t('security')}</span>
+            </div>
+          </motion.div>
         </div>
       </div>
     </div>

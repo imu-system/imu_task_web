@@ -1222,8 +1222,49 @@
         }
     },
     "Onboarding": {
+        "welcome": "Bienvenue sur ImuTask",
+        "subtitle": "Pour personnaliser votre expérience, quel type de profil vous correspond ?",
+        "step1of2": "Étape 1 sur 2 - Choix du profil",
+        "continue": "Continuer",
+        "saving": "Enregistrement en cours...",
+        "selectPrompt": "👆 Sélectionnez un type de compte pour continuer",
+        "selectAccountTypeError": "Veuillez sélectionner un type de compte",
+        "successTitle": "✅ Profil configuré",
+        "successDescription": "Votre type de compte a été enregistré avec succès",
+        "errorSaving": "Erreur lors de l'enregistrement. Veuillez réessayer.",
+        "tip": {
+            "label": "Astuce",
+            "text": "Vous pourrez modifier votre type de compte plus tard dans vos paramètres"
+        },
+        "security": "Vos données sont sécurisées et ne seront jamais partagées",
+        "accountType": {
+            "selected": "Sélectionné",
+            "individual": {
+                "title": "Particulier",
+                "description": "Je cherche de l'aide pour mes tâches quotidiennes",
+                "feature1": "Trouver des prestataires locaux qualifiés",
+                "feature2": "Paiement sécurisé après service rendu",
+                "feature3": "Avis et notes vérifiés de la communauté",
+                "feature4": "Support client disponible 7j/7"
+            },
+            "professional": {
+                "title": "Professionnel",
+                "description": "Je propose mes services et souhaite développer mon activité",
+                "feature1": "Clients qualifiés près de chez vous",
+                "feature2": "Calendrier et planning intégré",
+                "feature3": "Paiements automatiques sécurisés",
+                "feature4": "Assurance responsabilité civile incluse"
+            },
+            "senior": {
+                "title": "Senior / Aidant",
+                "description": "J'ai besoin de services adaptés et d'un accompagnement bienveillant",
+                "feature1": "Services certifiés PMR ♿ accessibles",
+                "feature2": "Contacts aidants d'urgence configurables",
+                "feature3": "Bouton SOS rapide intégré à l'app",
+                "feature4": "Interface vocale simplifiée (optionnel)"
+            }
+        },
         "title": "Devenez professionnel",
-        "subtitle": "Complétez votre profil en {steps} étapes",
         "progress": "Étape {current} sur {total}",
         "next": "Suivant",
         "previous": "Précédent",
