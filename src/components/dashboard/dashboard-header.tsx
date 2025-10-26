@@ -197,6 +197,14 @@ export function DashboardHeader({
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
+                <Link href="/profile/account-type" className="cursor-pointer">
+                  <Badge variant="outline" className="mr-2">
+                    {getAccountTypeLabel()}
+                  </Badge>
+                  <span>Changer de type de compte</span>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <Link href="/dashboard/settings" className="cursor-pointer">
                   <Settings className="mr-2 h-4 w-4" />
                   <span>Paramètres</span>
