@@ -15,7 +15,8 @@ import {
 } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { UserRole } from '@/lib/types';
-import { createUserDocument, getUserDocument } from '@/lib/firestore-users';
+import { createUserDocument, getUserDocument, getAccountType } from '@/lib/firestore-users';
+import { setAccountTypeCookie, clearAccountTypeCookie } from '@/lib/account-type-cookie';
 
 // Extended Firebase User type with custom properties
 // Note: This is different from AppUser in lib/types.ts which is based on Firestore User
@@ -117,9 +118,20 @@ export function AuthProvider({ children }: AuthProviderProps) {
       if (firebaseUser) {
         // Créer un cookie pour indiquer l'état d'authentification
         document.cookie = `firebaseAuth=true; path=/; max-age=2592000; SameSite=Lax`;
+        
+        // Charger et set le cookie accountType
+        try {
+          const accountType = await getAccountType(firebaseUser.uid);
+          if (accountType) {
+            setAccountTypeCookie(accountType);
+          }
+        } catch (error) {
+          console.error('❌ Error loading accountType for cookie:', error);
+        }
       } else {
-        // Supprimer le cookie si l'utilisateur se déconnecte
+        // Supprimer les cookies si l'utilisateur se déconnecte
         document.cookie = 'firebaseAuth=; path=/; max-age=0';
+        clearAccountTypeCookie();
       }
       
       if (process.env.NODE_ENV === 'development') {

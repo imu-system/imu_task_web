@@ -1239,6 +1239,7 @@
         "security": "Vos données sont sécurisées et ne seront jamais partagées",
         "accountType": {
             "selected": "Sélectionné",
+            "learnMore": "En savoir plus",
             "individual": {
                 "title": "Particulier",
                 "description": "Je cherche de l'aide pour mes tâches quotidiennes",
@@ -1262,6 +1263,64 @@
                 "feature2": "Contacts aidants d'urgence configurables",
                 "feature3": "Bouton SOS rapide intégré à l'app",
                 "feature4": "Interface vocale simplifiée (optionnel)"
+            }
+        },
+        "modal": {
+            "useCaseTitle": "Idéal pour",
+            "benefitsTitle": "Avantages",
+            "pricingTitle": "Tarification",
+            "comparisonTitle": "Comparaison des fonctionnalités",
+            "featureColumn": "Fonctionnalité",
+            "individualColumn": "Particulier",
+            "professionalColumn": "Professionnel",
+            "seniorColumn": "Senior",
+            "cancelButton": "Annuler",
+            "selectButton": "Choisir ce profil",
+            "individual": {
+                "title": "Compte Particulier - Détails",
+                "subtitle": "Trouvez de l'aide pour vos tâches quotidiennes en toute simplicité",
+                "useCase": "Idéal pour les personnes qui recherchent ponctuellement ou régulièrement de l'aide pour des tâches quotidiennes : ménage, jardinage, bricolage, garde d'enfants, soutien scolaire, etc.",
+                "benefit1": "Accès à des milliers de prestataires locaux qualifiés et vérifiés",
+                "benefit2": "Réservation en ligne simple et rapide en quelques clics",
+                "benefit3": "Paiement 100% sécurisé après réalisation du service",
+                "benefit4": "Avis et notes de la communauté pour choisir en confiance",
+                "benefit5": "Support client disponible 7j/7 par chat et téléphone",
+                "benefit6": "Historique et suivi de toutes vos réservations en un coup d'œil",
+                "pricing": "Gratuit - Aucun abonnement requis. Vous payez uniquement les services que vous réservez, avec des tarifs transparents affichés à l'avance."
+            },
+            "professional": {
+                "title": "Compte Professionnel - Détails",
+                "subtitle": "Développez votre activité de services locaux et gérez vos clients facilement",
+                "useCase": "Idéal pour les prestataires de services (indépendants, auto-entrepreneurs, TPE) qui souhaitent développer leur activité locale, trouver de nouveaux clients et professionnaliser leur gestion.",
+                "benefit1": "Trouvez des clients qualifiés près de chez vous automatiquement",
+                "benefit2": "Calendrier et planning intégré pour gérer vos disponibilités",
+                "benefit3": "Paiements automatiques sécurisés avec virement sous 48h",
+                "benefit4": "Assurance responsabilité civile professionnelle incluse (optionnel)",
+                "benefit5": "Statistiques détaillées : CA, missions, notes, évolution",
+                "benefit6": "Visibilité accrue avec profil professionnel optimisé SEO",
+                "pricing": "Freemium - Version gratuite disponible. Commission de 12-20% par mission réalisée. Abonnement ImuPro optionnel : 29€/mois (commission réduite à 8%)."
+            },
+            "senior": {
+                "title": "Compte Senior / CareLink - Détails",
+                "subtitle": "Services adaptés et accompagnement bienveillant pour seniors et aidants",
+                "useCase": "Idéal pour les personnes âgées, à mobilité réduite (PMR), ou leurs aidants qui recherchent des services adaptés avec un accompagnement personnalisé et sécurisé.",
+                "benefit1": "Services certifiés PMR ♿ avec garantie d'accessibilité",
+                "benefit2": "Contacts aidants d'urgence configurables (famille, proches)",
+                "benefit3": "Bouton SOS rapide intégré directement dans l'application",
+                "benefit4": "Interface vocale simplifiée et assistance guidée (optionnel)",
+                "benefit5": "Tarifs préférentiels négociés avec nos partenaires seniors",
+                "benefit6": "Accompagnement personnalisé par notre équipe CareLink dédiée",
+                "pricing": "Gratuit - Aucun abonnement. Tarifs préférentiels négociés avec nos partenaires. Réductions spéciales pour bénéficiaires APA/PCH."
+            },
+            "comparison": {
+                "searchServices": "Rechercher des services",
+                "offerServices": "Proposer des services",
+                "calendar": "Calendrier / Planning",
+                "statistics": "Statistiques détaillées",
+                "securePayment": "Paiement sécurisé",
+                "pmrServices": "Services PMR ♿",
+                "sosButton": "Bouton SOS d'urgence",
+                "insurance": "Assurance RC Pro"
             }
         },
         "title": "Devenez professionnel",
@@ -2938,6 +2997,20 @@
                 "generic": "Une erreur est survenue lors de l'envoi de l'email"
             }
         }
+    },
+    "Breadcrumbs": {
+        "ariaLabel": "Fil d'Ariane",
+        "home": "Accueil",
+        "dashboard": "Tableau de bord",
+        "profile": "Profil",
+        "settings": "Paramètres",
+        "accountType": "Type de compte",
+        "tasks": "Missions",
+        "messages": "Messages",
+        "notifications": "Notifications",
+        "bookings": "Réservations",
+        "wallet": "Portefeuille",
+        "offers": "Offres"
     },
     "common": {
         "badges": {

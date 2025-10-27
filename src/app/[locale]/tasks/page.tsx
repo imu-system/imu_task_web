@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState, useMemo, useCallback } from 'react';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 import { getTasksWithFilters, type Task, type TaskLocation } from '@/lib/firestore-tasks';
 import {

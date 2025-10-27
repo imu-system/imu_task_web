@@ -9,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, FileText } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 
 export default function TermsPage() {
   const t = useTranslations('Legal');

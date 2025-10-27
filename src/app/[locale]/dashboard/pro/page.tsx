@@ -37,10 +37,12 @@ import {
     Bell,
     TrendingDown,
 } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/navigation';
+import { useTranslations } from 'next-intl';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 import { DashboardHeader } from '@/components/dashboard/dashboard-header';
 import { QuickActions } from '@/components/dashboard/quick-actions';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 import { 
   AnimatedDiv, 
   AnimatedList, 
@@ -117,6 +119,7 @@ interface Notification {
 export default function ProDashboardPage() {
     const { user } = useAuth();
     const router = useRouter();
+    const t = useTranslations('Breadcrumbs');
 
     const [loading, setLoading] = useState(true);
     const [proProfile, setProProfile] = useState<ProProfile | null>(null);
@@ -320,6 +323,13 @@ export default function ProDashboardPage() {
 
     return (
         <div className="container py-8 space-y-6">
+            {/* Breadcrumbs */}
+            <Breadcrumbs 
+                items={[
+                    { label: t('dashboard'), href: '/dashboard/pro' }
+                ]}
+            />
+            
             {/* Header moderne avec DashboardHeader */}
             <DashboardHeader 
                 accountType={AccountType.professional}

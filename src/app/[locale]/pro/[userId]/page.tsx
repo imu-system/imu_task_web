@@ -31,7 +31,7 @@ import {
     ExternalLink,
     Image as ImageIcon,
 } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import Image from 'next/image';
 
 interface ProProfile {

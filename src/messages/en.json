@@ -1245,6 +1245,7 @@
         "security": "Your data is secure and will never be shared",
         "accountType": {
             "selected": "Selected",
+            "learnMore": "Learn more",
             "individual": {
                 "title": "Individual",
                 "description": "I'm looking for help with my daily tasks",
@@ -1268,6 +1269,64 @@
                 "feature2": "Configurable emergency caregiver contacts",
                 "feature3": "Integrated quick SOS button in app",
                 "feature4": "Simplified voice interface (optional)"
+            }
+        },
+        "modal": {
+            "useCaseTitle": "Ideal for",
+            "benefitsTitle": "Benefits",
+            "pricingTitle": "Pricing",
+            "comparisonTitle": "Feature Comparison",
+            "featureColumn": "Feature",
+            "individualColumn": "Individual",
+            "professionalColumn": "Professional",
+            "seniorColumn": "Senior",
+            "cancelButton": "Cancel",
+            "selectButton": "Choose this profile",
+            "individual": {
+                "title": "Individual Account - Details",
+                "subtitle": "Find help for your daily tasks easily",
+                "useCase": "Ideal for people who occasionally or regularly need help with daily tasks: cleaning, gardening, DIY, childcare, tutoring, etc.",
+                "benefit1": "Access to thousands of qualified and verified local service providers",
+                "benefit2": "Simple and quick online booking in just a few clicks",
+                "benefit3": "100% secure payment after service completion",
+                "benefit4": "Community reviews and ratings to choose with confidence",
+                "benefit5": "Customer support available 7/7 via chat and phone",
+                "benefit6": "History and tracking of all your bookings at a glance",
+                "pricing": "Free - No subscription required. You only pay for the services you book, with transparent prices displayed upfront."
+            },
+            "professional": {
+                "title": "Professional Account - Details",
+                "subtitle": "Grow your local service business and manage your clients easily",
+                "useCase": "Ideal for service providers (freelancers, self-employed, small businesses) who want to develop their local business, find new clients and professionalize their management.",
+                "benefit1": "Find qualified clients near you automatically",
+                "benefit2": "Integrated calendar and planning to manage your availability",
+                "benefit3": "Automatic secure payments with transfer within 48h",
+                "benefit4": "Professional liability insurance included (optional)",
+                "benefit5": "Detailed statistics: revenue, missions, ratings, evolution",
+                "benefit6": "Increased visibility with SEO-optimized professional profile",
+                "pricing": "Freemium - Free version available. Commission of 12-20% per completed mission. Optional ImuPro subscription: €29/month (reduced commission to 8%)."
+            },
+            "senior": {
+                "title": "Senior / CareLink Account - Details",
+                "subtitle": "Adapted services and caring support for seniors and caregivers",
+                "useCase": "Ideal for elderly people, people with reduced mobility (PRM), or their caregivers looking for adapted services with personalized and secure support.",
+                "benefit1": "Certified PMR ♿ services with accessibility guarantee",
+                "benefit2": "Configurable emergency caregiver contacts (family, loved ones)",
+                "benefit3": "Quick SOS button integrated directly into the app",
+                "benefit4": "Simplified voice interface and guided assistance (optional)",
+                "benefit5": "Preferential rates negotiated with our senior partners",
+                "benefit6": "Personalized support by our dedicated CareLink team",
+                "pricing": "Free - No subscription. Preferential rates negotiated with our partners. Special discounts for APA/PCH beneficiaries."
+            },
+            "comparison": {
+                "searchServices": "Search for services",
+                "offerServices": "Offer services",
+                "calendar": "Calendar / Planning",
+                "statistics": "Detailed statistics",
+                "securePayment": "Secure payment",
+                "pmrServices": "PMR ♿ Services",
+                "sosButton": "Emergency SOS button",
+                "insurance": "Professional Liability Insurance"
             }
         },
         "title": "Become a Professional",
@@ -2849,6 +2908,20 @@
                 "generic": "An error occurred while sending the email"
             }
         }
+    },
+    "Breadcrumbs": {
+        "ariaLabel": "Breadcrumb navigation",
+        "home": "Home",
+        "dashboard": "Dashboard",
+        "profile": "Profile",
+        "settings": "Settings",
+        "accountType": "Account Type",
+        "tasks": "Tasks",
+        "messages": "Messages",
+        "notifications": "Notifications",
+        "bookings": "Bookings",
+        "wallet": "Wallet",
+        "offers": "Offers"
     },
     "common": {
         "badges": {

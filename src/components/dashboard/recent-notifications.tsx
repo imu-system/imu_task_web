@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "../ui/button";
 import { Bell, Handshake, MessageSquare, Star } from "lucide-react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { ReactNode } from "react";
 
 const mockNotifications = [

@@ -3,9 +3,12 @@
 import { AccountType } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { Check, User, Briefcase, Heart, LucideIcon } from 'lucide-react';
+import { Check, User, Briefcase, Heart, Info, LucideIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
+import { useState } from 'react';
+import { AccountTypeModal } from './account-type-modal';
+import { Button } from '@/components/ui/button';
 
 interface AccountTypeCardProps {
   type: AccountType;
@@ -49,6 +52,8 @@ export function AccountTypeCard({ type, selected, onSelect }: AccountTypeCardPro
   const t = useTranslations('Onboarding.accountType');
   const config = cardConfigs[type];
   const Icon = config.icon;
+  
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Get translated features
   const features = [
@@ -58,23 +63,40 @@ export function AccountTypeCard({ type, selected, onSelect }: AccountTypeCardPro
     t(`${type}.feature4`),
   ];
 
+  const handleInfoClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Prevent card selection when clicking info button
+    setIsModalOpen(true);
+  };
+
   return (
-    <motion.div
-      whileHover={{ scale: 1.02, y: -8 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-    >
-      <Card
-        className={cn(
-          'relative cursor-pointer transition-all duration-300 h-full',
-          'border-2 hover:shadow-2xl',
-          selected
-            ? 'border-primary shadow-xl scale-105 bg-primary/5'
-            : 'border-muted hover:border-primary/50'
-        )}
-        onClick={() => onSelect(type)}
+    <>
+      <motion.div
+        whileHover={{ scale: 1.02, y: -8 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
-        {/* Selected Checkmark */}
+        <Card
+          className={cn(
+            'relative cursor-pointer transition-all duration-300 h-full',
+            'border-2 hover:shadow-2xl',
+            selected
+              ? 'border-primary shadow-xl scale-105 bg-primary/5'
+              : 'border-muted hover:border-primary/50'
+          )}
+          onClick={() => onSelect(type)}
+        >
+          {/* Info Button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-3 right-3 h-8 w-8 rounded-full hover:bg-muted z-10"
+            onClick={handleInfoClick}
+            title={t('learnMore')}
+          >
+            <Info className="w-4 h-4 text-muted-foreground hover:text-primary" />
+          </Button>
+
+          {/* Selected Checkmark */}
         {selected && (
           <motion.div
             initial={{ scale: 0, rotate: -180 }}
@@ -166,5 +188,14 @@ export function AccountTypeCard({ type, selected, onSelect }: AccountTypeCardPro
         </CardContent>
       </Card>
     </motion.div>
+
+    {/* Modal */}
+    <AccountTypeModal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      accountType={type}
+      onSelectType={onSelect}
+    />
+  </>
   );
 }

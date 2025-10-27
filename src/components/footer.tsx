@@ -1,7 +1,7 @@
 'use client';
 
 import { Zap } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
 
 export default function Footer() {

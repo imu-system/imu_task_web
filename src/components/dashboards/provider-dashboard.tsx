@@ -15,7 +15,7 @@ import {
   Calendar,
   MessageSquare,
 } from 'lucide-react';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';

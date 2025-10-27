@@ -8,7 +8,7 @@ import * as z from 'zod';
 import { motion } from 'framer-motion';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

@@ -10,7 +10,7 @@ import { User, MapPin, Star, Navigation, MessageSquare } from 'lucide-react';
 import { getProvidersBySkill } from '@/lib/firestore-users';
 import { calculateDistance, formatDistance } from '@/lib/geolocation';
 import { useTranslations } from 'next-intl';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 
 interface TaskLocation {
   address?: string;

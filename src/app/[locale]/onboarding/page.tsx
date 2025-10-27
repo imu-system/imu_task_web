@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Loader2, ArrowRight, Sparkles } from 'lucide-react';
 import { saveAccountType } from '@/lib/firestore-users';
+import { setAccountTypeCookie } from '@/lib/account-type-cookie';
 import { useToast } from '@/hooks/use-toast';
 import { useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
@@ -32,6 +33,16 @@ export default function OnboardingPage() {
     AccountType.senior,
   ];
 
+  // Map AccountType to dashboard route
+  const getDashboardPath = (accountType: AccountType): string => {
+    const dashboardMap: Record<AccountType, string> = {
+      [AccountType.individual]: 'client',
+      [AccountType.professional]: 'pro',
+      [AccountType.senior]: 'senior',
+    };
+    return dashboardMap[accountType];
+  };
+
   const handleContinue = async () => {
     if (!selectedType || !user) {
       setError(t('selectAccountTypeError'));
@@ -44,15 +55,19 @@ export default function OnboardingPage() {
     try {
       // Save account type to Firestore
       await saveAccountType(user.uid, selectedType);
+      
+      // Set cookie for middleware
+      setAccountTypeCookie(selectedType);
 
       toast({
         title: t('successTitle'),
         description: t('successDescription'),
       });
 
-      // Redirect to appropriate dashboard
+      // Redirect to appropriate dashboard with correct path mapping
       setTimeout(() => {
-        const dashboardPath = `/${locale}/dashboard/${selectedType}`;
+        const dashboardRoute = getDashboardPath(selectedType);
+        const dashboardPath = `/${locale}/dashboard/${dashboardRoute}`;
         router.push(dashboardPath);
       }, 500);
     } catch (err: any) {

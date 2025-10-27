@@ -9,7 +9,7 @@ import * as z from 'zod';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/contexts/AuthContext';
 import { useAuthRedirect } from '@/hooks/use-auth-redirect';
-import Link from 'next/link';
+import { Link } from '@/navigation';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';

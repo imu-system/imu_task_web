@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { UtensilsCrossed, Sparkles, Users, Phone, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/navigation";
 import { logCarelinkServiceClick } from "@/lib/analytics";
 
 export function CarelinkPreview() {

@@ -17,7 +17,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { doc, getDoc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { useAuth } from '@/contexts/AuthContext';
+import { useTranslations } from 'next-intl';
 import { AccountType } from '@/lib/types';
+import { setAccountTypeCookie } from '@/lib/account-type-cookie';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -110,6 +113,7 @@ const MIGRATION_WARNINGS: Record<string, string[]> = {
 export default function ProfileAccountTypePage({ params }: { params: { locale: string } }) {
   const router = useRouter();
   const { user, loading: authLoading } = useAuth();
+  const t = useTranslations('Breadcrumbs');
   
   const [currentAccountType, setCurrentAccountType] = useState<AccountType | null>(null);
   const [selectedAccountType, setSelectedAccountType] = useState<AccountType | null>(null);
@@ -175,6 +179,9 @@ export default function ProfileAccountTypePage({ params }: { params: { locale: s
       
       // Migration des données selon le type
       await migrateAccountData(currentAccountType!, selectedAccountType);
+      
+      // Update cookie for middleware
+      setAccountTypeCookie(selectedAccountType);
       
       // Succès
       setSuccess(true);
@@ -274,6 +281,16 @@ export default function ProfileAccountTypePage({ params }: { params: { locale: s
   
   return (
     <div className="container mx-auto px-4 py-8 max-w-6xl">
+      {/* Breadcrumbs */}
+      <Breadcrumbs 
+        items={[
+          { label: t('dashboard'), href: '/dashboard' },
+          { label: t('profile'), href: '/profile' },
+          { label: t('accountType'), href: '/profile/account-type' }
+        ]}
+        className="mb-6"
+      />
+      
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}

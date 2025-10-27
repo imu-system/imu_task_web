@@ -23,6 +23,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { DashboardHeader } from '@/components/dashboard/dashboard-header';
 import { QuickActions } from '@/components/dashboard/quick-actions';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getClientProposals } from '@/lib/firestore-proposals';
 import { 
@@ -73,6 +74,7 @@ export default function DashboardPage() {
     completedMissions: 0
   });
   const t = useTranslations('DashboardPage');
+  const tBreadcrumbs = useTranslations('Breadcrumbs');
   const { user } = useAuth();
   const router = useRouter();
 
@@ -276,6 +278,13 @@ export default function DashboardPage() {
       <DashboardHeader accountType={AccountType.individual} title="Dashboard" showSearch={true} />
 
       <div className="container py-6 space-y-8">
+        {/* Breadcrumbs */}
+        <Breadcrumbs 
+          items={[
+            { label: tBreadcrumbs('dashboard'), href: '/dashboard/client' }
+          ]}
+        />
+        
         {/* Section de bienvenue moderne avec dégradé animé */}
         <GradientBackground className="rounded-2xl p-8 -mx-4 md:mx-0">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">

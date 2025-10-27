@@ -10,9 +10,18 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import { Check, X, Trash2, ExternalLink } from 'lucide-react';
-import Link from 'next/link';
-import { Notification, NotificationCategory } from '@/lib/types/notifications';
+import {
+  AlertCircle,
+  Calendar,
+  CheckCircle,
+  Clock,
+  Info,
+  MessageSquare,
+  User,
+  XCircle,
+} from 'lucide-react';
+import { Link } from '@/navigation';
+import type { NotificationWithId } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
 interface NotificationCardProps {
