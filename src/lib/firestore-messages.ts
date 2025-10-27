@@ -1,8 +1,15 @@
 /**
- * Firestore Messages Library
+ * Firestore Messages (Messaging System)
  * 
- * CRUD operations for messages collection with real-time updates
- * Supports: Send, Read, Delete, Mark as read, Real-time subscriptions
+ * This module manages individual messages within threads.
+ * Features:
+ * - Send text, images, files, audio
+ * - Real-time message updates
+ * - Read receipts
+ * - PII detection warnings
+ * - System messages (auto-generated)
+ * 
+ * @module firestore-messages
  */
 
 import {
@@ -10,355 +17,389 @@ import {
     doc,
     getDoc,
     getDocs,
-    setDoc,
+    addDoc,
     updateDoc,
-    deleteDoc,
     query,
     where,
     orderBy,
     limit,
-    startAfter,
     Timestamp,
+    serverTimestamp,
     onSnapshot,
-    QueryDocumentSnapshot,
+    QuerySnapshot,
     DocumentData,
-    Unsubscribe,
 } from 'firebase/firestore';
-import { db } from '@/lib/firebase';
-import {
-    updateConversationLastMessage,
-    incrementUnreadCount,
-} from './firestore-conversations';
-import { notifyNewMessage } from './firestore-notifications';
+import { db } from './firebase';
+import type { Message, MessageType, MessageAttachment } from './types';
+import { updateThread, incrementUnreadCount, getThread } from './firestore-threads';
+
+const MESSAGES_COLLECTION = 'messages';
 
 // ============================================================================
-// TYPES
+// PII Detection (Personally Identifiable Information)
 // ============================================================================
 
-export interface Message {
-    id: string;
-    conversationId: string;
-    senderId: string;
-    senderName: string;
-    senderAvatar?: string;
-    content: string;
-    type: 'text' | 'image' | 'file';
-    fileUrl?: string; // For image/file types
-    fileName?: string; // For file types
-    readBy: string[]; // Array of user IDs who read this message
-    deleted: boolean;
-    createdAt: Timestamp;
-    updatedAt?: Timestamp;
-}
+const PII_PATTERNS = {
+    email: /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g,
+    phone: /(\+?\d{1,3}[-.\s]?)?(\(?\d{2,4}\)?[-.\s]?)?[\d\s.-]{6,}/g,
+    // French postal address patterns
+    address: /\b\d{1,5}\s+(?:rue|avenue|boulevard|place|allée|impasse|chemin)\s+[a-z\s]+,?\s*\d{5}\s+[a-z\s]+\b/gi,
+};
 
-export interface SendMessageInput {
-    conversationId: string;
-    senderId: string;
-    senderName: string;
-    senderAvatar?: string;
-    content: string;
-    type?: 'text' | 'image' | 'file';
-    fileUrl?: string;
-    fileName?: string;
-    recipientId: string; // For incrementing unread count
+/**
+ * Detect if message contains PII
+ */
+export function detectPII(content: string): boolean {
+    return Object.values(PII_PATTERNS).some(pattern => pattern.test(content));
 }
 
 // ============================================================================
-// CRUD OPERATIONS
+// Type Converters
 // ============================================================================
 
 /**
- * Send a new message in a conversation
- * Also updates conversation's lastMessage and increments recipient's unread count
+ * Convert Firestore document to Message type
  */
-export async function sendMessage(
-    input: SendMessageInput
-): Promise<string> {
-    try {
-        const {
-            conversationId,
-            senderId,
-            senderName,
-            senderAvatar,
-            content,
-            type = 'text',
-            fileUrl,
-            fileName,
-            recipientId,
-        } = input;
-
-        // Create message
-        const messagesRef = collection(db, 'messages');
-        const newMessageRef = doc(messagesRef);
-
-        const now = Timestamp.now();
-        const messageData: Omit<Message, 'id'> = {
-            conversationId,
-            senderId,
-            senderName,
-            ...(senderAvatar && { senderAvatar }),
-            content,
-            type,
-            ...(fileUrl && { fileUrl }),
-            ...(fileName && { fileName }),
-            readBy: [senderId], // Sender has read it by default
-            deleted: false,
-            createdAt: now,
-        };
-
-        await setDoc(newMessageRef, messageData);
-
-        // Update conversation's last message
-        const previewContent = type === 'text'
-            ? content.substring(0, 100)
-            : type === 'image'
-                ? '📷 Image'
-                : '📎 File';
-
-        await updateConversationLastMessage(conversationId, previewContent);
-
-        // Increment recipient's unread count
-        await incrementUnreadCount(conversationId, recipientId);
-
-        // 🔔 Send notification to recipient
-        await notifyNewMessage(
-            recipientId,
-            senderId,
-            senderName,
-            previewContent,
-            conversationId
-        );
-
-        return newMessageRef.id;
-    } catch (error) {
-        console.error('Error sending message:', error);
-        throw new Error('Failed to send message');
-    }
+function firestoreToMessage(id: string, data: DocumentData): Message {
+    return {
+        id,
+        threadId: data.threadId,
+        senderId: data.senderId,
+        senderName: data.senderName,
+        senderPhotoUrl: data.senderPhotoUrl,
+        content: data.content || '',
+        type: data.type || 'text',
+        attachments: data.attachments || [],
+        readBy: data.readBy || [],
+        createdAt: data.createdAt?.toDate() || new Date(),
+        updatedAt: data.updatedAt?.toDate(),
+        systemMetadata: data.systemMetadata,
+        containsPII: data.containsPII || false,
+        piiWarningShown: data.piiWarningShown || false,
+    };
 }
 
 /**
- * Get messages for a conversation
- * Supports pagination with limit and cursor
+ * Convert Message to Firestore document data
  */
-export async function getConversationMessages(
-    conversationId: string,
-    messagesLimit: number = 50,
-    cursor?: QueryDocumentSnapshot<DocumentData>
-): Promise<{ messages: Message[]; lastDoc: QueryDocumentSnapshot<DocumentData> | null }> {
-    try {
-        const messagesRef = collection(db, 'messages');
-        let q = query(
-            messagesRef,
-            where('conversationId', '==', conversationId),
-            where('deleted', '==', false),
-            orderBy('createdAt', 'desc'),
-            limit(messagesLimit)
-        );
+function messageToFirestore(message: Partial<Message>): DocumentData {
+    return {
+        ...message,
+        createdAt: message.createdAt instanceof Date
+            ? Timestamp.fromDate(message.createdAt)
+            : serverTimestamp(),
+        updatedAt: message.updatedAt instanceof Date
+            ? Timestamp.fromDate(message.updatedAt)
+            : serverTimestamp(),
+    };
+}
 
-        // Add cursor for pagination
-        if (cursor) {
-            q = query(q, startAfter(cursor));
+// ============================================================================
+// CRUD Operations
+// ============================================================================
+
+/**
+ * Send a message
+ */
+export async function sendMessage(messageData: {
+    threadId: string;
+    senderId: string;
+    senderName?: string;
+    senderPhotoUrl?: string;
+    content: string;
+    type?: MessageType;
+    attachments?: MessageAttachment[];
+}): Promise<string> {
+    try {
+        const thread = await getThread(messageData.threadId);
+        if (!thread) {
+            throw new Error('Thread not found');
         }
 
-        const querySnapshot = await getDocs(q);
-        const messages: Message[] = [];
+        // Check for PII
+        const containsPII = detectPII(messageData.content);
 
-        querySnapshot.forEach((doc) => {
-            messages.push({
-                id: doc.id,
-                ...doc.data(),
-            } as Message);
+        const newMessage: Partial<Message> = {
+            threadId: messageData.threadId,
+            senderId: messageData.senderId,
+            senderName: messageData.senderName,
+            senderPhotoUrl: messageData.senderPhotoUrl,
+            content: messageData.content,
+            type: (messageData.type || 'text') as MessageType,
+            attachments: messageData.attachments || [],
+            readBy: [messageData.senderId], // Sender has "read" it
+            createdAt: new Date(),
+            containsPII,
+            piiWarningShown: false,
+        };
+
+        // Add message to Firestore
+        const docRef = await addDoc(
+            collection(db, MESSAGES_COLLECTION),
+            messageToFirestore(newMessage)
+        );
+
+        // Update thread with last message preview
+        await updateThread(messageData.threadId, {
+            lastMessage: {
+                content: messageData.content.substring(0, 100), // Preview (100 chars)
+                senderId: messageData.senderId,
+                createdAt: new Date(),
+            },
+            lastMessageAt: new Date(),
         });
 
-        // Get last document for pagination
-        const lastDoc = querySnapshot.docs[querySnapshot.docs.length - 1] || null;
+        // Increment unread count for other participants
+        await incrementUnreadCount(
+            messageData.threadId,
+            messageData.senderId,
+            thread.participants
+        );
 
-        return { messages, lastDoc };
+        console.log('Message sent:', docRef.id);
+        return docRef.id;
     } catch (error) {
-        console.error('Error getting conversation messages:', error);
-        throw new Error('Failed to get messages');
+        console.error('Error sending message:', error);
+        throw error;
     }
 }
 
 /**
- * Mark a message as read by a specific user
- * Adds userId to readBy array if not already present
+ * Send a system message (auto-generated)
  */
-export async function markAsRead(
+export async function sendSystemMessage(
+    threadId: string,
+    systemData: {
+        content: string;
+        action: 'offer_accepted' | 'payment_validated' | 'dispute_opened' | 'booking_created';
+        relatedId?: string;
+    }
+): Promise<string> {
+    try {
+        const newMessage: Partial<Message> = {
+            threadId,
+            senderId: 'system',
+            senderName: 'Système ImuTask',
+            content: systemData.content,
+            type: 'system' as MessageType,
+            readBy: [], // No one has read it yet
+            createdAt: new Date(),
+            systemMetadata: {
+                action: systemData.action,
+                relatedId: systemData.relatedId,
+            },
+        };
+
+        const docRef = await addDoc(
+            collection(db, MESSAGES_COLLECTION),
+            messageToFirestore(newMessage)
+        );
+
+        // Update thread last message
+        await updateThread(threadId, {
+            lastMessage: {
+                content: systemData.content,
+                senderId: 'system',
+                createdAt: new Date(),
+            },
+            lastMessageAt: new Date(),
+        });
+
+        return docRef.id;
+    } catch (error) {
+        console.error('Error sending system message:', error);
+        throw error;
+    }
+}
+
+/**
+ * Get messages for a thread
+ */
+export async function getThreadMessages(
+    threadId: string,
+    limitCount: number = 50
+): Promise<Message[]> {
+    try {
+        const q = query(
+            collection(db, MESSAGES_COLLECTION),
+            where('threadId', '==', threadId),
+            orderBy('createdAt', 'desc'),
+            limit(limitCount)
+        );
+
+        const snapshot = await getDocs(q);
+        const messages = snapshot.docs.map(doc =>
+            firestoreToMessage(doc.id, doc.data())
+        );
+
+        // Return in chronological order (oldest first)
+        return messages.reverse();
+    } catch (error) {
+        console.error('Error getting thread messages:', error);
+        throw error;
+    }
+}
+
+/**
+ * Get a single message by ID
+ */
+export async function getMessage(messageId: string): Promise<Message | null> {
+    try {
+        const docRef = doc(db, MESSAGES_COLLECTION, messageId);
+        const docSnap = await getDoc(docRef);
+
+        if (!docSnap.exists()) {
+            return null;
+        }
+
+        return firestoreToMessage(docSnap.id, docSnap.data());
+    } catch (error) {
+        console.error('Error getting message:', error);
+        throw error;
+    }
+}
+
+/**
+ * Mark message as read by user
+ */
+export async function markMessageAsRead(
     messageId: string,
     userId: string
 ): Promise<void> {
     try {
-        const messageRef = doc(db, 'messages', messageId);
-        const messageSnap = await getDoc(messageRef);
+        const message = await getMessage(messageId);
+        if (!message) return;
 
-        if (!messageSnap.exists()) {
-            throw new Error('Message not found');
+        if (message.readBy.includes(userId)) {
+            return; // Already read
         }
 
-        const messageData = messageSnap.data() as Message;
-
-        // Only update if user hasn't read it yet
-        if (!messageData.readBy.includes(userId)) {
-            await updateDoc(messageRef, {
-                readBy: [...messageData.readBy, userId],
-                updatedAt: Timestamp.now(),
-            });
-        }
+        const docRef = doc(db, MESSAGES_COLLECTION, messageId);
+        await updateDoc(docRef, {
+            readBy: [...message.readBy, userId],
+            updatedAt: serverTimestamp(),
+        });
     } catch (error) {
         console.error('Error marking message as read:', error);
-        throw new Error('Failed to mark message as read');
+        throw error;
     }
 }
 
 /**
- * Mark all messages in a conversation as read by a specific user
- * Efficient batch operation for when user opens a conversation
+ * Mark all messages in thread as read by user
  */
-export async function markAllAsRead(
-    conversationId: string,
+export async function markAllMessagesAsRead(
+    threadId: string,
     userId: string
 ): Promise<void> {
     try {
-        const messagesRef = collection(db, 'messages');
-        const q = query(
-            messagesRef,
-            where('conversationId', '==', conversationId),
-            where('deleted', '==', false)
+        const messages = await getThreadMessages(threadId, 100);
+
+        const unreadMessages = messages.filter(
+            msg => !msg.readBy.includes(userId) && msg.senderId !== userId
         );
 
-        const querySnapshot = await getDocs(q);
-        const updatePromises: Promise<void>[] = [];
-
-        querySnapshot.forEach((docSnapshot) => {
-            const messageData = docSnapshot.data() as Message;
-
-            // Only update if user hasn't read it yet
-            if (!messageData.readBy.includes(userId)) {
-                const messageRef = doc(db, 'messages', docSnapshot.id);
-                updatePromises.push(
-                    updateDoc(messageRef, {
-                        readBy: [...messageData.readBy, userId],
-                        updatedAt: Timestamp.now(),
-                    })
-                );
-            }
-        });
+        // Update each unread message
+        const updatePromises = unreadMessages.map(msg =>
+            markMessageAsRead(msg.id, userId)
+        );
 
         await Promise.all(updatePromises);
     } catch (error) {
         console.error('Error marking all messages as read:', error);
-        throw new Error('Failed to mark all messages as read');
+        throw error;
     }
 }
 
 /**
- * Soft delete a message
- * Sets deleted flag instead of actually removing from database
+ * Update message (e.g., mark PII warning as shown)
  */
-export async function deleteMessage(messageId: string): Promise<void> {
+export async function updateMessage(
+    messageId: string,
+    updates: Partial<Message>
+): Promise<void> {
     try {
-        const messageRef = doc(db, 'messages', messageId);
-        await updateDoc(messageRef, {
-            deleted: true,
-            content: '[Message deleted]',
-            updatedAt: Timestamp.now(),
-        });
+        const docRef = doc(db, MESSAGES_COLLECTION, messageId);
+        await updateDoc(docRef, messageToFirestore(updates));
     } catch (error) {
-        console.error('Error deleting message:', error);
-        throw new Error('Failed to delete message');
-    }
-}
-
-/**
- * Hard delete a message (permanently remove from database)
- * Use with caution - only for admin/moderation purposes
- */
-export async function hardDeleteMessage(messageId: string): Promise<void> {
-    try {
-        const messageRef = doc(db, 'messages', messageId);
-        await deleteDoc(messageRef);
-    } catch (error) {
-        console.error('Error hard deleting message:', error);
-        throw new Error('Failed to hard delete message');
+        console.error('Error updating message:', error);
+        throw error;
     }
 }
 
 // ============================================================================
-// REAL-TIME SUBSCRIPTIONS
+// Real-time Subscriptions
 // ============================================================================
 
 /**
- * Subscribe to real-time updates for messages in a conversation
- * Returns unsubscribe function to clean up listener
+ * Subscribe to messages in a thread (real-time)
  */
-export function subscribeToMessages(
-    conversationId: string,
-    callback: (messages: Message[]) => void,
-    messagesLimit: number = 50
-): Unsubscribe {
-    try {
-        const messagesRef = collection(db, 'messages');
-        const q = query(
-            messagesRef,
-            where('conversationId', '==', conversationId),
-            where('deleted', '==', false),
-            orderBy('createdAt', 'desc'),
-            limit(messagesLimit)
-        );
+export function subscribeToThreadMessages(
+    threadId: string,
+    callback: (messages: Message[]) => void
+): () => void {
+    const q = query(
+        collection(db, MESSAGES_COLLECTION),
+        where('threadId', '==', threadId),
+        orderBy('createdAt', 'asc')
+    );
 
-        return onSnapshot(
-            q,
-            (querySnapshot) => {
-                const messages: Message[] = [];
-                querySnapshot.forEach((doc) => {
-                    messages.push({
-                        id: doc.id,
-                        ...doc.data(),
-                    } as Message);
-                });
-                callback(messages);
-            },
-            (error) => {
-                console.error('Error in messages subscription:', error);
+    return onSnapshot(
+        q,
+        (snapshot: QuerySnapshot) => {
+            const messages = snapshot.docs.map(doc =>
+                firestoreToMessage(doc.id, doc.data())
+            );
+            callback(messages);
+        },
+        (error) => {
+            console.error('Error subscribing to messages:', error);
+            callback([]);
+        }
+    );
+}
+
+/**
+ * Subscribe to a single message
+ */
+export function subscribeToMessage(
+    messageId: string,
+    callback: (message: Message | null) => void
+): () => void {
+    const docRef = doc(db, MESSAGES_COLLECTION, messageId);
+
+    return onSnapshot(
+        docRef,
+        (snapshot) => {
+            if (!snapshot.exists()) {
+                callback(null);
+                return;
             }
-        );
-    } catch (error) {
-        console.error('Error subscribing to messages:', error);
-        throw new Error('Failed to subscribe to messages');
-    }
+            callback(firestoreToMessage(snapshot.id, snapshot.data()));
+        },
+        (error) => {
+            console.error('Error subscribing to message:', error);
+            callback(null);
+        }
+    );
 }
 
 // ============================================================================
-// HELPER FUNCTIONS
+// Helper Functions
 // ============================================================================
 
 /**
- * Get unread message count for a specific conversation and user
+ * Get unread message count for user in a thread
  */
 export async function getUnreadMessageCount(
-    conversationId: string,
+    threadId: string,
     userId: string
 ): Promise<number> {
     try {
-        const messagesRef = collection(db, 'messages');
-        const q = query(
-            messagesRef,
-            where('conversationId', '==', conversationId),
-            where('deleted', '==', false)
-        );
-
-        const querySnapshot = await getDocs(q);
-        let unreadCount = 0;
-
-        querySnapshot.forEach((doc) => {
-            const messageData = doc.data() as Message;
-            if (!messageData.readBy.includes(userId)) {
-                unreadCount++;
-            }
-        });
-
-        return unreadCount;
+        const messages = await getThreadMessages(threadId, 100);
+        return messages.filter(
+            msg => !msg.readBy.includes(userId) && msg.senderId !== userId
+        ).length;
     } catch (error) {
         console.error('Error getting unread message count:', error);
         return 0;
@@ -366,70 +407,25 @@ export async function getUnreadMessageCount(
 }
 
 /**
- * Check if a message has been read by a specific user
+ * Check if user has sent any messages in thread
  */
-export function isMessageRead(message: Message, userId: string): boolean {
-    return message.readBy.includes(userId);
-}
-
-/**
- * Get the last message in a conversation
- */
-export async function getLastMessage(
-    conversationId: string
-): Promise<Message | null> {
+export async function hasUserSentMessages(
+    threadId: string,
+    userId: string
+): Promise<boolean> {
     try {
-        const messagesRef = collection(db, 'messages');
         const q = query(
-            messagesRef,
-            where('conversationId', '==', conversationId),
-            where('deleted', '==', false),
-            orderBy('createdAt', 'desc'),
+            collection(db, MESSAGES_COLLECTION),
+            where('threadId', '==', threadId),
+            where('senderId', '==', userId),
             limit(1)
         );
 
-        const querySnapshot = await getDocs(q);
-
-        if (querySnapshot.empty) {
-            return null;
-        }
-
-        const doc = querySnapshot.docs[0];
-        return {
-            id: doc.id,
-            ...doc.data(),
-        } as Message;
+        const snapshot = await getDocs(q);
+        return !snapshot.empty;
     } catch (error) {
-        console.error('Error getting last message:', error);
-        return null;
+        console.error('Error checking user messages:', error);
+        return false;
     }
 }
 
-/**
- * Format timestamp to relative time (e.g., "2 hours ago")
- */
-export function formatMessageTime(timestamp: Timestamp): string {
-    const now = new Date();
-    const messageDate = timestamp.toDate();
-    const diffInSeconds = Math.floor((now.getTime() - messageDate.getTime()) / 1000);
-
-    if (diffInSeconds < 60) {
-        return 'Just now';
-    } else if (diffInSeconds < 3600) {
-        const minutes = Math.floor(diffInSeconds / 60);
-        return `${minutes} min${minutes > 1 ? 's' : ''} ago`;
-    } else if (diffInSeconds < 86400) {
-        const hours = Math.floor(diffInSeconds / 3600);
-        return `${hours} hour${hours > 1 ? 's' : ''} ago`;
-    } else if (diffInSeconds < 604800) {
-        const days = Math.floor(diffInSeconds / 86400);
-        return `${days} day${days > 1 ? 's' : ''} ago`;
-    } else {
-        // Return formatted date for older messages
-        return messageDate.toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            year: messageDate.getFullYear() !== now.getFullYear() ? 'numeric' : undefined,
-        });
-    }
-}

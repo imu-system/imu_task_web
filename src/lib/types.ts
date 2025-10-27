@@ -193,34 +193,96 @@ export type Booking = {
   completionProof?: string[];
 };
 
-// Note: Full Message and Conversation types are defined in:
-// - src/lib/firestore-messages.ts
-// - src/lib/firestore-conversations.ts
-// These are simplified versions for compatibility
+// ============================================================================
+// MESSAGING SYSTEM - Thread & Message Types
+// ============================================================================
+
+export enum MessageType {
+  text = 'text',
+  image = 'image',
+  file = 'file',
+  audio = 'audio',
+  system = 'system'
+}
+
+export enum ThreadStatus {
+  active = 'active',
+  archived = 'archived',
+  blocked = 'blocked'
+}
+
+export type MessageAttachment = {
+  id: string;
+  name: string;
+  url: string;
+  type: 'image' | 'pdf' | 'document' | 'audio';
+  size: number; // bytes
+  mimeType?: string;
+};
 
 export type Message = {
   id: string;
-  // Support both conversationId (new) and threadId (legacy), and both content/body
-  conversationId?: string;
-  threadId?: string;
+  threadId: string;
   senderId: string;
-  content?: string;
-  body?: string;
-  // message kind (text, image, audio, file, system)
-  type?: MessageType;
-  // timestamp in mocks may be Date or string, and some code uses sentAt
-  timestamp?: string | Date;
-  sentAt?: string | Date;
-  // allow attachments in mock messages
-  attachments?: Attachment[] | any[];
+  senderName?: string; // denormalized for display
+  senderPhotoUrl?: string; // denormalized for display
+  content: string;
+  type: MessageType;
+  attachments?: MessageAttachment[];
+  readBy: string[]; // array of user IDs who read this message
+  createdAt: Date | string;
+  updatedAt?: Date | string;
+  // System message metadata
+  systemMetadata?: {
+    action?: 'offer_accepted' | 'payment_validated' | 'dispute_opened' | 'booking_created';
+    relatedId?: string; // ID of related booking, offer, etc.
+  };
+  // PII detection flag
+  containsPII?: boolean;
+  piiWarningShown?: boolean;
 };
 
-export type Conversation = {
+export type Thread = {
   id: string;
+  // Participants: [clientId, providerId]
   participants: string[];
-  lastMessage?: string;
-  lastMessageAt?: string | Date;
+  participantsData?: {
+    [userId: string]: {
+      displayName: string;
+      photoUrl?: string;
+      accountType?: AccountType;
+    };
+  };
+  // Associated task/booking
+  taskId?: string;
+  taskTitle?: string; // denormalized for display
+  bookingId?: string;
+  bookingStatus?: BookingStatus;
+  // Last message preview
+  lastMessage?: {
+    content: string;
+    senderId: string;
+    createdAt: Date | string;
+  };
+  lastMessageAt: Date | string;
+  // Unread counts per user
+  unreadCount: {
+    [userId: string]: number;
+  };
+  // Thread metadata
+  status: ThreadStatus;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  // Typing indicators
+  typingUsers?: string[]; // user IDs currently typing
 };
+
+// Legacy types for compatibility
+export type Conversation = Thread;
+
+// ============================================================================
+// End Messaging System Types
+// ============================================================================
 
 // Task-related enums
 export enum TaskStatus {
@@ -339,24 +401,6 @@ export enum PageStatus {
   draft = 'draft',
   published = 'published',
   archived = 'archived'
-}
-
-// Thread/Message-related enums
-export enum ThreadStatus {
-  active = 'active',
-  archived = 'archived',
-  closed = 'closed'
-  ,
-  // legacy
-  open = 'open'
-}
-
-export enum MessageType {
-  text = 'text',
-  image = 'image',
-  file = 'file',
-  audio = 'audio',
-  system = 'system'
 }
 
 export enum AttachmentKind {
@@ -536,22 +580,6 @@ export type ContentPage = {
   publishedAt?: string | Date;
   // arbitrary indexing flag used in fixtures
   isIndexed?: boolean;
-};
-
-export type Thread = {
-  id: string;
-  participants: string[];
-  // helper used in mocks to attach resolved participant data
-  participantsData?: any[];
-  taskId?: string;
-  status: ThreadStatus;
-  lastMessageAt: string | Date;
-  // legacy helper used in fixtures
-  lastMessage?: any;
-  // legacy attached task used in fixtures
-  task?: any;
-  createdAt: string | Date;
-  updatedAt: string | Date;
 };
 
 export interface Attachment {
