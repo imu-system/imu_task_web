@@ -382,9 +382,79 @@
             "reportProblem": "Report a Problem"
         },
         "messaging": {
-            "title": "Messaging",
+            "title": "Messages",
+            "newThread": "New message",
+            "searchPlaceholder": "Search conversations...",
+            "selectThread": "Select a conversation",
+            "selectThreadDescription": "Choose a conversation to start chatting",
+            "noMessages": "No messages",
+            "you": "You",
+            "typing": "Typing...",
+            "unknownUser": "Unknown user",
+            "relatedTask": "Related task",
+            "confirmDelete": "Are you sure you want to delete this conversation?",
+            "tabs": {
+                "active": "Active",
+                "archived": "Archived"
+            },
+            "actions": {
+                "archive": "Archive",
+                "unarchive": "Unarchive",
+                "delete": "Delete",
+                "mute": "Mute notifications",
+                "unmute": "Unmute notifications",
+                "call": "Call",
+                "videoCall": "Video call",
+                "search": "Search",
+                "viewTask": "View task",
+                "pin": "Pin",
+                "viewProfile": "View profile",
+                "block": "Block",
+                "report": "Report"
+            },
+            "emptyStates": {
+                "noThreads": "No conversations yet",
+                "noArchived": "No archived conversations",
+                "noResults": "No results found"
+            },
+            "errors": {
+                "loadThreads": "Unable to load conversations",
+                "sendMessage": "Unable to send message",
+                "uploadFile": "Unable to upload file"
+            },
             "contactProvider": "Contact Provider",
-            "notMatched": "Messaging will be available once you accept an offer."
+            "notMatched": "Messaging will be available once you accept an offer.",
+            "online": "Online",
+            "offline": "Offline",
+            "activeAgo": "Active {time} ago",
+            "status": {
+                "online": "Online",
+                "offline": "Offline",
+                "typing": "Typing..."
+            },
+            "input": {
+                "placeholder": "Type a message...",
+                "send": "Send",
+                "emoji": "Emoji",
+                "attach": "Attach file",
+                "voice": "Voice message",
+                "cancel": "Cancel",
+                "recording": "Recording...",
+                "photo": "Photo or video",
+                "document": "Document",
+                "location": "Share location"
+            },
+            "piiWarning": {
+                "title": "Personal information detected",
+                "description": "Your message contains personal information (email, phone, address). Keep exchanges on the platform for your safety.",
+                "sendAnyway": "Send anyway"
+            },
+            "readReceipts": {
+                "sent": "Sent",
+                "delivered": "Delivered",
+                "read": "Read",
+                "seenBy": "Seen {time}"
+            }
         },
         "providerActions": {
             "title": "Your Actions",
@@ -2908,6 +2978,67 @@
                 "generic": "An error occurred while sending the email"
             }
         }
+    },
+    "messaging": {
+        "title": "Messages",
+        "newThread": "New conversation",
+        "searchPlaceholder": "Search conversations...",
+        "selectThread": "Select a conversation",
+        "tabs": {
+            "active": "Active",
+            "archived": "Archived"
+        },
+        "actions": {
+            "archive": "Archive",
+            "unarchive": "Unarchive",
+            "delete": "Delete",
+            "mute": "Mute notifications",
+            "unmute": "Unmute notifications"
+        },
+        "emptyStates": {
+            "noThreads": "No conversations",
+            "noResults": "No results found",
+            "noArchived": "No archived conversations",
+            "noMessages": "No messages",
+            "sendFirstMessage": "Send the first message"
+        },
+        "errors": {
+            "loadThreads": "Error loading conversations"
+        },
+        "you": "You",
+        "typing": "typing...",
+        "unknownUser": "Unknown user",
+        "relatedTask": "Related task",
+        "confirmDelete": "Are you sure you want to delete this conversation?",
+        "online": "Online",
+        "activeAgo": "Active",
+        "call": "Call",
+        "videoCall": "Video call",
+        "search": "Search",
+        "viewTask": "View task",
+        "pinConversation": "Pin conversation",
+        "muteNotifications": "Mute notifications",
+        "customize": "Customize",
+        "openDispute": "Open dispute",
+        "blockUser": "Block user",
+        "reportUser": "Report user",
+        "contactInfo": "Contact information",
+        "rating": "Rating",
+        "completedMissions": "Completed missions",
+        "location": "Location",
+        "viewFullProfile": "View full profile",
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "seenBy": "Seen by",
+        "piiWarning": "Avoid sharing personal information for your safety",
+        "typeMessage": "Type a message...",
+        "cancel": "Cancel",
+        "piiDetected": "Personal information detected (email, phone, address).",
+        "piiMessage": "Use the platform for communication to ensure your safety.",
+        "sendAnyway": "Send anyway",
+        "photoOrVideo": "Photo or video",
+        "document": "Document",
+        "shareLocation": "Share location"
     },
     "Breadcrumbs": {
         "ariaLabel": "Breadcrumb navigation",

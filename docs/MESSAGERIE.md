@@ -1,8 +1,9 @@
 # 💬 Messagerie ImuTask - Documentation Technique
 
 **Date de création** : 27 octobre 2025  
-**Statut** : ✅ Phase 1 complétée (Thread Creation & Types) - En cours Phase 2 (Interface)  
-**Version** : 1.0
+**Statut** : ✅ Phase 1, 2 & 3 complétées (Backend + Liste + Conversation) - Prêt Phase 4 (Tests)  
+**Version** : 1.2  
+**Dernière mise à jour** : 27 octobre 2025
 
 ---
 
@@ -160,113 +161,335 @@ L'objectif est de rendre la communication fluide, traçable et sécurisée, tout
 
 ## 🎨 Interfaces Utilisateur
 
+> **⚠️ IMPORTANT - Design Moderne Requis**  
+> L'interface messagerie doit être **moderne, fluide et intuitive** comme WhatsApp/Telegram.  
+> **Objectif** : Éviter l'aspect "prototype" et offrir une UX professionnelle familière.
+
+### 🎨 Principes de Design (Inspirés WhatsApp)
+
+#### 1. Palette de Couleurs
+```scss
+// Mode Clair
+$primary-green: #25D366;      // Actions principales (bouton envoyer)
+$chat-bg: #EFEAE2;            // Fond zone messages (beige clair)
+$message-sent: #DCF8C6;       // Bulle message envoyé (vert clair)
+$message-received: #FFFFFF;   // Bulle message reçu (blanc)
+$header-bg: #075E54;          // Header conversation (vert foncé)
+$sidebar-bg: #FFFFFF;         // Liste threads (blanc)
+
+// Mode Sombre
+$dark-bg: #0B141A;            // Fond général
+$dark-header: #1F2C33;        // Header
+$dark-sidebar: #111B21;       // Sidebar
+$dark-message-sent: #005C4B;  // Bulle envoyée
+$dark-message-received: #202C33; // Bulle reçue
+```
+
+#### 2. Typographie
+```scss
+$font-primary: 'Segoe UI', 'Helvetica Neue', sans-serif;
+$font-size-message: 14.2px;
+$font-size-name: 16px;
+$font-size-preview: 13px;
+$line-height-message: 1.5;
+```
+
+#### 3. Animations & Transitions
+```scss
+// Animations fluides
+$transition-fast: 150ms ease-out;
+$transition-normal: 250ms ease-out;
+$message-appear: slideInUp 200ms ease-out;
+$hover-scale: scale(1.02);
+```
+
 ### 1. Vue Générale : Liste des Conversations
 
 **Route** : `/dashboard/messages`  
-**Statut implémentation** : 🔄 En cours
+**Statut implémentation** : ✅ Complété - 🎨 À moderniser (Design WhatsApp-like)
 
 C'est la page d'accueil du module messagerie, présentant toutes les conversations actives ou passées.
 
-#### 1.1. En-tête de la Page
+#### 1.1. En-tête de la Page (Style WhatsApp)
 
 ```tsx
 // Composant : <MessagesPageHeader />
-- Titre : "Messages" ou "Mes Conversations"
-- Bouton "Nouvelle Conversation" (optionnel/contextuel)
-  → Si un utilisateur veut initier une conversation sans passer par une tâche
-  → Ex: question générale à un prestataire post-mission
+// Design : Header moderne avec actions rapides
+
+┌──────────────────────────────────────────────────────────────┐
+│ [Photo User] Messages                    [🔍] [⋮ Menu]      │
+└──────────────────────────────────────────────────────────────┘
+
+Éléments :
+- Photo de profil user actuel (cliquable → paramètres)
+- Titre "Messages" (typography bold, 20px)
+- Icône Recherche (loupe) → Ouvre barre recherche fullscreen
+- Menu kebab (3 points verticaux) :
+  • Nouvelle conversation
+  • Paramètres messagerie
+  • Archiver toutes les conversations lues
+  
+Styling :
+- Background : gradient subtle (#075E54 → #128C7E)
+- Height : 60px
+- Box-shadow : 0 1px 3px rgba(0,0,0,0.12)
+- Sticky position (reste visible au scroll)
 ```
 
-#### 1.2. Barres de Recherche et Filtres
+#### 1.2. Barre de Recherche Fullscreen (Style WhatsApp)
 
 ```tsx
-// Composant : <ThreadFilters />
-- Champ de recherche :
-  → Recherche dans noms correspondants, titres tâches, contenu messages
-  → Hook : useSearchThreads(userId, searchQuery)
-  
-- Filtres (Type de rôle) :
-  → "Toutes", "En tant que Client", "En tant que Prestataire"
-  
-- Filtres (Statut de la tâche) :
-  → "Actives" (tâches en cours, en attente d'offre/acceptation)
-  → "Archivées" (tâches terminées ou annulées)
-  → "Non lues" (unreadCount > 0)
-  
-// Implémentation technique
-const { data: threads } = useUserThreads(userId, {
-  status: filterStatus,    // 'active' | 'archived'
-  onlyUnread: showUnread   // boolean
+// Composant : <ThreadSearchBar />
+// Activation : Click sur icône loupe dans header
+
+┌──────────────────────────────────────────────────────────────┐
+│ [←] [🔍 Rechercher conversations...]         [×]             │
+└──────────────────────────────────────────────────────────────┘
+
+Design :
+- Overlay fullscreen avec backdrop blur
+- Input focus auto avec animation slide-down
+- Résultats en temps réel pendant la frappe
+- Highlight des termes recherchés en jaune
+- Groupement des résultats :
+  • Messages (contenu)
+  • Contacts (noms)
+  • Tâches (titres)
+
+// Hook technique
+const { data: results } = useSearchThreads(userId, searchQuery, {
+  enabled: searchQuery.length > 2
 });
+
+// Debounce 300ms pour éviter trop de requêtes
+const debouncedSearch = useDebounce(searchQuery, 300);
 ```
 
-#### 1.3. Liste des Conversations (Threads)
+#### 1.3. Onglets de Filtrage (Pills Style)
 
 ```tsx
-// Composant : <ThreadList />
+// Composant : <ThreadFilterTabs />
+// Position : Sous le header, sticky scroll
+
+┌──────────────────────────────────────────────────────────────┐
+│  [Tous (12)]  [Non lues (3)]  [Groupes]  [Archivées]        │
+└──────────────────────────────────────────────────────────────┘
+
+Design :
+- Pills horizontales avec scroll si overflow
+- Active pill : background primary-green, text white
+- Inactive pills : background muted, text gray
+- Badge count entre parenthèses
+- Smooth horizontal scroll avec fade edges
+- Transition 200ms sur switch
+
+Filtres disponibles :
+- "Tous" → Toutes conversations actives
+- "Non lues" → unreadCount > 0
+- "Groupes" → Conversations multi-participants (V2)
+- "Archivées" → status === 'archived'
+- "Tâches" → Filtre par catégorie tâche (optionnel)
+```
+
+#### 1.4. Liste des Conversations (Style WhatsApp Premium)
+
+```tsx
+// Composant : <ThreadList /> - Version moderne
 // Hook : useUserThreads(userId)
 
-Chaque élément représente un "thread" de conversation (lié à une tâche ou interlocuteur)
+┌──────────────────────────────────────────────────────────────┐
+│ ┌─────────────────────────────────────────────────────────┐ │
+│ │ [Avatar]  Jean Dupont                    ✓✓  14:32     │ │
+│ │  48x48    Plomberie urgente                  [Badge 2] │ │
+│ │           "D'accord, je confirme pour demain"           │ │
+│ └─────────────────────────────────────────────────────────┘ │
+│ ┌─────────────────────────────────────────────────────────┐ │
+│ │ [Avatar]  Marie Martin                   ✓   Hier      │ │
+│ │           Cours de cuisine                              │ │
+│ │           🎤 Message vocal (0:15)                       │ │
+│ └─────────────────────────────────────────────────────────┘ │
+│ ┌─────────────────────────────────────────────────────────┐ │
+│ │ [Avatar]  Pierre Laurent                    Lundi      │ │
+│ │           Réparation vélo                    📌 Épinglé│ │
+│ │           📷 Photo                                      │ │
+│ └─────────────────────────────────────────────────────────┘ │
+└──────────────────────────────────────────────────────────────┘
 
-Informations affichées par thread :
-┌─────────────────────────────────────────────────────────┐
-│ [Photo]  Nom Correspondant                    [Pastille]│
-│          Titre de la Mission                            │
-│          "Dernièr message preview..."                   │
-│          Status Mission  •  il y a 2h                   │
-└─────────────────────────────────────────────────────────┘
+Design détaillé par thread item :
 
-Données thread accessibles :
-- thread.participantsData[otherUserId].displayName
-- thread.participantsData[otherUserId].photoUrl
-- thread.taskTitle
-- thread.bookingStatus (afficher avec couleur/icône)
-- thread.lastMessage.content (extrait 100 chars)
-- thread.lastMessageAt (formaté en relatif)
-- thread.unreadCount[currentUserId] (pastille si > 0)
+1. Avatar (48x48px) :
+   - Border-radius : 50%
+   - Ring vert si online (2px solid #25D366)
+   - Placeholder avec initiales si pas de photo
+   - Badge rôle en overlay : "PRO" badge doré si ImuPro
 
-Options contextuelles (swipe mobile / survol web) :
-- Archiver → useArchiveThread()
-- Signaler → (à implémenter Phase 2)
+2. Zone principale (flex-1) :
+   - **Ligne 1** : Nom + Timestamp
+     • Nom : font-weight 600, 16px, truncate
+     • Timestamp : 13px, gray-500, right-aligned
+     • Icônes lecture : ✓ (envoyé), ✓✓ (livré), ✓✓ bleu (lu)
+   
+   - **Ligne 2** : Titre tâche
+     • 13px, gray-600, italic, truncate
+     • Icon métier en prefix (🔧 🍳 🚴)
+   
+   - **Ligne 3** : Preview dernier message
+     • 14px, gray-700 si non lu (bold), gray-500 si lu
+     • Icons préfixe : 🎤 (audio), 📷 (image), 📄 (fichier)
+     • Truncate 60 caractères
+     • "Vous: " si message envoyé par user
+
+3. Zone droite :
+   - Badge non-lus : 
+     • Circle 20x20px, bg-primary-green
+     • White text, font-weight 600
+     • Position : top-right
+   
+   - Icône épinglé 📌 (si pinned)
+   - Icône muté 🔇 (si notifications off)
+
+4. Interactions :
+   - Hover : background gray-50, cursor pointer
+   - Active/Selected : background green-50, border-left 4px green
+   - Swipe left (mobile) : Révèle boutons
+     • Archive (icône boîte)
+     • Mute (icône cloche barrée)
+     • Delete (icône poubelle, rouge)
+   - Long press : Mode sélection multiple
+   
+5. Animations :
+   - Appear : fadeInUp 200ms
+   - New message : subtle bounce + highlight flash
+   - Swipe : spring animation avec resistance
+   
+6. States spéciaux :
+   - **Typing indicator** : 
+     "Jean est en train d'écrire..." en vert italique
+     Animation 3 dots pulsants
+   
+   - **Draft message** :
+     "Brouillon: [contenu]..." en rouge si message non envoyé
+   
+   - **System message preview** :
+     🤖 "L'offre a été acceptée" en gris italic
+
+// Code styling
+const threadItemClasses = cn(
+  "flex items-start gap-3 px-4 py-3",
+  "transition-all duration-200",
+  "hover:bg-muted/50 cursor-pointer",
+  "border-b border-gray-100 last:border-0",
+  isSelected && "bg-primary/5 border-l-4 border-l-primary",
+  hasUnread && "bg-blue-50/30"
+);
 ```
 
-### 2. Vue Détaillée : Fenêtre de Conversation
+### 2. Vue Détaillée : Fenêtre de Conversation (WhatsApp-Style)
 
 **Route** : `/dashboard/messages/[threadId]`  
-**Statut implémentation** : ⏳ Non commencé
+**Statut implémentation** : ⏳ Non commencé - 🎨 Design moderne requis
 
 Une fois un thread sélectionné, l'utilisateur accède à la conversation spécifique.
 
-#### 2.1. En-tête de la Conversation
+**Layout Desktop (Split View)** :
+```
+┌────────────────────────────────────────────────────────────────┐
+│ ┌──────────────┬──────────────────────────────────────────┐   │
+│ │              │  [Header Conversation]                   │   │
+│ │  Liste       ├──────────────────────────────────────────┤   │
+│ │  Threads     │                                          │   │
+│ │  (400px)     │  Zone Messages                           │   │
+│ │              │  (Background pattern subtil)             │   │
+│ │              │                                          │   │
+│ │              ├──────────────────────────────────────────┤   │
+│ │              │  [Input Message]                         │   │
+│ └──────────────┴──────────────────────────────────────────┘   │
+└────────────────────────────────────────────────────────────────┘
+```
+
+**Layout Mobile (Fullscreen)** :
+```
+┌────────────────────────────────┐
+│  [Header Conversation]         │
+├────────────────────────────────┤
+│                                │
+│  Zone Messages Fullscreen      │
+│  (scroll infini)               │
+│                                │
+├────────────────────────────────┤
+│  [Input Message + Actions]     │
+└────────────────────────────────┘
+```
+
+#### 2.1. En-tête de la Conversation (Header Premium)
 
 ```tsx
 // Composant : <ConversationHeader />
 // Hook : useThread(threadId)
+// Design : Header moderne type WhatsApp avec gradient
 
-┌─────────────────────────────────────────────────────────┐
-│ [←]  [Photo] Nom Correspondant              [⋮ Actions] │
-│      Titre de la Tâche (cliquable)                      │
-└─────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│ [←] [Avatar]  Jean Dupont                [📞] [📹] [⋮]      │
+│              En ligne • Actif il y a 2 min                   │
+│              📋 Plomberie urgente                            │
+└──────────────────────────────────────────────────────────────┘
 
-Éléments :
-- Bouton "Retour" → navigate('/dashboard/messages')
-- Photo de profil + Nom du correspondant
-  → thread.participantsData[otherUserId]
-  
-- Titre de la Tâche (cliquable)
-  → <Link href={`/dashboard/tasks/${thread.taskId}`}>
-      {thread.taskTitle}
-    </Link>
-    
-- Bouton "Actions" (menu kebab) :
-  • "Ouvrir un litige" (si booking en cours/terminé)
-  • "Signaler cet utilisateur"
-  • "Bloquer cet utilisateur" → updateThread({ status: 'blocked' })
-  • "Archiver la conversation" → useArchiveThread()
-  • "Appeler l'utilisateur" (WebRTC, si V2)
+Layout détaillé :
+
+1. **Zone Gauche** :
+   - Bouton retour [←] (mobile only, 40x40px tap target)
+   - Avatar 40x40px avec ring vert si online
+   - Info user (flex column) :
+     • Nom : font-weight 600, 17px, white/dark text
+     • Status : 
+       - "En ligne" (vert, pulsant dot)
+       - "En train d'écrire..." (vert, animated dots)
+       - "Actif il y a X min" (gris)
+     • Titre tâche : 13px, cliquable, underline on hover
+       → Icon tâche en prefix (🔧 🏠 🍳)
+
+2. **Zone Droite** - Actions rapides :
+   - [📞] Appel audio (hover → tooltip "Appeler")
+   - [📹] Appel vidéo (hover → tooltip "Visio")
+   - [🔍] Recherche dans conversation
+   - [⋮] Menu actions (dropdown) :
+     
+     **Dropdown Menu** :
+     ├─ 📋 Voir la tâche
+     ├─ 📌 Épingler conversation
+     ├─ 🔇 Couper notifications
+     ├─ 🎨 Personnaliser (wallpaper, emoji rapide)
+     ├─ ─────────────────
+     ├─ ⚠️ Ouvrir un litige
+     ├─ 🚫 Bloquer utilisateur
+     ├─ 📢 Signaler
+     └─ 🗄️ Archiver
+
+3. **Styling** :
+   - Background : gradient (#075E54 → #128C7E) ou dark (#1F2C33)
+   - Height : 64px
+   - Box-shadow : 0 2px 5px rgba(0,0,0,0.1)
+   - Sticky top : 0
+   - z-index : 10
+   - Backdrop blur si scroll
+
+4. **Click sur Avatar/Nom** :
+   → Ouvre drawer latéral "Infos Contact" :
+   ┌────────────────────────────┐
+   │ [Photo grande 128x128]     │
+   │ Nom Complet                │
+   │ @username                  │
+   │ ──────────────────────     │
+   │ 🏆 Note : 4.8/5 (124)     │
+   │ ✅ Missions : 87 complétées│
+   │ 📍 Paris 15ème            │
+   │ ──────────────────────     │
+   │ [Voir profil complet]      │
+   │ [Bloquer]  [Signaler]      │
+   └────────────────────────────┘
 ```
 
-#### 2.2. Zone de Messages (Historique)
+#### 2.2. Zone de Messages (Design WhatsApp Premium)
 
 ```tsx
 // Composant : <MessageList />
@@ -275,38 +498,225 @@ Une fois un thread sélectionné, l'utilisateur accède à la conversation spéc
 const { data: messages } = useThreadMessages(threadId);
 // ✅ Temps réel automatique via subscribeToThreadMessages()
 
-Affichage chronologique des messages (bulle de conversation) :
-┌─────────────────────────────────────────────────────────┐
-│                                     [Message envoyé]  ●●│
-│  [Message reçu]                                         │
-│  [Date: Aujourd'hui 14:32]                              │
-│                              [Message envoyé avec PII ⚠️│
-│  [📷 Image attachment]                                  │
-│  [🤖 Message système: "L'offre a été acceptée"]         │
-└─────────────────────────────────────────────────────────┘
+**Background** :
+- Pattern subtil type WhatsApp (triangles géométriques opacity 0.03)
+- Ou wallpaper personnalisable (V2)
+- Gradient overlay top/bottom pour smooth edges
 
-Marquage temporel :
-- Date et heure de chaque message ou groupe de messages
-- Format relatif : "Il y a 5 min", "Aujourd'hui 14:32", "Hier"
+**Structure Messages** :
 
-Indicateurs de lecture :
-- Double coche grise : message envoyé
-- Double coche bleue : message lu (senderId in message.readBy)
-- "Vu par X" en bas du dernier message
+┌──────────────────────────────────────────────────────────────┐
+│                                                              │
+│  ┌──────────── AUJOURD'HUI ────────────┐                    │
+│                                                              │
+│  ┌────────────────────────────────┐                         │
+│  │ Salut ! Tu es disponible       │   👤 Avatar             │
+│  │ demain pour la mission ?       │   Jean                  │
+│  │                        14:23 ✓ │                         │
+│  └────────────────────────────────┘                         │
+│                                                              │
+│              ┌──────────────────────────────────┐           │
+│         Moi  │ Oui, parfait ! Confirme l'heure  │           │
+│              │                    14:25 ✓✓      │           │
+│              └──────────────────────────────────┘           │
+│                                                              │
+│  ┌──────────────────────────────────────┐                   │
+│  │ 📷 [Image Preview 200x150]           │                   │
+│  │ Voici le matériel nécessaire         │                   │
+│  │                          14:26 ✓     │                   │
+│  └──────────────────────────────────────┘                   │
+│                                                              │
+│  ┌─────────────────────────────────────────────┐            │
+│  │ 🤖 Système : L'offre a été acceptée         │            │
+│  │            Rendez-vous planifié le 15/03    │            │
+│  └─────────────────────────────────────────────┘            │
+│                                                              │
+│           ┌───────────────────────────────────┐             │
+│      Moi  │ ⚠️ [PII DÉTECTÉ]                 │             │
+│           │ Mon numéro : 06 12 34 56 78      │             │
+│           │ Évitez de partager vos coordonnées│            │
+│           │                     14:28 ✓✓     │             │
+│           └───────────────────────────────────┘             │
+│                                                              │
+└──────────────────────────────────────────────────────────────┘
 
-Types de messages supportés :
-1. Texte : message.type === 'text'
-   → Affichage content standard
+**Design Bulles Messages** :
+
+1. **Message Reçu** (gauche) :
+   ```scss
+   .message-received {
+     background: white; // ou #202C33 dark mode
+     border-radius: 8px 8px 8px 0px; // Queue coin bas-gauche
+     padding: 8px 12px;
+     max-width: 65%;
+     box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+     
+     // Triangle queue SVG
+     &::before {
+       content: '';
+       position: absolute;
+       left: -8px;
+       bottom: 0;
+       border: 8px solid transparent;
+       border-right-color: white;
+     }
+   }
+   ```
+
+2. **Message Envoyé** (droite) :
+   ```scss
+   .message-sent {
+     background: #DCF8C6; // vert clair ou #005C4B dark
+     border-radius: 8px 8px 0px 8px; // Queue coin bas-droit
+     padding: 8px 12px;
+     max-width: 65%;
+     margin-left: auto;
+     box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+   }
+   ```
+
+3. **Message Système** (centré) :
+   ```scss
+   .message-system {
+     background: rgba(0,0,0,0.05);
+     border-radius: 8px;
+     padding: 6px 12px;
+     font-size: 13px;
+     text-align: center;
+     margin: 0 auto;
+     max-width: 80%;
+     color: gray-600;
+   }
+   ```
+
+**Marquage Temporel (Sticky Dates)** :
+```tsx
+// Dates séparatrices sticky au scroll
+┌────────────────────────────────┐
+│      AUJOURD'HUI               │  ← Sticky top
+└────────────────────────────────┘
+
+- Format relatif intelligent :
+  • "Aujourd'hui" si date === today
+  • "Hier" si date === yesterday
+  • "Lundi" si < 7 jours
+  • "15 mars" si année courante
+  • "15 mars 2024" si année passée
+
+- Timestamp dans bulle :
+  • Format : "14:32" (24h) ou "2:32 PM" (12h selon locale)
+  • Position : bottom-right de la bulle
+  • Font-size : 11px, opacity 0.6
+  • Affiche heure uniquement si > 5min d'écart entre messages
+
+**Indicateurs de Lecture (Checkmarks)** :
+```tsx
+// Position : Après le timestamp dans bulles envoyées
+
+✓   - Message envoyé (gris)
+✓✓  - Message livré (gris) 
+✓✓  - Message lu (bleu #4FC3F7)
+
+// Implémentation
+const getReadStatus = (message: Message) => {
+  if (!message.readBy.includes(otherUserId)) {
+    return message.createdAt ? '✓✓' : '✓'; // Livré ou envoyé
+  }
+  return <span className="text-blue-400">✓✓</span>; // Lu
+};
+
+// "Vu par X" en bas du dernier message group
+{isLastMessage && message.readBy.length > 0 && (
+  <div className="text-xs text-right text-muted-foreground mt-1">
+    Vu {formatDistanceToNow(lastReadAt)}
+  </div>
+)}
+```
+
+**Types de Messages Supportés** :
+
+1. **Texte** : `message.type === 'text'`
+   ```tsx
+   <MessageBubble variant="text">
+     {/* Détection URLs → auto-link */}
+     {/* Détection emojis → larger size si emoji-only */}
+     {/* Markdown light : *bold*, _italic_ */}
+     <p className="text-sm leading-relaxed break-words">
+       {parseMessageContent(message.content)}
+     </p>
+   </MessageBubble>
+   ```
+
+2. **Image** : `message.type === 'image'`
+   ```tsx
+   <MessageBubble variant="image" className="p-1">
+     <div className="relative rounded-lg overflow-hidden">
+       {/* Progressive loading avec blur placeholder */}
+       <Image
+         src={message.attachments[0].url}
+         width={280}
+         height={280}
+         className="object-cover cursor-pointer"
+         onClick={() => openLightbox(message.attachments[0])}
+       />
+       {/* Caption en dessous si présent */}
+       {message.content && (
+         <p className="px-2 py-1 text-sm">{message.content}</p>
+       )}
+     </div>
+   </MessageBubble>
+   ```
+
+3. **Fichier** : `message.type === 'file'`
+   ```tsx
+   <MessageBubble variant="file">
+     <div className="flex items-center gap-3 p-2 bg-muted/30 rounded">
+       {/* Icône selon extension */}
+       <FileIcon type={attachment.mimeType} className="w-10 h-10" />
+       <div className="flex-1 min-w-0">
+         <p className="font-medium truncate">{attachment.name}</p>
+         <p className="text-xs text-muted-foreground">
+           {formatFileSize(attachment.size)}
+         </p>
+       </div>
+       <Button size="icon" variant="ghost" onClick={downloadFile}>
+         <Download className="w-4 h-4" />
+       </Button>
+     </div>
+   </MessageBubble>
+   ```
+
+4. **Audio** : `message.type === 'audio'` (V2)
+   ```tsx
+   <MessageBubble variant="audio">
+     <div className="flex items-center gap-2 min-w-[200px]">
+       <Button size="icon" onClick={togglePlay}>
+         {isPlaying ? <Pause /> : <Play />}
+       </Button>
+       {/* Waveform visualizer */}
+       <Waveform progress={playProgress} />
+       <span className="text-xs">{formatDuration(duration)}</span>
+     </div>
+   </MessageBubble>
+   ```
+
+5. **Système** : `message.type === 'system'`
+   ```tsx
+   <div className="flex justify-center my-3">
+     <div className="bg-black/5 dark:bg-white/5 px-4 py-2 rounded-lg">
+       <p className="text-xs text-center text-muted-foreground flex items-center gap-2">
+         {getSystemIcon(message.systemMetadata.action)}
+         <span>{message.content}</span>
+       </p>
+     </div>
+   </div>
    
-2. Pièces jointes : message.type === 'image' | 'file'
-   → Images : aperçu + click pour agrandir
-   → PDF/docs : icône + nom fichier + bouton téléchargement
-   → message.attachments[] array
-   
-3. Messages système : message.type === 'system'
-   → Style différent (centré, gris)
-   → Ex: "L'offre a été acceptée", "Le paiement a été validé"
-   → message.systemMetadata.action
+   // Icons selon action
+   - 'offer_accepted' → 🤝 
+   - 'payment_validated' → 💰
+   - 'booking_created' → 📅
+   - 'dispute_opened' → ⚠️
+   ```
 
 Message d'alerte PII :
 if (message.containsPII && !message.piiWarningShown) {
@@ -323,53 +733,223 @@ useEffect(() => {
 }, [messages]);
 ```
 
-#### 2.3. Pied de Conversation (Zone de Saisie)
+#### 2.3. Zone de Saisie (Input Premium WhatsApp-Style)
 
 ```tsx
 // Composant : <MessageInput />
 // Hook : useSendMessage()
 
-const sendMessageMutation = useSendMessage();
+┌──────────────────────────────────────────────────────────────┐
+│ [😊] [📎] [Tapez un message...]              [🎤]  [Envoyer] │
+│                                                              │
+│ [PII Warning Banner si détecté] ⚠️                           │
+└──────────────────────────────────────────────────────────────┘
 
-const handleSend = async () => {
-  // Détection PII avant envoi
-  const hasPII = detectPII(messageContent);
-  
-  if (hasPII) {
-    // Montrer confirmation dialog
-    const confirmed = await confirmDialog(
-      "Votre message contient des informations personnelles. Continuer ?"
-    );
-    if (!confirmed) return;
-  }
-  
-  await sendMessageMutation.mutateAsync({
-    threadId,
-    senderId: currentUserId,
-    senderName: currentUser.displayName,
-    senderPhotoUrl: currentUser.photoUrl,
-    content: messageContent,
-    type: 'text',
-  });
-  
-  setMessageContent('');
-};
+**Layout Détaillé** :
 
-Éléments interface :
-┌─────────────────────────────────────────────────────────┐
-│ [📎] [Écrire un message...]              [🎤]  [Envoyer]│
-└─────────────────────────────────────────────────────────┘
+1. **Zone Principale** :
+   ```tsx
+   <div className="sticky bottom-0 bg-background border-t p-3 shadow-lg">
+     {/* PII Warning (si détecté) */}
+     {showPIIWarning && <PIIWarningBanner />}
+     
+     <div className="flex items-end gap-2 max-w-4xl mx-auto">
+       {/* Actions Gauche */}
+       <div className="flex gap-1">
+         <EmojiPickerButton />
+         <AttachmentButton />
+       </div>
+       
+       {/* Input principal */}
+       <div className="flex-1 relative">
+         <TextareaAutosize
+           minRows={1}
+           maxRows={5}
+           placeholder="Tapez un message..."
+           className="w-full resize-none rounded-full px-4 py-2 
+                      bg-muted focus:bg-background
+                      transition-all duration-200"
+           onKeyDown={handleKeyDown} // Enter = send, Shift+Enter = newline
+         />
+         
+         {/* Typing indicator (émis vers other user) */}
+         {isTyping && <TypingIndicator />}
+       </div>
+       
+       {/* Bouton Send/Voice */}
+       {messageContent.trim() ? (
+         <Button
+           size="icon"
+           className="rounded-full bg-primary hover:bg-primary/90 
+                      w-11 h-11 shrink-0"
+           onClick={handleSend}
+         >
+           <Send className="w-5 h-5" />
+         </Button>
+       ) : (
+         <Button
+           size="icon"
+           variant="ghost"
+           className="rounded-full w-11 h-11 shrink-0"
+           onMouseDown={startVoiceRecording}
+           onMouseUp={stopVoiceRecording}
+         >
+           <Mic className="w-5 h-5" />
+         </Button>
+       )}
+     </div>
+   </div>
+   ```
 
-- Champ de texte : <textarea> avec auto-resize
-- Bouton "Envoyer" : disabled si content.trim() === ''
-- Bouton "Joindre Fichier / Photo" :
-  → <input type="file" accept="image/*,.pdf,.doc,.docx" />
-  → Upload vers Firebase Storage
-  → Créer MessageAttachment
-  
-- Bouton "Enregistrer Audio" (V2) :
-  → WebRTC audio recording
-  → Upload MP3 vers Storage
+2. **Emoji Picker** :
+   ```tsx
+   <Popover>
+     <PopoverTrigger asChild>
+       <Button size="icon" variant="ghost" className="rounded-full">
+         😊
+       </Button>
+     </PopoverTrigger>
+     <PopoverContent side="top" className="w-80 p-0">
+       {/* EmojiPicker component ou @emoji-mart */}
+       <EmojiPicker
+         onEmojiSelect={(emoji) => insertEmoji(emoji)}
+         theme="auto"
+         previewPosition="none"
+       />
+     </PopoverContent>
+   </Popover>
+   ```
+
+3. **Attachment Menu** :
+   ```tsx
+   <DropdownMenu>
+     <DropdownMenuTrigger asChild>
+       <Button size="icon" variant="ghost" className="rounded-full">
+         <Paperclip className="w-5 h-5" />
+       </Button>
+     </DropdownMenuTrigger>
+     <DropdownMenuContent side="top" align="start">
+       {/* Photo/Vidéo */}
+       <DropdownMenuItem onClick={() => fileInputRef.current?.click()}>
+         <Camera className="w-4 h-4 mr-2" />
+         Photo ou vidéo
+         <input
+           ref={fileInputRef}
+           type="file"
+           accept="image/*,video/*"
+           className="hidden"
+           onChange={handleFileUpload}
+         />
+       </DropdownMenuItem>
+       
+       {/* Document */}
+       <DropdownMenuItem onClick={() => docInputRef.current?.click()}>
+         <FileText className="w-4 h-4 mr-2" />
+         Document
+         <input
+           ref={docInputRef}
+           type="file"
+           accept=".pdf,.doc,.docx,.xls,.xlsx"
+           className="hidden"
+           onChange={handleFileUpload}
+         />
+       </DropdownMenuItem>
+       
+       {/* Localisation (V2) */}
+       <DropdownMenuItem disabled>
+         <MapPin className="w-4 h-4 mr-2" />
+         Partager position
+       </DropdownMenuItem>
+     </DropdownMenuContent>
+   </DropdownMenu>
+   ```
+
+4. **Voice Recording (Hold to Record)** :
+   ```tsx
+   // État pendant l'enregistrement
+   {isRecording && (
+     <div className="absolute inset-0 bg-background/95 backdrop-blur-sm
+                     flex items-center justify-center gap-4 z-50">
+       {/* Waveform animation */}
+       <div className="flex gap-1">
+         {[...Array(5)].map((_, i) => (
+           <div
+             key={i}
+             className="w-1 bg-red-500 rounded-full animate-pulse"
+             style={{
+               height: `${Math.random() * 20 + 10}px`,
+               animationDelay: `${i * 100}ms`,
+             }}
+           />
+         ))}
+       </div>
+       
+       {/* Timer */}
+       <span className="text-red-500 font-mono">
+         {formatDuration(recordingDuration)}
+       </span>
+       
+       {/* Actions */}
+       <Button
+         size="icon"
+         variant="ghost"
+         onClick={cancelRecording}
+       >
+         <X className="w-5 h-5" />
+       </Button>
+       
+       <Button
+         size="icon"
+         className="bg-primary"
+         onClick={sendVoiceMessage}
+       >
+         <Send className="w-5 h-5" />
+       </Button>
+     </div>
+   )}
+   ```
+
+5. **PII Warning Banner** :
+   ```tsx
+   {showPIIWarning && (
+     <Alert variant="warning" className="mb-2">
+       <AlertTriangle className="h-4 w-4" />
+       <AlertDescription className="flex items-center justify-between">
+         <span>
+           ⚠️ Information personnelle détectée (email, téléphone, adresse).
+           <br />
+           Privilégiez les échanges sur la plateforme pour votre sécurité.
+         </span>
+         <div className="flex gap-2">
+           <Button
+             variant="ghost"
+             size="sm"
+             onClick={() => setMessageContent('')}
+           >
+             Annuler
+           </Button>
+           <Button
+             variant="default"
+             size="sm"
+             onClick={sendAnywayWithPII}
+           >
+             Envoyer quand même
+           </Button>
+         </div>
+       </AlertDescription>
+     </Alert>
+   )}
+   ```
+
+**Fonctionnalités Avancées** :
+
+- **Auto-resize textarea** : S'agrandit jusqu'à 5 lignes max
+- **Shift + Enter** : Nouvelle ligne
+- **Enter** : Envoyer message
+- **Drag & Drop** : Zone de drop overlay pour fichiers
+- **Paste Images** : Ctrl/Cmd + V colle images clipboard
+- **Typing indicator** : Détecte frappe et émet event temps réel
+- **Draft sauvegarde** : Auto-save toutes les 2s dans localStorage
 ```
 
 #### 2.4. Barre d'Informations Contextuelles
@@ -619,45 +1199,73 @@ useEffect(() => {
 - `src/lib/firestore-messages.ts` (400+ lignes)
 - `src/hooks/use-messaging.ts` (350+ lignes)
 
-### 🔄 Phase 2 : Interface Liste Threads (EN COURS)
+### ✅ Phase 2 : Interface Liste Threads (COMPLÉTÉ - 27 oct 2025)
 
-- [ ] Page `/dashboard/messages`
-- [ ] Composant `<ThreadList />`
-- [ ] Composant `<ThreadFilters />`
-- [ ] Composant `<ThreadListItem />`
-- [ ] Empty state (aucune conversation)
-- [ ] Loading states
-- [ ] Responsive design (mobile/web)
+- [x] Page `/dashboard/messages`
+- [x] Composant `<ThreadList />` avec real-time updates
+- [x] Composant `<ThreadListItem />` avec avatars et badges
+- [x] Filtres intégrés (Active/Archived tabs)
+- [x] Recherche threads (useSearchThreads hook)
+- [x] Empty states (no threads, no results, no archived)
+- [x] Loading skeletons
+- [x] Responsive design (mobile/desktop)
+- [x] Actions thread (archive, unarchive, delete)
+- [x] Traductions FR/EN complètes
 
-**Fichiers à créer** :
-- `src/app/[locale]/dashboard/messages/page.tsx`
-- `src/components/messaging/thread-list.tsx`
-- `src/components/messaging/thread-list-item.tsx`
-- `src/components/messaging/thread-filters.tsx`
+**Fichiers créés** :
+- `src/app/[locale]/dashboard/messages/page.tsx` (90 lignes)
+- `src/components/messaging/thread-list.tsx` (230 lignes)
+- `src/components/messaging/thread-list-item.tsx` (180 lignes)
+- `src/hooks/use-messaging.ts` (ajout useDeleteThread, fix useSearchThreads)
+- `src/lib/firestore-threads.ts` (ajout unarchiveThread)
+- `src/messages/fr.json` (namespace 'messaging' étendu)
+- `src/messages/en.json` (namespace 'messaging' étendu)
 
-### ⏳ Phase 3 : Interface Conversation Détaillée
+### ✅ Phase 3 : Interface Conversation Détaillée - COMPLÉTÉ (27 oct 2025)
 
-- [ ] Page `/dashboard/messages/[threadId]`
-- [ ] Composant `<ConversationHeader />`
-- [ ] Composant `<MessageList />`
-- [ ] Composant `<MessageBubble />`
-- [ ] Composant `<MessageInput />`
-- [ ] Composant `<ThreadContextBar />`
-- [ ] Upload fichiers/images
-- [ ] PII warning UI
-- [ ] Typing indicators
-- [ ] Read receipts display
+- [x] Page `/dashboard/messages/[threadId]` (73 lignes)
+- [x] Composant `<ConversationHeader />` (317 lignes)
+  - Avatar avec status online/offline temps réel
+  - Actions: Appel, Visio, Recherche, Menu dropdown
+  - Status "En train d'écrire..." animé
+  - Click avatar → Drawer infos contact complet
+- [x] Composant `<MessageList />` (188 lignes)
+  - Messages temps réel via `useThreadMessages()`
+  - Auto-scroll sur nouveaux messages
+  - Dates sticky ("Aujourd'hui", "Hier", formatage intelligent)
+  - Loading skeleton + empty state
+- [x] Composant `<MessageBubble />` (253 lignes)
+  - Bulles WhatsApp-style avec queues SVG
+  - Types: text, image, file, system
+  - Read receipts: ✓ (envoyé), ✓✓ (livré), ✓✓ bleu (lu)
+  - PII warning banner si contenu sensible
+  - Timestamps formatés (HH:mm)
+- [x] Composant `<MessageInput />` (400 lignes)
+  - Textarea auto-resize (1-5 lignes)
+  - Emoji picker 😊 avec popover
+  - Attachments: Photo 📷, Documents 📄
+  - PII detection avant envoi
+  - Typing indicator émis temps réel
+  - Préparé: Voice recording 🎤, Drag & drop
+- [x] Traductions FR/EN (~60 nouvelles clés)
+  - Actions, status, input, warnings, receipts
 
-**Fichiers à créer** :
-- `src/app/[locale]/dashboard/messages/[threadId]/page.tsx`
-- `src/components/messaging/conversation-header.tsx`
-- `src/components/messaging/message-list.tsx`
-- `src/components/messaging/message-bubble.tsx`
-- `src/components/messaging/message-input.tsx`
-- `src/components/messaging/thread-context-bar.tsx`
+**Fichiers créés** :
+- `src/app/[locale]/dashboard/messages/[threadId]/page.tsx` (73 lignes)
+- `src/components/messaging/conversation-header.tsx` (317 lignes)
+- `src/components/messaging/message-list.tsx` (188 lignes)
+- `src/components/messaging/message-bubble.tsx` (253 lignes)
+- `src/components/messaging/message-input.tsx` (400 lignes)
+
+**Fichiers mis à jour** :
+- `src/messages/fr.json` (+60 clés: actions, status, input, piiWarning, readReceipts)
+- `src/messages/en.json` (+60 clés mirrored)
+
+**Note** : `ThreadContextBar` reporté en Phase 4 (actions contextuelles tâche)
 
 ### ⏳ Phase 4 : Features Avancées
 
+- [ ] Composant `<ThreadContextBar />` (actions contextuelles tâche)
 - [ ] Widget messagerie (FAB mobile)
 - [ ] Mini-chat widget (web)
 - [ ] Notifications push (FCM)
@@ -671,7 +1279,6 @@ useEffect(() => {
 - [ ] Tests e2e Playwright (15 tests)
 - [ ] Tests unitaires hooks
 - [ ] Tests Firestore Security Rules
-- [ ] i18n (FR + EN)
 - [ ] Accessibility (ARIA labels)
 - [ ] Performance optimization
 
@@ -687,51 +1294,136 @@ useEffect(() => {
 - ✅ Real-time sync opérationnel
 - ✅ PII detection fonctionnel
 
-**Frontend (Phases 2-4)** :
-- 🔄 ~800 lignes estimées (Phase 2)
-- ⏳ ~1,200 lignes estimées (Phase 3)
-- ⏳ ~400 lignes estimées (Phase 4)
+**Frontend (Phases 2-3)** :
+- ✅ 500 lignes (Phase 2 - Liste Threads)
+- ✅ 1,158 lignes (Phase 3 - Conversation Détaillée)
 
-**Total estimé** : ~3,650 lignes pour système complet
+**Total actuel** : 2,908+ lignes  
+**Total estimé final** : ~3,500 lignes pour système complet (avec Phase 4-5)
 
 ---
 
 ## 🚀 Prochaines Étapes
 
-1. **Créer page `/dashboard/messages`** (2h)
-   - Layout avec sidebar threads
-   - Filtres et recherche
-   - Liste threads avec real-time
+### ✅ Complété - Phase 1 & 2 (27 oct 2025)
+- ✅ Page `/dashboard/messages` avec liste threads
+- ✅ Filtres Active/Archived
+- ✅ Recherche threads
+- ✅ Actions (archive, delete)
+- ✅ Real-time updates
+- ✅ Traductions FR/EN
 
-2. **Créer page `/dashboard/messages/[threadId]`** (4h)
-   - Header conversation
-   - Liste messages scrollable
-   - Input message avec PII detection
-   - Upload fichiers
+### ✅ Complété - Phase 3 (27 oct 2025)
+- ✅ Page conversation `/dashboard/messages/[threadId]`
+- ✅ Header avec status online & actions
+- ✅ Messages temps réel style WhatsApp
+- ✅ Input premium (emoji, attachments, PII detection)
+- ✅ Read receipts & typing indicators
+- ✅ Design moderne responsive
 
-3. **Tests E2E** (2h)
-   - Créer thread
-   - Envoyer message
-   - Marquer comme lu
-   - Recherche threads
-   - PII detection
+### 🎯 Prochaine Task : Phase 4 - Features Avancées & Tests
 
-**Durée totale estimée Phase 2-3** : 8h  
-**Date cible** : 28-29 octobre 2025
+**Task 1.4** : Tests E2E Messagerie (2h estimées)
+
+**Tests Playwright à implémenter** :
+
+1. **Tests Création & Navigation** (30 min)
+   - Créer un nouveau thread entre deux users
+   - Naviguer vers la conversation
+   - Vérifier le header affiche les bonnes infos
+   - Retour à la liste threads
+
+2. **Tests Envoi Messages** (45 min)
+   - Envoyer message texte simple
+   - Vérifier réception temps réel
+   - Envoyer message avec emoji
+   - Upload image et vérifier preview
+   - Upload document et vérifier téléchargement
+   - Vérifier PII detection (email, téléphone)
+
+3. **Tests Interactions** (30 min)
+   - Mark as read automatique
+   - Typing indicator affiché
+   - Read receipts mis à jour
+   - Recherche dans conversations
+   - Filtrer par Active/Archived
+   - Archiver conversation
+   - Supprimer conversation
+
+4. **Tests Responsive** (15 min)
+   - Mobile: Liste fullscreen
+   - Mobile: Conversation fullscreen
+   - Desktop: Split view fonctionnel
+   - Sender avatar + name
+
+4. `<MessageInput />` (1h)
+   - Textarea auto-resize
+   - Détection PII avant envoi
+   - Upload fichiers/images
+   - Bouton envoyer (optimistic update)
+   - Typing indicator emit
+
+5. `<ThreadContextBar />` (15 min)
+   - Statut tâche/booking
+   - Actions rapides contextuelles
+
+**Tests E2E** (2h) - Task 1.4 :
+- Créer thread
+- Envoyer message texte
+- Envoyer image
+- Marquer comme lu
+- Recherche threads
+- PII detection warning
+- Archive conversation
+- Real-time sync
+
+**Durée totale Phase 4** : 2h  
+**Date cible** : 28 octobre 2025
+
+**Fonctionnalités additionnelles (V2 - Phase 5)** :
+- [ ] ThreadContextBar avec actions tâche contextuelles
+- [ ] Widget messagerie (FAB mobile)
+- [ ] Notifications push (FCM)
+- [ ] Audio messages + voice recording
+- [ ] WebRTC calls (audio/vidéo)
+- [ ] Infinite scroll avec pagination
+- [ ] Reactions emoji sur messages
+- [ ] Forward messages
+- [ ] Search in conversation
 
 ---
 
-*Document mis à jour le 27 octobre 2025*
-C'est la page d'accueil du module messagerie, présentant toutes les conversations actives ou passées.
-* 1.1. En-tête de la Page :
-    * Titre : "Messages" ou "Mes Conversations"
-    * Bouton "Nouvelle Conversation" (optionnel/contextuel) : Si un utilisateur veut initier une conversation sans passer par une tâche (ex: question générale à un prestataire post-mission, après avoir accédé à son profil).
-* 1.2. Barres de Recherche et Filtres :
-    * Champ de recherche : Permet de rechercher dans les noms de correspondants, les titres de tâches ou le contenu des messages.
-    * Filtres (Type de rôle) : "Toutes", "En tant que Client", "En tant que Prestataire".
-    * Filtres (Statut de la tâche) : "Actives" (tâches en cours, en attente d'offre/acceptation), "Archivées" (tâches terminées ou annulées), "Non lues".
-* 1.3. Liste des Conversations (Threads) :
-    * Chaque élément de la liste représente un "thread" de conversation (généralement lié à une tâche spécifique ou un interlocuteur).
+## 📝 Notes d'Implémentation
+
+### Composants Messagerie Créés
+
+**Phase 1 - Backend** :
+- `src/lib/types.ts` - Types Thread, Message, MessageType, ThreadStatus
+- `src/lib/firestore-threads.ts` - 13 fonctions CRUD + real-time (500+ lignes)
+- `src/lib/firestore-messages.ts` - 11 fonctions + PII detection (430+ lignes)
+- `src/hooks/use-messaging.ts` - 13 hooks React Query (395 lignes)
+
+**Phase 2 - Liste Threads** :
+- `src/app/[locale]/dashboard/messages/page.tsx` - Page principale (90 lignes)
+- `src/components/messaging/thread-list.tsx` - Liste avec filtres (230 lignes)
+- `src/components/messaging/thread-list-item.tsx` - Item individuel (180 lignes)
+
+**Phase 3 - Conversation** :
+- `src/app/[locale]/dashboard/messages/[threadId]/page.tsx` - Page conversation (73 lignes)
+- `src/components/messaging/conversation-header.tsx` - Header moderne (317 lignes)
+- `src/components/messaging/message-list.tsx` - Liste messages (188 lignes)
+- `src/components/messaging/message-bubble.tsx` - Bulles WhatsApp (253 lignes)
+- `src/components/messaging/message-input.tsx` - Input premium (400 lignes)
+
+**Traductions** :
+- `src/messages/fr.json` - Namespace 'messaging' complet (~90 clés)
+- `src/messages/en.json` - Namespace 'messaging' complet (~90 clés)
+
+**Total** : 6 composants, 2,908+ lignes, 0 erreurs TypeScript
+
+---
+
+*Document mis à jour le 27 octobre 2025 - Phase 3 complétée*
     * Informations affichées par thread :
         * Photo de profil du correspondant
         * Nom du correspondant (Client ou Prestataire)

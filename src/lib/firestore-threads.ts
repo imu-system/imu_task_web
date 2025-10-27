@@ -312,6 +312,18 @@ export async function archiveThread(threadId: string): Promise<void> {
 }
 
 /**
+ * Unarchive thread
+ */
+export async function unarchiveThread(threadId: string): Promise<void> {
+    try {
+        await updateThread(threadId, { status: 'active' as ThreadStatus });
+    } catch (error) {
+        console.error('Error unarchiving thread:', error);
+        throw error;
+    }
+}
+
+/**
  * Delete thread (admin only)
  */
 export async function deleteThread(threadId: string): Promise<void> {

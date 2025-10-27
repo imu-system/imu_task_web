@@ -142,14 +142,18 @@ export function useUnreadCount(userId: string | undefined) {
 /**
  * Search threads by task title or participant name
  */
-export function useSearchThreads(userId: string | undefined, searchQuery: string) {
+export function useSearchThreads(
+    userId: string | undefined,
+    searchQuery: string,
+    options?: { enabled?: boolean }
+) {
     return useQuery({
         queryKey: [...messagingKeys.threadsList(userId || ''), 'search', searchQuery],
         queryFn: () => {
             if (!userId) return [];
             return searchThreads(userId, searchQuery);
         },
-        enabled: !!userId && searchQuery.length > 0,
+        enabled: options?.enabled !== undefined ? options.enabled : (!!userId && searchQuery.length > 0),
         staleTime: 1000 * 10, // 10 seconds
     });
 }
@@ -362,6 +366,28 @@ export function useUpdateThread() {
             });
             queryClient.invalidateQueries({
                 queryKey: messagingKeys.threads(),
+            });
+        },
+    });
+}
+
+/**
+ * Delete thread
+ */
+export function useDeleteThread() {
+    const queryClient = useQueryClient();
+
+    return useMutation({
+        mutationFn: async (threadId: string) => {
+            const { deleteThread } = await import('@/lib/firestore-threads');
+            return deleteThread(threadId);
+        },
+        onSuccess: (_, threadId) => {
+            queryClient.invalidateQueries({
+                queryKey: messagingKeys.threads(),
+            });
+            queryClient.removeQueries({
+                queryKey: messagingKeys.thread(threadId),
             });
         },
     });

@@ -319,9 +319,79 @@
             "reportProblem": "Signaler un problème"
         },
         "messaging": {
-            "title": "Messagerie",
+            "title": "Messages",
+            "newThread": "Nouveau message",
+            "searchPlaceholder": "Rechercher une conversation...",
+            "selectThread": "Sélectionnez une conversation",
+            "selectThreadDescription": "Choisissez une conversation pour commencer à discuter",
+            "noMessages": "Aucun message",
+            "you": "Vous",
+            "typing": "En train d'écrire...",
+            "unknownUser": "Utilisateur inconnu",
+            "relatedTask": "Tâche liée",
+            "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette conversation ?",
+            "tabs": {
+                "active": "Actives",
+                "archived": "Archivées"
+            },
+            "actions": {
+                "archive": "Archiver",
+                "unarchive": "Désarchiver",
+                "delete": "Supprimer",
+                "mute": "Couper les notifications",
+                "unmute": "Activer les notifications",
+                "call": "Appeler",
+                "videoCall": "Visio",
+                "search": "Rechercher",
+                "viewTask": "Voir la tâche",
+                "pin": "Épingler",
+                "viewProfile": "Voir le profil",
+                "block": "Bloquer",
+                "report": "Signaler"
+            },
+            "emptyStates": {
+                "noThreads": "Aucune conversation pour le moment",
+                "noArchived": "Aucune conversation archivée",
+                "noResults": "Aucun résultat trouvé"
+            },
+            "errors": {
+                "loadThreads": "Impossible de charger les conversations",
+                "sendMessage": "Impossible d'envoyer le message",
+                "uploadFile": "Impossible d'uploader le fichier"
+            },
             "contactProvider": "Contacter le prestataire",
-            "notMatched": "La messagerie sera disponible une fois que vous aurez accepté une offre."
+            "notMatched": "La messagerie sera disponible une fois que vous aurez accepté une offre.",
+            "online": "En ligne",
+            "offline": "Hors ligne",
+            "activeAgo": "Actif il y a {time}",
+            "status": {
+                "online": "En ligne",
+                "offline": "Hors ligne",
+                "typing": "En train d'écrire..."
+            },
+            "input": {
+                "placeholder": "Tapez un message...",
+                "send": "Envoyer",
+                "emoji": "Emoji",
+                "attach": "Joindre un fichier",
+                "voice": "Message vocal",
+                "cancel": "Annuler",
+                "recording": "Enregistrement...",
+                "photo": "Photo ou vidéo",
+                "document": "Document",
+                "location": "Partager position"
+            },
+            "piiWarning": {
+                "title": "Information personnelle détectée",
+                "description": "Votre message contient des informations personnelles (email, téléphone, adresse). Privilégiez les échanges sur la plateforme pour votre sécurité.",
+                "sendAnyway": "Envoyer quand même"
+            },
+            "readReceipts": {
+                "sent": "Envoyé",
+                "delivered": "Livré",
+                "read": "Lu",
+                "seenBy": "Vu {time}"
+            }
         },
         "providerActions": {
             "title": "Vos actions",
@@ -2997,6 +3067,67 @@
                 "generic": "Une erreur est survenue lors de l'envoi de l'email"
             }
         }
+    },
+    "messaging": {
+        "title": "Messages",
+        "newThread": "Nouvelle conversation",
+        "searchPlaceholder": "Rechercher conversations...",
+        "selectThread": "Sélectionnez une conversation",
+        "tabs": {
+            "active": "Actives",
+            "archived": "Archivées"
+        },
+        "actions": {
+            "archive": "Archiver",
+            "unarchive": "Désarchiver",
+            "delete": "Supprimer",
+            "mute": "Désactiver les notifications",
+            "unmute": "Activer les notifications"
+        },
+        "emptyStates": {
+            "noThreads": "Aucune conversation",
+            "noResults": "Aucun résultat trouvé",
+            "noArchived": "Aucune conversation archivée",
+            "noMessages": "Aucun message",
+            "sendFirstMessage": "Envoyez le premier message"
+        },
+        "errors": {
+            "loadThreads": "Erreur de chargement des conversations"
+        },
+        "you": "Vous",
+        "typing": "en train d'écrire...",
+        "unknownUser": "Utilisateur inconnu",
+        "relatedTask": "Mission associée",
+        "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette conversation ?",
+        "online": "En ligne",
+        "activeAgo": "Actif il y a",
+        "call": "Appeler",
+        "videoCall": "Visio",
+        "search": "Rechercher",
+        "viewTask": "Voir la mission",
+        "pinConversation": "Épingler la conversation",
+        "muteNotifications": "Couper les notifications",
+        "customize": "Personnaliser",
+        "openDispute": "Ouvrir un litige",
+        "blockUser": "Bloquer l'utilisateur",
+        "reportUser": "Signaler l'utilisateur",
+        "contactInfo": "Informations de contact",
+        "rating": "Note",
+        "completedMissions": "Missions complétées",
+        "location": "Localisation",
+        "viewFullProfile": "Voir le profil complet",
+        "today": "Aujourd'hui",
+        "yesterday": "Hier",
+        "seenBy": "Vu par",
+        "piiWarning": "Évitez de partager vos coordonnées personnelles pour votre sécurité",
+        "typeMessage": "Tapez un message...",
+        "cancel": "Annuler",
+        "piiDetected": "Information personnelle détectée (email, téléphone, adresse).",
+        "piiMessage": "Privilégiez les échanges sur la plateforme pour votre sécurité.",
+        "sendAnyway": "Envoyer quand même",
+        "photoOrVideo": "Photo ou vidéo",
+        "document": "Document",
+        "shareLocation": "Partager ma position"
     },
     "Breadcrumbs": {
         "ariaLabel": "Fil d'Ariane",
