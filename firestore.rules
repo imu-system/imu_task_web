@@ -156,5 +156,45 @@ service cloud.firestore {
       );
       allow write: if false; // Only server-side
     }
+    
+    // Threads (conversations)
+    match /threads/{threadId} {
+      // Users can read threads where they are participants
+      allow read: if isAuthenticated() && 
+                     request.auth.uid in resource.data.participants;
+      
+      // Users can create threads where they are a participant
+      allow create: if isAuthenticated() && 
+                       request.auth.uid in request.resource.data.participants;
+      
+      // Users can update threads where they are participants
+      // (for updating unread count, typing status, etc.)
+      allow update: if isAuthenticated() && 
+                       request.auth.uid in resource.data.participants;
+      
+      // Users can delete threads where they are participants
+      allow delete: if isAuthenticated() && 
+                       request.auth.uid in resource.data.participants;
+    }
+    
+    // Messages
+    match /messages/{messageId} {
+      // Users can read messages in threads where they are participants
+      allow read: if isAuthenticated() && 
+                     request.auth.uid in get(/databases/$(database)/documents/threads/$(resource.data.threadId)).data.participants;
+      
+      // Users can create messages in threads where they are participants
+      allow create: if isAuthenticated() && 
+                       request.resource.data.senderId == request.auth.uid &&
+                       request.auth.uid in get(/databases/$(database)/documents/threads/$(request.resource.data.threadId)).data.participants;
+      
+      // Users can update their own messages (for editing)
+      allow update: if isAuthenticated() && 
+                       resource.data.senderId == request.auth.uid;
+      
+      // Users can delete their own messages
+      allow delete: if isAuthenticated() && 
+                       resource.data.senderId == request.auth.uid;
+    }
   }
 }

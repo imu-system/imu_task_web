@@ -15,10 +15,10 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Skeleton } from '@/components/ui/skeleton';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { useTranslations, useLocale } from 'next-intl';
 import { useUserThreads, useSearchThreads } from '@/hooks/use-messaging';
 import { ThreadListItem } from './thread-list-item';
+import { FilterPills, type FilterType } from './filter-pills';
 import type { Thread, ThreadStatus } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
@@ -38,15 +38,15 @@ export function ThreadList({
   const t = useTranslations('messaging');
   const locale = useLocale();
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeTab, setActiveTab] = useState<'active' | 'archived'>('active');
+  const [activeFilter, setActiveFilter] = useState<FilterType>('all');
 
-  // Récupération des threads avec real-time updates
+  // Récupération des threads avec real-time updates (toujours actifs)
   const {
     data: threads = [],
     isLoading,
     error,
   } = useUserThreads(userId, {
-    status: (activeTab === 'active' ? 'active' : 'archived') as ThreadStatus,
+    status: 'active' as ThreadStatus,
   });
 
   // Recherche (si query non vide)
@@ -65,9 +65,36 @@ export function ThreadList({
     return threads;
   }, [searchQuery, searchResults, threads]);
 
+  // Filtrage selon le filtre actif
+  const filteredThreads = useMemo(() => {
+    let filtered = displayedThreads;
+
+    switch (activeFilter) {
+      case 'unread':
+        filtered = filtered.filter(
+          (thread) => thread.unreadCount && thread.unreadCount[userId] > 0
+        );
+        break;
+      case 'favorites':
+        // TODO: Implémenter le système de favoris
+        filtered = [];
+        break;
+      case 'groups':
+        // TODO: Implémenter les groupes (participants.length > 2)
+        filtered = filtered.filter((thread) => thread.participants.length > 2);
+        break;
+      case 'all':
+      default:
+        // Pas de filtrage supplémentaire
+        break;
+    }
+
+    return filtered;
+  }, [displayedThreads, activeFilter, userId]);
+
   // Tri par dernière activité
   const sortedThreads = useMemo(() => {
-    return [...displayedThreads].sort((a, b) => {
+    return [...filteredThreads].sort((a, b) => {
       const dateA = typeof a.lastMessageAt === 'string' 
         ? new Date(a.lastMessageAt).getTime()
         : a.lastMessageAt.getTime();
@@ -76,13 +103,25 @@ export function ThreadList({
         : b.lastMessageAt.getTime();
       return dateB - dateA;
     });
-  }, [displayedThreads]);
+  }, [filteredThreads]);
 
   // Nombre de threads non lus
   const unreadCount = useMemo(() => {
     return threads.filter(
       (thread) => thread.unreadCount && thread.unreadCount[userId] > 0
     ).length;
+  }, [threads, userId]);
+
+  // Compteurs pour chaque filtre
+  const filterCounts = useMemo(() => {
+    return {
+      all: threads.length,
+      unread: threads.filter(
+        (thread) => thread.unreadCount && thread.unreadCount[userId] > 0
+      ).length,
+      favorites: 0, // TODO: Implémenter favoris
+      groups: threads.filter((thread) => thread.participants.length > 2).length,
+    };
   }, [threads, userId]);
 
   if (error) {
@@ -124,23 +163,12 @@ export function ThreadList({
           />
         </div>
 
-        {/* Onglets Active / Archived */}
-        <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as any)}>
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="active" className="relative">
-              {t('tabs.active')}
-              {unreadCount > 0 && (
-                <span className="ml-2 px-1.5 py-0.5 text-xs bg-primary text-primary-foreground rounded-full">
-                  {unreadCount}
-                </span>
-              )}
-            </TabsTrigger>
-            <TabsTrigger value="archived">
-              <Archive className="h-4 w-4 mr-2" />
-              {t('tabs.archived')}
-            </TabsTrigger>
-          </TabsList>
-        </Tabs>
+        {/* Pills de filtres WhatsApp */}
+        <FilterPills
+          activeFilter={activeFilter}
+          onFilterChange={setActiveFilter}
+          counts={filterCounts}
+        />
       </div>
 
       {/* Liste des threads */}
@@ -150,7 +178,7 @@ export function ThreadList({
         ) : sortedThreads.length === 0 ? (
           <EmptyState
             searchQuery={searchQuery}
-            activeTab={activeTab}
+            activeFilter={activeFilter}
           />
         ) : (
           <div className="divide-y">
@@ -199,10 +227,10 @@ function ThreadListSkeleton() {
 
 interface EmptyStateProps {
   searchQuery: string;
-  activeTab: 'active' | 'archived';
+  activeFilter: FilterType;
 }
 
-function EmptyState({ searchQuery, activeTab }: EmptyStateProps) {
+function EmptyState({ searchQuery, activeFilter }: EmptyStateProps) {
   const t = useTranslations('messaging');
 
   if (searchQuery.length > 2) {
@@ -216,23 +244,32 @@ function EmptyState({ searchQuery, activeTab }: EmptyStateProps) {
     );
   }
 
-  if (activeTab === 'archived') {
-    return (
-      <div className="flex flex-col items-center justify-center h-64 p-4 text-center">
-        <Archive className="h-12 w-12 text-muted-foreground mb-2" />
-        <p className="text-sm text-muted-foreground">
-          {t('emptyStates.noArchived')}
-        </p>
-      </div>
-    );
-  }
+  // Empty states selon le filtre actif
+  const emptyMessages: Record<FilterType, { icon: any; message: string }> = {
+    all: {
+      icon: MessageSquare,
+      message: t('emptyStates.noThreads'),
+    },
+    unread: {
+      icon: MessageSquare,
+      message: t('emptyStates.noUnread'),
+    },
+    favorites: {
+      icon: MessageSquare,
+      message: t('emptyStates.noFavorites'),
+    },
+    groups: {
+      icon: MessageSquare,
+      message: t('emptyStates.noGroups'),
+    },
+  };
+
+  const { icon: Icon, message } = emptyMessages[activeFilter];
 
   return (
     <div className="flex flex-col items-center justify-center h-64 p-4 text-center">
-      <MessageSquare className="h-12 w-12 text-muted-foreground mb-2" />
-      <p className="text-sm text-muted-foreground">
-        {t('emptyStates.noThreads')}
-      </p>
+      <Icon className="h-12 w-12 text-muted-foreground mb-2" />
+      <p className="text-sm text-muted-foreground">{message}</p>
     </div>
   );
 }

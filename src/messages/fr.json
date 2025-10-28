@@ -321,10 +321,14 @@
         "messaging": {
             "title": "Messages",
             "newThread": "Nouveau message",
+            "newConversation": "Nouvelle conversation",
             "searchPlaceholder": "Rechercher une conversation...",
+            "searchUsers": "Rechercher un utilisateur...",
             "selectThread": "Sélectionnez une conversation",
             "selectThreadDescription": "Choisissez une conversation pour commencer à discuter",
             "noMessages": "Aucun message",
+            "noUsersFound": "Aucun utilisateur trouvé",
+            "noUsersAvailable": "Aucun utilisateur disponible",
             "you": "Vous",
             "typing": "En train d'écrire...",
             "unknownUser": "Utilisateur inconnu",
@@ -333,6 +337,12 @@
             "tabs": {
                 "active": "Actives",
                 "archived": "Archivées"
+            },
+            "filters": {
+                "all": "Toutes",
+                "unread": "Non lues",
+                "favorites": "Favoris",
+                "groups": "Groupes"
             },
             "actions": {
                 "archive": "Archiver",
@@ -352,7 +362,10 @@
             "emptyStates": {
                 "noThreads": "Aucune conversation pour le moment",
                 "noArchived": "Aucune conversation archivée",
-                "noResults": "Aucun résultat trouvé"
+                "noResults": "Aucun résultat trouvé",
+                "noUnread": "Aucune conversation non lue",
+                "noFavorites": "Aucune conversation favorite",
+                "noGroups": "Aucun groupe"
             },
             "errors": {
                 "loadThreads": "Impossible de charger les conversations",

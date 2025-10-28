@@ -3,6 +3,7 @@
  * 
  * Page principale de messagerie avec liste des threads
  * Responsive: mobile (full screen thread list) et desktop (split view)
+ * Updated: 28 Oct 2025
  */
 
 'use client';
@@ -14,6 +15,8 @@ import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { useRequireAuth } from '@/hooks/use-require-auth';
 import { ThreadList } from '@/components/messaging/thread-list';
+import { NewConversationButton } from '@/components/messaging/new-conversation-button';
+import { NewConversationModal } from '@/components/messaging/new-conversation-modal';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function MessagesPage() {
@@ -21,6 +24,7 @@ export default function MessagesPage() {
   const router = useRouter();
   const { user, loading: authLoading } = useRequireAuth();
   const [selectedThreadId, setSelectedThreadId] = useState<string | null>(null);
+  const [isNewConversationOpen, setIsNewConversationOpen] = useState(false);
 
   // Redirect vers le thread sélectionné
   const handleSelectThread = (threadId: string) => {
@@ -86,6 +90,16 @@ export default function MessagesPage() {
         <h2 className="mt-4 text-xl font-semibold">{t('selectThread')}</h2>
         <p className="mt-2 text-muted-foreground">{t('selectThreadDescription')}</p>
       </div>
+
+      {/* FAB: Nouvelle conversation */}
+      <NewConversationButton onClick={() => setIsNewConversationOpen(true)} />
+
+      {/* Modal: Sélection utilisateur */}
+      <NewConversationModal
+        open={isNewConversationOpen}
+        onOpenChange={setIsNewConversationOpen}
+        currentUserId={user.uid}
+      />
     </div>
   );
 }

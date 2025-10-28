@@ -29,12 +29,14 @@ export default function MessagingDebugPage() {
   const [message, setMessage] = useState('');
   const [dbStats, setDbStats] = useState<{ threadsCount: number; messagesCount: number } | null>(null);
 
-  // Hook de messagerie pour tester
+  // Hook de messagerie pour tester - DÉSACTIVÉ en real-time pour éviter les erreurs
   const {
     data: threads = [],
     isLoading: isLoadingThreads,
     error: threadsError,
-  } = useUserThreads(user?.uid || '', { status: ThreadStatus.active });
+  } = useUserThreads(user?.uid || '', { 
+    status: ThreadStatus.active
+  });
 
   // Vérifier l'état de la DB au chargement
   useEffect(() => {

@@ -1,9 +1,9 @@
 # 💬 Messagerie ImuTask - Documentation Technique
 
 **Date de création** : 27 octobre 2025  
-**Statut** : ✅ Phase 1, 2 & 3 complétées (Backend + Liste + Conversation) - Prêt Phase 4 (Tests)  
-**Version** : 1.2  
-**Dernière mise à jour** : 27 octobre 2025
+**Statut** : ✅ Phase 1, 2, 3 & Option A.1 complétées - En cours Option A (Ajustements WhatsApp)  
+**Version** : 1.3  
+**Dernière mise à jour** : 28 octobre 2025
 
 ---
 
@@ -1404,9 +1404,12 @@ useEffect(() => {
 - `src/hooks/use-messaging.ts` - 13 hooks React Query (395 lignes)
 
 **Phase 2 - Liste Threads** :
-- `src/app/[locale]/dashboard/messages/page.tsx` - Page principale (90 lignes)
-- `src/components/messaging/thread-list.tsx` - Liste avec filtres (230 lignes)
+- `src/app/[locale]/dashboard/messages/page.tsx` - Page principale (130 lignes)
+- `src/components/messaging/thread-list.tsx` - Liste avec filtres (280 lignes)
 - `src/components/messaging/thread-list-item.tsx` - Item individuel (180 lignes)
+- `src/components/messaging/filter-pills.tsx` - Pills de filtres WhatsApp (88 lignes)
+- `src/components/messaging/new-conversation-button.tsx` - FAB vert WhatsApp (47 lignes)
+- `src/components/messaging/new-conversation-modal.tsx` - Modal sélection utilisateur (234 lignes)
 
 **Phase 3 - Conversation** :
 - `src/app/[locale]/dashboard/messages/[threadId]/page.tsx` - Page conversation (73 lignes)
@@ -1416,10 +1419,57 @@ useEffect(() => {
 - `src/components/messaging/message-input.tsx` - Input premium (400 lignes)
 
 **Traductions** :
-- `src/messages/fr.json` - Namespace 'messaging' complet (~90 clés)
-- `src/messages/en.json` - Namespace 'messaging' complet (~90 clés)
+- `src/messages/fr.json` - Namespace 'messaging' complet (~104 clés)
+- `src/messages/en.json` - Namespace 'messaging' complet (~104 clés)
+- `tailwind.config.ts` - Utility scrollbar-hide ajoutée
 
-**Total** : 6 composants, 2,908+ lignes, 0 erreurs TypeScript
+**Total** : 9 composants, 3,327+ lignes, 0 erreurs TypeScript
+
+**Option A - Ajustements WhatsApp (28 octobre 2025)** :
+
+**Option A.1 - Bouton Nouvelle Conversation (+)** ✅ :
+- Floating Action Button (FAB) vert WhatsApp (#25D366) en bas à droite
+- Modal de sélection d'utilisateur avec recherche en temps réel
+- Création automatique de thread ou réutilisation si existant
+- Redirection automatique vers la conversation créée
+- 281 lignes de code ajoutées
+- Traductions FR/EN ajoutées (newConversation, searchUsers, noUsersFound, noUsersAvailable)
+
+**Fonctionnalités implémentées** :
+- `NewConversationButton` : FAB flottant avec animation hover/active, icône MessageSquarePlus
+- `NewConversationModal` :
+  - Chargement des utilisateurs depuis Firestore (limite 50 pour performance)
+  - Recherche en temps réel (filtrage par nom/email)
+  - Avatar + nom + email pour chaque utilisateur
+  - Gestion des états : searching, creating, empty states
+  - Intégration avec `useCreateThread` (détection threads existants)
+  - Toast de confirmation et redirection automatique
+
+**Option A.2 - Filtres Pills WhatsApp** ✅ :
+- 4 pills arrondis style WhatsApp Web : Toutes, Non lues, Favoris, Groupes
+- Couleur active : vert WhatsApp (#25D366)
+- Compteurs dynamiques sur chaque pill (sauf "Toutes")
+- Animation scale au hover pour pills inactifs
+- Filtrage en temps réel des conversations
+- 88 lignes de code (FilterPills.tsx)
+- 50 lignes modifiées (ThreadList.tsx pour intégration)
+- Traductions FR/EN ajoutées (filters.all, filters.unread, filters.favorites, filters.groups)
+- Empty states personnalisés selon le filtre actif
+
+**Fonctionnalités implémentées** :
+- `FilterPills` : Composant de filtres avec 4 types (all, unread, favorites, groups)
+- Système de compteurs : affiche le nombre de conversations par filtre
+- Logique de filtrage dans ThreadList :
+  - `all` : toutes les conversations actives
+  - `unread` : conversations avec messages non lus
+  - `favorites` : favoris (TODO: système à implémenter)
+  - `groups` : conversations de groupe (>2 participants)
+- Utility Tailwind `scrollbar-hide` pour scroll horizontal fluide
+- Empty states spécifiques : noUnread, noFavorites, noGroups
+
+**Prochaines étapes Option A** :
+- A.3 : Fond Beige #F0F2F5 + Typography Segoe UI
+- A.4 : Banner notification + Header icons + Empty state illustré
 
 ### Outils de Debug et Test
 
@@ -1442,7 +1492,7 @@ useEffect(() => {
 
 ---
 
-*Document mis à jour le 27 octobre 2025 - Phase 3 complétée*
+*Document mis à jour le 28 octobre 2025 - Phase 3 + Option A.1 (FAB nouvelle conversation) + Option A.2 (Filtres Pills) complétées*
     * Informations affichées par thread :
         * Photo de profil du correspondant
         * Nom du correspondant (Client ou Prestataire)

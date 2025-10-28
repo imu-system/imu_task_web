@@ -81,15 +81,29 @@ export function useUserThreads(
     useEffect(() => {
         if (!userId) return;
 
-        const unsubscribe = subscribeToUserThreads(userId, (threads) => {
-            queryClient.setQueryData(
-                messagingKeys.threadsList(userId, filters),
-                threads
-            );
-        });
+        let unsubscribe: (() => void) | undefined;
 
-        return () => unsubscribe();
-    }, [userId, queryClient, filters]);
+        try {
+            unsubscribe = subscribeToUserThreads(userId, (threads) => {
+                queryClient.setQueryData(
+                    messagingKeys.threadsList(userId, filters),
+                    threads
+                );
+            });
+        } catch (error) {
+            console.error('Error subscribing to user threads:', error);
+        }
+
+        return () => {
+            if (unsubscribe) {
+                try {
+                    unsubscribe();
+                } catch (error) {
+                    console.error('Error unsubscribing from user threads:', error);
+                }
+            }
+        };
+    }, [userId, queryClient]);
 
     return query;
 }
@@ -114,11 +128,25 @@ export function useThread(threadId: string | undefined) {
     useEffect(() => {
         if (!threadId) return;
 
-        const unsubscribe = subscribeToThread(threadId, (thread) => {
-            queryClient.setQueryData(messagingKeys.thread(threadId), thread);
-        });
+        let unsubscribe: (() => void) | undefined;
 
-        return () => unsubscribe();
+        try {
+            unsubscribe = subscribeToThread(threadId, (thread) => {
+                queryClient.setQueryData(messagingKeys.thread(threadId), thread);
+            });
+        } catch (error) {
+            console.error('Error subscribing to thread:', error);
+        }
+
+        return () => {
+            if (unsubscribe) {
+                try {
+                    unsubscribe();
+                } catch (error) {
+                    console.error('Error unsubscribing from thread:', error);
+                }
+            }
+        };
     }, [threadId, queryClient]);
 
     return query;
@@ -182,11 +210,25 @@ export function useThreadMessages(threadId: string | undefined) {
     useEffect(() => {
         if (!threadId) return;
 
-        const unsubscribe = subscribeToThreadMessages(threadId, (messages) => {
-            queryClient.setQueryData(messagingKeys.threadMessages(threadId), messages);
-        });
+        let unsubscribe: (() => void) | undefined;
 
-        return () => unsubscribe();
+        try {
+            unsubscribe = subscribeToThreadMessages(threadId, (messages) => {
+                queryClient.setQueryData(messagingKeys.threadMessages(threadId), messages);
+            });
+        } catch (error) {
+            console.error('Error subscribing to thread messages:', error);
+        }
+
+        return () => {
+            if (unsubscribe) {
+                try {
+                    unsubscribe();
+                } catch (error) {
+                    console.error('Error unsubscribing from thread messages:', error);
+                }
+            }
+        };
     }, [threadId, queryClient]);
 
     return query;
