@@ -1421,6 +1421,25 @@ useEffect(() => {
 
 **Total** : 6 composants, 2,908+ lignes, 0 erreurs TypeScript
 
+### Outils de Debug et Test
+
+**Page de Debug** (`/dashboard/messages/debug`):
+- Diagnostique l'état du système de messagerie en temps réel
+- Affiche les statistiques de la base de données
+- Permet de créer des threads de test
+- Accessible uniquement en mode développement
+- Voir: `MESSAGERIE_DEBUG_GUIDE.md` pour le guide complet
+
+**Utilitaires de Test** (`src/lib/test-data-messaging.ts`):
+- `createTestThread()` - Crée un thread avec messages de test
+- `createMultipleTestThreads()` - Crée 4 threads de démonstration
+- `checkMessagingData()` - Vérifie l'état de la base de données
+
+**Guide de Diagnostic**: `docs/MESSAGERIE_DEBUG_GUIDE.md`
+- Procédure complète de diagnostic
+- Solutions aux problèmes courants
+- Instructions pour créer des données de test
+
 ---
 
 *Document mis à jour le 27 octobre 2025 - Phase 3 complétée*

@@ -46,10 +46,33 @@ export default function MessagesPage() {
           <ArrowLeft className="h-5 w-5" />
         </Button>
         <h1 className="text-lg font-semibold">{t('title')}</h1>
+        {/* Debug link (development only) */}
+        {process.env.NODE_ENV === 'development' && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => router.push('/dashboard/messages/debug')}
+            className="ml-auto"
+          >
+            🐛 Debug
+          </Button>
+        )}
       </div>
 
       {/* Desktop + Mobile: Liste des threads */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-hidden relative">
+        {/* Debug button (desktop, development only) */}
+        {process.env.NODE_ENV === 'development' && (
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => router.push('/dashboard/messages/debug')}
+            className="hidden md:flex absolute top-4 right-4 z-10 gap-2"
+          >
+            🐛 Debug
+          </Button>
+        )}
+        
         <ThreadList
           userId={user.uid}
           selectedThreadId={selectedThreadId}
