@@ -75,6 +75,8 @@ export function useUserThreads(
         },
         enabled: !!userId,
         staleTime: 1000 * 60 * 5, // 5 minutes
+        retry: false, // Don't retry on Firestore permission errors
+        refetchOnWindowFocus: false, // Don't refetch when window gains focus
     });
 
     // Real-time subscription

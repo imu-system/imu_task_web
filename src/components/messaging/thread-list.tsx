@@ -45,6 +45,7 @@ export function ThreadList({
     data: threads = [],
     isLoading,
     error,
+    isFetching,
   } = useUserThreads(userId, {
     status: 'active' as ThreadStatus,
   });
@@ -173,7 +174,7 @@ export function ThreadList({
 
       {/* Liste des threads */}
       <ScrollArea className="flex-1">
-        {isLoading || isSearching ? (
+        {(isLoading && !error) || isSearching ? (
           <ThreadListSkeleton />
         ) : sortedThreads.length === 0 ? (
           <EmptyState

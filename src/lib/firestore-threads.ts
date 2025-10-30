@@ -228,7 +228,7 @@ export async function getUserThreads(
         return threads;
     } catch (error) {
         console.error('Error getting user threads:', error);
-        throw error;
+        return []; // Return empty array instead of throwing to prevent loading state lock
     }
 }
 
