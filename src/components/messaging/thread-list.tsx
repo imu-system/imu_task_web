@@ -19,6 +19,8 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useUserThreads, useSearchThreads } from '@/hooks/use-messaging';
 import { ThreadListItem } from './thread-list-item';
 import { FilterPills, type FilterType } from './filter-pills';
+import { HeaderActions } from './header-actions';
+import { IllustratedEmptyState } from './illustrated-empty-state';
 import type { Thread, ThreadStatus } from '@/lib/types';
 import { cn } from '@/lib/utils';
 
@@ -137,30 +139,26 @@ export function ThreadList({
   }
 
   return (
-    <div className="flex flex-col h-full">
-      {/* Header avec recherche */}
-      <div className="p-4 border-b space-y-3">
+    <div className="flex flex-col h-full bg-white">
+      {/* Header avec recherche - WhatsApp style */}
+      <div className="p-3 border-b border-border/50 space-y-3 bg-white">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">{t('title')}</h2>
-          {onNewThread && (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={onNewThread}
-            >
-              {t('newThread')}
-            </Button>
-          )}
+          <h2 className="text-xl font-semibold text-[#111b21]">{t('title')}</h2>
+          <HeaderActions
+            onNewChat={onNewThread}
+            onSettings={() => console.log('Settings')}
+            onArchived={() => console.log('Archived')}
+          />
         </div>
 
-        {/* Barre de recherche */}
+        {/* Barre de recherche - WhatsApp style */}
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#667781]" />
           <Input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t('searchPlaceholder')}
-            className="pl-9"
+            className="pl-9 bg-[#F0F2F5] border-none text-[#111b21] placeholder:text-[#667781] h-9 rounded-lg focus-visible:ring-[#00a884]"
           />
         </div>
 
@@ -232,45 +230,32 @@ interface EmptyStateProps {
 }
 
 function EmptyState({ searchQuery, activeFilter }: EmptyStateProps) {
-  const t = useTranslations('messaging');
+  // Déterminer le type d'empty state
+  let emptyType: 'no-messages' | 'no-unread' | 'no-favorites' | 'no-groups' | 'search-empty';
 
   if (searchQuery.length > 2) {
-    return (
-      <div className="flex flex-col items-center justify-center h-64 p-4 text-center">
-        <Search className="h-12 w-12 text-muted-foreground mb-2" />
-        <p className="text-sm text-muted-foreground">
-          {t('emptyStates.noResults')}
-        </p>
-      </div>
-    );
+    emptyType = 'search-empty';
+  } else {
+    switch (activeFilter) {
+      case 'unread':
+        emptyType = 'no-unread';
+        break;
+      case 'favorites':
+        emptyType = 'no-favorites';
+        break;
+      case 'groups':
+        emptyType = 'no-groups';
+        break;
+      default:
+        emptyType = 'no-messages';
+    }
   }
 
-  // Empty states selon le filtre actif
-  const emptyMessages: Record<FilterType, { icon: any; message: string }> = {
-    all: {
-      icon: MessageSquare,
-      message: t('emptyStates.noThreads'),
-    },
-    unread: {
-      icon: MessageSquare,
-      message: t('emptyStates.noUnread'),
-    },
-    favorites: {
-      icon: MessageSquare,
-      message: t('emptyStates.noFavorites'),
-    },
-    groups: {
-      icon: MessageSquare,
-      message: t('emptyStates.noGroups'),
-    },
-  };
-
-  const { icon: Icon, message } = emptyMessages[activeFilter];
-
   return (
-    <div className="flex flex-col items-center justify-center h-64 p-4 text-center">
-      <Icon className="h-12 w-12 text-muted-foreground mb-2" />
-      <p className="text-sm text-muted-foreground">{message}</p>
-    </div>
+    <IllustratedEmptyState
+      type={emptyType}
+      searchQuery={searchQuery}
+      className="min-h-[400px]"
+    />
   );
 }

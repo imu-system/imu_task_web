@@ -3013,7 +3013,24 @@
             "noResults": "No results found",
             "noArchived": "No archived conversations",
             "noMessages": "No messages",
-            "sendFirstMessage": "Send the first message"
+            "sendFirstMessage": "Send the first message",
+            "noUnread": "No unread conversations",
+            "noUnreadDesc": "All your conversations are up to date",
+            "noFavorites": "No favorite conversations",
+            "noFavoritesDesc": "Mark important conversations as favorites",
+            "noGroups": "No groups",
+            "noGroupsDesc": "Create a group to chat with multiple people",
+            "noConversations": "Start a conversation",
+            "noConversationsDesc": "Click the + button to start a new conversation",
+            "searchEmpty": "No results",
+            "searchEmptyDesc": "No conversations found for '{query}'",
+            "clickNewChat": "Press the green button to get started"
+        },
+        "headerActions": {
+            "newGroup": "New group",
+            "newChat": "New chat",
+            "archived": "Archived conversations",
+            "settings": "Settings"
         },
         "errors": {
             "loadThreads": "Error loading conversations"

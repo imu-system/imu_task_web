@@ -3102,7 +3102,24 @@
             "noResults": "Aucun résultat trouvé",
             "noArchived": "Aucune conversation archivée",
             "noMessages": "Aucun message",
-            "sendFirstMessage": "Envoyez le premier message"
+            "sendFirstMessage": "Envoyez le premier message",
+            "noUnread": "Aucune conversation non lue",
+            "noUnreadDesc": "Toutes vos conversations sont à jour",
+            "noFavorites": "Aucune conversation favorite",
+            "noFavoritesDesc": "Marquez des conversations importantes comme favorites",
+            "noGroups": "Aucun groupe",
+            "noGroupsDesc": "Créez un groupe pour discuter avec plusieurs personnes",
+            "noConversations": "Commencez une conversation",
+            "noConversationsDesc": "Cliquez sur le bouton + pour démarrer une nouvelle conversation",
+            "searchEmpty": "Aucun résultat",
+            "searchEmptyDesc": "Aucune conversation trouvée pour '{query}'",
+            "clickNewChat": "Appuyez sur le bouton vert pour commencer"
+        },
+        "headerActions": {
+            "newGroup": "Nouveau groupe",
+            "newChat": "Nouvelle discussion",
+            "archived": "Conversations archivées",
+            "settings": "Paramètres"
         },
         "errors": {
             "loadThreads": "Erreur de chargement des conversations"

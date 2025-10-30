@@ -100,28 +100,33 @@ export function ThreadListItem({
     <div
       onClick={onClick}
       className={cn(
-        'flex items-start gap-3 p-4 cursor-pointer transition-colors hover:bg-muted/50',
-        isSelected && 'bg-muted',
-        unreadCount > 0 && 'bg-blue-50/50 dark:bg-blue-950/20'
+        'flex items-start gap-3 px-4 py-3 cursor-pointer transition-all duration-200',
+        'hover:bg-[#f0f2f5] active:bg-[#e9edef]',
+        'border-b border-[#e9edef] last:border-b-0',
+        isSelected && 'bg-[#f0f2f5]',
+        unreadCount > 0 && 'bg-white'
       )}
     >
       {/* Avatar */}
-      <Avatar className="h-10 w-10">
+      <Avatar className="h-12 w-12 shrink-0">
         <AvatarImage src={otherParticipant?.photoUrl} alt={otherParticipant?.displayName} />
-        <AvatarFallback>{initials}</AvatarFallback>
+        <AvatarFallback className="bg-[#00a884] text-white">{initials}</AvatarFallback>
       </Avatar>
 
       {/* Contenu principal */}
       <div className="flex-1 min-w-0">
         {/* Header: Nom + Timestamp */}
-        <div className="flex items-baseline justify-between gap-2 mb-1">
+        <div className="flex items-baseline justify-between gap-2 mb-0.5">
           <h3 className={cn(
-            'text-sm font-medium truncate',
+            'text-base font-normal truncate text-[#111b21]',
             unreadCount > 0 && 'font-semibold'
           )}>
             {otherParticipant?.displayName || t('unknownUser')}
           </h3>
-          <span className="text-xs text-muted-foreground whitespace-nowrap">
+          <span className={cn(
+            'text-xs whitespace-nowrap',
+            unreadCount > 0 ? 'text-[#00a884] font-medium' : 'text-[#667781]'
+          )}>
             {formattedTime}
           </span>
         </div>
@@ -129,17 +134,20 @@ export function ThreadListItem({
         {/* Dernier message + Badge unread */}
         <div className="flex items-center justify-between gap-2">
           <p className={cn(
-            'text-sm text-muted-foreground truncate',
-            unreadCount > 0 && 'font-medium text-foreground'
+            'text-sm truncate',
+            unreadCount > 0 ? 'font-medium text-[#111b21]' : 'text-[#667781]'
           )}>
             {thread.lastMessage?.senderId === userId && (
-              <span className="text-muted-foreground mr-1">{t('you')}:</span>
+              <span className="text-[#00a884] mr-1 font-medium">{t('you')}:</span>
             )}
             {lastMessagePreview}
           </p>
 
           {unreadCount > 0 && (
-            <Badge variant="default" className="ml-2 shrink-0">
+            <Badge
+              variant="default"
+              className="ml-2 shrink-0 bg-[#25d366] hover:bg-[#25d366] text-white border-none min-w-[20px] h-5 px-1.5"
+            >
               {unreadCount > 9 ? '9+' : unreadCount}
             </Badge>
           )}
