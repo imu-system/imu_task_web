@@ -1,9 +1,9 @@
 # 💬 Messagerie ImuTask - Documentation Technique
 
 **Date de création** : 27 octobre 2025  
-**Statut** : ✅ Phase 1, 2, 3 & Options A.1-A.4 complétées - Prêt pour tests E2E  
-**Version** : 1.4  
-**Dernière mise à jour** : 30 octobre 2025
+**Statut** : ✅ Phase 1, 2, 3 & Options A.1-A.4 complétées + Tests E2E prêts  
+**Version** : 1.5  
+**Dernière mise à jour** : 2 novembre 2025
 
 ---
 
@@ -1597,3 +1597,102 @@ Quand l'utilisateur navigue sur d'autres pages de l'application (tableau de bord
     * Audit Log des messages pour la résolution des litiges.
 
 Cette structuration permet de couvrir tous les cas d'usage principaux, de la gestion des conversations à la communication en temps réel, tout en intégrant des fonctionnalités de sécurité et de professionnalisation essentielles pour ImuTask.
+
+---
+
+## 🧪 Tests E2E
+
+**Date d'implémentation** : 2 novembre 2025  
+**Framework** : Playwright  
+**Fichiers** : `e2e/messaging.spec.ts`, `e2e/fixtures/messaging-helpers.ts`
+
+### Couverture des Tests
+
+**22 tests E2E** couvrant l'ensemble du système de messagerie :
+
+#### Tests de Base (1-10)
+1. ✅ Affichage de la liste des threads avec design WhatsApp
+2. ✅ Filtrage par "Non lus"
+3. ✅ Filtrage par "Favoris"
+4. ✅ Filtrage par "Groupes"
+5. ✅ Recherche de threads par nom ou contenu
+6. ✅ Empty state illustré pour recherche vide
+7. ✅ Ouverture du modal nouvelle conversation (FAB)
+8. ✅ Recherche d'utilisateur dans le modal
+9. ✅ Sélection d'un thread
+10. ✅ Envoi d'un message simple
+
+#### Tests PII Detection (11-12)
+11. ✅ Détection PII - Email
+12. ✅ Détection PII - Numéro de téléphone
+
+#### Tests UI/UX (13-20)
+13. ✅ Empty state "Pas de conversations"
+14. ✅ Banner de notification (affichage + fermeture)
+15. ✅ Menu des actions du header
+16. ✅ Badge de messages non lus (style WhatsApp green #25d366)
+17. ✅ Avatar par défaut (fond vert WhatsApp)
+18. ✅ Formatage du timestamp
+19. ✅ Responsive - Vue mobile
+20. ✅ Hover states sur les threads
+
+#### Tests Avancés (21-22)
+21. ✅ Changement de filtre met à jour la liste
+22. ✅ Clear de la recherche restaure la liste complète
+
+### Attributs de Test
+
+Tous les composants ont été enrichis avec des `data-testid` pour faciliter les tests :
+
+**Composants Priorité 1 (Critiques)** :
+- `thread-list.tsx` : `thread-list`, `thread-list-loading`, `thread-search-input`, `thread-list-items`
+- `thread-list-item.tsx` : `thread-item`, `thread-avatar`, `unread-badge`, `thread-timestamp`
+- `new-conversation-button.tsx` : `new-conversation-fab`
+- `filter-pills.tsx` : `filter-all`, `filter-unread`, `filter-favorites`, `filter-groups`
+
+**Composants Priorité 2 (Importants)** :
+- `new-conversation-modal.tsx` : `new-conversation-modal`, `modal-title`, `user-search-input`, `user-result`
+- `notification-banner.tsx` : `notification-banner`, `banner-dismiss`
+- `illustrated-empty-state.tsx` : `empty-state-no-messages`, `empty-state-no-unread`, etc.
+- `header-actions.tsx` : `header-menu-button`, `header-menu-dropdown`
+- `page.tsx` : `messages-page`, `mobile-header`, `mobile-view`
+
+### Exécution des Tests
+
+```bash
+# Lancer tous les tests de messagerie
+pnpm playwright test e2e/messaging.spec.ts
+
+# Mode UI interactif
+pnpm playwright test --ui e2e/messaging.spec.ts
+
+# Mode debug
+pnpm playwright test --debug e2e/messaging.spec.ts
+
+# Générer un rapport HTML
+pnpm playwright test e2e/messaging.spec.ts --reporter=html
+```
+
+### Helpers et Mocks
+
+Le fichier `e2e/fixtures/messaging-helpers.ts` (~400 lignes) fournit :
+
+**Données de test** :
+- 3 threads mockés (conversation 1-1, conversation favorite, groupe)
+- 3 messages mockés avec timestamps réalistes
+
+**Fonctions utilitaires** :
+- `injectMessagingMocks()` : Mock des données Firestore
+- `navigateToMessages()`, `waitForThreadList()` : Navigation
+- `openNewConversationModal()`, `selectThread()`, `sendMessage()` : Interactions
+- `clickFilter()`, `searchThreads()` : Actions de filtrage
+- `expectThreadVisible()`, `expectEmptyState()`, `expectPIIWarning()` : Assertions
+
+### Documentation Complète
+
+Consulter les fichiers suivants pour plus de détails :
+- `docs/E2E_TESTING_GUIDE.md` : Guide d'implémentation des tests
+- `docs/E2E_MESSAGING_STATUS.md` : État d'avancement et métriques
+
+---
+
