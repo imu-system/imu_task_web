@@ -57,15 +57,19 @@ export function NotificationBanner({
   const { bg, text, icon: Icon } = BANNER_STYLES[type];
 
   return (
-    <div className={cn(
-      'flex items-center gap-3 px-4 py-3 border-b',
-      bg,
-      'animate-in slide-in-from-top duration-300'
-    )}>
+    <div 
+      data-testid="notification-banner"
+      className={cn(
+        'flex items-center gap-3 px-4 py-3 border-b',
+        bg,
+        'animate-in slide-in-from-top duration-300'
+      )}
+    >
       <Icon className={cn('h-5 w-5 flex-shrink-0', text)} />
       <p className={cn('text-sm flex-1', text)}>{message}</p>
       {dismissible && (
         <Button
+          data-testid="banner-dismiss"
           variant="ghost"
           size="icon"
           className={cn('h-6 w-6 flex-shrink-0', text, 'hover:bg-black/5')}

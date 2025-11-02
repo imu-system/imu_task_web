@@ -98,6 +98,8 @@ export function ThreadListItem({
 
   return (
     <div
+      data-testid="thread-item"
+      data-thread-id={thread.id}
       onClick={onClick}
       className={cn(
         'flex items-start gap-3 px-4 py-3 cursor-pointer transition-all duration-200',
@@ -108,7 +110,7 @@ export function ThreadListItem({
       )}
     >
       {/* Avatar */}
-      <Avatar className="h-12 w-12 shrink-0">
+      <Avatar className="h-12 w-12 shrink-0" data-testid="thread-avatar">
         <AvatarImage src={otherParticipant?.photoUrl} alt={otherParticipant?.displayName} />
         <AvatarFallback className="bg-[#00a884] text-white">{initials}</AvatarFallback>
       </Avatar>
@@ -123,10 +125,13 @@ export function ThreadListItem({
           )}>
             {otherParticipant?.displayName || t('unknownUser')}
           </h3>
-          <span className={cn(
-            'text-xs whitespace-nowrap',
-            unreadCount > 0 ? 'text-[#00a884] font-medium' : 'text-[#667781]'
-          )}>
+          <span 
+            data-testid="thread-timestamp"
+            className={cn(
+              'text-xs whitespace-nowrap',
+              unreadCount > 0 ? 'text-[#00a884] font-medium' : 'text-[#667781]'
+            )}
+          >
             {formattedTime}
           </span>
         </div>
@@ -145,6 +150,7 @@ export function ThreadListItem({
 
           {unreadCount > 0 && (
             <Badge
+              data-testid="unread-badge"
               variant="default"
               className="ml-2 shrink-0 bg-[#25d366] hover:bg-[#25d366] text-white border-none min-w-[20px] h-5 px-1.5"
             >

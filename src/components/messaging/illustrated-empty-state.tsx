@@ -67,10 +67,13 @@ export function IllustratedEmptyState({
   const Icon = config.icon;
 
   return (
-    <div className={cn(
-      'flex flex-col items-center justify-center h-full p-8 text-center',
-      className
-    )}>
+    <div 
+      className={cn(
+        'flex flex-col items-center justify-center h-full p-8 text-center',
+        className
+      )}
+      data-testid={`empty-state-${type}`}
+    >
       {/* Illustration circle with icon */}
       <div className="relative mb-6">
         {/* Background circles (decoration) */}

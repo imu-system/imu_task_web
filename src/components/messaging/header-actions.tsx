@@ -68,11 +68,12 @@ export function HeaderActions({
             variant="ghost"
             size="icon"
             className="h-9 w-9 text-[#54656f] hover:bg-[#f0f2f5]"
+            data-testid="header-menu-button"
           >
             <MoreVertical className="h-5 w-5" />
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-48">
+        <DropdownMenuContent align="end" className="w-48" data-testid="header-menu-dropdown">
           {onArchived && (
             <>
               <DropdownMenuItem onClick={onArchived}>

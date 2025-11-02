@@ -22,6 +22,7 @@ export function NewConversationButton({
 }: NewConversationButtonProps) {
   return (
     <Button
+      data-testid="new-conversation-fab"
       onClick={onClick}
       size="icon"
       className={cn(

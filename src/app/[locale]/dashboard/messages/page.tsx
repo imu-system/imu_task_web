@@ -45,7 +45,7 @@ export default function MessagesPage() {
   }
 
   return (
-    <div className="h-full flex flex-col bg-[#F0F2F5] font-['Segoe_UI',_-apple-system,_system-ui,_'Helvetica_Neue',_sans-serif]">
+    <div className="h-full flex flex-col bg-[#F0F2F5] font-['Segoe_UI',_-apple-system,_system-ui,_'Helvetica_Neue',_sans-serif]" data-testid="messages-page">
       {/* Banner notification (optional, dismissible) */}
       {showBanner && (
         <NotificationBanner
@@ -56,7 +56,7 @@ export default function MessagesPage() {
       )}
 
       {/* Mobile: Header avec retour - WhatsApp style */}
-      <div className="md:hidden bg-[#00A884] text-white border-b border-[#00A884] px-4 py-3 flex items-center gap-3">
+      <div className="md:hidden bg-[#00A884] text-white border-b border-[#00A884] px-4 py-3 flex items-center gap-3" data-testid="mobile-header">
         <Button variant="ghost" size="icon" onClick={() => router.back()} className="text-white hover:bg-white/10">
           <ArrowLeft className="h-5 w-5" />
         </Button>
@@ -76,6 +76,9 @@ export default function MessagesPage() {
 
       {/* Desktop + Mobile: Liste des threads */}
       <div className="flex-1 overflow-hidden relative bg-white md:bg-transparent md:max-w-[400px]">
+        {/* Indicateur pour détection mobile dans les tests */}
+        <div className="md:hidden" data-testid="mobile-view" />
+        
         {/* Debug button (desktop, development only) */}
         {process.env.NODE_ENV === 'development' && (
           <Button

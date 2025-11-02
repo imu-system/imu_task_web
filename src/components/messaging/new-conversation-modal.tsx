@@ -157,9 +157,9 @@ export function NewConversationModal({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-md" data-testid="new-conversation-modal">
         <DialogHeader>
-          <DialogTitle className="flex items-center justify-between">
+          <DialogTitle className="flex items-center justify-between" data-testid="modal-title">
             <span>{t('newConversation')}</span>
             <Button
               variant="ghost"
@@ -181,6 +181,7 @@ export function NewConversationModal({
             onChange={(e) => setSearchQuery(e.target.value)}
             className="pl-10"
             disabled={isSearching || isCreating}
+            data-testid="user-search-input"
           />
         </div>
 
@@ -207,6 +208,7 @@ export function NewConversationModal({
                   onClick={() => handleSelectUser(user.id)}
                   disabled={isCreating}
                   className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  data-testid="user-result"
                 >
                   <Avatar className="h-10 w-10">
                     <AvatarImage src={user.photoURL} alt={user.displayName} />

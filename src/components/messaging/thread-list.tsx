@@ -139,7 +139,7 @@ export function ThreadList({
   }
 
   return (
-    <div className="flex flex-col h-full bg-white">
+    <div className="flex flex-col h-full bg-white" data-testid="thread-list">
       {/* Header avec recherche - WhatsApp style */}
       <div className="p-3 border-b border-border/50 space-y-3 bg-white">
         <div className="flex items-center justify-between">
@@ -155,6 +155,7 @@ export function ThreadList({
         <div className="relative">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#667781]" />
           <Input
+            data-testid="thread-search-input"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t('searchPlaceholder')}
@@ -180,7 +181,7 @@ export function ThreadList({
             activeFilter={activeFilter}
           />
         ) : (
-          <div className="divide-y">
+          <div className="divide-y" data-testid="thread-list-items">
             {sortedThreads.map((thread) => (
               <ThreadListItem
                 key={thread.id}
@@ -203,7 +204,7 @@ export function ThreadList({
 
 function ThreadListSkeleton() {
   return (
-    <div className="divide-y">
+    <div className="divide-y" data-testid="thread-list-loading">
       {Array.from({ length: 5 }).map((_, i) => (
         <div key={i} className="p-4 space-y-3">
           <div className="flex items-start gap-3">
