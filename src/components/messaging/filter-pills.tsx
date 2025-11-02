@@ -52,6 +52,7 @@ export function FilterPills({
         return (
           <button
             key={filter.id}
+            data-testid={`filter-${filter.id}`}
             onClick={() => onFilterChange(filter.id)}
             className={cn(
               // Base styles
