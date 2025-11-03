@@ -43,6 +43,7 @@ import { useSearchParams } from 'next/navigation';
 import { collection, query, where, getDocs, onSnapshot } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
+import { SpecificFieldsSelector } from './task-forms';
 
 /**
  * Helper function to extract localized text from string or Record<string, string>
@@ -312,6 +313,19 @@ export function CreateTaskForm() {
             </FormItem>
           )}
         />
+
+        {/* Champs spécifiques conditionnels selon la catégorie */}
+        {(() => {
+          const selectedCategoryId = form.watch('categoryId');
+          const selectedCategory = taskCategories.find(c => c.id === selectedCategoryId);
+          const categorySlug = selectedCategory?.slug;
+          
+          return categorySlug ? (
+            <div className="border-t pt-6 mt-2">
+              <SpecificFieldsSelector form={form} categorySlug={categorySlug} />
+            </div>
+          ) : null;
+        })()}
         
         <FormField
           control={form.control}

@@ -26,6 +26,7 @@ import {
   Paperclip,
   Users,
   Tag,
+  Eye,
 } from 'lucide-react';
 import {
   AlertDialog,
@@ -155,17 +156,30 @@ const ProviderActions = ({ task }: { task: Task }) => {
 
 const ClientActions = ({ offers, onAccept, task }: { offers: Offer[], onAccept: (offer: Offer) => void, task: Task }) => {
     const t = useTranslations('TaskDetailPage');
+    const router = useRouter();
     const acceptedOffersCount = offers.filter(o => o.status === OfferStatus.accepted).length;
     const requiredProviders = (task as any).numberOfProvidersRequired || 1;
     const isFullyBooked = acceptedOffersCount >= requiredProviders;
+
+    const handleViewProposals = () => {
+        router.push(`/dashboard/tasks/${task.id}/proposals` as any);
+    };
 
     return (
         <div className="space-y-4">
             <div className="flex justify-between items-center">
                 <h2 className="text-2xl font-bold font-headline">{t('offersReceived', { count: offers.length })}</h2>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Users className="h-4 w-4"/>
-                    <span>{t('providersNeeded', { accepted: acceptedOffersCount, required: requiredProviders })}</span>
+                <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Users className="h-4 w-4"/>
+                        <span>{t('providersNeeded', { accepted: acceptedOffersCount, required: requiredProviders })}</span>
+                    </div>
+                    {offers.length > 0 && (
+                        <Button variant="outline" size="sm" onClick={handleViewProposals}>
+                            <Eye className="mr-2 h-4 w-4" />
+                            {t('viewAllProposals', { defaultValue: 'View All Proposals' })}
+                        </Button>
+                    )}
                 </div>
             </div>
             {offers.length > 0 ? (

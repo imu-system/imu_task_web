@@ -2362,7 +2362,9 @@
                 "noTasks": "Aucune tâche trouvée",
                 "noTasksMessage": "Aucune tâche ne correspond à vos critères de recherche.",
                 "clearFilters": "Effacer les filtres"
-            }
+            },
+            "viewDetails": "Voir les détails",
+            "submitOffer": "Faire une offre"
         }
     },
     "LandingPage": {
@@ -3173,11 +3175,188 @@
         "wallet": "Portefeuille",
         "offers": "Offres"
     },
+    "NotificationSettings": {
+        "title": "Paramètres des notifications",
+        "description": "Configurez les types de tâches pour lesquelles vous souhaitez être notifié",
+        "loading": "Chargement des préférences...",
+        "saving": "Enregistrement...",
+        "save": "Enregistrer les préférences",
+        "cancel": "Annuler",
+        "saveSuccess": "Préférences enregistrées avec succès !",
+        "errorLoading": "Échec du chargement des préférences",
+        "errorSaving": "Échec de l'enregistrement des préférences",
+        "enableTitle": "Notifications de tâches",
+        "enableDescription": "Recevez des notifications lorsque de nouvelles tâches pertinentes sont publiées",
+        "enabled": "Activées",
+        "disabled": "Désactivées",
+        "categoriesTitle": "Catégories préférées",
+        "categoriesDescription": "Sélectionnez les types de tâches que vous souhaitez recevoir",
+        "noCategoriesWarning": "Sélectionnez au moins une catégorie pour recevoir des notifications",
+        "radiusTitle": "Rayon de service",
+        "radiusDescription": "Distance maximale que vous êtes prêt à parcourir pour les tâches",
+        "radius": "Rayon",
+        "budgetTitle": "Fourchette de budget",
+        "budgetDescription": "Recevez uniquement des notifications pour les tâches dans cette fourchette budgétaire",
+        "minBudget": "Budget minimum",
+        "maxBudget": "Budget maximum",
+        "channelsTitle": "Canaux de notification",
+        "channelsDescription": "Choisissez comment vous souhaitez recevoir les notifications",
+        "channelInApp": "Notifications dans l'application",
+        "channelEmail": "Notifications par e-mail",
+        "channelPush": "Notifications push"
+    },
     "common": {
         "badges": {
             "accessible": "Certifié PMR"
         },
         "or": "OU",
         "and": "et"
+    },
+    "SubmitOffer": {
+        "title": "Soumettre votre offre",
+        "subtitle": "Proposez vos services pour cette tâche",
+        "taskSummary": "Résumé de la tâche",
+        "budget": "Budget",
+        "location": "Localisation",
+        "deadline": "Date limite",
+        "postedBy": "Publié par",
+        "client": "Client",
+        "errorTitle": "Erreur",
+        "taskNotFound": "Tâche introuvable",
+        "taskUnavailable": "Cette tâche n'est plus disponible pour des offres",
+        "ownTask": "Vous ne pouvez pas soumettre d'offre pour votre propre tâche"
+    },
+    "TaskProposals": {
+        "title": "Offres reçues",
+        "subtitle": "Pour la tâche : {taskTitle}",
+        "proposals": "offres",
+        "budget": "Budget",
+        "errorTitle": "Erreur",
+        "pendingProposals": "En attente",
+        "lowestOffer": "Offre la plus basse",
+        "averageOffer": "Moyenne",
+        "highestOffer": "Offre la plus haute",
+        "filterByStatus": "Filtrer par statut",
+        "all": "Toutes",
+        "pending": "En attente",
+        "accepted": "Acceptées",
+        "rejected": "Refusées",
+        "sortBy": "Trier par",
+        "priceLowToHigh": "Prix : croissant",
+        "priceHighToLow": "Prix : décroissant",
+        "mostRecent": "Plus récentes",
+        "oldest": "Plus anciennes",
+        "noProposalsTitle": "Aucune offre trouvée",
+        "noProposalsFiltered": "Essayez de modifier vos filtres",
+        "noProposalsYet": "Aucun prestataire n'a encore soumis d'offre"
+    },
+    "Bookings": {
+        "title": "Mes Réservations",
+        "subtitle": "Gérez vos réservations actives et terminées",
+        "asClient": "En tant que Client",
+        "asProvider": "En tant que Prestataire",
+        "filterAll": "Toutes",
+        "statusPending": "En attente",
+        "statusConfirmed": "Confirmée",
+        "statusInProgress": "En cours",
+        "statusCompleted": "Terminée",
+        "statusCancelled": "Annulée",
+        "statusDisputed": "Litigieuse",
+        "sortBy": "Trier par",
+        "sortRecent": "Plus récentes",
+        "sortOldest": "Plus anciennes",
+        "sortAmountHigh": "Montant : décroissant",
+        "sortAmountLow": "Montant : croissant",
+        "noBookingsTitle": "Aucune réservation",
+        "noBookingsDescription": "Vos réservations apparaîtront ici une fois que vous accepterez des offres ou serez accepté.",
+        "noBookingsFiltered": "Aucune réservation trouvée",
+        "tryChangingFilters": "Essayez de modifier vos filtres pour voir plus de résultats.",
+        "scheduled": "Planifiée",
+        "notes": "Notes",
+        "cancellationReason": "Raison de l'annulation",
+        "started": "Démarrée",
+        "completed": "Terminée",
+        "cancelled": "Annulée",
+        "viewTask": "Voir la tâche"
+    },
+    "TaskForms": {
+        "Cleaning": {
+            "title": "Détails du ménage",
+            "subtitle": "Précisez les caractéristiques pour un meilleur matching",
+            "propertyType": {
+                "label": "Type de lieu",
+                "placeholder": "Sélectionner le type de lieu",
+                "description": "Quel type de lieu doit être nettoyé ?",
+                "apartment": "Appartement",
+                "house": "Maison",
+                "office": "Bureau",
+                "other": "Autre"
+            },
+            "propertyTypeOther": {
+                "label": "Précisez le type de lieu",
+                "placeholder": "Ex: Local commercial, Garage..."
+            },
+            "surfaceArea": {
+                "label": "Surface estimée",
+                "placeholder": "Sélectionner la surface",
+                "description": "Estimation de la surface à nettoyer",
+                "under30": "Moins de 30m²",
+                "30to60": "30-60m²",
+                "60to100": "60-100m²",
+                "over100": "Plus de 100m²"
+            },
+            "rooms": {
+                "label": "Nombre de pièces",
+                "description": "Nombre approximatif de chaque type de pièce",
+                "bedrooms": "Chambres",
+                "bathrooms": "Salles de bain",
+                "toilets": "WC"
+            },
+            "serviceType": {
+                "label": "Type de prestation",
+                "placeholder": "Sélectionner le type de prestation",
+                "description": "Quel type de nettoyage est nécessaire ?",
+                "oneTime": "Nettoyage ponctuel",
+                "deepClean": "Grand ménage",
+                "movingClean": "Nettoyage avant/après déménagement",
+                "specific": "Nettoyage spécifique (vitres, four...)"
+            },
+            "specificTasks": {
+                "label": "Tâches spécifiques",
+                "description": "Cochez les tâches particulières à réaliser",
+                "windows": "Nettoyage des vitres",
+                "oven": "Nettoyage du four",
+                "fridge": "Nettoyage du réfrigérateur"
+            },
+            "frequency": {
+                "label": "Fréquence souhaitée",
+                "placeholder": "Sélectionner la fréquence",
+                "description": "À quelle fréquence souhaitez-vous cette prestation ?",
+                "oneTime": "Ponctuel (une fois)",
+                "weekly": "Hebdomadaire",
+                "biweekly": "Bimensuel (toutes les 2 semaines)",
+                "monthly": "Mensuel"
+            },
+            "materialsProvidedBy": {
+                "label": "Matériel et produits",
+                "placeholder": "Qui fournit le matériel ?",
+                "description": "Qui apporte le matériel de nettoyage et les produits ?",
+                "client": "Je fournis le matériel",
+                "provider": "Le prestataire apporte son matériel",
+                "providerPaid": "Le prestataire apporte son matériel (coût additionnel)"
+            },
+            "access": {
+                "label": "Accès au logement",
+                "placeholder": "Sélectionner le type d'accès",
+                "description": "Le logement est-il facile d'accès ?",
+                "easy": "Accès facile (ascenseur, rez-de-chaussée)",
+                "difficult": "Accès difficile (étages sans ascenseur, parking éloigné)"
+            },
+            "accessDetails": {
+                "label": "Détails d'accès (optionnel)",
+                "placeholder": "Ex: Code portail 1234, 3ème étage sans ascenseur, parking visiteur disponible...",
+                "description": "Informations utiles pour faciliter l'accès au lieu"
+            }
+        }
     }
 }

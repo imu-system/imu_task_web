@@ -1,0 +1,68 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - img "ImuTask" [ref=e8]
+        - heading "Welcome back!" [level=1] [ref=e9]
+        - paragraph [ref=e10]: Sign in to your ImuTask account
+      - generic [ref=e11]:
+        - generic [ref=e12]:
+          - button "Continue with Google" [ref=e13] [cursor=pointer]:
+            - img
+            - text: Continue with Google
+          - button "Continue with Apple" [disabled]:
+            - img
+            - text: Continue with Apple
+        - generic [ref=e18]: OR
+        - generic [ref=e19]:
+          - generic [ref=e20]:
+            - text: Email address
+            - generic [ref=e21]:
+              - img [ref=e22]
+              - textbox "Email address" [ref=e25]:
+                - /placeholder: name@example.com
+                - text: client-test@imutask.com
+          - generic [ref=e26]:
+            - generic [ref=e27]:
+              - generic [ref=e28]: Password
+              - link "Forgot password?" [ref=e29] [cursor=pointer]:
+                - /url: /en/en/auth/forgot-password
+            - generic [ref=e30]:
+              - img [ref=e31]
+              - textbox "Password" [ref=e34]:
+                - /placeholder: Enter your password
+                - text: TestPassword123!
+          - generic [ref=e35]:
+            - checkbox "Remember me" [active] [ref=e36] [cursor=pointer]
+            - checkbox
+            - generic [ref=e37]: Remember me
+          - button "Sign in" [ref=e38] [cursor=pointer]
+        - generic [ref=e39]:
+          - text: Don't have an account?
+          - link "Sign up" [ref=e40] [cursor=pointer]:
+            - /url: /en/en/auth/signup
+    - paragraph [ref=e42]: Access your dashboard and manage your tasks with ease.
+  - region "Notifications (F8)":
+    - list
+  - generic [ref=e43]:
+    - img [ref=e45]
+    - button "Open Tanstack query devtools" [ref=e93] [cursor=pointer]:
+      - img [ref=e94]
+  - alert [ref=e142]
+  - generic [ref=e147] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e148]:
+      - img [ref=e149]
+    - generic [ref=e152]:
+      - button "Open issues overlay" [ref=e153]:
+        - generic [ref=e154]:
+          - generic [ref=e155]: "1"
+          - generic [ref=e156]: "2"
+        - generic [ref=e157]:
+          - text: Issue
+          - generic [ref=e158]: s
+      - button "Collapse issues badge" [ref=e159]:
+        - img [ref=e160]
+```

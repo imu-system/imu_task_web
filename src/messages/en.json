@@ -2302,7 +2302,9 @@
                 "noTasks": "No tasks found",
                 "noTasksMessage": "No tasks match your search criteria.",
                 "clearFilters": "Clear Filters"
-            }
+            },
+            "viewDetails": "View Details",
+            "submitOffer": "Make an Offer"
         }
     },
     "LandingPage": {
@@ -3084,11 +3086,188 @@
         "wallet": "Wallet",
         "offers": "Offers"
     },
+    "NotificationSettings": {
+        "title": "Notification Settings",
+        "description": "Configure which tasks you want to be notified about",
+        "loading": "Loading preferences...",
+        "saving": "Saving...",
+        "save": "Save Preferences",
+        "cancel": "Cancel",
+        "saveSuccess": "Preferences saved successfully!",
+        "errorLoading": "Failed to load preferences",
+        "errorSaving": "Failed to save preferences",
+        "enableTitle": "Task Notifications",
+        "enableDescription": "Receive notifications when new relevant tasks are posted",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "categoriesTitle": "Preferred Categories",
+        "categoriesDescription": "Select which types of tasks you want to receive",
+        "noCategoriesWarning": "Select at least one category to receive notifications",
+        "radiusTitle": "Service Radius",
+        "radiusDescription": "Maximum distance you're willing to travel for tasks",
+        "radius": "Radius",
+        "budgetTitle": "Budget Range",
+        "budgetDescription": "Only receive notifications for tasks within this budget range",
+        "minBudget": "Minimum Budget",
+        "maxBudget": "Maximum Budget",
+        "channelsTitle": "Notification Channels",
+        "channelsDescription": "Choose how you want to receive notifications",
+        "channelInApp": "In-app notifications",
+        "channelEmail": "Email notifications",
+        "channelPush": "Push notifications"
+    },
     "common": {
         "badges": {
             "accessible": "PMR Certified"
         },
         "or": "OR",
         "and": "and"
+    },
+    "SubmitOffer": {
+        "title": "Submit Your Offer",
+        "subtitle": "Make a proposal to complete this task",
+        "taskSummary": "Task Summary",
+        "budget": "Budget",
+        "location": "Location",
+        "deadline": "Deadline",
+        "postedBy": "Posted by",
+        "client": "Client",
+        "errorTitle": "Error",
+        "taskNotFound": "Task not found",
+        "taskUnavailable": "This task is no longer available for offers",
+        "ownTask": "You cannot submit an offer to your own task"
+    },
+    "TaskProposals": {
+        "title": "Proposals Received",
+        "subtitle": "For task: {taskTitle}",
+        "proposals": "proposals",
+        "budget": "Budget",
+        "errorTitle": "Error",
+        "pendingProposals": "Pending",
+        "lowestOffer": "Lowest Offer",
+        "averageOffer": "Average",
+        "highestOffer": "Highest Offer",
+        "filterByStatus": "Filter by Status",
+        "all": "All",
+        "pending": "Pending",
+        "accepted": "Accepted",
+        "rejected": "Rejected",
+        "sortBy": "Sort by",
+        "priceLowToHigh": "Price: Low to High",
+        "priceHighToLow": "Price: High to Low",
+        "mostRecent": "Most Recent",
+        "oldest": "Oldest First",
+        "noProposalsTitle": "No proposals found",
+        "noProposalsFiltered": "Try changing your filters",
+        "noProposalsYet": "No providers have submitted proposals yet"
+    },
+    "Bookings": {
+        "title": "My Bookings",
+        "subtitle": "Manage your active and completed bookings",
+        "asClient": "As Client",
+        "asProvider": "As Provider",
+        "filterAll": "All",
+        "statusPending": "Pending",
+        "statusConfirmed": "Confirmed",
+        "statusInProgress": "In Progress",
+        "statusCompleted": "Completed",
+        "statusCancelled": "Cancelled",
+        "statusDisputed": "Disputed",
+        "sortBy": "Sort by",
+        "sortRecent": "Most Recent",
+        "sortOldest": "Oldest First",
+        "sortAmountHigh": "Amount: High to Low",
+        "sortAmountLow": "Amount: Low to High",
+        "noBookingsTitle": "No bookings yet",
+        "noBookingsDescription": "Your bookings will appear here once you accept proposals or get accepted.",
+        "noBookingsFiltered": "No bookings found",
+        "tryChangingFilters": "Try changing your filters to see more results.",
+        "scheduled": "Scheduled",
+        "notes": "Notes",
+        "cancellationReason": "Cancellation Reason",
+        "started": "Started",
+        "completed": "Completed",
+        "cancelled": "Cancelled",
+        "viewTask": "View Task"
+    },
+    "TaskForms": {
+        "Cleaning": {
+            "title": "Cleaning details",
+            "subtitle": "Specify characteristics for better matching",
+            "propertyType": {
+                "label": "Property type",
+                "placeholder": "Select property type",
+                "description": "What type of place needs to be cleaned?",
+                "apartment": "Apartment",
+                "house": "House",
+                "office": "Office",
+                "other": "Other"
+            },
+            "propertyTypeOther": {
+                "label": "Specify property type",
+                "placeholder": "E.g.: Commercial space, Garage..."
+            },
+            "surfaceArea": {
+                "label": "Estimated area",
+                "placeholder": "Select area",
+                "description": "Estimated area to clean",
+                "under30": "Under 30m²",
+                "30to60": "30-60m²",
+                "60to100": "60-100m²",
+                "over100": "Over 100m²"
+            },
+            "rooms": {
+                "label": "Number of rooms",
+                "description": "Approximate number of each room type",
+                "bedrooms": "Bedrooms",
+                "bathrooms": "Bathrooms",
+                "toilets": "Toilets"
+            },
+            "serviceType": {
+                "label": "Service type",
+                "placeholder": "Select service type",
+                "description": "What type of cleaning is needed?",
+                "oneTime": "One-time cleaning",
+                "deepClean": "Deep cleaning",
+                "movingClean": "Move in/out cleaning",
+                "specific": "Specific cleaning (windows, oven...)"
+            },
+            "specificTasks": {
+                "label": "Specific tasks",
+                "description": "Check specific tasks to be done",
+                "windows": "Window cleaning",
+                "oven": "Oven cleaning",
+                "fridge": "Refrigerator cleaning"
+            },
+            "frequency": {
+                "label": "Desired frequency",
+                "placeholder": "Select frequency",
+                "description": "How often would you like this service?",
+                "oneTime": "One-time",
+                "weekly": "Weekly",
+                "biweekly": "Biweekly (every 2 weeks)",
+                "monthly": "Monthly"
+            },
+            "materialsProvidedBy": {
+                "label": "Materials and products",
+                "placeholder": "Who provides materials?",
+                "description": "Who brings cleaning materials and products?",
+                "client": "I provide materials",
+                "provider": "Provider brings their materials",
+                "providerPaid": "Provider brings materials (additional cost)"
+            },
+            "access": {
+                "label": "Property access",
+                "placeholder": "Select access type",
+                "description": "Is the property easy to access?",
+                "easy": "Easy access (elevator, ground floor)",
+                "difficult": "Difficult access (stairs without elevator, distant parking)"
+            },
+            "accessDetails": {
+                "label": "Access details (optional)",
+                "placeholder": "E.g.: Gate code 1234, 3rd floor no elevator, visitor parking available...",
+                "description": "Useful information to facilitate access to the property"
+            }
+        }
     }
 }

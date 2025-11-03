@@ -37,6 +37,7 @@ import {
   DropdownMenuPortal,
 } from './ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Badge } from './ui/badge';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/navigation';
 import { Button } from './ui/button';
@@ -58,6 +59,8 @@ import { Dialog, DialogTrigger, DialogContent } from './ui/dialog';
 import { CreateTaskForm } from './create-task-form';
 import { useSettingsModal } from '@/context/settings-modal-context';
 import LanguageCurrencyModal from './language-currency-modal';
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 export function DashboardHeader() {
   const t = useTranslations('Header');
@@ -70,6 +73,8 @@ export function DashboardHeader() {
   const [hasPendingChanges, setHasPendingChanges] = useState(false);
   const { setIsOpen: setSettingsModalOpen } = useSettingsModal();
   const [theme, setThemeState] = React.useState<"theme-light" | "theme-dark" | "system">("system")
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [unreadMessages, setUnreadMessages] = useState(0);
 
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains("dark")
@@ -134,6 +139,40 @@ export function DashboardHeader() {
       clearTimeout(timer2);
     };
   }, [isOffline]);
+
+  // 🔔 Écouter les notifications non lues en temps réel
+  useEffect(() => {
+    if (!user?.uid) return;
+
+    const notificationsQuery = query(
+      collection(db, 'notifications'),
+      where('userId', '==', user.uid),
+      where('read', '==', false)
+    );
+
+    const unsubscribe = onSnapshot(notificationsQuery, (snapshot) => {
+      setUnreadCount(snapshot.size);
+    });
+
+    return () => unsubscribe();
+  }, [user]);
+
+  // 💬 Écouter les messages non lus en temps réel
+  useEffect(() => {
+    if (!user?.uid) return;
+
+    const messagesQuery = query(
+      collection(db, 'messages'),
+      where('receiverId', '==', user.uid),
+      where('read', '==', false)
+    );
+
+    const unsubscribe = onSnapshot(messagesQuery, (snapshot) => {
+      setUnreadMessages(snapshot.size);
+    });
+
+    return () => unsubscribe();
+  }, [user]);
   
   const getStatus = () => {
       if (isOffline) return 'offline';
@@ -309,15 +348,35 @@ export function DashboardHeader() {
 
         <Button asChild variant="ghost" size="icon">
           <Link href={"/dashboard/messages" as any}>
-            <MessageSquare />
+            <div className="relative">
+              <MessageSquare />
+              {unreadMessages > 0 && (
+                <Badge 
+                  variant="destructive" 
+                  className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
+                  data-testid="unread-messages-badge"
+                >
+                  {unreadMessages > 9 ? '9+' : unreadMessages}
+                </Badge>
+              )}
+            </div>
             <span className="sr-only">{tNav('messages')}</span>
           </Link>
         </Button>
         
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="relative">
                     <Bell />
+                    {unreadCount > 0 && (
+                      <Badge 
+                        variant="destructive" 
+                        className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
+                        data-testid="unread-notifications-badge"
+                      >
+                        {unreadCount > 9 ? '9+' : unreadCount}
+                      </Badge>
+                    )}
                     <span className="sr-only">{tNav('notifications')}</span>
                 </Button>
             </DropdownMenuTrigger>

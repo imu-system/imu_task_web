@@ -16,6 +16,9 @@ import { db } from './firebase';
 import { notifyNewTask, notifyTaskCompleted } from './firestore-notifications';
 import { getUserById, getProvidersBySkill, getProvidersByMultipleSkills } from './firestore-users';
 import { getRelatedSkills } from './skill-mapping';
+import { getTopMatches, shouldNotifyProvider, formatMatchReasons } from './task-matching';
+import { getBulkProviderPreferences } from './firestore-provider-preferences';
+import { TaskSpecificFields } from './types/task-specific-fields';
 
 // Types
 export interface TaskLocation {
@@ -29,6 +32,7 @@ export interface TaskLocation {
 }
 
 export interface Task {
+    adresse: any;
     id?: string;
     title: string;
     description: string;
@@ -42,6 +46,7 @@ export interface Task {
     deadline?: Date | null;
     createdAt: Date;
     updatedAt: Date;
+    specificFields?: TaskSpecificFields; // Champs spécifiques selon la catégorie
 }
 
 export interface CreateTaskData {
@@ -51,6 +56,7 @@ export interface CreateTaskData {
     location: string;
     budget: number;
     deadline?: Date | null;
+    specificFields?: TaskSpecificFields; // Champs spécifiques selon la catégorie
 }
 
 /**
@@ -79,13 +85,14 @@ export async function createTask(
             deadline: taskData.deadline ? Timestamp.fromDate(taskData.deadline) : null,
             createdAt: Timestamp.now(),
             updatedAt: Timestamp.now(),
+            ...(taskData.specificFields && { specificFields: taskData.specificFields }),
         };
 
         const docRef = await addDoc(tasksRef, newTask);
 
         console.log('✅ Task created successfully with ID:', docRef.id);
 
-        // Notify relevant providers about new task
+        // 🎯 SMART MATCHING: Notify relevant providers with intelligent matching
         try {
             // Get related skills to expand search (e.g., "Plumbing" -> ["Plumbing", "Plumber", "Pipe Repair"])
             const relatedSkills = getRelatedSkills(taskData.category);
@@ -93,35 +100,83 @@ export async function createTask(
             console.log(`🔍 Searching providers with skills: ${relatedSkills.join(', ')}`);
 
             // Get providers matching any of the related skills
-            const providersWithSkills = await getProvidersByMultipleSkills(relatedSkills, {
+            const candidateProviders = await getProvidersByMultipleSkills(relatedSkills, {
                 onlyAvailable: true,   // Only notify available providers
-                maxResults: 50         // Limit to 50 to avoid spam
+                maxResults: 100        // Get more candidates for scoring
             });
 
-            if (providersWithSkills.length > 0) {
-                let taskLocation = 'Location not specified';
-                if (typeof taskData.location === 'string') {
-                    taskLocation = taskData.location;
-                } else if (typeof taskData.location === 'object' && taskData.location !== null) {
-                    taskLocation = (taskData.location as TaskLocation).address ||
-                        (taskData.location as TaskLocation).city ||
-                        'Location not specified';
-                }
+            if (candidateProviders.length > 0) {
+                console.log(`📊 Found ${candidateProviders.length} candidate providers`);
 
-                // Send notifications in parallel
-                await Promise.all(
-                    providersWithSkills.map(provider =>
-                        notifyNewTask(
-                            provider.id,
-                            docRef.id,
-                            taskData.title,
-                            taskData.category,
-                            taskLocation
-                        )
-                    )
+                // Get provider preferences for smart matching
+                const providerIds = candidateProviders.map(p => p.id);
+                const preferences = await getBulkProviderPreferences(providerIds);
+
+                // Convert task data to Task type for matching
+                const taskForMatching: Task = {
+                    id: docRef.id,
+                    title: taskData.title,
+                    description: taskData.description,
+                    category: taskData.category,
+                    location: typeof taskData.location === 'string' ? taskData.location : '',
+                    adresse: typeof taskData.location === 'object' ? taskData.location as any : undefined,
+                    budget: taskData.budget,
+                    status: 'open',
+                    clientId: userId,
+                    createdAt: new Date().toISOString(),
+                };
+
+                // Calculate match scores for all candidates
+                const matches = getTopMatches(
+                    taskForMatching,
+                    candidateProviders,
+                    preferences,
+                    {
+                        minScore: 30,  // Only notify providers with score >= 30
+                        maxResults: 20 // Limit to top 20 matches
+                    }
                 );
 
-                console.log(`✅ Notified ${providersWithSkills.length} providers about new task`);
+                console.log(`🎯 Found ${matches.length} relevant matches (score >= 30)`);
+
+                if (matches.length > 0) {
+                    // Format task location for notification
+                    let taskLocation = 'Location not specified';
+                    if (typeof taskData.location === 'string') {
+                        taskLocation = taskData.location;
+                    } else if (typeof taskData.location === 'object' && taskData.location !== null) {
+                        taskLocation = (taskData.location as TaskLocation).address ||
+                            (taskData.location as TaskLocation).city ||
+                            'Location not specified';
+                    }
+
+                    // Send notifications only to providers who should be notified
+                    const notificationPromises = matches
+                        .filter(match => shouldNotifyProvider(match, preferences[match.providerId]))
+                        .map(match => {
+                            const matchReason = formatMatchReasons(match);
+                            console.log(`  → Notifying ${match.providerId} (score: ${match.score}, ${matchReason})`);
+
+                            return notifyNewTask(
+                                match.providerId,
+                                docRef.id,
+                                taskData.title,
+                                taskData.category,
+                                taskLocation
+                            );
+                        });
+
+                    await Promise.all(notificationPromises);
+
+                    console.log(`✅ Notified ${notificationPromises.length} highly-matched providers about new task`);
+
+                    // Log top 3 matches for debugging
+                    matches.slice(0, 3).forEach((match, idx) => {
+                        console.log(`  #${idx + 1}: Provider ${match.providerId} - Score: ${match.score} - ${formatMatchReasons(match)}`);
+                    });
+                } else {
+                    console.log('ℹ️ No providers met the minimum match score threshold (30)');
+                }
             } else {
                 console.log('ℹ️ No available providers found with matching skills');
                 console.log(`💡 Consider broadening search or adding more providers with "${taskData.category}" skill`);

@@ -1,0 +1,103 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - img "ImuTask" [ref=e8]
+          - heading "Welcome back!" [level=1] [ref=e9]
+          - paragraph [ref=e10]: Sign in to your ImuTask account
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - button "Continue with Google" [ref=e13] [cursor=pointer]:
+              - img
+              - text: Continue with Google
+            - button "Continue with Apple" [disabled]:
+              - img
+              - text: Continue with Apple
+          - generic [ref=e18]: OR
+          - generic [ref=e19]:
+            - generic [ref=e20]:
+              - text: Email address
+              - generic [ref=e21]:
+                - img [ref=e22]
+                - textbox "Email address" [ref=e25]:
+                  - /placeholder: name@example.com
+                  - text: client-test@imutask.com
+            - generic [ref=e26]:
+              - generic [ref=e27]:
+                - generic [ref=e28]: Password
+                - link "Forgot password?" [ref=e29] [cursor=pointer]:
+                  - /url: /en/en/auth/forgot-password
+              - generic [ref=e30]:
+                - img [ref=e31]
+                - textbox "Password" [ref=e34]:
+                  - /placeholder: Enter your password
+                  - text: TestPassword123!
+            - generic [ref=e35]:
+              - checkbox "Remember me" [active] [ref=e36] [cursor=pointer]
+              - checkbox
+              - generic [ref=e37]: Remember me
+            - button "Sign in" [ref=e38] [cursor=pointer]
+          - generic [ref=e39]:
+            - text: Don't have an account?
+            - link "Sign up" [ref=e40] [cursor=pointer]:
+              - /url: /en/en/auth/signup
+      - generic [ref=e43]:
+        - img [ref=e50]
+        - generic [ref=e55]:
+          - heading "Auth.illustration.signin.title" [level=2] [ref=e56]
+          - paragraph [ref=e57]: Auth.illustration.signin.subtitle
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - img [ref=e61]
+            - generic [ref=e64]:
+              - heading "Auth.illustration.signin.features.welcomeBack.title" [level=3] [ref=e65]
+              - paragraph [ref=e66]: Auth.illustration.signin.features.welcomeBack.description
+          - generic [ref=e67]:
+            - img [ref=e69]
+            - generic [ref=e71]:
+              - heading "Auth.illustration.signin.features.secureAccount.title" [level=3] [ref=e72]
+              - paragraph [ref=e73]: Auth.illustration.signin.features.secureAccount.description
+          - generic [ref=e74]:
+            - img [ref=e76]
+            - generic [ref=e79]:
+              - heading "Auth.illustration.signin.features.quickAccess.title" [level=3] [ref=e80]
+              - paragraph [ref=e81]: Auth.illustration.signin.features.quickAccess.description
+          - generic [ref=e82]:
+            - img [ref=e84]
+            - generic [ref=e89]:
+              - heading "Auth.illustration.signin.features.yourNetwork.title" [level=3] [ref=e90]
+              - paragraph [ref=e91]: Auth.illustration.signin.features.yourNetwork.description
+        - generic [ref=e93]:
+          - generic [ref=e94]:
+            - generic [ref=e95]: A
+            - generic [ref=e96]: B
+            - generic [ref=e97]: C
+          - generic [ref=e98]:
+            - paragraph [ref=e99]: Auth.illustration.signin.testimonial.text
+            - paragraph [ref=e100]: Auth.illustration.signin.testimonial.author
+    - paragraph [ref=e102]: Access your dashboard and manage your tasks with ease.
+  - region "Notifications (F8)":
+    - list
+  - generic [ref=e103]:
+    - img [ref=e105]
+    - button "Open Tanstack query devtools" [ref=e153] [cursor=pointer]:
+      - img [ref=e154]
+  - alert [ref=e202]
+  - generic [ref=e207] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e208]:
+      - img [ref=e209]
+    - generic [ref=e212]:
+      - button "Open issues overlay" [ref=e213]:
+        - generic [ref=e214]:
+          - generic [ref=e215]: "1"
+          - generic [ref=e216]: "2"
+        - generic [ref=e217]:
+          - text: Issue
+          - generic [ref=e218]: s
+      - button "Collapse issues badge" [ref=e219]:
+        - img [ref=e220]
+```
