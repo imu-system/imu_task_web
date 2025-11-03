@@ -3268,6 +3268,567 @@
                 "placeholder": "E.g.: Gate code 1234, 3rd floor no elevator, visitor parking available...",
                 "description": "Useful information to facilitate access to the property"
             }
+        },
+        "Grocery": {
+            "title": "Grocery shopping details",
+            "subtitle": "Specify your needs to facilitate the service",
+            "storeType": {
+                "label": "Store type",
+                "placeholder": "Select store type",
+                "description": "Where should the shopping be done?",
+                "supermarket": "Supermarket / Hypermarket",
+                "local_market": "Local market",
+                "bio_store": "Organic store / Gourmet shop",
+                "other": "Other"
+            },
+            "storeName": {
+                "label": "Store name (optional)",
+                "placeholder": "E.g.: Carrefour City, Monoprix, Biocoop...",
+                "description": "If you have a preference for a specific store"
+            },
+            "shoppingList": {
+                "label": "Shopping list",
+                "placeholder": "List items to purchase, one per line if possible...",
+                "description": "Detail desired products (brands, quantities, preferences)"
+            },
+            "volumeEstimate": {
+                "label": "Estimated volume",
+                "placeholder": "Select volume",
+                "description": "Estimated total volume of groceries",
+                "small": "Small (1-2 bags)",
+                "medium": "Medium (3-5 bags)",
+                "large": "Large (6+ bags or cart)"
+            },
+            "specialNeeds": {
+                "label": "Special needs",
+                "description": "Check if applicable",
+                "fresh": "Fresh products (meat, fish)",
+                "heavy": "Heavy items (drinks, canned goods)",
+                "frozen": "Frozen products"
+            },
+            "paymentMethod": {
+                "label": "Payment method",
+                "placeholder": "Select payment method",
+                "description": "How will the groceries be paid for?",
+                "cash": "Cash given to provider",
+                "client_card": "Client's bank card (provided)",
+                "provider_advance": "Provider advance (immediate reimbursement)"
+            }
+        },
+        "DogWalking": {
+            "title": "Dog walking details",
+            "subtitle": "Information about your dog for an adapted walk",
+            "dogBreed": {
+                "label": "Dog breed",
+                "placeholder": "E.g.: Labrador, French Bulldog, Mixed...",
+                "description": "Specify the breed or type of dog"
+            },
+            "dogSize": {
+                "label": "Dog size",
+                "placeholder": "Select size",
+                "description": "What is the size of your dog?",
+                "small": "Small (under 10kg)",
+                "medium": "Medium (10-25kg)",
+                "large": "Large (over 25kg)"
+            },
+            "temperament": {
+                "label": "Temperament",
+                "description": "Check your dog's personality traits",
+                "sociable": "Sociable with other dogs",
+                "reactive": "Reactive/Fearful",
+                "calm": "Calm and composed",
+                "energetic": "Very energetic"
+            },
+            "walksPerDay": {
+                "label": "Number of walks per day",
+                "description": "How many walks desired per day?"
+            },
+            "walkDuration": {
+                "label": "Duration of each walk",
+                "placeholder": "Select duration",
+                "description": "Desired duration for each walk",
+                "30": "30 minutes",
+                "60": "1 hour",
+                "90": "1h30"
+            },
+            "specialNeeds": {
+                "label": "Special needs",
+                "description": "Check if applicable",
+                "medication": "Medication to administer during walk",
+                "feeding": "Food to give (snack)"
+            },
+            "equipment": {
+                "label": "Required equipment",
+                "description": "Check necessary equipment",
+                "leash": "Leash required",
+                "muzzle": "Muzzle required",
+                "waste_bags": "Waste bags provided"
+            }
+        },
+        "Handyman": {
+            "title": "Handyman details",
+            "subtitle": "Specify the nature of the work to be done",
+            "taskType": {
+                "label": "Task type",
+                "placeholder": "Select task type",
+                "description": "What is the nature of the service?",
+                "assemble": "Furniture assembly",
+                "hang": "Hanging / Mounting",
+                "fix": "Repair",
+                "install": "Installation (curtain rod, shelf...)",
+                "repair": "Small repair",
+                "other": "Other"
+            },
+            "furnitureDetails": {
+                "title": "Furniture assembly details",
+                "brand": {
+                    "label": "Furniture brand",
+                    "placeholder": "E.g.: IKEA, Conforama, Maisons du Monde..."
+                },
+                "type": {
+                    "label": "Furniture type",
+                    "placeholder": "E.g.: Wardrobe, Desk, Dresser, Bed..."
+                },
+                "packageCount": {
+                    "label": "Number of packages",
+                    "description": "How many packages to assemble?"
+                },
+                "size": {
+                    "label": "Furniture size",
+                    "placeholder": "Select size",
+                    "small": "Small (nightstand, shelf)",
+                    "medium": "Medium (desk, dresser)",
+                    "large": "Large (wardrobe, bookcase)"
+                }
+            },
+            "toolsProvidedBy": {
+                "label": "Tools provided by",
+                "placeholder": "Who provides tools?",
+                "description": "Who brings the necessary tools?",
+                "client": "I have the necessary tools",
+                "provider": "Provider brings their tools"
+            },
+            "workHeight": {
+                "label": "Work height",
+                "placeholder": "Select height",
+                "description": "At what height is the work located?",
+                "ground": "Ground level / Normal height",
+                "medium": "Mid-height (simple ladder)",
+                "high": "High (stepladder, scaffolding)"
+            },
+            "wallType": {
+                "label": "Wall type",
+                "placeholder": "Select wall type",
+                "description": "What is the wall type for mounting?",
+                "plaster": "Plaster / Drywall",
+                "concrete": "Concrete / Solid brick",
+                "wood": "Wood",
+                "unknown": "I don't know"
+            },
+            "materialDetails": {
+                "label": "Material details (optional)",
+                "placeholder": "E.g.: Screws and anchors provided, assembly instructions included, paint color needed...",
+                "description": "Specify available materials or materials to plan for"
+            }
+        },
+        "Organization": {
+            "title": "Organization details",
+            "subtitle": "Specify areas and goals",
+            "areasToOrganize": {
+                "label": "Areas to organize",
+                "description": "Select concerned spaces",
+                "closet": "Closet / Wardrobe",
+                "library": "Bookshelf",
+                "cellar": "Cellar / Attic",
+                "garage": "Garage",
+                "kitchen": "Kitchen",
+                "office": "Office",
+                "other": "Other"
+            },
+            "goal": {
+                "label": "Main goal",
+                "placeholder": "Select goal",
+                "description": "What do you want to achieve?",
+                "declutter": "Declutter",
+                "sort": "Sort",
+                "classify": "Classify / Organize",
+                "optimize": "Optimize space"
+            },
+            "volumeEstimate": {
+                "label": "Estimated volume",
+                "placeholder": "Select volume",
+                "description": "Estimate of volume to organize",
+                "small": "Small (few shelves)",
+                "medium": "Medium (one room)",
+                "large": "Large (multiple rooms)"
+            }
+        },
+        "Package": {
+            "title": "Package details",
+            "subtitle": "Pickup/delivery information",
+            "serviceType": {
+                "label": "Service type",
+                "placeholder": "Select service",
+                "description": "What should the provider do?",
+                "pickup": "Package pickup",
+                "dropoff": "Package dropoff",
+                "mail": "Mail/package shipping"
+            },
+            "locationName": {
+                "label": "Location name",
+                "placeholder": "E.g.: Main Post Office, Mondial Relay, Package Point...",
+                "description": "Name of pickup/dropoff point"
+            },
+            "locationAddress": {
+                "label": "Location address",
+                "placeholder": "Full address...",
+                "description": "Exact address of service point"
+            },
+            "packageSize": {
+                "label": "Package size",
+                "placeholder": "Select size",
+                "description": "Estimated volume and weight",
+                "small": "Small (envelope, small package)",
+                "medium": "Medium (standard box)",
+                "large_heavy": "Large / Heavy (requires two hands)"
+            },
+            "trackingNumber": {
+                "label": "Tracking number (optional)",
+                "placeholder": "E.g.: 1Z999AA10123456784",
+                "description": "If you already have a tracking number"
+            },
+            "paymentMethod": {
+                "label": "Payment method",
+                "placeholder": "Select method",
+                "description": "How will postal service be paid?",
+                "cash": "Cash given to provider",
+                "provider_advance": "Provider advance (immediate reimbursement)"
+            }
+        },
+        "TechHelp": {
+            "title": "Tech help details",
+            "subtitle": "Specify your technical issue",
+            "deviceType": {
+                "label": "Device type",
+                "placeholder": "Select device",
+                "description": "Which device is concerned?",
+                "smartphone": "Smartphone",
+                "tablet": "Tablet",
+                "laptop": "Laptop",
+                "desktop": "Desktop computer",
+                "smart_tv": "Smart TV / Set-top box",
+                "internet_box": "Internet box / Router"
+            },
+            "operatingSystem": {
+                "label": "Operating system",
+                "placeholder": "Select system",
+                "description": "Which system does your device use?",
+                "windows": "Windows",
+                "macos": "macOS",
+                "ios": "iOS (iPhone/iPad)",
+                "android": "Android",
+                "linux": "Linux",
+                "other": "Other / I don't know"
+            },
+            "issueType": {
+                "label": "Issue type",
+                "placeholder": "Select type",
+                "description": "What is the nature of help?",
+                "installation": "Installation (software, peripheral)",
+                "training": "Training / Learning",
+                "troubleshooting": "Troubleshooting / Repair",
+                "backup": "Data backup",
+                "other": "Other"
+            },
+            "specificIssue": {
+                "label": "Issue description",
+                "placeholder": "E.g.: Cannot connect to my email...",
+                "description": "Describe precisely your need"
+            },
+            "remoteAccessPossible": {
+                "label": "Remote access possible",
+                "description": "Check if you accept remote assistance (TeamViewer, AnyDesk...)"
+            }
+        },
+        "AdminHelp": {
+            "title": "Administrative help details",
+            "subtitle": "Specify your administrative need",
+            "taskType": {
+                "label": "Task type",
+                "placeholder": "Select task",
+                "description": "What is the nature of administrative work?",
+                "form_filling": "Form filling",
+                "scanning": "Document scanning",
+                "email": "Email management",
+                "filing": "Filing / Archiving",
+                "writing": "Letter writing"
+            },
+            "softwareNeeded": {
+                "label": "Required software",
+                "description": "Check required software",
+                "word": "Word processor (Word)",
+                "excel": "Spreadsheet (Excel)",
+                "powerpoint": "Presentation (PowerPoint)",
+                "pdf": "PDF Reader / Editor"
+            },
+            "confidentialityLevel": {
+                "label": "Confidentiality level",
+                "placeholder": "Select level",
+                "description": "Document sensitivity",
+                "sensitive": "Sensitive documents (medical, banking...)",
+                "normal": "Standard documents"
+            },
+            "hasPrinterScanner": {
+                "label": "I have a printer/scanner available",
+                "description": "Check if you provide equipment"
+            }
+        },
+        "Moving": {
+            "title": "Moving details",
+            "subtitle": "Specify volume and conditions",
+            "volumeEstimate": {
+                "label": "Estimated volume",
+                "placeholder": "Select volume",
+                "description": "Estimate of volume to move",
+                "few_boxes": "Just a few boxes",
+                "studio": "Studio / 1BR",
+                "t2": "2BR / 3BR",
+                "cellar": "Cellar / Garage"
+            },
+            "peopleRequired": {
+                "label": "Number of people needed",
+                "description": "How many helpers do you estimate necessary?"
+            },
+            "departure": {
+                "title": "Departure point",
+                "floor": {
+                    "label": "Floor (0 = ground floor)",
+                    "description": "Which floor is the departure location?"
+                },
+                "hasElevator": "Elevator available"
+            },
+            "arrival": {
+                "title": "Arrival point",
+                "floor": {
+                    "label": "Floor (0 = ground floor)",
+                    "description": "Which floor is the arrival location?"
+                },
+                "hasElevator": "Elevator available"
+            },
+            "vehicleNeeded": {
+                "label": "Vehicle needed",
+                "placeholder": "Select option",
+                "description": "Need a vehicle for transport?",
+                "client_has": "I already have a vehicle",
+                "short_distance": "Short distance (walking/stairs only)",
+                "provider_needed": "Provider must have a vehicle"
+            }
+        },
+        "Handling": {
+            "title": "Handling details",
+            "subtitle": "Specify items to move",
+            "taskType": {
+                "label": "Task type",
+                "placeholder": "Select type",
+                "description": "What is the nature of handling?",
+                "move_furniture": "Move furniture",
+                "to_cellar": "To cellar/attic",
+                "carry_groceries": "Carry groceries"
+            },
+            "itemsDescription": {
+                "label": "Items description",
+                "placeholder": "E.g.: 3-seater sofa + glass coffee table, about 50kg total...",
+                "description": "Describe items to move (weight, fragility...)"
+            },
+            "floorsCount": {
+                "label": "Number of floors",
+                "description": "How many floors to climb/descend?"
+            },
+            "hasElevator": {
+                "label": "Elevator available",
+                "description": "Check if elevator is accessible"
+            }
+        },
+        "Accompaniment": {
+            "title": "Accompaniment details",
+            "subtitle": "Specify type of trip",
+            "accompanimentType": {
+                "label": "Accompaniment type",
+                "placeholder": "Select type",
+                "description": "What is the nature of accompaniment?",
+                "medical": "Medical appointment",
+                "walk": "Walk",
+                "shopping": "Shopping",
+                "social": "Social visit / Friends",
+                "visit": "Administrative procedure"
+            },
+            "fromAddress": {
+                "label": "Departure address",
+                "placeholder": "E.g.: 12 Peace Street, Paris...",
+                "description": "Where does the trip start?"
+            },
+            "toAddress": {
+                "label": "Arrival address",
+                "placeholder": "E.g.: Saint-Louis Hospital, 1 Claude Vellefaux Avenue...",
+                "description": "Where to go?"
+            },
+            "duration": {
+                "label": "Estimated duration (minutes)",
+                "description": "Total estimated duration (trip + possible waiting)"
+            },
+            "specialNeeds": {
+                "label": "Special needs",
+                "description": "Check if applicable",
+                "reduced_mobility": "Reduced mobility",
+                "wheelchair": "Wheelchair",
+                "hearing": "Hearing impairment",
+                "visual": "Visual impairment"
+            },
+            "transportMode": {
+                "label": "Transport mode",
+                "placeholder": "Select mode",
+                "description": "How to travel?",
+                "walk": "Walking",
+                "public_transport": "Public transport",
+                "provider_car": "Provider's vehicle",
+                "taxi": "Taxi / Ride-hailing"
+            }
+        },
+        "Companionship": {
+            "title": "Companionship details",
+            "subtitle": "Specify desired activity",
+            "activityType": {
+                "label": "Activity type",
+                "placeholder": "Select activity",
+                "description": "What would you like to share?",
+                "conversation": "Conversation",
+                "reading": "Reading",
+                "games": "Board games / Cards",
+                "cultural": "Cultural activity (cinema, museum...)",
+                "walk": "Walk"
+            },
+            "duration": {
+                "label": "Desired duration (minutes)",
+                "description": "How long for this visit?"
+            },
+            "clientInterests": {
+                "label": "Interests",
+                "placeholder": "E.g.: Passionate about gardening, likes detective novels, classical music fan...",
+                "description": "Share your interests to facilitate exchange"
+            }
+        },
+        "Gardening": {
+            "title": "Gardening details",
+            "subtitle": "Specify type of service",
+            "placeType": {
+                "label": "Place type",
+                "placeholder": "Select type",
+                "description": "Which space is concerned?",
+                "garden": "Garden",
+                "balcony": "Balcony / Terrace",
+                "courtyard": "Courtyard",
+                "driveway": "Driveway / Entrance"
+            },
+            "surfaceArea": {
+                "label": "Estimated area",
+                "placeholder": "Select area",
+                "description": "Approximate zone size",
+                "under_50": "Under 50m²",
+                "50_150": "50-150m²",
+                "over_150": "Over 150m²"
+            },
+            "serviceType": {
+                "label": "Service type",
+                "description": "Check tasks to perform",
+                "mowing": "Lawn mowing",
+                "leaf_raking": "Leaf raking",
+                "weeding": "Weeding",
+                "watering": "Watering",
+                "planting": "Planting",
+                "terrace_cleaning": "Terrace cleaning",
+                "hedge_trimming": "Hedge trimming"
+            },
+            "toolsProvidedBy": {
+                "label": "Tools provided by",
+                "placeholder": "Who provides tools?",
+                "description": "Who brings gardening equipment?",
+                "client": "I have necessary equipment",
+                "provider": "Provider brings their tools"
+            },
+            "wasteDisposal": {
+                "label": "Green waste disposal",
+                "placeholder": "Select method",
+                "description": "How to manage plant waste?",
+                "green_bin": "Green bin available",
+                "compost": "On-site composting",
+                "provider_removes": "Provider removes waste"
+            }
+        },
+        "PetSitting": {
+            "title": "Pet sitting details",
+            "subtitle": "Information about your pets",
+            "petType": {
+                "label": "Pet type",
+                "placeholder": "E.g.: Cat, Dog, Rabbit, Birds...",
+                "description": "What type of pet to care for?"
+            },
+            "petCount": {
+                "label": "Number of pets",
+                "description": "How many pets to care for?"
+            },
+            "absence": {
+                "title": "Absence dates",
+                "startDate": "Start date",
+                "endDate": "End date"
+            },
+            "visitsPerDay": {
+                "label": "Visits per day",
+                "description": "How many daily visits needed?"
+            },
+            "tasks": {
+                "label": "Tasks to perform",
+                "description": "Check required services",
+                "feeding": "Feeding",
+                "litter": "Litter (cats)",
+                "play": "Play / Cuddles",
+                "medication": "Medication to administer",
+                "water_plants": "Water plants"
+            }
+        },
+        "EventHelp": {
+            "title": "Event details",
+            "subtitle": "Specify type of help needed",
+            "eventType": {
+                "label": "Event type",
+                "placeholder": "Select type",
+                "description": "What is the nature of event?",
+                "birthday": "Birthday",
+                "family_reception": "Family reception",
+                "association": "Association event",
+                "small_business": "Small business / Startup"
+            },
+            "guestCount": {
+                "label": "Number of guests",
+                "description": "How many people expected?"
+            },
+            "serviceType": {
+                "label": "Service type",
+                "description": "Check necessary tasks",
+                "setup": "Setup / Preparation",
+                "cleanup": "Cleanup / Tidying",
+                "serving": "Table service",
+                "greeting": "Guest greeting",
+                "preparation": "Kitchen help"
+            },
+            "duration": {
+                "label": "Estimated duration (hours)",
+                "description": "How many hours of help needed?"
+            },
+            "heavyEquipment": {
+                "label": "Heavy equipment (optional)",
+                "placeholder": "E.g.: Tables and chairs for 50 people, 3x3m tents...",
+                "description": "Specify if handling bulky equipment"
+            }
         }
     }
 }

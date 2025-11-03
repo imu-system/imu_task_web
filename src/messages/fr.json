@@ -3357,6 +3357,567 @@
                 "placeholder": "Ex: Code portail 1234, 3ème étage sans ascenseur, parking visiteur disponible...",
                 "description": "Informations utiles pour faciliter l'accès au lieu"
             }
+        },
+        "Grocery": {
+            "title": "Détails des courses",
+            "subtitle": "Précisez vos besoins pour faciliter la prestation",
+            "storeType": {
+                "label": "Type de magasin",
+                "placeholder": "Sélectionner le type de magasin",
+                "description": "Où les courses doivent-elles être faites ?",
+                "supermarket": "Supermarché / Hypermarché",
+                "local_market": "Marché local",
+                "bio_store": "Magasin bio / Épicerie fine",
+                "other": "Autre"
+            },
+            "storeName": {
+                "label": "Nom du magasin (optionnel)",
+                "placeholder": "Ex: Carrefour City, Monoprix, Biocoop...",
+                "description": "Si vous avez une préférence pour un magasin spécifique"
+            },
+            "shoppingList": {
+                "label": "Liste de courses",
+                "placeholder": "Listez les articles à acheter, un par ligne si possible...",
+                "description": "Détaillez les produits souhaités (marques, quantités, préférences)"
+            },
+            "volumeEstimate": {
+                "label": "Volume estimé",
+                "placeholder": "Sélectionner le volume",
+                "description": "Estimation du volume total des courses",
+                "small": "Petit (1-2 sacs)",
+                "medium": "Moyen (3-5 sacs)",
+                "large": "Grand (6+ sacs ou chariot)"
+            },
+            "specialNeeds": {
+                "label": "Besoins spécifiques",
+                "description": "Cochez si applicable",
+                "fresh": "Produits frais (viande, poisson)",
+                "heavy": "Articles lourds (boissons, conserves)",
+                "frozen": "Produits surgelés"
+            },
+            "paymentMethod": {
+                "label": "Modalité de paiement",
+                "placeholder": "Sélectionner le mode de paiement",
+                "description": "Comment sera réglé l'achat des courses ?",
+                "cash": "Espèces remises au prestataire",
+                "client_card": "Carte bancaire du client (fournie)",
+                "provider_advance": "Avance du prestataire (remboursement immédiat)"
+            }
+        },
+        "DogWalking": {
+            "title": "Détails de promenade",
+            "subtitle": "Informations sur votre chien pour une sortie adaptée",
+            "dogBreed": {
+                "label": "Race du chien",
+                "placeholder": "Ex: Labrador, Bouledogue français, Croisé...",
+                "description": "Précisez la race ou le type de chien"
+            },
+            "dogSize": {
+                "label": "Taille du chien",
+                "placeholder": "Sélectionner la taille",
+                "description": "Quelle est la taille de votre chien ?",
+                "small": "Petit (moins de 10kg)",
+                "medium": "Moyen (10-25kg)",
+                "large": "Grand (plus de 25kg)"
+            },
+            "temperament": {
+                "label": "Tempérament",
+                "description": "Cochez les traits de caractère de votre chien",
+                "sociable": "Sociable avec autres chiens",
+                "reactive": "Réactif/Craintif",
+                "calm": "Calme et posé",
+                "energetic": "Très énergique"
+            },
+            "walksPerDay": {
+                "label": "Nombre de sorties par jour",
+                "description": "Combien de promenades souhaitées par jour ?"
+            },
+            "walkDuration": {
+                "label": "Durée de chaque sortie",
+                "placeholder": "Sélectionner la durée",
+                "description": "Durée souhaitée pour chaque promenade",
+                "30": "30 minutes",
+                "60": "1 heure",
+                "90": "1h30"
+            },
+            "specialNeeds": {
+                "label": "Besoins particuliers",
+                "description": "Cochez si applicable",
+                "medication": "Médicament à administrer pendant la sortie",
+                "feeding": "Nourriture à donner (collation)"
+            },
+            "equipment": {
+                "label": "Équipement requis",
+                "description": "Cochez l'équipement nécessaire",
+                "leash": "Laisse obligatoire",
+                "muzzle": "Muselière obligatoire",
+                "waste_bags": "Sacs à déjections fournis"
+            }
+        },
+        "Handyman": {
+            "title": "Détails du bricolage",
+            "subtitle": "Précisez la nature des travaux à effectuer",
+            "taskType": {
+                "label": "Type de tâche",
+                "placeholder": "Sélectionner le type de tâche",
+                "description": "Quelle est la nature de l'intervention ?",
+                "assemble": "Assemblage de meuble",
+                "hang": "Fixation / Accrochage",
+                "fix": "Réparation",
+                "install": "Installation (tringle, étagère...)",
+                "repair": "Petite réparation",
+                "other": "Autre"
+            },
+            "furnitureDetails": {
+                "title": "Détails du meuble à assembler",
+                "brand": {
+                    "label": "Marque du meuble",
+                    "placeholder": "Ex: IKEA, Conforama, Maisons du Monde..."
+                },
+                "type": {
+                    "label": "Type de meuble",
+                    "placeholder": "Ex: Armoire, Bureau, Commode, Lit..."
+                },
+                "packageCount": {
+                    "label": "Nombre de colis",
+                    "description": "Combien de colis à assembler ?"
+                },
+                "size": {
+                    "label": "Taille du meuble",
+                    "placeholder": "Sélectionner la taille",
+                    "small": "Petit (table de chevet, étagère)",
+                    "medium": "Moyen (bureau, commode)",
+                    "large": "Grand (armoire, bibliothèque)"
+                }
+            },
+            "toolsProvidedBy": {
+                "label": "Outils fournis par",
+                "placeholder": "Qui fournit les outils ?",
+                "description": "Qui apporte le matériel nécessaire ?",
+                "client": "J'ai les outils nécessaires",
+                "provider": "Le prestataire apporte ses outils"
+            },
+            "workHeight": {
+                "label": "Hauteur de travail",
+                "placeholder": "Sélectionner la hauteur",
+                "description": "À quelle hauteur se situe le travail ?",
+                "ground": "Au sol / Hauteur normale",
+                "medium": "Mi-hauteur (échelle simple)",
+                "high": "En hauteur (escabeau, échafaudage)"
+            },
+            "wallType": {
+                "label": "Type de mur",
+                "placeholder": "Sélectionner le type de mur",
+                "description": "Quel est le type de mur pour la fixation ?",
+                "plaster": "Plâtre / Placo",
+                "concrete": "Béton / Brique pleine",
+                "wood": "Bois",
+                "unknown": "Je ne sais pas"
+            },
+            "materialDetails": {
+                "label": "Détails matériaux (optionnel)",
+                "placeholder": "Ex: Vis et chevilles fournies, notice d'assemblage incluse, couleur de peinture nécessaire...",
+                "description": "Précisez les matériaux disponibles ou à prévoir"
+            }
+        },
+        "Organization": {
+            "title": "Détails du rangement",
+            "subtitle": "Précisez les zones et objectifs",
+            "areasToOrganize": {
+                "label": "Zones à organiser",
+                "description": "Sélectionnez les espaces concernés",
+                "closet": "Placard / Dressing",
+                "library": "Bibliothèque",
+                "cellar": "Cave / Grenier",
+                "garage": "Garage",
+                "kitchen": "Cuisine",
+                "office": "Bureau",
+                "other": "Autre"
+            },
+            "goal": {
+                "label": "Objectif principal",
+                "placeholder": "Sélectionner l'objectif",
+                "description": "Que souhaitez-vous accomplir ?",
+                "declutter": "Désencombrer",
+                "sort": "Trier",
+                "classify": "Classer / Organiser",
+                "optimize": "Optimiser l'espace"
+            },
+            "volumeEstimate": {
+                "label": "Volume estimé",
+                "placeholder": "Sélectionner le volume",
+                "description": "Estimation du volume à organiser",
+                "small": "Petit (quelques étagères)",
+                "medium": "Moyen (une pièce)",
+                "large": "Grand (plusieurs pièces)"
+            }
+        },
+        "Package": {
+            "title": "Détails du colis",
+            "subtitle": "Informations sur le retrait/dépôt",
+            "serviceType": {
+                "label": "Type de service",
+                "placeholder": "Sélectionner le service",
+                "description": "Que doit faire le prestataire ?",
+                "pickup": "Retrait de colis",
+                "dropoff": "Dépôt de colis",
+                "mail": "Envoi courrier/colis"
+            },
+            "locationName": {
+                "label": "Nom du lieu",
+                "placeholder": "Ex: La Poste Centrale, Mondial Relay, Relais Colis...",
+                "description": "Nom du point de retrait/dépôt"
+            },
+            "locationAddress": {
+                "label": "Adresse du lieu",
+                "placeholder": "Adresse complète...",
+                "description": "Adresse exacte du point de service"
+            },
+            "packageSize": {
+                "label": "Taille du colis",
+                "placeholder": "Sélectionner la taille",
+                "description": "Volume et poids estimés",
+                "small": "Petit (enveloppe, petit colis)",
+                "medium": "Moyen (carton standard)",
+                "large_heavy": "Grand / Lourd (nécessite 2 mains)"
+            },
+            "trackingNumber": {
+                "label": "Numéro de suivi (optionnel)",
+                "placeholder": "Ex: 1Z999AA10123456784",
+                "description": "Si vous avez déjà un numéro de suivi"
+            },
+            "paymentMethod": {
+                "label": "Modalité de paiement",
+                "placeholder": "Sélectionner le mode",
+                "description": "Comment sera payé le service postal ?",
+                "cash": "Espèces remises au prestataire",
+                "provider_advance": "Avance du prestataire (remboursement immédiat)"
+            }
+        },
+        "TechHelp": {
+            "title": "Détails de l'aide informatique",
+            "subtitle": "Précisez votre problème technique",
+            "deviceType": {
+                "label": "Type d'appareil",
+                "placeholder": "Sélectionner l'appareil",
+                "description": "Quel appareil est concerné ?",
+                "smartphone": "Smartphone",
+                "tablet": "Tablette",
+                "laptop": "Ordinateur portable",
+                "desktop": "Ordinateur fixe",
+                "smart_tv": "TV connectée / Box",
+                "internet_box": "Box Internet / Routeur"
+            },
+            "operatingSystem": {
+                "label": "Système d'exploitation",
+                "placeholder": "Sélectionner le système",
+                "description": "Quel système utilise votre appareil ?",
+                "windows": "Windows",
+                "macos": "macOS",
+                "ios": "iOS (iPhone/iPad)",
+                "android": "Android",
+                "linux": "Linux",
+                "other": "Autre / Je ne sais pas"
+            },
+            "issueType": {
+                "label": "Type de problème",
+                "placeholder": "Sélectionner le type",
+                "description": "Quelle est la nature de l'aide ?",
+                "installation": "Installation (logiciel, périphérique)",
+                "training": "Formation / Apprentissage",
+                "troubleshooting": "Dépannage / Réparation",
+                "backup": "Sauvegarde de données",
+                "other": "Autre"
+            },
+            "specificIssue": {
+                "label": "Description du problème",
+                "placeholder": "Ex: Impossible de me connecter à ma boîte mail...",
+                "description": "Décrivez précisément votre besoin"
+            },
+            "remoteAccessPossible": {
+                "label": "Accès à distance possible",
+                "description": "Cochez si vous acceptez une assistance à distance (TeamViewer, AnyDesk...)"
+            }
+        },
+        "AdminHelp": {
+            "title": "Détails de l'aide administrative",
+            "subtitle": "Précisez votre besoin administratif",
+            "taskType": {
+                "label": "Type de tâche",
+                "placeholder": "Sélectionner la tâche",
+                "description": "Quelle est la nature du travail administratif ?",
+                "form_filling": "Remplissage de formulaires",
+                "scanning": "Numérisation de documents",
+                "email": "Gestion d'e-mails",
+                "filing": "Classement / Archivage",
+                "writing": "Rédaction de courriers"
+            },
+            "softwareNeeded": {
+                "label": "Logiciels nécessaires",
+                "description": "Cochez les logiciels requis",
+                "word": "Traitement de texte (Word)",
+                "excel": "Tableur (Excel)",
+                "powerpoint": "Présentation (PowerPoint)",
+                "pdf": "Lecteur / Éditeur PDF"
+            },
+            "confidentialityLevel": {
+                "label": "Niveau de confidentialité",
+                "placeholder": "Sélectionner le niveau",
+                "description": "Sensibilité des documents",
+                "sensitive": "Documents sensibles (médical, bancaire...)",
+                "normal": "Documents standard"
+            },
+            "hasPrinterScanner": {
+                "label": "J'ai une imprimante/scanner à disposition",
+                "description": "Cochez si vous fournissez l'équipement"
+            }
+        },
+        "Moving": {
+            "title": "Détails du déménagement",
+            "subtitle": "Précisez le volume et les conditions",
+            "volumeEstimate": {
+                "label": "Volume estimé",
+                "placeholder": "Sélectionner le volume",
+                "description": "Estimation du volume à déménager",
+                "few_boxes": "Quelques cartons seulement",
+                "studio": "Studio / T1",
+                "t2": "T2 / T3",
+                "cellar": "Cave / Garage"
+            },
+            "peopleRequired": {
+                "label": "Nombre de personnes nécessaires",
+                "description": "Combien d'aides estimez-vous nécessaires ?"
+            },
+            "departure": {
+                "title": "Point de départ",
+                "floor": {
+                    "label": "Étage (0 = rez-de-chaussée)",
+                    "description": "À quel étage se situe le logement de départ ?"
+                },
+                "hasElevator": "Ascenseur disponible"
+            },
+            "arrival": {
+                "title": "Point d'arrivée",
+                "floor": {
+                    "label": "Étage (0 = rez-de-chaussée)",
+                    "description": "À quel étage se situe le logement d'arrivée ?"
+                },
+                "hasElevator": "Ascenseur disponible"
+            },
+            "vehicleNeeded": {
+                "label": "Véhicule nécessaire",
+                "placeholder": "Sélectionner l'option",
+                "description": "Besoin d'un véhicule pour le transport ?",
+                "client_has": "J'ai déjà un véhicule",
+                "short_distance": "Courte distance (à pied/escalier uniquement)",
+                "provider_needed": "Le prestataire doit avoir un véhicule"
+            }
+        },
+        "Handling": {
+            "title": "Détails de la manutention",
+            "subtitle": "Précisez les objets à déplacer",
+            "taskType": {
+                "label": "Type de tâche",
+                "placeholder": "Sélectionner le type",
+                "description": "Quelle est la nature de la manutention ?",
+                "move_furniture": "Déplacer un meuble",
+                "to_cellar": "Descendre à la cave/monter au grenier",
+                "carry_groceries": "Porter des courses"
+            },
+            "itemsDescription": {
+                "label": "Description des objets",
+                "placeholder": "Ex: Canapé 3 places + table basse en verre, environ 50kg au total...",
+                "description": "Décrivez les objets à déplacer (poids, fragilité...)"
+            },
+            "floorsCount": {
+                "label": "Nombre d'étages",
+                "description": "Combien d'étages à monter/descendre ?"
+            },
+            "hasElevator": {
+                "label": "Ascenseur disponible",
+                "description": "Cochez si un ascenseur est accessible"
+            }
+        },
+        "Accompaniment": {
+            "title": "Détails de l'accompagnement",
+            "subtitle": "Précisez le type de déplacement",
+            "accompanimentType": {
+                "label": "Type d'accompagnement",
+                "placeholder": "Sélectionner le type",
+                "description": "Quelle est la nature de l'accompagnement ?",
+                "medical": "Rendez-vous médical",
+                "walk": "Promenade",
+                "shopping": "Courses",
+                "social": "Visite sociale / Amis",
+                "visit": "Démarche administrative"
+            },
+            "fromAddress": {
+                "label": "Adresse de départ",
+                "placeholder": "Ex: 12 rue de la Paix, Paris...",
+                "description": "D'où part le trajet ?"
+            },
+            "toAddress": {
+                "label": "Adresse d'arrivée",
+                "placeholder": "Ex: Hôpital Saint-Louis, 1 avenue Claude Vellefaux...",
+                "description": "Où se rendre ?"
+            },
+            "duration": {
+                "label": "Durée estimée (minutes)",
+                "description": "Durée totale estimée (trajet + attente éventuelle)"
+            },
+            "specialNeeds": {
+                "label": "Besoins spécifiques",
+                "description": "Cochez si applicable",
+                "reduced_mobility": "Mobilité réduite",
+                "wheelchair": "Fauteuil roulant",
+                "hearing": "Déficience auditive",
+                "visual": "Déficience visuelle"
+            },
+            "transportMode": {
+                "label": "Mode de transport",
+                "placeholder": "Sélectionner le mode",
+                "description": "Comment se déplacer ?",
+                "walk": "À pied",
+                "public_transport": "Transports en commun",
+                "provider_car": "Véhicule du prestataire",
+                "taxi": "Taxi / VTC"
+            }
+        },
+        "Companionship": {
+            "title": "Détails de la compagnie",
+            "subtitle": "Précisez l'activité souhaitée",
+            "activityType": {
+                "label": "Type d'activité",
+                "placeholder": "Sélectionner l'activité",
+                "description": "Que souhaitez-vous partager ?",
+                "conversation": "Conversation",
+                "reading": "Lecture",
+                "games": "Jeux de société / Cartes",
+                "cultural": "Activité culturelle (cinéma, musée...)",
+                "walk": "Promenade"
+            },
+            "duration": {
+                "label": "Durée souhaitée (minutes)",
+                "description": "Combien de temps pour cette visite ?"
+            },
+            "clientInterests": {
+                "label": "Centres d'intérêt",
+                "placeholder": "Ex: Passionné de jardinage, aime la lecture policière, fan de musique classique...",
+                "description": "Partagez vos centres d'intérêt pour faciliter l'échange"
+            }
+        },
+        "Gardening": {
+            "title": "Détails du jardinage",
+            "subtitle": "Précisez le type d'intervention",
+            "placeType": {
+                "label": "Type de lieu",
+                "placeholder": "Sélectionner le type",
+                "description": "Quel espace est concerné ?",
+                "garden": "Jardin",
+                "balcony": "Balcon / Terrasse",
+                "courtyard": "Cour",
+                "driveway": "Allée / Entrée"
+            },
+            "surfaceArea": {
+                "label": "Surface estimée",
+                "placeholder": "Sélectionner la surface",
+                "description": "Taille approximative de la zone",
+                "under_50": "Moins de 50m²",
+                "50_150": "50-150m²",
+                "over_150": "Plus de 150m²"
+            },
+            "serviceType": {
+                "label": "Type de prestation",
+                "description": "Cochez les tâches à effectuer",
+                "mowing": "Tonte de pelouse",
+                "leaf_raking": "Ramassage de feuilles",
+                "weeding": "Désherbage",
+                "watering": "Arrosage",
+                "planting": "Plantation",
+                "terrace_cleaning": "Nettoyage de terrasse",
+                "hedge_trimming": "Taille de haies"
+            },
+            "toolsProvidedBy": {
+                "label": "Outils fournis par",
+                "placeholder": "Qui fournit les outils ?",
+                "description": "Qui apporte le matériel de jardinage ?",
+                "client": "J'ai le matériel nécessaire",
+                "provider": "Le prestataire apporte ses outils"
+            },
+            "wasteDisposal": {
+                "label": "Évacuation des déchets verts",
+                "placeholder": "Sélectionner le mode",
+                "description": "Comment gérer les déchets végétaux ?",
+                "green_bin": "Bac vert disponible",
+                "compost": "Compostage sur place",
+                "provider_removes": "Le prestataire évacue les déchets"
+            }
+        },
+        "PetSitting": {
+            "title": "Détails de la garde",
+            "subtitle": "Informations sur vos animaux",
+            "petType": {
+                "label": "Type d'animal",
+                "placeholder": "Ex: Chat, Chien, Lapin, Oiseaux...",
+                "description": "Quel type d'animal à garder ?"
+            },
+            "petCount": {
+                "label": "Nombre d'animaux",
+                "description": "Combien d'animaux à garder ?"
+            },
+            "absence": {
+                "title": "Dates d'absence",
+                "startDate": "Date de début",
+                "endDate": "Date de fin"
+            },
+            "visitsPerDay": {
+                "label": "Visites par jour",
+                "description": "Combien de passages quotidiens nécessaires ?"
+            },
+            "tasks": {
+                "label": "Tâches à effectuer",
+                "description": "Cochez les services requis",
+                "feeding": "Nourriture",
+                "litter": "Litière (chats)",
+                "play": "Jouer / Câlins",
+                "medication": "Médicaments à administrer",
+                "water_plants": "Arrosage des plantes"
+            }
+        },
+        "EventHelp": {
+            "title": "Détails de l'événement",
+            "subtitle": "Précisez le type d'aide nécessaire",
+            "eventType": {
+                "label": "Type d'événement",
+                "placeholder": "Sélectionner le type",
+                "description": "Quelle est la nature de l'événement ?",
+                "birthday": "Anniversaire",
+                "family_reception": "Réception familiale",
+                "association": "Événement associatif",
+                "small_business": "Petite entreprise / Startup"
+            },
+            "guestCount": {
+                "label": "Nombre d'invités",
+                "description": "Combien de personnes attendues ?"
+            },
+            "serviceType": {
+                "label": "Type de service",
+                "description": "Cochez les tâches nécessaires",
+                "setup": "Installation / Préparation",
+                "cleanup": "Nettoyage / Rangement",
+                "serving": "Service à table",
+                "greeting": "Accueil des invités",
+                "preparation": "Aide en cuisine"
+            },
+            "duration": {
+                "label": "Durée estimée (heures)",
+                "description": "Combien d'heures d'aide nécessaires ?"
+            },
+            "heavyEquipment": {
+                "label": "Équipement lourd (optionnel)",
+                "placeholder": "Ex: Tables et chaises pour 50 personnes, barnums 3x3m...",
+                "description": "Précisez si manipulation d'équipements volumineux"
+            }
         }
     }
 }
