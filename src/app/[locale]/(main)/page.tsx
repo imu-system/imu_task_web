@@ -36,6 +36,7 @@ import { HowItWorks } from '@/components/landing/how-it-works';
 import { StatsTrust } from '@/components/landing/stats-trust';
 import { ProfileCards } from '@/components/landing/profile-cards';
 import { CarelinkPreview } from '@/components/landing/carelink-preview';
+import { ServiceCategoriesShowcase } from '@/components/landing/service-categories-showcase';
 import { useEffect, useState, useRef } from 'react';
 import { logLandingPageView } from '@/lib/analytics';
 import { useScrollPosition } from '@/hooks/use-scroll-position';
@@ -125,6 +126,9 @@ export default function Home() {
 
         {/* Category Pills Section - Horizontal Scroll */}
         <CategoryPills />
+
+        {/* Service Categories Showcase - 8 MVP Categories with 15 Services */}
+        <ServiceCategoriesShowcase />
 
         {/* Tasks Grid Section - Recent/Popular Tasks */}
         <TasksGrid maxTasks={8} showViewAll={true} filterByStatus="pending" />

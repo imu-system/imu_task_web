@@ -2490,6 +2490,58 @@
             "shopping": "Courses",
             "other": "Autres"
         },
+        "serviceCategories": {
+            "title": "Tous nos services",
+            "subtitle": "15 services spécialisés pour répondre à tous vos besoins du quotidien",
+            "viewAllServices": "Voir tous les services",
+            "homeHelp": {
+                "title": "Aide à Domicile & Petits Travaux",
+                "description": "Services d'entretien, bricolage et organisation pour votre maison",
+                "cleaning": "Ménage & Entretien",
+                "handyman": "Petit Bricolage",
+                "organization": "Rangement & Organisation"
+            },
+            "shoppingDelivery": {
+                "title": "Courses & Livraisons",
+                "description": "Aide pour vos achats et livraison de colis",
+                "grocery": "Courses Alimentaires",
+                "package": "Retrait/Dépôt de Colis"
+            },
+            "techAdmin": {
+                "title": "Aide Numérique & Administrative",
+                "description": "Support informatique et aide pour vos démarches administratives",
+                "techHelp": "Aide Informatique",
+                "adminHelp": "Aide Administrative"
+            },
+            "movingHandling": {
+                "title": "Déménagement & Manutention",
+                "description": "Aide au déménagement et transport d'objets lourds",
+                "moving": "Aide au Déménagement",
+                "handling": "Manutention Simple"
+            },
+            "accompaniment": {
+                "title": "Accompagnement & Présence",
+                "description": "Services d'accompagnement et de compagnie pour personnes isolées",
+                "accompaniment": "Accompagnement de Personnes",
+                "companionship": "Compagnie & Loisirs"
+            },
+            "gardening": {
+                "title": "Jardinage & Extérieur",
+                "description": "Entretien de jardin, balcon et espaces verts",
+                "gardening": "Entretien Jardin/Extérieur"
+            },
+            "petCare": {
+                "title": "Animaux de Compagnie",
+                "description": "Garde et promenade de vos animaux",
+                "dogWalking": "Promenade de Chien",
+                "petSitting": "Garde d'Animaux à Domicile"
+            },
+            "events": {
+                "title": "Événements & Occasions Spéciales",
+                "description": "Aide logistique pour vos événements familiaux et associatifs",
+                "eventHelp": "Soutien Logistique Événementiel"
+            }
+        },
         "tasksGrid": {
             "title": "Missions récentes",
             "subtitle": "Découvrez les dernières opportunités près de chez vous",

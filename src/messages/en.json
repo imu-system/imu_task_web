@@ -2425,8 +2425,61 @@
             "handyman": "Handyman",
             "petCare": "Pet Care",
             "tutoring": "Tutoring",
+            "homeServices": "Home Services",
             "shopping": "Shopping",
             "other": "Other"
+        },
+        "serviceCategories": {
+            "title": "All Our Services",
+            "subtitle": "15 specialized services to meet all your daily needs",
+            "viewAllServices": "View all services",
+            "homeHelp": {
+                "title": "Home Help & Small Jobs",
+                "description": "Cleaning, handyman and organization services for your home",
+                "cleaning": "Cleaning & Maintenance",
+                "handyman": "Small Handyman Jobs",
+                "organization": "Organization & Tidying"
+            },
+            "shoppingDelivery": {
+                "title": "Shopping & Deliveries",
+                "description": "Help with your shopping and package delivery",
+                "grocery": "Grocery Shopping",
+                "package": "Package Pickup/Dropoff"
+            },
+            "techAdmin": {
+                "title": "Tech & Administrative Help",
+                "description": "Computer support and help with administrative tasks",
+                "techHelp": "Computer Help",
+                "adminHelp": "Administrative Help"
+            },
+            "movingHandling": {
+                "title": "Moving & Handling",
+                "description": "Moving help and heavy object transport",
+                "moving": "Moving Assistance",
+                "handling": "Simple Handling"
+            },
+            "accompaniment": {
+                "title": "Accompaniment & Companionship",
+                "description": "Accompaniment and companionship services for isolated people",
+                "accompaniment": "Person Accompaniment",
+                "companionship": "Companionship & Leisure"
+            },
+            "gardening": {
+                "title": "Gardening & Outdoor",
+                "description": "Garden, balcony and green space maintenance",
+                "gardening": "Garden/Outdoor Maintenance"
+            },
+            "petCare": {
+                "title": "Pet Care",
+                "description": "Pet sitting and walking services",
+                "dogWalking": "Dog Walking",
+                "petSitting": "Pet Sitting at Home"
+            },
+            "events": {
+                "title": "Events & Special Occasions",
+                "description": "Logistical help for your family and community events",
+                "eventHelp": "Event Logistics Support"
+            }
         },
         "tasksGrid": {
             "title": "Recent Tasks",
