@@ -4,6 +4,7 @@
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { useState, useEffect, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -30,7 +31,6 @@ import { cn } from '@/lib/utils';
 import { format, setHours, setMinutes } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import { Badge } from './ui/badge';
-import { useState, useEffect } from 'react';
 import { suggestTaskCategories } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
 import { type ServiceCategory, type Task } from '@/lib/types';
@@ -44,6 +44,7 @@ import { collection, query, where, getDocs, onSnapshot } from 'firebase/firestor
 import { db } from '@/lib/firebase';
 import { DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 import { SpecificFieldsSelector } from './task-forms';
+import { createDynamicTaskSchema, type TaskFormData } from '@/lib/validations/task-form-schema';
 
 /**
  * Helper function to extract localized text from string or Record<string, string>
@@ -59,26 +60,6 @@ function getLocalizedText(text: string | Record<string, string>, locale: string 
     return text[locale] || text.fr || text.en || Object.values(text)[0] || '';
 }
 
-const formSchema = z.object({
-  title: z.string().min(5, 'Le titre doit faire au moins 5 caractères.'),
-  description: z.string().min(20, 'La description doit faire au moins 20 caractères.'),
-  categoryId: z.string({ required_error: 'Veuillez sélectionner une catégorie.' }),
-  addressId: z.string({ required_error: 'Veuillez sélectionner une adresse.' }),
-  timeWindowStart: z.date({
-    required_error: 'Veuillez sélectionner une date et une heure de début.',
-  }),
-  timeWindowEnd: z.date({
-    required_error: 'Veuillez sélectionner une date et une heure de fin.',
-  }),
-  priceOffered: z.coerce.number().min(5, 'Le prix doit être d\'au moins 5€.'),
-  estimatedDurationMin: z.coerce.number().int().min(0, "La durée doit être positive.").optional(),
-  numberOfProvidersRequired: z.coerce.number().int().min(1, "Il faut au moins 1 prestataire.").default(1),
-  attachments: z.any().optional(),
-}).refine(data => data.timeWindowEnd > data.timeWindowStart, {
-    message: "L'heure de fin doit être après l'heure de début.",
-    path: ['timeWindowEnd'],
-});
-
 const mockAddresses = [
     { id: '1', label: 'Maison', formatted: '123 Rue Principale, 75001 Paris, France', isDefault: true },
     { id: '2', label: 'Travail', formatted: '456 Avenue des Champs-Élysées, 75008 Paris, France', isDefault: false },
@@ -90,6 +71,7 @@ export function CreateTaskForm() {
   const [isSuggesting, setIsSuggesting] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoadingCategories, setIsLoadingCategories] = useState(true);
+  const [selectedCategorySlug, setSelectedCategorySlug] = useState<string | undefined>(undefined);
   const { toast } = useToast();
   const t = useTranslations('CreateTaskForm');
   const tPage = useTranslations('NewTaskPage');
@@ -97,8 +79,14 @@ export function CreateTaskForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  // Create dynamic schema based on selected category
+  const formSchema = useMemo(
+    () => createDynamicTaskSchema(selectedCategorySlug),
+    [selectedCategorySlug]
+  );
+
+  const form = useForm({
+    resolver: zodResolver(formSchema) as any,
     defaultValues: {
       title: '',
       description: '',
@@ -110,6 +98,22 @@ export function CreateTaskForm() {
   });
 
   const descriptionValue = form.watch('description');
+  const categoryIdValue = form.watch('categoryId');
+
+  // Update category slug when categoryId changes
+  useEffect(() => {
+    if (categoryIdValue) {
+      const selectedCategory = taskCategories.find(c => c.id === categoryIdValue);
+      const newSlug = selectedCategory?.slug;
+      if (newSlug !== selectedCategorySlug) {
+        setSelectedCategorySlug(newSlug);
+        // Trigger re-validation with new schema
+        form.trigger();
+      }
+    } else {
+      setSelectedCategorySlug(undefined);
+    }
+  }, [categoryIdValue, taskCategories, selectedCategorySlug, form]);
 
   useEffect(() => {
     setIsLoadingCategories(true);
