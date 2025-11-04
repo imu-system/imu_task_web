@@ -45,9 +45,12 @@ export function createDynamicTaskSchema(categorySlug: string | undefined) {
         return baseTaskSchema;
     }
 
-    // Merge base schema object with specific fields, then apply time validation
-    return baseTaskSchemaObject.merge(specificSchema).refine(
-        data => data.timeWindowEnd > data.timeWindowStart,
+    // Use intersection to combine a base object schema with a possibly non-object Zod schema
+    const combined = z.intersection(baseTaskSchemaObject, specificSchema);
+
+    // Apply time validation refinement on the combined schema
+    return combined.refine(
+        data => (data as any).timeWindowEnd > (data as any).timeWindowStart,
         {
             message: "L'heure de fin doit être après l'heure de début.",
             path: ['timeWindowEnd'],
@@ -59,6 +62,4 @@ export function createDynamicTaskSchema(categorySlug: string | undefined) {
  * Type inference helper for the dynamic schema
  * This type includes all base fields plus any additional specific fields
  */
-export type TaskFormData = z.infer<typeof baseTaskSchema> & Record<string, any>;
-
 export type TaskFormData = z.infer<typeof baseTaskSchema> & Record<string, any>;

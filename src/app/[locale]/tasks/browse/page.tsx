@@ -58,12 +58,19 @@ export default function BrowseTasksPage() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [showFilters, setShowFilters] = useState(false);
 
-  // Redirect non-providers
+  // Get category from URL on mount (client-side only)
   useEffect(() => {
-    if (!authLoading && (!user || !isProvider)) {
-      router.push('/');
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const categoryFromUrl = params.get('category');
+      if (categoryFromUrl) {
+        setSelectedCategory(categoryFromUrl);
+      }
     }
-  }, [user, isProvider, authLoading, router]);
+  }, []);
+
+  // Note: Page is now public - accessible to everyone
+  // Providers can propose on tasks, clients can view available services
 
   // Fetch tasks
   useEffect(() => {

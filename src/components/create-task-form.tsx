@@ -85,7 +85,7 @@ export function CreateTaskForm() {
     [selectedCategorySlug]
   );
 
-  const form = useForm({
+  const form = useForm<TaskFormData>({
     resolver: zodResolver(formSchema) as any,
     defaultValues: {
       title: '',
@@ -157,7 +157,7 @@ export function CreateTaskForm() {
     return () => unsubscribe();
   }, [searchParams, toast, t, form]);
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: TaskFormData) {
     if (!user) {
         toast({
             variant: 'destructive',

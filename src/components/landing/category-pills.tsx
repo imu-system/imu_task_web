@@ -46,10 +46,7 @@ export function CategoryPills() {
   const handleCategoryClick = (slug: string, categoryName: string, isAccessible: boolean = false) => {
     setSelectedCategory(slug);
     logCategoryClick(slug, categoryName, isAccessible);
-    router.push({
-      pathname: '/tasks/browse',
-      query: { category: slug },
-    });
+    router.push(`/tasks/browse?category=${slug}`);
   };
 
   return (

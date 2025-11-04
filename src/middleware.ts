@@ -15,7 +15,8 @@ const publicRoutes = [
   '/auth/forgot-password',
   '/legal/terms',
   '/legal/privacy',
-  '/test-firebase'
+  '/test-firebase',
+  '/tasks/browse'  // Page de navigation des services (publique)
 ];
 
 // Routes protégées nécessitant une authentification
