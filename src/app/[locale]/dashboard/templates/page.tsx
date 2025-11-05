@@ -100,7 +100,7 @@ export default function TaskTemplatesPage() {
                             </div>
                             <div className="flex gap-2">
                                 <Button asChild>
-                                    <Link href={`/dashboard/tasks/new?templateId=${template.id}`}>
+                                    <Link href={`/dashboard/tasks/create?templateId=${template.id}`}>
                                         <FileUp className="mr-2"/>
                                         {t('list.createTask')}
                                     </Link>

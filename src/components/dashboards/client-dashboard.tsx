@@ -298,7 +298,7 @@ export default function ClientDashboardPage() {
           <CardTitle>{t('quickActions')}</CardTitle>
         </CardHeader>
         <CardContent className="flex gap-4 flex-wrap">
-          <Button onClick={() => router.push('/tasks/new')} className="gap-2">
+          <Button onClick={() => router.push('/dashboard/tasks/create')} className="gap-2">
             <Plus className="h-4 w-4" />
             {t('createNewTask')}
           </Button>
@@ -396,7 +396,7 @@ export default function ClientDashboardPage() {
               <p className="text-sm text-muted-foreground mb-4">
                 {t('createFirstTask')}
               </p>
-              <Button onClick={() => router.push('/tasks/new')} className="gap-2">
+              <Button onClick={() => router.push('/dashboard/tasks/create')} className="gap-2">
                 <Plus className="h-4 w-4" />
                 {t('createTask')}
               </Button>

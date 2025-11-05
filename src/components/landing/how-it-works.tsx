@@ -96,7 +96,7 @@ export function HowItWorks() {
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
           <Button asChild size="lg" className="text-base px-8 py-6 shadow-lg">
-            <Link href="/dashboard/tasks/new">
+            <Link href="/dashboard/tasks/create">
               {t('cta.client')}
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>

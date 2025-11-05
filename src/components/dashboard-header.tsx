@@ -216,7 +216,7 @@ export function DashboardHeader() {
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem asChild>
-                          <Link href={"/dashboard/tasks/new?template=shopping" as any}>
+                          <Link href={"/dashboard/tasks/create?template=shopping" as any}>
                             <Sparkles className="mr-2 h-4 w-4 text-primary" />
                             <span>{t('suggestedAction')}</span>
                           </Link>
@@ -260,7 +260,7 @@ export function DashboardHeader() {
                         </Dialog>
                          <DropdownMenuSeparator />
                          <DropdownMenuItem asChild>
-                           <Link href={"/dashboard/tasks/new?template=shopping" as any}>
+                           <Link href={"/dashboard/tasks/create?template=shopping" as any}>
                              <Sparkles className="mr-2 h-4 w-4 text-primary" />
                              <span>{t('suggestedAction')}</span>
                            </Link>
@@ -296,7 +296,7 @@ export function DashboardHeader() {
             </DropdownMenuItem>
              <DropdownMenuSeparator />
              <DropdownMenuItem asChild>
-               <Link href={"/dashboard/tasks/new?template=shopping" as any}>
+               <Link href={"/dashboard/tasks/create?template=shopping" as any}>
                  <Sparkles className="mr-2 h-4 w-4 text-primary" />
                  <span>{t('suggestedAction')}</span>
                </Link>

@@ -59,7 +59,7 @@ export const pathnames = {
   '/dashboard/templates/new': '/dashboard/templates/new',
   '/dashboard/templates/edit/[id]': '/dashboard/templates/edit/[id]',
   '/dashboard/templates/[id]/share': '/dashboard/templates/[id]/share',
-  '/dashboard/tasks/new': '/dashboard/tasks/new',
+  '/dashboard/tasks/create': '/dashboard/tasks/create',
   '/dashboard/dev': '/dashboard/dev',
   '/dashboard/dev/flags': '/dashboard/dev/flags',
   '/dashboard/dev/flags/[flagKey]': '/dashboard/dev/flags/[flagKey]',

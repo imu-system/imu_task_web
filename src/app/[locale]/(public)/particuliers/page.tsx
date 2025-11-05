@@ -87,7 +87,7 @@ export default function ParticuliersPage() {
 
             {/* CTA */}
             <Button asChild size="lg" className="text-base px-8 py-6 shadow-lg">
-              <Link href="/dashboard/tasks/new">
+              <Link href="/dashboard/tasks/create">
                 <Sparkles className="mr-2 h-5 w-5" />
                 {tIndividual('hero.cta')}
               </Link>
@@ -170,7 +170,7 @@ export default function ParticuliersPage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="px-8 py-6">
-                <Link href="/dashboard/tasks/new">
+                <Link href="/dashboard/tasks/create">
                   <Sparkles className="mr-2 h-5 w-5" />
                   {tIndividual('ctas.postMission')}
                 </Link>

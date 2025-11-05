@@ -210,7 +210,7 @@ export function NewTaskForm() {
               <Link href="/tasks">View My Tasks</Link>
             </Button>
             <Button variant="outline" asChild>
-              <Link href="/tasks/new" onClick={() => { setIsSubmitted(false); setCurrentStep(0); setTaskId(null); }}>
+              <Link href="/dashboard/tasks/create" onClick={() => { setIsSubmitted(false); setCurrentStep(0); setTaskId(null); }}>
                 Post Another Task
               </Link>
             </Button>

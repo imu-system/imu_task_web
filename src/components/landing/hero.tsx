@@ -35,7 +35,7 @@ export function Hero({ variant = 'default' }: HeroProps) {
         image: placeholderImages.hero.src,
         imageHint: placeholderImages.hero.hint,
         ctaIcon: Sparkles,
-        ctaHref: '/dashboard/tasks/new',
+        ctaHref: '/dashboard/tasks/create',
         ctaVariant: 'default' as const,
         secondaryCta: true,
       };

@@ -45,7 +45,7 @@ export function CommandMenu({ open, setOpen }: CommandMenuProps) {
         <CommandEmpty>Aucun résultat trouvé.</CommandEmpty>
 
         <CommandGroup heading="Missions">
-            <CommandItem onSelect={() => runCommand(() => router.push('/dashboard/tasks/new'))}>
+            <CommandItem onSelect={() => runCommand(() => router.push('/dashboard/tasks/create'))}>
                 <PlusCircle className="mr-2 h-4 w-4" />
                 <span>Créer une nouvelle mission</span>
             </CommandItem>

@@ -171,7 +171,7 @@ export default function DashboardTasksPage() {
             </p>
           </div>
           <Button asChild>
-            <Link href="/dashboard/tasks/new">
+            <Link href="/dashboard/tasks/create">
               <PlusCircle className="mr-2 h-5 w-5" />
               {t('createTask')}
             </Link>
