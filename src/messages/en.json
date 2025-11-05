@@ -646,6 +646,41 @@
             "toastSuccessDescription": "Your report has been submitted and our team will review it shortly."
         }
     },
+    "TaskDetail": {
+        "location": "Location",
+        "noLocation": "Not specified",
+        "noMapAvailable": "No map available",
+        "images": "Images",
+        "image": "image",
+        "suggestedProviders": "Suggested Providers",
+        "suggestedProvidersDesc": "Based on skills and proximity",
+        "noProvidersFound": "No providers found for this category.",
+        "completedTasks": "tasks",
+        "viewProfile": "View profile",
+        "contact": "Contact",
+        "description": "Description",
+        "budget": "Proposed budget",
+        "createdAt": "Created on",
+        "deadline": "Deadline",
+        "client": "Client",
+        "provider": "Provider",
+        "you": "You",
+        "notAuthenticated": "You must be logged in to view task details.",
+        "loginLink": "Log in",
+        "taskNotFound": "Task not found",
+        "error": "An error occurred",
+        "backToTasks": "Back to tasks",
+        "edit": "Edit",
+        "delete": "Delete",
+        "deleting": "Deleting...",
+        "deleteConfirmTitle": "Delete this task?",
+        "deleteConfirmDescription": "This action is irreversible. The task will be permanently deleted.",
+        "deleteConfirmCancel": "Cancel",
+        "deleteConfirmDelete": "Delete",
+        "interestedInTask": "Interested in this task?",
+        "submitOfferDescription": "Make a proposal to the client",
+        "submitOffer": "Submit an offer"
+    },
     "SearchPage": {
         "title": "Find a Provider",
         "subtitle": "Browse profiles and find the perfect person for your task.",
@@ -3883,5 +3918,30 @@
                 "description": "Specify if handling bulky equipment"
             }
         }
+    },
+    "Offers": {
+        "submitOffer": "Submit an offer",
+        "submitOfferTitle": "Make a proposal",
+        "submitOfferDescription": "Propose your services for this task",
+        "offerForTask": "Offer for task",
+        "proposedPrice": "Proposed price",
+        "budgetIndicated": "Indicated budget",
+        "message": "Your message",
+        "messagePlaceholder": "Explain why you're the best choice for this task...",
+        "messageHint": "Present your experience, availability and approach",
+        "estimatedDuration": "Estimated duration",
+        "optional": "optional",
+        "hours": "hours",
+        "cancel": "Cancel",
+        "submit": "Send offer",
+        "submitting": "Submitting...",
+        "offerSubmitted": "✓ Offer submitted successfully!",
+        "viewMyOffers": "View my offers",
+        "offerAcceptedTitle": "Offer accepted",
+        "offerAcceptedDescription": "You accepted the offer. Other offers have been automatically rejected.",
+        "offerRejectedTitle": "Offer rejected",
+        "offerRejectedDescription": "The offer was successfully rejected.",
+        "offerAcceptError": "Unable to accept offer",
+        "offerRejectError": "Unable to reject offer"
     }
 }

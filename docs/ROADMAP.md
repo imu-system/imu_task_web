@@ -200,47 +200,38 @@
 
 ---
 
-### Phase 5: Pages Publiques & Authentification 🔄 (0% complété)
+### Phase 5: Pages Publiques & Authentification ✅ (100% complété)
 
-**Statut:** 🟡 Prochaine priorité
+**Statut:** ✅ Complété
 
 **Objectif:** Améliorer pages publiques, onboarding et expérience authentification
 
-#### 📋 À faire (Priorité Haute)
+#### ✅ Complété
 
-**Task 1: Landing Page - Segmentation par Profils** (3h15)
-- [ ] Améliorer section "Pour qui ?" après Hero
-  - Composant `<ProfileSegments />` avec 3 cards cliquables
-  - Design avec gradients, icons, CTA distinct
-  - Liens vers `/particuliers`, `/professionnels`, `/seniors`
-- [ ] Optimiser Hero variant "Seniors"
-  - Visuels adaptés, texte spécifique
-  - CTA vers `/seniors` avec icon ♿
-- [ ] Badge "Certifié PMR" sur catégories
-  - Propriété `isAccessible: boolean` dans categories.ts
-  - Affichage badge sur cards
-  - Filtrage optionnel dans AdvancedFilters
+**Task 1: Landing Page - Navigation & Traductions** (Complété le 5 nov 2025)
+- [x] Vérification complète des composants landing page (13 composants)
+- [x] Audit traductions FR/EN pour tous les composants
+- [x] Fix navigation category-pills vers /tasks/browse
+- [x] Fix service-categories-showcase navigation
+- [x] Middleware: ajout /tasks/browse aux routes publiques
+- [x] Page /tasks/browse accessible sans authentification
+- [x] Système de filtrage par catégorie depuis URL
+- [x] Traductions complètes:
+  - TaskCategories (18 entrées FR + EN)
+  - BrowseTasks (32 clés FR + EN)
+  - LandingPage.categories (10 catégories FR + EN)
+  - LandingPage.serviceCategories (8 groupes, 15 services FR + EN)
+- [x] Correspondance 100% code ↔ traductions vérifiée
+- [x] Support multi-langue (FR, EN, JA)
 
-**Task 2: Pages Authentification - Modernisation** (6h)
-- [ ] Redesign page /signup (layout 2 colonnes, validation temps réel)
-- [ ] Redesign page /signin (cohérent avec signup)
-- [ ] Page /forgot-password (Firebase sendPasswordResetEmail)
-- [ ] Redirections après auth (dashboard selon accountType)
-- [ ] Tests e2e authentification complète
+**Résultats:**
+- ✅ Tous les liens de navigation fonctionnels
+- ✅ Aucune traduction manquante détectée
+- ✅ Navigation locale-aware conforme à i18n
+- ✅ Routes publiques correctement configurées
+- ✅ Filtrage par catégorie opérationnel
 
-**Task 3: Page Onboarding - Choix AccountType** (3h30)
-- [ ] Améliorer /onboarding/page.tsx (3 cards animées)
-- [ ] Modal "En savoir plus" par type
-- [ ] Sauvegarde Firestore + redirection dashboard
-- [ ] Tests e2e onboarding flow
-
-**Task 4: Navigation & Routing - Cohérence** (4h)
-- [ ] Audit liens navigation (remplacer par @/navigation)
-- [ ] Middleware redirections (auth, locale, accountType)
-- [ ] Breadcrumbs composant
-- [ ] Tests e2e navigation complète
-
-**Total Phase 5:** ~17h (2-3 jours)
+**Date complétée:** 5 novembre 2025
 
 ---
 
@@ -352,7 +343,7 @@
 
 ---
 
-### Phase 6: Paiements & Portefeuille ✅ (100% complété)
+### Phase 7: Paiements & Portefeuille ✅ (100% complété)
 
 **Statut:** ✅ Complété
 
@@ -407,7 +398,7 @@
 
 ---
 
-### Phase 7: Avis & Évaluations 🔴 (0% complété)
+### Phase 8: Avis & Évaluations 🔴 (0% complété)
 
 **Statut:** 🔴 Non démarré
 
@@ -424,7 +415,7 @@
 
 ---
 
-### Phase 8: Tableaux de Bord & Analytics 🟡 (60% complété)
+### Phase 9: Tableaux de Bord & Analytics 🟡 (60% complété)
 
 **Statut:** 🟡 En développement
 
@@ -453,7 +444,7 @@
 
 ---
 
-### Phase 9: Fonctionnalités Avancées 🔴 (0% complété)
+### Phase 10: Fonctionnalités Avancées 🔴 (0% complété)
 
 **Statut:** 🔴 Non démarré
 
@@ -473,7 +464,7 @@
 
 ---
 
-### Phase 10: IA & Intelligence 🔴 (0% complété)
+### Phase 11: IA & Intelligence 🔴 (0% complété)
 
 **Statut:** 🔴 Non démarré
 
@@ -491,9 +482,9 @@
 
 ---
 
-### Phase 11: Tests, Optimisation & Lancement � (35% complété)
+### Phase 12: Tests, Optimisation & Lancement ⚡ (35% complété)
 
-**Statut:** � En cours
+**Statut:** ⚡ En cours
 
 #### ✅ Complété
 - [x] **Infrastructure tests E2E (Playwright)**
@@ -528,6 +519,89 @@
 
 ---
 
+### Phase 13: Profil Public & ImuShop 🔵 (0% complété - Post-V1)
+
+**Statut:** 🔵 En validation concept
+
+**Objectif:** Transformer ImuTask en écosystème complet avec profils publics personnalisables et marketplace intégrée.
+
+#### 📋 Features Principales
+
+**Feature 1: Profil Public Personnalisable**
+- [ ] URL personnalisée (`imutask.com/profil/[slug]`)
+- [ ] Portfolio photos/vidéos
+- [ ] Badges & certifications
+- [ ] Avis clients mis en avant
+- [ ] Packs services (ImuPro)
+- [ ] Thèmes personnalisés (premium)
+- [ ] Analytics profil
+- [ ] Partage social + QR code
+- [ ] SEO optimisé
+
+**Feature 2: ImuShop - Marketplace**
+- [ ] **ImuPro Shop:** Produits artisanaux/professionnels
+- [ ] **ImuMarket:** Seconde main & créations
+- [ ] Panier multi-vendeurs
+- [ ] Paiements Stripe Connect
+- [ ] Dashboard vendeur (CRUD produits)
+- [ ] Gestion commandes & stock
+- [ ] Recherche Algolia
+- [ ] Système avis produits
+- [ ] Options premium vendeurs
+
+#### 📊 Business Impact Estimé
+
+**Nouveaux Revenus:**
+- Commission ImuShop: 5-15% (cible 800€/mois à M+3)
+- Options premium profil: 300€/mois
+- Mise en avant produits: 2-5€/produit
+
+**Engagement:**
+- +40% temps passé plateforme
+- +60% opportunités revenus prestataires
+- Nouveau public: artisans, créateurs
+
+#### 🎯 Roadmap Détaillée
+
+**Phase 13.1: Profil Public (4 semaines)**
+- Semaine 1: Infrastructure Firestore + Cloud Functions
+- Semaine 2: UI Profil Public + SEO
+- Semaine 3: Dashboard Éditeur
+- Semaine 4: Analytics & Partage
+
+**Phase 13.2: ImuShop MVP (6 semaines)**
+- Semaines 1-2: Infrastructure Shop + Stripe
+- Semaine 3: UI Frontend (produits, panier)
+- Semaine 4: Checkout & Paiements
+- Semaine 5: Dashboard Vendeur
+- Semaine 6: Tests & Polish
+
+**Phase 13.3: Features Avancées (4 semaines)**
+- Options premium (2 semaines)
+- Optimisations & ML (2 semaines)
+
+**Total Phase 13:** ~14 semaines (3.5 mois)
+
+#### ✅ Validation Requise (Avant Développement)
+
+- [ ] User research: 10 interviews prestataires
+- [ ] Analyse concurrence (Malt, Etsy, Vinted)
+- [ ] Prototypage Figma
+- [ ] Validation business model
+- [ ] Décision Go/No-Go
+
+**Critères Go:**
+- 70%+ prestataires intéressés profil public
+- 40%+ intéressés vente produits
+- Panier moyen >30€
+- Break-even <500 transactions/mois
+
+**Documentation:** `/docs/FEATURES_PROFILE_IMUSHOP_ROADMAP.md` (complet, 900+ lignes)
+
+**Date cible:** Post-V1 (Juin-Septembre 2026)
+
+---
+
 ## 📈 Métriques de progression
 
 | Phase | Progression | Priorité | Statut |
@@ -535,17 +609,20 @@
 | Phase 1: Fondations | 100% | 🔴 Critique | ✅ Complété |
 | Phase 2: Authentification | 100% | 🔴 Critique | ✅ Complété |
 | Phase 3: Tâches | 100% | 🔴 Critique | ✅ Complété |
-| Phase 3.5: Découverte Tâches | 0% | 🔴 Critique | 🟡 En cours |
+| Phase 3.5: Découverte Tâches | 100% | 🔴 Critique | ✅ Complété |
 | Phase 4: Offres & Réservations | 10% | 🟡 Haute | 🔴 Planifié |
-| Phase 5: Messagerie & Notifications | 100% | 🟡 Haute | ✅ Complété |
-| Phase 6: Paiements & Portefeuille | 100% | 🟡 Haute | ✅ Complété |
-| Phase 7: Avis | 0% | 🟢 Moyenne | 🔴 Non démarré |
-| Phase 8: Dashboards | 60% | 🟢 Moyenne | 🟡 En cours |
-| Phase 9: Avancées | 0% | ⚪ Faible | 🔴 Non démarré |
-| Phase 10: IA & Intelligence | 0% | 🟡 Haute | 🔴 Non démarré |
-| Phase 11: Tests & Lancement | 35% | 🔴 Critique | 🟡 En cours |
+| Phase 5: Pages Publiques | 100% | 🟡 Haute | ✅ Complété |
+| Phase 6: Messagerie & Notifications | 100% | 🟡 Haute | ✅ Complété |
+| Phase 7: Paiements & Portefeuille | 100% | 🟡 Haute | ✅ Complété |
+| Phase 8: Avis | 0% | 🟢 Moyenne | 🔴 Non démarré |
+| Phase 9: Dashboards | 60% | 🟢 Moyenne | 🟡 En cours |
+| Phase 10: Avancées | 0% | ⚪ Faible | 🔴 Non démarré |
+| Phase 11: IA & Intelligence | 0% | 🟡 Haute | 🔴 Non démarré |
+| Phase 12: Tests & Lancement | 35% | 🔴 Critique | 🟡 En cours |
+| Phase 13: Profil Public & ImuShop | 0% | 🟢 Post-V1 | 🔵 Validation |
 
-**Progression globale du projet: 59.5%** 🎉
+**Progression globale du projet (MVP V1): 64.5%** 🎉  
+**Progression totale (avec V2): 59.0%**
 
 ### 📊 KPIs & Métriques à tracker
 

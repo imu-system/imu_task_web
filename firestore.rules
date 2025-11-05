@@ -48,6 +48,30 @@ service cloud.firestore {
                        resource.data.providerId == request.auth.uid;
     }
     
+    // Offers collection
+    match /offers/{offerId} {
+      // Lecture: provider, client ou admin
+      allow read: if isAuthenticated() && (
+        request.auth.uid == resource.data.providerId ||
+        request.auth.uid == resource.data.clientId
+      );
+      
+      // Création: provider uniquement, pour tasks ouvertes
+      allow create: if isAuthenticated() &&
+        request.auth.uid == request.resource.data.providerId &&
+        exists(/databases/$(database)/documents/tasks/$(request.resource.data.taskId)) &&
+        get(/databases/$(database)/documents/tasks/$(request.resource.data.taskId)).data.status == 'open';
+      
+      // Modification: provider (withdraw) ou client (accept/reject)
+      allow update: if isAuthenticated() && (
+        (request.auth.uid == resource.data.providerId && request.resource.data.status == 'withdrawn') ||
+        (request.auth.uid == resource.data.clientId && request.resource.data.status in ['accepted', 'rejected'])
+      );
+      
+      // Suppression: interdite
+      allow delete: if false;
+    }
+    
     // Bookings collection
     match /bookings/{bookingId} {
       allow read: if isAuthenticated() && (

@@ -195,6 +195,56 @@
                     "arrayConfig": "CONTAINS"
                 }
             ]
+        },
+        {
+            "collectionGroup": "offers",
+            "queryScope": "COLLECTION",
+            "fields": [
+                {
+                    "fieldPath": "providerId",
+                    "order": "ASCENDING"
+                },
+                {
+                    "fieldPath": "createdAt",
+                    "order": "DESCENDING"
+                }
+            ]
+        },
+        {
+            "collectionGroup": "offers",
+            "queryScope": "COLLECTION",
+            "fields": [
+                {
+                    "fieldPath": "taskId",
+                    "order": "ASCENDING"
+                },
+                {
+                    "fieldPath": "status",
+                    "order": "ASCENDING"
+                },
+                {
+                    "fieldPath": "createdAt",
+                    "order": "DESCENDING"
+                }
+            ]
+        },
+        {
+            "collectionGroup": "offers",
+            "queryScope": "COLLECTION",
+            "fields": [
+                {
+                    "fieldPath": "clientId",
+                    "order": "ASCENDING"
+                },
+                {
+                    "fieldPath": "status",
+                    "order": "ASCENDING"
+                },
+                {
+                    "fieldPath": "createdAt",
+                    "order": "DESCENDING"
+                }
+            ]
         }
     ],
     "fieldOverrides": []

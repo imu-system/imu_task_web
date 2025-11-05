@@ -431,6 +431,9 @@
         "budget": "Budget proposé",
         "createdAt": "Créée le",
         "deadline": "Date limite",
+        "client": "Client",
+        "provider": "Prestataire",
+        "you": "Vous",
         "notAuthenticated": "Vous devez être connecté pour voir les détails de cette tâche.",
         "loginLink": "Se connecter",
         "taskNotFound": "Tâche introuvable",
@@ -442,7 +445,10 @@
         "deleteConfirmTitle": "Supprimer cette tâche ?",
         "deleteConfirmDescription": "Cette action est irréversible. La tâche sera définitivement supprimée.",
         "deleteConfirmCancel": "Annuler",
-        "deleteConfirmDelete": "Supprimer"
+        "deleteConfirmDelete": "Supprimer",
+        "interestedInTask": "Intéressé par cette tâche ?",
+        "submitOfferDescription": "Faites une proposition au client",
+        "submitOffer": "Soumettre une offre"
     },
     "TaskStatusActions": {
         "statusUpdatedTitle": "Statut mis à jour",
@@ -3971,5 +3977,30 @@
                 "description": "Précisez si manipulation d'équipements volumineux"
             }
         }
+    },
+    "Offers": {
+        "submitOffer": "Soumettre une offre",
+        "submitOfferTitle": "Faire une proposition",
+        "submitOfferDescription": "Proposez vos services pour cette tâche",
+        "offerForTask": "Offre pour la tâche",
+        "proposedPrice": "Prix proposé",
+        "budgetIndicated": "Budget indiqué",
+        "message": "Votre message",
+        "messagePlaceholder": "Expliquez pourquoi vous êtes le meilleur choix pour cette tâche...",
+        "messageHint": "Présentez votre expérience, disponibilité et approche",
+        "estimatedDuration": "Durée estimée",
+        "optional": "optionnel",
+        "hours": "heures",
+        "cancel": "Annuler",
+        "submit": "Envoyer l'offre",
+        "submitting": "Envoi en cours...",
+        "offerSubmitted": "✓ Offre envoyée avec succès !",
+        "viewMyOffers": "Voir mes offres",
+        "offerAcceptedTitle": "Offre acceptée",
+        "offerAcceptedDescription": "Vous avez accepté l'offre. Les autres offres ont été automatiquement rejetées.",
+        "offerRejectedTitle": "Offre rejetée",
+        "offerRejectedDescription": "L'offre a été rejetée avec succès.",
+        "offerAcceptError": "Impossible d'accepter l'offre",
+        "offerRejectError": "Impossible de rejeter l'offre"
     }
 }

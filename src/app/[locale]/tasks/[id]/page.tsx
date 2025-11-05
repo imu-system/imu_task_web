@@ -3,16 +3,19 @@
 import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { Link } from '@/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '@/contexts/AuthContext';
 import { getTaskById, updateTask, deleteTask, updateTaskStatus, Task } from '@/lib/firestore-tasks';
+import { getOffersForTaskWithDetails, acceptOffer, rejectOffer } from '@/lib/firebase/offers';
 import { ProposalForm } from '@/components/proposals/proposal-form';
 import { ProposalList } from '@/components/proposals/proposal-list';
+import { OffersList } from '@/components/offers/OffersList';
 import { ProviderSuggestions } from '@/components/task-detail/provider-suggestions';
 import { TaskMapDisplay } from '@/components/task-detail/task-map-display';
 import { TaskImageGallery } from '@/components/task-detail/task-image-gallery';
 import { TaskStatusActions } from '@/components/task-detail/task-status-actions';
 import { TaskStatusBadge } from '@/components/task-detail/task-status-badge';
+import type { OfferWithDetails } from '@/types/offer';
 import {
   Card,
   CardContent,
@@ -25,6 +28,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { useToast } from '@/hooks/use-toast';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -54,9 +58,12 @@ export default function TaskDetailPage() {
   const params = useParams();
   const router = useRouter();
   const { user } = useAuth();
+  const locale = useLocale();
   const t = useTranslations('TaskDetail');
+  const { toast } = useToast();
 
   const [task, setTask] = useState<Task | null>(null);
+  const [offers, setOffers] = useState<OfferWithDetails[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [deleting, setDeleting] = useState(false);
@@ -89,6 +96,76 @@ export default function TaskDetailPage() {
       fetchTask();
     }
   }, [taskId, t]);
+
+  // Charger les offres (pour task owner uniquement)
+  useEffect(() => {
+    const fetchOffers = async () => {
+      if (!task || !user || task.clientId !== user.uid) return;
+
+      try {
+        const taskOffers = await getOffersForTaskWithDetails(taskId);
+        setOffers(taskOffers);
+      } catch (err: any) {
+        console.error('Error fetching offers:', err);
+      }
+    };
+
+    fetchOffers();
+  }, [task, user, taskId]);
+
+  const handleAcceptOffer = async (offerId: string) => {
+    if (!user || !task) return;
+
+    try {
+      await acceptOffer(offerId, user.uid);
+      
+      toast({
+        title: t('offerAcceptedTitle'),
+        description: t('offerAcceptedDescription'),
+      });
+
+      // Rafraîchir les offres
+      const updatedOffers = await getOffersForTaskWithDetails(taskId);
+      setOffers(updatedOffers);
+
+      // Rafraîchir la task
+      const updatedTask = await getTaskById(taskId);
+      if (updatedTask) {
+        setTask(updatedTask);
+      }
+    } catch (err: any) {
+      console.error('Error accepting offer:', err);
+      toast({
+        variant: 'destructive',
+        title: t('error'),
+        description: err.message || t('offerAcceptError'),
+      });
+    }
+  };
+
+  const handleRejectOffer = async (offerId: string) => {
+    if (!user) return;
+
+    try {
+      await rejectOffer(offerId, user.uid);
+      
+      toast({
+        title: t('offerRejectedTitle'),
+        description: t('offerRejectedDescription'),
+      });
+
+      // Rafraîchir les offres
+      const updatedOffers = await getOffersForTaskWithDetails(taskId);
+      setOffers(updatedOffers);
+    } catch (err: any) {
+      console.error('Error rejecting offer:', err);
+      toast({
+        variant: 'destructive',
+        title: t('error'),
+        description: err.message || t('offerRejectError'),
+      });
+    }
+  };
 
   const handleDelete = async () => {
     if (!task || !user) return;
@@ -358,7 +435,24 @@ export default function TaskDetailPage() {
             <TaskImageGallery images={task.images} title={task.title} />
           )}
 
-          {/* Provider proposals section */}
+          {/* Provider offer section */}
+          {task.status === 'open' && user && !isOwner && (
+            <Card>
+              <CardHeader>
+                <CardTitle>{t('interestedInTask')}</CardTitle>
+                <CardDescription>{t('submitOfferDescription')}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Button asChild className="w-full">
+                  <Link href={`/tasks/${taskId}/offer`}>
+                    {t('submitOffer')}
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Provider proposals section (legacy - keep for now) */}
           {task.status === 'open' && user && !isOwner && (
             <ProposalForm
               taskId={taskId}
@@ -379,6 +473,19 @@ export default function TaskDetailPage() {
                 // Refresh task to show updated status
                 window.location.reload();
               }}
+            />
+          )}
+
+          {/* Offers list for task owner (NEW - Feature 2: Offer Comparison) */}
+          {task.status === 'open' && user && isOwner && (
+            <OffersList
+              offers={offers}
+              taskId={taskId}
+              isTaskOwner={isOwner}
+              currentUserId={user.uid}
+              currentLocale={locale}
+              onAcceptOffer={handleAcceptOffer}
+              onRejectOffer={handleRejectOffer}
             />
           )}
         </div>
