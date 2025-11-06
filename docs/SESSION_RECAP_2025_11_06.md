@@ -1,7 +1,7 @@
 # 📝 Session Récapitulative - 6 novembre 2025
 
-**Durée totale:** ~2 heures  
-**Contexte:** Post Phase 4 Feature 2 completion + Task Creation Architecture cleanup
+**Durée totale:** ~3 heures  
+**Contexte:** Post Phase 4 Feature 2 completion + Task Creation Architecture cleanup + Homepage Tasks Display Fix
 
 ---
 
@@ -9,7 +9,10 @@
 
 1. ✅ Finaliser Phase 2 du nettoyage d'architecture (suppression stubs)
 2. ✅ Corriger l'affichage des tâches sur la page d'accueil
-3. ✅ Mettre à jour la documentation
+3. ✅ Corriger index Firestore manquants
+4. ✅ Corriger spinner infini dashboard tasks
+5. ✅ Corriger erreur redirect() server/client
+6. ✅ Mettre à jour la documentation
 
 ---
 

@@ -127,11 +127,11 @@ export default function Home() {
         {/* Category Pills Section - Horizontal Scroll */}
         <CategoryPills />
 
+        {/* Tasks Grid Section - AFFICHAGE IMMÉDIAT style Airbnb */}
+        <TasksGrid maxTasks={12} showViewAll={true} filterByStatus="open" />
+
         {/* Service Categories Showcase - 8 MVP Categories with 15 Services */}
         <ServiceCategoriesShowcase />
-
-        {/* Tasks Grid Section - Recent/Popular Tasks */}
-        <TasksGrid maxTasks={8} showViewAll={true} filterByStatus="open" />
 
         <motion.section 
           initial={{ opacity: 0 }}
