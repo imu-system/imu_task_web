@@ -8,10 +8,14 @@ import {
     doc,
     updateDoc,
     serverTimestamp,
-    Timestamp
+    Timestamp,
+    QueryDocumentSnapshot,
+    DocumentData
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import type { Offer, CreateOfferInput, OfferWithDetails } from '@/types/offer';
+import { createBooking } from '@/lib/firestore-bookings';
+import { notifyOfferAccepted, notifyOfferRejected, notifyNewOffer } from '@/lib/firestore-notifications';
 
 const OFFERS_COLLECTION = 'offers';
 
@@ -66,8 +70,24 @@ export async function createOffer(
 
     const docRef = await addDoc(collection(db, OFFERS_COLLECTION), offerData);
 
-    // 5. TODO: Créer notification pour le client
-    // await createNotification(task.createdBy, 'new_offer', { offerId: docRef.id });
+    // 5. Notifier le client de la nouvelle offre
+    const providerRef = doc(db, 'users', providerId);
+    const providerSnap = await getDoc(providerRef);
+    const providerName = providerSnap.exists() 
+        ? providerSnap.data()?.displayName || 'Un prestataire'
+        : 'Un prestataire';
+
+    try {
+        await notifyNewOffer(
+            task.createdBy,
+            task.title,
+            providerName,
+            docRef.id,
+            input.taskId
+        );
+    } catch (err) {
+        console.error('Failed to send new offer notification:', err);
+    }
 
     return docRef.id;
 }
@@ -86,9 +106,9 @@ export async function getProviderOffersForTask(
     );
 
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
+    return snapshot.docs.map((docSnap: QueryDocumentSnapshot<DocumentData>) => ({
+        id: docSnap.id,
+        ...docSnap.data(),
     })) as Offer[];
 }
 
@@ -102,9 +122,9 @@ export async function getOffersForTask(taskId: string): Promise<Offer[]> {
     );
 
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
+    return snapshot.docs.map((docSnap: QueryDocumentSnapshot<DocumentData>) => ({
+        id: docSnap.id,
+        ...docSnap.data(),
     })) as Offer[];
 }
 
@@ -118,9 +138,9 @@ export async function getProviderOffers(providerId: string): Promise<Offer[]> {
     );
 
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
+    return snapshot.docs.map((docSnap: QueryDocumentSnapshot<DocumentData>) => ({
+        id: docSnap.id,
+        ...docSnap.data(),
     })) as Offer[];
 }
 
@@ -198,9 +218,11 @@ export async function getOffersForTaskWithDetails(taskId: string): Promise<Offer
  * Accepter une offre (client uniquement)
  * - Met à jour le statut de l'offre
  * - Rejette automatiquement les autres offres
- * - TODO: Créer le booking automatiquement
+ * - Crée le booking automatiquement
+ * - Met à jour le statut de la task à 'assigned'
+ * - Envoie les notifications
  */
-export async function acceptOffer(offerId: string, clientId: string): Promise<void> {
+export async function acceptOffer(offerId: string, clientId: string): Promise<string> {
     const offerRef = doc(db, OFFERS_COLLECTION, offerId);
     const offerSnap = await getDoc(offerRef);
 
@@ -218,32 +240,82 @@ export async function acceptOffer(offerId: string, clientId: string): Promise<vo
         throw new Error('Can only accept pending offers');
     }
 
-    // Accepter l'offre
+    // 1. Récupérer les données de la task
+    const taskRef = doc(db, 'tasks', offer.taskId);
+    const taskSnap = await getDoc(taskRef);
+    
+    if (!taskSnap.exists()) {
+        throw new Error('Task not found');
+    }
+    
+    const task = taskSnap.data();
+
+    // 2. Accepter l'offre
     await updateDoc(offerRef, {
         status: 'accepted',
         acceptedAt: serverTimestamp(),
         updatedAt: serverTimestamp(),
     });
 
-    // Rejeter automatiquement les autres offres pour cette task
+    // 3. Créer le booking automatiquement
+    const bookingId = await createBooking({
+        taskId: offer.taskId,
+        clientId: offer.clientId,
+        providerId: offer.providerId,
+        proposalId: offerId, // Utiliser offerId comme proposalId
+        amount: offer.proposedPrice,
+        notes: offer.message,
+    });
+
+    // 4. Mettre à jour le statut de la task à 'assigned'
+    await updateDoc(taskRef, {
+        status: 'assigned',
+        providerId: offer.providerId,
+        updatedAt: serverTimestamp(),
+    });
+
+    // 5. Rejeter automatiquement les autres offres pour cette task
     const otherOffers = await getOffersForTask(offer.taskId);
     const rejectPromises = otherOffers
         .filter(o => o.id !== offerId && o.status === 'pending')
-        .map(o => {
+        .map(async (o) => {
             const otherOfferRef = doc(db, OFFERS_COLLECTION, o.id);
-            return updateDoc(otherOfferRef, {
+            await updateDoc(otherOfferRef, {
                 status: 'rejected',
                 rejectedAt: serverTimestamp(),
                 rejectionReason: 'Another offer was accepted',
                 updatedAt: serverTimestamp(),
             });
+
+            // Notifier les providers rejetés
+            try {
+                await notifyOfferRejected(
+                    o.providerId,
+                    task.title,
+                    o.id,
+                    offer.taskId,
+                    'Another offer was accepted'
+                );
+            } catch (err) {
+                console.error('Failed to send rejection notification:', err);
+            }
         });
 
     await Promise.all(rejectPromises);
 
-    // TODO: Créer le booking automatiquement
-    // TODO: Créer notification pour le provider
-    // TODO: Update task status to 'assigned'
+    // 6. Notifier le provider que son offre a été acceptée
+    try {
+        await notifyOfferAccepted(
+            offer.providerId,
+            task.title,
+            offerId,
+            offer.taskId
+        );
+    } catch (err) {
+        console.error('Failed to send acceptance notification:', err);
+    }
+
+    return bookingId;
 }
 
 /**
@@ -278,5 +350,24 @@ export async function rejectOffer(
         updatedAt: serverTimestamp(),
     });
 
-    // TODO: Créer notification pour le provider
+    // Récupérer les infos de la task pour la notification
+    const taskRef = doc(db, 'tasks', offer.taskId);
+    const taskSnap = await getDoc(taskRef);
+    
+    if (taskSnap.exists()) {
+        const task = taskSnap.data();
+        
+        // Notifier le provider
+        try {
+            await notifyOfferRejected(
+                offer.providerId,
+                task.title,
+                offerId,
+                offer.taskId,
+                reason
+            );
+        } catch (err) {
+            console.error('Failed to send rejection notification:', err);
+        }
+    }
 }

@@ -30,6 +30,7 @@ import {
 import { db } from './firebase';
 import type { Booking } from './types';
 import { notifyBookingConfirmed, notifyBookingCancelled } from './firestore-notifications';
+import { calculateCancellationFees, DEFAULT_CANCELLATION_POLICY, type CancellationCalculation } from './cancellation-policies';
 
 const COLLECTION_NAME = 'bookings';
 
@@ -329,17 +330,83 @@ export async function updateBookingNotes(
 }
 
 /**
- * Cancel a booking
+ * Cancel a booking with refund calculation
  */
 export async function cancelBooking(
     bookingId: string,
-    reason: string
-): Promise<void> {
+    reason: string,
+    cancelledBy: 'client' | 'provider',
+    userId: string
+): Promise<CancellationCalculation> {
     try {
-        await updateBookingStatus(bookingId, 'cancelled', { cancellationReason: reason });
+        // Récupérer le booking
+        const booking = await getBooking(bookingId);
+        if (!booking) {
+            throw new Error('Booking not found');
+        }
+
+        // Vérifier que l'utilisateur a le droit d'annuler
+        if (cancelledBy === 'client' && booking.clientId !== userId) {
+            throw new Error('Only the client can cancel on behalf of client');
+        }
+        if (cancelledBy === 'provider' && booking.providerId !== userId) {
+            throw new Error('Only the provider can cancel on behalf of provider');
+        }
+
+        // Vérifier que le booking peut être annulé
+        if (!['pending', 'confirmed'].includes(booking.status)) {
+            throw new Error(`Cannot cancel booking with status: ${booking.status}`);
+        }
+
+        // Vérifier qu'il y a une date schedulée
+        if (!booking.scheduledDate) {
+            throw new Error('Booking has no scheduled date');
+        }
+
+        // Calculer les frais d'annulation
+        const cancellationCalc = calculateCancellationFees(
+            booking.amount,
+            booking.scheduledDate,
+            cancelledBy,
+            DEFAULT_CANCELLATION_POLICY
+        );
+
+        if (!cancellationCalc.canCancel) {
+            throw new Error(cancellationCalc.reason);
+        }
+
+        // Mettre à jour le booking avec les infos d'annulation
+        const docRef = doc(db, COLLECTION_NAME, bookingId);
+        await updateDoc(docRef, {
+            status: 'cancelled',
+            cancellationReason: reason,
+            cancelledAt: serverTimestamp(),
+            cancelledBy,
+            refundAmount: cancellationCalc.refundAmount,
+            refundPercent: cancellationCalc.refundPercent,
+            providerPenalty: cancellationCalc.providerPenalty,
+            platformFee: cancellationCalc.platformFee,
+            updatedAt: serverTimestamp(),
+        });
+
+        // Envoyer notification d'annulation (au client et au provider)
+        const recipientId = cancelledBy === 'client' ? booking.providerId : booking.clientId;
+        await notifyBookingCancelled(
+            recipientId,
+            bookingId,
+            `Booking #${bookingId}`,
+            reason
+        );
+
+        // TODO: Déclencher le remboursement via Stripe
+        // if (cancellationCalc.refundAmount > 0) {
+        //   await processRefund(booking.paymentIntentId, cancellationCalc.refundAmount);
+        // }
+
+        return cancellationCalc;
     } catch (error) {
         console.error('Error cancelling booking:', error);
-        throw new Error('Failed to cancel booking');
+        throw error;
     }
 }
 

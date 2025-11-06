@@ -216,5 +216,36 @@ service cloud.firestore {
       allow delete: if isAuthenticated() && 
                        resource.data.senderId == request.auth.uid;
     }
+    
+    // Availabilities collection
+    match /availabilities/{availabilityId} {
+      // Read: authenticated users can see all availabilities
+      allow read: if isAuthenticated();
+      
+      // Create: only the provider can create their own availabilities
+      allow create: if isAuthenticated() && 
+                       request.resource.data.providerId == request.auth.uid;
+      
+      // Update: only the provider can update their own availabilities
+      allow update: if isAuthenticated() && 
+                       resource.data.providerId == request.auth.uid;
+      
+      // Delete: only the provider can delete their own availabilities
+      allow delete: if isAuthenticated() && 
+                       resource.data.providerId == request.auth.uid;
+    }
+    
+    // Availability Settings collection
+    match /availability_settings/{providerId} {
+      // Read: authenticated users can see settings
+      allow read: if isAuthenticated();
+      
+      // Create/Update: only the provider can manage their settings
+      allow create, update: if isAuthenticated() && 
+                               isOwner(providerId);
+      
+      // Delete: not allowed
+      allow delete: if false;
+    }
   }
 }

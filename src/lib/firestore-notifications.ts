@@ -16,6 +16,8 @@ import {
     getDocs,
     writeBatch,
     limit,
+    QueryDocumentSnapshot,
+    DocumentData
 } from 'firebase/firestore';
 import { db } from './firebase';
 import {
@@ -138,7 +140,7 @@ export async function markAllNotificationsAsRead(userId: string): Promise<void> 
     const snapshot = await getDocs(q);
     const batch = writeBatch(db);
 
-    snapshot.docs.forEach((docSnapshot) => {
+    snapshot.docs.forEach((docSnapshot: QueryDocumentSnapshot<DocumentData>) => {
         batch.update(docSnapshot.ref, {
             read: true,
             readAt: Timestamp.now(),
@@ -173,7 +175,7 @@ export async function clearAllNotifications(userId: string): Promise<void> {
     const snapshot = await getDocs(q);
     const batch = writeBatch(db);
 
-    snapshot.docs.forEach((docSnapshot) => {
+    snapshot.docs.forEach((docSnapshot: QueryDocumentSnapshot<DocumentData>) => {
         batch.update(docSnapshot.ref, { deleted: true });
     });
 
@@ -391,6 +393,86 @@ export async function notifyBookingReminder(
 }
 
 /**
+ * Notify provider when booking needs confirmation
+ */
+export async function notifyProviderConfirmationRequired(
+    providerId: string,
+    bookingId: string,
+    taskTitle: string,
+    clientName: string
+): Promise<void> {
+    await createNotification({
+        userId: providerId,
+        type: NotificationType.BOOKING_REMINDER,
+        category: NotificationCategory.BOOKINGS,
+        priority: NotificationPriority.HIGH,
+        title: 'New Booking - Confirmation Required',
+        body: `${clientName} accepted your offer for "${taskTitle}". Please confirm within 24 hours.`,
+        data: {
+            bookingId,
+            taskTitle,
+            clientName,
+        },
+        actionUrl: `/bookings/${bookingId}`,
+        icon: 'clock-alert',
+        expiresInDays: 2,
+    });
+}
+
+/**
+ * Notify when booking is declined by provider
+ */
+export async function notifyBookingDeclined(
+    bookingId: string,
+    clientId: string,
+    providerId: string,
+    reason: string
+): Promise<void> {
+    // Notify client
+    await createNotification({
+        userId: clientId,
+        type: NotificationType.BOOKING_CANCELLED,
+        category: NotificationCategory.BOOKINGS,
+        priority: NotificationPriority.HIGH,
+        title: 'Booking Declined',
+        body: `The provider declined your booking. Reason: ${reason}. You will receive a full refund.`,
+        data: {
+            bookingId,
+            reason,
+        },
+        actionUrl: `/bookings/${bookingId}`,
+        icon: 'x-circle',
+    });
+}
+
+/**
+ * Notify provider confirmation reminder (12h before deadline)
+ */
+export async function notifyProviderConfirmationReminder(
+    providerId: string,
+    bookingId: string,
+    taskTitle: string,
+    hoursRemaining: number
+): Promise<void> {
+    await createNotification({
+        userId: providerId,
+        type: NotificationType.BOOKING_REMINDER,
+        category: NotificationCategory.BOOKINGS,
+        priority: NotificationPriority.HIGH,
+        title: 'Urgent: Booking Confirmation Needed',
+        body: `Only ${hoursRemaining} hours left to confirm booking for "${taskTitle}". Auto-cancel with penalty if not confirmed.`,
+        data: {
+            bookingId,
+            taskTitle,
+            hoursRemaining,
+        },
+        actionUrl: `/bookings/${bookingId}`,
+        icon: 'alert-triangle',
+        expiresInDays: 1,
+    });
+}
+
+/**
  * Notify user of a new task creation (for providers)
  */
 export async function notifyNewTask(
@@ -520,5 +602,85 @@ export async function notifySystemAnnouncement(
         actionUrl,
         icon: 'megaphone',
         expiresInDays: 7,
+    });
+}
+
+/**
+ * Notify provider that their offer was accepted
+ */
+export async function notifyOfferAccepted(
+    providerId: string,
+    taskTitle: string,
+    offerId: string,
+    taskId: string
+): Promise<void> {
+    await createNotification({
+        userId: providerId,
+        type: NotificationType.PROPOSAL_ACCEPTED,
+        category: NotificationCategory.BOOKINGS,
+        priority: NotificationPriority.HIGH,
+        title: 'Offre acceptée ! 🎉',
+        body: `Votre offre pour "${taskTitle}" a été acceptée. Une réservation a été créée.`,
+        data: {
+            offerId,
+            taskId,
+        },
+        actionUrl: `/dashboard/bookings`,
+        icon: 'check-circle',
+    });
+}
+
+/**
+ * Notify provider that their offer was rejected
+ */
+export async function notifyOfferRejected(
+    providerId: string,
+    taskTitle: string,
+    offerId: string,
+    taskId: string,
+    reason?: string
+): Promise<void> {
+    await createNotification({
+        userId: providerId,
+        type: NotificationType.PROPOSAL_REJECTED,
+        category: NotificationCategory.BOOKINGS,
+        priority: NotificationPriority.NORMAL,
+        title: 'Offre non retenue',
+        body: reason 
+            ? `Votre offre pour "${taskTitle}" n'a pas été retenue. Raison: ${reason}`
+            : `Votre offre pour "${taskTitle}" n'a pas été retenue.`,
+        data: {
+            offerId,
+            taskId,
+        },
+        actionUrl: `/tasks/${taskId}`,
+        icon: 'x-circle',
+        expiresInDays: 3,
+    });
+}
+
+/**
+ * Notify client of new offer on their task
+ */
+export async function notifyNewOffer(
+    clientId: string,
+    taskTitle: string,
+    providerName: string,
+    offerId: string,
+    taskId: string
+): Promise<void> {
+    await createNotification({
+        userId: clientId,
+        type: NotificationType.NEW_PROPOSAL,
+        category: NotificationCategory.TASKS,
+        priority: NotificationPriority.HIGH,
+        title: 'Nouvelle offre reçue',
+        body: `${providerName} a soumis une offre pour "${taskTitle}"`,
+        data: {
+            offerId,
+            taskId,
+        },
+        actionUrl: `/tasks/${taskId}/offers`,
+        icon: 'hand-raised',
     });
 }
