@@ -19,7 +19,7 @@ interface TasksGridProps {
 export function TasksGrid({ 
   maxTasks = 8, 
   showViewAll = true,
-  filterByStatus = 'pending'
+  filterByStatus = 'open'
 }: TasksGridProps) {
   const t = useTranslations('LandingPage.tasksGrid');
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -32,6 +32,8 @@ export function TasksGrid({
         setLoading(true);
         setError(null);
 
+        console.log('🔍 [TasksGrid] Fetching tasks with status:', filterByStatus);
+
         // Query tasks from Firestore
         const tasksRef = collection(db, 'tasks');
         const tasksQuery = query(
@@ -41,6 +43,7 @@ export function TasksGrid({
           limit(maxTasks)
         );
 
+        console.log('📊 [TasksGrid] Executing Firestore query...');
         const querySnapshot = await getDocs(tasksQuery);
         const tasksData: Task[] = [];
 
@@ -51,9 +54,10 @@ export function TasksGrid({
           } as Task);
         });
 
+        console.log(`✅ [TasksGrid] Found ${tasksData.length} tasks:`, tasksData);
         setTasks(tasksData);
       } catch (err) {
-        console.error('Error fetching tasks:', err);
+        console.error('❌ [TasksGrid] Error fetching tasks:', err);
         setError('Erreur lors du chargement des tâches');
       } finally {
         setLoading(false);

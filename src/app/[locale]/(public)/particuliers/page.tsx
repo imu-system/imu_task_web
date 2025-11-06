@@ -130,7 +130,7 @@ export default function ParticuliersPage() {
       </section>
 
       {/* Recent Tasks */}
-      <TasksGrid maxTasks={6} showViewAll={true} filterByStatus="pending" />
+      <TasksGrid maxTasks={6} showViewAll={true} filterByStatus="open" />
 
       {/* How It Works */}
       <HowItWorks />

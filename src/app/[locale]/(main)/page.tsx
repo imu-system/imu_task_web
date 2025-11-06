@@ -131,7 +131,7 @@ export default function Home() {
         <ServiceCategoriesShowcase />
 
         {/* Tasks Grid Section - Recent/Popular Tasks */}
-        <TasksGrid maxTasks={8} showViewAll={true} filterByStatus="pending" />
+        <TasksGrid maxTasks={8} showViewAll={true} filterByStatus="open" />
 
         <motion.section 
           initial={{ opacity: 0 }}

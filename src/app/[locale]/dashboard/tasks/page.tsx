@@ -4,8 +4,8 @@
 import TaskCard from '@/components/task-card';
 import { Button } from '@/components/ui/button';
 import { db } from '@/lib/firebase';
-import { Address, ServiceCategory, Task } from '@/lib/types';
-import { collection, onSnapshot, query, where, doc, getDoc, Timestamp } from 'firebase/firestore';
+import { Task } from '@/lib/types';
+import { collection, onSnapshot, query, where, Timestamp } from 'firebase/firestore';
 import { PlusCircle, Loader2, LayoutGrid, List, Navigation } from 'lucide-react';
 import { Link, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
@@ -24,20 +24,6 @@ import { ServiceCategory as ServiceCategoryEnum } from '@/types/services';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { getCurrentPosition, sortTasksByDistance } from '@/lib/geolocation';
 import { Badge } from '@/components/ui/badge';
-
-/**
- * Helper function to extract localized text from string or Record<string, string>
- * @param text - The text field (can be string or Record<string, string>)
- * @param locale - Preferred locale (default: 'fr')
- * @returns Localized string
- */
-function getLocalizedText(text: string | Record<string, string>, locale: string = 'fr'): string {
-    if (typeof text === 'string') {
-        return text;
-    }
-    // If it's a Record, try to get the locale, fallback to 'fr', then first available value
-    return text[locale] || text.fr || text.en || Object.values(text)[0] || '';
-}
 
 export default function DashboardTasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -72,12 +58,15 @@ export default function DashboardTasksPage() {
       return;
     }
     
+    console.log('🔍 [DashboardTasks] Fetching tasks for user:', user.uid);
     setLoading(true);
     const q = query(collection(db, 'tasks'), where('clientId', '==', user.uid));
     
     const unsubscribe = onSnapshot(q, async (querySnapshot) => {
+        console.log(`📊 [DashboardTasks] Found ${querySnapshot.size} tasks`);
         const tasksData: Task[] = [];
         for (const taskDoc of querySnapshot.docs) {
+            console.log('📝 [DashboardTasks] Processing task:', taskDoc.id, taskDoc.data());
             const taskData = { id: taskDoc.id, ...taskDoc.data() } as Task;
             
             if (taskData.timeWindowStart instanceof Timestamp) {
@@ -87,30 +76,19 @@ export default function DashboardTasksPage() {
                 taskData.timeWindowEnd = taskData.timeWindowEnd.toDate();
             }
 
-            if (taskData.categoryId) {
-                const categoryRef = doc(db, 'serviceCategories', taskData.categoryId);
-                const categorySnap = await getDoc(categoryRef);
-                if (categorySnap.exists()) {
-                    const categoryData = categorySnap.data() as ServiceCategory;
-                    taskData.category = getLocalizedText(categoryData.name, 'fr'); // Store localized category name
-                }
-            }
-            if (taskData.id) {
-                const addressRef = doc(db, 'addresses', taskData.id);
-                const addressSnap = await getDoc(addressRef);
-                if (addressSnap.exists()) {
-                    taskData.adresse = addressSnap.data() as Address;
-                }
-            }
-             // Skip client data fetching - Task type doesn't include client property
-             // Client info can be fetched separately if needed in TaskCard component
+            // Category is already stored directly in the task document
+            // No need to fetch from serviceCategories collection
+            
+            // Address/location is already stored in the task document
+            // No need to fetch from separate addresses collection
 
             tasksData.push(taskData);
         }
+        console.log('✅ [DashboardTasks] Final tasks array:', tasksData);
         setTasks(tasksData);
         setLoading(false);
     }, (error) => {
-        console.error("Error fetching tasks: ", error);
+        console.error("❌ [DashboardTasks] Error fetching tasks:", error);
         setLoading(false);
     });
 

@@ -1,7 +1,7 @@
 # Architecture de Création des Tâches - Analyse Complète
 
-**Date:** 5 novembre 2025  
-**Version:** 1.0.0  
+**Date:** 5 novembre 2025 (Mise à jour: 6 novembre 2025)  
+**Version:** 1.1.0  
 **Auteur:** Analyse système ImuTask
 
 ---
@@ -14,6 +14,10 @@ L'application ImuTask possède **DEUX systèmes de création de tâches parallè
 2. **Page Dédiée** (⚠️ Incomplète - À finaliser ou supprimer)
 
 **Problème identifié:** Incohérence architecturale avec duplication de code et routes incomplètes.
+
+**✅ Phase 1 & 2 COMPLÉTÉES** (6 novembre 2025):
+- Phase 1: Correction de 16 liens cassés ✅
+- Phase 2: Suppression des stubs et nettoyage cache ✅
 
 ---
 
@@ -243,6 +247,41 @@ const formSchema = useMemo(
 
 **Impact:** Modal moins flexible pour localisation précise  
 **Fix:** Intégrer MapPicker dans modal OU rediriger vers page
+
+---
+
+## ✅ Actions Complétées (6 novembre 2025)
+
+### Phase 1: Correction des Liens Cassés ✅
+
+**Problème:** 16 liens à travers 14 fichiers pointaient vers des routes stub/vides (`/tasks/new`, `/dashboard/tasks/new`)
+
+**Solution:** Tous les liens mis à jour pour pointer vers `/dashboard/tasks/create`
+
+**Fichiers corrigés:**
+1. `src/app/[locale]/dashboard/tasks/page.tsx` (ligne 174)
+2. `src/components/new-task-form.tsx` (ligne 213)
+3. `src/components/command-menu.tsx` (ligne 48)
+4. `src/components/dashboard-header.tsx` (lignes 219, 263, 299)
+5. `src/components/dashboards/client-dashboard.tsx` (lignes 301, 399)
+6. `src/components/landing/how-it-works.tsx` (ligne 99)
+7. `src/components/landing/hero.tsx` (ligne 38)
+8. `src/app/[locale]/(public)/particuliers/page.tsx` (lignes 90, 173)
+9. `src/app/[locale]/dashboard/templates/page.tsx` (ligne 103)
+10. `src/lib/locales.ts` (ligne 62)
+
+**Vérification:** `grep -r` confirme 0 références aux anciennes routes ✅
+
+### Phase 2: Nettoyage des Stubs ✅
+
+**Actions:**
+- ❌ Supprimé: `src/app/[locale]/tasks/new/page.tsx` (4 lignes)
+- ❌ Supprimé: `src/app/[locale]/dashboard/tasks/new/page.tsx` (9 lignes)
+- ❌ Supprimé: Dossiers vides `tasks/new/` et `dashboard/tasks/new/`
+- 🧹 Nettoyé: Cache `.next/` pour régénérer les types
+
+**Build:** ✅ Réussi (103s avec warnings préexistants)  
+**TypeCheck:** ✅ Aucune nouvelle erreur
 
 ---
 
