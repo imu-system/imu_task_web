@@ -788,7 +788,18 @@
         "title": "Booking Details",
         "notFound": "Booking not found.",
         "backToList": "Back to bookings list",
+        "backToBookings": "Back to bookings",
         "viewProfile": "View profile",
+        "reviewPrompt": {
+            "title": "This mission is completed! Share your experience.",
+            "button": "Leave a review"
+        },
+        "errors": {
+            "notAuthenticated": "You must be logged in to view this booking.",
+            "notFound": "Booking not found.",
+            "unauthorized": "You don't have access to this booking.",
+            "fetchError": "Error loading booking."
+        },
         "cards": {
             "summary": {
                 "title": "Mission Summary",
@@ -836,6 +847,35 @@
                     "confirm": "Confirm Cancellation"
                 }
             }
+        }
+    },
+    "LeaveReviewPage": {
+        "title": "Leave a review",
+        "backToBooking": "Back to booking",
+        "subtitle": {
+            "clientToProvider": "Share your experience with the provider",
+            "providerToClient": "Share your experience with the client"
+        },
+        "bookingInfo": {
+            "title": "Related mission",
+            "taskTitle": "Mission",
+            "amount": "Amount",
+            "unknownTask": "Unknown task"
+        },
+        "form": {
+            "title": "Your review",
+            "description": "Your review helps the ImuTask community make better choices."
+        },
+        "alreadyReviewed": {
+            "title": "You've already left a review",
+            "description": "You can only leave one review per booking."
+        },
+        "errors": {
+            "notAuthenticated": "You must be logged in to leave a review.",
+            "bookingNotFound": "Booking not found.",
+            "unauthorized": "You don't have access to this booking.",
+            "notCompleted": "You can only review completed missions.",
+            "fetchError": "Error loading data."
         }
     },
     "MessagesPage": {
@@ -4130,6 +4170,107 @@
             "save": "Save",
             "successMessage": "Settings saved",
             "errorMessage": "Error saving settings"
+        }
+    },
+    "Reviews": {
+        "form": {
+            "rating": {
+                "label": "Overall Rating",
+                "description": "How would you rate your experience?"
+            },
+            "detailedRatings": {
+                "title": "Detailed Ratings (Optional)",
+                "description": "Help us better understand your experience",
+                "communication": "Communication",
+                "quality": "Quality of Work",
+                "professionalism": "Professionalism",
+                "timeliness": "Timeliness",
+                "valueForMoney": "Value for Money"
+            },
+            "comment": {
+                "label": "Your Review",
+                "placeholder": "Share your experience in detail...",
+                "description": "Minimum 20 characters"
+            },
+            "photos": {
+                "label": "Add Photos (Optional)",
+                "description": "Maximum 5 photos, 5MB each",
+                "upload": "Upload Photos",
+                "remove": "Remove"
+            },
+            "submit": "Submit Review",
+            "cancel": "Cancel",
+            "success": {
+                "title": "Review Submitted",
+                "description": "Thank you for your feedback!"
+            },
+            "error": {
+                "title": "Error",
+                "description": "Failed to submit review. Please try again."
+            }
+        },
+        "card": {
+            "verified": "Verified",
+            "helpful": "Helpful",
+            "helpfulCount": "{count} found this helpful",
+            "report": "Report",
+            "respond": "Respond",
+            "response": "Provider's Response",
+            "respondedOn": "Responded on {date}",
+            "noComment": "No comment provided"
+        },
+        "stats": {
+            "title": "Rating Overview",
+            "averageRating": "Average Rating",
+            "totalReviews": "{count} reviews",
+            "distribution": "Rating Distribution",
+            "basedOn": "Based on {count} reviews"
+        },
+        "filters": {
+            "all": "All Reviews",
+            "verified": "Verified Only",
+            "withPhotos": "With Photos",
+            "withResponse": "With Response",
+            "sortBy": "Sort By",
+            "recent": "Most Recent",
+            "highest": "Highest Rating",
+            "lowest": "Lowest Rating",
+            "helpful": "Most Helpful"
+        },
+        "badges": {
+            "top_rated": "Top Rated",
+            "excellent_service": "Excellent Service",
+            "responsive": "Responsive",
+            "verified_pro": "Verified Pro",
+            "rising_star": "Rising Star",
+            "reliable": "Reliable",
+            "great_communicator": "Great Communicator",
+            "punctual": "Punctual",
+            "value_champion": "Value Champion"
+        },
+        "empty": {
+            "title": "No Reviews Yet",
+            "description": "Be the first to leave a review!"
+        },
+        "respond": {
+            "trigger": "Respond",
+            "title": "Respond to Review",
+            "description": "Your response will be public and visible to everyone.",
+            "descriptionWithName": "Respond to {name}'s review. Your response will be public.",
+            "responseLabel": "Your Response",
+            "responsePlaceholder": "Thank you for your feedback...",
+            "responseDescription": "Minimum 10 characters",
+            "preview": "Preview",
+            "submit": "Submit Response",
+            "cancel": "Cancel",
+            "success": {
+                "title": "Response Posted",
+                "description": "Your response has been published successfully."
+            },
+            "error": {
+                "title": "Error",
+                "description": "Failed to post response. Please try again."
+            }
         }
     }
 }

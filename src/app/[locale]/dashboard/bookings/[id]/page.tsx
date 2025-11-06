@@ -1,8 +1,37 @@
+/**
+ * Booking Detail Page
+ * 
+ * Affiche les détails complets d'une réservation avec:
+ * - Informations client/provider
+ * - Timeline des événements
+ * - Actions disponibles selon le statut
+ * - Bouton "Laisser un avis" si complété
+ */
 
-import { redirect } from '@/navigation';
+import { Suspense } from 'react';
+import { getTranslations } from 'next-intl/server';
+import BookingDetailPageClient from './booking-detail-client';
+import { Loader2 } from 'lucide-react';
 
-export default function BookingDetailPage({ params }: { params: { id: string } }) {
-  // Redirect to the list view with the booking ID as a query param
-  // The list view will handle opening the sheet.
-  redirect(`/dashboard/bookings?bookingId=${params.id}`);
+type PageProps = {
+  params: Promise<{ id: string; locale: string }>;
+};
+
+export default async function BookingDetailPage({ params }: PageProps) {
+  const { id } = await params;
+  const t = await getTranslations('BookingDetailPage');
+
+  return (
+    <div className="container max-w-7xl mx-auto py-8">
+      <Suspense
+        fallback={
+          <div className="flex justify-center items-center h-96">
+            <Loader2 className="h-16 w-16 animate-spin text-primary" />
+          </div>
+        }
+      >
+        <BookingDetailPageClient bookingId={id} />
+      </Suspense>
+    </div>
+  );
 }

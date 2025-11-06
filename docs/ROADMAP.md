@@ -508,20 +508,242 @@
 
 ---
 
-### Phase 8: Avis & Évaluations 🔴 (0% complété)
+### Phase 8: Avis & Évaluations � (45% complété)
 
-**Statut:** 🔴 Non démarré
+**Statut:** � En cours (Infrastructure 45% complétée)
 
-#### 📋 À faire
-- [ ] Système d'évaluation 5 étoiles
-- [ ] Rédaction d'avis clients
-- [ ] Réponses aux avis par prestataires
-- [ ] Affichage des notes moyennes
-- [ ] Filtrage et tri par évaluations
-- [ ] Signalement d'avis inappropriés
-- [ ] Badges de qualité pour prestataires
+**Note:** Infrastructure backend complète (523 lignes) + types + pages basiques existent. Focus sur composants UI, intégration booking, tests et traductions.
 
-**Date cible:** 15 février 2026
+#### ✅ Infrastructure existante (45%)
+- [x] **Backend Firestore (firestore-reviews.ts - 523 lignes)**
+  - [x] createReview(), updateReview(), respondToReview()
+  - [x] getUserReviews(), getReviewStats(), getReviewSummary()
+  - [x] updateReviewStats(), calculateBadges() (9 badges qualité)
+  - [x] reportReview(), hasUserReviewed(), canUserReview()
+- [x] **Types TypeScript (reviews.ts - 201 lignes)**
+  - [x] Review interface (ratings détaillés, photos, modération)
+  - [x] ReviewStats (distribution, averages, badges)
+  - [x] QualityBadgeType (9 types: top_rated, excellent_service, etc.)
+  - [x] Input/Output types complets
+- [x] **Pages UI basiques**
+  - [x] `/dashboard/reviews` (received/given tabs)
+  - [x] `/dashboard/admin/reviews` + détails
+  - [x] Affichage sur profils publics `/pro/[userId]`
+- [x] **Firestore Rules basiques**
+  - [x] Collection `reviews` (read auth, create owner)
+- [x] **Traductions partielles** (EN/FR/JA - fragmentées)
+
+#### 📋 À faire (55% restant)
+
+**Task 8.1: Composants UI Réutilisables** (Priorité: 🔴 Critique, 4-5h)
+- [ ] 🎯 ReviewForm component (création + édition)
+  - [ ] Note 1-5 étoiles interactive
+  - [ ] Ratings détaillés (communication, qualité, professionnalisme, ponctualité, rapport qualité-prix)
+  - [ ] Textarea commentaire (min 20 caractères)
+  - [ ] Upload photos (max 5, Storage)
+  - [ ] Validation Zod complète
+  - [ ] Submit avec loading states
+- [ ] 🎯 ReviewCard component (affichage avis)
+  - [ ] Avatar + nom + date
+  - [ ] Stars + ratings détaillés
+  - [ ] Commentaire + photos gallery
+  - [ ] Bouton "Utile" (helpful votes)
+  - [ ] Badge "Vérifié" si verified: true
+  - [ ] Réponse provider (si existe)
+- [ ] 🎯 ReviewsList component (liste avec filtres)
+  - [ ] Filtres: rating, verified, hasResponse, hasPhotos
+  - [ ] Tri: recent, highest, lowest, helpful
+  - [ ] Pagination (10 par page)
+  - [ ] Empty state
+- [ ] 🎯 ReviewStatsCard component (statistiques)
+  - [ ] Note moyenne (large display)
+  - [ ] Distribution 1-5 étoiles (BarChart)
+  - [ ] Total avis
+  - [ ] Badges qualité
+- [ ] 🎯 RespondToReviewDialog component (réponse provider)
+  - [ ] Textarea réponse (min 10 caractères)
+  - [ ] Prévisualisation
+  - [ ] Submit avec notification
+
+**Task 8.2: Intégration Booking → Review** (Priorité: 🔴 Critique, 3-4h)
+- [ ] 🔗 Trigger post-completion (dans page booking detail)
+  - [ ] Bouton "Laisser un avis" si status: 'completed' && !hasReviewed
+  - [ ] Modal ReviewForm avec données pré-remplies
+  - [ ] Double évaluation (client → provider + provider → client)
+  - [ ] Notification après soumission
+- [ ] 🔗 Page dédiée `/bookings/[id]/review`
+  - [ ] Route protégée (owner only)
+  - [ ] Contexte booking affiché (tâche, montant, date)
+  - [ ] ReviewForm intégré
+  - [ ] Redirect vers /dashboard/reviews après submit
+- [ ] 🔗 Reminder notification (7 jours post-completion)
+  - [ ] Cloud Function (si pas encore reviewé)
+  - [ ] Notification in-app + email
+
+**Task 8.3: Firestore Rules Production** (Priorité: 🟡 Haute, 2h)
+- [ ] 📜 Collection `reviews`
+  - [ ] Create: vérifier booking completed + owner + pas déjà reviewé
+  - [ ] Update: allow response (provider only) ou modération (admin only)
+  - [ ] Delete: admin only
+  - [ ] Read: public pour reviews visibles, owner pour reported
+- [ ] 📜 Collection `review_stats`
+  - [ ] Read: public
+  - [ ] Write: Cloud Functions only
+- [ ] 📜 Storage rules photos reviews
+  - [ ] Upload: owner only, max 5MB, images only
+  - [ ] Read: public si review public
+
+**Task 8.4: Traductions Complètes** (Priorité: 🟡 Haute, 2-3h)
+- [ ] 🌍 Namespace `Reviews` (100+ clés)
+  - [ ] form.* (titre, placeholder, labels, validation errors)
+  - [ ] card.* (helpful, verified, response, report)
+  - [ ] stats.* (distribution, total, average, badges)
+  - [ ] filters.* (all, verified, withPhotos, sortBy)
+  - [ ] badges.* (9 types descriptions)
+  - [ ] moderation.* (report reasons, admin actions)
+  - [ ] notifications.* (nouveau avis, réponse, signalement)
+- [ ] 🌍 Langues: EN, FR (priorité), JA, ES, DE (optionnel)
+
+**Task 8.5: Pages UI Avancées** (Priorité: 🟢 Moyenne, 3-4h)
+- [ ] 🎨 Refonte `/dashboard/reviews`
+  - [ ] Tabs: Reçus, Donnés, En attente
+  - [ ] ReviewsList avec filtres + tri
+  - [ ] ReviewStatsCard (overview personnel)
+  - [ ] Actions: Répondre, Signaler, Utile
+- [ ] 🎨 Page `/dashboard/admin/reviews` (modération)
+  - [ ] Liste reviews signalés (reported: true)
+  - [ ] Filtres: status, type, rating
+  - [ ] Actions: Approuver, Rejeter, Supprimer
+  - [ ] Historique modération
+- [ ] 🎨 Widget avis sur profil provider (publique)
+  - [ ] Déjà existant dans `/pro/[userId]`
+  - [ ] Amélioration: filtres, pagination
+  - [ ] Affichage badges qualité
+
+**Task 8.6: Upload Photos Avis** (Priorité: 🟢 Moyenne, 2-3h)
+- [ ] 📸 Composant PhotoUploader
+  - [ ] Drag & drop + file input
+  - [ ] Preview thumbnails
+  - [ ] Max 5 photos, 5MB chacune
+  - [ ] Compression WebP (comme profile photo)
+  - [ ] Upload vers Storage: /reviews/{reviewId}/{filename}
+- [ ] 📸 PhotoGallery component (affichage)
+  - [ ] Grid responsive (2-3 colonnes)
+  - [ ] Lightbox (modal agrandie)
+  - [ ] Lazy loading
+
+**Task 8.7: Tests E2E Reviews** (Priorité: 🟡 Haute, 3-4h)
+- [ ] 🧪 Playwright tests (reviews-flow.spec.ts)
+  - [ ] Scénario 1: Client crée avis post-booking (5 étoiles + commentaire)
+  - [ ] Scénario 2: Provider répond à avis
+  - [ ] Scénario 3: Filtrage et tri sur page reviews
+  - [ ] Scénario 4: Signalement avis inapproprié
+  - [ ] Scénario 5: Admin modère avis signalé
+  - [ ] Scénario 6: Affichage badges qualité
+  - [ ] Scénario 7: Upload photos dans avis
+  - [ ] Scénario 8: Vote "Utile" sur avis
+
+**Task 8.8: Optimisations & Polish** (Priorité: 🟢 Basse, 2-3h)
+- [ ] ⚡ Performance
+  - [ ] Index Firestore (bookingId, reviewedUserId, rating, createdAt)
+  - [ ] Pagination cursor-based (pas offset)
+  - [ ] Cache ReviewStats (TTL 1h)
+- [ ] 🎨 UX/UI
+  - [ ] Animations transitions (reviews load)
+  - [ ] Skeleton loaders
+  - [ ] Toast notifications (success/error)
+  - [ ] Empty states illustrations
+- [ ] 📊 Analytics
+  - [ ] Track: review_created, review_responded, review_reported
+  - [ ] Funnel: booking_completed → review_created (taux conversion)
+
+**Task 8.9: Documentation** (Priorité: 🟢 Basse, 1-2h)
+- [ ] 📄 PHASE8_REVIEWS_IMPLEMENTATION.md
+  - [ ] Architecture détaillée
+  - [ ] Schéma collections Firestore
+  - [ ] API reference (fonctions firestore-reviews.ts)
+  - [ ] Guide utilisation composants
+  - [ ] Exemples code
+  - [ ] Troubleshooting
+
+#### 📊 Métriques Phase 8 (Estimation finale)
+
+- **Code existant:** ~1,500 lignes (backend + types + pages basiques)
+- **Code à ajouter:** ~2,500 lignes
+  - Composants: ~1,200 lignes
+  - Pages refonte: ~600 lignes
+  - Tests E2E: ~500 lignes
+  - Traductions: ~200 lignes (clés uniquement)
+- **Fichiers nouveaux:** ~12
+  - 5 composants (ReviewForm, ReviewCard, ReviewsList, ReviewStatsCard, RespondToReviewDialog)
+  - 2 pages (/bookings/[id]/review, refonte admin/reviews)
+  - 1 fichier tests (reviews-flow.spec.ts)
+  - 4 fichiers utils (photo-upload, review-helpers, etc.)
+- **Fichiers modifiés:** ~8
+  - firestore.rules (+30 lignes)
+  - storage.rules (+10 lignes)
+  - en.json, fr.json (+100 clés chacun)
+  - bookings/[id]/page.tsx (trigger review)
+  - dashboard/reviews/page.tsx (refonte)
+- **Collections Firestore:** 2 (reviews, review_stats)
+- **Index Firestore:** 5-6 nouveaux
+- **Tests E2E:** 8 scénarios principaux
+- **Traductions:** ~200 clés × 2 langues (EN/FR) = 400 clés
+
+#### ⏱️ Estimation Temps Total
+
+- **Développement:** 22-28 heures
+  - Task 8.1: 5h (Composants UI)
+  - Task 8.2: 4h (Intégration booking)
+  - Task 8.3: 2h (Firestore rules)
+  - Task 8.4: 3h (Traductions)
+  - Task 8.5: 4h (Pages avancées)
+  - Task 8.6: 3h (Upload photos)
+  - Task 8.7: 4h (Tests E2E)
+  - Task 8.8: 3h (Optimisations)
+  - Task 8.9: 2h (Documentation)
+
+- **Tests & Validation:** 4-6 heures
+- **Total Phase 8:** ~30-35 heures (~1 semaine à temps plein)
+
+#### 🎯 Ordre d'exécution recommandé
+
+**Sprint 1 (Jour 1-2): Core UI** ⭐
+1. Task 8.1 (Composants) - Fondation
+2. Task 8.4 (Traductions) - En parallèle
+
+**Sprint 2 (Jour 3-4): Intégration & Rules** ⭐⭐
+3. Task 8.2 (Booking → Review)
+4. Task 8.3 (Firestore rules)
+
+**Sprint 3 (Jour 5): Pages & Photos** ⭐
+5. Task 8.5 (Pages avancées)
+6. Task 8.6 (Upload photos)
+
+**Sprint 4 (Jour 6-7): Tests & Polish** ⭐
+7. Task 8.7 (Tests E2E)
+8. Task 8.8 (Optimisations)
+9. Task 8.9 (Documentation)
+
+#### ✅ Critères de complétion Phase 8
+
+- [ ] ✅ User peut laisser avis 1-5 étoiles + commentaire post-booking
+- [ ] ✅ Ratings détaillés (5 critères) fonctionnels
+- [ ] ✅ Upload 5 photos max dans avis
+- [ ] ✅ Provider peut répondre aux avis
+- [ ] ✅ Système "Utile" (votes) opérationnel
+- [ ] ✅ Signalement avis + modération admin
+- [ ] ✅ 9 badges qualité auto-attribués
+- [ ] ✅ Affichage stats + distribution sur profils
+- [ ] ✅ Filtres + tri fonctionnent (rating, date, helpful, verified)
+- [ ] ✅ Tests E2E 8 scénarios passent ✅
+- [ ] ✅ Firestore rules production déployées
+- [ ] ✅ Traductions EN/FR complètes (200 clés)
+- [ ] ✅ Performance: <500ms chargement reviews (10 items)
+- [ ] ✅ Documentation complète (PHASE8_*.md)
+
+**Date de début:** 7 novembre 2025  
+**Date cible:** 15 novembre 2025 (8 jours calendrier)
 
 ---
 

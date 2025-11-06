@@ -753,7 +753,18 @@
         "title": "Détails de la réservation",
         "notFound": "Réservation non trouvée.",
         "backToList": "Retour à la liste des réservations",
+        "backToBookings": "Retour aux réservations",
         "viewProfile": "Voir le profil",
+        "reviewPrompt": {
+            "title": "Cette mission est terminée ! Partagez votre expérience.",
+            "button": "Laisser un avis"
+        },
+        "errors": {
+            "notAuthenticated": "Vous devez être connecté pour voir cette réservation.",
+            "notFound": "Réservation introuvable.",
+            "unauthorized": "Vous n'avez pas accès à cette réservation.",
+            "fetchError": "Erreur lors du chargement de la réservation."
+        },
         "cards": {
             "summary": {
                 "title": "Résumé de la mission",
@@ -801,6 +812,35 @@
                     "confirm": "Confirmer l'annulation"
                 }
             }
+        }
+    },
+    "LeaveReviewPage": {
+        "title": "Laisser un avis",
+        "backToBooking": "Retour à la réservation",
+        "subtitle": {
+            "clientToProvider": "Partagez votre expérience avec le prestataire",
+            "providerToClient": "Partagez votre expérience avec le client"
+        },
+        "bookingInfo": {
+            "title": "Mission concernée",
+            "taskTitle": "Mission",
+            "amount": "Montant",
+            "unknownTask": "Mission inconnue"
+        },
+        "form": {
+            "title": "Votre évaluation",
+            "description": "Votre avis aide la communauté ImuTask à faire de meilleurs choix."
+        },
+        "alreadyReviewed": {
+            "title": "Vous avez déjà laissé un avis",
+            "description": "Vous ne pouvez laisser qu'un seul avis par réservation."
+        },
+        "errors": {
+            "notAuthenticated": "Vous devez être connecté pour laisser un avis.",
+            "bookingNotFound": "Réservation introuvable.",
+            "unauthorized": "Vous n'avez pas accès à cette réservation.",
+            "notCompleted": "Vous ne pouvez laisser un avis que pour une mission terminée.",
+            "fetchError": "Erreur lors du chargement des données."
         }
     },
     "MessagesPage": {
@@ -4189,6 +4229,107 @@
             "save": "Enregistrer",
             "successMessage": "Paramètres enregistrés",
             "errorMessage": "Erreur lors de l'enregistrement"
+        }
+    },
+    "Reviews": {
+        "form": {
+            "rating": {
+                "label": "Note générale",
+                "description": "Comment évaluez-vous votre expérience ?"
+            },
+            "detailedRatings": {
+                "title": "Évaluations détaillées (Optionnel)",
+                "description": "Aidez-nous à mieux comprendre votre expérience",
+                "communication": "Communication",
+                "quality": "Qualité du travail",
+                "professionalism": "Professionnalisme",
+                "timeliness": "Ponctualité",
+                "valueForMoney": "Rapport qualité-prix"
+            },
+            "comment": {
+                "label": "Votre avis",
+                "placeholder": "Partagez votre expérience en détail...",
+                "description": "Minimum 20 caractères"
+            },
+            "photos": {
+                "label": "Ajouter des photos (Optionnel)",
+                "description": "Maximum 5 photos, 5 Mo chacune",
+                "upload": "Télécharger des photos",
+                "remove": "Supprimer"
+            },
+            "submit": "Soumettre l'avis",
+            "cancel": "Annuler",
+            "success": {
+                "title": "Avis soumis",
+                "description": "Merci pour votre retour !"
+            },
+            "error": {
+                "title": "Erreur",
+                "description": "Échec de la soumission de l'avis. Veuillez réessayer."
+            }
+        },
+        "card": {
+            "verified": "Vérifié",
+            "helpful": "Utile",
+            "helpfulCount": "{count} personnes ont trouvé cela utile",
+            "report": "Signaler",
+            "respond": "Répondre",
+            "response": "Réponse du prestataire",
+            "respondedOn": "A répondu le {date}",
+            "noComment": "Aucun commentaire fourni"
+        },
+        "stats": {
+            "title": "Aperçu des évaluations",
+            "averageRating": "Note moyenne",
+            "totalReviews": "{count} avis",
+            "distribution": "Distribution des notes",
+            "basedOn": "Basé sur {count} avis"
+        },
+        "filters": {
+            "all": "Tous les avis",
+            "verified": "Vérifiés uniquement",
+            "withPhotos": "Avec photos",
+            "withResponse": "Avec réponse",
+            "sortBy": "Trier par",
+            "recent": "Plus récents",
+            "highest": "Meilleure note",
+            "lowest": "Moins bonne note",
+            "helpful": "Plus utiles"
+        },
+        "badges": {
+            "top_rated": "Très bien noté",
+            "excellent_service": "Service excellent",
+            "responsive": "Réactif",
+            "verified_pro": "Pro vérifié",
+            "rising_star": "Étoile montante",
+            "reliable": "Fiable",
+            "great_communicator": "Excellent communicant",
+            "punctual": "Ponctuel",
+            "value_champion": "Champion du rapport qualité-prix"
+        },
+        "empty": {
+            "title": "Aucun avis pour le moment",
+            "description": "Soyez le premier à laisser un avis !"
+        },
+        "respond": {
+            "trigger": "Répondre",
+            "title": "Répondre à l'avis",
+            "description": "Votre réponse sera publique et visible par tous.",
+            "descriptionWithName": "Répondre à l'avis de {name}. Votre réponse sera publique.",
+            "responseLabel": "Votre réponse",
+            "responsePlaceholder": "Merci pour votre retour...",
+            "responseDescription": "Minimum 10 caractères",
+            "preview": "Aperçu",
+            "submit": "Publier la réponse",
+            "cancel": "Annuler",
+            "success": {
+                "title": "Réponse publiée",
+                "description": "Votre réponse a été publiée avec succès."
+            },
+            "error": {
+                "title": "Erreur",
+                "description": "Échec de la publication de la réponse. Veuillez réessayer."
+            }
         }
     }
 }
