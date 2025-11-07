@@ -103,7 +103,7 @@ export default function ModerationQueue({
   };
 
   return (
-    <Card className={cn(className)}>
+    <Card className={cn(className)} data-testid="moderation-queue">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div>
@@ -115,7 +115,7 @@ export default function ModerationQueue({
           <div className="flex items-center gap-2">
             <Filter className="h-4 w-4 text-muted-foreground" />
             <Select value={filter} onValueChange={(value) => setFilter(value as ModerationStatus)}>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-[180px]" data-testid="moderation-filter">
                 <SelectValue placeholder={t('queue.filter')} />
               </SelectTrigger>
               <SelectContent>
@@ -133,14 +133,14 @@ export default function ModerationQueue({
       <CardContent>
         {/* Loading State */}
         {loading && (
-          <div className="flex items-center justify-center py-12">
+          <div className="flex items-center justify-center py-12" data-testid="moderation-loading">
             <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
           </div>
         )}
 
         {/* Empty State */}
         {!loading && reviews.length === 0 && (
-          <div className="flex flex-col items-center justify-center py-12 text-center">
+          <div className="flex flex-col items-center justify-center py-12 text-center" data-testid="moderation-empty">
             <CheckCircle className="h-12 w-12 text-muted-foreground mb-3" />
             <p className="text-lg font-semibold">{t('queue.empty.title')}</p>
             <p className="text-sm text-muted-foreground">{t('queue.empty.description')}</p>
@@ -149,7 +149,7 @@ export default function ModerationQueue({
 
         {/* Reviews List */}
         {!loading && reviews.length > 0 && (
-          <div className="space-y-4">
+          <div className="space-y-4" data-testid="moderation-list">
             {reviews.map((review, index) => {
               const createdAt = review.createdAt instanceof Date 
                 ? review.createdAt 
@@ -167,6 +167,7 @@ export default function ModerationQueue({
                   <div 
                     className="flex items-start justify-between p-4 rounded-lg border bg-card hover:bg-accent/50 transition-colors cursor-pointer"
                     onClick={() => onSelectReview?.(review)}
+                    data-testid={`moderation-item-${review.id}`}
                   >
                     {/* Left: Review Info */}
                     <div className="flex-1 space-y-3">
@@ -206,7 +207,9 @@ export default function ModerationQueue({
 
                     {/* Right: Status & Actions */}
                     <div className="flex flex-col items-end gap-2">
-                      {getStatusBadge(moderationStatus)}
+                      <div data-testid={`moderation-status-${review.id}`}>
+                        {getStatusBadge(moderationStatus)}
+                      </div>
                       <Button
                         size="sm"
                         variant="ghost"
@@ -214,6 +217,7 @@ export default function ModerationQueue({
                           e.stopPropagation();
                           onSelectReview?.(review);
                         }}
+                        data-testid={`moderation-review-button-${review.id}`}
                       >
                         <Eye className="h-4 w-4 mr-1" />
                         {t('queue.review')}

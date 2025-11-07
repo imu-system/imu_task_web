@@ -4218,6 +4218,40 @@
                 "description": "Failed to post response. Please try again."
             }
         },
+        "report": {
+            "trigger": "Report",
+            "title": "Report this Review",
+            "description": "Help us maintain the quality of our community.",
+            "descriptionWithName": "Report {name}'s review",
+            "reasonLabel": "Reason for Report",
+            "reasonPlaceholder": "Select a reason",
+            "reasonDescription": "Why are you reporting this review?",
+            "detailsLabel": "Details",
+            "detailsPlaceholder": "Please provide more information...",
+            "detailsDescription": "Minimum 10 characters, maximum 500 characters",
+            "reasons": {
+                "spam": "Spam or advertising",
+                "inappropriate": "Inappropriate content",
+                "offensive": "Offensive language",
+                "fake": "Fake review",
+                "irrelevant": "Irrelevant",
+                "other": "Other"
+            },
+            "warning": {
+                "title": "Warning",
+                "description": "False reports may result in account suspension."
+            },
+            "cancel": "Cancel",
+            "submit": "Submit Report",
+            "success": {
+                "title": "Review Reported",
+                "description": "Our team will review your report shortly."
+            },
+            "error": {
+                "title": "Error",
+                "description": "Failed to submit report. Please try again."
+            }
+        },
         "photoUpload": {
             "addPhotos": "Add photos ({current}/{max})",
             "uploading": "Uploading...",
@@ -4333,6 +4367,71 @@
                     "reasonRequired": "Please provide a reason for removing the review"
                 }
             }
+        },
+        "gmv": {
+            "title": "GMV & Platform Revenue",
+            "description": "Gross Merchandise Value and platform revenue by commission",
+            "totalGMV": "Total GMV",
+            "platformRevenue": "Platform Revenue",
+            "avgTransaction": "Avg Transaction",
+            "summary": "{transactions} transactions over the last {months} months",
+            "noData": "No transaction data available yet.",
+            "error": "Unable to load GMV data."
+        },
+        "userGrowth": {
+            "title": "User Growth",
+            "description": "New clients and providers per month",
+            "newClients": "New Clients",
+            "newProviders": "New Providers",
+            "totalUsers": "Total Users",
+            "summary": "{clients} new clients and {providers} new providers over the last {months} months",
+            "noData": "No new user data available yet.",
+            "error": "Unable to load user growth data."
+        },
+        "stats": {
+            "totalUsers": "Total Users",
+            "totalUsersDesc": "Platform registrations",
+            "activeClients": "Active Clients",
+            "activeProviders": "Active Providers",
+            "ofTotal": "of total",
+            "totalTasks": "Total Tasks",
+            "totalTasksDesc": "Tasks created",
+            "completedTasks": "Completed Tasks",
+            "completionRate": "Completion Rate",
+            "activeTasks": "Active Tasks",
+            "activeTasksDesc": "Open or in progress",
+            "error": "Unable to load statistics."
+        }
+    },
+    "Dashboard": {
+        "revenue": {
+            "title": "Revenue Overview",
+            "description": "Analysis of your earnings over the past months",
+            "totalRevenue": "Total Revenue",
+            "avgPerMonth": "Average per Month",
+            "trend": "Trend",
+            "summary": "{count, plural, =0 {No completed missions} =1 {1 completed mission} other {# completed missions}} over the last {months} months",
+            "noData": "No revenue data available yet. Complete your first mission to see your statistics.",
+            "error": "Unable to load revenue data. Please try again later."
+        },
+        "spending": {
+            "title": "Spending Overview",
+            "description": "Analysis of your expenses over the past months",
+            "totalSpending": "Total Spent",
+            "avgPerMonth": "Average per Month",
+            "trend": "Trend",
+            "summary": "{count, plural, =0 {No missions booked} =1 {1 mission booked} other {# missions booked}} over the last {months} months",
+            "noData": "No spending data available. Book your first mission to see your statistics.",
+            "error": "Unable to load spending data. Please try again later."
+        },
+        "categories": {
+            "title": "Category Breakdown",
+            "description": "Your spending by service type",
+            "totalSpending": "Total Spent",
+            "totalTasks": "Total Missions",
+            "moreCategories": "more categories",
+            "noData": "No completed missions. Your category statistics will appear here.",
+            "error": "Unable to load category data. Please try again later."
         }
     }
 }

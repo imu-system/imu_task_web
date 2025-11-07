@@ -156,14 +156,14 @@ export default function ReviewModerationForm({
   };
 
   return (
-    <Card className={cn(className)}>
+    <Card className={cn(className)} data-testid="moderation-form">
       <CardHeader>
         <div className="flex items-start justify-between">
           <div>
             <CardTitle>{t('title')}</CardTitle>
             <CardDescription>{t('description')}</CardDescription>
           </div>
-          <Badge variant="destructive" className="gap-1">
+          <Badge variant="destructive" className="gap-1" data-testid="moderation-report-count">
             <AlertTriangle className="h-3 w-3" />
             {t('reportCount', { count: reportCount })}
           </Badge>
@@ -243,6 +243,7 @@ export default function ReviewModerationForm({
             value={reason}
             onChange={(e) => setReason(e.target.value)}
             className="min-h-[100px]"
+            data-testid="moderation-admin-note"
           />
           <p className="text-xs text-muted-foreground">{t('adminNote.description')}</p>
         </div>
@@ -255,6 +256,7 @@ export default function ReviewModerationForm({
             variant="outline"
             onClick={onCancel}
             disabled={loading}
+            data-testid="moderation-cancel-button"
           >
             {t('cancel')}
           </Button>
@@ -269,6 +271,7 @@ export default function ReviewModerationForm({
                 variant="outline"
                 onClick={() => setAction('dismiss')}
                 disabled={loading || moderationStatus === 'dismissed'}
+                data-testid="moderation-dismiss-button"
               >
                 <Eye className="mr-2 h-4 w-4" />
                 {t('dismiss')}
@@ -297,6 +300,7 @@ export default function ReviewModerationForm({
                 onClick={() => setAction('approve')}
                 disabled={loading || moderationStatus === 'approved'}
                 className="bg-green-500 hover:bg-green-600"
+                data-testid="moderation-approve-button"
               >
                 <CheckCircle className="mr-2 h-4 w-4" />
                 {t('approve')}
@@ -324,6 +328,7 @@ export default function ReviewModerationForm({
                 variant="destructive"
                 onClick={() => setAction('remove')}
                 disabled={loading || moderationStatus === 'removed'}
+                data-testid="moderation-remove-button"
               >
                 <XCircle className="mr-2 h-4 w-4" />
                 {t('remove')}

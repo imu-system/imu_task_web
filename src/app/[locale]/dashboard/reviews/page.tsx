@@ -187,7 +187,7 @@ export default function ReviewsPage() {
   }
 
   return (
-    <div className="space-y-8 max-w-4xl mx-auto">
+    <div className="space-y-8 max-w-4xl mx-auto" data-testid="reviews-page">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold tracking-tight font-headline flex items-center gap-2">
@@ -201,12 +201,12 @@ export default function ReviewsPage() {
       {reviewStats && <ReviewStatsCard stats={reviewStats} />}
 
       {/* Tabs: Received vs Given Reviews */}
-      <Tabs defaultValue="received" className="w-full">
+      <Tabs defaultValue="received" className="w-full" data-testid="reviews-tabs">
         <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="received">
+          <TabsTrigger value="received" data-testid="reviews-tab-received">
             {t('tabs.received')} ({receivedReviews.length})
           </TabsTrigger>
-          <TabsTrigger value="given">
+          <TabsTrigger value="given" data-testid="reviews-tab-given">
             {t('tabs.given')} ({givenReviews.length})
           </TabsTrigger>
         </TabsList>

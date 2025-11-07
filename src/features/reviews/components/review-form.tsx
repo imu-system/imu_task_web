@@ -69,7 +69,7 @@ function StarRating({ value, onChange, label, disabled = false, size = 'md' }: S
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2" data-testid="star-rating">
       {label && <p className="text-sm font-medium">{label}</p>}
       <div className="flex items-center gap-1">
         {[1, 2, 3, 4, 5].map((star) => (
@@ -85,6 +85,7 @@ function StarRating({ value, onChange, label, disabled = false, size = 'md' }: S
               !disabled && 'cursor-pointer'
             )}
             aria-label={`Rate ${star} stars`}
+            data-testid={`star-rating-${star}`}
           >
             <Star
               className={cn(
@@ -206,6 +207,7 @@ export function ReviewForm({
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
         className={cn('space-y-6', className)}
+        data-testid="review-form"
       >
         {/* Overall Rating */}
         <FormField
@@ -229,7 +231,7 @@ export function ReviewForm({
 
         {/* Detailed Ratings */}
         {showDetailedRatings && rating > 0 && (
-          <div className="space-y-4 rounded-lg border p-4">
+          <div className="space-y-4 rounded-lg border p-4" data-testid="detailed-ratings">
             <h3 className="font-semibold">{t('detailedRatings.title')}</h3>
             <p className="text-sm text-muted-foreground">
               {t('detailedRatings.description')}
@@ -336,6 +338,7 @@ export function ReviewForm({
                   <Textarea
                     placeholder={t('comment.placeholder')}
                     className="min-h-[120px] resize-none"
+                    data-testid="review-comment"
                     {...field}
                   />
                 </FormControl>
@@ -384,7 +387,7 @@ export function ReviewForm({
                 {t('cancel')}
               </Button>
             )}
-            <Button type="submit" disabled={isSubmitting}>
+            <Button type="submit" disabled={isSubmitting} data-testid="submit-review-button">
               {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
               {t('submit')}
             </Button>

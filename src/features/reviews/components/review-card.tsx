@@ -100,7 +100,7 @@ export function ReviewCard({
     : review.comment;
 
   return (
-    <Card className={cn('hover:shadow-md transition-shadow', className)}>
+    <Card className={cn('hover:shadow-md transition-shadow', className)} data-testid="review-card" data-review-id={review.id}>
       <CardContent className="pt-6">
         {/* Header: Avatar + Name + Date */}
         <div className="flex items-start justify-between mb-4">
@@ -115,7 +115,7 @@ export function ReviewCard({
               <div className="flex items-center gap-2">
                 <p className="font-semibold">{review.reviewerName}</p>
                 {review.verified && (
-                  <Badge variant="secondary" className="gap-1">
+                  <Badge variant="secondary" className="gap-1" data-testid={`review-badge-verified-${review.id}`}>
                     <CheckCircle2 className="h-3 w-3" />
                     {t('verified')}
                   </Badge>
@@ -126,7 +126,9 @@ export function ReviewCard({
           </div>
 
           {/* Overall Rating */}
-          <StarDisplay rating={review.rating} size="md" showValue />
+          <div data-testid="review-rating">
+            <StarDisplay rating={review.rating} size="md" showValue />
+          </div>
         </div>
 
         {/* Detailed Ratings */}
@@ -167,7 +169,7 @@ export function ReviewCard({
 
         {/* Comment */}
         {review.comment && (
-          <div className="mb-4">
+          <div className="mb-4" data-testid="review-comment">
             <p className="text-sm leading-relaxed whitespace-pre-wrap">
               {displayComment || t('noComment')}
             </p>
@@ -186,7 +188,7 @@ export function ReviewCard({
 
         {/* Photos Gallery */}
         {review.photos && review.photos.length > 0 && (
-          <div className="mb-4">
+          <div className="mb-4" data-testid="photo-gallery">
             <PhotoGallery photos={review.photos} />
           </div>
         )}
@@ -202,11 +204,12 @@ export function ReviewCard({
                 'gap-1',
                 hasVotedHelpful && 'bg-primary/10 border-primary text-primary'
               )}
+              data-testid={`helpful-button-${review.id}`}
             >
               <ThumbsUp className="h-3 w-3" />
               {t('helpful')}
               {review.helpfulCount && review.helpfulCount > 0 ? (
-                <span className="text-xs">({review.helpfulCount})</span>
+                <span className="text-xs" data-testid={`helpful-count-${review.id}`}>({review.helpfulCount})</span>
               ) : null}
             </Button>
           )}
@@ -217,6 +220,7 @@ export function ReviewCard({
               size="sm"
               onClick={() => onRespond(review.id!)}
               className="gap-1"
+              data-testid={`respond-button-${review.id}`}
             >
               <MessageSquare className="h-3 w-3" />
               {t('respond')}
@@ -229,6 +233,7 @@ export function ReviewCard({
               size="sm"
               onClick={() => onReport(review.id!)}
               className="gap-1 text-muted-foreground"
+              data-testid={`report-button-${review.id}`}
             >
               <Flag className="h-3 w-3" />
               {t('report')}
@@ -240,7 +245,7 @@ export function ReviewCard({
         {review.response && (
           <>
             <Separator className="my-4" />
-            <div className="bg-muted/30 rounded-lg p-4">
+            <div className="bg-muted/30 rounded-lg p-4" data-testid="review-response">
               <div className="flex items-center gap-2 mb-2">
                 <MessageSquare className="h-4 w-4 text-primary" />
                 <p className="text-sm font-semibold">{t('response')}</p>

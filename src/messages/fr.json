@@ -4277,6 +4277,40 @@
                 "description": "Échec de la publication de la réponse. Veuillez réessayer."
             }
         },
+        "report": {
+            "trigger": "Signaler",
+            "title": "Signaler cet avis",
+            "description": "Aidez-nous à maintenir la qualité de notre communauté.",
+            "descriptionWithName": "Signaler l'avis de {name}",
+            "reasonLabel": "Raison du signalement",
+            "reasonPlaceholder": "Sélectionnez une raison",
+            "reasonDescription": "Pourquoi signalez-vous cet avis ?",
+            "detailsLabel": "Détails",
+            "detailsPlaceholder": "Veuillez fournir plus d'informations...",
+            "detailsDescription": "Minimum 10 caractères, maximum 500 caractères",
+            "reasons": {
+                "spam": "Spam ou publicité",
+                "inappropriate": "Contenu inapproprié",
+                "offensive": "Langage offensant",
+                "fake": "Faux avis",
+                "irrelevant": "Non pertinent",
+                "other": "Autre"
+            },
+            "warning": {
+                "title": "Attention",
+                "description": "Les faux signalements peuvent entraîner la suspension de votre compte."
+            },
+            "cancel": "Annuler",
+            "submit": "Signaler",
+            "success": {
+                "title": "Avis signalé",
+                "description": "Notre équipe examinera votre signalement dans les plus brefs délais."
+            },
+            "error": {
+                "title": "Erreur",
+                "description": "Échec du signalement. Veuillez réessayer."
+            }
+        },
         "photoUpload": {
             "addPhotos": "Ajouter des photos ({current}/{max})",
             "uploading": "Téléversement...",
@@ -4392,6 +4426,71 @@
                     "reasonRequired": "Veuillez fournir une raison pour supprimer l'avis"
                 }
             }
+        },
+        "gmv": {
+            "title": "GMV & Revenus Plateforme",
+            "description": "Gross Merchandise Value et revenus de la plateforme par commission",
+            "totalGMV": "GMV Total",
+            "platformRevenue": "Revenus Plateforme",
+            "avgTransaction": "Transaction Moyenne",
+            "summary": "{transactions} transactions sur les {months} derniers mois",
+            "noData": "Aucune donnée de transaction disponible pour le moment.",
+            "error": "Impossible de charger les données GMV."
+        },
+        "userGrowth": {
+            "title": "Croissance des Utilisateurs",
+            "description": "Nouveaux clients et providers par mois",
+            "newClients": "Nouveaux Clients",
+            "newProviders": "Nouveaux Providers",
+            "totalUsers": "Total Utilisateurs",
+            "summary": "+{total} nouveaux utilisateurs sur les {months} derniers mois",
+            "noData": "Aucune donnée de croissance disponible.",
+            "error": "Impossible de charger les données de croissance."
+        },
+        "stats": {
+            "totalUsers": "Total Utilisateurs",
+            "totalUsersDesc": "Inscrits sur la plateforme",
+            "activeClients": "Clients Actifs",
+            "activeProviders": "Providers Actifs",
+            "ofTotal": "du total",
+            "totalTasks": "Total Missions",
+            "totalTasksDesc": "Créées sur la plateforme",
+            "completedTasks": "Missions Complétées",
+            "completionRate": "taux de complétion",
+            "activeTasks": "Missions Actives",
+            "activeTasksDesc": "Ouvertes ou en cours",
+            "error": "Erreur de chargement"
+        }
+    },
+    "Dashboard": {
+        "revenue": {
+            "title": "Évolution des Revenus",
+            "description": "Analyse de vos revenus sur les derniers mois",
+            "totalRevenue": "Total des revenus",
+            "avgPerMonth": "Moyenne mensuelle",
+            "trend": "Tendance",
+            "summary": "{count, plural, =0 {Aucune mission complétée} =1 {1 mission complétée} other {# missions complétées}} sur les {months} derniers mois",
+            "noData": "Aucune donnée de revenus disponible pour le moment. Complétez votre première mission pour voir vos statistiques.",
+            "error": "Impossible de charger les données de revenus. Veuillez réessayer plus tard."
+        },
+        "spending": {
+            "title": "Évolution des Dépenses",
+            "description": "Analyse de vos dépenses sur les derniers mois",
+            "totalSpending": "Total dépensé",
+            "avgPerMonth": "Moyenne mensuelle",
+            "trend": "Tendance",
+            "summary": "{count, plural, =0 {Aucune mission réservée} =1 {1 mission réservée} other {# missions réservées}} sur les {months} derniers mois",
+            "noData": "Aucune donnée de dépenses disponible. Réservez votre première mission pour voir vos statistiques.",
+            "error": "Impossible de charger les données de dépenses. Veuillez réessayer plus tard."
+        },
+        "categories": {
+            "title": "Répartition par Catégorie",
+            "description": "Vos dépenses par type de service",
+            "totalSpending": "Total dépensé",
+            "totalTasks": "Missions totales",
+            "moreCategories": "autres catégories",
+            "noData": "Aucune mission complétée. Vos statistiques par catégorie apparaîtront ici.",
+            "error": "Impossible de charger les données par catégorie. Veuillez réessayer plus tard."
         }
     }
 }

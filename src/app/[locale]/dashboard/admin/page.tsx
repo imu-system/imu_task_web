@@ -14,28 +14,14 @@ import { useEffect } from "react";
 import { Activity, CreditCard, DollarSign, Users, FileQuestion, BadgeAlert, PlusCircle, ExternalLink, ShieldQuestion, Users2, Eye, ListOrdered, Handshake, CalendarCheck, Wallet, Star, Bell, FileText, SlidersHorizontal, LineChart as LineChartIcon, History, Shield, ShieldCheck, LayoutList } from "lucide-react";
 import { AdminUserRolesPanel } from "@/components/admin/user-roles-panel";
 import { AdminKYCPanel } from "@/components/admin/kyc-panel";
-
-const kpiData = [
-  { title: "Revenus (Mensuel)", value: "€4,231.89", change: "+20.1% vs mois dernier", icon: <DollarSign className="h-4 w-4 text-muted-foreground" /> },
-  { title: "Utilisateurs Actifs", value: "+2350", change: "+180.1% vs mois dernier", icon: <Users className="h-4 w-4 text-muted-foreground" /> },
-  { title: "Missions (Aujourd'hui)", value: "+573", change: "+19% vs hier", icon: <CreditCard className="h-4 w-4 text-muted-foreground" /> },
-  { title: "Taux d'acceptation", value: "82.5%", change: "+2.5% vs semaine dernière", icon: <Activity className="h-4 w-4 text-muted-foreground" /> },
-];
+import { AdminStatsCards } from "@/components/dashboard/admin-stats-cards";
+import { GMVChart } from "@/components/dashboard/gmv-chart";
+import { UserGrowthChart } from "@/components/dashboard/user-growth-chart";
 
 const priorityQueue = [
     { id: 'KYC001', type: 'KYC en attente', user: 'Jean Dupont', date: '2023-10-26', icon: <ShieldQuestion className="h-5 w-5 text-yellow-500"/>, href: '/dashboard/admin/kyc'},
     { id: 'DIS042', type: 'Litige ouvert', user: 'Marie Curie', date: '2023-10-25', icon: <BadgeAlert className="h-5 w-5 text-red-500"/>, href: '/dashboard/admin/disputes'},
     { id: 'PAY314', type: 'Paiement en échec', user: 'Pierre Martin', date: '2023-10-25', icon: <CreditCard className="h-5 w-5 text-blue-500"/>, href: '#'},
-];
-
-const clientProviderData = [
-  { month: "Jan", clients: 40, providers: 24 },
-  { month: "Feb", clients: 30, providers: 22 },
-  { month: "Mar", clients: 20, providers: 49 },
-  { month: "Apr", clients: 27, providers: 38 },
-  { month: "May", clients: 18, providers: 48 },
-  { month: "Jun", clients: 23, providers: 34 },
-  { month: "Jul", clients: 34, providers: 44 },
 ];
 
 export default function AdminDashboardPage() {
@@ -61,41 +47,20 @@ export default function AdminDashboardPage() {
             <p className="text-muted-foreground">{t('subtitle')}</p>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {kpiData.map((kpi, index) => (
-                <Card key={index}>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">{kpi.title}</CardTitle>
-                        {kpi.icon}
-                    </CardHeader>
-                    <CardContent>
-                        <div className="text-2xl font-bold">{kpi.value}</div>
-                        <p className="text-xs text-muted-foreground">{kpi.change}</p>
-                    </CardContent>
-                </Card>
-            ))}
+        {/* Real-time KPI Cards - Connected to Firestore */}
+        <AdminStatsCards />
+
+        {/* Real-time Charts - Connected to Firestore */}
+        <div className="grid gap-6 md:grid-cols-1 lg:grid-cols-2">
+            {/* GMV & Platform Revenue Chart */}
+            <GMVChart monthsBack={6} commissionRate={0.15} />
+
+            {/* User Growth Chart */}
+            <UserGrowthChart monthsBack={6} />
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <Card className="lg:col-span-2">
-                 <CardHeader>
-                    <CardTitle>{t('clientProviderChart.title')}</CardTitle>
-                    <CardDescription>{t('clientProviderChart.description')}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                     <ResponsiveContainer width="100%" height={350}>
-                        <LineChart data={clientProviderData}>
-                            <XAxis dataKey="month" stroke="#888888" fontSize={12} tickLine={false} axisLine={false}/>
-                            <YAxis stroke="#888888" fontSize={12} tickLine={false} axisLine={false}/>
-                            <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} />
-                            <Legend />
-                            <Line type="monotone" dataKey="clients" name={t('clientProviderChart.clients')} stroke="hsl(var(--chart-2))" />
-                            <Line type="monotone" dataKey="providers" name={t('clientProviderChart.providers')} stroke="hsl(var(--chart-1))" />
-                        </LineChart>
-                    </ResponsiveContainer>
-                </CardContent>
-            </Card>
-             <Card className="lg:col-span-1">
+             <Card className="lg:col-span-2">
                 <CardHeader>
                     <CardTitle>{t('priorityQueueTitle')}</CardTitle>
                     <CardDescription>{t('priorityQueueDesc')}</CardDescription>

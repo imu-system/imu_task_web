@@ -217,10 +217,10 @@ export default function PublicProfilePage() {
       </Card>
 
       {/* Tabs */}
-      <Tabs defaultValue={defaultTab} className="w-full">
+      <Tabs defaultValue={defaultTab} className="w-full" data-testid="profile-tabs">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="about">{t('tabs.about')}</TabsTrigger>
-          <TabsTrigger value="reviews">
+          <TabsTrigger value="reviews" data-testid="profile-reviews-tab">
             {t('tabs.reviews')} ({reviews.length})
           </TabsTrigger>
         </TabsList>
@@ -258,7 +258,7 @@ export default function PublicProfilePage() {
         </TabsContent>
 
         {/* Reviews Tab */}
-        <TabsContent value="reviews" className="mt-6 space-y-6">
+        <TabsContent value="reviews" className="mt-6 space-y-6" data-testid="profile-reviews-section">
           {/* Review Stats */}
           {reviewStats && <ReviewStatsCard stats={reviewStats} />}
 

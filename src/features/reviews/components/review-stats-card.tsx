@@ -75,7 +75,7 @@ export function ReviewStatsCard({
     : { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
 
   return (
-    <Card className={className}>
+    <Card className={className} data-testid="review-stats-card">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
@@ -89,7 +89,7 @@ export function ReviewStatsCard({
         {/* Average Rating */}
         <div className="flex items-center gap-6">
           <div className="text-center">
-            <p className="text-5xl font-bold text-primary">
+            <p className="text-5xl font-bold text-primary" data-testid="stats-average-rating">
               {stats.averageRating.toFixed(1)}
             </p>
             <div className="flex items-center justify-center gap-0.5 mt-2">
@@ -105,16 +105,16 @@ export function ReviewStatsCard({
                 />
               ))}
             </div>
-            <p className="text-sm text-muted-foreground mt-1">
+            <p className="text-sm text-muted-foreground mt-1" data-testid="stats-total-reviews">
               {t('totalReviews', { count: stats.totalReviews })}
             </p>
           </div>
 
           {/* Distribution Bars */}
           {showDistribution && (
-            <div className="flex-1 space-y-2">
+            <div className="flex-1 space-y-2" data-testid="stats-distribution">
               {[5, 4, 3, 2, 1].map((rating) => (
-                <div key={rating} className="flex items-center gap-2">
+                <div key={rating} className="flex items-center gap-2" data-testid={`stats-distribution-${rating}`}>
                   <span className="text-xs font-medium w-4">{rating}</span>
                   <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                   <Progress
@@ -132,11 +132,11 @@ export function ReviewStatsCard({
 
         {/* Detailed Averages */}
         {showDetailedAverages && stats.detailedAverages && (
-          <div className="space-y-3 pt-4 border-t">
+          <div className="space-y-3 pt-4 border-t" data-testid="stats-detailed-averages">
             <h4 className="text-sm font-semibold">Detailed Ratings</h4>
             <div className="grid grid-cols-2 gap-3">
               {stats.detailedAverages.communication > 0 && (
-                <div className="space-y-1">
+                <div className="space-y-1" data-testid="stats-detailed-communication">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-muted-foreground">Communication</span>
                     <span className="font-medium">{stats.detailedAverages.communication.toFixed(1)}</span>
@@ -145,7 +145,7 @@ export function ReviewStatsCard({
                 </div>
               )}
               {stats.detailedAverages.quality > 0 && (
-                <div className="space-y-1">
+                <div className="space-y-1" data-testid="stats-detailed-quality">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-muted-foreground">Quality</span>
                     <span className="font-medium">{stats.detailedAverages.quality.toFixed(1)}</span>
@@ -154,7 +154,7 @@ export function ReviewStatsCard({
                 </div>
               )}
               {stats.detailedAverages.professionalism > 0 && (
-                <div className="space-y-1">
+                <div className="space-y-1" data-testid="stats-detailed-professionalism">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-muted-foreground">Professionalism</span>
                     <span className="font-medium">{stats.detailedAverages.professionalism.toFixed(1)}</span>
@@ -163,7 +163,7 @@ export function ReviewStatsCard({
                 </div>
               )}
               {stats.detailedAverages.timeliness > 0 && (
-                <div className="space-y-1">
+                <div className="space-y-1" data-testid="stats-detailed-timeliness">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-muted-foreground">Timeliness</span>
                     <span className="font-medium">{stats.detailedAverages.timeliness.toFixed(1)}</span>
@@ -172,7 +172,7 @@ export function ReviewStatsCard({
                 </div>
               )}
               {stats.detailedAverages.valueForMoney > 0 && (
-                <div className="space-y-1">
+                <div className="space-y-1" data-testid="stats-detailed-value">
                   <div className="flex items-center justify-between text-xs">
                     <span className="text-muted-foreground">Value</span>
                     <span className="font-medium">{stats.detailedAverages.valueForMoney.toFixed(1)}</span>
@@ -186,7 +186,7 @@ export function ReviewStatsCard({
 
         {/* Response Rate (for providers) */}
         {stats.responseRate !== undefined && (
-          <div className="pt-4 border-t">
+          <div className="pt-4 border-t" data-testid="stats-response-rate">
             <div className="flex items-center justify-between mb-2">
               <span className="text-sm font-medium">Response Rate</span>
               <span className="text-sm font-bold text-primary">{stats.responseRate.toFixed(0)}%</span>
@@ -197,7 +197,7 @@ export function ReviewStatsCard({
 
         {/* Quality Badges */}
         {showBadges && stats.badges && stats.badges.length > 0 && (
-          <div className="space-y-3 pt-4 border-t">
+          <div className="space-y-3 pt-4 border-t" data-testid="stats-badges">
             <div className="flex items-center gap-2">
               <TrendingUp className="h-4 w-4 text-primary" />
               <h4 className="text-sm font-semibold">Quality Badges</h4>

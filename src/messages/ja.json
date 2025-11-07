@@ -1531,5 +1531,41 @@
         "offerRejectedDescription": "オファーが正常に拒否されました。",
         "offerAcceptError": "オファーを承認できません",
         "offerRejectError": "オファーを拒否できません"
+    },
+    "Reviews": {
+        "report": {
+            "trigger": "報告する",
+            "title": "このレビューを報告",
+            "description": "コミュニティの質を維持するためにご協力ください。",
+            "descriptionWithName": "{name}のレビューを報告",
+            "reasonLabel": "報告の理由",
+            "reasonPlaceholder": "理由を選択してください",
+            "reasonDescription": "このレビューを報告する理由は何ですか？",
+            "detailsLabel": "詳細",
+            "detailsPlaceholder": "詳細情報を提供してください...",
+            "detailsDescription": "最小10文字、最大500文字",
+            "reasons": {
+                "spam": "スパムまたは広告",
+                "inappropriate": "不適切なコンテンツ",
+                "offensive": "攻撃的な言葉遣い",
+                "fake": "偽のレビュー",
+                "irrelevant": "無関係",
+                "other": "その他"
+            },
+            "warning": {
+                "title": "警告",
+                "description": "虚偽の報告はアカウント停止につながる可能性があります。"
+            },
+            "cancel": "キャンセル",
+            "submit": "報告を送信",
+            "success": {
+                "title": "レビューが報告されました",
+                "description": "チームが速やかに報告を確認いたします。"
+            },
+            "error": {
+                "title": "エラー",
+                "description": "報告の送信に失敗しました。もう一度お試しください。"
+            }
+        }
     }
 }

@@ -24,7 +24,7 @@ function EmptyState({ className }: { className?: string }) {
   const t = useTranslations('Reviews.empty');
   
   return (
-    <div className={cn('text-center py-12', className)}>
+    <div className={cn('text-center py-12', className)} data-testid="reviews-list-empty">
       <div className="mx-auto w-16 h-16 mb-4 rounded-full bg-muted flex items-center justify-center">
         <MessageSquare className="h-8 w-8 text-muted-foreground" />
       </div>
@@ -140,7 +140,7 @@ export function ReviewsList({
   // Loading state
   if (isLoading) {
     return (
-      <div className={cn('space-y-4', className)}>
+      <div className={cn('space-y-4', className)} data-testid="reviews-list-loading">
         {[1, 2, 3].map((i) => (
           <div
             key={i}
@@ -206,7 +206,7 @@ export function ReviewsList({
       {filteredReviews.length === 0 ? (
         <EmptyState />
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-4" data-testid="reviews-list">
           {filteredReviews.map((review) => (
             <ReviewCard
               key={review.id}

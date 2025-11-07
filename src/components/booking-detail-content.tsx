@@ -29,9 +29,10 @@ import { Input } from '@/components/ui/input';
 import { Calendar as CalendarPicker } from '@/components/ui/calendar';
 import { ReviewStatsCard } from '@/features/reviews/components/review-stats-card';
 import { ReviewsList } from '@/features/reviews/components/reviews-list';
-import { getUserReviews, getReviewStats, markReviewHelpful, unmarkReviewHelpful } from '@/lib/firestore-reviews';
+import { getUserReviews, getReviewStats, markReviewHelpful, unmarkReviewHelpful, hasUserReviewed } from '@/lib/firestore-reviews';
 import type { Review, ReviewStats } from '@/types/reviews';
 import { useToast } from '@/hooks/use-toast';
+import { Alert, AlertDescription } from './ui/alert';
 
 
 export default function BookingDetailContent({ booking }: { booking: Booking }) {
@@ -45,8 +46,9 @@ export default function BookingDetailContent({ booking }: { booking: Booking }) 
     const [providerReviews, setProviderReviews] = useState<Review[]>([]);
     const [reviewStats, setReviewStats] = useState<ReviewStats | null>(null);
     const [loadingReviews, setLoadingReviews] = useState(true);
+    const [userHasReviewed, setUserHasReviewed] = useState(false);
 
-    // Fetch provider reviews
+    // Fetch provider reviews and check if user has reviewed
     useEffect(() => {
         const fetchProviderReviews = async () => {
             if (!booking.provider?.uid) return;
@@ -57,6 +59,12 @@ export default function BookingDetailContent({ booking }: { booking: Booking }) 
                 const stats = await getReviewStats(booking.provider.uid);
                 setProviderReviews(reviews);
                 setReviewStats(stats);
+
+                // Check if current user has already reviewed this booking
+                if (user?.uid && booking.id) {
+                    const alreadyReviewed = await hasUserReviewed(booking.id, user.uid);
+                    setUserHasReviewed(alreadyReviewed);
+                }
             } catch (error) {
                 console.error('Error fetching provider reviews:', error);
                 toast({
@@ -69,7 +77,7 @@ export default function BookingDetailContent({ booking }: { booking: Booking }) 
         };
 
         fetchProviderReviews();
-    }, [booking.provider?.uid, t, toast]);
+    }, [booking.provider?.uid, booking.id, user?.uid, t, toast]);
 
     // Handle helpful vote
     const handleHelpful = async (reviewId: string) => {
@@ -256,6 +264,14 @@ export default function BookingDetailContent({ booking }: { booking: Booking }) 
                                 </div>
                             ) : (
                                 <>
+                                    {userHasReviewed && (
+                                        <Alert data-testid="already-reviewed-message">
+                                            <CheckCircle className="h-4 w-4" />
+                                            <AlertDescription>
+                                                {t('cards.reviews.alreadyReviewed')}
+                                            </AlertDescription>
+                                        </Alert>
+                                    )}
                                     {reviewStats && <ReviewStatsCard stats={reviewStats} />}
                                     <ReviewsList 
                                         reviews={providerReviews} 

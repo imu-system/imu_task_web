@@ -118,7 +118,7 @@ export function RespondToReviewDialog({
           </Button>
         )}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="sm:max-w-[600px]" data-testid="response-dialog">
         <DialogHeader>
           <DialogTitle>{t('title')}</DialogTitle>
           <DialogDescription>
@@ -141,6 +141,7 @@ export function RespondToReviewDialog({
                     <Textarea
                       placeholder={t('responsePlaceholder')}
                       className="min-h-[120px] resize-none"
+                      data-testid="response-text-input"
                       {...field}
                     />
                   </FormControl>
@@ -154,7 +155,7 @@ export function RespondToReviewDialog({
 
             {/* Preview */}
             {responseText.length >= 10 && (
-              <div className="rounded-lg border bg-muted/30 p-4">
+              <div className="rounded-lg border bg-muted/30 p-4" data-testid="response-preview">
                 <p className="text-xs font-semibold mb-2 text-muted-foreground">
                   {t('preview')}
                 </p>
@@ -171,10 +172,11 @@ export function RespondToReviewDialog({
                 variant="outline"
                 onClick={() => setIsOpen(false)}
                 disabled={isSubmitting}
+                data-testid="response-cancel-button"
               >
                 {t('cancel')}
               </Button>
-              <Button type="submit" disabled={isSubmitting}>
+              <Button type="submit" disabled={isSubmitting} data-testid="response-submit-button">
                 {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {t('submit')}
               </Button>

@@ -48,6 +48,8 @@ import {
   RainbowText,
   ShimmerCard
 } from '@/components/ui/animated';
+import { ClientSpendingChart } from '@/components/dashboard/client-spending-chart';
+import { TaskCategoryChart } from '@/components/dashboard/task-category-chart';
 
 interface ServicePack {
   id: string;
@@ -730,10 +732,20 @@ export default function DashboardPage() {
             </Card>
           </div>
           <div className="space-y-6">
-              <UpcomingBookings />
-              <RecentNotifications />
+              {/* Phase 9: Connexion données réelles - Props ajoutées */}
+              <UpcomingBookings userId={user?.uid || ''} role="client" limit={5} />
+              <RecentNotifications userId={user?.uid || ''} limit={3} />
           </div>
         </div>
+
+        {/* Phase 9 Option C: Client Analytics Charts */}
+        {user?.uid && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+            <ClientSpendingChart userId={user.uid} monthsBack={6} />
+            <TaskCategoryChart userId={user.uid} />
+          </div>
+        )}
+
         </AnimatedDiv>
       </div>
     </div>
