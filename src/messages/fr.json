@@ -4463,6 +4463,19 @@
         }
     },
     "Dashboard": {
+        "live": {
+            "indicator": "En direct",
+            "updated": "Mis à jour {time}",
+            "activity": "Activité récente",
+            "noActivity": "Aucune activité récente",
+            "types": {
+                "NEW_BOOKING": "Nouveau booking",
+                "TASK_COMPLETED": "Tâche complétée",
+                "NEW_USER": "Nouvel utilisateur",
+                "KYC_SUBMITTED": "KYC soumis",
+                "PROPOSAL_CREATED": "Nouvelle proposition"
+            }
+        },
         "revenue": {
             "title": "Évolution des Revenus",
             "description": "Analyse de vos revenus sur les derniers mois",

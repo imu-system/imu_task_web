@@ -4404,6 +4404,19 @@
         }
     },
     "Dashboard": {
+        "live": {
+            "indicator": "Live",
+            "updated": "Updated {time}",
+            "activity": "Recent Activity",
+            "noActivity": "No recent activity",
+            "types": {
+                "NEW_BOOKING": "New booking",
+                "TASK_COMPLETED": "Task completed",
+                "NEW_USER": "New user",
+                "KYC_SUBMITTED": "KYC submitted",
+                "PROPOSAL_CREATED": "New proposal"
+            }
+        },
         "revenue": {
             "title": "Revenue Overview",
             "description": "Analysis of your earnings over the past months",

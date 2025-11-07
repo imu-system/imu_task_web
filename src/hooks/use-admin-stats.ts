@@ -11,7 +11,7 @@
  * - useActiveUsersStats: Statistiques utilisateurs actifs
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
     collection,
     query,
@@ -22,6 +22,7 @@ import {
     getCountFromServer
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { useLiveData } from './use-live-updates';
 
 // ========================================
 // TYPES
@@ -103,81 +104,69 @@ function getMonthsAgo(months: number): Date {
 export function useGMVByMonth(
     monthsBack: number = 6
 ): HookState<MonthlyGMV[]> {
-    const [state, setState] = useState<HookState<MonthlyGMV[]>>({
-        data: null,
-        loading: true,
-        error: null
-    });
+    // Build Firestore query
+    const bookingsQuery = useMemo(() => {
+        const startDate = getMonthsAgo(monthsBack);
 
-    useEffect(() => {
-        const fetchGMVByMonth = async () => {
-            setState(prev => ({ ...prev, loading: true, error: null }));
-
-            try {
-                const startDate = getMonthsAgo(monthsBack);
-
-                // Fetch completed bookings (GMV = total des transactions)
-                const bookingsQuery = query(
-                    collection(db, 'bookings'),
-                    where('status', '==', 'completed'),
-                    where('completedAt', '>=', Timestamp.fromDate(startDate)),
-                    orderBy('completedAt', 'asc')
-                );
-
-                const bookingsSnap = await getDocs(bookingsQuery);
-
-                // Group by month
-                const monthlyData: Record<string, { gmv: number; count: number }> = {};
-
-                bookingsSnap.docs.forEach(doc => {
-                    const data = doc.data();
-                    const completedAt = data.completedAt?.toDate?.() || new Date();
-                    const monthKey = getMonthKey(completedAt);
-                    const amount = data.amount || 0;
-
-                    if (!monthlyData[monthKey]) {
-                        monthlyData[monthKey] = { gmv: 0, count: 0 };
-                    }
-
-                    monthlyData[monthKey].gmv += amount;
-                    monthlyData[monthKey].count += 1;
-                });
-
-                // Convert to array and fill missing months
-                const monthlyGMV: MonthlyGMV[] = [];
-                for (let i = monthsBack - 1; i >= 0; i--) {
-                    const date = getMonthsAgo(i);
-                    const monthKey = getMonthKey(date);
-                    const data = monthlyData[monthKey] || { gmv: 0, count: 0 };
-
-                    monthlyGMV.push({
-                        month: formatMonth(date),
-                        monthKey,
-                        gmv: data.gmv,
-                        transactions: data.count,
-                        averageTransaction: data.count > 0 ? data.gmv / data.count : 0
-                    });
-                }
-
-                setState({
-                    data: monthlyGMV,
-                    loading: false,
-                    error: null
-                });
-            } catch (error) {
-                console.error('Error fetching GMV by month:', error);
-                setState({
-                    data: null,
-                    loading: false,
-                    error: error as Error
-                });
-            }
-        };
-
-        fetchGMVByMonth();
+        return query(
+            collection(db, 'bookings'),
+            where('status', '==', 'completed'),
+            where('completedAt', '>=', Timestamp.fromDate(startDate)),
+            orderBy('completedAt', 'asc')
+        );
     }, [monthsBack]);
 
-    return state;
+    // Transform function
+    const transform = useMemo(() => {
+        return (snapshot: any) => {
+            // Group by month
+            const monthlyData: Record<string, { gmv: number; count: number }> = {};
+
+            snapshot.docs.forEach((doc: any) => {
+                const data = doc.data();
+                const completedAt = data.completedAt?.toDate?.() || new Date();
+                const monthKey = getMonthKey(completedAt);
+                const amount = data.amount || 0;
+
+                if (!monthlyData[monthKey]) {
+                    monthlyData[monthKey] = { gmv: 0, count: 0 };
+                }
+
+                monthlyData[monthKey].gmv += amount;
+                monthlyData[monthKey].count += 1;
+            });
+
+            // Convert to array and fill missing months
+            const monthlyGMV: MonthlyGMV[] = [];
+            for (let i = monthsBack - 1; i >= 0; i--) {
+                const date = getMonthsAgo(i);
+                const monthKey = getMonthKey(date);
+                const data = monthlyData[monthKey] || { gmv: 0, count: 0 };
+
+                monthlyGMV.push({
+                    month: formatMonth(date),
+                    monthKey,
+                    gmv: data.gmv,
+                    transactions: data.count,
+                    averageTransaction: data.count > 0 ? data.gmv / data.count : 0
+                });
+            }
+
+            return monthlyGMV;
+        };
+    }, [monthsBack]);
+
+    // Use live data hook
+    const liveState = useLiveData(bookingsQuery, transform, {
+        throttleMs: 300,
+        enabled: true
+    });
+
+    return {
+        data: liveState.data,
+        loading: liveState.loading,
+        error: liveState.error
+    };
 }
 
 // ========================================

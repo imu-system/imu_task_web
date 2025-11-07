@@ -9,7 +9,7 @@
  * - useTaskCompletion: Taux de complétion et statistiques missions
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
     collection,
     query,
@@ -19,6 +19,7 @@ import {
     Timestamp
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { useLiveData } from './use-live-updates';
 
 // ========================================
 // TYPES
@@ -93,88 +94,72 @@ export function useClientSpendingByMonth(
     userId: string | undefined,
     monthsBack: number = 6
 ): HookState<MonthlySpending[]> {
-    const [state, setState] = useState<HookState<MonthlySpending[]>>({
-        data: null,
-        loading: true,
-        error: null
-    });
+    // Build Firestore query
+    const bookingsQuery = useMemo(() => {
+        if (!userId) return null;
 
-    useEffect(() => {
-        if (!userId) {
-            setState({ data: null, loading: false, error: null });
-            return;
-        }
+        const startDate = getMonthsAgo(monthsBack);
 
-        const fetchSpendingByMonth = async () => {
-            setState(prev => ({ ...prev, loading: true, error: null }));
-
-            try {
-                // Get date from N months ago
-                const startDate = getMonthsAgo(monthsBack);
-
-                // Fetch completed bookings as client
-                const bookingsQuery = query(
-                    collection(db, 'bookings'),
-                    where('clientId', '==', userId),
-                    where('status', '==', 'completed'),
-                    where('completedAt', '>=', Timestamp.fromDate(startDate)),
-                    orderBy('completedAt', 'asc')
-                );
-
-                const bookingsSnap = await getDocs(bookingsQuery);
-
-                // Group by month
-                const monthlyData: Record<string, { spending: number; count: number }> = {};
-
-                bookingsSnap.docs.forEach(doc => {
-                    const data = doc.data();
-                    const completedAt = data.completedAt?.toDate?.() || new Date();
-                    const monthKey = getMonthKey(completedAt);
-                    const amount = data.amount || 0;
-
-                    if (!monthlyData[monthKey]) {
-                        monthlyData[monthKey] = { spending: 0, count: 0 };
-                    }
-
-                    monthlyData[monthKey].spending += amount;
-                    monthlyData[monthKey].count += 1;
-                });
-
-                // Convert to array and fill missing months
-                const monthlySpending: MonthlySpending[] = [];
-                for (let i = monthsBack - 1; i >= 0; i--) {
-                    const date = getMonthsAgo(i);
-                    const monthKey = getMonthKey(date);
-                    const data = monthlyData[monthKey] || { spending: 0, count: 0 };
-
-                    monthlySpending.push({
-                        month: formatMonth(date),
-                        monthKey,
-                        spending: data.spending,
-                        bookings: data.count,
-                        averagePerBooking: data.count > 0 ? data.spending / data.count : 0
-                    });
-                }
-
-                setState({
-                    data: monthlySpending,
-                    loading: false,
-                    error: null
-                });
-            } catch (error) {
-                console.error('Error fetching spending by month:', error);
-                setState({
-                    data: null,
-                    loading: false,
-                    error: error as Error
-                });
-            }
-        };
-
-        fetchSpendingByMonth();
+        return query(
+            collection(db, 'bookings'),
+            where('clientId', '==', userId),
+            where('status', '==', 'completed'),
+            where('completedAt', '>=', Timestamp.fromDate(startDate)),
+            orderBy('completedAt', 'asc')
+        );
     }, [userId, monthsBack]);
 
-    return state;
+    // Transform function
+    const transform = useMemo(() => {
+        return (snapshot: any) => {
+            // Group by month
+            const monthlyData: Record<string, { spending: number; count: number }> = {};
+
+            snapshot.docs.forEach((doc: any) => {
+                const data = doc.data();
+                const completedAt = data.completedAt?.toDate?.() || new Date();
+                const monthKey = getMonthKey(completedAt);
+                const amount = data.amount || 0;
+
+                if (!monthlyData[monthKey]) {
+                    monthlyData[monthKey] = { spending: 0, count: 0 };
+                }
+
+                monthlyData[monthKey].spending += amount;
+                monthlyData[monthKey].count += 1;
+            });
+
+            // Convert to array and fill missing months
+            const monthlySpending: MonthlySpending[] = [];
+            for (let i = monthsBack - 1; i >= 0; i--) {
+                const date = getMonthsAgo(i);
+                const monthKey = getMonthKey(date);
+                const data = monthlyData[monthKey] || { spending: 0, count: 0 };
+
+                monthlySpending.push({
+                    month: formatMonth(date),
+                    monthKey,
+                    spending: data.spending,
+                    bookings: data.count,
+                    averagePerBooking: data.count > 0 ? data.spending / data.count : 0
+                });
+            }
+
+            return monthlySpending;
+        };
+    }, [monthsBack]);
+
+    // Use live data hook
+    const liveState = useLiveData(bookingsQuery, transform, {
+        throttleMs: 300,
+        enabled: !!userId
+    });
+
+    return {
+        data: liveState.data,
+        loading: liveState.loading,
+        error: liveState.error
+    };
 }
 
 // ========================================

@@ -4,9 +4,10 @@
  * RevenueChart Component
  * 
  * Phase 9: Option B - Graphiques de revenus
+ * Phase 9: Option G - Analytics Temps Réel (LiveIndicator)
  * 
  * Affiche un graphique en barres des revenus mensuels du provider
- * avec métriques clés (total, moyenne, tendance)
+ * avec métriques clés (total, moyenne, tendance) et mise à jour en temps réel
  */
 
 import { useTranslations } from 'next-intl';
@@ -24,6 +25,7 @@ import { TrendingUp, TrendingDown, DollarSign, Calendar } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useRevenueByMonth, type MonthlyRevenue } from '@/hooks/use-revenue-stats';
 import { Skeleton } from '@/components/ui/skeleton';
+import { LiveIndicatorCompact } from '@/components/dashboard/live-indicator';
 import { cn } from '@/lib/utils';
 
 // ========================================

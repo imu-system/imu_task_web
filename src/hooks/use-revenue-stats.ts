@@ -9,16 +9,19 @@
  * - useRevenueTimeline: Timeline complète des transactions
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
     collection,
     query,
     where,
     getDocs,
     orderBy,
-    Timestamp
+    Timestamp,
+    Query,
+    DocumentData
 } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
+import { useLiveData } from './use-live-updates';
 
 // ========================================
 // TYPES
@@ -93,88 +96,72 @@ export function useRevenueByMonth(
     userId: string | undefined,
     monthsBack: number = 6
 ): HookState<MonthlyRevenue[]> {
-    const [state, setState] = useState<HookState<MonthlyRevenue[]>>({
-        data: null,
-        loading: true,
-        error: null
-    });
+    // Build Firestore query
+    const bookingsQuery = useMemo(() => {
+        if (!userId) return null;
 
-    useEffect(() => {
-        if (!userId) {
-            setState({ data: null, loading: false, error: null });
-            return;
-        }
+        const startDate = getMonthsAgo(monthsBack);
 
-        const fetchRevenueByMonth = async () => {
-            setState(prev => ({ ...prev, loading: true, error: null }));
-
-            try {
-                // Get date from N months ago
-                const startDate = getMonthsAgo(monthsBack);
-
-                // Fetch completed bookings
-                const bookingsQuery = query(
-                    collection(db, 'bookings'),
-                    where('providerId', '==', userId),
-                    where('status', '==', 'completed'),
-                    where('completedAt', '>=', Timestamp.fromDate(startDate)),
-                    orderBy('completedAt', 'asc')
-                );
-
-                const bookingsSnap = await getDocs(bookingsQuery);
-
-                // Group by month
-                const monthlyData: Record<string, { earnings: number; count: number }> = {};
-
-                bookingsSnap.docs.forEach(doc => {
-                    const data = doc.data();
-                    const completedAt = data.completedAt?.toDate?.() || new Date();
-                    const monthKey = getMonthKey(completedAt);
-                    const amount = data.amount || 0;
-
-                    if (!monthlyData[monthKey]) {
-                        monthlyData[monthKey] = { earnings: 0, count: 0 };
-                    }
-
-                    monthlyData[monthKey].earnings += amount;
-                    monthlyData[monthKey].count += 1;
-                });
-
-                // Convert to array and fill missing months
-                const monthlyRevenue: MonthlyRevenue[] = [];
-                for (let i = monthsBack - 1; i >= 0; i--) {
-                    const date = getMonthsAgo(i);
-                    const monthKey = getMonthKey(date);
-                    const data = monthlyData[monthKey] || { earnings: 0, count: 0 };
-
-                    monthlyRevenue.push({
-                        month: formatMonth(date),
-                        monthKey,
-                        earnings: data.earnings,
-                        bookings: data.count,
-                        averagePerBooking: data.count > 0 ? data.earnings / data.count : 0
-                    });
-                }
-
-                setState({
-                    data: monthlyRevenue,
-                    loading: false,
-                    error: null
-                });
-            } catch (error) {
-                console.error('Error fetching revenue by month:', error);
-                setState({
-                    data: null,
-                    loading: false,
-                    error: error as Error
-                });
-            }
-        };
-
-        fetchRevenueByMonth();
+        return query(
+            collection(db, 'bookings'),
+            where('providerId', '==', userId),
+            where('status', '==', 'completed'),
+            where('completedAt', '>=', Timestamp.fromDate(startDate)),
+            orderBy('completedAt', 'asc')
+        );
     }, [userId, monthsBack]);
 
-    return state;
+    // Transform function to process snapshot data
+    const transform = useMemo(() => {
+        return (snapshot: any) => {
+            // Group by month
+            const monthlyData: Record<string, { earnings: number; count: number }> = {};
+
+            snapshot.docs.forEach((doc: any) => {
+                const data = doc.data();
+                const completedAt = data.completedAt?.toDate?.() || new Date();
+                const monthKey = getMonthKey(completedAt);
+                const amount = data.amount || 0;
+
+                if (!monthlyData[monthKey]) {
+                    monthlyData[monthKey] = { earnings: 0, count: 0 };
+                }
+
+                monthlyData[monthKey].earnings += amount;
+                monthlyData[monthKey].count += 1;
+            });
+
+            // Convert to array and fill missing months
+            const monthlyRevenue: MonthlyRevenue[] = [];
+            for (let i = monthsBack - 1; i >= 0; i--) {
+                const date = getMonthsAgo(i);
+                const monthKey = getMonthKey(date);
+                const data = monthlyData[monthKey] || { earnings: 0, count: 0 };
+
+                monthlyRevenue.push({
+                    month: formatMonth(date),
+                    monthKey,
+                    earnings: data.earnings,
+                    bookings: data.count,
+                    averagePerBooking: data.count > 0 ? data.earnings / data.count : 0
+                });
+            }
+
+            return monthlyRevenue;
+        };
+    }, [monthsBack]);
+
+    // Use live data hook with real-time updates
+    const liveState = useLiveData(bookingsQuery, transform, {
+        throttleMs: 300,
+        enabled: !!userId
+    });
+
+    return {
+        data: liveState.data,
+        loading: liveState.loading,
+        error: liveState.error
+    };
 }
 
 // ========================================
