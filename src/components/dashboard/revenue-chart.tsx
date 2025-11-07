@@ -51,7 +51,7 @@ interface ChartTooltipProps {
 
 export function RevenueChart({ userId, monthsBack = 6 }: RevenueChartProps) {
     const t = useTranslations('Dashboard');
-    const { data: monthlyRevenue, loading, error } = useRevenueByMonth(userId, monthsBack);
+    const { data: monthlyRevenue, loading, error, lastUpdate } = useRevenueByMonth(userId, monthsBack);
 
     // Calculate metrics
     const totalRevenue = monthlyRevenue?.reduce((sum, month) => sum + month.earnings, 0) || 0;
@@ -141,8 +141,13 @@ export function RevenueChart({ userId, monthsBack = 6 }: RevenueChartProps) {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>{t('revenue.title')}</CardTitle>
-                <CardDescription>{t('revenue.description')}</CardDescription>
+                <div className="flex items-center justify-between">
+                    <div>
+                        <CardTitle>{t('revenue.title')}</CardTitle>
+                        <CardDescription>{t('revenue.description')}</CardDescription>
+                    </div>
+                    <LiveIndicatorCompact lastUpdate={lastUpdate ?? null} />
+                </div>
             </CardHeader>
             <CardContent>
                 {/* Metrics Grid */}

@@ -53,6 +53,7 @@ interface HookState<T> {
     data: T | null;
     loading: boolean;
     error: Error | null;
+    lastUpdate?: Date | null;
 }
 
 // ========================================
@@ -158,7 +159,8 @@ export function useClientSpendingByMonth(
     return {
         data: liveState.data,
         loading: liveState.loading,
-        error: liveState.error
+        error: liveState.error,
+        lastUpdate: liveState.lastUpdate
     };
 }
 

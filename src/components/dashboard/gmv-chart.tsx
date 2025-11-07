@@ -27,6 +27,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useGMVByMonth, usePlatformRevenue, type MonthlyGMV } from '@/hooks/use-admin-stats';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
+import { LiveIndicatorCompact } from './live-indicator';
 
 // ========================================
 // TYPES
@@ -53,7 +54,7 @@ interface ChartTooltipProps {
 
 export function GMVChart({ monthsBack = 6, commissionRate = 0.15 }: GMVChartProps) {
     const t = useTranslations('Admin');
-    const { data: gmvData, loading: gmvLoading, error: gmvError } = useGMVByMonth(monthsBack);
+    const { data: gmvData, loading: gmvLoading, error: gmvError, lastUpdate } = useGMVByMonth(monthsBack);
     const { data: revenueData, loading: revenueLoading } = usePlatformRevenue(monthsBack, commissionRate);
 
     const loading = gmvLoading || revenueLoading;
@@ -130,8 +131,13 @@ export function GMVChart({ monthsBack = 6, commissionRate = 0.15 }: GMVChartProp
     return (
         <Card>
             <CardHeader>
-                <CardTitle>{t('gmv.title')}</CardTitle>
-                <CardDescription>{t('gmv.description')}</CardDescription>
+                <div className="flex items-center justify-between">
+                    <div>
+                        <CardTitle>{t('gmv.title')}</CardTitle>
+                        <CardDescription>{t('gmv.description')}</CardDescription>
+                    </div>
+                    <LiveIndicatorCompact lastUpdate={lastUpdate ?? null} />
+                </div>
             </CardHeader>
             <CardContent>
                 {/* Metrics Grid */}

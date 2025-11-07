@@ -73,6 +73,7 @@ interface HookState<T> {
     data: T | null;
     loading: boolean;
     error: Error | null;
+    lastUpdate?: Date | null;
 }
 
 // ========================================
@@ -165,10 +166,12 @@ export function useGMVByMonth(
     return {
         data: liveState.data,
         loading: liveState.loading,
-        error: liveState.error
+        error: liveState.error,
+        lastUpdate: liveState.lastUpdate
     };
 }
 
+// ========================================
 // ========================================
 // PLATFORM REVENUE HOOK
 // ========================================
@@ -177,81 +180,70 @@ export function usePlatformRevenue(
     monthsBack: number = 6,
     commissionRate: number = 0.15 // 15% default
 ): HookState<PlatformRevenue[]> {
-    const [state, setState] = useState<HookState<PlatformRevenue[]>>({
-        data: null,
-        loading: true,
-        error: null
-    });
+    // Build Firestore query
+    const bookingsQuery = useMemo(() => {
+        const startDate = getMonthsAgo(monthsBack);
+        
+        return query(
+            collection(db, 'bookings'),
+            where('status', '==', 'completed'),
+            where('completedAt', '>=', Timestamp.fromDate(startDate)),
+            orderBy('completedAt', 'asc')
+        );
+    }, [monthsBack]);
 
-    useEffect(() => {
-        const fetchPlatformRevenue = async () => {
-            setState(prev => ({ ...prev, loading: true, error: null }));
+    // Transform function to process snapshot data
+    const transform = useMemo(() => {
+        return (snapshot: any) => {
+            // Group by month
+            const monthlyData: Record<string, { gmv: number; count: number }> = {};
 
-            try {
-                const startDate = getMonthsAgo(monthsBack);
+            snapshot.docs.forEach((doc: any) => {
+                const data = doc.data();
+                const completedAt = data.completedAt?.toDate?.() || new Date();
+                const monthKey = getMonthKey(completedAt);
+                const amount = data.amount || 0;
 
-                // Fetch completed bookings
-                const bookingsQuery = query(
-                    collection(db, 'bookings'),
-                    where('status', '==', 'completed'),
-                    where('completedAt', '>=', Timestamp.fromDate(startDate)),
-                    orderBy('completedAt', 'asc')
-                );
-
-                const bookingsSnap = await getDocs(bookingsQuery);
-
-                // Group by month
-                const monthlyData: Record<string, { gmv: number; count: number }> = {};
-
-                bookingsSnap.docs.forEach(doc => {
-                    const data = doc.data();
-                    const completedAt = data.completedAt?.toDate?.() || new Date();
-                    const monthKey = getMonthKey(completedAt);
-                    const amount = data.amount || 0;
-
-                    if (!monthlyData[monthKey]) {
-                        monthlyData[monthKey] = { gmv: 0, count: 0 };
-                    }
-
-                    monthlyData[monthKey].gmv += amount;
-                    monthlyData[monthKey].count += 1;
-                });
-
-                // Convert to array with platform revenue
-                const platformRevenue: PlatformRevenue[] = [];
-                for (let i = monthsBack - 1; i >= 0; i--) {
-                    const date = getMonthsAgo(i);
-                    const monthKey = getMonthKey(date);
-                    const data = monthlyData[monthKey] || { gmv: 0, count: 0 };
-
-                    platformRevenue.push({
-                        month: formatMonth(date),
-                        monthKey,
-                        revenue: data.gmv * commissionRate,
-                        gmv: data.gmv,
-                        commissionRate: commissionRate
-                    });
+                if (!monthlyData[monthKey]) {
+                    monthlyData[monthKey] = { gmv: 0, count: 0 };
                 }
 
-                setState({
-                    data: platformRevenue,
-                    loading: false,
-                    error: null
-                });
-            } catch (error) {
-                console.error('Error fetching platform revenue:', error);
-                setState({
-                    data: null,
-                    loading: false,
-                    error: error as Error
+                monthlyData[monthKey].gmv += amount;
+                monthlyData[monthKey].count += 1;
+            });
+
+            // Convert to array with platform revenue
+            const platformRevenue: PlatformRevenue[] = [];
+            for (let i = monthsBack - 1; i >= 0; i--) {
+                const date = getMonthsAgo(i);
+                const monthKey = getMonthKey(date);
+                const data = monthlyData[monthKey] || { gmv: 0, count: 0 };
+
+                platformRevenue.push({
+                    month: formatMonth(date),
+                    monthKey,
+                    revenue: data.gmv * commissionRate,
+                    gmv: data.gmv,
+                    commissionRate: commissionRate
                 });
             }
-        };
 
-        fetchPlatformRevenue();
+            return platformRevenue;
+        };
     }, [monthsBack, commissionRate]);
 
-    return state;
+    // Use live data hook
+    const liveState = useLiveData(bookingsQuery, transform, {
+        throttleMs: 300,
+        enabled: true
+    });
+
+    return {
+        data: liveState.data,
+        loading: liveState.loading,
+        error: liveState.error,
+        lastUpdate: liveState.lastUpdate
+    };
 }
 
 // ========================================
@@ -261,88 +253,77 @@ export function usePlatformRevenue(
 export function useUserGrowth(
     monthsBack: number = 6
 ): HookState<UserGrowth[]> {
-    const [state, setState] = useState<HookState<UserGrowth[]>>({
-        data: null,
-        loading: true,
-        error: null
-    });
-
-    useEffect(() => {
-        const fetchUserGrowth = async () => {
-            setState(prev => ({ ...prev, loading: true, error: null }));
-
-            try {
-                const startDate = getMonthsAgo(monthsBack);
-
-                // Fetch users created since startDate
-                const usersQuery = query(
-                    collection(db, 'users'),
-                    where('createdAt', '>=', Timestamp.fromDate(startDate)),
-                    orderBy('createdAt', 'asc')
-                );
-
-                const usersSnap = await getDocs(usersQuery);
-
-                // Group by month and account type
-                const monthlyData: Record<string, { clients: number; providers: number }> = {};
-
-                usersSnap.docs.forEach(doc => {
-                    const data = doc.data();
-                    const createdAt = data.createdAt?.toDate?.() || new Date();
-                    const monthKey = getMonthKey(createdAt);
-                    const accountType = data.accountType;
-
-                    if (!monthlyData[monthKey]) {
-                        monthlyData[monthKey] = { clients: 0, providers: 0 };
-                    }
-
-                    if (accountType === 'client' || accountType === 'both') {
-                        monthlyData[monthKey].clients += 1;
-                    }
-                    if (accountType === 'provider' || accountType === 'both') {
-                        monthlyData[monthKey].providers += 1;
-                    }
-                });
-
-                // Convert to array with cumulative total
-                const userGrowth: UserGrowth[] = [];
-                let cumulativeTotal = 0;
-
-                for (let i = monthsBack - 1; i >= 0; i--) {
-                    const date = getMonthsAgo(i);
-                    const monthKey = getMonthKey(date);
-                    const data = monthlyData[monthKey] || { clients: 0, providers: 0 };
-
-                    cumulativeTotal += data.clients + data.providers;
-
-                    userGrowth.push({
-                        month: formatMonth(date),
-                        monthKey,
-                        newClients: data.clients,
-                        newProviders: data.providers,
-                        totalUsers: cumulativeTotal
-                    });
-                }
-
-                setState({
-                    data: userGrowth,
-                    loading: false,
-                    error: null
-                });
-            } catch (error) {
-                console.error('Error fetching user growth:', error);
-                setState({
-                    data: null,
-                    loading: false,
-                    error: error as Error
-                });
-            }
-        };
-
-        fetchUserGrowth();
+    // Build Firestore query
+    const usersQuery = useMemo(() => {
+        const startDate = getMonthsAgo(monthsBack);
+        
+        return query(
+            collection(db, 'users'),
+            where('createdAt', '>=', Timestamp.fromDate(startDate)),
+            orderBy('createdAt', 'asc')
+        );
     }, [monthsBack]);
 
-    return state;
+    // Transform function to process snapshot data
+    const transform = useMemo(() => {
+        return (snapshot: any) => {
+            // Group by month and account type
+            const monthlyData: Record<string, { clients: number; providers: number }> = {};
+
+            snapshot.docs.forEach((doc: any) => {
+                const data = doc.data();
+                const createdAt = data.createdAt?.toDate?.() || new Date();
+                const monthKey = getMonthKey(createdAt);
+                const accountType = data.accountType;
+
+                if (!monthlyData[monthKey]) {
+                    monthlyData[monthKey] = { clients: 0, providers: 0 };
+                }
+
+                if (accountType === 'client' || accountType === 'both') {
+                    monthlyData[monthKey].clients += 1;
+                }
+                if (accountType === 'provider' || accountType === 'both') {
+                    monthlyData[monthKey].providers += 1;
+                }
+            });
+
+            // Convert to array with cumulative total
+            const userGrowth: UserGrowth[] = [];
+            let cumulativeTotal = 0;
+
+            for (let i = monthsBack - 1; i >= 0; i--) {
+                const date = getMonthsAgo(i);
+                const monthKey = getMonthKey(date);
+                const data = monthlyData[monthKey] || { clients: 0, providers: 0 };
+
+                cumulativeTotal += data.clients + data.providers;
+
+                userGrowth.push({
+                    month: formatMonth(date),
+                    monthKey,
+                    newClients: data.clients,
+                    newProviders: data.providers,
+                    totalUsers: cumulativeTotal
+                });
+            }
+
+            return userGrowth;
+        };
+    }, [monthsBack]);
+
+    // Use live data hook
+    const liveState = useLiveData(usersQuery, transform, {
+        throttleMs: 300,
+        enabled: true
+    });
+
+    return {
+        data: liveState.data,
+        loading: liveState.loading,
+        error: liveState.error,
+        lastUpdate: liveState.lastUpdate
+    };
 }
 
 // ========================================

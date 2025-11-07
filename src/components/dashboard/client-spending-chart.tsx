@@ -25,6 +25,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useClientSpendingByMonth, type MonthlySpending } from '@/hooks/use-client-stats';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
+import { LiveIndicatorCompact } from './live-indicator';
 
 // ========================================
 // TYPES
@@ -49,7 +50,7 @@ interface ChartTooltipProps {
 
 export function ClientSpendingChart({ userId, monthsBack = 6 }: ClientSpendingChartProps) {
     const t = useTranslations('Dashboard');
-    const { data: monthlySpending, loading, error } = useClientSpendingByMonth(userId, monthsBack);
+    const { data: monthlySpending, loading, error, lastUpdate } = useClientSpendingByMonth(userId, monthsBack);
 
     // Calculate metrics
     const totalSpending = monthlySpending?.reduce((sum, month) => sum + month.spending, 0) || 0;
@@ -139,8 +140,13 @@ export function ClientSpendingChart({ userId, monthsBack = 6 }: ClientSpendingCh
     return (
         <Card>
             <CardHeader>
-                <CardTitle>{t('spending.title')}</CardTitle>
-                <CardDescription>{t('spending.description')}</CardDescription>
+                <div className="flex items-center justify-between">
+                    <div>
+                        <CardTitle>{t('spending.title')}</CardTitle>
+                        <CardDescription>{t('spending.description')}</CardDescription>
+                    </div>
+                    <LiveIndicatorCompact lastUpdate={lastUpdate ?? null} />
+                </div>
             </CardHeader>
             <CardContent>
                 {/* Metrics Grid */}
