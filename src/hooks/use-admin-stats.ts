@@ -183,7 +183,7 @@ export function usePlatformRevenue(
     // Build Firestore query
     const bookingsQuery = useMemo(() => {
         const startDate = getMonthsAgo(monthsBack);
-        
+
         return query(
             collection(db, 'bookings'),
             where('status', '==', 'completed'),
@@ -256,7 +256,7 @@ export function useUserGrowth(
     // Build Firestore query
     const usersQuery = useMemo(() => {
         const startDate = getMonthsAgo(monthsBack);
-        
+
         return query(
             collection(db, 'users'),
             where('createdAt', '>=', Timestamp.fromDate(startDate)),
