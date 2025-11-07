@@ -1,228 +1,250 @@
-
 'use client';
 
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTranslations } from 'next-intl';
-import { Loader2, Star, Download, MessageSquare, AlertTriangle, Send, Bookmark } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Loader2, Star } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Button } from '@/components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Separator } from '@/components/ui/separator';
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Tooltip } from 'recharts';
-import { cn } from '@/lib/utils';
-import { getReviews } from '@/lib/data';
-import { Review, UserRole } from '@/lib/types';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
-
-const mockReceivedReviews = getReviews().slice(0,2);
-const mockGivenReviews = getReviews().slice(2);
-
-const ratingData = [
-    { name: '5 ★', count: 18, percentage: 72 },
-    { name: '4 ★', count: 5, percentage: 20 },
-    { name: '3 ★', count: 1, percentage: 4 },
-    { name: '2 ★', count: 1, percentage: 4 },
-    { name: '1 ★', count: 0, percentage: 0 },
-];
-
-const ReviewCard = ({ review, type }: { review: Review, type: 'received' | 'given' }) => {
-    const t = useTranslations('ReviewsPage');
-    const { user } = useAuth();
-    const [isReplying, setIsReplying] = useState(false);
-    const [reportReason, setReportReason] = useState('');
-
-    const personId = type === 'received' ? review.reviewerId : review.reviewedUserId;
-    const isProvider = user?.roles?.includes(UserRole.provider) ?? false;
-
-    return (
-        <div className="space-y-3">
-            <div className="flex items-start gap-4">
-                <Avatar>
-                    <AvatarImage src={undefined} />
-                    <AvatarFallback>{personId.charAt(0).toUpperCase()}</AvatarFallback>
-                </Avatar>
-                <div className="flex-1">
-                    <div className="flex items-center justify-between">
-                        <p className="font-semibold">{personId}</p>
-                        <p className="text-sm text-muted-foreground">{new Date(review.createdAt).toLocaleDateString()}</p>
-                    </div>
-                    <div className="flex items-center gap-0.5">
-                        {[...Array(5)].map((_, i) => (
-                            <Star key={i} className={cn("h-4 w-4", i < review.rating ? "fill-yellow-400 text-yellow-400" : "fill-muted text-muted-foreground")} />
-                        ))}
-                    </div>
-                </div>
-            </div>
-            {review.comment && <p className="text-sm text-muted-foreground italic">"{review.comment}"</p>}
-            <div className="flex items-center gap-2">
-                {type === 'received' && (
-                    <Button variant="ghost" size="sm" onClick={() => setIsReplying(!isReplying)}>
-                        <MessageSquare className="mr-2 h-4 w-4"/>
-                        {t('actions.reply')}
-                    </Button>
-                )}
-                 {type === 'received' && isProvider && (
-                    <Button variant="ghost" size="sm">
-                        <Bookmark className="mr-2 h-4 w-4"/>
-                        {t('actions.pin')}
-                    </Button>
-                )}
-                <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                        <Button variant="ghost" size="sm" className="text-muted-foreground">
-                            <AlertTriangle className="mr-2 h-4 w-4"/>
-                            {t('actions.report')}
-                        </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                        <AlertDialogHeader>
-                            <AlertDialogTitle>{t('reportDialog.title')}</AlertDialogTitle>
-                            <AlertDialogDescription>{t('reportDialog.description')}</AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <div className="space-y-4 py-2">
-                             <RadioGroup onValueChange={setReportReason} defaultValue={reportReason}>
-                                <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="offensive" id="r1" />
-                                    <Label htmlFor="r1">{t('reportDialog.reasons.offensive')}</Label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="fake" id="r2" />
-                                    <Label htmlFor="r2">{t('reportDialog.reasons.fake')}</Label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="personal" id="r3" />
-                                    <Label htmlFor="r3">{t('reportDialog.reasons.personalInfo')}</Label>
-                                </div>
-                                <div className="flex items-center space-x-2">
-                                    <RadioGroupItem value="other" id="r4" />
-                                    <Label htmlFor="r4">{t('reportDialog.reasons.other')}</Label>
-                                </div>
-                            </RadioGroup>
-                            {reportReason === 'other' && (
-                                <Textarea placeholder={t('reportDialog.otherPlaceholder')} />
-                            )}
-                        </div>
-                        <AlertDialogFooter>
-                            <AlertDialogCancel>{t('reportDialog.cancel')}</AlertDialogCancel>
-                            <AlertDialogAction>{t('reportDialog.confirm')}</AlertDialogAction>
-                        </AlertDialogFooter>
-                    </AlertDialogContent>
-                </AlertDialog>
-            </div>
-            {isReplying && (
-                <div className="pl-14 space-y-2">
-                    <Textarea placeholder={t('replyPlaceholder')} />
-                    <Button size="sm">
-                        <Send className="mr-2 h-4 w-4"/>
-                        {t('publishReply')}
-                    </Button>
-                </div>
-            )}
-        </div>
-    )
-}
+import { Alert, AlertDescription } from '@/components/ui/alert';
+import { ReviewStatsCard } from '@/features/reviews/components/review-stats-card';
+import { ReviewsList } from '@/features/reviews/components/reviews-list';
+import { getUserReviews, getReviewStats, markReviewHelpful, unmarkReviewHelpful } from '@/lib/firestore-reviews';
+import type { Review, ReviewStats } from '@/types/reviews';
+import { useToast } from '@/hooks/use-toast';
+import { db } from '@/lib/firebase';
+import { collection, query, where, orderBy, getDocs } from 'firebase/firestore';
 
 export default function ReviewsPage() {
-    const { user, loading } = useAuth();
-    const t = useTranslations('ReviewsPage');
-    
-    if (loading || !user) {
-        return (
-            <div className="flex justify-center items-center h-64">
-                <Loader2 className="h-16 w-16 animate-spin text-primary" />
-            </div>
+  const { user, loading } = useAuth();
+  const t = useTranslations('Reviews');
+  const { toast } = useToast();
+  const [receivedReviews, setReceivedReviews] = useState<Review[]>([]);
+  const [givenReviews, setGivenReviews] = useState<Review[]>([]);
+  const [reviewStats, setReviewStats] = useState<ReviewStats | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch reviews data
+  useEffect(() => {
+    async function fetchData() {
+      if (!user?.uid) return;
+
+      try {
+        setIsLoading(true);
+        setError(null);
+
+        // Fetch received reviews (where user is the reviewedUser)
+        const received = await getUserReviews(user.uid, { sortBy: 'recent' });
+        setReceivedReviews(received);
+
+        // Fetch given reviews (where user is the reviewer)
+        const givenQuery = query(
+          collection(db, 'reviews'),
+          where('reviewerId', '==', user.uid),
+          orderBy('createdAt', 'desc')
         );
+        const givenSnapshot = await getDocs(givenQuery);
+        const given = givenSnapshot.docs.map(docSnap => ({
+          id: docSnap.id,
+          ...docSnap.data(),
+          createdAt: docSnap.data().createdAt?.toDate() || new Date(),
+          updatedAt: docSnap.data().updatedAt?.toDate() || new Date(),
+        })) as Review[];
+        setGivenReviews(given);
+
+        // Fetch review stats
+        const stats = await getReviewStats(user.uid);
+        setReviewStats(stats);
+      } catch (err) {
+        console.error('Error fetching reviews:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load reviews');
+      } finally {
+        setIsLoading(false);
+      }
     }
-    
+
+    fetchData();
+  }, [user?.uid]);
+
+  // Handle helpful vote toggle
+  const handleHelpful = async (reviewId: string) => {
+    if (!user?.uid) {
+      toast({
+        title: t('errors.notAuthenticated'),
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    try {
+      // Find review to check if user already voted
+      const allReviews = [...receivedReviews, ...givenReviews];
+      const review = allReviews.find((r) => r.id === reviewId);
+      
+      if (!review) return;
+      
+      const currentUserHasVoted = review.helpfulVoters?.includes(user.uid);
+
+      if (currentUserHasVoted) {
+        // Unmark as helpful
+        await unmarkReviewHelpful(reviewId, user.uid);
+        
+        // Optimistic update
+        const updateReviews = (reviews: Review[]) =>
+          reviews.map((r) =>
+            r.id === reviewId
+              ? {
+                  ...r,
+                  helpfulCount: (r.helpfulCount || 0) - 1,
+                  helpfulVoters: (r.helpfulVoters || []).filter((id) => id !== user.uid),
+                }
+              : r
+          );
+        
+        setReceivedReviews(updateReviews);
+        setGivenReviews(updateReviews);
+        
+        toast({
+          title: t('helpfulVoteRemoved'),
+        });
+      } else {
+        // Mark as helpful
+        await markReviewHelpful(reviewId, user.uid);
+        
+        // Optimistic update
+        const updateReviews = (reviews: Review[]) =>
+          reviews.map((r) =>
+            r.id === reviewId
+              ? {
+                  ...r,
+                  helpfulCount: (r.helpfulCount || 0) + 1,
+                  helpfulVoters: [...(r.helpfulVoters || []), user.uid],
+                }
+              : r
+          );
+        
+        setReceivedReviews(updateReviews);
+        setGivenReviews(updateReviews);
+        
+        toast({
+          title: t('helpfulVoteAdded'),
+        });
+      }
+    } catch (err) {
+      console.error('Error toggling helpful vote:', err);
+      toast({
+        title: t('errors.helpfulVoteFailed'),
+        description: err instanceof Error ? err.message : undefined,
+        variant: 'destructive',
+      });
+    }
+  };
+
+  // Handle report review
+  const handleReport = async (reviewId: string) => {
+    if (!user?.uid) {
+      toast({
+        title: t('errors.notAuthenticated'),
+        variant: 'destructive',
+      });
+      return;
+    }
+
+    try {
+      // TODO: Implement reportReview function
+      console.log('Report review:', reviewId);
+      toast({
+        title: t('reviewReported'),
+      });
+    } catch (err) {
+      console.error('Error reporting review:', err);
+      toast({
+        title: t('errors.reportFailed'),
+        variant: 'destructive',
+      });
+    }
+  };
+
+  // Loading state
+  if (loading || isLoading) {
     return (
-        <div className="space-y-8 max-w-4xl mx-auto">
-             <div>
-                <h1 className="text-3xl font-bold tracking-tight font-headline flex items-center gap-2">
-                    <Star className="h-8 w-8 text-primary"/>
-                    {t('title')}
-                </h1>
-                <p className="text-muted-foreground">
-                    {t('subtitle')}
-                </p>
-            </div>
-
-            <Card>
-                <CardHeader>
-                    <CardTitle>{t('distribution.title')}</CardTitle>
-                </CardHeader>
-                <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                    <div className="flex flex-col items-center justify-center text-center">
-                        <p className="text-6xl font-bold text-primary">4.8</p>
-                        <div className="flex items-center gap-0.5">
-                            {[...Array(5)].map((_, i) => (
-                                <Star key={i} className={cn("h-5 w-5", i < 4.8 ? "fill-yellow-400 text-yellow-400" : "fill-muted text-muted-foreground")} />
-                            ))}
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-1">{t('distribution.basedOn', {count: 25})}</p>
-                    </div>
-                     <div className="md:col-span-2 h-64">
-                        <ResponsiveContainer width="100%" height="100%">
-                            <BarChart layout="vertical" data={ratingData} margin={{ top: 0, right: 20, left: -20, bottom: 0 }}>
-                                <XAxis type="number" hide />
-                                <YAxis type="category" dataKey="name" stroke="#888888" fontSize={12} tickLine={false} axisLine={false}/>
-                                <Tooltip cursor={{ fill: 'hsl(var(--muted))' }} content={({ active, payload }) => {
-                                    if (active && payload && payload.length) {
-                                        return (
-                                        <div className="bg-background border p-2 rounded-lg shadow-sm">
-                                            <p className="text-sm">{`${payload[0].payload.count} ${t('distribution.reviews')} (${payload[0].payload.percentage}%)`}</p>
-                                        </div>
-                                        );
-                                    }
-                                    return null;
-                                }} />
-                                <Bar dataKey="count" fill="hsl(var(--primary))" radius={[0, 4, 4, 0]} barSize={12}/>
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                </CardContent>
-            </Card>
-
-            <Tabs defaultValue="received">
-                <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="received">{t('tabs.received')}</TabsTrigger>
-                    <TabsTrigger value="given">{t('tabs.given')}</TabsTrigger>
-                </TabsList>
-                <TabsContent value="received">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>{t('tabs.received')}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-6">
-                            {mockReceivedReviews.map((review, index) => (
-                                <div key={review.id}>
-                                    <ReviewCard review={review} type="received" />
-                                    {index < mockReceivedReviews.length - 1 && <Separator className="mt-6" />}
-                                </div>
-                            ))}
-                        </CardContent>
-                    </Card>
-                </TabsContent>
-                <TabsContent value="given">
-                     <Card>
-                        <CardHeader>
-                            <CardTitle>{t('tabs.given')}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-6">
-                            {mockGivenReviews.map((review, index) => (
-                                <div key={review.id}>
-                                    <ReviewCard review={review} type="given" />
-                                    {index < mockGivenReviews.length - 1 && <Separator className="mt-6" />}
-                                </div>
-                            ))}
-                        </CardContent>
-                    </Card>
-                </TabsContent>
-            </Tabs>
-        </div>
+      <div className="flex justify-center items-center h-64">
+        <Loader2 className="h-16 w-16 animate-spin text-primary" />
+      </div>
     );
+  }
+
+  // Error state
+  if (error) {
+    return (
+      <div className="max-w-4xl mx-auto space-y-4">
+        <Alert variant="destructive">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-8 max-w-4xl mx-auto">
+      {/* Header */}
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight font-headline flex items-center gap-2">
+          <Star className="h-8 w-8 text-primary" />
+          {t('title')}
+        </h1>
+        <p className="text-muted-foreground">{t('subtitle')}</p>
+      </div>
+
+      {/* Review Stats Card */}
+      {reviewStats && <ReviewStatsCard stats={reviewStats} />}
+
+      {/* Tabs: Received vs Given Reviews */}
+      <Tabs defaultValue="received" className="w-full">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="received">
+            {t('tabs.received')} ({receivedReviews.length})
+          </TabsTrigger>
+          <TabsTrigger value="given">
+            {t('tabs.given')} ({givenReviews.length})
+          </TabsTrigger>
+        </TabsList>
+
+        {/* Received Reviews Tab */}
+        <TabsContent value="received" className="mt-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>{t('tabs.received')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ReviewsList
+                reviews={receivedReviews}
+                onHelpful={handleHelpful}
+                onReport={handleReport}
+                currentUserId={user?.uid}
+              />
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        {/* Given Reviews Tab */}
+        <TabsContent value="given" className="mt-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>{t('tabs.given')}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ReviewsList
+                reviews={givenReviews}
+                onHelpful={handleHelpful}
+                onReport={handleReport}
+                currentUserId={user?.uid}
+              />
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
 }

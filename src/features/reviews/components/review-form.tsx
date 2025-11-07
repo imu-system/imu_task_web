@@ -21,6 +21,7 @@ import { cn } from '@/lib/utils';
 import { createReview } from '@/lib/firestore-reviews';
 import { useToast } from '@/hooks/use-toast';
 import type { CreateReviewInput, ReviewRating, ReviewType } from '@/types/reviews';
+import PhotoUpload from './photo-upload';
 
 // ============================================================================
 // VALIDATION SCHEMA
@@ -341,6 +342,29 @@ export function ReviewForm({
                 <FormDescription>
                   {field.value.length}/1000 - {t('comment.description')}
                 </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
+
+        {/* Photos Upload */}
+        {rating > 0 && (
+          <FormField
+            control={form.control}
+            name="photos"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t('photos.label')}</FormLabel>
+                <FormControl>
+                  <PhotoUpload
+                    photos={field.value || []}
+                    onChange={field.onChange}
+                    maxPhotos={5}
+                    maxSizeMB={2}
+                  />
+                </FormControl>
+                <FormDescription>{t('photos.description')}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}

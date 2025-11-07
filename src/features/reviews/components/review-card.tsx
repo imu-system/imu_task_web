@@ -12,6 +12,7 @@ import { cn } from '@/lib/utils';
 import type { Review } from '@/types/reviews';
 import { formatDistanceToNow } from 'date-fns';
 import { fr, enUS } from 'date-fns/locale';
+import PhotoGallery from './photo-gallery';
 
 // ============================================================================
 // STAR DISPLAY COMPONENT
@@ -183,23 +184,10 @@ export function ReviewCard({
           </div>
         )}
 
-        {/* Photos */}
+        {/* Photos Gallery */}
         {review.photos && review.photos.length > 0 && (
           <div className="mb-4">
-            <div className="flex items-center gap-2 flex-wrap">
-              {review.photos.map((photo, index) => (
-                <div
-                  key={index}
-                  className="relative h-20 w-20 rounded-lg overflow-hidden border bg-muted cursor-pointer hover:opacity-80 transition-opacity"
-                >
-                  <img
-                    src={photo}
-                    alt={`Review photo ${index + 1}`}
-                    className="object-cover w-full h-full"
-                  />
-                </div>
-              ))}
-            </div>
+            <PhotoGallery photos={review.photos} />
           </div>
         )}
 

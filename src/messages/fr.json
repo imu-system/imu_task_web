@@ -199,7 +199,8 @@
     "TaskCard": {
         "viewTask": "Détails",
         "reviews": "({count} avis)",
-        "makeOffer": "Faire une offre"
+        "makeOffer": "Faire une offre",
+        "viewReviews": "Avis"
     },
     "TaskCategories": {
         "shopping": "Courses",
@@ -479,81 +480,20 @@
         "cancelled": "Annulée"
     },
     "ProfilePage": {
-        "title": "Mon Profil",
-        "subtitle": "Gérez vos informations personnelles et préférences.",
-        "editProfile": "Modifier le profil",
-        "personalInfoDesc": "Mettez à jour vos informations pour que la communauté puisse mieux vous connaître.",
-        "personalInfo": "Informations Personnelles",
-        "changePhoto": "Changer de photo",
-        "fullName": "Nom complet",
-        "emailAddress": "Adresse e-mail",
-        "bio": "Biographie",
-        "bioPlaceholder": "Parlez un peu de vous...",
-        "providerInfo": "Informations Prestataire",
-        "languages": "Langues parlées",
-        "languagesPlaceholder": "Sélectionnez vos langues",
+        "verified": "Vérifié",
+        "provider": "Prestataire",
+        "memberSince": "Membre {date}",
         "skills": "Compétences",
-        "skillsPlaceholder": "Ajoutez des compétences (ex: Jardinage)",
-        "commaSeparated": "Séparer par des virgules",
-        "serviceRadius": "Rayon d'intervention",
-        "serviceRadiusPlaceholder": "Entrez un rayon en km",
-        "saveChanges": "Enregistrer les modifications",
-        "toastSuccessTitle": "Profil mis à jour",
-        "toastSuccessDescription": "Vos informations ont été enregistrées avec succès.",
-        "toastErrorTitle": "Erreur",
-        "toastErrorDescription": "Une erreur est survenue lors de la mise à jour de votre profil.",
-        "addressesTitle": "Mes Adresses",
-        "addressesDesc": "Gérez vos adresses pour les missions.",
-        "addAddress": "Ajouter une adresse",
-        "setDefault": "Définir par défaut",
-        "delete": "Supprimer",
-        "noAddresses": "Aucune adresse enregistrée.",
-        "kycVerification": "Vérification d'identité (KYC)",
-        "averageRating": "Note moyenne",
-        "basedOn": "Basé sur {count} avis",
-        "completedMissions": "Missions terminées",
-        "totalCompleted": "Au total depuis l'inscription",
-        "myBadges": "Mes Badges",
-        "earnedBadges": "Badges Obtenus",
-        "seeAllBadges": "Voir tous les badges",
-        "earnedOn": "Obtenu le {date}",
-        "noBio": "Cet utilisateur n'a pas encore de biographie.",
-        "serviceRadiusDisplay": "{km} km de rayon",
-        "edit": "Modifier",
-        "portfolio": {
-            "title": "Mon Portfolio",
-            "empty": "Augmentez votre crédibilité de 80% en ajoutant vos réalisations !",
-            "addWork": "Ajouter une réalisation",
-            "form": {
-                "title": "Ajouter une réalisation",
-                "titleEdit": "Modifier la réalisation",
-                "description": "Mettez en valeur vos compétences avec vos travaux passés.",
-                "titleLabel": "Titre",
-                "titlePlaceholder": "Ex: Logo pour une startup",
-                "typeLabel": "Type d'élément",
-                "typeLink": "Lien externe",
-                "typeFile": "Fichier",
-                "urlLabel": "URL",
-                "fileLabel": "Fichier",
-                "fileCurrent": "Fichier actuel : {file}. Téléversez un nouveau pour le remplacer.",
-                "descriptionLabel": "Description (optionnel)",
-                "descriptionPlaceholder": "Ajoutez du contexte sur ce projet...",
-                "save": "Enregistrer",
-                "cancel": "Annuler"
-            },
-            "deleteDialog": {
-                "title": "Supprimer la réalisation ?",
-                "description": "Êtes-vous sûr de vouloir supprimer la réalisation '{title}' ? Cette action est irréversible."
-            }
+        "noBio": "Aucune biographie disponible",
+        "pleaseSignIn": "Veuillez vous connecter pour interagir avec les avis",
+        "tabs": {
+            "about": "À propos",
+            "reviews": "Avis"
         },
-        "addressForm": {
-            "title": "Ajouter une nouvelle adresse",
-            "label": "Nom de l'adresse",
-            "labelPlaceholder": "Ex: Maison, Bureau",
-            "address": "Adresse complète",
-            "addressPlaceholder": "Commencez à taper votre adresse...",
-            "cancel": "Annuler",
-            "save": "Enregistrer l'adresse"
+        "reviewsTitle": "Avis",
+        "errors": {
+            "userNotFound": "Utilisateur introuvable",
+            "loadFailed": "Échec du chargement du profil"
         }
     },
     "BadgesPage": {
@@ -763,7 +703,9 @@
             "notAuthenticated": "Vous devez être connecté pour voir cette réservation.",
             "notFound": "Réservation introuvable.",
             "unauthorized": "Vous n'avez pas accès à cette réservation.",
-            "fetchError": "Erreur lors du chargement de la réservation."
+            "fetchError": "Erreur lors du chargement de la réservation.",
+            "loadReviewsFailed": "Échec du chargement des avis",
+            "markHelpfulFailed": "Échec de l'enregistrement du vote"
         },
         "cards": {
             "summary": {
@@ -811,8 +753,14 @@
                     "cancel": "Annuler",
                     "confirm": "Confirmer l'annulation"
                 }
+            },
+            "reviews": {
+                "title": "Avis sur {name}",
+                "description": "Découvrez ce que les autres clients disent de ce prestataire."
             }
-        }
+        },
+        "reviewHelpfulSuccess": "Merci pour votre retour",
+        "pleaseSignIn": "Veuillez vous connecter pour interagir avec les avis"
     },
     "LeaveReviewPage": {
         "title": "Laisser un avis",
@@ -3588,12 +3536,12 @@
                 "description": "Combien de promenades souhaitées par jour ?"
             },
             "walkDuration": {
-                "label": "Durée de chaque sortie",
-                "placeholder": "Sélectionner la durée",
-                "description": "Durée souhaitée pour chaque promenade",
                 "30": "30 minutes",
                 "60": "1 heure",
-                "90": "1h30"
+                "90": "1h30",
+                "label": "Durée de chaque sortie",
+                "placeholder": "Sélectionner la durée",
+                "description": "Durée souhaitée pour chaque promenade"
             },
             "specialNeeds": {
                 "label": "Besoins particuliers",
@@ -4252,10 +4200,8 @@
                 "description": "Minimum 20 caractères"
             },
             "photos": {
-                "label": "Ajouter des photos (Optionnel)",
-                "description": "Maximum 5 photos, 5 Mo chacune",
-                "upload": "Télécharger des photos",
-                "remove": "Supprimer"
+                "label": "Photos (optionnel)",
+                "description": "Ajoutez des photos pour illustrer votre expérience (max 5 photos, 2Mo chacune)"
             },
             "submit": "Soumettre l'avis",
             "cancel": "Annuler",
@@ -4329,6 +4275,122 @@
             "error": {
                 "title": "Erreur",
                 "description": "Échec de la publication de la réponse. Veuillez réessayer."
+            }
+        },
+        "photoUpload": {
+            "addPhotos": "Ajouter des photos ({current}/{max})",
+            "uploading": "Téléversement...",
+            "removePhoto": "Supprimer la photo",
+            "description": "JPEG, PNG ou WebP. Max {maxSize}Mo par photo.",
+            "emptyState": "Aucune photo pour le moment. Ajoutez des photos pour illustrer votre avis.",
+            "success": "{count} photo(s) ajoutée(s) avec succès",
+            "errors": {
+                "tooManyPhotos": "Maximum {max} photos autorisées",
+                "invalidFileType": "\"{name}\" n'est pas un fichier image valide",
+                "compressionFailed": "Échec de la compression de \"{name}\"",
+                "uploadFailed": "Échec du téléversement de la photo"
+            }
+        }
+    },
+    "Admin": {
+        "moderation": {
+            "loading": "Chargement...",
+            "page": {
+                "title": "Modération des Avis",
+                "description": "Gérez les avis signalés et maintenez les standards de la communauté"
+            },
+            "stats": {
+                "totalReports": "Total Signalements",
+                "pending": "En attente",
+                "approved": "Approuvés",
+                "removed": "Supprimés",
+                "dismissed": "Rejetés"
+            },
+            "status": {
+                "pending": "En attente",
+                "approved": "Approuvé",
+                "removed": "Supprimé",
+                "dismissed": "Rejeté"
+            },
+            "queue": {
+                "title": "Avis Signalés",
+                "description": "Avis qui ont été signalés par les utilisateurs",
+                "filter": "Filtrer par statut",
+                "reviewedUser": "Utilisateur évalué",
+                "rating": "Note",
+                "reports": "{count} signalement(s)",
+                "review": "Examiner",
+                "noComment": "Aucun commentaire fourni",
+                "empty": {
+                    "title": "Aucun avis à modérer",
+                    "description": "Tous les avis signalés ont été examinés"
+                }
+            },
+            "filters": {
+                "all": "Tous",
+                "pending": "En attente",
+                "approved": "Approuvés",
+                "removed": "Supprimés",
+                "dismissed": "Rejetés"
+            },
+            "form": {
+                "title": "Détails de l'avis",
+                "description": "Examinez le contenu signalé et prenez une décision",
+                "reportCount": "{count} signalement(s)",
+                "reviewedUser": "Utilisateur évalué",
+                "comment": "Commentaire de l'avis",
+                "noComment": "Aucun commentaire fourni",
+                "photos": "Photos jointes",
+                "adminNote": {
+                    "label": "Note admin (optionnelle pour approuver/rejeter, requise pour supprimer)",
+                    "placeholder": "Ajoutez une note expliquant votre décision...",
+                    "description": "Cette note sera sauvegardée avec l'action de modération"
+                },
+                "approve": "Approuver",
+                "remove": "Supprimer",
+                "dismiss": "Rejeter le signalement",
+                "cancel": "Annuler",
+                "approveDialog": {
+                    "title": "Approuver cet avis ?",
+                    "description": "L'avis sera marqué comme légitime et le signalement sera effacé.",
+                    "cancel": "Annuler",
+                    "confirm": "Approuver l'avis"
+                },
+                "removeDialog": {
+                    "title": "Supprimer cet avis ?",
+                    "description": "L'avis sera caché de la vue publique. Cette action ne peut pas être annulée. Veuillez fournir une raison.",
+                    "cancel": "Annuler",
+                    "confirm": "Supprimer l'avis"
+                },
+                "dismissDialog": {
+                    "title": "Rejeter ce signalement ?",
+                    "description": "Le signalement sera marqué comme non fondé et effacé.",
+                    "cancel": "Annuler",
+                    "confirm": "Rejeter le signalement"
+                },
+                "selectReview": {
+                    "title": "Sélectionnez un avis à modérer",
+                    "description": "Cliquez sur un avis de la file pour voir les détails et prendre une action"
+                },
+                "success": {
+                    "approve": {
+                        "title": "Avis approuvé",
+                        "description": "L'avis a été approuvé et le signalement effacé"
+                    },
+                    "remove": {
+                        "title": "Avis supprimé",
+                        "description": "L'avis a été supprimé de la vue publique"
+                    },
+                    "dismiss": {
+                        "title": "Signalement rejeté",
+                        "description": "Le signalement a été rejeté et effacé"
+                    }
+                },
+                "error": {
+                    "title": "Erreur",
+                    "description": "Échec de l'action de modération",
+                    "reasonRequired": "Veuillez fournir une raison pour supprimer l'avis"
+                }
             }
         }
     }

@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Link } from '@/navigation';
 import { Loader2, ArrowLeft, Calendar, User, Euro, MessageSquare, Clock, XCircle, CheckCircle, Edit, ShieldAlert, Handshake, CreditCard, CalendarCheck, Trash2 } from 'lucide-react';
@@ -27,6 +27,11 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Calendar as CalendarPicker } from '@/components/ui/calendar';
+import { ReviewStatsCard } from '@/features/reviews/components/review-stats-card';
+import { ReviewsList } from '@/features/reviews/components/reviews-list';
+import { getUserReviews, getReviewStats, markReviewHelpful, unmarkReviewHelpful } from '@/lib/firestore-reviews';
+import type { Review, ReviewStats } from '@/types/reviews';
+import { useToast } from '@/hooks/use-toast';
 
 
 export default function BookingDetailContent({ booking }: { booking: Booking }) {
@@ -34,6 +39,82 @@ export default function BookingDetailContent({ booking }: { booking: Booking }) 
     const t = useTranslations('BookingDetailPage');
     const tBookings = useTranslations('MyBookingsPage');
     const locale = useLocale();
+    const { toast } = useToast();
+
+    // Reviews state
+    const [providerReviews, setProviderReviews] = useState<Review[]>([]);
+    const [reviewStats, setReviewStats] = useState<ReviewStats | null>(null);
+    const [loadingReviews, setLoadingReviews] = useState(true);
+
+    // Fetch provider reviews
+    useEffect(() => {
+        const fetchProviderReviews = async () => {
+            if (!booking.provider?.uid) return;
+            
+            try {
+                setLoadingReviews(true);
+                const reviews = await getUserReviews(booking.provider.uid, { sortBy: 'recent' });
+                const stats = await getReviewStats(booking.provider.uid);
+                setProviderReviews(reviews);
+                setReviewStats(stats);
+            } catch (error) {
+                console.error('Error fetching provider reviews:', error);
+                toast({
+                    title: t('errors.loadReviewsFailed'),
+                    variant: 'destructive',
+                });
+            } finally {
+                setLoadingReviews(false);
+            }
+        };
+
+        fetchProviderReviews();
+    }, [booking.provider?.uid, t, toast]);
+
+    // Handle helpful vote
+    const handleHelpful = async (reviewId: string) => {
+        if (!user) {
+            toast({
+                title: t('pleaseSignIn'),
+            });
+            return;
+        }
+
+        try {
+            // Find review to check if user already voted
+            const review = providerReviews.find((r) => r.id === reviewId);
+            if (!review) return;
+            
+            const currentUserHasVoted = review.helpfulVoters?.includes(user.uid);
+
+            if (currentUserHasVoted) {
+                await unmarkReviewHelpful(reviewId, user.uid);
+                // Optimistic update
+                setProviderReviews(prev => prev.map(r => 
+                    r.id === reviewId 
+                        ? { ...r, helpfulCount: (r.helpfulCount || 0) - 1, helpfulVoters: r.helpfulVoters?.filter((id: string) => id !== user.uid) || [] }
+                        : r
+                ));
+            } else {
+                await markReviewHelpful(reviewId, user.uid);
+                // Optimistic update
+                setProviderReviews(prev => prev.map(r => 
+                    r.id === reviewId 
+                        ? { ...r, helpfulCount: (r.helpfulCount || 0) + 1, helpfulVoters: [...(r.helpfulVoters || []), user.uid] }
+                        : r
+                ));
+            }
+            toast({
+                title: t('reviewHelpfulSuccess'),
+            });
+        } catch (error) {
+            console.error('Error marking review helpful:', error);
+            toast({
+                title: t('errors.markHelpfulFailed'),
+                variant: 'destructive',
+            });
+        }
+    };
 
     if (!user) return null;
 
@@ -160,6 +241,32 @@ export default function BookingDetailContent({ booking }: { booking: Booking }) 
                         </ul>
                     </CardContent>
                 </Card>
+
+                {/* Provider Reviews Section */}
+                {booking.provider?.uid && (
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>{t('cards.reviews.title', { name: booking.provider.profile?.displayName })}</CardTitle>
+                            <CardDescription>{t('cards.reviews.description')}</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-6">
+                            {loadingReviews ? (
+                                <div className="flex justify-center py-8">
+                                    <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                                </div>
+                            ) : (
+                                <>
+                                    {reviewStats && <ReviewStatsCard stats={reviewStats} />}
+                                    <ReviewsList 
+                                        reviews={providerReviews} 
+                                        currentUserId={user?.uid}
+                                        onHelpful={handleHelpful}
+                                    />
+                                </>
+                            )}
+                        </CardContent>
+                    </Card>
+                )}
 
             </div>
             <div className="space-y-6">

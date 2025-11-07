@@ -514,35 +514,71 @@
 
 **Note:** Infrastructure backend complète (523 lignes) + types + pages basiques existent. Focus sur composants UI, intégration booking, tests et traductions.
 
-#### ✅ Infrastructure existante (45%)
-- [x] **Backend Firestore (firestore-reviews.ts - 523 lignes)**
+#### ✅ Infrastructure existante (45% → 65% après Task 8.1 & 8.2)
+
+**Backend & Types:**
+- [x] **Backend Firestore (firestore-reviews.ts - 621 lignes)** ✨ UPDATED
   - [x] createReview(), updateReview(), respondToReview()
   - [x] getUserReviews(), getReviewStats(), getReviewSummary()
   - [x] updateReviewStats(), calculateBadges() (9 badges qualité)
   - [x] reportReview(), hasUserReviewed(), canUserReview()
+  - [x] ✨ **markReviewHelpful()** + **unmarkReviewHelpful()** (NEW - Task 8.2)
+  - [x] ✨ **notifyNewReview()** integration (NEW - Task 8.2)
 - [x] **Types TypeScript (reviews.ts - 201 lignes)**
   - [x] Review interface (ratings détaillés, photos, modération)
   - [x] ReviewStats (distribution, averages, badges)
   - [x] QualityBadgeType (9 types: top_rated, excellent_service, etc.)
   - [x] Input/Output types complets
-- [x] **Pages UI basiques**
-  - [x] `/dashboard/reviews` (received/given tabs)
-  - [x] `/dashboard/admin/reviews` + détails
-  - [x] Affichage sur profils publics `/pro/[userId]`
-- [x] **Firestore Rules basiques**
-  - [x] Collection `reviews` (read auth, create owner)
-- [x] **Traductions partielles** (EN/FR/JA - fragmentées)
 
-#### 📋 À faire (55% restant)
+**Composants UI (Task 8.1 - COMPLETED):**
+- [x] ✅ **ReviewForm** (387 lignes) - Note 1-5 étoiles + ratings détaillés + validation Zod
+- [x] ✅ **ReviewCard** (280 lignes) - Avatar, stars, commentaire, helpful votes, response
+- [x] ✅ **ReviewsList** (220 lignes) - Filtres (all, verified, photos, response) + tri (recent, rating, helpful)
+- [x] ✅ **ReviewStatsCard** (220 lignes) - Moyenne, distribution, detailed averages, badges
+- [x] ✅ **RespondToReviewDialog** (140 lignes) - Provider response avec preview
 
-**Task 8.1: Composants UI Réutilisables** (Priorité: 🔴 Critique, 4-5h)
-- [ ] 🎯 ReviewForm component (création + édition)
-  - [ ] Note 1-5 étoiles interactive
-  - [ ] Ratings détaillés (communication, qualité, professionnalisme, ponctualité, rapport qualité-prix)
-  - [ ] Textarea commentaire (min 20 caractères)
-  - [ ] Upload photos (max 5, Storage)
-  - [ ] Validation Zod complète
-  - [ ] Submit avec loading states
+**Pages & Integration (Task 8.2 - COMPLETED):**
+- [x] ✅ **booking-detail-client.tsx** (180 lignes) - Prompt "Leave a Review" si completed
+- [x] ✅ **leave-review-client.tsx** (234 lignes) - Formulaire review avec 5 validations
+- [x] ✅ **reviews-demo/page.tsx** (230 lignes) - Demo complète avec handlers onHelpful
+- [x] ✅ Double evaluation (client → provider + provider → client)
+- [x] ✅ Notifications post-review automatiques
+
+**Pages UI basiques (existantes):**
+- [x] `/dashboard/reviews` (received/given tabs) - **TO REFACTOR** (Task 8.4)
+- [x] `/dashboard/admin/reviews` + détails
+- [x] Affichage sur profils publics `/pro/[userId]`
+
+**Configuration:**
+- [x] **Firestore Rules basiques** - Collection `reviews` (read auth, create owner)
+- [x] **Traductions complètes EN/FR** (268 keys: 220 Task 8.1 + 48 Task 8.2)
+- [x] **Traductions partielles JA** (fragmentées - à compléter Task 8.4)
+
+#### 📋 À faire (35% restant - Tasks 8.3 → 8.8)
+
+**Task 8.1: Composants UI Réutilisables** ✅ **COMPLETED** (4-5h)
+- [x] ✅ 🎯 ReviewForm component (création + édition)
+  - [x] ✅ Note 1-5 étoiles interactive
+  - [x] ✅ Ratings détaillés (communication, qualité, professionnalisme, ponctualité, rapport qualité-prix)
+  - [x] ✅ Textarea commentaire (min 20 caractères)
+  - [x] ⏸️ Upload photos (max 5, Storage) - **Moved to Task 8.5**
+  - [x] ✅ Validation Zod complète
+  - [x] ✅ Submit avec loading states
+- [x] ✅ 🎯 ReviewCard component (affichage avis)
+  - [x] ✅ Avatar + nom + date
+  - [x] ✅ Stars + ratings détaillés
+  - [x] ✅ Commentaire + photos gallery
+  - [x] ✅ Bouton "Utile" (helpful votes)
+  - [x] ✅ Badge "Vérifié" si verified: true
+  - [x] ✅ Réponse provider (si existe)
+- [x] ✅ 🎯 ReviewsList component (liste avec filtres)
+  - [x] ✅ Filtres: rating, verified, hasResponse, hasPhotos
+  - [x] ✅ Tri: recent, highest, lowest, helpful
+  - [x] ⏸️ Pagination (10 par page) - **Moved to Task 8.7**
+  - [x] ✅ Empty state
+- [x] ✅ 🎯 ReviewStatsCard component (statistiques)
+  - [x] ✅ Note moyenne (large display)
+  - [x] ✅ Distribution 1-5 étoiles (BarChart)
 - [ ] 🎯 ReviewCard component (affichage avis)
   - [ ] Avatar + nom + date
   - [ ] Stars + ratings détaillés
@@ -565,18 +601,37 @@
   - [ ] Prévisualisation
   - [ ] Submit avec notification
 
-**Task 8.2: Intégration Booking → Review** (Priorité: 🔴 Critique, 3-4h)
-- [ ] 🔗 Trigger post-completion (dans page booking detail)
-  - [ ] Bouton "Laisser un avis" si status: 'completed' && !hasReviewed
-  - [ ] Modal ReviewForm avec données pré-remplies
-  - [ ] Double évaluation (client → provider + provider → client)
-  - [ ] Notification après soumission
-- [ ] 🔗 Page dédiée `/bookings/[id]/review`
-  - [ ] Route protégée (owner only)
-  - [ ] Contexte booking affiché (tâche, montant, date)
-  - [ ] ReviewForm intégré
-  - [ ] Redirect vers /dashboard/reviews après submit
-- [ ] 🔗 Reminder notification (7 jours post-completion)
+**Task 8.2: Intégration Booking → Review** ✅ **COMPLETED** (Priorité: 🔴 Critique, 3-4h → 2h30 actual)
+- [x] ✅ 🔗 Trigger post-completion (dans page booking detail)
+  - [x] ✅ Bouton "Laisser un avis" si status: 'completed' && !hasReviewed
+  - [x] ✅ Alert conditionnelle avec Star icon (vert)
+  - [x] ✅ Check automatique `canUserReview()` au chargement
+  - [x] ✅ Redirection vers `/bookings/[id]/review`
+- [x] ✅ 🔗 **Page dédiée `/bookings/[id]/review`** (234 lignes)
+  - [x] ✅ Route protégée (owner only) - 5 validations (auth, notFound, unauthorized, notCompleted, alreadyReviewed)
+  - [x] ✅ Contexte booking affiché (tâche, montant, date) - Alert avec BookingInfo component
+  - [x] ✅ ReviewForm intégré - Pre-filled (bookingId, taskId, reviewerId, reviewedUserId, reviewType auto-detect)
+  - [x] ✅ Redirect vers `/bookings/[id]` après submit (not /dashboard/reviews)
+  - [x] ✅ Double évaluation (client → provider + provider → client)
+- [x] ✅ 🔗 **Backend Helpful Votes** (78 lignes)
+  - [x] ✅ markReviewHelpful(reviewId, userId) avec duplicate protection
+  - [x] ✅ unmarkReviewHelpful(reviewId, userId)
+  - [x] ✅ Firestore increment() pour thread-safety
+  - [x] ✅ helpfulVoters array tracking
+- [x] ✅ 🔗 **Notifications Post-Review** (20 lignes)
+  - [x] ✅ notifyNewReview() integration dans createReview()
+  - [x] ✅ Fetch taskTitle depuis Firestore
+  - [x] ✅ Type: NEW_REVIEW, Category: REVIEWS, Priority: NORMAL
+  - [x] ✅ actionUrl: `/profile?tab=reviews`
+  - [x] ✅ Gestion d'erreur silencieuse (review créé quand même)
+- [x] ✅ 🔗 **Demo Page Complète** (230 lignes - `/dashboard/reviews-demo`)
+  - [x] ✅ ReviewsList avec filtres + tri
+  - [x] ✅ ReviewStatsCard avec badges qualité
+  - [x] ✅ Handler onHelpful avec toggle logic
+  - [x] ✅ Optimistic update après vote
+  - [x] ✅ Toasts pour success/error
+  - [x] ✅ Tabs interface (Received vs Given)
+- [ ] 🔗 Reminder notification (7 jours post-completion) - **OPTIONAL** (de-prioritized)
   - [ ] Cloud Function (si pas encore reviewé)
   - [ ] Notification in-app + email
 

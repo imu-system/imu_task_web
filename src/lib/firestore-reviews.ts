@@ -7,6 +7,7 @@
  * - Réponses providers
  * - Signalement avis
  * - Attribution badges qualité
+ * - Notifications post-review
  */
 
 import {
@@ -26,6 +27,7 @@ import {
   writeBatch,
 } from 'firebase/firestore';
 import { db } from './firebase';
+import { notifyNewReview } from './firestore-notifications';
 import type {
   Review,
   ReviewStats,
@@ -100,6 +102,25 @@ export async function createReview(input: CreateReviewInput): Promise<string> {
 
     // 5. Update review stats
     await updateReviewStats(input.reviewedUserId);
+
+    // 6. Send notification to reviewed user
+    try {
+      const taskRef = doc(db, 'tasks', input.taskId);
+      const taskSnap = await getDoc(taskRef);
+      const taskTitle = taskSnap.exists() ? taskSnap.data().title : 'Unknown Task';
+
+      await notifyNewReview(
+        input.reviewedUserId,
+        input.reviewerId,
+        reviewer?.displayName || 'Anonymous',
+        input.rating,
+        taskTitle,
+        reviewRef.id
+      );
+    } catch (notifError) {
+      // Don't fail the review creation if notification fails
+      console.error('Error sending review notification:', notifError);
+    }
 
     return reviewRef.id;
   } catch (error) {
@@ -237,9 +258,9 @@ export async function getUserReviews(
       updatedAt: docSnap.data().updatedAt?.toDate() || new Date(),
       response: docSnap.data().response
         ? {
-            ...docSnap.data().response,
-            respondedAt: docSnap.data().response.respondedAt?.toDate(),
-          }
+          ...docSnap.data().response,
+          respondedAt: docSnap.data().response.respondedAt?.toDate(),
+        }
         : undefined,
     })) as Review[];
   } catch (error) {
@@ -387,7 +408,7 @@ export async function updateReviewStats(userId: string): Promise<void> {
   }
 }
 
-function calculateDetailedAverage(reviews: Review[], key: keyof Review['detailedRatings']): number {
+function calculateDetailedAverage(reviews: Review[], key: keyof NonNullable<Review['detailedRatings']>): number {
   const ratingsWithKey = reviews.filter(r => r.detailedRatings?.[key]);
   if (ratingsWithKey.length === 0) return 0;
 
@@ -452,16 +473,97 @@ export function calculateBadges(stats: ReviewStats, userType: 'provider' | 'clie
 export async function reportReview(input: ReportReviewInput): Promise<void> {
   try {
     const reviewRef = doc(db, REVIEWS_COLLECTION, input.reviewId);
+    const reviewSnap = await getDoc(reviewRef);
+
+    if (!reviewSnap.exists()) {
+      throw new Error('Review not found');
+    }
+
+    // Update review with report
     await updateDoc(reviewRef, {
       reported: true,
-      reportReason: input.reason,
-      reportedAt: serverTimestamp(),
-      reportedBy: input.reporterId,
-      moderationStatus: 'pending',
+      'moderation.reportCount': increment(1),
+      'moderation.lastReportedAt': serverTimestamp(),
+      'moderation.status': 'pending',
       updatedAt: serverTimestamp(),
+    });
+
+    // Add report document to subcollection
+    const reportsCollection = collection(db, REVIEWS_COLLECTION, input.reviewId, 'reports');
+    await addDoc(reportsCollection, {
+      reporterId: input.reporterId,
+      reason: input.reason,
+      createdAt: serverTimestamp(),
     });
   } catch (error) {
     console.error('Error reporting review:', error);
+    throw error;
+  }
+}
+
+/**
+ * Mark a review as helpful
+ * Increments helpfulCount and adds userId to helpfulVoters array
+ */
+export async function markReviewHelpful(reviewId: string, userId: string): Promise<void> {
+  try {
+    const reviewRef = doc(db, REVIEWS_COLLECTION, reviewId);
+    const reviewSnap = await getDoc(reviewRef);
+
+    if (!reviewSnap.exists()) {
+      throw new Error('Review not found');
+    }
+
+    const review = reviewSnap.data() as Review;
+    const helpfulVoters = review.helpfulVoters || [];
+
+    // Check if user already voted
+    if (helpfulVoters.includes(userId)) {
+      throw new Error('You have already marked this review as helpful');
+    }
+
+    // Add user to voters and increment count
+    await updateDoc(reviewRef, {
+      helpfulCount: increment(1),
+      helpfulVoters: [...helpfulVoters, userId],
+      updatedAt: serverTimestamp(),
+    });
+  } catch (error) {
+    console.error('Error marking review as helpful:', error);
+    throw error;
+  }
+}
+
+/**
+ * Unmark a review as helpful (remove vote)
+ * Decrements helpfulCount and removes userId from helpfulVoters array
+ */
+export async function unmarkReviewHelpful(reviewId: string, userId: string): Promise<void> {
+  try {
+    const reviewRef = doc(db, REVIEWS_COLLECTION, reviewId);
+    const reviewSnap = await getDoc(reviewRef);
+
+    if (!reviewSnap.exists()) {
+      throw new Error('Review not found');
+    }
+
+    const review = reviewSnap.data() as Review;
+    const helpfulVoters = review.helpfulVoters || [];
+
+    // Check if user has voted
+    if (!helpfulVoters.includes(userId)) {
+      throw new Error('You have not marked this review as helpful');
+    }
+
+    // Remove user from voters and decrement count
+    const updatedVoters = helpfulVoters.filter((id) => id !== userId);
+    await updateDoc(reviewRef, {
+      helpfulCount: increment(-1),
+      helpfulVoters: updatedVoters,
+      updatedAt: serverTimestamp(),
+    });
+  } catch (error) {
+    console.error('Error unmarking review as helpful:', error);
     throw error;
   }
 }
@@ -518,5 +620,155 @@ export async function canUserReview(bookingId: string, userId: string): Promise<
   } catch (error) {
     console.error('Error checking if user can review:', error);
     return false;
+  }
+}
+
+// ============================================================================
+// MODERATION
+// ============================================================================
+
+/**
+ * Approve a reported review (admin only)
+ */
+export async function approveReview(reviewId: string, adminId: string, note?: string): Promise<void> {
+  try {
+    const reviewRef = doc(db, REVIEWS_COLLECTION, reviewId);
+
+    await updateDoc(reviewRef, {
+      'moderation.status': 'approved',
+      'moderation.reviewedBy': adminId,
+      'moderation.reviewedAt': serverTimestamp(),
+      'moderation.note': note || '',
+      reported: false, // Clear reported flag
+      updatedAt: serverTimestamp(),
+    });
+  } catch (error) {
+    console.error('Error approving review:', error);
+    throw error;
+  }
+}
+
+/**
+ * Remove a review (admin only)
+ */
+export async function removeReview(reviewId: string, adminId: string, reason: string): Promise<void> {
+  try {
+    const reviewRef = doc(db, REVIEWS_COLLECTION, reviewId);
+
+    await updateDoc(reviewRef, {
+      'moderation.status': 'removed',
+      'moderation.reviewedBy': adminId,
+      'moderation.reviewedAt': serverTimestamp(),
+      'moderation.reason': reason,
+      status: 'removed', // Mark review as removed
+      updatedAt: serverTimestamp(),
+    });
+  } catch (error) {
+    console.error('Error removing review:', error);
+    throw error;
+  }
+}
+
+/**
+ * Dismiss a report (admin only)
+ */
+export async function dismissReport(reviewId: string, adminId: string, note?: string): Promise<void> {
+  try {
+    const reviewRef = doc(db, REVIEWS_COLLECTION, reviewId);
+
+    await updateDoc(reviewRef, {
+      'moderation.status': 'dismissed',
+      'moderation.reviewedBy': adminId,
+      'moderation.reviewedAt': serverTimestamp(),
+      'moderation.note': note || '',
+      reported: false, // Clear reported flag but keep report count
+      updatedAt: serverTimestamp(),
+    });
+  } catch (error) {
+    console.error('Error dismissing report:', error);
+    throw error;
+  }
+}
+
+/**
+ * Get reported reviews (admin only)
+ */
+export async function getReportedReviews(status?: 'pending' | 'approved' | 'removed' | 'dismissed'): Promise<Review[]> {
+  try {
+    let q = query(
+      collection(db, REVIEWS_COLLECTION),
+      where('reported', '==', true),
+      orderBy('moderation.lastReportedAt', 'desc')
+    );
+
+    if (status) {
+      q = query(
+        collection(db, REVIEWS_COLLECTION),
+        where('moderation.status', '==', status),
+        orderBy('moderation.reviewedAt', 'desc')
+      );
+    }
+
+    const snapshot = await getDocs(q);
+
+    return snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+      createdAt: doc.data().createdAt?.toDate(),
+      updatedAt: doc.data().updatedAt?.toDate(),
+    })) as Review[];
+  } catch (error) {
+    console.error('Error getting reported reviews:', error);
+    throw error;
+  }
+}
+
+/**
+ * Get moderation statistics (admin only)
+ */
+export async function getModerationStats(): Promise<{
+  totalReports: number;
+  pendingReports: number;
+  approvedReviews: number;
+  removedReviews: number;
+  dismissedReports: number;
+}> {
+  try {
+    const [pending, approved, removed, dismissed] = await Promise.all([
+      getDocs(query(
+        collection(db, REVIEWS_COLLECTION),
+        where('reported', '==', true),
+        where('moderation.status', '==', 'pending')
+      )),
+      getDocs(query(
+        collection(db, REVIEWS_COLLECTION),
+        where('moderation.status', '==', 'approved')
+      )),
+      getDocs(query(
+        collection(db, REVIEWS_COLLECTION),
+        where('moderation.status', '==', 'removed')
+      )),
+      getDocs(query(
+        collection(db, REVIEWS_COLLECTION),
+        where('moderation.status', '==', 'dismissed')
+      )),
+    ]);
+
+    return {
+      totalReports: pending.size + approved.size + removed.size + dismissed.size,
+      pendingReports: pending.size,
+      approvedReviews: approved.size,
+      removedReviews: removed.size,
+      dismissedReports: dismissed.size,
+    };
+  } catch (error) {
+    console.error('Error getting moderation stats:', error);
+    return {
+      totalReports: 0,
+      pendingReports: 0,
+      approvedReviews: 0,
+      removedReviews: 0,
+      dismissedReports: 0,
+    };
   }
 }

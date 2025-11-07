@@ -16,6 +16,7 @@ import {
   MapPin,
   Eye,
   Navigation,
+  Star,
 } from 'lucide-react';
 import { Link } from '@/navigation';
 import { Button } from './ui/button';
@@ -46,6 +47,16 @@ export default function TaskCard({ task, onOpenSheet, showDistance = false, dist
   const clientName = client?.profile?.displayName || 'Utilisateur';
   const clientAvatarUrl = client?.profile?.photoUrl;
   const clientFallback = clientName ? clientName.charAt(0) : 'U';
+  const clientId = (task as any).clientId || client?.uid;
+  
+  // Check if task has an assigned provider
+  const providerId = (task as any).providerId;
+  const provider = (task as any).provider;
+  const providerName = provider?.profile?.displayName || provider?.displayName;
+  
+  // Determine which user to show reviews for (provider if assigned, otherwise client)
+  const reviewUserId = providerId || clientId;
+  const reviewUserName = providerId ? providerName : clientName;
   
   // Handle both old category (ServiceCategory from database) and new enum-based category
   const categoryFromCatalog = typeof category === 'string' && Object.values(ServiceCategory).includes(category as ServiceCategory) 
@@ -169,7 +180,16 @@ export default function TaskCard({ task, onOpenSheet, showDistance = false, dist
           <span className="text-sm font-medium">{clientName}</span>
         </div>
         <div className="flex gap-2">
-           {detailButton}
+          {/* View Reviews Button - Shows provider reviews if assigned, client reviews otherwise */}
+          {reviewUserId && (
+            <Button asChild variant="ghost" size="sm">
+              <Link href={`/profile/${reviewUserId}?tab=reviews` as any}>
+                <Star className="mr-2 h-4 w-4" />
+                {t('viewReviews')}
+              </Link>
+            </Button>
+          )}
+          {detailButton}
         </div>
       </CardFooter>
     </Card>

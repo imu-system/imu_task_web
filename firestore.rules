@@ -247,5 +247,78 @@ service cloud.firestore {
       // Delete: not allowed
       allow delete: if false;
     }
+    
+    // ============================================================================
+    // REVIEWS & REVIEW STATS COLLECTIONS
+    // ============================================================================
+    
+    // Helper function: Check if booking is completed
+    function isBookingCompleted(bookingId) {
+      return get(/databases/$(database)/documents/bookings/$(bookingId)).data.status == 'completed';
+    }
+    
+    // Helper function: Check if user is participant in booking
+    function isBookingParticipant(bookingId) {
+      let booking = get(/databases/$(database)/documents/bookings/$(bookingId)).data;
+      return booking.clientId == request.auth.uid || booking.providerId == request.auth.uid;
+    }
+    
+    // Helper function: Check if review already exists for this booking+reviewer
+    function hasExistingReview(bookingId, reviewerId) {
+      return exists(/databases/$(database)/documents/reviews/$(bookingId + '_' + reviewerId));
+    }
+    
+    // Helper function: Check if user is admin
+    function isAdmin() {
+      return isAuthenticated() && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles.hasAny(['admin']);
+    }
+    
+    // Reviews collection
+    match /reviews/{reviewId} {
+      // READ: Public (anyone authenticated can see reviews)
+      allow read: if isAuthenticated();
+      
+      // CREATE: Must be authenticated + booking participant + booking completed + no duplicate
+      allow create: if isAuthenticated() && 
+                       request.resource.data.reviewerId == request.auth.uid &&
+                       isBookingParticipant(request.resource.data.bookingId) &&
+                       isBookingCompleted(request.resource.data.bookingId) &&
+                       !hasExistingReview(request.resource.data.bookingId, request.auth.uid) &&
+                       // Validate required fields
+                       request.resource.data.keys().hasAll(['bookingId', 'taskId', 'reviewerId', 'reviewedUserId', 'reviewType', 'rating', 'createdAt']) &&
+                       // Rating must be 1-5
+                       request.resource.data.rating >= 1 && request.resource.data.rating <= 5 &&
+                       // Comment must be at least 20 chars if present
+                       (!request.resource.data.keys().hasAny(['comment']) || request.resource.data.comment.size() >= 20) &&
+                       // Max 5 photos
+                       (!request.resource.data.keys().hasAny(['photos']) || request.resource.data.photos.size() <= 5);
+      
+      // UPDATE: Only for specific cases
+      allow update: if isAuthenticated() && (
+        // Case 1: Provider adding response to review
+        (resource.data.reviewedUserId == request.auth.uid &&
+         request.resource.data.diff(resource.data).affectedKeys().hasOnly(['response', 'updatedAt']) &&
+         request.resource.data.response.keys().hasAll(['text', 'respondedAt'])) ||
+        
+        // Case 2: Marking review as helpful (helpfulCount, helpfulVoters)
+        (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['helpfulCount', 'helpfulVoters', 'updatedAt'])) ||
+        
+        // Case 3: Admin moderation (reported, moderationStatus)
+        (isAdmin() && request.resource.data.diff(resource.data).affectedKeys().hasAny(['reported', 'moderationStatus', 'moderationNotes', 'updatedAt']))
+      );
+      
+      // DELETE: Admin only
+      allow delete: if isAdmin();
+    }
+    
+    // Review Stats collection (aggregated stats per user)
+    match /review_stats/{userId} {
+      // READ: Public (anyone authenticated can see stats)
+      allow read: if isAuthenticated();
+      
+      // WRITE: Only Cloud Functions (no direct client writes)
+      allow create, update, delete: if false;
+    }
   }
 }

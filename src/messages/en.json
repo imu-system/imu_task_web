@@ -262,7 +262,8 @@
     "TaskCard": {
         "viewTask": "Details",
         "reviews": "({count} reviews)",
-        "makeOffer": "Make Offer"
+        "makeOffer": "Make Offer",
+        "viewReviews": "Reviews"
     },
     "TaskCategories": {
         "shopping": "Shopping",
@@ -479,81 +480,20 @@
         "notFoundDescription": "The task you are looking for does not exist or has been deleted."
     },
     "ProfilePage": {
-        "title": "My Profile",
-        "subtitle": "Manage your personal information and preferences.",
-        "editProfile": "Edit Profile",
-        "personalInfoDesc": "Update your information so the community can get to know you better.",
-        "personalInfo": "Personal Information",
-        "changePhoto": "Change Photo",
-        "fullName": "Full Name",
-        "emailAddress": "Email Address",
-        "bio": "Bio",
-        "bioPlaceholder": "Tell us a little about yourself...",
-        "providerInfo": "Provider Information",
-        "languages": "Languages Spoken",
-        "languagesPlaceholder": "Select your languages",
+        "verified": "Verified",
+        "provider": "Provider",
+        "memberSince": "Member {date}",
         "skills": "Skills",
-        "skillsPlaceholder": "Add skills (e.g. Gardening)",
-        "commaSeparated": "Separate with commas",
-        "serviceRadius": "Service Radius",
-        "serviceRadiusPlaceholder": "Enter a radius in km",
-        "saveChanges": "Save Changes",
-        "toastSuccessTitle": "Profile Updated",
-        "toastSuccessDescription": "Your information has been successfully saved.",
-        "toastErrorTitle": "Error",
-        "toastErrorDescription": "An error occurred while updating your profile.",
-        "addressesTitle": "My Addresses",
-        "addressesDesc": "Manage your addresses for missions.",
-        "addAddress": "Add Address",
-        "setDefault": "Set as default",
-        "delete": "Delete",
-        "noAddresses": "No saved addresses.",
-        "kycVerification": "Identity Verification (KYC)",
-        "averageRating": "Average Rating",
-        "basedOn": "Based on {count} reviews",
-        "completedMissions": "Completed Missions",
-        "totalCompleted": "Total since registration",
-        "myBadges": "My Badges",
-        "earnedBadges": "Earned Badges",
-        "seeAllBadges": "See All Badges",
-        "earnedOn": "Earned on {date}",
-        "noBio": "This user does not have a bio yet.",
-        "serviceRadiusDisplay": "{km} km radius",
-        "edit": "Edit",
-        "portfolio": {
-            "title": "My Portfolio",
-            "empty": "Boost your credibility by 80% by adding your work!",
-            "addWork": "Add Work",
-            "form": {
-                "title": "Add a Portfolio Item",
-                "titleEdit": "Edit Portfolio Item",
-                "description": "Showcase your skills with your past work.",
-                "titleLabel": "Title",
-                "titlePlaceholder": "e.g., Logo for a startup",
-                "typeLabel": "Item Type",
-                "typeLink": "External Link",
-                "typeFile": "File",
-                "urlLabel": "URL",
-                "fileLabel": "File",
-                "fileCurrent": "Current file: {file}. Upload a new one to replace it.",
-                "descriptionLabel": "Description (optional)",
-                "descriptionPlaceholder": "Add some context about this project...",
-                "save": "Save Item",
-                "cancel": "Cancel"
-            },
-            "deleteDialog": {
-                "title": "Delete Item?",
-                "description": "Are you sure you want to delete the item '{title}'? This action is irreversible."
-            }
+        "noBio": "No bio available",
+        "pleaseSignIn": "Please sign in to interact with reviews",
+        "tabs": {
+            "about": "About",
+            "reviews": "Reviews"
         },
-        "addressForm": {
-            "title": "Add a new address",
-            "label": "Address Name",
-            "labelPlaceholder": "e.g. Home, Office",
-            "address": "Full Address",
-            "addressPlaceholder": "Start typing your address...",
-            "cancel": "Cancel",
-            "save": "Save Address"
+        "reviewsTitle": "Reviews",
+        "errors": {
+            "userNotFound": "User not found",
+            "loadFailed": "Failed to load profile"
         }
     },
     "BadgesPage": {
@@ -798,7 +738,9 @@
             "notAuthenticated": "You must be logged in to view this booking.",
             "notFound": "Booking not found.",
             "unauthorized": "You don't have access to this booking.",
-            "fetchError": "Error loading booking."
+            "fetchError": "Error loading booking.",
+            "loadReviewsFailed": "Failed to load reviews",
+            "markHelpfulFailed": "Failed to mark review as helpful"
         },
         "cards": {
             "summary": {
@@ -846,8 +788,14 @@
                     "cancel": "Cancel",
                     "confirm": "Confirm Cancellation"
                 }
+            },
+            "reviews": {
+                "title": "Reviews of {name}",
+                "description": "See what other clients say about this provider."
             }
-        }
+        },
+        "reviewHelpfulSuccess": "Thank you for your feedback",
+        "pleaseSignIn": "Please sign in to interact with reviews"
     },
     "LeaveReviewPage": {
         "title": "Leave a review",
@@ -3529,12 +3477,12 @@
                 "description": "How many walks desired per day?"
             },
             "walkDuration": {
-                "label": "Duration of each walk",
-                "placeholder": "Select duration",
-                "description": "Desired duration for each walk",
                 "30": "30 minutes",
                 "60": "1 hour",
-                "90": "1h30"
+                "90": "1h30",
+                "label": "Duration of each walk",
+                "placeholder": "Select duration",
+                "description": "Desired duration for each walk"
             },
             "specialNeeds": {
                 "label": "Special needs",
@@ -4193,10 +4141,8 @@
                 "description": "Minimum 20 characters"
             },
             "photos": {
-                "label": "Add Photos (Optional)",
-                "description": "Maximum 5 photos, 5MB each",
-                "upload": "Upload Photos",
-                "remove": "Remove"
+                "label": "Photos (optional)",
+                "description": "Add photos to illustrate your experience (max 5 photos, 2MB each)"
             },
             "submit": "Submit Review",
             "cancel": "Cancel",
@@ -4270,6 +4216,122 @@
             "error": {
                 "title": "Error",
                 "description": "Failed to post response. Please try again."
+            }
+        },
+        "photoUpload": {
+            "addPhotos": "Add photos ({current}/{max})",
+            "uploading": "Uploading...",
+            "removePhoto": "Remove photo",
+            "description": "JPEG, PNG or WebP. Max {maxSize}MB per photo.",
+            "emptyState": "No photos yet. Add photos to illustrate your review.",
+            "success": "{count} photo(s) added successfully",
+            "errors": {
+                "tooManyPhotos": "Maximum {max} photos allowed",
+                "invalidFileType": "\"{name}\" is not a valid image file",
+                "compressionFailed": "Failed to compress \"{name}\"",
+                "uploadFailed": "Failed to upload photo"
+            }
+        }
+    },
+    "Admin": {
+        "moderation": {
+            "loading": "Loading...",
+            "page": {
+                "title": "Review Moderation",
+                "description": "Manage reported reviews and maintain community standards"
+            },
+            "stats": {
+                "totalReports": "Total Reports",
+                "pending": "Pending",
+                "approved": "Approved",
+                "removed": "Removed",
+                "dismissed": "Dismissed"
+            },
+            "status": {
+                "pending": "Pending",
+                "approved": "Approved",
+                "removed": "Removed",
+                "dismissed": "Dismissed"
+            },
+            "queue": {
+                "title": "Reported Reviews",
+                "description": "Reviews that have been flagged by users",
+                "filter": "Filter by status",
+                "reviewedUser": "Reviewed user",
+                "rating": "Rating",
+                "reports": "{count} report(s)",
+                "review": "Review",
+                "noComment": "No comment provided",
+                "empty": {
+                    "title": "No reviews to moderate",
+                    "description": "All reported reviews have been reviewed"
+                }
+            },
+            "filters": {
+                "all": "All",
+                "pending": "Pending",
+                "approved": "Approved",
+                "removed": "Removed",
+                "dismissed": "Dismissed"
+            },
+            "form": {
+                "title": "Review Details",
+                "description": "Review the reported content and take action",
+                "reportCount": "{count} report(s)",
+                "reviewedUser": "Reviewed User",
+                "comment": "Review Comment",
+                "noComment": "No comment provided",
+                "photos": "Attached Photos",
+                "adminNote": {
+                    "label": "Admin Note (optional for approve/dismiss, required for remove)",
+                    "placeholder": "Add a note explaining your decision...",
+                    "description": "This note will be saved with the moderation action"
+                },
+                "approve": "Approve",
+                "remove": "Remove",
+                "dismiss": "Dismiss Report",
+                "cancel": "Cancel",
+                "approveDialog": {
+                    "title": "Approve this review?",
+                    "description": "The review will be marked as legitimate and the report will be cleared.",
+                    "cancel": "Cancel",
+                    "confirm": "Approve Review"
+                },
+                "removeDialog": {
+                    "title": "Remove this review?",
+                    "description": "The review will be hidden from public view. This action cannot be undone. Please provide a reason.",
+                    "cancel": "Cancel",
+                    "confirm": "Remove Review"
+                },
+                "dismissDialog": {
+                    "title": "Dismiss this report?",
+                    "description": "The report will be marked as unfounded and cleared.",
+                    "cancel": "Cancel",
+                    "confirm": "Dismiss Report"
+                },
+                "selectReview": {
+                    "title": "Select a review to moderate",
+                    "description": "Click on a review from the queue to view details and take action"
+                },
+                "success": {
+                    "approve": {
+                        "title": "Review approved",
+                        "description": "The review has been approved and the report cleared"
+                    },
+                    "remove": {
+                        "title": "Review removed",
+                        "description": "The review has been removed from public view"
+                    },
+                    "dismiss": {
+                        "title": "Report dismissed",
+                        "description": "The report has been dismissed and cleared"
+                    }
+                },
+                "error": {
+                    "title": "Error",
+                    "description": "Failed to complete the moderation action",
+                    "reasonRequired": "Please provide a reason for removing the review"
+                }
             }
         }
     }
