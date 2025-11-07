@@ -4463,6 +4463,36 @@
         }
     },
     "Dashboard": {
+        "filters": {
+            "title": "Filtres",
+            "search": "Rechercher",
+            "searchPlaceholder": "Rechercher par titre ou description...",
+            "clearSearch": "Effacer la recherche",
+            "dateRange": {
+                "label": "Période",
+                "preset": "Sélectionner une période",
+                "today": "Aujourd'hui",
+                "last7days": "7 derniers jours",
+                "last30days": "30 derniers jours",
+                "thisMonth": "Ce mois-ci",
+                "lastMonth": "Mois dernier",
+                "custom": "Période personnalisée",
+                "selectCustom": "Sélectionner des dates",
+                "selectRange": "Choisir une plage de dates"
+            },
+            "status": {
+                "label": "Statut",
+                "all": "Tous",
+                "completed": "Complétées",
+                "active": "Actives",
+                "cancelled": "Annulées"
+            },
+            "categories": "Catégories",
+            "selectAll": "Tout sélectionner",
+            "clearAll": "Tout effacer",
+            "resetAll": "Réinitialiser tous les filtres",
+            "activeFilters": "{count, plural, =0 {Aucun filtre} =1 {1 filtre actif} other {# filtres actifs}}"
+        },
         "live": {
             "indicator": "En direct",
             "updated": "Mis à jour {time}",

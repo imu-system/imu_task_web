@@ -4404,6 +4404,36 @@
         }
     },
     "Dashboard": {
+        "filters": {
+            "title": "Filters",
+            "search": "Search",
+            "searchPlaceholder": "Search by title or description...",
+            "clearSearch": "Clear search",
+            "dateRange": {
+                "label": "Date Range",
+                "preset": "Select a period",
+                "today": "Today",
+                "last7days": "Last 7 days",
+                "last30days": "Last 30 days",
+                "thisMonth": "This month",
+                "lastMonth": "Last month",
+                "custom": "Custom period",
+                "selectCustom": "Select dates",
+                "selectRange": "Choose a date range"
+            },
+            "status": {
+                "label": "Status",
+                "all": "All",
+                "completed": "Completed",
+                "active": "Active",
+                "cancelled": "Cancelled"
+            },
+            "categories": "Categories",
+            "selectAll": "Select all",
+            "clearAll": "Clear all",
+            "resetAll": "Reset all filters",
+            "activeFilters": "{count, plural, =0 {No filters} =1 {1 active filter} other {# active filters}}"
+        },
         "live": {
             "indicator": "Live",
             "updated": "Updated {time}",
