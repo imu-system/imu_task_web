@@ -42,9 +42,9 @@ const plans = [
     monthlyPrice: 0,
     annualPrice: 0,
     features: [
-      'plan.features.free.tasks',
-      'plan.features.free.basicSupport',
-      'plan.features.free.community',
+      'free.tasks',
+      'free.basicSupport',
+      'free.community',
     ],
   },
   {
@@ -54,10 +54,10 @@ const plans = [
     monthlyPrice: 49,
     annualPrice: 490, // ~41€/mois
     features: [
-      'plan.features.pro.unlimitedTasks',
-      'plan.features.pro.prioritySupport',
-      'plan.features.pro.analytics',
-      'plan.features.pro.customBranding',
+      'pro.unlimitedTasks',
+      'pro.prioritySupport',
+      'pro.analytics',
+      'pro.customBranding',
     ],
   },
   {
@@ -67,11 +67,11 @@ const plans = [
     monthlyPrice: 149,
     annualPrice: 1490, // ~124€/mois
     features: [
-      'plan.features.business.everything',
-      'plan.features.business.team',
-      'plan.features.business.api',
-      'plan.features.business.sla',
-      'plan.features.business.dedicated',
+      'business.everything',
+      'business.team',
+      'business.api',
+      'business.sla',
+      'business.dedicated',
     ],
   },
 ];
@@ -84,6 +84,7 @@ export default function SubscriptionDialog({
   onCancelSubscription,
 }: SubscriptionDialogProps) {
   const t = useTranslations('SettingsPage.billing.subscription');
+  const tPlan = useTranslations('SettingsPage.billing.plan');
   
   const [billing, setBilling] = useState<'monthly' | 'annual'>('monthly');
   const [loading, setLoading] = useState(false);
@@ -199,7 +200,7 @@ export default function SubscriptionDialog({
                       {plan.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-2">
                           <Check className="h-4 w-4 text-green-600 mt-0.5 shrink-0" />
-                          <span>{t(feature)}</span>
+                          <span>{tPlan(`features.${feature}`)}</span>
                         </li>
                       ))}
                     </ul>
