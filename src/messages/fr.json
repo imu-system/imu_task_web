@@ -1146,32 +1146,140 @@
                 "free": "Gratuit",
                 "pro": "Pro",
                 "business": "Business",
+                "freePrice": "0€/mois",
+                "proPrice": "49€/mois",
+                "businessPrice": "149€/mois",
                 "upgrade": "Mettre à niveau",
                 "manage": "Gérer l'abonnement",
-                "description": "Gérez votre plan et vos paiements"
+                "description": "Gérez votre plan et vos paiements",
+                "features": {
+                    "free": {
+                        "tasks": "Jusqu'à 10 missions par mois",
+                        "basicSupport": "Support par email",
+                        "community": "Accès à la communauté"
+                    },
+                    "pro": {
+                        "unlimitedTasks": "Missions illimitées",
+                        "prioritySupport": "Support prioritaire 24/7",
+                        "analytics": "Analyses et statistiques avancées",
+                        "customBranding": "Personnalisation de votre profil"
+                    },
+                    "business": {
+                        "everything": "Tout du plan Pro",
+                        "team": "Gestion d'équipe jusqu'à 50 utilisateurs",
+                        "api": "Accès API complet",
+                        "sla": "SLA garanti 99.9%",
+                        "dedicated": "Gestionnaire de compte dédié"
+                    }
+                }
             },
             "paymentMethods": {
                 "title": "Moyens de paiement",
+                "description": "Gérez vos cartes bancaires et moyens de paiement",
                 "add": "Ajouter un moyen de paiement",
+                "addCard": "Ajouter une carte",
+                "addSuccess": "Carte ajoutée avec succès !",
                 "default": "Par défaut",
                 "setDefault": "Définir par défaut",
                 "remove": "Supprimer",
-                "noMethods": "Aucun moyen de paiement enregistré"
+                "endingIn": "se terminant par",
+                "expires": "Expire le",
+                "noMethods": "Aucun moyen de paiement enregistré",
+                "deleteTitle": "Supprimer le moyen de paiement",
+                "deleteDescription": "Êtes-vous sûr de vouloir supprimer ce moyen de paiement ?",
+                "deleteCancel": "Annuler",
+                "deleteConfirm": "Supprimer",
+                "deleteSuccess": "Moyen de paiement supprimé",
+                "deleteError": "Impossible de supprimer le moyen de paiement",
+                "dialog": {
+                    "addTitle": "Ajouter une carte bancaire",
+                    "editTitle": "Modifier la carte bancaire",
+                    "addDescription": "Ajoutez une nouvelle carte bancaire pour vos paiements",
+                    "editDescription": "Modifiez les informations de votre carte bancaire",
+                    "cardNumber": "Numéro de carte",
+                    "expiryMonth": "Mois",
+                    "expiryYear": "Année",
+                    "cvv": "CVV",
+                    "cardholderName": "Nom du titulaire",
+                    "cancel": "Annuler",
+                    "addCard": "Ajouter",
+                    "saveChanges": "Enregistrer",
+                    "errors": {
+                        "invalidCard": "Numéro de carte invalide",
+                        "invalidExpiry": "Date d'expiration invalide",
+                        "expiredCard": "Cette carte a expiré",
+                        "invalidCvv": "CVV invalide",
+                        "invalidName": "Nom invalide (minimum 3 caractères)",
+                        "saveFailed": "Impossible d'enregistrer la carte"
+                    }
+                }
             },
             "invoices": {
                 "title": "Factures",
+                "description": "Consultez et téléchargez vos factures",
                 "date": "Date",
                 "amount": "Montant",
-                "status": "Statut",
                 "download": "Télécharger",
-                "noInvoices": "Aucune facture disponible"
+                "downloadSuccess": "Facture téléchargée avec succès !",
+                "noInvoices": "Aucune facture disponible",
+                "table": {
+                    "number": "N° facture",
+                    "date": "Date",
+                    "plan": "Plan",
+                    "amount": "Montant",
+                    "status": "Statut",
+                    "actions": "Actions",
+                    "download": "Télécharger"
+                },
+                "status": {
+                    "paid": "Payée",
+                    "pending": "En attente",
+                    "failed": "Échouée"
+                },
+                "empty": {
+                    "title": "Aucune facture",
+                    "description": "Vos factures apparaîtront ici une fois que vous aurez un abonnement actif"
+                },
+                "errors": {
+                    "downloadFailed": "Impossible de télécharger la facture"
+                }
             },
             "subscription": {
                 "title": "Gestion de l'abonnement",
+                "currentPlan": "Plan actuel",
+                "changePlan": "Changer de plan",
+                "cancel": "Annuler l'abonnement",
+                "changeSuccess": "Plan modifié avec succès !",
+                "cancelSuccess": "Abonnement annulé avec succès",
                 "cancelButton": "Annuler l'abonnement",
                 "renewsOn": "Se renouvelle le {date}",
                 "canceledOn": "Annulé le {date}",
-                "expiresOn": "Expire le {date}"
+                "expiresOn": "Expire le {date}",
+                "dialog": {
+                    "title": "Gérer votre abonnement",
+                    "description": "Choisissez le plan qui correspond le mieux à vos besoins",
+                    "monthly": "Mensuel",
+                    "annual": "Annuel",
+                    "save": "Économisez",
+                    "saveAmount": "Économisez {amount}€/an",
+                    "month": "mois",
+                    "currentPlan": "Plan actuel",
+                    "current": "Plan actuel",
+                    "upgrade": "Mettre à niveau",
+                    "downgrade": "Rétrograder",
+                    "close": "Fermer",
+                    "cancelTitle": "Annuler votre abonnement",
+                    "cancelDescription": "Votre abonnement restera actif jusqu'à la fin de la période de facturation actuelle",
+                    "cancelButton": "Annuler l'abonnement",
+                    "cancelConfirmTitle": "Confirmer l'annulation",
+                    "cancelConfirmDescription": "Êtes-vous sûr de vouloir annuler votre abonnement ? Vous perdrez l'accès aux fonctionnalités premium à la fin de votre période de facturation.",
+                    "cancelNo": "Non, garder mon abonnement",
+                    "cancelYes": "Oui, annuler",
+                    "errors": {
+                        "changeFailed": "Impossible de modifier le plan. Veuillez réessayer.",
+                        "cancelFailed": "Impossible d'annuler l'abonnement. Veuillez réessayer."
+                    }
+                }
             }
         },
         "privacy": {

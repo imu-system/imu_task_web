@@ -1181,32 +1181,140 @@
                 "free": "Free",
                 "pro": "Pro",
                 "business": "Business",
+                "freePrice": "€0/month",
+                "proPrice": "€49/month",
+                "businessPrice": "€149/month",
                 "upgrade": "Upgrade",
                 "manage": "Manage subscription",
-                "description": "Manage your plan and payments"
+                "description": "Manage your plan and payments",
+                "features": {
+                    "free": {
+                        "tasks": "Up to 10 tasks per month",
+                        "basicSupport": "Email support",
+                        "community": "Community access"
+                    },
+                    "pro": {
+                        "unlimitedTasks": "Unlimited tasks",
+                        "prioritySupport": "24/7 priority support",
+                        "analytics": "Advanced analytics and stats",
+                        "customBranding": "Custom profile branding"
+                    },
+                    "business": {
+                        "everything": "Everything in Pro",
+                        "team": "Team management up to 50 users",
+                        "api": "Full API access",
+                        "sla": "99.9% SLA guarantee",
+                        "dedicated": "Dedicated account manager"
+                    }
+                }
             },
             "paymentMethods": {
                 "title": "Payment methods",
+                "description": "Manage your credit cards and payment methods",
                 "add": "Add payment method",
+                "addCard": "Add card",
+                "addSuccess": "Card added successfully!",
                 "default": "Default",
                 "setDefault": "Set as default",
                 "remove": "Remove",
-                "noMethods": "No payment methods saved"
+                "endingIn": "ending in",
+                "expires": "Expires",
+                "noMethods": "No payment methods saved",
+                "deleteTitle": "Remove payment method",
+                "deleteDescription": "Are you sure you want to remove this payment method?",
+                "deleteCancel": "Cancel",
+                "deleteConfirm": "Remove",
+                "deleteSuccess": "Payment method removed",
+                "deleteError": "Unable to remove payment method",
+                "dialog": {
+                    "addTitle": "Add credit card",
+                    "editTitle": "Edit credit card",
+                    "addDescription": "Add a new credit card for payments",
+                    "editDescription": "Edit your credit card information",
+                    "cardNumber": "Card number",
+                    "expiryMonth": "Month",
+                    "expiryYear": "Year",
+                    "cvv": "CVV",
+                    "cardholderName": "Cardholder name",
+                    "cancel": "Cancel",
+                    "addCard": "Add",
+                    "saveChanges": "Save",
+                    "errors": {
+                        "invalidCard": "Invalid card number",
+                        "invalidExpiry": "Invalid expiry date",
+                        "expiredCard": "This card has expired",
+                        "invalidCvv": "Invalid CVV",
+                        "invalidName": "Invalid name (minimum 3 characters)",
+                        "saveFailed": "Unable to save card"
+                    }
+                }
             },
             "invoices": {
                 "title": "Invoices",
+                "description": "View and download your invoices",
                 "date": "Date",
                 "amount": "Amount",
-                "status": "Status",
                 "download": "Download",
-                "noInvoices": "No invoices available"
+                "downloadSuccess": "Invoice downloaded successfully!",
+                "noInvoices": "No invoices available",
+                "table": {
+                    "number": "Invoice #",
+                    "date": "Date",
+                    "plan": "Plan",
+                    "amount": "Amount",
+                    "status": "Status",
+                    "actions": "Actions",
+                    "download": "Download"
+                },
+                "status": {
+                    "paid": "Paid",
+                    "pending": "Pending",
+                    "failed": "Failed"
+                },
+                "empty": {
+                    "title": "No invoices",
+                    "description": "Your invoices will appear here once you have an active subscription"
+                },
+                "errors": {
+                    "downloadFailed": "Unable to download invoice"
+                }
             },
             "subscription": {
                 "title": "Subscription management",
+                "currentPlan": "Current plan",
+                "changePlan": "Change plan",
+                "cancel": "Cancel subscription",
+                "changeSuccess": "Plan changed successfully!",
+                "cancelSuccess": "Subscription canceled successfully",
                 "cancelButton": "Cancel subscription",
                 "renewsOn": "Renews on {date}",
                 "canceledOn": "Canceled on {date}",
-                "expiresOn": "Expires on {date}"
+                "expiresOn": "Expires on {date}",
+                "dialog": {
+                    "title": "Manage your subscription",
+                    "description": "Choose the plan that best fits your needs",
+                    "monthly": "Monthly",
+                    "annual": "Annual",
+                    "save": "Save",
+                    "saveAmount": "Save €{amount}/year",
+                    "month": "month",
+                    "currentPlan": "Current plan",
+                    "current": "Current",
+                    "upgrade": "Upgrade",
+                    "downgrade": "Downgrade",
+                    "close": "Close",
+                    "cancelTitle": "Cancel your subscription",
+                    "cancelDescription": "Your subscription will remain active until the end of the current billing period",
+                    "cancelButton": "Cancel subscription",
+                    "cancelConfirmTitle": "Confirm cancellation",
+                    "cancelConfirmDescription": "Are you sure you want to cancel your subscription? You will lose access to premium features at the end of your billing period.",
+                    "cancelNo": "No, keep my subscription",
+                    "cancelYes": "Yes, cancel",
+                    "errors": {
+                        "changeFailed": "Unable to change plan. Please try again.",
+                        "cancelFailed": "Unable to cancel subscription. Please try again."
+                    }
+                }
             }
         },
         "privacy": {

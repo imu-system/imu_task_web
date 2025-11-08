@@ -1567,32 +1567,140 @@
                 "free": "無料",
                 "pro": "プロ",
                 "business": "ビジネス",
+                "freePrice": "0円/月",
+                "proPrice": "49€/月",
+                "businessPrice": "149€/月",
                 "upgrade": "アップグレード",
                 "manage": "サブスクリプションを管理",
-                "description": "プランと支払いを管理"
+                "description": "プランと支払いを管理",
+                "features": {
+                    "free": {
+                        "tasks": "月に最大10タスク",
+                        "basicSupport": "メールサポート",
+                        "community": "コミュニティアクセス"
+                    },
+                    "pro": {
+                        "unlimitedTasks": "無制限のタスク",
+                        "prioritySupport": "24/7優先サポート",
+                        "analytics": "高度な分析と統計",
+                        "customBranding": "カスタムプロフィールブランディング"
+                    },
+                    "business": {
+                        "everything": "プロプランのすべて",
+                        "team": "最大50ユーザーのチーム管理",
+                        "api": "完全なAPIアクセス",
+                        "sla": "99.9% SLA保証",
+                        "dedicated": "専任アカウントマネージャー"
+                    }
+                }
             },
             "paymentMethods": {
                 "title": "支払い方法",
+                "description": "クレジットカードと支払い方法を管理",
                 "add": "支払い方法を追加",
+                "addCard": "カードを追加",
+                "addSuccess": "カードが正常に追加されました！",
                 "default": "デフォルト",
                 "setDefault": "デフォルトに設定",
                 "remove": "削除",
-                "noMethods": "保存された支払い方法なし"
+                "endingIn": "末尾",
+                "expires": "有効期限",
+                "noMethods": "保存された支払い方法なし",
+                "deleteTitle": "支払い方法を削除",
+                "deleteDescription": "この支払い方法を削除してもよろしいですか？",
+                "deleteCancel": "キャンセル",
+                "deleteConfirm": "削除",
+                "deleteSuccess": "支払い方法が削除されました",
+                "deleteError": "支払い方法を削除できません",
+                "dialog": {
+                    "addTitle": "クレジットカードを追加",
+                    "editTitle": "クレジットカードを編集",
+                    "addDescription": "支払い用の新しいクレジットカードを追加",
+                    "editDescription": "クレジットカード情報を編集",
+                    "cardNumber": "カード番号",
+                    "expiryMonth": "月",
+                    "expiryYear": "年",
+                    "cvv": "CVV",
+                    "cardholderName": "カード名義人",
+                    "cancel": "キャンセル",
+                    "addCard": "追加",
+                    "saveChanges": "保存",
+                    "errors": {
+                        "invalidCard": "無効なカード番号",
+                        "invalidExpiry": "無効な有効期限",
+                        "expiredCard": "このカードは期限切れです",
+                        "invalidCvv": "無効なCVV",
+                        "invalidName": "無効な名前（最低3文字）",
+                        "saveFailed": "カードを保存できません"
+                    }
+                }
             },
             "invoices": {
                 "title": "請求書",
+                "description": "請求書を表示してダウンロード",
                 "date": "日付",
                 "amount": "金額",
-                "status": "ステータス",
                 "download": "ダウンロード",
-                "noInvoices": "利用可能な請求書なし"
+                "downloadSuccess": "請求書が正常にダウンロードされました！",
+                "noInvoices": "利用可能な請求書なし",
+                "table": {
+                    "number": "請求書番号",
+                    "date": "日付",
+                    "plan": "プラン",
+                    "amount": "金額",
+                    "status": "ステータス",
+                    "actions": "アクション",
+                    "download": "ダウンロード"
+                },
+                "status": {
+                    "paid": "支払い済み",
+                    "pending": "保留中",
+                    "failed": "失敗"
+                },
+                "empty": {
+                    "title": "請求書なし",
+                    "description": "アクティブなサブスクリプションがあると、ここに請求書が表示されます"
+                },
+                "errors": {
+                    "downloadFailed": "請求書をダウンロードできません"
+                }
             },
             "subscription": {
                 "title": "サブスクリプション管理",
+                "currentPlan": "現在のプラン",
+                "changePlan": "プランを変更",
+                "cancel": "サブスクリプションをキャンセル",
+                "changeSuccess": "プランが正常に変更されました！",
+                "cancelSuccess": "サブスクリプションが正常にキャンセルされました",
                 "cancelButton": "サブスクリプションをキャンセル",
                 "renewsOn": "{date}に更新",
                 "canceledOn": "{date}にキャンセル",
-                "expiresOn": "{date}に期限切れ"
+                "expiresOn": "{date}に期限切れ",
+                "dialog": {
+                    "title": "サブスクリプションを管理",
+                    "description": "ニーズに最適なプランを選択",
+                    "monthly": "月額",
+                    "annual": "年額",
+                    "save": "節約",
+                    "saveAmount": "年間{amount}€節約",
+                    "month": "月",
+                    "currentPlan": "現在のプラン",
+                    "current": "現在",
+                    "upgrade": "アップグレード",
+                    "downgrade": "ダウングレード",
+                    "close": "閉じる",
+                    "cancelTitle": "サブスクリプションをキャンセル",
+                    "cancelDescription": "現在の請求期間が終了するまでサブスクリプションは有効です",
+                    "cancelButton": "サブスクリプションをキャンセル",
+                    "cancelConfirmTitle": "キャンセルの確認",
+                    "cancelConfirmDescription": "サブスクリプションをキャンセルしてもよろしいですか？請求期間の終了時にプレミアム機能へのアクセスが失われます。",
+                    "cancelNo": "いいえ、サブスクリプションを維持",
+                    "cancelYes": "はい、キャンセル",
+                    "errors": {
+                        "changeFailed": "プランを変更できません。もう一度お試しください。",
+                        "cancelFailed": "サブスクリプションをキャンセルできません。もう一度お試しください。"
+                    }
+                }
             }
         },
         "privacy": {
