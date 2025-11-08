@@ -1517,6 +1517,7 @@
                 "title": "アカウントを削除",
                 "description": "この操作は取り消せません。すべてのデータが完全に削除されます。",
                 "button": "アカウントを削除",
+                "password": "現在のパスワード",
                 "confirmTitle": "本当によろしいですか？",
                 "confirmDescription": "この操作は元に戻せません。アカウントとすべてのデータがサーバーから完全に削除されます。",
                 "confirmInput": "確認のため DELETE と入力してください",
@@ -1710,7 +1711,27 @@
                 "description": "すべてのデータのコピーをJSON形式で取得",
                 "button": "コピーをリクエスト",
                 "processing": "処理中...",
-                "ready": "ダウンロード準備完了"
+                "ready": "ダウンロード準備完了",
+                "dialog": {
+                    "title": "データをエクスポート",
+                    "description": "エクスポートする形式とデータカテゴリを選択",
+                    "format": "エクスポート形式",
+                    "categories": "含めるカテゴリ",
+                    "selectAll": "すべて選択",
+                    "profile": "プロフィール",
+                    "tasks": "タスク",
+                    "bookings": "予約",
+                    "messages": "メッセージ",
+                    "reviews": "レビュー",
+                    "transactions": "取引",
+                    "cancel": "キャンセル",
+                    "export": "エクスポート",
+                    "exporting": "エクスポート中...",
+                    "errors": {
+                        "noCategories": "少なくとも1つのカテゴリを選択してください",
+                        "exportFailed": "データのエクスポートに失敗しました"
+                    }
+                }
             },
             "dataVisibility": {
                 "title": "プロフィールの公開設定",

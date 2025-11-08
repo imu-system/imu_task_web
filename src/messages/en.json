@@ -1131,6 +1131,7 @@
                 "title": "Delete account",
                 "description": "This action is irreversible. All your data will be permanently deleted.",
                 "button": "Delete my account",
+                "password": "Current password",
                 "confirmTitle": "Are you absolutely sure?",
                 "confirmDescription": "This action cannot be undone. This will permanently delete your account and remove all your data from our servers.",
                 "confirmInput": "Type DELETE to confirm",
@@ -1324,7 +1325,27 @@
                 "description": "Get a copy of all your data in JSON format",
                 "button": "Request a copy",
                 "processing": "Processing...",
-                "ready": "Ready to download"
+                "ready": "Ready to download",
+                "dialog": {
+                    "title": "Export your data",
+                    "description": "Choose the format and data categories to export",
+                    "format": "Export format",
+                    "categories": "Categories to include",
+                    "selectAll": "Select all",
+                    "profile": "Profile",
+                    "tasks": "Tasks",
+                    "bookings": "Bookings",
+                    "messages": "Messages",
+                    "reviews": "Reviews",
+                    "transactions": "Transactions",
+                    "cancel": "Cancel",
+                    "export": "Export",
+                    "exporting": "Exporting...",
+                    "errors": {
+                        "noCategories": "Please select at least one category",
+                        "exportFailed": "Failed to export data"
+                    }
+                }
             },
             "dataVisibility": {
                 "title": "Profile visibility",

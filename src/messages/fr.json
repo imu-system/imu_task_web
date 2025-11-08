@@ -1096,6 +1096,7 @@
                 "title": "Supprimer le compte",
                 "description": "Cette action est irréversible. Toutes vos données seront définitivement supprimées.",
                 "button": "Supprimer mon compte",
+                "password": "Mot de passe actuel",
                 "confirmTitle": "Êtes-vous absolument sûr ?",
                 "confirmDescription": "Cette action ne peut pas être annulée. Cela supprimera définitivement votre compte et toutes vos données de nos serveurs.",
                 "confirmInput": "Tapez DELETE pour confirmer",
@@ -1289,7 +1290,27 @@
                 "description": "Obtenez une copie de toutes vos données au format JSON",
                 "button": "Demander une copie",
                 "processing": "Traitement en cours...",
-                "ready": "Prêt à télécharger"
+                "ready": "Prêt à télécharger",
+                "dialog": {
+                    "title": "Exporter vos données",
+                    "description": "Choisissez le format et les catégories de données à exporter",
+                    "format": "Format d'exportation",
+                    "categories": "Catégories à inclure",
+                    "selectAll": "Tout sélectionner",
+                    "profile": "Profil",
+                    "tasks": "Tâches",
+                    "bookings": "Réservations",
+                    "messages": "Messages",
+                    "reviews": "Avis",
+                    "transactions": "Transactions",
+                    "cancel": "Annuler",
+                    "export": "Exporter",
+                    "exporting": "Exportation en cours...",
+                    "errors": {
+                        "noCategories": "Veuillez sélectionner au moins une catégorie",
+                        "exportFailed": "Échec de l'exportation des données"
+                    }
+                }
             },
             "dataVisibility": {
                 "title": "Visibilité du profil",
