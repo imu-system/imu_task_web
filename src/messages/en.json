@@ -1107,6 +1107,17 @@
     "SettingsPage": {
         "account": {
             "title": "Account",
+            "deleteSuccess": "Account deleted successfully",
+            "wrongPassword": "Incorrect password",
+            "deleteError": "Error deleting account",
+            "phoneSuccess": "Phone number updated successfully",
+            "phoneError": "Error updating phone number",
+            "emailSuccess": "Email updated successfully",
+            "emailInUse": "This email address is already in use",
+            "emailError": "Error updating email",
+            "photoError": "Error updating photo",
+            "displayNameSuccess": "Display name updated successfully",
+            "displayNameError": "Error updating display name",
             "email": {
                 "title": "Email address",
                 "button": "Change",
@@ -1145,7 +1156,12 @@
                 "title": "Password",
                 "button": "Change password",
                 "lastChanged": "Last changed: {date}",
-                "description": "Make sure you use a strong and unique password"
+                "description": "Make sure you use a strong and unique password",
+                "changeSuccess": "Password changed successfully",
+                "wrongPassword": "Current password is incorrect",
+                "weakPassword": "Password is too weak",
+                "changeError": "Error changing password",
+                "notAvailable": "Not available for Google accounts"
             },
             "twoFactor": {
                 "title": "Two-Factor Authentication (2FA)",
@@ -1157,7 +1173,11 @@
                 "enableSms": "Enable via SMS",
                 "enableApp": "Enable via app",
                 "disable": "Disable",
-                "description": "Add an extra layer of security to your account"
+                "description": "Add an extra layer of security to your account",
+                "enableSuccess": "2FA enabled successfully",
+                "enableError": "Error enabling 2FA",
+                "disableSuccess": "2FA disabled successfully",
+                "disableError": "Error disabling 2FA"
             },
             "sessions": {
                 "title": "Active sessions",
@@ -1165,7 +1185,11 @@
                 "current": "Current session",
                 "lastActive": "Last active",
                 "logout": "Sign out",
-                "logoutAll": "Sign out all devices"
+                "logoutAll": "Sign out all devices",
+                "logoutSuccess": "Session signed out successfully",
+                "logoutError": "Error signing out",
+                "logoutAllSuccess": "All sessions signed out successfully",
+                "logoutAllError": "Error signing out all sessions"
             },
             "trustedDevices": {
                 "title": "Trusted devices",
@@ -1178,6 +1202,7 @@
             "title": "Billing",
             "plan": {
                 "title": "Current subscription",
+                "description": "Manage your subscription and features",
                 "current": "Current plan",
                 "free": "Free",
                 "pro": "Pro",
@@ -1187,7 +1212,6 @@
                 "businessPrice": "€149/month",
                 "upgrade": "Upgrade",
                 "manage": "Manage subscription",
-                "description": "Manage your plan and payments",
                 "features": {
                     "free": {
                         "tasks": "Up to 10 tasks per month",
@@ -1215,6 +1239,11 @@
                 "add": "Add payment method",
                 "addCard": "Add card",
                 "addSuccess": "Card added successfully!",
+                "addError": "Error adding card",
+                "deleteSuccess": "Card removed successfully!",
+                "deleteError": "Error removing card",
+                "setDefaultSuccess": "Card set as default successfully!",
+                "setDefaultError": "Error setting card as default",
                 "default": "Default",
                 "setDefault": "Set as default",
                 "remove": "Remove",
@@ -1225,8 +1254,6 @@
                 "deleteDescription": "Are you sure you want to remove this payment method?",
                 "deleteCancel": "Cancel",
                 "deleteConfirm": "Remove",
-                "deleteSuccess": "Payment method removed",
-                "deleteError": "Unable to remove payment method",
                 "dialog": {
                     "addTitle": "Add credit card",
                     "editTitle": "Edit credit card",
@@ -1277,6 +1304,7 @@
                     "description": "Your invoices will appear here once you have an active subscription"
                 },
                 "errors": {
+                    "notFound": "Invoice not found",
                     "downloadFailed": "Unable to download invoice"
                 }
             },
@@ -1285,8 +1313,11 @@
                 "currentPlan": "Current plan",
                 "changePlan": "Change plan",
                 "cancel": "Cancel subscription",
+                "downgradeSuccess": "Plan downgraded successfully!",
                 "changeSuccess": "Plan changed successfully!",
+                "changeError": "Error changing plan",
                 "cancelSuccess": "Subscription canceled successfully",
+                "cancelError": "Error canceling subscription",
                 "cancelButton": "Cancel subscription",
                 "renewsOn": "Renews on {date}",
                 "canceledOn": "Canceled on {date}",
@@ -1324,6 +1355,8 @@
                 "title": "Download my data",
                 "description": "Get a copy of all your data in JSON format",
                 "button": "Request a copy",
+                "exportSuccess": "Export started successfully!",
+                "exportError": "Error exporting data",
                 "processing": "Processing...",
                 "ready": "Ready to download",
                 "dialog": {
@@ -1350,28 +1383,43 @@
             "dataVisibility": {
                 "title": "Profile visibility",
                 "description": "Control who can see your profile",
+                "saveSuccess": "Visibility settings saved successfully!",
+                "saveError": "Error saving visibility settings",
                 "public": "Public",
                 "publicDesc": "Your profile is visible to everyone",
                 "private": "Private",
                 "privateDesc": "Only you can see your profile",
                 "friendsOnly": "Friends only",
-                "friendsOnlyDesc": "Only your friends can see your profile"
+                "friendsOnlyDesc": "Only your friends can see your profile",
+                "searchEngine": "Search engine indexing",
+                "searchEngineDesc": "Allow search engines to index your profile",
+                "save": "Save settings"
             },
             "cookies": {
                 "title": "Cookie preferences",
                 "description": "Manage your cookie preferences",
+                "saveSuccess": "Cookie preferences saved successfully!",
+                "saveError": "Error saving cookie preferences",
                 "essential": "Essential cookies (required)",
+                "essentialDesc": "Required for the site to function",
                 "analytics": "Analytics cookies",
+                "analyticsDesc": "Help us improve your experience",
                 "marketing": "Marketing cookies",
-                "manage": "Manage preferences"
+                "marketingDesc": "Used to personalize ads",
+                "manage": "Manage preferences",
+                "save": "Save preferences"
             },
             "notifications": {
                 "title": "Email notifications",
                 "description": "Choose which emails you want to receive",
+                "saveSuccess": "Notification preferences saved successfully!",
+                "saveError": "Error saving notification preferences",
                 "newsletter": "Newsletter and updates",
                 "marketing": "Promotional offers",
                 "updates": "Product updates",
-                "security": "Security alerts (recommended)"
+                "security": "Security alerts (recommended)",
+                "securityDesc": "Receive alerts for suspicious activity",
+                "save": "Save preferences"
             }
         }
     },

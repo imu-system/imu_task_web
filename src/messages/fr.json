@@ -1072,6 +1072,17 @@
     "SettingsPage": {
         "account": {
             "title": "Compte",
+            "deleteSuccess": "Compte supprimé avec succès",
+            "wrongPassword": "Mot de passe incorrect",
+            "deleteError": "Erreur lors de la suppression du compte",
+            "phoneSuccess": "Numéro de téléphone mis à jour avec succès",
+            "phoneError": "Erreur lors de la mise à jour du téléphone",
+            "emailSuccess": "E-mail mis à jour avec succès",
+            "emailInUse": "Cette adresse e-mail est déjà utilisée",
+            "emailError": "Erreur lors de la mise à jour de l'e-mail",
+            "photoError": "Erreur lors de la mise à jour de la photo",
+            "displayNameSuccess": "Nom d'affichage mis à jour avec succès",
+            "displayNameError": "Erreur lors de la mise à jour du nom",
             "email": {
                 "title": "Adresse e-mail",
                 "button": "Modifier",
@@ -1110,7 +1121,12 @@
                 "title": "Mot de passe",
                 "button": "Modifier le mot de passe",
                 "lastChanged": "Dernière modification : {date}",
-                "description": "Assurez-vous d'utiliser un mot de passe fort et unique"
+                "description": "Assurez-vous d'utiliser un mot de passe fort et unique",
+                "changeSuccess": "Mot de passe modifié avec succès",
+                "wrongPassword": "Mot de passe actuel incorrect",
+                "weakPassword": "Le mot de passe est trop faible",
+                "changeError": "Erreur lors du changement de mot de passe",
+                "notAvailable": "Non disponible pour les comptes Google"
             },
             "twoFactor": {
                 "title": "Authentification à deux facteurs (2FA)",
@@ -1122,7 +1138,11 @@
                 "enableSms": "Activer par SMS",
                 "enableApp": "Activer par application",
                 "disable": "Désactiver",
-                "description": "Ajoutez une couche de sécurité supplémentaire à votre compte"
+                "description": "Ajoutez une couche de sécurité supplémentaire à votre compte",
+                "enableSuccess": "2FA activé avec succès",
+                "enableError": "Erreur lors de l'activation de la 2FA",
+                "disableSuccess": "2FA désactivé avec succès",
+                "disableError": "Erreur lors de la désactivation de la 2FA"
             },
             "sessions": {
                 "title": "Sessions actives",
@@ -1130,7 +1150,11 @@
                 "current": "Session actuelle",
                 "lastActive": "Dernière activité",
                 "logout": "Déconnecter",
-                "logoutAll": "Déconnecter tous les appareils"
+                "logoutAll": "Déconnecter tous les appareils",
+                "logoutSuccess": "Session déconnectée avec succès",
+                "logoutError": "Erreur lors de la déconnexion",
+                "logoutAllSuccess": "Toutes les sessions ont été déconnectées",
+                "logoutAllError": "Erreur lors de la déconnexion des sessions"
             },
             "trustedDevices": {
                 "title": "Appareils de confiance",
@@ -1143,6 +1167,7 @@
             "title": "Facturation",
             "plan": {
                 "title": "Abonnement actuel",
+                "description": "Gérez votre abonnement et vos fonctionnalités",
                 "current": "Plan actuel",
                 "free": "Gratuit",
                 "pro": "Pro",
@@ -1152,7 +1177,6 @@
                 "businessPrice": "149€/mois",
                 "upgrade": "Mettre à niveau",
                 "manage": "Gérer l'abonnement",
-                "description": "Gérez votre plan et vos paiements",
                 "features": {
                     "free": {
                         "tasks": "Jusqu'à 10 missions par mois",
@@ -1180,6 +1204,11 @@
                 "add": "Ajouter un moyen de paiement",
                 "addCard": "Ajouter une carte",
                 "addSuccess": "Carte ajoutée avec succès !",
+                "addError": "Erreur lors de l'ajout de la carte",
+                "deleteSuccess": "Carte supprimée avec succès !",
+                "deleteError": "Erreur lors de la suppression de la carte",
+                "setDefaultSuccess": "Carte définie par défaut avec succès !",
+                "setDefaultError": "Erreur lors de la définition de la carte par défaut",
                 "default": "Par défaut",
                 "setDefault": "Définir par défaut",
                 "remove": "Supprimer",
@@ -1190,8 +1219,6 @@
                 "deleteDescription": "Êtes-vous sûr de vouloir supprimer ce moyen de paiement ?",
                 "deleteCancel": "Annuler",
                 "deleteConfirm": "Supprimer",
-                "deleteSuccess": "Moyen de paiement supprimé",
-                "deleteError": "Impossible de supprimer le moyen de paiement",
                 "dialog": {
                     "addTitle": "Ajouter une carte bancaire",
                     "editTitle": "Modifier la carte bancaire",
@@ -1242,6 +1269,7 @@
                     "description": "Vos factures apparaîtront ici une fois que vous aurez un abonnement actif"
                 },
                 "errors": {
+                    "notFound": "Facture introuvable",
                     "downloadFailed": "Impossible de télécharger la facture"
                 }
             },
@@ -1250,8 +1278,11 @@
                 "currentPlan": "Plan actuel",
                 "changePlan": "Changer de plan",
                 "cancel": "Annuler l'abonnement",
+                "downgradeSuccess": "Plan rétrogradé avec succès !",
                 "changeSuccess": "Plan modifié avec succès !",
+                "changeError": "Erreur lors du changement de plan",
                 "cancelSuccess": "Abonnement annulé avec succès",
+                "cancelError": "Erreur lors de l'annulation de l'abonnement",
                 "cancelButton": "Annuler l'abonnement",
                 "renewsOn": "Se renouvelle le {date}",
                 "canceledOn": "Annulé le {date}",
@@ -1289,6 +1320,8 @@
                 "title": "Télécharger mes données",
                 "description": "Obtenez une copie de toutes vos données au format JSON",
                 "button": "Demander une copie",
+                "exportSuccess": "Export démarré avec succès !",
+                "exportError": "Erreur lors de l'export des données",
                 "processing": "Traitement en cours...",
                 "ready": "Prêt à télécharger",
                 "dialog": {
@@ -1315,28 +1348,43 @@
             "dataVisibility": {
                 "title": "Visibilité du profil",
                 "description": "Contrôlez qui peut voir votre profil",
+                "saveSuccess": "Paramètres de visibilité sauvegardés avec succès !",
+                "saveError": "Erreur lors de la sauvegarde des paramètres",
                 "public": "Public",
                 "publicDesc": "Votre profil est visible par tout le monde",
                 "private": "Privé",
                 "privateDesc": "Seul vous pouvez voir votre profil",
                 "friendsOnly": "Amis uniquement",
-                "friendsOnlyDesc": "Seuls vos amis peuvent voir votre profil"
+                "friendsOnlyDesc": "Seuls vos amis peuvent voir votre profil",
+                "searchEngine": "Indexation par les moteurs de recherche",
+                "searchEngineDesc": "Autoriser les moteurs de recherche à indexer votre profil",
+                "save": "Enregistrer les paramètres"
             },
             "cookies": {
                 "title": "Préférences cookies",
                 "description": "Gérez vos préférences de cookies",
+                "saveSuccess": "Préférences cookies sauvegardées avec succès !",
+                "saveError": "Erreur lors de la sauvegarde des préférences",
                 "essential": "Cookies essentiels (obligatoires)",
+                "essentialDesc": "Nécessaires au fonctionnement du site",
                 "analytics": "Cookies analytiques",
+                "analyticsDesc": "Nous aident à améliorer votre expérience",
                 "marketing": "Cookies marketing",
-                "manage": "Gérer les préférences"
+                "marketingDesc": "Utilisés pour personnaliser les publicités",
+                "manage": "Gérer les préférences",
+                "save": "Enregistrer les préférences"
             },
             "notifications": {
                 "title": "Notifications par e-mail",
                 "description": "Choisissez les e-mails que vous souhaitez recevoir",
+                "saveSuccess": "Préférences de notifications sauvegardées avec succès !",
+                "saveError": "Erreur lors de la sauvegarde des préférences",
                 "newsletter": "Newsletter et mises à jour",
                 "marketing": "Offres promotionnelles",
                 "updates": "Mises à jour de produit",
-                "security": "Alertes de sécurité (recommandé)"
+                "security": "Alertes de sécurité (recommandé)",
+                "securityDesc": "Recevez des alertes pour les activités suspectes",
+                "save": "Enregistrer les préférences"
             }
         }
     },
