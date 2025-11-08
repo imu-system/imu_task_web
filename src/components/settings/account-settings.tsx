@@ -1,13 +1,16 @@
-
 'use client';
 
+import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTranslations } from 'next-intl';
-import { Loader2, Mail, Phone, Trash2 } from 'lucide-react';
+import { Loader2, Mail, Phone, Trash2, User as UserIcon } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
+import DeleteAccountDialog from './delete-account-dialog';
+import PhoneDialog from './phone-dialog';
+import EmailDialog from './email-dialog';
+import ProfilePhotoUpload from './profile-photo-upload';
+import DisplayNameEdit from './display-name-edit';
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18px" height="18px" {...props}>
@@ -22,6 +25,10 @@ const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export default function AccountSettings() {
     const { user, loading } = useAuth();
     const t = useTranslations('SettingsPage.account');
+    
+    const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+    const [phoneDialogOpen, setPhoneDialogOpen] = useState(false);
+    const [emailDialogOpen, setEmailDialogOpen] = useState(false);
 
     if (loading || !user) {
         return (
@@ -36,11 +43,73 @@ export default function AccountSettings() {
         (provider) => provider.providerId === 'google.com'
     );
 
+    // Placeholder handlers - will be replaced with real Firebase calls in Task 6
+    const handleDeleteAccount = async () => {
+        console.log('Delete account requested');
+        // TODO: Implement Firebase delete account
+        alert('Account deletion will be implemented in Backend Integration task');
+    };
+
+    const handleSavePhone = async (phone: string) => {
+        console.log('Save phone:', phone);
+        // TODO: Implement Firebase phone update
+        alert(`Phone ${phone} will be saved in Backend Integration task`);
+    };
+
+    const handleSaveEmail = async (email: string, password: string) => {
+        console.log('Save email:', email);
+        // TODO: Implement Firebase email update
+        alert(`Email ${email} will be saved in Backend Integration task`);
+    };
+
+    const handleUploadPhoto = async (file: File): Promise<string> => {
+        console.log('Upload photo:', file.name);
+        // TODO: Implement Firebase Storage upload
+        alert('Photo upload will be implemented in Backend Integration task');
+        return URL.createObjectURL(file); // Temporary preview
+    };
+
+    const handleSaveDisplayName = async (name: string) => {
+        console.log('Save display name:', name);
+        // TODO: Implement Firestore displayName update
+        alert(`Display name "${name}" will be saved in Backend Integration task`);
+    };
+
+    const handleLinkGoogle = async () => {
+        console.log('Link Google account');
+        // TODO: Implement Firebase Google linking
+        alert('Google account linking will be implemented in Backend Integration task');
+    };
+
     return (
         <div className="space-y-6">
+            {/* Profile Photo and Display Name */}
+            <Card>
+                <CardHeader>
+                    <CardTitle>Profile</CardTitle>
+                    <CardDescription>Manage your profile photo and display name</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                    <ProfilePhotoUpload
+                        currentPhotoUrl={user.photoURL || undefined}
+                        userName={user.displayName || user.email || undefined}
+                        onUpload={handleUploadPhoto}
+                    />
+                    <div className="space-y-2">
+                        <label className="text-sm font-medium">Display Name</label>
+                        <DisplayNameEdit
+                            currentName={user.displayName || undefined}
+                            onSave={handleSaveDisplayName}
+                        />
+                    </div>
+                </CardContent>
+            </Card>
+
+            {/* Email */}
             <Card>
                 <CardHeader>
                     <CardTitle>{t('email.title')}</CardTitle>
+                    <CardDescription>{t('email.description')}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="flex items-center justify-between p-4 border rounded-lg bg-muted/50">
@@ -48,14 +117,27 @@ export default function AccountSettings() {
                             <Mail className="h-5 w-5 text-muted-foreground"/>
                             <span>{user.email}</span>
                         </div>
-                        <Button variant="outline" disabled>{t('email.button')}</Button>
+                        <Button 
+                            variant="outline" 
+                            onClick={() => setEmailDialogOpen(true)}
+                            disabled={isGoogleSignIn}
+                        >
+                            {t('email.button')}
+                        </Button>
                     </div>
+                    {isGoogleSignIn && (
+                        <p className="text-sm text-muted-foreground">
+                            Email cannot be changed for Google sign-in accounts
+                        </p>
+                    )}
                 </CardContent>
             </Card>
 
+            {/* Phone */}
              <Card>
                 <CardHeader>
                     <CardTitle>{t('phone.title')}</CardTitle>
+                    <CardDescription>{t('phone.description')}</CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <div className="flex items-center justify-between p-4 border rounded-lg bg-muted/50">
@@ -63,14 +145,21 @@ export default function AccountSettings() {
                             <Phone className="h-5 w-5 text-muted-foreground"/>
                             <span>{user?.phone || t('phone.notProvided')}</span>
                         </div>
-                        <Button variant="outline">{user?.phone ? t('phone.buttonEdit') : t('phone.buttonAdd')}</Button>
+                        <Button 
+                            variant="outline"
+                            onClick={() => setPhoneDialogOpen(true)}
+                        >
+                            {user?.phone ? t('phone.buttonEdit') : t('phone.buttonAdd')}
+                        </Button>
                     </div>
                 </CardContent>
             </Card>
 
+            {/* Linked Accounts */}
             <Card>
                 <CardHeader>
                     <CardTitle>{t('linkedAccounts.title')}</CardTitle>
+                    <CardDescription>{t('linkedAccounts.description')}</CardDescription>
                 </CardHeader>
                 <CardContent>
                     {isGoogleSignIn ? (
@@ -82,23 +171,49 @@ export default function AccountSettings() {
                             <Button variant="outline" disabled>{t('linkedAccounts.manage')}</Button>
                         </div>
                     ) : (
-                         <Button variant="outline"><GoogleIcon className="mr-2"/>{t('linkedAccounts.linkGoogle')}</Button>
+                         <Button variant="outline" onClick={handleLinkGoogle}>
+                            <GoogleIcon className="mr-2"/>
+                            {t('linkedAccounts.linkGoogle')}
+                        </Button>
                     )}
                 </CardContent>
             </Card>
 
+            {/* Delete Account */}
             <Card className="border-destructive">
                 <CardHeader>
                     <CardTitle className="text-destructive">{t('deleteAccount.title')}</CardTitle>
                     <CardDescription>{t('deleteAccount.description')}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                     <Button variant="destructive">
+                     <Button 
+                        variant="destructive"
+                        onClick={() => setDeleteDialogOpen(true)}
+                    >
                         <Trash2 className="mr-2"/>
                         {t('deleteAccount.button')}
                     </Button>
                 </CardContent>
             </Card>
+
+            {/* Dialogs */}
+            <DeleteAccountDialog
+                open={deleteDialogOpen}
+                onOpenChange={setDeleteDialogOpen}
+                onConfirm={handleDeleteAccount}
+            />
+            <PhoneDialog
+                open={phoneDialogOpen}
+                onOpenChange={setPhoneDialogOpen}
+                currentPhone={user?.phone}
+                onSave={handleSavePhone}
+            />
+            <EmailDialog
+                open={emailDialogOpen}
+                onOpenChange={setEmailDialogOpen}
+                currentEmail={user.email || ''}
+                onSave={handleSaveEmail}
+            />
         </div>
     )
 }
