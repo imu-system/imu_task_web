@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTranslations } from 'next-intl';
 import { Loader2, Download, Eye, EyeOff, Globe, Cookie, Mail, Shield } from 'lucide-react';
@@ -12,6 +12,17 @@ import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Separator } from '@/components/ui/separator';
 import DataExportDialog from './data-export-dialog';
+import {
+  generateUserDataExport,
+  convertToCSV,
+  downloadFile,
+  updatePrivacySettings as updatePrivacySettingsService,
+  updateCookiePreferences as updateCookiePreferencesService,
+  updateEmailPreferences as updateEmailPreferencesService,
+  getPrivacySettings,
+  getCookiePreferences,
+  getEmailPreferences,
+} from '@/lib/services/privacy-service';
 
 export default function PrivacySettings() {
   const { user, loading } = useAuth();
@@ -20,7 +31,7 @@ export default function PrivacySettings() {
   // Dialog states
   const [exportDialogOpen, setExportDialogOpen] = useState(false);
   
-  // Mock settings - Will be fetched from Firestore in Task 6
+  // Settings state - Fetched from Firestore
   const [profileVisibility, setProfileVisibility] = useState<'public' | 'private' | 'friends'>('public');
   const [searchEngineIndexing, setSearchEngineIndexing] = useState(true);
   const [cookieAnalytics, setCookieAnalytics] = useState(true);
@@ -31,30 +42,69 @@ export default function PrivacySettings() {
   const [emailSecurity, setEmailSecurity] = useState(true);
   const [savingSettings, setSavingSettings] = useState(false);
 
-  // Placeholder handlers - Will be replaced with real Firebase calls in Task 6
+  // Load settings from Firestore on mount
+  useEffect(() => {
+    if (!user) return;
+
+    const loadSettings = async () => {
+      try {
+        const [privacy, cookies, email] = await Promise.all([
+          getPrivacySettings(user.uid),
+          getCookiePreferences(user.uid),
+          getEmailPreferences(user.uid),
+        ]);
+
+        if (privacy) {
+          setProfileVisibility(privacy.profileVisibility);
+          setSearchEngineIndexing(privacy.searchEngineIndexing);
+        }
+
+        setCookieAnalytics(cookies.analytics);
+        setCookieMarketing(cookies.marketing);
+
+        setEmailNewsletter(email.newsletter);
+        setEmailMarketing(email.marketing);
+        setEmailUpdates(email.updates);
+        setEmailSecurity(email.security);
+      } catch (err) {
+        console.error('Failed to load privacy settings:', err);
+      }
+    };
+
+    loadSettings();
+  }, [user]);
+
+  // Real handlers with Firebase services
   const handleExportData = async (format: 'json' | 'csv', categories: string[]) => {
-    console.log('Exporting data:', format, categories);
-    // TODO Task 6: Generate and download user data export
-    // const data = await generateUserDataExport(userId, categories);
-    // const blob = format === 'json' ? new Blob([JSON.stringify(data)]) : convertToCSV(data);
-    // downloadFile(blob, `data-export-${Date.now()}.${format}`);
-    
-    // Simulate delay
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    alert(t('dataDownload.exportSuccess'));
+    if (!user) return;
+
+    try {
+      const data = await generateUserDataExport(user.uid, categories);
+      
+      const content = format === 'json' 
+        ? JSON.stringify(data, null, 2) 
+        : convertToCSV(data);
+      
+      const mimeType = format === 'json' ? 'application/json' : 'text/csv';
+      const filename = `imu-task-data-export-${Date.now()}.${format}`;
+      
+      downloadFile(content, filename, mimeType);
+      alert(t('dataDownload.exportSuccess'));
+    } catch (err) {
+      console.error('Failed to export data:', err);
+      alert(t('dataDownload.exportError'));
+    }
   };
 
   const handleSavePrivacySettings = async () => {
+    if (!user) return;
+
     setSavingSettings(true);
     try {
-      console.log('Saving privacy settings:', {
+      await updatePrivacySettingsService(user.uid, {
         profileVisibility,
         searchEngineIndexing,
       });
-      // TODO Task 6: Save to Firestore
-      // await updateDoc(doc(db, 'users', userId), {
-      //   privacySettings: { profileVisibility, searchEngineIndexing }
-      // });
       alert(t('dataVisibility.saveSuccess'));
     } catch (err) {
       console.error('Failed to save privacy settings:', err);
@@ -65,14 +115,15 @@ export default function PrivacySettings() {
   };
 
   const handleSaveCookiePreferences = async () => {
+    if (!user) return;
+
     setSavingSettings(true);
     try {
-      console.log('Saving cookie preferences:', {
+      await updateCookiePreferencesService(user.uid, {
+        essential: true, // Always true
         analytics: cookieAnalytics,
         marketing: cookieMarketing,
       });
-      // TODO Task 6: Save to localStorage and Firestore
-      // localStorage.setItem('cookiePreferences', JSON.stringify({ analytics, marketing }));
       alert(t('cookies.saveSuccess'));
     } catch (err) {
       console.error('Failed to save cookie preferences:', err);
@@ -83,18 +134,16 @@ export default function PrivacySettings() {
   };
 
   const handleSaveEmailPreferences = async () => {
+    if (!user) return;
+
     setSavingSettings(true);
     try {
-      console.log('Saving email preferences:', {
+      await updateEmailPreferencesService(user.uid, {
         newsletter: emailNewsletter,
         marketing: emailMarketing,
         updates: emailUpdates,
         security: emailSecurity,
       });
-      // TODO Task 6: Save to Firestore
-      // await updateDoc(doc(db, 'users', userId), {
-      //   emailPreferences: { newsletter, marketing, updates, security }
-      // });
       alert(t('notifications.saveSuccess'));
     } catch (err) {
       console.error('Failed to save email preferences:', err);

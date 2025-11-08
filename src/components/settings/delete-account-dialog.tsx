@@ -18,20 +18,21 @@ import { Label } from '@/components/ui/label';
 interface DeleteAccountDialogProps {
     open: boolean;
     onOpenChange: (open: boolean) => void;
-    onConfirm: () => Promise<void>;
+    onConfirm: (password: string) => Promise<void>;
 }
 
 export default function DeleteAccountDialog({ open, onOpenChange, onConfirm }: DeleteAccountDialogProps) {
     const t = useTranslations('SettingsPage.account.deleteAccount');
     const [confirmText, setConfirmText] = useState('');
+    const [password, setPassword] = useState('');
     const [isDeleting, setIsDeleting] = useState(false);
 
     const handleConfirm = async () => {
-        if (confirmText !== 'DELETE') return;
+        if (confirmText !== 'DELETE' || !password) return;
         
         setIsDeleting(true);
         try {
-            await onConfirm();
+            await onConfirm(password);
             onOpenChange(false);
         } catch (error) {
             console.error('Error deleting account:', error);
@@ -43,6 +44,7 @@ export default function DeleteAccountDialog({ open, onOpenChange, onConfirm }: D
     const handleClose = () => {
         if (!isDeleting) {
             setConfirmText('');
+            setPassword('');
             onOpenChange(false);
         }
     };
@@ -57,6 +59,20 @@ export default function DeleteAccountDialog({ open, onOpenChange, onConfirm }: D
                     </AlertDialogTitle>
                     <AlertDialogDescription className="space-y-4">
                         <p>{t('confirmDescription')}</p>
+                        
+                        <div className="space-y-2">
+                            <Label htmlFor="password">{t('password')}</Label>
+                            <Input
+                                id="password"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="••••••••"
+                                disabled={isDeleting}
+                                autoComplete="current-password"
+                            />
+                        </div>
+
                         <div className="space-y-2">
                             <Label htmlFor="confirm-delete">{t('confirmInput')}</Label>
                             <Input
@@ -81,7 +97,7 @@ export default function DeleteAccountDialog({ open, onOpenChange, onConfirm }: D
                     <Button
                         variant="destructive"
                         onClick={handleConfirm}
-                        disabled={confirmText !== 'DELETE' || isDeleting}
+                        disabled={confirmText !== 'DELETE' || !password || isDeleting}
                     >
                         {isDeleting ? (
                             <>

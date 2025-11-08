@@ -11,6 +11,7 @@ import PhoneDialog from './phone-dialog';
 import EmailDialog from './email-dialog';
 import ProfilePhotoUpload from './profile-photo-upload';
 import DisplayNameEdit from './display-name-edit';
+import { deleteUserAccount } from '@/lib/services/account-service';
 
 const GoogleIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="18px" height="18px" {...props}>
@@ -43,36 +44,75 @@ export default function AccountSettings() {
         (provider) => provider.providerId === 'google.com'
     );
 
-    // Placeholder handlers - will be replaced with real Firebase calls in Task 6
-    const handleDeleteAccount = async () => {
-        console.log('Delete account requested');
-        // TODO: Implement Firebase delete account
-        alert('Account deletion will be implemented in Backend Integration task');
+    // Real handlers with Firebase services
+    const handleDeleteAccount = async (password: string) => {
+        try {
+            if (!user) throw new Error('User not authenticated');
+            await deleteUserAccount(user.uid, password);
+            alert(t('account.deleteSuccess'));
+            // User will be signed out automatically after deletion
+        } catch (err: any) {
+            console.error('Failed to delete account:', err);
+            if (err.code === 'auth/wrong-password') {
+                alert(t('account.wrongPassword'));
+            } else {
+                alert(t('account.deleteError'));
+            }
+        }
     };
 
     const handleSavePhone = async (phone: string) => {
-        console.log('Save phone:', phone);
-        // TODO: Implement Firebase phone update
-        alert(`Phone ${phone} will be saved in Backend Integration task`);
+        try {
+            if (!user) throw new Error('User not authenticated');
+            const { updateUserProfile } = await import('@/lib/services/account-service');
+            await updateUserProfile(user.uid, { phone });
+            alert(t('account.phoneSuccess'));
+        } catch (err) {
+            console.error('Failed to save phone:', err);
+            alert(t('account.phoneError'));
+        }
     };
 
     const handleSaveEmail = async (email: string, password: string) => {
-        console.log('Save email:', email);
-        // TODO: Implement Firebase email update
-        alert(`Email ${email} will be saved in Backend Integration task`);
+        try {
+            const { updateUserEmail } = await import('@/lib/services/account-service');
+            await updateUserEmail(email, password);
+            alert(t('account.emailSuccess'));
+        } catch (err: any) {
+            console.error('Failed to save email:', err);
+            if (err.code === 'auth/wrong-password') {
+                alert(t('account.wrongPassword'));
+            } else if (err.code === 'auth/email-already-in-use') {
+                alert(t('account.emailInUse'));
+            } else {
+                alert(t('account.emailError'));
+            }
+        }
     };
 
     const handleUploadPhoto = async (file: File): Promise<string> => {
-        console.log('Upload photo:', file.name);
-        // TODO: Implement Firebase Storage upload
-        alert('Photo upload will be implemented in Backend Integration task');
-        return URL.createObjectURL(file); // Temporary preview
+        try {
+            if (!user) throw new Error('User not authenticated');
+            const { uploadProfilePhoto } = await import('@/lib/services/account-service');
+            const photoURL = await uploadProfilePhoto(user.uid, file);
+            return photoURL;
+        } catch (err: any) {
+            console.error('Failed to upload photo:', err);
+            alert(err.message || t('account.photoError'));
+            throw err;
+        }
     };
 
     const handleSaveDisplayName = async (name: string) => {
-        console.log('Save display name:', name);
-        // TODO: Implement Firestore displayName update
-        alert(`Display name "${name}" will be saved in Backend Integration task`);
+        try {
+            if (!user) throw new Error('User not authenticated');
+            const { updateUserProfile } = await import('@/lib/services/account-service');
+            await updateUserProfile(user.uid, { displayName: name });
+            alert(t('account.displayNameSuccess'));
+        } catch (err) {
+            console.error('Failed to save display name:', err);
+            alert(t('account.displayNameError'));
+        }
     };
 
     const handleLinkGoogle = async () => {
