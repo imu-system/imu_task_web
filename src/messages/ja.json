@@ -1495,28 +1495,138 @@
             "title": "アカウント",
             "email": {
                 "title": "メールアドレス",
-                "button": "変更"
+                "button": "変更",
+                "description": "メールアドレスはログインと通知の受信に使用されます"
             },
             "phone": {
                 "title": "電話番号",
                 "notProvided": "未設定",
                 "buttonAdd": "追加",
-                "buttonEdit": "編集"
+                "buttonEdit": "編集",
+                "description": "二要素認証のために電話番号を追加してください"
             },
             "linkedAccounts": {
                 "title": "連携アカウント",
                 "google": "Google",
-                "notLinked": "連携アカウントなし"
+                "notLinked": "連携アカウントなし",
+                "manage": "管理",
+                "linkGoogle": "Googleアカウントをリンク",
+                "description": "ImuTaskアカウントに接続されているサードパーティアカウントを管理"
+            },
+            "deleteAccount": {
+                "title": "アカウントを削除",
+                "description": "この操作は取り消せません。すべてのデータが完全に削除されます。",
+                "button": "アカウントを削除",
+                "confirmTitle": "本当によろしいですか？",
+                "confirmDescription": "この操作は元に戻せません。アカウントとすべてのデータがサーバーから完全に削除されます。",
+                "confirmInput": "確認のため DELETE と入力してください",
+                "cancel": "キャンセル",
+                "confirm": "完全に削除"
             }
         },
         "security": {
-            "title": "セキュリティ"
+            "title": "セキュリティ",
+            "password": {
+                "title": "パスワード",
+                "button": "パスワードを変更",
+                "lastChanged": "最終変更: {date}",
+                "description": "強力で一意なパスワードを使用してください"
+            },
+            "twoFactor": {
+                "title": "二要素認証（2FA）",
+                "statusLabel": "ステータス",
+                "status": {
+                    "enabled": "有効",
+                    "disabled": "無効"
+                },
+                "enableSms": "SMSで有効化",
+                "enableApp": "アプリで有効化",
+                "disable": "無効化",
+                "description": "アカウントにセキュリティレイヤーを追加"
+            },
+            "sessions": {
+                "title": "アクティブなセッション",
+                "description": "異なるデバイスでのアクティブなセッションを管理",
+                "current": "現在のセッション",
+                "lastActive": "最終アクティブ",
+                "logout": "ログアウト",
+                "logoutAll": "すべてのデバイスからログアウト"
+            },
+            "trustedDevices": {
+                "title": "信頼できるデバイス",
+                "description": "2FAを要求しないデバイス",
+                "remove": "削除",
+                "noDevices": "信頼できるデバイスなし"
+            }
         },
         "billing": {
-            "title": "請求"
+            "title": "請求",
+            "plan": {
+                "title": "現在のサブスクリプション",
+                "current": "現在のプラン",
+                "free": "無料",
+                "pro": "プロ",
+                "business": "ビジネス",
+                "upgrade": "アップグレード",
+                "manage": "サブスクリプションを管理",
+                "description": "プランと支払いを管理"
+            },
+            "paymentMethods": {
+                "title": "支払い方法",
+                "add": "支払い方法を追加",
+                "default": "デフォルト",
+                "setDefault": "デフォルトに設定",
+                "remove": "削除",
+                "noMethods": "保存された支払い方法なし"
+            },
+            "invoices": {
+                "title": "請求書",
+                "date": "日付",
+                "amount": "金額",
+                "status": "ステータス",
+                "download": "ダウンロード",
+                "noInvoices": "利用可能な請求書なし"
+            },
+            "subscription": {
+                "title": "サブスクリプション管理",
+                "cancelButton": "サブスクリプションをキャンセル",
+                "renewsOn": "{date}に更新",
+                "canceledOn": "{date}にキャンセル",
+                "expiresOn": "{date}に期限切れ"
+            }
         },
         "privacy": {
-            "title": "プライバシー"
+            "title": "プライバシー",
+            "dataDownload": {
+                "title": "データをダウンロード",
+                "description": "すべてのデータのコピーをJSON形式で取得",
+                "button": "コピーをリクエスト",
+                "processing": "処理中...",
+                "ready": "ダウンロード準備完了"
+            },
+            "dataVisibility": {
+                "title": "プロフィールの公開設定",
+                "description": "プロフィールを表示できるユーザーを管理",
+                "public": "公開",
+                "private": "非公開",
+                "friendsOnly": "友達のみ"
+            },
+            "cookies": {
+                "title": "Cookieの設定",
+                "description": "Cookieの設定を管理",
+                "essential": "必須Cookie（必須）",
+                "analytics": "分析Cookie",
+                "marketing": "マーケティングCookie",
+                "manage": "設定を管理"
+            },
+            "notifications": {
+                "title": "メール通知",
+                "description": "受信するメールを選択",
+                "newsletter": "ニュースレターと更新情報",
+                "marketing": "プロモーションオファー",
+                "updates": "製品アップデート",
+                "security": "セキュリティアラート（推奨）"
+            }
         }
     },
     "AvailabilitySettingsPage": {

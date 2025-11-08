@@ -1109,28 +1109,138 @@
             "title": "Account",
             "email": {
                 "title": "Email address",
-                "button": "Change"
+                "button": "Change",
+                "description": "Your email address is used to sign in and receive notifications"
             },
             "phone": {
                 "title": "Phone number",
                 "notProvided": "Not provided",
                 "buttonAdd": "Add",
-                "buttonEdit": "Edit"
+                "buttonEdit": "Edit",
+                "description": "Add a phone number for two-factor authentication"
             },
             "linkedAccounts": {
                 "title": "Linked accounts",
                 "google": "Google",
-                "notLinked": "No linked accounts"
+                "notLinked": "No linked accounts",
+                "manage": "Manage",
+                "linkGoogle": "Link Google account",
+                "description": "Manage third-party accounts connected to your ImuTask account"
+            },
+            "deleteAccount": {
+                "title": "Delete account",
+                "description": "This action is irreversible. All your data will be permanently deleted.",
+                "button": "Delete my account",
+                "confirmTitle": "Are you absolutely sure?",
+                "confirmDescription": "This action cannot be undone. This will permanently delete your account and remove all your data from our servers.",
+                "confirmInput": "Type DELETE to confirm",
+                "cancel": "Cancel",
+                "confirm": "Delete permanently"
             }
         },
         "security": {
-            "title": "Security"
+            "title": "Security",
+            "password": {
+                "title": "Password",
+                "button": "Change password",
+                "lastChanged": "Last changed: {date}",
+                "description": "Make sure you use a strong and unique password"
+            },
+            "twoFactor": {
+                "title": "Two-Factor Authentication (2FA)",
+                "statusLabel": "Status",
+                "status": {
+                    "enabled": "Enabled",
+                    "disabled": "Disabled"
+                },
+                "enableSms": "Enable via SMS",
+                "enableApp": "Enable via app",
+                "disable": "Disable",
+                "description": "Add an extra layer of security to your account"
+            },
+            "sessions": {
+                "title": "Active sessions",
+                "description": "Manage your active sessions across different devices",
+                "current": "Current session",
+                "lastActive": "Last active",
+                "logout": "Sign out",
+                "logoutAll": "Sign out all devices"
+            },
+            "trustedDevices": {
+                "title": "Trusted devices",
+                "description": "Devices where you chose not to require 2FA",
+                "remove": "Remove",
+                "noDevices": "No trusted devices"
+            }
         },
         "billing": {
-            "title": "Billing"
+            "title": "Billing",
+            "plan": {
+                "title": "Current subscription",
+                "current": "Current plan",
+                "free": "Free",
+                "pro": "Pro",
+                "business": "Business",
+                "upgrade": "Upgrade",
+                "manage": "Manage subscription",
+                "description": "Manage your plan and payments"
+            },
+            "paymentMethods": {
+                "title": "Payment methods",
+                "add": "Add payment method",
+                "default": "Default",
+                "setDefault": "Set as default",
+                "remove": "Remove",
+                "noMethods": "No payment methods saved"
+            },
+            "invoices": {
+                "title": "Invoices",
+                "date": "Date",
+                "amount": "Amount",
+                "status": "Status",
+                "download": "Download",
+                "noInvoices": "No invoices available"
+            },
+            "subscription": {
+                "title": "Subscription management",
+                "cancelButton": "Cancel subscription",
+                "renewsOn": "Renews on {date}",
+                "canceledOn": "Canceled on {date}",
+                "expiresOn": "Expires on {date}"
+            }
         },
         "privacy": {
-            "title": "Privacy"
+            "title": "Privacy",
+            "dataDownload": {
+                "title": "Download my data",
+                "description": "Get a copy of all your data in JSON format",
+                "button": "Request a copy",
+                "processing": "Processing...",
+                "ready": "Ready to download"
+            },
+            "dataVisibility": {
+                "title": "Profile visibility",
+                "description": "Control who can see your profile",
+                "public": "Public",
+                "private": "Private",
+                "friendsOnly": "Friends only"
+            },
+            "cookies": {
+                "title": "Cookie preferences",
+                "description": "Manage your cookie preferences",
+                "essential": "Essential cookies (required)",
+                "analytics": "Analytics cookies",
+                "marketing": "Marketing cookies",
+                "manage": "Manage preferences"
+            },
+            "notifications": {
+                "title": "Email notifications",
+                "description": "Choose which emails you want to receive",
+                "newsletter": "Newsletter and updates",
+                "marketing": "Promotional offers",
+                "updates": "Product updates",
+                "security": "Security alerts (recommended)"
+            }
         }
     },
     "AvailabilitySettingsPage": {

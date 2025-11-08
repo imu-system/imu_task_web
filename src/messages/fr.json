@@ -1074,28 +1074,138 @@
             "title": "Compte",
             "email": {
                 "title": "Adresse e-mail",
-                "button": "Modifier"
+                "button": "Modifier",
+                "description": "Votre adresse e-mail est utilisée pour vous connecter et recevoir des notifications"
             },
             "phone": {
                 "title": "Numéro de téléphone",
                 "notProvided": "Non renseigné",
                 "buttonAdd": "Ajouter",
-                "buttonEdit": "Modifier"
+                "buttonEdit": "Modifier",
+                "description": "Ajoutez un numéro de téléphone pour la vérification en deux étapes"
             },
             "linkedAccounts": {
                 "title": "Comptes liés",
                 "google": "Google",
-                "notLinked": "Aucun compte lié"
+                "notLinked": "Aucun compte lié",
+                "manage": "Gérer",
+                "linkGoogle": "Lier un compte Google",
+                "description": "Gérez les comptes tiers connectés à votre compte ImuTask"
+            },
+            "deleteAccount": {
+                "title": "Supprimer le compte",
+                "description": "Cette action est irréversible. Toutes vos données seront définitivement supprimées.",
+                "button": "Supprimer mon compte",
+                "confirmTitle": "Êtes-vous absolument sûr ?",
+                "confirmDescription": "Cette action ne peut pas être annulée. Cela supprimera définitivement votre compte et toutes vos données de nos serveurs.",
+                "confirmInput": "Tapez DELETE pour confirmer",
+                "cancel": "Annuler",
+                "confirm": "Supprimer définitivement"
             }
         },
         "security": {
-            "title": "Sécurité"
+            "title": "Sécurité",
+            "password": {
+                "title": "Mot de passe",
+                "button": "Modifier le mot de passe",
+                "lastChanged": "Dernière modification : {date}",
+                "description": "Assurez-vous d'utiliser un mot de passe fort et unique"
+            },
+            "twoFactor": {
+                "title": "Authentification à deux facteurs (2FA)",
+                "statusLabel": "Statut",
+                "status": {
+                    "enabled": "Activé",
+                    "disabled": "Désactivé"
+                },
+                "enableSms": "Activer par SMS",
+                "enableApp": "Activer par application",
+                "disable": "Désactiver",
+                "description": "Ajoutez une couche de sécurité supplémentaire à votre compte"
+            },
+            "sessions": {
+                "title": "Sessions actives",
+                "description": "Gérez vos sessions actives sur différents appareils",
+                "current": "Session actuelle",
+                "lastActive": "Dernière activité",
+                "logout": "Déconnecter",
+                "logoutAll": "Déconnecter tous les appareils"
+            },
+            "trustedDevices": {
+                "title": "Appareils de confiance",
+                "description": "Appareils sur lesquels vous avez choisi de ne pas demander la 2FA",
+                "remove": "Retirer",
+                "noDevices": "Aucun appareil de confiance"
+            }
         },
         "billing": {
-            "title": "Facturation"
+            "title": "Facturation",
+            "plan": {
+                "title": "Abonnement actuel",
+                "current": "Plan actuel",
+                "free": "Gratuit",
+                "pro": "Pro",
+                "business": "Business",
+                "upgrade": "Mettre à niveau",
+                "manage": "Gérer l'abonnement",
+                "description": "Gérez votre plan et vos paiements"
+            },
+            "paymentMethods": {
+                "title": "Moyens de paiement",
+                "add": "Ajouter un moyen de paiement",
+                "default": "Par défaut",
+                "setDefault": "Définir par défaut",
+                "remove": "Supprimer",
+                "noMethods": "Aucun moyen de paiement enregistré"
+            },
+            "invoices": {
+                "title": "Factures",
+                "date": "Date",
+                "amount": "Montant",
+                "status": "Statut",
+                "download": "Télécharger",
+                "noInvoices": "Aucune facture disponible"
+            },
+            "subscription": {
+                "title": "Gestion de l'abonnement",
+                "cancelButton": "Annuler l'abonnement",
+                "renewsOn": "Se renouvelle le {date}",
+                "canceledOn": "Annulé le {date}",
+                "expiresOn": "Expire le {date}"
+            }
         },
         "privacy": {
-            "title": "Confidentialité"
+            "title": "Confidentialité",
+            "dataDownload": {
+                "title": "Télécharger mes données",
+                "description": "Obtenez une copie de toutes vos données au format JSON",
+                "button": "Demander une copie",
+                "processing": "Traitement en cours...",
+                "ready": "Prêt à télécharger"
+            },
+            "dataVisibility": {
+                "title": "Visibilité du profil",
+                "description": "Contrôlez qui peut voir votre profil",
+                "public": "Public",
+                "private": "Privé",
+                "friendsOnly": "Amis uniquement"
+            },
+            "cookies": {
+                "title": "Préférences cookies",
+                "description": "Gérez vos préférences de cookies",
+                "essential": "Cookies essentiels (obligatoires)",
+                "analytics": "Cookies analytiques",
+                "marketing": "Cookies marketing",
+                "manage": "Gérer les préférences"
+            },
+            "notifications": {
+                "title": "Notifications par e-mail",
+                "description": "Choisissez les e-mails que vous souhaitez recevoir",
+                "newsletter": "Newsletter et mises à jour",
+                "marketing": "Offres promotionnelles",
+                "updates": "Mises à jour de produit",
+                "security": "Alertes de sécurité (recommandé)"
+            }
         }
     },
     "AvailabilitySettingsPage": {
