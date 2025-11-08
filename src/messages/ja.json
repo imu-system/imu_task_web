@@ -1737,8 +1737,11 @@
                 "title": "プロフィールの公開設定",
                 "description": "プロフィールを表示できるユーザーを管理",
                 "public": "公開",
+                "publicDesc": "すべてのユーザーに公開されます",
                 "private": "非公開",
-                "friendsOnly": "友達のみ"
+                "privateDesc": "自分だけが閲覧できます",
+                "friendsOnly": "友達のみ",
+                "friendsOnlyDesc": "友達だけが閲覧できます"
             },
             "cookies": {
                 "title": "Cookieの設定",

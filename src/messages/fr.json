@@ -1316,8 +1316,11 @@
                 "title": "Visibilité du profil",
                 "description": "Contrôlez qui peut voir votre profil",
                 "public": "Public",
+                "publicDesc": "Votre profil est visible par tout le monde",
                 "private": "Privé",
-                "friendsOnly": "Amis uniquement"
+                "privateDesc": "Seul vous pouvez voir votre profil",
+                "friendsOnly": "Amis uniquement",
+                "friendsOnlyDesc": "Seuls vos amis peuvent voir votre profil"
             },
             "cookies": {
                 "title": "Préférences cookies",

@@ -1351,8 +1351,11 @@
                 "title": "Profile visibility",
                 "description": "Control who can see your profile",
                 "public": "Public",
+                "publicDesc": "Your profile is visible to everyone",
                 "private": "Private",
-                "friendsOnly": "Friends only"
+                "privateDesc": "Only you can see your profile",
+                "friendsOnly": "Friends only",
+                "friendsOnlyDesc": "Only your friends can see your profile"
             },
             "cookies": {
                 "title": "Cookie preferences",
