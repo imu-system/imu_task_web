@@ -13,15 +13,15 @@ import { doc, updateDoc, collection, getDocs, query, where, deleteDoc, setDoc } 
 import { auth, db } from '@/lib/firebase';
 
 export interface Session {
-  id: string;
-  deviceType: 'desktop' | 'mobile' | 'tablet';
-  browser: string;
-  os: string;
-  city: string;
-  country: string;
-  ipAddress: string;
-  isCurrent: boolean;
-  lastActive: string;
+    id: string;
+    deviceType: 'desktop' | 'mobile' | 'tablet';
+    browser: string;
+    os: string;
+    city: string;
+    country: string;
+    ipAddress: string;
+    isCurrent: boolean;
+    lastActive: string;
 }/**
  * Enable 2FA for user account (SMS-based)
  */
@@ -121,24 +121,24 @@ export async function getSessions(userId: string): Promise<Session[]> {
  * Create/update session metadata
  */
 export async function createSession(
-  userId: string,
-  sessionId: string,
-  metadata: {
-    deviceType: 'desktop' | 'mobile' | 'tablet';
-    browser: string;
-    os: string;
-    city: string;
-    country: string;
-    ipAddress: string;
-  }
+    userId: string,
+    sessionId: string,
+    metadata: {
+        deviceType: 'desktop' | 'mobile' | 'tablet';
+        browser: string;
+        os: string;
+        city: string;
+        country: string;
+        ipAddress: string;
+    }
 ): Promise<void> {
-  const sessionRef = doc(db, 'users', userId, 'sessions', sessionId);
-  await setDoc(sessionRef, {
-    ...metadata,
-    lastActive: new Date().toISOString(),
-    createdAt: new Date().toISOString(),
-    isCurrent: true,
-  });
+    const sessionRef = doc(db, 'users', userId, 'sessions', sessionId);
+    await setDoc(sessionRef, {
+        ...metadata,
+        lastActive: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
+        isCurrent: true,
+    });
 }/**
  * Logout from specific session
  */
