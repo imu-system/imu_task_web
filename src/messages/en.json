@@ -198,6 +198,10 @@
             "config": "Configuration"
         }
     },
+    "AdminDashboard": {
+        "subtitle": "Platform overview and quick actions",
+        "quickActionsTitle": "Quick Actions"
+    },
     "DashboardPage": {
         "title": "Available tasks",
         "subtitle": "Find a task that suits you near you.",
@@ -1098,6 +1102,35 @@
             "google": "Connect Google Calendar",
             "apple": "Connect Apple Calendar",
             "export": "Export iCal"
+        }
+    },
+    "SettingsPage": {
+        "account": {
+            "title": "Account",
+            "email": {
+                "title": "Email address",
+                "button": "Change"
+            },
+            "phone": {
+                "title": "Phone number",
+                "notProvided": "Not provided",
+                "buttonAdd": "Add",
+                "buttonEdit": "Edit"
+            },
+            "linkedAccounts": {
+                "title": "Linked accounts",
+                "google": "Google",
+                "notLinked": "No linked accounts"
+            }
+        },
+        "security": {
+            "title": "Security"
+        },
+        "billing": {
+            "title": "Billing"
+        },
+        "privacy": {
+            "title": "Privacy"
         }
     },
     "AvailabilitySettingsPage": {
@@ -4401,6 +4434,18 @@
             "activeTasks": "Active Tasks",
             "activeTasksDesc": "Open or in progress",
             "error": "Unable to load statistics."
+        }
+    },
+    "Services": {
+        "categories": {
+            "aide_domicile_petits_travaux": "Home Help & Small Jobs",
+            "courses_livraisons": "Shopping & Deliveries",
+            "aide_numerique_administrative": "Digital & Administrative Help",
+            "demenagement_manutention": "Moving & Handling",
+            "accompagnement_presence": "Accompaniment & Companionship",
+            "jardinage_exterieur": "Gardening & Outdoor",
+            "animaux_compagnie": "Pet Care",
+            "evenements_occasions": "Events & Special Occasions"
         }
     },
     "Dashboard": {

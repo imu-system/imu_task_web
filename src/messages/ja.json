@@ -166,6 +166,10 @@
             "config": "設定"
         }
     },
+    "AdminDashboard": {
+        "subtitle": "プラットフォーム概要とクイックアクション",
+        "quickActionsTitle": "クイックアクション"
+    },
     "DashboardPage": {
         "title": "利用可能なタスク",
         "subtitle": "近くであなたに合ったタスクを見つけましょう。",
@@ -1486,6 +1490,35 @@
             "export": "Export iCal"
         }
     },
+    "SettingsPage": {
+        "account": {
+            "title": "アカウント",
+            "email": {
+                "title": "メールアドレス",
+                "button": "変更"
+            },
+            "phone": {
+                "title": "電話番号",
+                "notProvided": "未設定",
+                "buttonAdd": "追加",
+                "buttonEdit": "編集"
+            },
+            "linkedAccounts": {
+                "title": "連携アカウント",
+                "google": "Google",
+                "notLinked": "連携アカウントなし"
+            }
+        },
+        "security": {
+            "title": "セキュリティ"
+        },
+        "billing": {
+            "title": "請求"
+        },
+        "privacy": {
+            "title": "プライバシー"
+        }
+    },
     "AvailabilitySettingsPage": {
         "title": "Availability Settings",
         "sync": {
@@ -1566,6 +1599,92 @@
                 "title": "エラー",
                 "description": "報告の送信に失敗しました。もう一度お試しください。"
             }
+        }
+    },
+    "Services": {
+        "categories": {
+            "aide_domicile_petits_travaux": "家事代行・小さな仕事",
+            "courses_livraisons": "買い物・配達",
+            "aide_numerique_administrative": "デジタル・事務サポート",
+            "demenagement_manutention": "引越し・運搬",
+            "accompagnement_presence": "付き添い・見守り",
+            "jardinage_exterieur": "庭仕事・屋外作業",
+            "animaux_compagnie": "ペットケア",
+            "evenements_occasions": "イベント・特別な行事"
+        }
+    },
+    "Dashboard": {
+        "filters": {
+            "title": "フィルター",
+            "search": "検索",
+            "searchPlaceholder": "タイトルまたは説明で検索...",
+            "clearSearch": "検索をクリア",
+            "dateRange": {
+                "label": "期間",
+                "preset": "期間を選択",
+                "today": "今日",
+                "last7days": "過去7日間",
+                "last30days": "過去30日間",
+                "thisMonth": "今月",
+                "lastMonth": "先月",
+                "custom": "カスタム期間",
+                "selectCustom": "日付を選択",
+                "selectRange": "日付範囲を選択"
+            },
+            "status": {
+                "label": "ステータス",
+                "all": "すべて",
+                "completed": "完了",
+                "active": "アクティブ",
+                "cancelled": "キャンセル済み"
+            },
+            "categories": "カテゴリー",
+            "selectAll": "すべて選択",
+            "clearAll": "すべてクリア",
+            "resetAll": "すべてのフィルターをリセット",
+            "activeFilters": "{count, plural, =0 {フィルターなし} =1 {1個のアクティブフィルター} other {#個のアクティブフィルター}}"
+        },
+        "live": {
+            "indicator": "ライブ",
+            "updated": "{time}に更新",
+            "activity": "最近のアクティビティ",
+            "noActivity": "最近のアクティビティはありません",
+            "types": {
+                "NEW_BOOKING": "新しい予約",
+                "TASK_COMPLETED": "タスク完了",
+                "NEW_USER": "新規ユーザー",
+                "KYC_SUBMITTED": "KYC提出済み",
+                "PROPOSAL_CREATED": "新しい提案"
+            }
+        },
+        "revenue": {
+            "title": "収益の推移",
+            "description": "過去数ヶ月の収益分析",
+            "totalRevenue": "総収益",
+            "avgPerMonth": "月平均",
+            "trend": "トレンド",
+            "summary": "過去{months}ヶ月間で{count, plural, =0 {完了したミッションはありません} =1 {1件のミッション完了} other {#件のミッション完了}}",
+            "noData": "収益データはまだありません。最初のミッションを完了すると統計が表示されます。",
+            "error": "収益データを読み込めませんでした。後でもう一度お試しください。"
+        },
+        "spending": {
+            "title": "支出の推移",
+            "description": "過去数ヶ月の支出分析",
+            "totalSpending": "総支出",
+            "avgPerMonth": "月平均",
+            "trend": "トレンド",
+            "summary": "過去{months}ヶ月間で{count, plural, =0 {予約したミッションはありません} =1 {1件のミッション予約} other {#件のミッション予約}}",
+            "noData": "支出データはありません。最初のミッションを予約すると統計が表示されます。",
+            "error": "支出データを読み込めませんでした。後でもう一度お試しください。"
+        },
+        "categories": {
+            "title": "カテゴリー別内訳",
+            "description": "サービスタイプ別の支出",
+            "totalSpending": "総支出",
+            "totalTasks": "総ミッション数",
+            "moreCategories": "その他のカテゴリー",
+            "noData": "完了したミッションはありません。カテゴリー統計はここに表示されます。",
+            "error": "カテゴリーデータを読み込めませんでした。後でもう一度お試しください。"
         }
     }
 }

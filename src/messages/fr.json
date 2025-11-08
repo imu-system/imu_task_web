@@ -116,6 +116,10 @@
             "config": "Configuration"
         }
     },
+    "AdminDashboard": {
+        "subtitle": "Vue d'ensemble de la plateforme et actions rapides",
+        "quickActionsTitle": "Actions rapides"
+    },
     "DashboardPage": {
         "title": "Missions disponibles",
         "subtitle": "Trouvez une mission qui vous correspond près de chez vous.",
@@ -1063,6 +1067,35 @@
             "google": "Connecter Google Calendar",
             "apple": "Connecter Apple Calendar",
             "export": "Exporter en iCal"
+        }
+    },
+    "SettingsPage": {
+        "account": {
+            "title": "Compte",
+            "email": {
+                "title": "Adresse e-mail",
+                "button": "Modifier"
+            },
+            "phone": {
+                "title": "Numéro de téléphone",
+                "notProvided": "Non renseigné",
+                "buttonAdd": "Ajouter",
+                "buttonEdit": "Modifier"
+            },
+            "linkedAccounts": {
+                "title": "Comptes liés",
+                "google": "Google",
+                "notLinked": "Aucun compte lié"
+            }
+        },
+        "security": {
+            "title": "Sécurité"
+        },
+        "billing": {
+            "title": "Facturation"
+        },
+        "privacy": {
+            "title": "Confidentialité"
         }
     },
     "AvailabilitySettingsPage": {
@@ -4460,6 +4493,18 @@
             "activeTasks": "Missions Actives",
             "activeTasksDesc": "Ouvertes ou en cours",
             "error": "Erreur de chargement"
+        }
+    },
+    "Services": {
+        "categories": {
+            "aide_domicile_petits_travaux": "Aide à domicile & Petits travaux",
+            "courses_livraisons": "Courses & Livraisons",
+            "aide_numerique_administrative": "Aide Numérique & Administrative",
+            "demenagement_manutention": "Déménagement & Manutention",
+            "accompagnement_presence": "Accompagnement & Présence",
+            "jardinage_exterieur": "Jardinage & Extérieur",
+            "animaux_compagnie": "Animaux de compagnie",
+            "evenements_occasions": "Événements & Occasions spéciales"
         }
     },
     "Dashboard": {
