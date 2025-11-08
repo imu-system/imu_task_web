@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useTranslations } from 'next-intl';
 import { Loader2, CreditCard, PlusCircle, Trash2, Settings2, Crown, Building2, Zap } from 'lucide-react';
@@ -22,59 +22,17 @@ import {
 import PaymentMethodDialog from './payment-method-dialog';
 import SubscriptionDialog from './subscription-dialog';
 import InvoicesTable, { type Invoice } from './invoices-table';
-
-// Mock data - Will be replaced with real Firebase/Stripe data in Task 6
-const mockPaymentMethods = [
-  { 
-    id: 'pm_1', 
-    brand: 'Visa', 
-    last4: '4242', 
-    isDefault: true,
-    expMonth: 12,
-    expYear: 2025,
-    holderName: 'John Doe',
-  },
-  { 
-    id: 'pm_2', 
-    brand: 'Mastercard', 
-    last4: '8888', 
-    isDefault: false,
-    expMonth: 6,
-    expYear: 2026,
-    holderName: 'John Doe',
-  },
-];
-
-const mockInvoices: Invoice[] = [
-  { 
-    id: 'inv_1', 
-    date: '01/11/2025', 
-    amount: 49.00, 
-    status: 'paid',
-    plan: 'Pro',
-    invoiceNumber: 'INV-2025-011',
-    pdfUrl: '/invoices/inv_1.pdf',
-  },
-  { 
-    id: 'inv_2', 
-    date: '01/10/2025', 
-    amount: 49.00, 
-    status: 'paid',
-    plan: 'Pro',
-    invoiceNumber: 'INV-2025-010',
-    pdfUrl: '/invoices/inv_2.pdf',
-  },
-  { 
-    id: 'inv_3', 
-    date: '01/09/2025', 
-    amount: 49.00, 
-    status: 'paid',
-    plan: 'Pro',
-    invoiceNumber: 'INV-2025-009',
-    pdfUrl: '/invoices/inv_3.pdf',
-  },
-];
-
+import {
+  getPaymentMethods,
+  removePaymentMethod,
+  setDefaultPaymentMethod,
+  getInvoices,
+  getCurrentSubscription,
+  cancelSubscription,
+  type PaymentMethod,
+  mockPaymentMethods,
+  mockInvoices,
+} from '@/lib/services/billing-service';
 
 export default function BillingSettings() {
   const { user, loading } = useAuth();
@@ -84,14 +42,60 @@ export default function BillingSettings() {
   const [paymentDialogOpen, setPaymentDialogOpen] = useState(false);
   const [subscriptionDialogOpen, setSubscriptionDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [selectedMethod, setSelectedMethod] = useState<typeof mockPaymentMethods[0] | null>(null);
+  const [selectedMethod, setSelectedMethod] = useState<PaymentMethod | null>(null);
   const [methodToDelete, setMethodToDelete] = useState<string | null>(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
-  // Mock current plan - Will be fetched from Firestore in Task 6
-  const currentPlan = 'pro' as 'free' | 'pro' | 'business';
+  // State for data fetched from Stripe/Firestore
+  const [currentPlan, setCurrentPlan] = useState<'free' | 'pro' | 'business'>('free');
+  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([]);
+  const [invoices, setInvoices] = useState<Invoice[]>([]);
+  const [loadingData, setLoadingData] = useState(true);
 
-  // Placeholder handlers - Will be replaced with real Firebase/Stripe calls in Task 6
+  // Load billing data from Stripe/Firestore
+  useEffect(() => {
+    if (!user) return;
+
+    const loadBillingData = async () => {
+      try {
+        // For now, use mock data until Cloud Functions are set up
+        // In production, these would be actual API calls:
+        // const [methods, invoicesList, subscription] = await Promise.all([
+        //   getPaymentMethods(user.uid),
+        //   getInvoices(user.uid),
+        //   getCurrentSubscription(user.uid),
+        // ]);
+        
+        setPaymentMethods(mockPaymentMethods);
+        
+        // Map service invoices to component format
+        const mappedInvoices: Invoice[] = mockInvoices.map(inv => ({
+          id: inv.id,
+          date: new Date(inv.date).toLocaleDateString('fr-FR'),
+          amount: inv.amount,
+          status: inv.status,
+          plan: 'Pro', // Default for mock data
+          invoiceNumber: inv.number,
+          pdfUrl: inv.pdfUrl,
+        }));
+        setInvoices(mappedInvoices);
+        
+        // Try to get subscription from Firestore
+        const subscription = await getCurrentSubscription(user.uid);
+        if (subscription) {
+          setCurrentPlan(subscription.plan);
+        }
+      } catch (err) {
+        console.error('Failed to load billing data:', err);
+      } finally {
+        setLoadingData(false);
+      }
+    };
+
+    loadBillingData();
+  }, [user]);
+
+  // Real handlers with Firebase/Stripe services
   const handleAddPaymentMethod = async (data: {
     cardNumber: string;
     expMonth: string;
@@ -99,11 +103,19 @@ export default function BillingSettings() {
     cvv: string;
     holderName: string;
   }) => {
-    console.log('Adding payment method:', data);
-    // TODO Task 6: Call Stripe API to create PaymentMethod
-    // const paymentMethod = await stripe.paymentMethods.create({...});
-    // await stripe.paymentMethods.attach(paymentMethod.id, { customer: customerId });
-    alert(t('paymentMethods.addSuccess'));
+    try {
+      // TODO: Create Stripe token from card data
+      // const token = await stripe.createToken({ card: data });
+      // const { addPaymentMethod } = await import('@/lib/services/billing-service');
+      // const paymentMethod = await addPaymentMethod(token.id, false);
+      // setPaymentMethods([...paymentMethods, paymentMethod]);
+      
+      console.log('Adding payment method:', data);
+      alert(t('paymentMethods.addSuccess'));
+    } catch (err) {
+      console.error('Failed to add payment method:', err);
+      alert(t('paymentMethods.addError'));
+    }
   };
 
   const handleDeletePaymentMethod = async () => {
@@ -111,9 +123,8 @@ export default function BillingSettings() {
     
     setDeleteLoading(true);
     try {
-      console.log('Deleting payment method:', methodToDelete);
-      // TODO Task 6: Call Stripe API to detach PaymentMethod
-      // await stripe.paymentMethods.detach(methodToDelete);
+      await removePaymentMethod(methodToDelete);
+      setPaymentMethods(paymentMethods.filter(m => m.id !== methodToDelete));
       alert(t('paymentMethods.deleteSuccess'));
       setDeleteDialogOpen(false);
       setMethodToDelete(null);
@@ -125,34 +136,64 @@ export default function BillingSettings() {
     }
   };
 
+  const handleSetDefaultPaymentMethod = async (methodId: string) => {
+    try {
+      await setDefaultPaymentMethod(methodId);
+      setPaymentMethods(
+        paymentMethods.map(m => ({ ...m, isDefault: m.id === methodId }))
+      );
+      alert(t('paymentMethods.setDefaultSuccess'));
+    } catch (err) {
+      console.error('Failed to set default payment method:', err);
+      alert(t('paymentMethods.setDefaultError'));
+    }
+  };
+
   const handleChangePlan = async (
     plan: 'free' | 'pro' | 'business',
     billing: 'monthly' | 'annual'
   ) => {
-    console.log('Changing plan to:', plan, billing);
-    // TODO Task 6: Call Stripe API to update/create subscription
-    // const subscription = await stripe.subscriptions.update(subscriptionId, {
-    //   items: [{ price: priceId }],
-    //   proration_behavior: 'always_invoice',
-    // });
-    alert(t('subscription.changeSuccess'));
+    try {
+      if (plan === 'free') {
+        // Downgrade to free = cancel subscription
+        await cancelSubscription();
+        setCurrentPlan('free');
+        alert(t('subscription.downgradeSuccess'));
+      } else {
+        // Upgrade/change plan
+        const { createSubscription } = await import('@/lib/services/billing-service');
+        await createSubscription(plan, billing);
+        setCurrentPlan(plan);
+        alert(t('subscription.changeSuccess'));
+      }
+    } catch (err) {
+      console.error('Failed to change plan:', err);
+      alert(t('subscription.changeError'));
+    }
   };
 
   const handleCancelSubscription = async () => {
-    console.log('Canceling subscription');
-    // TODO Task 6: Call Stripe API to cancel subscription at period end
-    // await stripe.subscriptions.update(subscriptionId, {
-    //   cancel_at_period_end: true,
-    // });
-    alert(t('subscription.cancelSuccess'));
+    try {
+      await cancelSubscription();
+      alert(t('subscription.cancelSuccess'));
+    } catch (err) {
+      console.error('Failed to cancel subscription:', err);
+      alert(t('subscription.cancelError'));
+    }
   };
 
   const handleDownloadInvoice = async (invoiceId: string) => {
-    console.log('Downloading invoice:', invoiceId);
-    // TODO Task 6: Fetch PDF URL from Stripe and trigger download
-    // const invoice = await stripe.invoices.retrieve(invoiceId);
-    // window.open(invoice.invoice_pdf, '_blank');
-    alert(t('invoices.downloadSuccess'));
+    try {
+      const invoice = invoices.find(inv => inv.id === invoiceId);
+      if (invoice?.pdfUrl) {
+        window.open(invoice.pdfUrl, '_blank');
+      } else {
+        alert(t('invoices.errors.notFound'));
+      }
+    } catch (err) {
+      console.error('Failed to download invoice:', err);
+      alert(t('invoices.errors.downloadFailed'));
+    }
   };
 
   const getPlanIcon = () => {
@@ -236,14 +277,14 @@ export default function BillingSettings() {
                   <div>
                     <div className="flex items-center gap-2">
                       <p className="font-semibold">
-                        {method.brand} {t('paymentMethods.endingIn')} {method.last4}
+                        {method.card.brand} {t('paymentMethods.endingIn')} {method.card.last4}
                       </p>
                       {method.isDefault && (
                         <Badge variant="secondary">{t('paymentMethods.default')}</Badge>
                       )}
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      {t('paymentMethods.expires')} {method.expMonth.toString().padStart(2, '0')}/{method.expYear}
+                      {t('paymentMethods.expires')} {method.card.expMonth.toString().padStart(2, '0')}/{method.card.expYear}
                     </p>
                   </div>
                 </div>
@@ -255,7 +296,7 @@ export default function BillingSettings() {
                     setMethodToDelete(method.id);
                     setDeleteDialogOpen(true);
                   }}
-                  disabled={method.isDefault && mockPaymentMethods.length === 1}
+                  disabled={method.isDefault && paymentMethods.length === 1}
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
@@ -284,7 +325,7 @@ export default function BillingSettings() {
           <CardDescription>{t('invoices.description')}</CardDescription>
         </CardHeader>
         <CardContent>
-          <InvoicesTable invoices={mockInvoices} onDownload={handleDownloadInvoice} />
+          <InvoicesTable invoices={invoices} onDownload={handleDownloadInvoice} />
         </CardContent>
       </Card>
 
@@ -292,7 +333,14 @@ export default function BillingSettings() {
       <PaymentMethodDialog
         open={paymentDialogOpen}
         onOpenChange={setPaymentDialogOpen}
-        method={selectedMethod}
+        method={selectedMethod ? {
+          id: selectedMethod.id,
+          brand: selectedMethod.card.brand,
+          last4: selectedMethod.card.last4,
+          expMonth: selectedMethod.card.expMonth,
+          expYear: selectedMethod.card.expYear,
+          holderName: '', // Not stored in Stripe PaymentMethod
+        } : null}
         onSave={handleAddPaymentMethod}
       />
 
