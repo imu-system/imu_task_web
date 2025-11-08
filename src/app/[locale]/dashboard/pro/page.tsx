@@ -43,6 +43,7 @@ import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, R
 import { DashboardHeader } from '@/components/dashboard/dashboard-header';
 import { QuickActions } from '@/components/dashboard/quick-actions';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
+import { DashboardFilters } from '@/components/dashboard/dashboard-filters';
 import { 
   AnimatedDiv, 
   AnimatedList, 
@@ -339,6 +340,25 @@ export default function ProDashboardPage() {
 
             {/* QuickActions pour professionnels */}
             <QuickActions accountType={AccountType.professional} />
+
+            {/* Filters Section */}
+            <div className="flex flex-col lg:flex-row gap-4">
+                {/* Desktop: Card variant */}
+                <div className="hidden lg:block lg:w-80 flex-shrink-0">
+                    <DashboardFilters 
+                        userId={user?.uid}
+                        variant="card"
+                    />
+                </div>
+                
+                {/* Mobile: Sheet variant (button) */}
+                <div className="lg:hidden">
+                    <DashboardFilters 
+                        userId={user?.uid}
+                        variant="sheet"
+                    />
+                </div>
+            </div>
 
             {/* En-tête avec badge vérifié et gradient animé */}
             <GradientBackground 

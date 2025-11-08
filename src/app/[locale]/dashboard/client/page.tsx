@@ -26,6 +26,7 @@ import { QuickActions } from '@/components/dashboard/quick-actions';
 import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getClientProposals } from '@/lib/firestore-proposals';
+import { DashboardFilters } from '@/components/dashboard/dashboard-filters';
 import { 
   logDashboardPageView, 
   logKpiCardClick, 
@@ -286,6 +287,17 @@ export default function DashboardPage() {
             { label: tBreadcrumbs('dashboard'), href: '/dashboard/client' }
           ]}
         />
+
+        {/* Filters Section */}
+        <div className="flex gap-4">
+          {/* Mobile: Sheet variant (button) */}
+          <div className="lg:hidden">
+            <DashboardFilters 
+              userId={user?.uid}
+              variant="sheet"
+            />
+          </div>
+        </div>
         
         {/* Section de bienvenue moderne avec dégradé animé */}
         <GradientBackground className="rounded-2xl p-8 -mx-4 md:mx-0">

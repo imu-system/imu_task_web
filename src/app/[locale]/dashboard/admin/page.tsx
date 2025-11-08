@@ -17,6 +17,7 @@ import { AdminKYCPanel } from "@/components/admin/kyc-panel";
 import { AdminStatsCards } from "@/components/dashboard/admin-stats-cards";
 import { GMVChart } from "@/components/dashboard/gmv-chart";
 import { UserGrowthChart } from "@/components/dashboard/user-growth-chart";
+import { DashboardFilters } from "@/components/dashboard/dashboard-filters";
 
 const priorityQueue = [
     { id: 'KYC001', type: 'KYC en attente', user: 'Jean Dupont', date: '2023-10-26', icon: <ShieldQuestion className="h-5 w-5 text-yellow-500"/>, href: '/dashboard/admin/kyc'},
@@ -42,9 +43,27 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="space-y-8">
-        <div>
-            <h1 className="text-3xl font-bold tracking-tight font-headline">{tNav('admin')}</h1>
-            <p className="text-muted-foreground">{t('subtitle')}</p>
+        <div className="flex items-start justify-between gap-4">
+            <div>
+                <h1 className="text-3xl font-bold tracking-tight font-headline">{tNav('admin')}</h1>
+                <p className="text-muted-foreground">{t('subtitle')}</p>
+            </div>
+            
+            {/* Filters Button - Mobile variant (Sheet) */}
+            <div className="lg:hidden">
+                <DashboardFilters 
+                    userId={user.uid}
+                    variant="sheet"
+                />
+            </div>
+        </div>
+
+        {/* Filters Card - Desktop variant */}
+        <div className="hidden lg:block">
+            <DashboardFilters 
+                userId={user.uid}
+                variant="card"
+            />
         </div>
 
         {/* Real-time KPI Cards - Connected to Firestore */}
