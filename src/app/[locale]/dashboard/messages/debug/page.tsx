@@ -130,6 +130,18 @@ export default function MessagingDebugPage() {
         </p>
       </div>
 
+      {/* Alerte si aucun thread */}
+      {dbStats?.threadsCount === 0 && (
+        <Alert className="border-orange-500 bg-orange-50">
+          <AlertDescription className="text-sm">
+            <strong>⚠️ Aucun thread trouvé !</strong>
+            <br />
+            La collection "threads" est vide ou n'existe pas encore. 
+            Cliquez sur "Créer 4 threads de test" ci-dessous pour initialiser la messagerie.
+          </AlertDescription>
+        </Alert>
+      )}
+
       {/* État de la base de données */}
       <Card>
         <CardHeader>

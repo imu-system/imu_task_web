@@ -9,6 +9,8 @@
 
 import { MessageCircle, Inbox, Star, Users } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { useRouter } from '@/navigation';
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 export type EmptyStateType = 'no-messages' | 'no-unread' | 'no-favorites' | 'no-groups' | 'search-empty';
@@ -63,8 +65,13 @@ export function IllustratedEmptyState({
   className,
 }: IllustratedEmptyStateProps) {
   const t = useTranslations('messaging');
+  const router = useRouter();
   const config = EMPTY_STATE_CONFIG[type];
   const Icon = config.icon;
+
+  const handleDebugClick = () => {
+    router.push('/dashboard/messages/debug');
+  };
 
   return (
     <div 
@@ -105,9 +112,23 @@ export function IllustratedEmptyState({
 
       {/* Optional CTA for main empty state */}
       {type === 'no-messages' && (
-        <p className="mt-6 text-xs text-[#8696a0]">
-          {t('emptyStates.clickNewChat')}
-        </p>
+        <div className="mt-6 space-y-3">
+          <p className="text-xs text-[#8696a0]">
+            {t('emptyStates.clickNewChat')}
+          </p>
+          
+          {/* Development only: Debug button */}
+          {process.env.NODE_ENV === 'development' && (
+            <Button
+              onClick={handleDebugClick}
+              variant="outline"
+              size="sm"
+              className="gap-2"
+            >
+              🐛 Créer une conversation de test
+            </Button>
+          )}
+        </div>
       )}
     </div>
   );

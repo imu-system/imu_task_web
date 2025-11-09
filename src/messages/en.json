@@ -433,7 +433,15 @@
                 "noResults": "No results found",
                 "noUnread": "No unread conversations",
                 "noFavorites": "No favorite conversations",
-                "noGroups": "No groups"
+                "noGroups": "No groups",
+                "noConversations": "No conversations",
+                "noConversationsDesc": "Start a new conversation by clicking the button below",
+                "noUnreadDesc": "All your conversations are up to date! 🎉",
+                "noFavoritesDesc": "You don't have any favorite conversations yet",
+                "noGroupsDesc": "You are not part of any group at the moment",
+                "searchEmpty": "No results for this search",
+                "searchEmptyDesc": "No conversation matches \"{query}\"",
+                "clickNewChat": "💬 Click the + button to start a conversation"
             },
             "errors": {
                 "loadThreads": "Unable to load conversations",
@@ -472,6 +480,140 @@
                 "delivered": "Delivered",
                 "read": "Read",
                 "seenBy": "Seen {time}"
+            },
+            "reactions": {
+                "add": "Add reaction",
+                "remove": "Remove reaction",
+                "reactedWith": "reacted with"
+            },
+            "messageActions": {
+                "reply": "Reply",
+                "edit": "Edit",
+                "delete": "Delete",
+                "forward": "Forward",
+                "copy": "Copy",
+                "pin": "Pin",
+                "unpin": "Unpin",
+                "star": "Star",
+                "unstar": "Unstar",
+                "info": "Info",
+                "select": "Select"
+            },
+            "deleteMessage": {
+                "title": "Delete message?",
+                "description": "This action cannot be undone.",
+                "deleteForMe": "Delete for me",
+                "deleteForEveryone": "Delete for everyone",
+                "cancel": "Cancel"
+            },
+            "editMode": {
+                "title": "Edit message",
+                "save": "Save",
+                "cancel": "Cancel"
+            },
+            "replyMode": {
+                "replyingTo": "Replying to {name}",
+                "cancel": "Cancel"
+            },
+            "forward": {
+                "title": "Forward to",
+                "selectConversation": "Select a conversation",
+                "send": "Forward",
+                "cancel": "Cancel",
+                "success": "Message forwarded",
+                "error": "Unable to forward message"
+            },
+            "search": {
+                "placeholder": "Search in conversation...",
+                "results": "{count} result(s)",
+                "noResults": "No results",
+                "previous": "Previous",
+                "next": "Next",
+                "close": "Close"
+            },
+            "pinnedMessages": {
+                "title": "Pinned messages",
+                "viewAll": "View all ({count})",
+                "noPinned": "No pinned messages",
+                "close": "Close"
+            },
+            "starredMessages": {
+                "title": "Starred messages",
+                "noStarred": "No starred messages",
+                "viewAll": "View all"
+            },
+            "sharedMedia": {
+                "title": "Shared media",
+                "photos": "Photos",
+                "videos": "Videos",
+                "documents": "Documents",
+                "links": "Links",
+                "noMedia": "No shared media",
+                "loadMore": "Load more"
+            },
+            "voiceRecorder": {
+                "recording": "Recording {duration}",
+                "cancel": "Cancel",
+                "send": "Send audio",
+                "permission": "Microphone permission required",
+                "error": "Recording error"
+            },
+            "fileUpload": {
+                "title": "Add files",
+                "dragDrop": "Drag & drop or click to select",
+                "selectFiles": "Select files",
+                "preview": "Preview",
+                "caption": "Add caption...",
+                "send": "Send {count} file(s)",
+                "cancel": "Cancel",
+                "maxSize": "Max size: {size}",
+                "invalidType": "File type not allowed",
+                "uploadError": "Upload error"
+            },
+            "messageTypes": {
+                "text": "Text message",
+                "image": "Image",
+                "audio": "Audio",
+                "video": "Video",
+                "file": "File",
+                "location": "Location"
+            },
+            "messageStatus": {
+                "sending": "Sending...",
+                "sent": "Sent",
+                "delivered": "Delivered",
+                "read": "Read",
+                "failed": "Failed"
+            },
+            "infoPanel": {
+                "title": "Information",
+                "contact": "Contact",
+                "email": "Email",
+                "phone": "Phone",
+                "notifications": "Notifications",
+                "mute": "Mute",
+                "unmute": "Unmute",
+                "muteFor": "Mute for",
+                "muteOptions": {
+                    "1hour": "1 hour",
+                    "8hours": "8 hours",
+                    "1week": "1 week",
+                    "always": "Always"
+                },
+                "sharedMedia": "Shared media",
+                "viewAll": "View all",
+                "clearChat": "Clear chat",
+                "blockUser": "Block user",
+                "reportUser": "Report"
+            },
+            "lastSeen": {
+                "online": "Online",
+                "justNow": "Just now",
+                "minutesAgo": "{count} min ago",
+                "hoursAgo": "{count} h ago",
+                "yesterday": "yesterday",
+                "daysAgo": "{count} d ago",
+                "weeksAgo": "{count} w ago"
             }
         },
         "providerActions": {

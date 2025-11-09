@@ -268,9 +268,234 @@
       "reportProblem": "Report a Problem"
     },
     "messaging": {
-      "title": "Messaging",
-      "contactProvider": "Contact Provider",
-      "notMatched": "Messaging will be available once you accept an offer."
+      "title": "メッセージ",
+      "newThread": "新しいメッセージ",
+      "newConversation": "新しい会話",
+      "searchPlaceholder": "会話を検索...",
+      "searchUsers": "ユーザーを検索...",
+      "selectThread": "会話を選択",
+      "selectThreadDescription": "会話を選択してチャットを開始",
+      "noMessages": "メッセージなし",
+      "noUsersFound": "ユーザーが見つかりません",
+      "noUsersAvailable": "利用可能なユーザーがいません",
+      "you": "あなた",
+      "typing": "入力中...",
+      "unknownUser": "不明なユーザー",
+      "relatedTask": "関連タスク",
+      "confirmDelete": "この会話を削除してもよろしいですか？",
+      "tabs": {
+        "active": "アクティブ",
+        "archived": "アーカイブ済み"
+      },
+      "filters": {
+        "all": "すべて",
+        "unread": "未読",
+        "favorites": "お気に入り",
+        "groups": "グループ"
+      },
+      "actions": {
+        "archive": "アーカイブ",
+        "unarchive": "アーカイブ解除",
+        "delete": "削除",
+        "mute": "通知をミュート",
+        "unmute": "通知をオン",
+        "call": "通話",
+        "videoCall": "ビデオ通話",
+        "search": "検索",
+        "viewTask": "タスクを表示",
+        "pin": "ピン留め",
+        "viewProfile": "プロフィールを表示",
+        "block": "ブロック",
+        "report": "報告"
+      },
+      "emptyStates": {
+        "noThreads": "まだ会話はありません",
+        "noArchived": "アーカイブされた会話はありません",
+        "noResults": "結果が見つかりません",
+        "noUnread": "未読の会話はありません",
+        "noFavorites": "お気に入りの会話はありません",
+        "noGroups": "グループはありません",
+        "noConversations": "会話がありません",
+        "noConversationsDesc": "下のボタンをクリックして新しい会話を始めましょう",
+        "noUnreadDesc": "すべての会話が最新の状態です！🎉",
+        "noFavoritesDesc": "まだお気に入りの会話がありません",
+        "noGroupsDesc": "現在、どのグループにも参加していません",
+        "searchEmpty": "この検索の結果はありません",
+        "searchEmptyDesc": "\"{query}\"に一致する会話はありません",
+        "clickNewChat": "💬 +ボタンをクリックして会話を開始"
+      },
+      "errors": {
+        "loadThreads": "会話を読み込めません",
+        "sendMessage": "メッセージを送信できません",
+        "uploadFile": "ファイルをアップロードできません"
+      },
+      "contactProvider": "プロバイダーに連絡",
+      "notMatched": "オファーを受け入れると、メッセージング機能が利用可能になります。",
+      "online": "オンライン",
+      "offline": "オフライン",
+      "activeAgo": "{time}前にアクティブ",
+      "status": {
+        "online": "オンライン",
+        "offline": "オフライン",
+        "typing": "入力中..."
+      },
+      "input": {
+        "placeholder": "メッセージを入力...",
+        "send": "送信",
+        "emoji": "絵文字",
+        "attach": "ファイルを添付",
+        "voice": "音声メッセージ",
+        "cancel": "キャンセル",
+        "recording": "録音中...",
+        "photo": "写真または動画",
+        "document": "ドキュメント",
+        "location": "位置を共有"
+      },
+      "piiWarning": {
+        "title": "個人情報が検出されました",
+        "description": "メッセージに個人情報（メール、電話、住所）が含まれています。安全のため、プラットフォーム上でやり取りすることをお勧めします。",
+        "sendAnyway": "それでも送信"
+      },
+      "readReceipts": {
+        "sent": "送信済み",
+        "delivered": "配信済み",
+        "read": "既読",
+        "seenBy": "{time}に既読"
+      },
+      "reactions": {
+        "add": "リアクションを追加",
+        "remove": "リアクションを削除",
+        "reactedWith": "がリアクションしました"
+      },
+      "messageActions": {
+        "reply": "返信",
+        "edit": "編集",
+        "delete": "削除",
+        "forward": "転送",
+        "copy": "コピー",
+        "pin": "ピン留め",
+        "unpin": "ピン留め解除",
+        "star": "スター",
+        "unstar": "スター解除",
+        "info": "情報",
+        "select": "選択"
+      },
+      "deleteMessage": {
+        "title": "メッセージを削除しますか？",
+        "description": "この操作は元に戻せません。",
+        "deleteForMe": "自分用に削除",
+        "deleteForEveryone": "全員に削除",
+        "cancel": "キャンセル"
+      },
+      "editMode": {
+        "title": "メッセージを編集",
+        "save": "保存",
+        "cancel": "キャンセル"
+      },
+      "replyMode": {
+        "replyingTo": "{name}に返信中",
+        "cancel": "キャンセル"
+      },
+      "forward": {
+        "title": "転送先",
+        "selectConversation": "会話を選択",
+        "send": "転送",
+        "cancel": "キャンセル",
+        "success": "メッセージを転送しました",
+        "error": "メッセージを転送できません"
+      },
+      "search": {
+        "placeholder": "会話内を検索...",
+        "results": "{count}件の結果",
+        "noResults": "結果なし",
+        "previous": "前へ",
+        "next": "次へ",
+        "close": "閉じる"
+      },
+      "pinnedMessages": {
+        "title": "ピン留めされたメッセージ",
+        "viewAll": "すべて表示 ({count})",
+        "noPinned": "ピン留めされたメッセージはありません",
+        "close": "閉じる"
+      },
+      "starredMessages": {
+        "title": "スター付きメッセージ",
+        "noStarred": "スター付きメッセージはありません",
+        "viewAll": "すべて表示"
+      },
+      "sharedMedia": {
+        "title": "共有メディア",
+        "photos": "写真",
+        "videos": "動画",
+        "documents": "ドキュメント",
+        "links": "リンク",
+        "noMedia": "共有メディアはありません",
+        "loadMore": "さらに読み込む"
+      },
+      "voiceRecorder": {
+        "recording": "録音中 {duration}",
+        "cancel": "キャンセル",
+        "send": "音声を送信",
+        "permission": "マイクの許可が必要です",
+        "error": "録音エラー"
+      },
+      "fileUpload": {
+        "title": "ファイルを追加",
+        "dragDrop": "ドラッグ＆ドロップまたはクリックして選択",
+        "selectFiles": "ファイルを選択",
+        "preview": "プレビュー",
+        "caption": "キャプションを追加...",
+        "send": "{count}個のファイルを送信",
+        "cancel": "キャンセル",
+        "maxSize": "最大サイズ：{size}",
+        "invalidType": "許可されていないファイルタイプ",
+        "uploadError": "アップロードエラー"
+      },
+      "messageTypes": {
+        "text": "テキストメッセージ",
+        "image": "画像",
+        "audio": "音声",
+        "video": "動画",
+        "file": "ファイル",
+        "location": "位置"
+      },
+      "messageStatus": {
+        "sending": "送信中...",
+        "sent": "送信済み",
+        "delivered": "配信済み",
+        "read": "既読",
+        "failed": "失敗"
+      },
+      "infoPanel": {
+        "title": "情報",
+        "contact": "連絡先",
+        "email": "メール",
+        "phone": "電話",
+        "notifications": "通知",
+        "mute": "ミュート",
+        "unmute": "ミュート解除",
+        "muteFor": "ミュート期間",
+        "muteOptions": {
+          "1hour": "1時間",
+          "8hours": "8時間",
+          "1week": "1週間",
+          "always": "常に"
+        },
+        "sharedMedia": "共有メディア",
+        "viewAll": "すべて表示",
+        "clearChat": "チャットをクリア",
+        "blockUser": "ユーザーをブロック",
+        "reportUser": "報告"
+      },
+      "lastSeen": {
+        "online": "オンライン",
+        "justNow": "たった今",
+        "minutesAgo": "{count}分前",
+        "hoursAgo": "{count}時間前",
+        "yesterday": "昨日",
+        "daysAgo": "{count}日前",
+        "weeksAgo": "{count}週間前"
+      }
     },
     "providerActions": {
       "title": "Your Actions",

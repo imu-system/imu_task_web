@@ -183,8 +183,12 @@ service cloud.firestore {
     
     // Threads (conversations)
     match /threads/{threadId} {
-      // Users can list and read threads (query will be filtered by participants in the query itself)
-      allow read, list: if isAuthenticated();
+      // Users can read and list threads where they are participants
+      // Note: The query itself filters by array-contains(participants, userId)
+      // so we allow list operation and Firestore will only return matching docs
+      allow read: if isAuthenticated() && 
+                     request.auth.uid in resource.data.participants;
+      allow list: if isAuthenticated();
       
       // Users can create threads where they are a participant
       allow create: if isAuthenticated() && 

@@ -7,7 +7,7 @@
 
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { fr, enUS } from 'date-fns/locale';
 import { Search, Filter, Archive, MessageSquare } from 'lucide-react';
@@ -67,6 +67,18 @@ export function ThreadList({
     }
     return threads;
   }, [searchQuery, searchResults, threads]);
+
+  // Debug log
+  useEffect(() => {
+    console.log('📊 ThreadList Debug:', {
+      userId,
+      threadsCount: threads.length,
+      displayedCount: displayedThreads.length,
+      isLoading,
+      error: error?.message,
+      activeFilter,
+    });
+  }, [threads.length, displayedThreads.length, isLoading, error, userId, activeFilter]);
 
   // Filtrage selon le filtre actif
   const filteredThreads = useMemo(() => {

@@ -215,9 +215,32 @@ export type MessageAttachment = {
   id: string;
   name: string;
   url: string;
-  type: 'image' | 'pdf' | 'document' | 'audio';
+  type: 'image' | 'pdf' | 'document' | 'audio' | 'video' | 'location';
   size: number; // bytes
   mimeType?: string;
+  thumbnail?: string; // for images/videos
+  duration?: number; // for audio/video in seconds
+  width?: number; // for images/videos
+  height?: number; // for images/videos
+  // Location data
+  latitude?: number;
+  longitude?: number;
+  address?: string;
+};
+
+export type MessageReaction = {
+  emoji: string;
+  userId: string;
+  userName: string;
+  createdAt: Date | string;
+};
+
+export type MessageReply = {
+  messageId: string;
+  content: string;
+  senderId: string;
+  senderName: string;
+  type: MessageType;
 };
 
 export type Message = {
@@ -240,6 +263,22 @@ export type Message = {
   // PII detection flag
   containsPII?: boolean;
   piiWarningShown?: boolean;
+  // Advanced features
+  reactions?: MessageReaction[]; // emoji reactions
+  replyTo?: MessageReply; // replied message info
+  isEdited?: boolean;
+  editedAt?: Date | string;
+  isDeleted?: boolean;
+  deletedAt?: Date | string;
+  isPinned?: boolean;
+  pinnedAt?: Date | string;
+  pinnedBy?: string;
+  forwardedFrom?: {
+    threadId: string;
+    messageId: string;
+    senderName: string;
+  };
+  mentions?: string[]; // user IDs mentioned in message
 };
 
 export type Thread = {
@@ -251,6 +290,8 @@ export type Thread = {
       displayName: string;
       photoUrl?: string;
       accountType?: AccountType;
+      lastSeen?: Date | string;
+      isOnline?: boolean;
     };
   };
   // Associated task/booking
@@ -263,6 +304,7 @@ export type Thread = {
     content: string;
     senderId: string;
     createdAt: Date | string;
+    type?: MessageType;
   };
   lastMessageAt: Date | string;
   // Unread counts per user
@@ -275,6 +317,24 @@ export type Thread = {
   updatedAt: Date | string;
   // Typing indicators
   typingUsers?: string[]; // user IDs currently typing
+  // Advanced features
+  pinnedMessages?: string[]; // message IDs that are pinned
+  muteNotifications?: {
+    [userId: string]: Date | string; // mute until date
+  };
+  customName?: {
+    [userId: string]: string; // custom thread name per user
+  };
+  wallpaper?: {
+    [userId: string]: string; // custom wallpaper URL per user
+  };
+  sharedMedia?: {
+    images: number;
+    videos: number;
+    documents: number;
+    audio: number;
+    links: number;
+  };
 };
 
 // Legacy types for compatibility
