@@ -251,6 +251,35 @@ service cloud.firestore {
     }
     
     // ============================================================================
+    // FAVORITES COLLECTION (Phase 10)
+    // ============================================================================
+    
+    // Favorites collection - User bookmarks for tasks and providers
+    match /favorites/{favoriteId} {
+      // READ: User can only read their own favorites
+      allow read: if isAuthenticated() && 
+                     resource.data.userId == request.auth.uid;
+      
+      // CREATE: User can create favorites for themselves
+      allow create: if isAuthenticated() && 
+                       request.resource.data.userId == request.auth.uid &&
+                       // Validate required fields
+                       request.resource.data.keys().hasAll(['userId', 'itemType', 'itemId', 'createdAt']) &&
+                       // itemType must be 'task' or 'provider'
+                       request.resource.data.itemType in ['task', 'provider'];
+      
+      // UPDATE: User can update their own favorites metadata
+      allow update: if isAuthenticated() && 
+                       resource.data.userId == request.auth.uid &&
+                       // Can only update metadata and updatedAt
+                       request.resource.data.diff(resource.data).affectedKeys().hasOnly(['metadata', 'updatedAt']);
+      
+      // DELETE: User can delete their own favorites
+      allow delete: if isAuthenticated() && 
+                       resource.data.userId == request.auth.uid;
+    }
+    
+    // ============================================================================
     // REVIEWS & REVIEW STATS COLLECTIONS
     // ============================================================================
     

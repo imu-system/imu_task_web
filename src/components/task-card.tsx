@@ -27,6 +27,7 @@ import { useRouter } from '@/navigation';
 import { formatDistance } from '@/lib/geolocation';
 import { TaskStatusBadge } from './task-detail/task-status-badge';
 import { type Task as FirestoreTask } from '@/lib/firestore-tasks';
+import { FavoriteButton } from './favorites/favorite-button';
 
 
 type TaskCardProps = {
@@ -134,7 +135,21 @@ export default function TaskCard({ task, onOpenSheet, showDistance = false, dist
                 </Badge>
               )}
             </div>
-            <span className="text-xl font-bold text-primary">{budget}€</span>
+            <div className="flex items-center gap-2">
+              <span className="text-xl font-bold text-primary">{budget}€</span>
+              <FavoriteButton
+                itemId={id}
+                itemType="task"
+                metadata={{
+                  title,
+                  category: categoryLabel,
+                  location: locationLabel,
+                }}
+                size="icon"
+                variant="ghost"
+                data-testid="task-favorite-button"
+              />
+            </div>
         </div>
         <CardTitle className="pt-2 font-headline">{title}</CardTitle>
       </CardHeader>

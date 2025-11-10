@@ -1,4 +1,10 @@
 {
+    "Common": {
+        "toggleTheme": "Toggle theme",
+        "lightTheme": "Light",
+        "darkTheme": "Dark",
+        "systemTheme": "System"
+    },
     "Header": {
         "features": "Features",
         "becomeHost": "Become a provider",
@@ -3726,1235 +3732,1259 @@
         "noBookingsDescription": "Your bookings will appear here once you accept proposals or get accepted.",
         "noBookingsFiltered": "No bookings found",
         "tryChangingFilters": "Try changing your filters to see more results.",
-        "scheduled": "Scheduled",
-        "notes": "Notes",
-        "cancellationReason": "Cancellation Reason",
-        "started": "Started",
-        "completed": "Completed",
-        "cancelled": "Cancelled",
-        "viewTask": "View Task",
-        "Cancellation": {
-            "cancelButton": "Cancel Booking",
-            "title": "Cancel this booking",
-            "description": "Review cancellation fees before confirming. Refund amount depends on timing.",
-            "cannotCancel": "Cannot cancel",
-            "timeRemaining": "Time remaining",
-            "untilStart": "until start",
-            "refundPercent": "Refund",
-            "ofTotal": "of total amount",
-            "refundBreakdown": "Refund breakdown",
-            "originalAmount": "Original amount",
-            "refundAmount": "Refund amount",
-            "platformFee": "Platform fee retained",
-            "providerPenalty": "Provider penalty",
-            "reasonLabel": "Cancellation reason",
-            "reasonPlaceholder": "Please explain why you're cancelling this booking...",
-            "reasonHint": "This reason will be shared with the other party.",
-            "goBack": "Go Back",
-            "confirmCancel": "Confirm Cancellation",
-            "minutes": "min",
-            "hours": "h",
-            "days": "d"
-        },
-        "ProviderConfirmation": {
-            "title": "Booking Confirmation",
-            "description": "You have 24 hours to confirm or decline this booking",
-            "timeRemaining": "Time remaining",
-            "expired": "Expired",
-            "deadline": "Deadline",
-            "bookingDetails": "Booking Details",
-            "task": "Task",
-            "client": "Client",
-            "scheduledDate": "Scheduled date",
-            "duration": "Duration",
-            "amount": "Amount",
-            "confirm": "Confirm",
-            "decline": "Decline",
-            "cancel": "Cancel",
-            "confirmSuccess": "Booking confirmed",
-            "confirmSuccessMessage": "The booking has been confirmed successfully",
-            "confirmError": "Confirmation error",
-            "declineSuccess": "Booking declined",
-            "declineSuccessMessage": "The booking has been declined. The client will be refunded.",
-            "declineError": "Decline error",
-            "reasonRequired": "A reason of at least 10 characters is required",
-            "declineConfirmTitle": "Confirm decline",
-            "declineConfirmDescription": "Are you sure you want to decline this booking? A penalty will be applied.",
-            "declineReason": "Decline reason",
-            "declineReasonPlaceholder": "Please explain why you're declining this booking...",
-            "reasonMinLength": "Minimum {min} characters required",
-            "penaltyNotice": "Decline penalty",
-            "willBeDeducted": "will be deducted from your earnings",
-            "confirmDecline": "Confirm decline",
-            "declining": "Declining...",
-            "declineWarning": "⚠️ Warning",
-            "declineWarningMessage": "If you decline this booking or don't confirm within 24 hours, a penalty of {penalty} will be applied."
-        }
+        "scheduled": "Scheduled"
     },
-    "TaskForms": {
-        "Cleaning": {
-            "title": "Cleaning details",
-            "subtitle": "Specify characteristics for better matching",
-            "propertyType": {
-                "label": "Property type",
-                "placeholder": "Select property type",
-                "description": "What type of place needs to be cleaned?",
-                "apartment": "Apartment",
-                "house": "House",
-                "office": "Office",
-                "other": "Other"
-            },
-            "propertyTypeOther": {
-                "label": "Specify property type",
-                "placeholder": "E.g.: Commercial space, Garage..."
-            },
-            "surfaceArea": {
-                "label": "Estimated area",
-                "placeholder": "Select area",
-                "description": "Estimated area to clean",
-                "under30": "Under 30m²",
-                "30to60": "30-60m²",
-                "60to100": "60-100m²",
-                "over100": "Over 100m²"
-            },
-            "rooms": {
-                "label": "Number of rooms",
-                "description": "Approximate number of each room type",
-                "bedrooms": "Bedrooms",
-                "bathrooms": "Bathrooms",
-                "toilets": "Toilets"
-            },
-            "serviceType": {
-                "label": "Service type",
-                "placeholder": "Select service type",
-                "description": "What type of cleaning is needed?",
-                "oneTime": "One-time cleaning",
-                "deepClean": "Deep cleaning",
-                "movingClean": "Move in/out cleaning",
-                "specific": "Specific cleaning (windows, oven...)"
-            },
-            "specificTasks": {
-                "label": "Specific tasks",
-                "description": "Check specific tasks to be done",
-                "windows": "Window cleaning",
-                "oven": "Oven cleaning",
-                "fridge": "Refrigerator cleaning"
-            },
-            "frequency": {
-                "label": "Desired frequency",
-                "placeholder": "Select frequency",
-                "description": "How often would you like this service?",
-                "oneTime": "One-time",
-                "weekly": "Weekly",
-                "biweekly": "Biweekly (every 2 weeks)",
-                "monthly": "Monthly"
-            },
-            "materialsProvidedBy": {
-                "label": "Materials and products",
-                "placeholder": "Who provides materials?",
-                "description": "Who brings cleaning materials and products?",
-                "client": "I provide materials",
-                "provider": "Provider brings their materials",
-                "providerPaid": "Provider brings materials (additional cost)"
-            },
-            "access": {
-                "label": "Property access",
-                "placeholder": "Select access type",
-                "description": "Is the property easy to access?",
-                "easy": "Easy access (elevator, ground floor)",
-                "difficult": "Difficult access (stairs without elevator, distant parking)"
-            },
-            "accessDetails": {
-                "label": "Access details (optional)",
-                "placeholder": "E.g.: Gate code 1234, 3rd floor no elevator, visitor parking available...",
-                "description": "Useful information to facilitate access to the property"
-            }
-        },
-        "Grocery": {
-            "title": "Grocery shopping details",
-            "subtitle": "Specify your needs to facilitate the service",
-            "storeType": {
-                "label": "Store type",
-                "placeholder": "Select store type",
-                "description": "Where should the shopping be done?",
-                "supermarket": "Supermarket / Hypermarket",
-                "local_market": "Local market",
-                "bio_store": "Organic store / Gourmet shop",
-                "other": "Other"
-            },
-            "storeName": {
-                "label": "Store name (optional)",
-                "placeholder": "E.g.: Carrefour City, Monoprix, Biocoop...",
-                "description": "If you have a preference for a specific store"
-            },
-            "shoppingList": {
-                "label": "Shopping list",
-                "placeholder": "List items to purchase, one per line if possible...",
-                "description": "Detail desired products (brands, quantities, preferences)"
-            },
-            "volumeEstimate": {
-                "label": "Estimated volume",
-                "placeholder": "Select volume",
-                "description": "Estimated total volume of groceries",
-                "small": "Small (1-2 bags)",
-                "medium": "Medium (3-5 bags)",
-                "large": "Large (6+ bags or cart)"
-            },
-            "specialNeeds": {
-                "label": "Special needs",
-                "description": "Check if applicable",
-                "fresh": "Fresh products (meat, fish)",
-                "heavy": "Heavy items (drinks, canned goods)",
-                "frozen": "Frozen products"
-            },
-            "paymentMethod": {
-                "label": "Payment method",
-                "placeholder": "Select payment method",
-                "description": "How will the groceries be paid for?",
-                "cash": "Cash given to provider",
-                "client_card": "Client's bank card (provided)",
-                "provider_advance": "Provider advance (immediate reimbursement)"
-            }
-        },
-        "DogWalking": {
-            "title": "Dog walking details",
-            "subtitle": "Information about your dog for an adapted walk",
-            "dogBreed": {
-                "label": "Dog breed",
-                "placeholder": "E.g.: Labrador, French Bulldog, Mixed...",
-                "description": "Specify the breed or type of dog"
-            },
-            "dogSize": {
-                "label": "Dog size",
-                "placeholder": "Select size",
-                "description": "What is the size of your dog?",
-                "small": "Small (under 10kg)",
-                "medium": "Medium (10-25kg)",
-                "large": "Large (over 25kg)"
-            },
-            "temperament": {
-                "label": "Temperament",
-                "description": "Check your dog's personality traits",
-                "sociable": "Sociable with other dogs",
-                "reactive": "Reactive/Fearful",
-                "calm": "Calm and composed",
-                "energetic": "Very energetic"
-            },
-            "walksPerDay": {
-                "label": "Number of walks per day",
-                "description": "How many walks desired per day?"
-            },
-            "walkDuration": {
-                "30": "30 minutes",
-                "60": "1 hour",
-                "90": "1h30",
-                "label": "Duration of each walk",
-                "placeholder": "Select duration",
-                "description": "Desired duration for each walk"
-            },
-            "specialNeeds": {
-                "label": "Special needs",
-                "description": "Check if applicable",
-                "medication": "Medication to administer during walk",
-                "feeding": "Food to give (snack)"
-            },
-            "equipment": {
-                "label": "Required equipment",
-                "description": "Check necessary equipment",
-                "leash": "Leash required",
-                "muzzle": "Muzzle required",
-                "waste_bags": "Waste bags provided"
-            }
-        },
-        "Handyman": {
-            "title": "Handyman details",
-            "subtitle": "Specify the nature of the work to be done",
-            "taskType": {
-                "label": "Task type",
-                "placeholder": "Select task type",
-                "description": "What is the nature of the service?",
-                "assemble": "Furniture assembly",
-                "hang": "Hanging / Mounting",
-                "fix": "Repair",
-                "install": "Installation (curtain rod, shelf...)",
-                "repair": "Small repair",
-                "other": "Other"
-            },
-            "furnitureDetails": {
-                "title": "Furniture assembly details",
-                "brand": {
-                    "label": "Furniture brand",
-                    "placeholder": "E.g.: IKEA, Conforama, Maisons du Monde..."
-                },
-                "type": {
-                    "label": "Furniture type",
-                    "placeholder": "E.g.: Wardrobe, Desk, Dresser, Bed..."
-                },
-                "packageCount": {
-                    "label": "Number of packages",
-                    "description": "How many packages to assemble?"
-                },
-                "size": {
-                    "label": "Furniture size",
-                    "placeholder": "Select size",
-                    "small": "Small (nightstand, shelf)",
-                    "medium": "Medium (desk, dresser)",
-                    "large": "Large (wardrobe, bookcase)"
-                }
-            },
-            "toolsProvidedBy": {
-                "label": "Tools provided by",
-                "placeholder": "Who provides tools?",
-                "description": "Who brings the necessary tools?",
-                "client": "I have the necessary tools",
-                "provider": "Provider brings their tools"
-            },
-            "workHeight": {
-                "label": "Work height",
-                "placeholder": "Select height",
-                "description": "At what height is the work located?",
-                "ground": "Ground level / Normal height",
-                "medium": "Mid-height (simple ladder)",
-                "high": "High (stepladder, scaffolding)"
-            },
-            "wallType": {
-                "label": "Wall type",
-                "placeholder": "Select wall type",
-                "description": "What is the wall type for mounting?",
-                "plaster": "Plaster / Drywall",
-                "concrete": "Concrete / Solid brick",
-                "wood": "Wood",
-                "unknown": "I don't know"
-            },
-            "materialDetails": {
-                "label": "Material details (optional)",
-                "placeholder": "E.g.: Screws and anchors provided, assembly instructions included, paint color needed...",
-                "description": "Specify available materials or materials to plan for"
-            }
-        },
-        "Organization": {
-            "title": "Organization details",
-            "subtitle": "Specify areas and goals",
-            "areasToOrganize": {
-                "label": "Areas to organize",
-                "description": "Select concerned spaces",
-                "closet": "Closet / Wardrobe",
-                "library": "Bookshelf",
-                "cellar": "Cellar / Attic",
-                "garage": "Garage",
-                "kitchen": "Kitchen",
-                "office": "Office",
-                "other": "Other"
-            },
-            "goal": {
-                "label": "Main goal",
-                "placeholder": "Select goal",
-                "description": "What do you want to achieve?",
-                "declutter": "Declutter",
-                "sort": "Sort",
-                "classify": "Classify / Organize",
-                "optimize": "Optimize space"
-            },
-            "volumeEstimate": {
-                "label": "Estimated volume",
-                "placeholder": "Select volume",
-                "description": "Estimate of volume to organize",
-                "small": "Small (few shelves)",
-                "medium": "Medium (one room)",
-                "large": "Large (multiple rooms)"
-            }
-        },
-        "Package": {
-            "title": "Package details",
-            "subtitle": "Pickup/delivery information",
-            "serviceType": {
-                "label": "Service type",
-                "placeholder": "Select service",
-                "description": "What should the provider do?",
-                "pickup": "Package pickup",
-                "dropoff": "Package dropoff",
-                "mail": "Mail/package shipping"
-            },
-            "locationName": {
-                "label": "Location name",
-                "placeholder": "E.g.: Main Post Office, Mondial Relay, Package Point...",
-                "description": "Name of pickup/dropoff point"
-            },
-            "locationAddress": {
-                "label": "Location address",
-                "placeholder": "Full address...",
-                "description": "Exact address of service point"
-            },
-            "packageSize": {
-                "label": "Package size",
-                "placeholder": "Select size",
-                "description": "Estimated volume and weight",
-                "small": "Small (envelope, small package)",
-                "medium": "Medium (standard box)",
-                "large_heavy": "Large / Heavy (requires two hands)"
-            },
-            "trackingNumber": {
-                "label": "Tracking number (optional)",
-                "placeholder": "E.g.: 1Z999AA10123456784",
-                "description": "If you already have a tracking number"
-            },
-            "paymentMethod": {
-                "label": "Payment method",
-                "placeholder": "Select method",
-                "description": "How will postal service be paid?",
-                "cash": "Cash given to provider",
-                "provider_advance": "Provider advance (immediate reimbursement)"
-            }
-        },
-        "TechHelp": {
-            "title": "Tech help details",
-            "subtitle": "Specify your technical issue",
-            "deviceType": {
-                "label": "Device type",
-                "placeholder": "Select device",
-                "description": "Which device is concerned?",
-                "smartphone": "Smartphone",
-                "tablet": "Tablet",
-                "laptop": "Laptop",
-                "desktop": "Desktop computer",
-                "smart_tv": "Smart TV / Set-top box",
-                "internet_box": "Internet box / Router"
-            },
-            "operatingSystem": {
-                "label": "Operating system",
-                "placeholder": "Select system",
-                "description": "Which system does your device use?",
-                "windows": "Windows",
-                "macos": "macOS",
-                "ios": "iOS (iPhone/iPad)",
-                "android": "Android",
-                "linux": "Linux",
-                "other": "Other / I don't know"
-            },
-            "issueType": {
-                "label": "Issue type",
-                "placeholder": "Select type",
-                "description": "What is the nature of help?",
-                "installation": "Installation (software, peripheral)",
-                "training": "Training / Learning",
-                "troubleshooting": "Troubleshooting / Repair",
-                "backup": "Data backup",
-                "other": "Other"
-            },
-            "specificIssue": {
-                "label": "Issue description",
-                "placeholder": "E.g.: Cannot connect to my email...",
-                "description": "Describe precisely your need"
-            },
-            "remoteAccessPossible": {
-                "label": "Remote access possible",
-                "description": "Check if you accept remote assistance (TeamViewer, AnyDesk...)"
-            }
-        },
-        "AdminHelp": {
-            "title": "Administrative help details",
-            "subtitle": "Specify your administrative need",
-            "taskType": {
-                "label": "Task type",
-                "placeholder": "Select task",
-                "description": "What is the nature of administrative work?",
-                "form_filling": "Form filling",
-                "scanning": "Document scanning",
-                "email": "Email management",
-                "filing": "Filing / Archiving",
-                "writing": "Letter writing"
-            },
-            "softwareNeeded": {
-                "label": "Required software",
-                "description": "Check required software",
-                "word": "Word processor (Word)",
-                "excel": "Spreadsheet (Excel)",
-                "powerpoint": "Presentation (PowerPoint)",
-                "pdf": "PDF Reader / Editor"
-            },
-            "confidentialityLevel": {
-                "label": "Confidentiality level",
-                "placeholder": "Select level",
-                "description": "Document sensitivity",
-                "sensitive": "Sensitive documents (medical, banking...)",
-                "normal": "Standard documents"
-            },
-            "hasPrinterScanner": {
-                "label": "I have a printer/scanner available",
-                "description": "Check if you provide equipment"
-            }
-        },
-        "Moving": {
-            "title": "Moving details",
-            "subtitle": "Specify volume and conditions",
-            "volumeEstimate": {
-                "label": "Estimated volume",
-                "placeholder": "Select volume",
-                "description": "Estimate of volume to move",
-                "few_boxes": "Just a few boxes",
-                "studio": "Studio / 1BR",
-                "t2": "2BR / 3BR",
-                "cellar": "Cellar / Garage"
-            },
-            "peopleRequired": {
-                "label": "Number of people needed",
-                "description": "How many helpers do you estimate necessary?"
-            },
-            "departure": {
-                "title": "Departure point",
-                "floor": {
-                    "label": "Floor (0 = ground floor)",
-                    "description": "Which floor is the departure location?"
-                },
-                "hasElevator": "Elevator available"
-            },
-            "arrival": {
-                "title": "Arrival point",
-                "floor": {
-                    "label": "Floor (0 = ground floor)",
-                    "description": "Which floor is the arrival location?"
-                },
-                "hasElevator": "Elevator available"
-            },
-            "vehicleNeeded": {
-                "label": "Vehicle needed",
-                "placeholder": "Select option",
-                "description": "Need a vehicle for transport?",
-                "client_has": "I already have a vehicle",
-                "short_distance": "Short distance (walking/stairs only)",
-                "provider_needed": "Provider must have a vehicle"
-            }
-        },
-        "Handling": {
-            "title": "Handling details",
-            "subtitle": "Specify items to move",
-            "taskType": {
-                "label": "Task type",
-                "placeholder": "Select type",
-                "description": "What is the nature of handling?",
-                "move_furniture": "Move furniture",
-                "to_cellar": "To cellar/attic",
-                "carry_groceries": "Carry groceries"
-            },
-            "itemsDescription": {
-                "label": "Items description",
-                "placeholder": "E.g.: 3-seater sofa + glass coffee table, about 50kg total...",
-                "description": "Describe items to move (weight, fragility...)"
-            },
-            "floorsCount": {
-                "label": "Number of floors",
-                "description": "How many floors to climb/descend?"
-            },
-            "hasElevator": {
-                "label": "Elevator available",
-                "description": "Check if elevator is accessible"
-            }
-        },
-        "Accompaniment": {
-            "title": "Accompaniment details",
-            "subtitle": "Specify type of trip",
-            "accompanimentType": {
-                "label": "Accompaniment type",
-                "placeholder": "Select type",
-                "description": "What is the nature of accompaniment?",
-                "medical": "Medical appointment",
-                "walk": "Walk",
-                "shopping": "Shopping",
-                "social": "Social visit / Friends",
-                "visit": "Administrative procedure"
-            },
-            "fromAddress": {
-                "label": "Departure address",
-                "placeholder": "E.g.: 12 Peace Street, Paris...",
-                "description": "Where does the trip start?"
-            },
-            "toAddress": {
-                "label": "Arrival address",
-                "placeholder": "E.g.: Saint-Louis Hospital, 1 Claude Vellefaux Avenue...",
-                "description": "Where to go?"
-            },
-            "duration": {
-                "label": "Estimated duration (minutes)",
-                "description": "Total estimated duration (trip + possible waiting)"
-            },
-            "specialNeeds": {
-                "label": "Special needs",
-                "description": "Check if applicable",
-                "reduced_mobility": "Reduced mobility",
-                "wheelchair": "Wheelchair",
-                "hearing": "Hearing impairment",
-                "visual": "Visual impairment"
-            },
-            "transportMode": {
-                "label": "Transport mode",
-                "placeholder": "Select mode",
-                "description": "How to travel?",
-                "walk": "Walking",
-                "public_transport": "Public transport",
-                "provider_car": "Provider's vehicle",
-                "taxi": "Taxi / Ride-hailing"
-            }
-        },
-        "Companionship": {
-            "title": "Companionship details",
-            "subtitle": "Specify desired activity",
-            "activityType": {
-                "label": "Activity type",
-                "placeholder": "Select activity",
-                "description": "What would you like to share?",
-                "conversation": "Conversation",
-                "reading": "Reading",
-                "games": "Board games / Cards",
-                "cultural": "Cultural activity (cinema, museum...)",
-                "walk": "Walk"
-            },
-            "duration": {
-                "label": "Desired duration (minutes)",
-                "description": "How long for this visit?"
-            },
-            "clientInterests": {
-                "label": "Interests",
-                "placeholder": "E.g.: Passionate about gardening, likes detective novels, classical music fan...",
-                "description": "Share your interests to facilitate exchange"
-            }
-        },
-        "Gardening": {
-            "title": "Gardening details",
-            "subtitle": "Specify type of service",
-            "placeType": {
-                "label": "Place type",
-                "placeholder": "Select type",
-                "description": "Which space is concerned?",
-                "garden": "Garden",
-                "balcony": "Balcony / Terrace",
-                "courtyard": "Courtyard",
-                "driveway": "Driveway / Entrance"
-            },
-            "surfaceArea": {
-                "label": "Estimated area",
-                "placeholder": "Select area",
-                "description": "Approximate zone size",
-                "under_50": "Under 50m²",
-                "50_150": "50-150m²",
-                "over_150": "Over 150m²"
-            },
-            "serviceType": {
-                "label": "Service type",
-                "description": "Check tasks to perform",
-                "mowing": "Lawn mowing",
-                "leaf_raking": "Leaf raking",
-                "weeding": "Weeding",
-                "watering": "Watering",
-                "planting": "Planting",
-                "terrace_cleaning": "Terrace cleaning",
-                "hedge_trimming": "Hedge trimming"
-            },
-            "toolsProvidedBy": {
-                "label": "Tools provided by",
-                "placeholder": "Who provides tools?",
-                "description": "Who brings gardening equipment?",
-                "client": "I have necessary equipment",
-                "provider": "Provider brings their tools"
-            },
-            "wasteDisposal": {
-                "label": "Green waste disposal",
-                "placeholder": "Select method",
-                "description": "How to manage plant waste?",
-                "green_bin": "Green bin available",
-                "compost": "On-site composting",
-                "provider_removes": "Provider removes waste"
-            }
-        },
-        "PetSitting": {
-            "title": "Pet sitting details",
-            "subtitle": "Information about your pets",
-            "petType": {
-                "label": "Pet type",
-                "placeholder": "E.g.: Cat, Dog, Rabbit, Birds...",
-                "description": "What type of pet to care for?"
-            },
-            "petCount": {
-                "label": "Number of pets",
-                "description": "How many pets to care for?"
-            },
-            "absence": {
-                "title": "Absence dates",
-                "startDate": "Start date",
-                "endDate": "End date"
-            },
-            "visitsPerDay": {
-                "label": "Visits per day",
-                "description": "How many daily visits needed?"
-            },
-            "tasks": {
-                "label": "Tasks to perform",
-                "description": "Check required services",
-                "feeding": "Feeding",
-                "litter": "Litter (cats)",
-                "play": "Play / Cuddles",
-                "medication": "Medication to administer",
-                "water_plants": "Water plants"
-            }
-        },
-        "EventHelp": {
-            "title": "Event details",
-            "subtitle": "Specify type of help needed",
-            "eventType": {
-                "label": "Event type",
-                "placeholder": "Select type",
-                "description": "What is the nature of event?",
-                "birthday": "Birthday",
-                "family_reception": "Family reception",
-                "association": "Association event",
-                "small_business": "Small business / Startup"
-            },
-            "guestCount": {
-                "label": "Number of guests",
-                "description": "How many people expected?"
-            },
-            "serviceType": {
-                "label": "Service type",
-                "description": "Check necessary tasks",
-                "setup": "Setup / Preparation",
-                "cleanup": "Cleanup / Tidying",
-                "serving": "Table service",
-                "greeting": "Guest greeting",
-                "preparation": "Kitchen help"
-            },
-            "duration": {
-                "label": "Estimated duration (hours)",
-                "description": "How many hours of help needed?"
-            },
-            "heavyEquipment": {
-                "label": "Heavy equipment (optional)",
-                "placeholder": "E.g.: Tables and chairs for 50 people, 3x3m tents...",
-                "description": "Specify if handling bulky equipment"
-            }
-        }
+    "Favorites": {
+        "title": "My Favorites",
+        "subtitle": "Manage your favorite tasks and providers",
+        "all": "All",
+        "tasks": "Tasks",
+        "providers": "Providers",
+        "added": "Added to favorites",
+        "addedSuccess": "Item has been added to your favorites",
+        "removed": "Removed from favorites",
+        "removedSuccess": "Item has been removed from your favorites",
+        "error": "Error",
+        "addError": "Could not add to favorites",
+        "removeError": "Could not remove from favorites",
+        "toggleError": "An error occurred",
+        "loginRequired": "You must be logged in to manage favorites",
+        "noFavorites": "No favorites",
+        "noFavoritesDesc": "Start marking tasks or providers as favorites",
+        "viewTask": "View task",
+        "viewProvider": "View profile",
+        "removeButton": "Remove",
+        "addToFavorites": "Add to favorites",
+        "removeFromFavorites": "Remove from favorites"
     },
-    "Offers": {
-        "submitOffer": "Submit an offer",
-        "submitOfferTitle": "Make a proposal",
-        "submitOfferDescription": "Propose your services for this task",
-        "offerForTask": "Offer for task",
-        "proposedPrice": "Proposed price",
-        "budgetIndicated": "Indicated budget",
-        "message": "Your message",
-        "messagePlaceholder": "Explain why you're the best choice for this task...",
-        "messageHint": "Present your experience, availability and approach",
-        "estimatedDuration": "Estimated duration",
-        "optional": "optional",
-        "hours": "hours",
+    "notes": "Notes",
+    "cancellationReason": "Cancellation Reason",
+    "started": "Started",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "viewTask": "View Task",
+    "Cancellation": {
+        "cancelButton": "Cancel Booking",
+        "title": "Cancel this booking",
+        "description": "Review cancellation fees before confirming. Refund amount depends on timing.",
+        "cannotCancel": "Cannot cancel",
+        "timeRemaining": "Time remaining",
+        "untilStart": "until start",
+        "refundPercent": "Refund",
+        "ofTotal": "of total amount",
+        "refundBreakdown": "Refund breakdown",
+        "originalAmount": "Original amount",
+        "refundAmount": "Refund amount",
+        "platformFee": "Platform fee retained",
+        "providerPenalty": "Provider penalty",
+        "reasonLabel": "Cancellation reason",
+        "reasonPlaceholder": "Please explain why you're cancelling this booking...",
+        "reasonHint": "This reason will be shared with the other party.",
+        "goBack": "Go Back",
+        "confirmCancel": "Confirm Cancellation",
+        "minutes": "min",
+        "hours": "h",
+        "days": "d"
+    },
+    "ProviderConfirmation": {
+        "title": "Booking Confirmation",
+        "description": "You have 24 hours to confirm or decline this booking",
+        "timeRemaining": "Time remaining",
+        "expired": "Expired",
+        "deadline": "Deadline",
+        "bookingDetails": "Booking Details",
+        "task": "Task",
+        "client": "Client",
+        "scheduledDate": "Scheduled date",
+        "duration": "Duration",
+        "amount": "Amount",
+        "confirm": "Confirm",
+        "decline": "Decline",
         "cancel": "Cancel",
-        "submit": "Send offer",
-        "submitting": "Submitting...",
-        "offerSubmitted": "✓ Offer submitted successfully!",
-        "viewMyOffers": "View my offers",
-        "offerAcceptedTitle": "Offer accepted",
-        "offerAcceptedDescription": "You accepted the offer. Other offers have been automatically rejected.",
-        "offerRejectedTitle": "Offer rejected",
-        "offerRejectedDescription": "The offer was successfully rejected.",
-        "offerAcceptError": "Unable to accept offer",
-        "offerRejectError": "Unable to reject offer",
-        "offersReceivedTitle": "Offers received",
-        "taskTitle": "Task",
-        "pendingOffers": "Pending offers",
-        "acceptedOffers": "Accepted offers",
-        "lowestOffer": "Lowest offer",
-        "sortRecent": "Most recent",
-        "sortPriceLow": "Price ascending",
-        "sortPriceHigh": "Price descending",
-        "sortRating": "Top rated",
-        "acceptedOffersSection": "✓ Accepted offers",
-        "pendingOffersSection": "Pending offers",
-        "showRejected": "Show rejected offers",
-        "noOffersYet": "No offers yet",
-        "noOffersHint": "Interested providers will be able to submit their proposals soon.",
-        "statusPending": "Pending",
-        "statusAccepted": "Accepted",
-        "statusRejected": "Rejected",
-        "statusWithdrawn": "Withdrawn",
-        "reviews": "reviews",
-        "providerMessage": "Provider's message",
-        "availableFrom": "Available from",
-        "to": "to",
-        "acceptOffer": "Accept",
-        "rejectOffer": "Reject",
-        "contactProvider": "Contact",
-        "offerAcceptedMessage": "✓ This offer was accepted. A booking has been created automatically.",
-        "rejectionReason": "Rejection reason",
-        "goBack": "Go back"
+        "confirmSuccess": "Booking confirmed",
+        "confirmSuccessMessage": "The booking has been confirmed successfully",
+        "confirmError": "Confirmation error",
+        "declineSuccess": "Booking declined",
+        "declineSuccessMessage": "The booking has been declined. The client will be refunded.",
+        "declineError": "Decline error",
+        "reasonRequired": "A reason of at least 10 characters is required",
+        "declineConfirmTitle": "Confirm decline",
+        "declineConfirmDescription": "Are you sure you want to decline this booking? A penalty will be applied.",
+        "declineReason": "Decline reason",
+        "declineReasonPlaceholder": "Please explain why you're declining this booking...",
+        "reasonMinLength": "Minimum {min} characters required",
+        "penaltyNotice": "Decline penalty",
+        "willBeDeducted": "will be deducted from your earnings",
+        "confirmDecline": "Confirm decline",
+        "declining": "Declining...",
+        "declineWarning": "⚠️ Warning",
+        "declineWarningMessage": "If you decline this booking or don't confirm within 24 hours, a penalty of {penalty} will be applied."
+    }
+},
+"TaskForms": {
+    "Cleaning": {
+        "title": "Cleaning details",
+        "subtitle": "Specify characteristics for better matching",
+        "propertyType": {
+            "label": "Property type",
+            "placeholder": "Select property type",
+            "description": "What type of place needs to be cleaned?",
+            "apartment": "Apartment",
+            "house": "House",
+            "office": "Office",
+            "other": "Other"
+        },
+        "propertyTypeOther": {
+            "label": "Specify property type",
+            "placeholder": "E.g.: Commercial space, Garage..."
+        },
+        "surfaceArea": {
+            "label": "Estimated area",
+            "placeholder": "Select area",
+            "description": "Estimated area to clean",
+            "under30": "Under 30m²",
+            "30to60": "30-60m²",
+            "60to100": "60-100m²",
+            "over100": "Over 100m²"
+        },
+        "rooms": {
+            "label": "Number of rooms",
+            "description": "Approximate number of each room type",
+            "bedrooms": "Bedrooms",
+            "bathrooms": "Bathrooms",
+            "toilets": "Toilets"
+        },
+        "serviceType": {
+            "label": "Service type",
+            "placeholder": "Select service type",
+            "description": "What type of cleaning is needed?",
+            "oneTime": "One-time cleaning",
+            "deepClean": "Deep cleaning",
+            "movingClean": "Move in/out cleaning",
+            "specific": "Specific cleaning (windows, oven...)"
+        },
+        "specificTasks": {
+            "label": "Specific tasks",
+            "description": "Check specific tasks to be done",
+            "windows": "Window cleaning",
+            "oven": "Oven cleaning",
+            "fridge": "Refrigerator cleaning"
+        },
+        "frequency": {
+            "label": "Desired frequency",
+            "placeholder": "Select frequency",
+            "description": "How often would you like this service?",
+            "oneTime": "One-time",
+            "weekly": "Weekly",
+            "biweekly": "Biweekly (every 2 weeks)",
+            "monthly": "Monthly"
+        },
+        "materialsProvidedBy": {
+            "label": "Materials and products",
+            "placeholder": "Who provides materials?",
+            "description": "Who brings cleaning materials and products?",
+            "client": "I provide materials",
+            "provider": "Provider brings their materials",
+            "providerPaid": "Provider brings materials (additional cost)"
+        },
+        "access": {
+            "label": "Property access",
+            "placeholder": "Select access type",
+            "description": "Is the property easy to access?",
+            "easy": "Easy access (elevator, ground floor)",
+            "difficult": "Difficult access (stairs without elevator, distant parking)"
+        },
+        "accessDetails": {
+            "label": "Access details (optional)",
+            "placeholder": "E.g.: Gate code 1234, 3rd floor no elevator, visitor parking available...",
+            "description": "Useful information to facilitate access to the property"
+        }
     },
-    "Availability": {
-        "calendar": {
-            "title": "Availability Calendar",
-            "loading": "Loading...",
-            "previousMonth": "Previous month",
-            "nextMonth": "Next month",
-            "add": "Add availability",
-            "edit": "Edit availability",
-            "blocked": "Blocked",
-            "slots": "slots",
-            "availableSlots": "Available slots",
-            "days": {
-                "sun": "Sun",
-                "mon": "Mon",
-                "tue": "Tue",
-                "wed": "Wed",
-                "thu": "Thu",
-                "fri": "Fri",
-                "sat": "Sat"
+    "Grocery": {
+        "title": "Grocery shopping details",
+        "subtitle": "Specify your needs to facilitate the service",
+        "storeType": {
+            "label": "Store type",
+            "placeholder": "Select store type",
+            "description": "Where should the shopping be done?",
+            "supermarket": "Supermarket / Hypermarket",
+            "local_market": "Local market",
+            "bio_store": "Organic store / Gourmet shop",
+            "other": "Other"
+        },
+        "storeName": {
+            "label": "Store name (optional)",
+            "placeholder": "E.g.: Carrefour City, Monoprix, Biocoop...",
+            "description": "If you have a preference for a specific store"
+        },
+        "shoppingList": {
+            "label": "Shopping list",
+            "placeholder": "List items to purchase, one per line if possible...",
+            "description": "Detail desired products (brands, quantities, preferences)"
+        },
+        "volumeEstimate": {
+            "label": "Estimated volume",
+            "placeholder": "Select volume",
+            "description": "Estimated total volume of groceries",
+            "small": "Small (1-2 bags)",
+            "medium": "Medium (3-5 bags)",
+            "large": "Large (6+ bags or cart)"
+        },
+        "specialNeeds": {
+            "label": "Special needs",
+            "description": "Check if applicable",
+            "fresh": "Fresh products (meat, fish)",
+            "heavy": "Heavy items (drinks, canned goods)",
+            "frozen": "Frozen products"
+        },
+        "paymentMethod": {
+            "label": "Payment method",
+            "placeholder": "Select payment method",
+            "description": "How will the groceries be paid for?",
+            "cash": "Cash given to provider",
+            "client_card": "Client's bank card (provided)",
+            "provider_advance": "Provider advance (immediate reimbursement)"
+        }
+    },
+    "DogWalking": {
+        "title": "Dog walking details",
+        "subtitle": "Information about your dog for an adapted walk",
+        "dogBreed": {
+            "label": "Dog breed",
+            "placeholder": "E.g.: Labrador, French Bulldog, Mixed...",
+            "description": "Specify the breed or type of dog"
+        },
+        "dogSize": {
+            "label": "Dog size",
+            "placeholder": "Select size",
+            "description": "What is the size of your dog?",
+            "small": "Small (under 10kg)",
+            "medium": "Medium (10-25kg)",
+            "large": "Large (over 25kg)"
+        },
+        "temperament": {
+            "label": "Temperament",
+            "description": "Check your dog's personality traits",
+            "sociable": "Sociable with other dogs",
+            "reactive": "Reactive/Fearful",
+            "calm": "Calm and composed",
+            "energetic": "Very energetic"
+        },
+        "walksPerDay": {
+            "label": "Number of walks per day",
+            "description": "How many walks desired per day?"
+        },
+        "walkDuration": {
+            "30": "30 minutes",
+            "60": "1 hour",
+            "90": "1h30",
+            "label": "Duration of each walk",
+            "placeholder": "Select duration",
+            "description": "Desired duration for each walk"
+        },
+        "specialNeeds": {
+            "label": "Special needs",
+            "description": "Check if applicable",
+            "medication": "Medication to administer during walk",
+            "feeding": "Food to give (snack)"
+        },
+        "equipment": {
+            "label": "Required equipment",
+            "description": "Check necessary equipment",
+            "leash": "Leash required",
+            "muzzle": "Muzzle required",
+            "waste_bags": "Waste bags provided"
+        }
+    },
+    "Handyman": {
+        "title": "Handyman details",
+        "subtitle": "Specify the nature of the work to be done",
+        "taskType": {
+            "label": "Task type",
+            "placeholder": "Select task type",
+            "description": "What is the nature of the service?",
+            "assemble": "Furniture assembly",
+            "hang": "Hanging / Mounting",
+            "fix": "Repair",
+            "install": "Installation (curtain rod, shelf...)",
+            "repair": "Small repair",
+            "other": "Other"
+        },
+        "furnitureDetails": {
+            "title": "Furniture assembly details",
+            "brand": {
+                "label": "Furniture brand",
+                "placeholder": "E.g.: IKEA, Conforama, Maisons du Monde..."
             },
-            "legend": {
-                "today": "Today",
-                "available": "Available",
-                "hasSlots": "With slots",
-                "blocked": "Blocked",
-                "unavailable": "Unavailable"
+            "type": {
+                "label": "Furniture type",
+                "placeholder": "E.g.: Wardrobe, Desk, Dresser, Bed..."
+            },
+            "packageCount": {
+                "label": "Number of packages",
+                "description": "How many packages to assemble?"
+            },
+            "size": {
+                "label": "Furniture size",
+                "placeholder": "Select size",
+                "small": "Small (nightstand, shelf)",
+                "medium": "Medium (desk, dresser)",
+                "large": "Large (wardrobe, bookcase)"
             }
         },
-        "recurringSchedule": {
-            "title": "Recurring Schedule",
-            "description": "Set your default availability hours for each day of the week",
-            "addDay": "Add day",
-            "addSlot": "Add time slot",
-            "removeSlot": "Remove slot",
-            "monday": "Monday",
-            "tuesday": "Tuesday",
-            "wednesday": "Wednesday",
-            "thursday": "Thursday",
-            "friday": "Friday",
-            "saturday": "Saturday",
-            "sunday": "Sunday",
-            "from": "From",
-            "to": "To",
-            "save": "Save",
-            "cancel": "Cancel",
-            "successMessage": "Schedule saved successfully",
-            "errorMessage": "Error saving schedule"
+        "toolsProvidedBy": {
+            "label": "Tools provided by",
+            "placeholder": "Who provides tools?",
+            "description": "Who brings the necessary tools?",
+            "client": "I have the necessary tools",
+            "provider": "Provider brings their tools"
         },
-        "blockedPeriods": {
-            "title": "Blocked Periods",
-            "description": "Manage your unavailability (vacation, sick leave, etc.)",
-            "addPeriod": "Add period",
-            "editPeriod": "Edit period",
-            "deletePeriod": "Delete",
+        "workHeight": {
+            "label": "Work height",
+            "placeholder": "Select height",
+            "description": "At what height is the work located?",
+            "ground": "Ground level / Normal height",
+            "medium": "Mid-height (simple ladder)",
+            "high": "High (stepladder, scaffolding)"
+        },
+        "wallType": {
+            "label": "Wall type",
+            "placeholder": "Select wall type",
+            "description": "What is the wall type for mounting?",
+            "plaster": "Plaster / Drywall",
+            "concrete": "Concrete / Solid brick",
+            "wood": "Wood",
+            "unknown": "I don't know"
+        },
+        "materialDetails": {
+            "label": "Material details (optional)",
+            "placeholder": "E.g.: Screws and anchors provided, assembly instructions included, paint color needed...",
+            "description": "Specify available materials or materials to plan for"
+        }
+    },
+    "Organization": {
+        "title": "Organization details",
+        "subtitle": "Specify areas and goals",
+        "areasToOrganize": {
+            "label": "Areas to organize",
+            "description": "Select concerned spaces",
+            "closet": "Closet / Wardrobe",
+            "library": "Bookshelf",
+            "cellar": "Cellar / Attic",
+            "garage": "Garage",
+            "kitchen": "Kitchen",
+            "office": "Office",
+            "other": "Other"
+        },
+        "goal": {
+            "label": "Main goal",
+            "placeholder": "Select goal",
+            "description": "What do you want to achieve?",
+            "declutter": "Declutter",
+            "sort": "Sort",
+            "classify": "Classify / Organize",
+            "optimize": "Optimize space"
+        },
+        "volumeEstimate": {
+            "label": "Estimated volume",
+            "placeholder": "Select volume",
+            "description": "Estimate of volume to organize",
+            "small": "Small (few shelves)",
+            "medium": "Medium (one room)",
+            "large": "Large (multiple rooms)"
+        }
+    },
+    "Package": {
+        "title": "Package details",
+        "subtitle": "Pickup/delivery information",
+        "serviceType": {
+            "label": "Service type",
+            "placeholder": "Select service",
+            "description": "What should the provider do?",
+            "pickup": "Package pickup",
+            "dropoff": "Package dropoff",
+            "mail": "Mail/package shipping"
+        },
+        "locationName": {
+            "label": "Location name",
+            "placeholder": "E.g.: Main Post Office, Mondial Relay, Package Point...",
+            "description": "Name of pickup/dropoff point"
+        },
+        "locationAddress": {
+            "label": "Location address",
+            "placeholder": "Full address...",
+            "description": "Exact address of service point"
+        },
+        "packageSize": {
+            "label": "Package size",
+            "placeholder": "Select size",
+            "description": "Estimated volume and weight",
+            "small": "Small (envelope, small package)",
+            "medium": "Medium (standard box)",
+            "large_heavy": "Large / Heavy (requires two hands)"
+        },
+        "trackingNumber": {
+            "label": "Tracking number (optional)",
+            "placeholder": "E.g.: 1Z999AA10123456784",
+            "description": "If you already have a tracking number"
+        },
+        "paymentMethod": {
+            "label": "Payment method",
+            "placeholder": "Select method",
+            "description": "How will postal service be paid?",
+            "cash": "Cash given to provider",
+            "provider_advance": "Provider advance (immediate reimbursement)"
+        }
+    },
+    "TechHelp": {
+        "title": "Tech help details",
+        "subtitle": "Specify your technical issue",
+        "deviceType": {
+            "label": "Device type",
+            "placeholder": "Select device",
+            "description": "Which device is concerned?",
+            "smartphone": "Smartphone",
+            "tablet": "Tablet",
+            "laptop": "Laptop",
+            "desktop": "Desktop computer",
+            "smart_tv": "Smart TV / Set-top box",
+            "internet_box": "Internet box / Router"
+        },
+        "operatingSystem": {
+            "label": "Operating system",
+            "placeholder": "Select system",
+            "description": "Which system does your device use?",
+            "windows": "Windows",
+            "macos": "macOS",
+            "ios": "iOS (iPhone/iPad)",
+            "android": "Android",
+            "linux": "Linux",
+            "other": "Other / I don't know"
+        },
+        "issueType": {
+            "label": "Issue type",
+            "placeholder": "Select type",
+            "description": "What is the nature of help?",
+            "installation": "Installation (software, peripheral)",
+            "training": "Training / Learning",
+            "troubleshooting": "Troubleshooting / Repair",
+            "backup": "Data backup",
+            "other": "Other"
+        },
+        "specificIssue": {
+            "label": "Issue description",
+            "placeholder": "E.g.: Cannot connect to my email...",
+            "description": "Describe precisely your need"
+        },
+        "remoteAccessPossible": {
+            "label": "Remote access possible",
+            "description": "Check if you accept remote assistance (TeamViewer, AnyDesk...)"
+        }
+    },
+    "AdminHelp": {
+        "title": "Administrative help details",
+        "subtitle": "Specify your administrative need",
+        "taskType": {
+            "label": "Task type",
+            "placeholder": "Select task",
+            "description": "What is the nature of administrative work?",
+            "form_filling": "Form filling",
+            "scanning": "Document scanning",
+            "email": "Email management",
+            "filing": "Filing / Archiving",
+            "writing": "Letter writing"
+        },
+        "softwareNeeded": {
+            "label": "Required software",
+            "description": "Check required software",
+            "word": "Word processor (Word)",
+            "excel": "Spreadsheet (Excel)",
+            "powerpoint": "Presentation (PowerPoint)",
+            "pdf": "PDF Reader / Editor"
+        },
+        "confidentialityLevel": {
+            "label": "Confidentiality level",
+            "placeholder": "Select level",
+            "description": "Document sensitivity",
+            "sensitive": "Sensitive documents (medical, banking...)",
+            "normal": "Standard documents"
+        },
+        "hasPrinterScanner": {
+            "label": "I have a printer/scanner available",
+            "description": "Check if you provide equipment"
+        }
+    },
+    "Moving": {
+        "title": "Moving details",
+        "subtitle": "Specify volume and conditions",
+        "volumeEstimate": {
+            "label": "Estimated volume",
+            "placeholder": "Select volume",
+            "description": "Estimate of volume to move",
+            "few_boxes": "Just a few boxes",
+            "studio": "Studio / 1BR",
+            "t2": "2BR / 3BR",
+            "cellar": "Cellar / Garage"
+        },
+        "peopleRequired": {
+            "label": "Number of people needed",
+            "description": "How many helpers do you estimate necessary?"
+        },
+        "departure": {
+            "title": "Departure point",
+            "floor": {
+                "label": "Floor (0 = ground floor)",
+                "description": "Which floor is the departure location?"
+            },
+            "hasElevator": "Elevator available"
+        },
+        "arrival": {
+            "title": "Arrival point",
+            "floor": {
+                "label": "Floor (0 = ground floor)",
+                "description": "Which floor is the arrival location?"
+            },
+            "hasElevator": "Elevator available"
+        },
+        "vehicleNeeded": {
+            "label": "Vehicle needed",
+            "placeholder": "Select option",
+            "description": "Need a vehicle for transport?",
+            "client_has": "I already have a vehicle",
+            "short_distance": "Short distance (walking/stairs only)",
+            "provider_needed": "Provider must have a vehicle"
+        }
+    },
+    "Handling": {
+        "title": "Handling details",
+        "subtitle": "Specify items to move",
+        "taskType": {
+            "label": "Task type",
+            "placeholder": "Select type",
+            "description": "What is the nature of handling?",
+            "move_furniture": "Move furniture",
+            "to_cellar": "To cellar/attic",
+            "carry_groceries": "Carry groceries"
+        },
+        "itemsDescription": {
+            "label": "Items description",
+            "placeholder": "E.g.: 3-seater sofa + glass coffee table, about 50kg total...",
+            "description": "Describe items to move (weight, fragility...)"
+        },
+        "floorsCount": {
+            "label": "Number of floors",
+            "description": "How many floors to climb/descend?"
+        },
+        "hasElevator": {
+            "label": "Elevator available",
+            "description": "Check if elevator is accessible"
+        }
+    },
+    "Accompaniment": {
+        "title": "Accompaniment details",
+        "subtitle": "Specify type of trip",
+        "accompanimentType": {
+            "label": "Accompaniment type",
+            "placeholder": "Select type",
+            "description": "What is the nature of accompaniment?",
+            "medical": "Medical appointment",
+            "walk": "Walk",
+            "shopping": "Shopping",
+            "social": "Social visit / Friends",
+            "visit": "Administrative procedure"
+        },
+        "fromAddress": {
+            "label": "Departure address",
+            "placeholder": "E.g.: 12 Peace Street, Paris...",
+            "description": "Where does the trip start?"
+        },
+        "toAddress": {
+            "label": "Arrival address",
+            "placeholder": "E.g.: Saint-Louis Hospital, 1 Claude Vellefaux Avenue...",
+            "description": "Where to go?"
+        },
+        "duration": {
+            "label": "Estimated duration (minutes)",
+            "description": "Total estimated duration (trip + possible waiting)"
+        },
+        "specialNeeds": {
+            "label": "Special needs",
+            "description": "Check if applicable",
+            "reduced_mobility": "Reduced mobility",
+            "wheelchair": "Wheelchair",
+            "hearing": "Hearing impairment",
+            "visual": "Visual impairment"
+        },
+        "transportMode": {
+            "label": "Transport mode",
+            "placeholder": "Select mode",
+            "description": "How to travel?",
+            "walk": "Walking",
+            "public_transport": "Public transport",
+            "provider_car": "Provider's vehicle",
+            "taxi": "Taxi / Ride-hailing"
+        }
+    },
+    "Companionship": {
+        "title": "Companionship details",
+        "subtitle": "Specify desired activity",
+        "activityType": {
+            "label": "Activity type",
+            "placeholder": "Select activity",
+            "description": "What would you like to share?",
+            "conversation": "Conversation",
+            "reading": "Reading",
+            "games": "Board games / Cards",
+            "cultural": "Cultural activity (cinema, museum...)",
+            "walk": "Walk"
+        },
+        "duration": {
+            "label": "Desired duration (minutes)",
+            "description": "How long for this visit?"
+        },
+        "clientInterests": {
+            "label": "Interests",
+            "placeholder": "E.g.: Passionate about gardening, likes detective novels, classical music fan...",
+            "description": "Share your interests to facilitate exchange"
+        }
+    },
+    "Gardening": {
+        "title": "Gardening details",
+        "subtitle": "Specify type of service",
+        "placeType": {
+            "label": "Place type",
+            "placeholder": "Select type",
+            "description": "Which space is concerned?",
+            "garden": "Garden",
+            "balcony": "Balcony / Terrace",
+            "courtyard": "Courtyard",
+            "driveway": "Driveway / Entrance"
+        },
+        "surfaceArea": {
+            "label": "Estimated area",
+            "placeholder": "Select area",
+            "description": "Approximate zone size",
+            "under_50": "Under 50m²",
+            "50_150": "50-150m²",
+            "over_150": "Over 150m²"
+        },
+        "serviceType": {
+            "label": "Service type",
+            "description": "Check tasks to perform",
+            "mowing": "Lawn mowing",
+            "leaf_raking": "Leaf raking",
+            "weeding": "Weeding",
+            "watering": "Watering",
+            "planting": "Planting",
+            "terrace_cleaning": "Terrace cleaning",
+            "hedge_trimming": "Hedge trimming"
+        },
+        "toolsProvidedBy": {
+            "label": "Tools provided by",
+            "placeholder": "Who provides tools?",
+            "description": "Who brings gardening equipment?",
+            "client": "I have necessary equipment",
+            "provider": "Provider brings their tools"
+        },
+        "wasteDisposal": {
+            "label": "Green waste disposal",
+            "placeholder": "Select method",
+            "description": "How to manage plant waste?",
+            "green_bin": "Green bin available",
+            "compost": "On-site composting",
+            "provider_removes": "Provider removes waste"
+        }
+    },
+    "PetSitting": {
+        "title": "Pet sitting details",
+        "subtitle": "Information about your pets",
+        "petType": {
+            "label": "Pet type",
+            "placeholder": "E.g.: Cat, Dog, Rabbit, Birds...",
+            "description": "What type of pet to care for?"
+        },
+        "petCount": {
+            "label": "Number of pets",
+            "description": "How many pets to care for?"
+        },
+        "absence": {
+            "title": "Absence dates",
             "startDate": "Start date",
-            "endDate": "End date",
-            "reason": "Reason",
-            "type": "Type",
-            "types": {
-                "vacation": "Vacation",
-                "sick": "Sick leave",
-                "personal": "Personal",
-                "other": "Other"
-            },
-            "noPeriods": "No blocked periods",
-            "save": "Save",
-            "cancel": "Cancel",
-            "confirmDelete": "Are you sure you want to delete this period?",
-            "successAdd": "Blocked period added",
-            "successUpdate": "Blocked period updated",
-            "successDelete": "Blocked period deleted",
-            "errorAdd": "Error adding period",
-            "errorUpdate": "Error updating period",
-            "errorDelete": "Error deleting period"
+            "endDate": "End date"
         },
-        "specificDate": {
-            "title": "Specific Availability",
-            "description": "Set availability for a specific date (overrides recurring schedule)",
-            "date": "Date",
-            "addSlot": "Add time slot",
-            "removeSlot": "Remove",
-            "from": "From",
-            "to": "To",
-            "reason": "Reason (optional)",
-            "save": "Save",
-            "cancel": "Cancel",
-            "successMessage": "Specific availability saved",
-            "errorMessage": "Error saving availability"
+        "visitsPerDay": {
+            "label": "Visits per day",
+            "description": "How many daily visits needed?"
         },
-        "settings": {
-            "title": "Availability Settings",
-            "timezone": "Timezone",
-            "minAdvanceHours": "Minimum advance booking (hours)",
-            "maxAdvanceDays": "Maximum advance booking (days)",
-            "minDuration": "Minimum booking duration (minutes)",
-            "maxDuration": "Maximum booking duration (hours)",
-            "buffer": "Buffer between bookings (minutes)",
-            "autoAccept": "Automatic booking acceptance",
-            "save": "Save",
-            "successMessage": "Settings saved",
-            "errorMessage": "Error saving settings"
+        "tasks": {
+            "label": "Tasks to perform",
+            "description": "Check required services",
+            "feeding": "Feeding",
+            "litter": "Litter (cats)",
+            "play": "Play / Cuddles",
+            "medication": "Medication to administer",
+            "water_plants": "Water plants"
         }
     },
-    "Reviews": {
-        "form": {
-            "rating": {
-                "label": "Overall Rating",
-                "description": "How would you rate your experience?"
-            },
-            "detailedRatings": {
-                "title": "Detailed Ratings (Optional)",
-                "description": "Help us better understand your experience",
-                "communication": "Communication",
-                "quality": "Quality of Work",
-                "professionalism": "Professionalism",
-                "timeliness": "Timeliness",
-                "valueForMoney": "Value for Money"
-            },
-            "comment": {
-                "label": "Your Review",
-                "placeholder": "Share your experience in detail...",
-                "description": "Minimum 20 characters"
-            },
-            "photos": {
-                "label": "Photos (optional)",
-                "description": "Add photos to illustrate your experience (max 5 photos, 2MB each)"
-            },
-            "submit": "Submit Review",
-            "cancel": "Cancel",
-            "success": {
-                "title": "Review Submitted",
-                "description": "Thank you for your feedback!"
-            },
-            "error": {
-                "title": "Error",
-                "description": "Failed to submit review. Please try again."
-            }
+    "EventHelp": {
+        "title": "Event details",
+        "subtitle": "Specify type of help needed",
+        "eventType": {
+            "label": "Event type",
+            "placeholder": "Select type",
+            "description": "What is the nature of event?",
+            "birthday": "Birthday",
+            "family_reception": "Family reception",
+            "association": "Association event",
+            "small_business": "Small business / Startup"
         },
-        "card": {
-            "verified": "Verified",
-            "helpful": "Helpful",
-            "helpfulCount": "{count} found this helpful",
-            "report": "Report",
-            "respond": "Respond",
-            "response": "Provider's Response",
-            "respondedOn": "Responded on {date}",
-            "noComment": "No comment provided"
+        "guestCount": {
+            "label": "Number of guests",
+            "description": "How many people expected?"
         },
-        "stats": {
-            "title": "Rating Overview",
-            "averageRating": "Average Rating",
-            "totalReviews": "{count} reviews",
-            "distribution": "Rating Distribution",
-            "basedOn": "Based on {count} reviews"
+        "serviceType": {
+            "label": "Service type",
+            "description": "Check necessary tasks",
+            "setup": "Setup / Preparation",
+            "cleanup": "Cleanup / Tidying",
+            "serving": "Table service",
+            "greeting": "Guest greeting",
+            "preparation": "Kitchen help"
         },
-        "filters": {
-            "all": "All Reviews",
-            "verified": "Verified Only",
-            "withPhotos": "With Photos",
-            "withResponse": "With Response",
-            "sortBy": "Sort By",
-            "recent": "Most Recent",
-            "highest": "Highest Rating",
-            "lowest": "Lowest Rating",
-            "helpful": "Most Helpful"
+        "duration": {
+            "label": "Estimated duration (hours)",
+            "description": "How many hours of help needed?"
         },
-        "badges": {
-            "top_rated": "Top Rated",
-            "excellent_service": "Excellent Service",
-            "responsive": "Responsive",
-            "verified_pro": "Verified Pro",
-            "rising_star": "Rising Star",
-            "reliable": "Reliable",
-            "great_communicator": "Great Communicator",
-            "punctual": "Punctual",
-            "value_champion": "Value Champion"
-        },
-        "empty": {
-            "title": "No Reviews Yet",
-            "description": "Be the first to leave a review!"
-        },
-        "respond": {
-            "trigger": "Respond",
-            "title": "Respond to Review",
-            "description": "Your response will be public and visible to everyone.",
-            "descriptionWithName": "Respond to {name}'s review. Your response will be public.",
-            "responseLabel": "Your Response",
-            "responsePlaceholder": "Thank you for your feedback...",
-            "responseDescription": "Minimum 10 characters",
-            "preview": "Preview",
-            "submit": "Submit Response",
-            "cancel": "Cancel",
-            "success": {
-                "title": "Response Posted",
-                "description": "Your response has been published successfully."
-            },
-            "error": {
-                "title": "Error",
-                "description": "Failed to post response. Please try again."
-            }
-        },
-        "report": {
-            "trigger": "Report",
-            "title": "Report this Review",
-            "description": "Help us maintain the quality of our community.",
-            "descriptionWithName": "Report {name}'s review",
-            "reasonLabel": "Reason for Report",
-            "reasonPlaceholder": "Select a reason",
-            "reasonDescription": "Why are you reporting this review?",
-            "detailsLabel": "Details",
-            "detailsPlaceholder": "Please provide more information...",
-            "detailsDescription": "Minimum 10 characters, maximum 500 characters",
-            "reasons": {
-                "spam": "Spam or advertising",
-                "inappropriate": "Inappropriate content",
-                "offensive": "Offensive language",
-                "fake": "Fake review",
-                "irrelevant": "Irrelevant",
-                "other": "Other"
-            },
-            "warning": {
-                "title": "Warning",
-                "description": "False reports may result in account suspension."
-            },
-            "cancel": "Cancel",
-            "submit": "Submit Report",
-            "success": {
-                "title": "Review Reported",
-                "description": "Our team will review your report shortly."
-            },
-            "error": {
-                "title": "Error",
-                "description": "Failed to submit report. Please try again."
-            }
-        },
-        "photoUpload": {
-            "addPhotos": "Add photos ({current}/{max})",
-            "uploading": "Uploading...",
-            "removePhoto": "Remove photo",
-            "description": "JPEG, PNG or WebP. Max {maxSize}MB per photo.",
-            "emptyState": "No photos yet. Add photos to illustrate your review.",
-            "success": "{count} photo(s) added successfully",
-            "errors": {
-                "tooManyPhotos": "Maximum {max} photos allowed",
-                "invalidFileType": "\"{name}\" is not a valid image file",
-                "compressionFailed": "Failed to compress \"{name}\"",
-                "uploadFailed": "Failed to upload photo"
-            }
-        }
-    },
-    "Admin": {
-        "moderation": {
-            "loading": "Loading...",
-            "page": {
-                "title": "Review Moderation",
-                "description": "Manage reported reviews and maintain community standards"
-            },
-            "stats": {
-                "totalReports": "Total Reports",
-                "pending": "Pending",
-                "approved": "Approved",
-                "removed": "Removed",
-                "dismissed": "Dismissed"
-            },
-            "status": {
-                "pending": "Pending",
-                "approved": "Approved",
-                "removed": "Removed",
-                "dismissed": "Dismissed"
-            },
-            "queue": {
-                "title": "Reported Reviews",
-                "description": "Reviews that have been flagged by users",
-                "filter": "Filter by status",
-                "reviewedUser": "Reviewed user",
-                "rating": "Rating",
-                "reports": "{count} report(s)",
-                "review": "Review",
-                "noComment": "No comment provided",
-                "empty": {
-                    "title": "No reviews to moderate",
-                    "description": "All reported reviews have been reviewed"
-                }
-            },
-            "filters": {
-                "all": "All",
-                "pending": "Pending",
-                "approved": "Approved",
-                "removed": "Removed",
-                "dismissed": "Dismissed"
-            },
-            "form": {
-                "title": "Review Details",
-                "description": "Review the reported content and take action",
-                "reportCount": "{count} report(s)",
-                "reviewedUser": "Reviewed User",
-                "comment": "Review Comment",
-                "noComment": "No comment provided",
-                "photos": "Attached Photos",
-                "adminNote": {
-                    "label": "Admin Note (optional for approve/dismiss, required for remove)",
-                    "placeholder": "Add a note explaining your decision...",
-                    "description": "This note will be saved with the moderation action"
-                },
-                "approve": "Approve",
-                "remove": "Remove",
-                "dismiss": "Dismiss Report",
-                "cancel": "Cancel",
-                "approveDialog": {
-                    "title": "Approve this review?",
-                    "description": "The review will be marked as legitimate and the report will be cleared.",
-                    "cancel": "Cancel",
-                    "confirm": "Approve Review"
-                },
-                "removeDialog": {
-                    "title": "Remove this review?",
-                    "description": "The review will be hidden from public view. This action cannot be undone. Please provide a reason.",
-                    "cancel": "Cancel",
-                    "confirm": "Remove Review"
-                },
-                "dismissDialog": {
-                    "title": "Dismiss this report?",
-                    "description": "The report will be marked as unfounded and cleared.",
-                    "cancel": "Cancel",
-                    "confirm": "Dismiss Report"
-                },
-                "selectReview": {
-                    "title": "Select a review to moderate",
-                    "description": "Click on a review from the queue to view details and take action"
-                },
-                "success": {
-                    "approve": {
-                        "title": "Review approved",
-                        "description": "The review has been approved and the report cleared"
-                    },
-                    "remove": {
-                        "title": "Review removed",
-                        "description": "The review has been removed from public view"
-                    },
-                    "dismiss": {
-                        "title": "Report dismissed",
-                        "description": "The report has been dismissed and cleared"
-                    }
-                },
-                "error": {
-                    "title": "Error",
-                    "description": "Failed to complete the moderation action",
-                    "reasonRequired": "Please provide a reason for removing the review"
-                }
-            }
-        },
-        "gmv": {
-            "title": "GMV & Platform Revenue",
-            "description": "Gross Merchandise Value and platform revenue by commission",
-            "totalGMV": "Total GMV",
-            "platformRevenue": "Platform Revenue",
-            "avgTransaction": "Avg Transaction",
-            "summary": "{transactions} transactions over the last {months} months",
-            "noData": "No transaction data available yet.",
-            "error": "Unable to load GMV data."
-        },
-        "userGrowth": {
-            "title": "User Growth",
-            "description": "New clients and providers per month",
-            "newClients": "New Clients",
-            "newProviders": "New Providers",
-            "totalUsers": "Total Users",
-            "summary": "{clients} new clients and {providers} new providers over the last {months} months",
-            "noData": "No new user data available yet.",
-            "error": "Unable to load user growth data."
-        },
-        "stats": {
-            "totalUsers": "Total Users",
-            "totalUsersDesc": "Platform registrations",
-            "activeClients": "Active Clients",
-            "activeProviders": "Active Providers",
-            "ofTotal": "of total",
-            "totalTasks": "Total Tasks",
-            "totalTasksDesc": "Tasks created",
-            "completedTasks": "Completed Tasks",
-            "completionRate": "Completion Rate",
-            "activeTasks": "Active Tasks",
-            "activeTasksDesc": "Open or in progress",
-            "error": "Unable to load statistics."
-        }
-    },
-    "Services": {
-        "categories": {
-            "aide_domicile_petits_travaux": "Home Help & Small Jobs",
-            "courses_livraisons": "Shopping & Deliveries",
-            "aide_numerique_administrative": "Digital & Administrative Help",
-            "demenagement_manutention": "Moving & Handling",
-            "accompagnement_presence": "Accompaniment & Companionship",
-            "jardinage_exterieur": "Gardening & Outdoor",
-            "animaux_compagnie": "Pet Care",
-            "evenements_occasions": "Events & Special Occasions"
-        }
-    },
-    "Dashboard": {
-        "filters": {
-            "title": "Filters",
-            "search": "Search",
-            "searchPlaceholder": "Search by title or description...",
-            "clearSearch": "Clear search",
-            "dateRange": {
-                "label": "Date Range",
-                "preset": "Select a period",
-                "today": "Today",
-                "last7days": "Last 7 days",
-                "last30days": "Last 30 days",
-                "thisMonth": "This month",
-                "lastMonth": "Last month",
-                "custom": "Custom period",
-                "selectCustom": "Select dates",
-                "selectRange": "Choose a date range"
-            },
-            "status": {
-                "label": "Status",
-                "all": "All",
-                "completed": "Completed",
-                "active": "Active",
-                "cancelled": "Cancelled"
-            },
-            "categories": "Categories",
-            "selectAll": "Select all",
-            "clearAll": "Clear all",
-            "resetAll": "Reset all filters",
-            "activeFilters": "{count, plural, =0 {No filters} =1 {1 active filter} other {# active filters}}"
-        },
-        "live": {
-            "indicator": "Live",
-            "updated": "Updated {time}",
-            "activity": "Recent Activity",
-            "noActivity": "No recent activity",
-            "types": {
-                "NEW_BOOKING": "New booking",
-                "TASK_COMPLETED": "Task completed",
-                "NEW_USER": "New user",
-                "KYC_SUBMITTED": "KYC submitted",
-                "PROPOSAL_CREATED": "New proposal"
-            }
-        },
-        "revenue": {
-            "title": "Revenue Overview",
-            "description": "Analysis of your earnings over the past months",
-            "totalRevenue": "Total Revenue",
-            "avgPerMonth": "Average per Month",
-            "trend": "Trend",
-            "summary": "{count, plural, =0 {No completed missions} =1 {1 completed mission} other {# completed missions}} over the last {months} months",
-            "noData": "No revenue data available yet. Complete your first mission to see your statistics.",
-            "error": "Unable to load revenue data. Please try again later."
-        },
-        "spending": {
-            "title": "Spending Overview",
-            "description": "Analysis of your expenses over the past months",
-            "totalSpending": "Total Spent",
-            "avgPerMonth": "Average per Month",
-            "trend": "Trend",
-            "summary": "{count, plural, =0 {No missions booked} =1 {1 mission booked} other {# missions booked}} over the last {months} months",
-            "noData": "No spending data available. Book your first mission to see your statistics.",
-            "error": "Unable to load spending data. Please try again later."
-        },
-        "categories": {
-            "title": "Category Breakdown",
-            "description": "Your spending by service type",
-            "totalSpending": "Total Spent",
-            "totalTasks": "Total Missions",
-            "moreCategories": "more categories",
-            "noData": "No completed missions. Your category statistics will appear here.",
-            "error": "Unable to load category data. Please try again later."
+        "heavyEquipment": {
+            "label": "Heavy equipment (optional)",
+            "placeholder": "E.g.: Tables and chairs for 50 people, 3x3m tents...",
+            "description": "Specify if handling bulky equipment"
         }
     }
+},
+"Offers": {
+    "submitOffer": "Submit an offer",
+    "submitOfferTitle": "Make a proposal",
+    "submitOfferDescription": "Propose your services for this task",
+    "offerForTask": "Offer for task",
+    "proposedPrice": "Proposed price",
+    "budgetIndicated": "Indicated budget",
+    "message": "Your message",
+    "messagePlaceholder": "Explain why you're the best choice for this task...",
+    "messageHint": "Present your experience, availability and approach",
+    "estimatedDuration": "Estimated duration",
+    "optional": "optional",
+    "hours": "hours",
+    "cancel": "Cancel",
+    "submit": "Send offer",
+    "submitting": "Submitting...",
+    "offerSubmitted": "✓ Offer submitted successfully!",
+    "viewMyOffers": "View my offers",
+    "offerAcceptedTitle": "Offer accepted",
+    "offerAcceptedDescription": "You accepted the offer. Other offers have been automatically rejected.",
+    "offerRejectedTitle": "Offer rejected",
+    "offerRejectedDescription": "The offer was successfully rejected.",
+    "offerAcceptError": "Unable to accept offer",
+    "offerRejectError": "Unable to reject offer",
+    "offersReceivedTitle": "Offers received",
+    "taskTitle": "Task",
+    "pendingOffers": "Pending offers",
+    "acceptedOffers": "Accepted offers",
+    "lowestOffer": "Lowest offer",
+    "sortRecent": "Most recent",
+    "sortPriceLow": "Price ascending",
+    "sortPriceHigh": "Price descending",
+    "sortRating": "Top rated",
+    "acceptedOffersSection": "✓ Accepted offers",
+    "pendingOffersSection": "Pending offers",
+    "showRejected": "Show rejected offers",
+    "noOffersYet": "No offers yet",
+    "noOffersHint": "Interested providers will be able to submit their proposals soon.",
+    "statusPending": "Pending",
+    "statusAccepted": "Accepted",
+    "statusRejected": "Rejected",
+    "statusWithdrawn": "Withdrawn",
+    "reviews": "reviews",
+    "providerMessage": "Provider's message",
+    "availableFrom": "Available from",
+    "to": "to",
+    "acceptOffer": "Accept",
+    "rejectOffer": "Reject",
+    "contactProvider": "Contact",
+    "offerAcceptedMessage": "✓ This offer was accepted. A booking has been created automatically.",
+    "rejectionReason": "Rejection reason",
+    "goBack": "Go back"
+},
+"Availability": {
+    "calendar": {
+        "title": "Availability Calendar",
+        "loading": "Loading...",
+        "previousMonth": "Previous month",
+        "nextMonth": "Next month",
+        "add": "Add availability",
+        "edit": "Edit availability",
+        "blocked": "Blocked",
+        "slots": "slots",
+        "availableSlots": "Available slots",
+        "days": {
+            "sun": "Sun",
+            "mon": "Mon",
+            "tue": "Tue",
+            "wed": "Wed",
+            "thu": "Thu",
+            "fri": "Fri",
+            "sat": "Sat"
+        },
+        "legend": {
+            "today": "Today",
+            "available": "Available",
+            "hasSlots": "With slots",
+            "blocked": "Blocked",
+            "unavailable": "Unavailable"
+        }
+    },
+    "recurringSchedule": {
+        "title": "Recurring Schedule",
+        "description": "Set your default availability hours for each day of the week",
+        "addDay": "Add day",
+        "addSlot": "Add time slot",
+        "removeSlot": "Remove slot",
+        "monday": "Monday",
+        "tuesday": "Tuesday",
+        "wednesday": "Wednesday",
+        "thursday": "Thursday",
+        "friday": "Friday",
+        "saturday": "Saturday",
+        "sunday": "Sunday",
+        "from": "From",
+        "to": "To",
+        "save": "Save",
+        "cancel": "Cancel",
+        "successMessage": "Schedule saved successfully",
+        "errorMessage": "Error saving schedule"
+    },
+    "blockedPeriods": {
+        "title": "Blocked Periods",
+        "description": "Manage your unavailability (vacation, sick leave, etc.)",
+        "addPeriod": "Add period",
+        "editPeriod": "Edit period",
+        "deletePeriod": "Delete",
+        "startDate": "Start date",
+        "endDate": "End date",
+        "reason": "Reason",
+        "type": "Type",
+        "types": {
+            "vacation": "Vacation",
+            "sick": "Sick leave",
+            "personal": "Personal",
+            "other": "Other"
+        },
+        "noPeriods": "No blocked periods",
+        "save": "Save",
+        "cancel": "Cancel",
+        "confirmDelete": "Are you sure you want to delete this period?",
+        "successAdd": "Blocked period added",
+        "successUpdate": "Blocked period updated",
+        "successDelete": "Blocked period deleted",
+        "errorAdd": "Error adding period",
+        "errorUpdate": "Error updating period",
+        "errorDelete": "Error deleting period"
+    },
+    "specificDate": {
+        "title": "Specific Availability",
+        "description": "Set availability for a specific date (overrides recurring schedule)",
+        "date": "Date",
+        "addSlot": "Add time slot",
+        "removeSlot": "Remove",
+        "from": "From",
+        "to": "To",
+        "reason": "Reason (optional)",
+        "save": "Save",
+        "cancel": "Cancel",
+        "successMessage": "Specific availability saved",
+        "errorMessage": "Error saving availability"
+    },
+    "settings": {
+        "title": "Availability Settings",
+        "timezone": "Timezone",
+        "minAdvanceHours": "Minimum advance booking (hours)",
+        "maxAdvanceDays": "Maximum advance booking (days)",
+        "minDuration": "Minimum booking duration (minutes)",
+        "maxDuration": "Maximum booking duration (hours)",
+        "buffer": "Buffer between bookings (minutes)",
+        "autoAccept": "Automatic booking acceptance",
+        "save": "Save",
+        "successMessage": "Settings saved",
+        "errorMessage": "Error saving settings"
+    }
+},
+"Reviews": {
+    "form": {
+        "rating": {
+            "label": "Overall Rating",
+            "description": "How would you rate your experience?"
+        },
+        "detailedRatings": {
+            "title": "Detailed Ratings (Optional)",
+            "description": "Help us better understand your experience",
+            "communication": "Communication",
+            "quality": "Quality of Work",
+            "professionalism": "Professionalism",
+            "timeliness": "Timeliness",
+            "valueForMoney": "Value for Money"
+        },
+        "comment": {
+            "label": "Your Review",
+            "placeholder": "Share your experience in detail...",
+            "description": "Minimum 20 characters"
+        },
+        "photos": {
+            "label": "Photos (optional)",
+            "description": "Add photos to illustrate your experience (max 5 photos, 2MB each)"
+        },
+        "submit": "Submit Review",
+        "cancel": "Cancel",
+        "success": {
+            "title": "Review Submitted",
+            "description": "Thank you for your feedback!"
+        },
+        "error": {
+            "title": "Error",
+            "description": "Failed to submit review. Please try again."
+        }
+    },
+    "card": {
+        "verified": "Verified",
+        "helpful": "Helpful",
+        "helpfulCount": "{count} found this helpful",
+        "report": "Report",
+        "respond": "Respond",
+        "response": "Provider's Response",
+        "respondedOn": "Responded on {date}",
+        "noComment": "No comment provided"
+    },
+    "stats": {
+        "title": "Rating Overview",
+        "averageRating": "Average Rating",
+        "totalReviews": "{count} reviews",
+        "distribution": "Rating Distribution",
+        "basedOn": "Based on {count} reviews"
+    },
+    "filters": {
+        "all": "All Reviews",
+        "verified": "Verified Only",
+        "withPhotos": "With Photos",
+        "withResponse": "With Response",
+        "sortBy": "Sort By",
+        "recent": "Most Recent",
+        "highest": "Highest Rating",
+        "lowest": "Lowest Rating",
+        "helpful": "Most Helpful"
+    },
+    "badges": {
+        "top_rated": "Top Rated",
+        "excellent_service": "Excellent Service",
+        "responsive": "Responsive",
+        "verified_pro": "Verified Pro",
+        "rising_star": "Rising Star",
+        "reliable": "Reliable",
+        "great_communicator": "Great Communicator",
+        "punctual": "Punctual",
+        "value_champion": "Value Champion"
+    },
+    "empty": {
+        "title": "No Reviews Yet",
+        "description": "Be the first to leave a review!"
+    },
+    "respond": {
+        "trigger": "Respond",
+        "title": "Respond to Review",
+        "description": "Your response will be public and visible to everyone.",
+        "descriptionWithName": "Respond to {name}'s review. Your response will be public.",
+        "responseLabel": "Your Response",
+        "responsePlaceholder": "Thank you for your feedback...",
+        "responseDescription": "Minimum 10 characters",
+        "preview": "Preview",
+        "submit": "Submit Response",
+        "cancel": "Cancel",
+        "success": {
+            "title": "Response Posted",
+            "description": "Your response has been published successfully."
+        },
+        "error": {
+            "title": "Error",
+            "description": "Failed to post response. Please try again."
+        }
+    },
+    "report": {
+        "trigger": "Report",
+        "title": "Report this Review",
+        "description": "Help us maintain the quality of our community.",
+        "descriptionWithName": "Report {name}'s review",
+        "reasonLabel": "Reason for Report",
+        "reasonPlaceholder": "Select a reason",
+        "reasonDescription": "Why are you reporting this review?",
+        "detailsLabel": "Details",
+        "detailsPlaceholder": "Please provide more information...",
+        "detailsDescription": "Minimum 10 characters, maximum 500 characters",
+        "reasons": {
+            "spam": "Spam or advertising",
+            "inappropriate": "Inappropriate content",
+            "offensive": "Offensive language",
+            "fake": "Fake review",
+            "irrelevant": "Irrelevant",
+            "other": "Other"
+        },
+        "warning": {
+            "title": "Warning",
+            "description": "False reports may result in account suspension."
+        },
+        "cancel": "Cancel",
+        "submit": "Submit Report",
+        "success": {
+            "title": "Review Reported",
+            "description": "Our team will review your report shortly."
+        },
+        "error": {
+            "title": "Error",
+            "description": "Failed to submit report. Please try again."
+        }
+    },
+    "photoUpload": {
+        "addPhotos": "Add photos ({current}/{max})",
+        "uploading": "Uploading...",
+        "removePhoto": "Remove photo",
+        "description": "JPEG, PNG or WebP. Max {maxSize}MB per photo.",
+        "emptyState": "No photos yet. Add photos to illustrate your review.",
+        "success": "{count} photo(s) added successfully",
+        "errors": {
+            "tooManyPhotos": "Maximum {max} photos allowed",
+            "invalidFileType": "\"{name}\" is not a valid image file",
+            "compressionFailed": "Failed to compress \"{name}\"",
+            "uploadFailed": "Failed to upload photo"
+        }
+    }
+},
+"Admin": {
+    "moderation": {
+        "loading": "Loading...",
+        "page": {
+            "title": "Review Moderation",
+            "description": "Manage reported reviews and maintain community standards"
+        },
+        "stats": {
+            "totalReports": "Total Reports",
+            "pending": "Pending",
+            "approved": "Approved",
+            "removed": "Removed",
+            "dismissed": "Dismissed"
+        },
+        "status": {
+            "pending": "Pending",
+            "approved": "Approved",
+            "removed": "Removed",
+            "dismissed": "Dismissed"
+        },
+        "queue": {
+            "title": "Reported Reviews",
+            "description": "Reviews that have been flagged by users",
+            "filter": "Filter by status",
+            "reviewedUser": "Reviewed user",
+            "rating": "Rating",
+            "reports": "{count} report(s)",
+            "review": "Review",
+            "noComment": "No comment provided",
+            "empty": {
+                "title": "No reviews to moderate",
+                "description": "All reported reviews have been reviewed"
+            }
+        },
+        "filters": {
+            "all": "All",
+            "pending": "Pending",
+            "approved": "Approved",
+            "removed": "Removed",
+            "dismissed": "Dismissed"
+        },
+        "form": {
+            "title": "Review Details",
+            "description": "Review the reported content and take action",
+            "reportCount": "{count} report(s)",
+            "reviewedUser": "Reviewed User",
+            "comment": "Review Comment",
+            "noComment": "No comment provided",
+            "photos": "Attached Photos",
+            "adminNote": {
+                "label": "Admin Note (optional for approve/dismiss, required for remove)",
+                "placeholder": "Add a note explaining your decision...",
+                "description": "This note will be saved with the moderation action"
+            },
+            "approve": "Approve",
+            "remove": "Remove",
+            "dismiss": "Dismiss Report",
+            "cancel": "Cancel",
+            "approveDialog": {
+                "title": "Approve this review?",
+                "description": "The review will be marked as legitimate and the report will be cleared.",
+                "cancel": "Cancel",
+                "confirm": "Approve Review"
+            },
+            "removeDialog": {
+                "title": "Remove this review?",
+                "description": "The review will be hidden from public view. This action cannot be undone. Please provide a reason.",
+                "cancel": "Cancel",
+                "confirm": "Remove Review"
+            },
+            "dismissDialog": {
+                "title": "Dismiss this report?",
+                "description": "The report will be marked as unfounded and cleared.",
+                "cancel": "Cancel",
+                "confirm": "Dismiss Report"
+            },
+            "selectReview": {
+                "title": "Select a review to moderate",
+                "description": "Click on a review from the queue to view details and take action"
+            },
+            "success": {
+                "approve": {
+                    "title": "Review approved",
+                    "description": "The review has been approved and the report cleared"
+                },
+                "remove": {
+                    "title": "Review removed",
+                    "description": "The review has been removed from public view"
+                },
+                "dismiss": {
+                    "title": "Report dismissed",
+                    "description": "The report has been dismissed and cleared"
+                }
+            },
+            "error": {
+                "title": "Error",
+                "description": "Failed to complete the moderation action",
+                "reasonRequired": "Please provide a reason for removing the review"
+            }
+        }
+    },
+    "gmv": {
+        "title": "GMV & Platform Revenue",
+        "description": "Gross Merchandise Value and platform revenue by commission",
+        "totalGMV": "Total GMV",
+        "platformRevenue": "Platform Revenue",
+        "avgTransaction": "Avg Transaction",
+        "summary": "{transactions} transactions over the last {months} months",
+        "noData": "No transaction data available yet.",
+        "error": "Unable to load GMV data."
+    },
+    "userGrowth": {
+        "title": "User Growth",
+        "description": "New clients and providers per month",
+        "newClients": "New Clients",
+        "newProviders": "New Providers",
+        "totalUsers": "Total Users",
+        "summary": "{clients} new clients and {providers} new providers over the last {months} months",
+        "noData": "No new user data available yet.",
+        "error": "Unable to load user growth data."
+    },
+    "stats": {
+        "totalUsers": "Total Users",
+        "totalUsersDesc": "Platform registrations",
+        "activeClients": "Active Clients",
+        "activeProviders": "Active Providers",
+        "ofTotal": "of total",
+        "totalTasks": "Total Tasks",
+        "totalTasksDesc": "Tasks created",
+        "completedTasks": "Completed Tasks",
+        "completionRate": "Completion Rate",
+        "activeTasks": "Active Tasks",
+        "activeTasksDesc": "Open or in progress",
+        "error": "Unable to load statistics."
+    }
+},
+"Services": {
+    "categories": {
+        "aide_domicile_petits_travaux": "Home Help & Small Jobs",
+        "courses_livraisons": "Shopping & Deliveries",
+        "aide_numerique_administrative": "Digital & Administrative Help",
+        "demenagement_manutention": "Moving & Handling",
+        "accompagnement_presence": "Accompaniment & Companionship",
+        "jardinage_exterieur": "Gardening & Outdoor",
+        "animaux_compagnie": "Pet Care",
+        "evenements_occasions": "Events & Special Occasions"
+    }
+},
+"Dashboard": {
+    "filters": {
+        "title": "Filters",
+        "search": "Search",
+        "searchPlaceholder": "Search by title or description...",
+        "clearSearch": "Clear search",
+        "dateRange": {
+            "label": "Date Range",
+            "preset": "Select a period",
+            "today": "Today",
+            "last7days": "Last 7 days",
+            "last30days": "Last 30 days",
+            "thisMonth": "This month",
+            "lastMonth": "Last month",
+            "custom": "Custom period",
+            "selectCustom": "Select dates",
+            "selectRange": "Choose a date range"
+        },
+        "status": {
+            "label": "Status",
+            "all": "All",
+            "completed": "Completed",
+            "active": "Active",
+            "cancelled": "Cancelled"
+        },
+        "categories": "Categories",
+        "selectAll": "Select all",
+        "clearAll": "Clear all",
+        "resetAll": "Reset all filters",
+        "activeFilters": "{count, plural, =0 {No filters} =1 {1 active filter} other {# active filters}}"
+    },
+    "live": {
+        "indicator": "Live",
+        "updated": "Updated {time}",
+        "activity": "Recent Activity",
+        "noActivity": "No recent activity",
+        "types": {
+            "NEW_BOOKING": "New booking",
+            "TASK_COMPLETED": "Task completed",
+            "NEW_USER": "New user",
+            "KYC_SUBMITTED": "KYC submitted",
+            "PROPOSAL_CREATED": "New proposal"
+        }
+    },
+    "revenue": {
+        "title": "Revenue Overview",
+        "description": "Analysis of your earnings over the past months",
+        "totalRevenue": "Total Revenue",
+        "avgPerMonth": "Average per Month",
+        "trend": "Trend",
+        "summary": "{count, plural, =0 {No completed missions} =1 {1 completed mission} other {# completed missions}} over the last {months} months",
+        "noData": "No revenue data available yet. Complete your first mission to see your statistics.",
+        "error": "Unable to load revenue data. Please try again later."
+    },
+    "spending": {
+        "title": "Spending Overview",
+        "description": "Analysis of your expenses over the past months",
+        "totalSpending": "Total Spent",
+        "avgPerMonth": "Average per Month",
+        "trend": "Trend",
+        "summary": "{count, plural, =0 {No missions booked} =1 {1 mission booked} other {# missions booked}} over the last {months} months",
+        "noData": "No spending data available. Book your first mission to see your statistics.",
+        "error": "Unable to load spending data. Please try again later."
+    },
+    "categories": {
+        "title": "Category Breakdown",
+        "description": "Your spending by service type",
+        "totalSpending": "Total Spent",
+        "totalTasks": "Total Missions",
+        "moreCategories": "more categories",
+        "noData": "No completed missions. Your category statistics will appear here.",
+        "error": "Unable to load category data. Please try again later."
+    }
+}
 }

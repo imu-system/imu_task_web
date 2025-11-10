@@ -23,6 +23,7 @@ import {
   CreditCard,
   Bell,
   Star,
+  Heart,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
@@ -35,6 +36,7 @@ import LanguageCurrencyModal from './language-currency-modal';
 import Image from 'next/image';
 import { BecomeProviderModal } from './modals/become-provider-modal';
 import { useScrollPosition } from '@/hooks/use-scroll-position';
+import { ThemeToggle } from './theme-toggle';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -101,6 +103,7 @@ export default function Header() {
       >
         <span>{t('becomeHost') || 'Devenir prestataire'}</span>
       </Button>
+      <ThemeToggle />
       <LanguageCurrencyModal />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -146,6 +149,12 @@ export default function Header() {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild className="rounded-xl cursor-pointer py-2.5">
+          <Link href="/dashboard/favorites" className="flex items-center">
+            <Heart className="mr-3 h-4 w-4" />
+            <span>{t('favorites.title') || 'Mes Favoris'}</span>
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild className="rounded-xl cursor-pointer py-2.5">
           <Link href="/dashboard/notifications" className="flex items-center">
             <Bell className="mr-3 h-4 w-4" />
             <span>{t('notifications') || 'Notifications'}</span>
@@ -183,6 +192,7 @@ export default function Header() {
       >
         <span>{t('becomeHost') || 'Devenir prestataire'}</span>
       </Button>
+      <ThemeToggle />
       <LanguageCurrencyModal />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

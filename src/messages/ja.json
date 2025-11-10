@@ -1,4 +1,10 @@
 {
+  "Common": {
+    "toggleTheme": "テーマを切り替える",
+    "lightTheme": "ライト",
+    "darkTheme": "ダーク",
+    "systemTheme": "システム"
+  },
   "Header": {
     "features": "特徴",
     "howItWorks": "使い方",
@@ -2202,5 +2208,28 @@
       "noData": "完了したミッションはありません。カテゴリー統計はここに表示されます。",
       "error": "カテゴリーデータを読み込めませんでした。後でもう一度お試しください。"
     }
+  },
+  "Favorites": {
+    "title": "お気に入り",
+    "subtitle": "お気に入りのミッションと提供者を管理",
+    "all": "すべて",
+    "tasks": "ミッション",
+    "providers": "提供者",
+    "added": "お気に入りに追加されました",
+    "addedSuccess": "アイテムがお気に入りに追加されました",
+    "removed": "お気に入りから削除されました",
+    "removedSuccess": "アイテムがお気に入りから削除されました",
+    "error": "エラー",
+    "addError": "お気に入りに追加できませんでした",
+    "removeError": "お気に入りから削除できませんでした",
+    "toggleError": "エラーが発生しました",
+    "loginRequired": "お気に入りを管理するにはログインが必要です",
+    "noFavorites": "お気に入りがありません",
+    "noFavoritesDesc": "ミッションや提供者をお気に入りに追加してください",
+    "viewTask": "ミッションを見る",
+    "viewProvider": "プロフィールを見る",
+    "removeButton": "削除",
+    "addToFavorites": "お気に入りに追加",
+    "removeFromFavorites": "お気に入りから削除"
   }
 }

@@ -9,6 +9,7 @@ import { User } from '@/lib/types';
 import { Star, MessageSquare } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/navigation';
+import { FavoriteButton } from './favorites/favorite-button';
 
 interface ProviderCardProps {
     provider: User;
@@ -29,8 +30,21 @@ export default function ProviderCard({ provider }: ProviderCardProps) {
                     <AvatarImage src={provider.profile?.photoUrl || undefined} />
                     <AvatarFallback>{provider.profile?.displayName?.charAt(0) || '?'}</AvatarFallback>
                 </Avatar>
-                <div>
-                    <CardTitle className="text-xl">{provider.profile?.displayName}</CardTitle>
+                <div className="flex-1">
+                    <div className="flex items-center justify-between">
+                        <CardTitle className="text-xl">{provider.profile?.displayName}</CardTitle>
+                        <FavoriteButton
+                            itemId={provider.id}
+                            itemType="provider"
+                            metadata={{
+                                title: provider.profile?.displayName,
+                                providerName: provider.profile?.displayName,
+                            }}
+                            size="icon"
+                            variant="ghost"
+                            data-testid="provider-favorite-button"
+                        />
+                    </div>
                     <div className="flex items-center gap-1 mt-1">
                         <Star className="h-4 w-4 text-yellow-400 fill-yellow-400" />
                         <span className="font-bold">{rating.toFixed(1)}</span>

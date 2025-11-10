@@ -896,15 +896,42 @@
 
 ---
 
-### Phase 10: Fonctionnalités Avancées 🔴 (0% complété)
+### Phase 10: Fonctionnalités Avancées � (30% complété)
 
-**Statut:** 🔴 Non démarré
+**Statut:** � En développement
+
+#### ✅ Complété
+- [x] **Mode sombre**
+  - [x] Installation et configuration next-themes
+  - [x] ThemeProvider avec support light/dark/system
+  - [x] ThemeToggle component avec dropdown animé
+  - [x] Intégration dans Header (users + guest)
+  - [x] Variables CSS dark mode dans globals.css
+  - [x] Tailwind darkMode: class configuré
+  - [x] Traductions FR/EN/JA (toggleTheme, lightTheme, darkTheme, systemTheme)
+  - [x] Persistance localStorage + détection système
+  - [x] Animations smooth pour transitions
+
+- [x] **Système de Favoris - Infrastructure**
+  - [x] Collection Firestore `favorites` créée
+  - [x] Security rules (owner-based access)
+  - [x] Indexes composites (userId + createdAt, userId + itemType + createdAt)
+  - [x] Service `firestore-favorites.ts` (CRUD operations)
+  - [x] Hook `useFavorites` (liste complète)
+  - [x] Hook `useToggleFavorite` (toggle individuel)
+  - [x] Traductions FR/EN/JA (18+ keys)
 
 #### 📋 À faire
+- [ ] **Système de Favoris - UI**
+  - [ ] Composant FavoriteButton (heart icon)
+  - [ ] Intégration dans TaskCard
+  - [ ] Intégration dans ProviderCard
+  - [ ] Page /dashboard/favorites
+  - [ ] Filtres (all/tasks/providers)
+  - [ ] Empty states
+
 - [ ] Système de disputes et résolution
 - [ ] Programme de parrainage
-- [ ] Favoris et listes sauvegardées
-- [ ] Mode sombre
 - [ ] Progressive Web App (PWA)
 - [ ] Notifications push natives
 - [ ] Accessibilité (WCAG 2.1)
@@ -912,6 +939,7 @@
 - [ ] Intégration réseaux sociaux
 - [ ] Support client intégré
 
+**Date de début:** 10 novembre 2025  
 **Date cible:** 31 mars 2026
 
 ---
