@@ -42,6 +42,9 @@ export function ThreadList({
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
 
+  // DEBUG: Log AVANT appel du hook
+  console.log('🚀🚀🚀 THREAD-LIST NOUVEAU CODE - Avant useUserThreads 🚀🚀🚀', { userId });
+
   // Récupération des threads avec real-time updates (toujours actifs)
   const {
     data: threads = [] as Thread[],
@@ -51,6 +54,8 @@ export function ThreadList({
   } = useUserThreads(userId, {
     status: 'active' as ThreadStatus,
   });
+  
+  console.log('🔥🔥🔥 THREAD-LIST - Après useUserThreads 🔥🔥🔥', { threads: threads.length, error: error?.message });
 
   // Recherche (si query non vide)
   const {

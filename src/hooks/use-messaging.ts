@@ -73,7 +73,7 @@ export function useUserThreads(
             if (!userId) throw new Error('User ID required');
             // TEMPORARY: Return empty array, rely only on real-time subscription
             // This avoids the "Missing permissions" error from getDocs
-            console.log('⚠️ useUserThreads: Skipping initial getDocs, using only real-time');
+            console.log('⚠️⚠️⚠️ NOUVEAU CODE: Skipping initial getDocs, using only real-time ⚠️⚠️⚠️');
             return Promise.resolve([]);
         },
         enabled: !!userId,
