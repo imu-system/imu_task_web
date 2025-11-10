@@ -388,22 +388,36 @@ export function subscribeToUserThreads(
     userId: string,
     callback: (threads: Thread[]) => void
 ): () => void {
+    console.log('🔥 subscribeToUserThreads called with userId:', userId);
+
+    // Check Firebase Auth state
+    import('@/lib/firebase').then(({ auth }) => {
+        console.log('🔥 Firebase Auth currentUser:', auth.currentUser?.uid);
+        console.log('🔥 Firebase Auth user matches?', auth.currentUser?.uid === userId);
+    });
+
     const q = query(
         collection(db, THREADS_COLLECTION),
         where('participants', 'array-contains', userId),
         orderBy('lastMessageAt', 'desc')
     );
 
+    console.log('🔥 Query created, setting up onSnapshot...');
+
     return onSnapshot(
         q,
         (snapshot: QuerySnapshot) => {
+            console.log('✅ onSnapshot SUCCESS! Got', snapshot.docs.length, 'threads');
             const threads = snapshot.docs.map(doc =>
                 firestoreToThread(doc.id, doc.data())
             );
             callback(threads);
         },
         (error) => {
-            console.error('Error subscribing to user threads:', error);
+            console.error('❌ onSnapshot ERROR:', error);
+            console.error('❌ Error code:', error.code);
+            console.error('❌ Error message:', error.message);
+            console.error('❌ Full error:', JSON.stringify(error, null, 2));
             callback([]);
         }
     );

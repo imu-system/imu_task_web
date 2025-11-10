@@ -45,67 +45,108 @@ export default function MessagesPage() {
   }
 
   return (
-    <div className="h-full flex flex-col bg-[#F0F2F5] font-['Segoe_UI',_-apple-system,_system-ui,_'Helvetica_Neue',_sans-serif]" data-testid="messages-page">
-      {/* Banner notification (optional, dismissible) */}
-      {showBanner && (
-        <NotificationBanner
-          type="info"
-          message="Vos conversations sont chiffrées de bout en bout pour votre sécurité"
-          onDismiss={() => setShowBanner(false)}
-        />
-      )}
-
+    <div className="h-full flex bg-[#F0F2F5] font-['Segoe_UI',_-apple-system,_system-ui,_'Helvetica_Neue',_sans-serif]" data-testid="messages-page">
       {/* Mobile: Header avec retour - WhatsApp style */}
-      <div className="md:hidden bg-[#00A884] text-white border-b border-[#00A884] px-4 py-3 flex items-center gap-3" data-testid="mobile-header">
-        <Button variant="ghost" size="icon" onClick={() => router.back()} className="text-white hover:bg-white/10">
+      <div className="md:hidden fixed top-0 left-0 right-0 bg-[#00A884] text-white border-b border-[#00896f] px-4 py-3 flex items-center gap-3 z-50 shadow-sm" data-testid="mobile-header">
+        <Button variant="ghost" size="icon" onClick={() => router.back()} className="text-white hover:bg-white/10 -ml-2">
           <ArrowLeft className="h-5 w-5" />
         </Button>
-        <h1 className="text-lg font-semibold">{t('title')}</h1>
+        <h1 className="text-lg font-semibold flex-1">{t('title')}</h1>
         {/* Debug link (development only) */}
         {process.env.NODE_ENV === 'development' && (
           <Button
-            variant="outline"
+            variant="ghost"
             size="sm"
             onClick={() => router.push('/dashboard/messages/debug')}
-            className="ml-auto"
+            className="text-white hover:bg-white/10 text-xs"
           >
-            🐛 Debug
+            🐛
           </Button>
         )}
       </div>
 
-      {/* Desktop + Mobile: Liste des threads */}
-      <div className="flex-1 overflow-hidden relative bg-white md:bg-transparent md:max-w-[400px]">
-        {/* Indicateur pour détection mobile dans les tests */}
-        <div className="md:hidden" data-testid="mobile-view" />
+      {/* Left Panel: Liste des threads - WhatsApp style */}
+      <div className="flex flex-col w-full md:w-[420px] md:border-r border-border/30 bg-white md:mt-0 mt-14 relative">
+        {/* Desktop Header - WhatsApp green */}
+        <div className="hidden md:flex items-center justify-between px-4 py-3 bg-[#00A884] text-white border-b border-[#00896f]">
+          <div className="flex items-center gap-3">
+            {user?.photoURL ? (
+              <img 
+                src={user.photoURL} 
+                alt={user.displayName || ''} 
+                className="w-10 h-10 rounded-full ring-2 ring-white/20"
+              />
+            ) : (
+              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-lg font-semibold">
+                {user?.displayName?.[0]?.toUpperCase() || '?'}
+              </div>
+            )}
+            <h1 className="text-lg font-semibold">{t('title')}</h1>
+          </div>
+          
+          <div className="flex items-center gap-1">
+            {process.env.NODE_ENV === 'development' && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => router.push('/dashboard/messages/debug')}
+                className="text-white hover:bg-white/10 text-xs h-8 px-2"
+              >
+                🐛
+              </Button>
+            )}
+          </div>
+        </div>
+
+        {/* Banner notification (optional, dismissible) */}
+        {showBanner && (
+          <NotificationBanner
+            type="info"
+            message={t('encryptionInfo') || "Vos conversations sont chiffrées de bout en bout"}
+            onDismiss={() => setShowBanner(false)}
+          />
+        )}
         
-        {/* Debug button (desktop, development only) */}
-        {process.env.NODE_ENV === 'development' && (
+        {/* Thread List */}
+        <div className="flex-1 overflow-hidden">
+          <ThreadList
+            userId={user.uid}
+            selectedThreadId={selectedThreadId}
+            onSelectThread={handleSelectThread}
+            onNewThread={() => setIsNewConversationOpen(true)}
+          />
+        </div>
+      </div>
+
+      {/* Right Panel: Desktop Empty state - WhatsApp style avec pattern */}
+      <div className="hidden md:flex flex-1 flex-col items-center justify-center text-center bg-[#f8f9fa] border-l border-border/10 relative overflow-hidden">
+        {/* Subtle pattern background */}
+        <div className="absolute inset-0 empty-state-pattern" />
+        
+        <div className="relative z-10 max-w-md px-8">
+          <div className="w-48 h-48 mx-auto mb-8 rounded-full bg-gradient-to-br from-[#00A884]/10 to-[#00A884]/5 flex items-center justify-center">
+            <MessageSquare className="h-24 w-24 text-[#00A884]/40" strokeWidth={1.2} />
+          </div>
+          
+          <h2 className="text-3xl font-light text-[#41525d] mb-4">
+            {t('selectThread')}
+          </h2>
+          <p className="text-base text-[#667781] leading-relaxed mb-8">
+            {t('selectThreadDescription')}
+          </p>
+          
+          {/* CTA Button */}
           <Button
-            variant="outline"
-            size="sm"
-            onClick={() => router.push('/dashboard/messages/debug')}
-            className="hidden md:flex absolute top-4 right-4 z-10 gap-2"
+            onClick={() => setIsNewConversationOpen(true)}
+            className="bg-[#00A884] hover:bg-[#00896f] text-white shadow-lg shadow-[#00A884]/20 px-8 py-6 text-base rounded-full transition-all hover:shadow-xl hover:shadow-[#00A884]/30 hover:scale-105"
           >
-            🐛 Debug
+            <MessageSquare className="mr-2 h-5 w-5" />
+            {t('newConversation') || 'Nouvelle conversation'}
           </Button>
-        )}
-        
-        <ThreadList
-          userId={user.uid}
-          selectedThreadId={selectedThreadId}
-          onSelectThread={handleSelectThread}
-        />
+        </div>
       </div>
 
-      {/* Desktop: Empty state pour sélection - WhatsApp style avec pattern */}
-      <div className="hidden md:flex flex-col items-center justify-center h-full text-center absolute inset-y-0 right-0 left-[400px] pointer-events-none whatsapp-bg-pattern">
-        <MessageSquare className="h-20 w-20 text-[#00A884]/30 mb-6" strokeWidth={1.5} />
-        <h2 className="text-2xl font-light text-[#41525d]">{t('selectThread')}</h2>
-        <p className="mt-3 text-sm text-[#667781] max-w-md">{t('selectThreadDescription')}</p>
-      </div>
-
-      {/* FAB: Nouvelle conversation */}
+      {/* FAB: Nouvelle conversation (Mobile) */}
       <NewConversationButton onClick={() => setIsNewConversationOpen(true)} />
 
       {/* Modal: Sélection utilisateur */}

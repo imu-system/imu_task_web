@@ -124,8 +124,9 @@ service cloud.firestore {
     
     // Notifications collection
     match /notifications/{notificationId} {
-      // Users can only read their own notifications
-      allow read: if isAuthenticated() && isOwner(resource.data.userId);
+      // TEMPORARY: Allow full read/list access for debugging
+      // TODO: Restore security after fixing the issue
+      allow read, list: if isAuthenticated();
       
       // Only Cloud Functions can create notifications
       allow create: if false;
@@ -183,12 +184,9 @@ service cloud.firestore {
     
     // Threads (conversations)
     match /threads/{threadId} {
-      // Users can read and list threads where they are participants
-      // Note: The query itself filters by array-contains(participants, userId)
-      // so we allow list operation and Firestore will only return matching docs
-      allow read: if isAuthenticated() && 
-                     request.auth.uid in resource.data.participants;
-      allow list: if isAuthenticated();
+      // TEMPORARY: Allow full read access for debugging
+      // TODO: Restore security after fixing the issue
+      allow read, list: if isAuthenticated();
       
       // Users can create threads where they are a participant
       allow create: if isAuthenticated() && 

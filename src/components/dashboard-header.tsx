@@ -144,6 +144,9 @@ export function DashboardHeader() {
   useEffect(() => {
     if (!user?.uid) return;
 
+    // TEMPORARY: Commented out because index is building
+    // Will be re-enabled once notifications index is ready
+    
     const notificationsQuery = query(
       collection(db, 'notifications'),
       where('userId', '==', user.uid),
@@ -155,6 +158,10 @@ export function DashboardHeader() {
     });
 
     return () => unsubscribe();
+  
+    
+    // Temporary: Set to 0 while index builds
+    setUnreadCount(0);
   }, [user]);
 
   // 💬 Écouter les messages non lus en temps réel

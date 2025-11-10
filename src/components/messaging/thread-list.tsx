@@ -44,7 +44,7 @@ export function ThreadList({
 
   // Récupération des threads avec real-time updates (toujours actifs)
   const {
-    data: threads = [],
+    data: threads = [] as Thread[],
     isLoading,
     error,
     isFetching,
@@ -75,10 +75,18 @@ export function ThreadList({
       threadsCount: threads.length,
       displayedCount: displayedThreads.length,
       isLoading,
-      error: error?.message,
+      isFetching,
+      errorMessage: error instanceof Error ? error.message : undefined,
+      errorCode: (error as any)?.code,
+      errorStack: error instanceof Error ? error.stack : undefined,
       activeFilter,
     });
-  }, [threads.length, displayedThreads.length, isLoading, error, userId, activeFilter]);
+    
+    // Log l'erreur complète si présente
+    if (error) {
+      console.error('❌ ThreadList Error COMPLET:', error);
+    }
+  }, [threads.length, displayedThreads.length, isLoading, error, userId, activeFilter, isFetching]);
 
   // Filtrage selon le filtre actif
   const filteredThreads = useMemo(() => {

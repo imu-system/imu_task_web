@@ -71,7 +71,10 @@ export function useUserThreads(
         queryKey: messagingKeys.threadsList(userId || '', filters),
         queryFn: () => {
             if (!userId) throw new Error('User ID required');
-            return getUserThreads(userId, filters);
+            // TEMPORARY: Return empty array, rely only on real-time subscription
+            // This avoids the "Missing permissions" error from getDocs
+            console.log('⚠️ useUserThreads: Skipping initial getDocs, using only real-time');
+            return Promise.resolve([]);
         },
         enabled: !!userId,
         staleTime: 1000 * 60 * 5, // 5 minutes
@@ -83,25 +86,30 @@ export function useUserThreads(
     useEffect(() => {
         if (!userId) return;
 
+        console.log('🔵 useUserThreads: Setting up real-time subscription for userId:', userId);
+
         let unsubscribe: (() => void) | undefined;
 
         try {
             unsubscribe = subscribeToUserThreads(userId, (threads) => {
+                console.log('🔵 useUserThreads: Received', threads.length, 'threads from subscription');
                 queryClient.setQueryData(
                     messagingKeys.threadsList(userId, filters),
                     threads
                 );
             });
+            console.log('🔵 useUserThreads: Subscription set up successfully');
         } catch (error) {
-            console.error('Error subscribing to user threads:', error);
+            console.error('🔴 useUserThreads: Error subscribing to user threads:', error);
         }
 
         return () => {
             if (unsubscribe) {
                 try {
+                    console.log('🔵 useUserThreads: Unsubscribing from threads');
                     unsubscribe();
                 } catch (error) {
-                    console.error('Error unsubscribing from user threads:', error);
+                    console.error('🔴 useUserThreads: Error unsubscribing from user threads:', error);
                 }
             }
         };

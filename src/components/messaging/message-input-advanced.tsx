@@ -420,6 +420,8 @@ export function MessageInputAdvanced({
             accept="image/*,video/*"
             className="hidden"
             onChange={handleFileSelect}
+            title={t('uploadPhotoOrVideo') || 'Upload photo or video'}
+            aria-label={t('uploadPhotoOrVideo') || 'Upload photo or video'}
           />
           <input
             ref={docInputRef}
@@ -427,6 +429,8 @@ export function MessageInputAdvanced({
             accept=".pdf,.doc,.docx,.xls,.xlsx,.txt"
             className="hidden"
             onChange={handleFileSelect}
+            title={t('uploadDocument') || 'Upload document'}
+            aria-label={t('uploadDocument') || 'Upload document'}
           />
 
           {/* Textarea */}

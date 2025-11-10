@@ -3597,8 +3597,11 @@
     "messaging": {
         "title": "Messages",
         "newThread": "Nouvelle conversation",
+        "newConversation": "Nouvelle conversation",
         "searchPlaceholder": "Rechercher conversations...",
         "selectThread": "Sélectionnez une conversation",
+        "selectThreadDescription": "Choisissez une conversation existante ou démarrez-en une nouvelle pour commencer à échanger",
+        "encryptionInfo": "Vos conversations sont chiffrées de bout en bout pour votre sécurité",
         "tabs": {
             "active": "Actives",
             "archived": "Archivées"

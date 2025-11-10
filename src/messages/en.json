@@ -3538,8 +3538,11 @@
     "messaging": {
         "title": "Messages",
         "newThread": "New conversation",
+        "newConversation": "New conversation",
         "searchPlaceholder": "Search conversations...",
         "selectThread": "Select a conversation",
+        "selectThreadDescription": "Choose an existing conversation or start a new one to begin chatting",
+        "encryptionInfo": "Your conversations are end-to-end encrypted for your security",
         "tabs": {
             "active": "Active",
             "archived": "Archived"
