@@ -3878,1172 +3878,1171 @@
         "declining": "Refus en cours...",
         "declineWarning": "⚠️ Attention",
         "declineWarningMessage": "Si vous refusez cette réservation ou ne confirmez pas dans les 24h, une pénalité de {penalty} sera appliquée."
-    }
-},
-"TaskForms": {
-    "Cleaning": {
-        "title": "Détails du ménage",
-        "subtitle": "Précisez les caractéristiques pour un meilleur matching",
-        "propertyType": {
-            "label": "Type de lieu",
-            "placeholder": "Sélectionner le type de lieu",
-            "description": "Quel type de lieu doit être nettoyé ?",
-            "apartment": "Appartement",
-            "house": "Maison",
-            "office": "Bureau",
-            "other": "Autre"
-        },
-        "propertyTypeOther": {
-            "label": "Précisez le type de lieu",
-            "placeholder": "Ex: Local commercial, Garage..."
-        },
-        "surfaceArea": {
-            "label": "Surface estimée",
-            "placeholder": "Sélectionner la surface",
-            "description": "Estimation de la surface à nettoyer",
-            "under30": "Moins de 30m²",
-            "30to60": "30-60m²",
-            "60to100": "60-100m²",
-            "over100": "Plus de 100m²"
-        },
-        "rooms": {
-            "label": "Nombre de pièces",
-            "description": "Nombre approximatif de chaque type de pièce",
-            "bedrooms": "Chambres",
-            "bathrooms": "Salles de bain",
-            "toilets": "WC"
-        },
-        "serviceType": {
-            "label": "Type de prestation",
-            "placeholder": "Sélectionner le type de prestation",
-            "description": "Quel type de nettoyage est nécessaire ?",
-            "oneTime": "Nettoyage ponctuel",
-            "deepClean": "Grand ménage",
-            "movingClean": "Nettoyage avant/après déménagement",
-            "specific": "Nettoyage spécifique (vitres, four...)"
-        },
-        "specificTasks": {
-            "label": "Tâches spécifiques",
-            "description": "Cochez les tâches particulières à réaliser",
-            "windows": "Nettoyage des vitres",
-            "oven": "Nettoyage du four",
-            "fridge": "Nettoyage du réfrigérateur"
-        },
-        "frequency": {
-            "label": "Fréquence souhaitée",
-            "placeholder": "Sélectionner la fréquence",
-            "description": "À quelle fréquence souhaitez-vous cette prestation ?",
-            "oneTime": "Ponctuel (une fois)",
-            "weekly": "Hebdomadaire",
-            "biweekly": "Bimensuel (toutes les 2 semaines)",
-            "monthly": "Mensuel"
-        },
-        "materialsProvidedBy": {
-            "label": "Matériel et produits",
-            "placeholder": "Qui fournit le matériel ?",
-            "description": "Qui apporte le matériel de nettoyage et les produits ?",
-            "client": "Je fournis le matériel",
-            "provider": "Le prestataire apporte son matériel",
-            "providerPaid": "Le prestataire apporte son matériel (coût additionnel)"
-        },
-        "access": {
-            "label": "Accès au logement",
-            "placeholder": "Sélectionner le type d'accès",
-            "description": "Le logement est-il facile d'accès ?",
-            "easy": "Accès facile (ascenseur, rez-de-chaussée)",
-            "difficult": "Accès difficile (étages sans ascenseur, parking éloigné)"
-        },
-        "accessDetails": {
-            "label": "Détails d'accès (optionnel)",
-            "placeholder": "Ex: Code portail 1234, 3ème étage sans ascenseur, parking visiteur disponible...",
-            "description": "Informations utiles pour faciliter l'accès au lieu"
-        }
     },
-    "Grocery": {
-        "title": "Détails des courses",
-        "subtitle": "Précisez vos besoins pour faciliter la prestation",
-        "storeType": {
-            "label": "Type de magasin",
-            "placeholder": "Sélectionner le type de magasin",
-            "description": "Où les courses doivent-elles être faites ?",
-            "supermarket": "Supermarché / Hypermarché",
-            "local_market": "Marché local",
-            "bio_store": "Magasin bio / Épicerie fine",
-            "other": "Autre"
-        },
-        "storeName": {
-            "label": "Nom du magasin (optionnel)",
-            "placeholder": "Ex: Carrefour City, Monoprix, Biocoop...",
-            "description": "Si vous avez une préférence pour un magasin spécifique"
-        },
-        "shoppingList": {
-            "label": "Liste de courses",
-            "placeholder": "Listez les articles à acheter, un par ligne si possible...",
-            "description": "Détaillez les produits souhaités (marques, quantités, préférences)"
-        },
-        "volumeEstimate": {
-            "label": "Volume estimé",
-            "placeholder": "Sélectionner le volume",
-            "description": "Estimation du volume total des courses",
-            "small": "Petit (1-2 sacs)",
-            "medium": "Moyen (3-5 sacs)",
-            "large": "Grand (6+ sacs ou chariot)"
-        },
-        "specialNeeds": {
-            "label": "Besoins spécifiques",
-            "description": "Cochez si applicable",
-            "fresh": "Produits frais (viande, poisson)",
-            "heavy": "Articles lourds (boissons, conserves)",
-            "frozen": "Produits surgelés"
-        },
-        "paymentMethod": {
-            "label": "Modalité de paiement",
-            "placeholder": "Sélectionner le mode de paiement",
-            "description": "Comment sera réglé l'achat des courses ?",
-            "cash": "Espèces remises au prestataire",
-            "client_card": "Carte bancaire du client (fournie)",
-            "provider_advance": "Avance du prestataire (remboursement immédiat)"
-        }
-    },
-    "DogWalking": {
-        "title": "Détails de promenade",
-        "subtitle": "Informations sur votre chien pour une sortie adaptée",
-        "dogBreed": {
-            "label": "Race du chien",
-            "placeholder": "Ex: Labrador, Bouledogue français, Croisé...",
-            "description": "Précisez la race ou le type de chien"
-        },
-        "dogSize": {
-            "label": "Taille du chien",
-            "placeholder": "Sélectionner la taille",
-            "description": "Quelle est la taille de votre chien ?",
-            "small": "Petit (moins de 10kg)",
-            "medium": "Moyen (10-25kg)",
-            "large": "Grand (plus de 25kg)"
-        },
-        "temperament": {
-            "label": "Tempérament",
-            "description": "Cochez les traits de caractère de votre chien",
-            "sociable": "Sociable avec autres chiens",
-            "reactive": "Réactif/Craintif",
-            "calm": "Calme et posé",
-            "energetic": "Très énergique"
-        },
-        "walksPerDay": {
-            "label": "Nombre de sorties par jour",
-            "description": "Combien de promenades souhaitées par jour ?"
-        },
-        "walkDuration": {
-            "30": "30 minutes",
-            "60": "1 heure",
-            "90": "1h30",
-            "label": "Durée de chaque sortie",
-            "placeholder": "Sélectionner la durée",
-            "description": "Durée souhaitée pour chaque promenade"
-        },
-        "specialNeeds": {
-            "label": "Besoins particuliers",
-            "description": "Cochez si applicable",
-            "medication": "Médicament à administrer pendant la sortie",
-            "feeding": "Nourriture à donner (collation)"
-        },
-        "equipment": {
-            "label": "Équipement requis",
-            "description": "Cochez l'équipement nécessaire",
-            "leash": "Laisse obligatoire",
-            "muzzle": "Muselière obligatoire",
-            "waste_bags": "Sacs à déjections fournis"
-        }
-    },
-    "Handyman": {
-        "title": "Détails du bricolage",
-        "subtitle": "Précisez la nature des travaux à effectuer",
-        "taskType": {
-            "label": "Type de tâche",
-            "placeholder": "Sélectionner le type de tâche",
-            "description": "Quelle est la nature de l'intervention ?",
-            "assemble": "Assemblage de meuble",
-            "hang": "Fixation / Accrochage",
-            "fix": "Réparation",
-            "install": "Installation (tringle, étagère...)",
-            "repair": "Petite réparation",
-            "other": "Autre"
-        },
-        "furnitureDetails": {
-            "title": "Détails du meuble à assembler",
-            "brand": {
-                "label": "Marque du meuble",
-                "placeholder": "Ex: IKEA, Conforama, Maisons du Monde..."
+    "TaskForms": {
+        "Cleaning": {
+            "title": "Détails du ménage",
+            "subtitle": "Précisez les caractéristiques pour un meilleur matching",
+            "propertyType": {
+                "label": "Type de lieu",
+                "placeholder": "Sélectionner le type de lieu",
+                "description": "Quel type de lieu doit être nettoyé ?",
+                "apartment": "Appartement",
+                "house": "Maison",
+                "office": "Bureau",
+                "other": "Autre"
             },
-            "type": {
-                "label": "Type de meuble",
-                "placeholder": "Ex: Armoire, Bureau, Commode, Lit..."
+            "propertyTypeOther": {
+                "label": "Précisez le type de lieu",
+                "placeholder": "Ex: Local commercial, Garage..."
             },
-            "packageCount": {
-                "label": "Nombre de colis",
-                "description": "Combien de colis à assembler ?"
+            "surfaceArea": {
+                "label": "Surface estimée",
+                "placeholder": "Sélectionner la surface",
+                "description": "Estimation de la surface à nettoyer",
+                "under30": "Moins de 30m²",
+                "30to60": "30-60m²",
+                "60to100": "60-100m²",
+                "over100": "Plus de 100m²"
             },
-            "size": {
-                "label": "Taille du meuble",
+            "rooms": {
+                "label": "Nombre de pièces",
+                "description": "Nombre approximatif de chaque type de pièce",
+                "bedrooms": "Chambres",
+                "bathrooms": "Salles de bain",
+                "toilets": "WC"
+            },
+            "serviceType": {
+                "label": "Type de prestation",
+                "placeholder": "Sélectionner le type de prestation",
+                "description": "Quel type de nettoyage est nécessaire ?",
+                "oneTime": "Nettoyage ponctuel",
+                "deepClean": "Grand ménage",
+                "movingClean": "Nettoyage avant/après déménagement",
+                "specific": "Nettoyage spécifique (vitres, four...)"
+            },
+            "specificTasks": {
+                "label": "Tâches spécifiques",
+                "description": "Cochez les tâches particulières à réaliser",
+                "windows": "Nettoyage des vitres",
+                "oven": "Nettoyage du four",
+                "fridge": "Nettoyage du réfrigérateur"
+            },
+            "frequency": {
+                "label": "Fréquence souhaitée",
+                "placeholder": "Sélectionner la fréquence",
+                "description": "À quelle fréquence souhaitez-vous cette prestation ?",
+                "oneTime": "Ponctuel (une fois)",
+                "weekly": "Hebdomadaire",
+                "biweekly": "Bimensuel (toutes les 2 semaines)",
+                "monthly": "Mensuel"
+            },
+            "materialsProvidedBy": {
+                "label": "Matériel et produits",
+                "placeholder": "Qui fournit le matériel ?",
+                "description": "Qui apporte le matériel de nettoyage et les produits ?",
+                "client": "Je fournis le matériel",
+                "provider": "Le prestataire apporte son matériel",
+                "providerPaid": "Le prestataire apporte son matériel (coût additionnel)"
+            },
+            "access": {
+                "label": "Accès au logement",
+                "placeholder": "Sélectionner le type d'accès",
+                "description": "Le logement est-il facile d'accès ?",
+                "easy": "Accès facile (ascenseur, rez-de-chaussée)",
+                "difficult": "Accès difficile (étages sans ascenseur, parking éloigné)"
+            },
+            "accessDetails": {
+                "label": "Détails d'accès (optionnel)",
+                "placeholder": "Ex: Code portail 1234, 3ème étage sans ascenseur, parking visiteur disponible...",
+                "description": "Informations utiles pour faciliter l'accès au lieu"
+            }
+        },
+        "Grocery": {
+            "title": "Détails des courses",
+            "subtitle": "Précisez vos besoins pour faciliter la prestation",
+            "storeType": {
+                "label": "Type de magasin",
+                "placeholder": "Sélectionner le type de magasin",
+                "description": "Où les courses doivent-elles être faites ?",
+                "supermarket": "Supermarché / Hypermarché",
+                "local_market": "Marché local",
+                "bio_store": "Magasin bio / Épicerie fine",
+                "other": "Autre"
+            },
+            "storeName": {
+                "label": "Nom du magasin (optionnel)",
+                "placeholder": "Ex: Carrefour City, Monoprix, Biocoop...",
+                "description": "Si vous avez une préférence pour un magasin spécifique"
+            },
+            "shoppingList": {
+                "label": "Liste de courses",
+                "placeholder": "Listez les articles à acheter, un par ligne si possible...",
+                "description": "Détaillez les produits souhaités (marques, quantités, préférences)"
+            },
+            "volumeEstimate": {
+                "label": "Volume estimé",
+                "placeholder": "Sélectionner le volume",
+                "description": "Estimation du volume total des courses",
+                "small": "Petit (1-2 sacs)",
+                "medium": "Moyen (3-5 sacs)",
+                "large": "Grand (6+ sacs ou chariot)"
+            },
+            "specialNeeds": {
+                "label": "Besoins spécifiques",
+                "description": "Cochez si applicable",
+                "fresh": "Produits frais (viande, poisson)",
+                "heavy": "Articles lourds (boissons, conserves)",
+                "frozen": "Produits surgelés"
+            },
+            "paymentMethod": {
+                "label": "Modalité de paiement",
+                "placeholder": "Sélectionner le mode de paiement",
+                "description": "Comment sera réglé l'achat des courses ?",
+                "cash": "Espèces remises au prestataire",
+                "client_card": "Carte bancaire du client (fournie)",
+                "provider_advance": "Avance du prestataire (remboursement immédiat)"
+            }
+        },
+        "DogWalking": {
+            "title": "Détails de promenade",
+            "subtitle": "Informations sur votre chien pour une sortie adaptée",
+            "dogBreed": {
+                "label": "Race du chien",
+                "placeholder": "Ex: Labrador, Bouledogue français, Croisé...",
+                "description": "Précisez la race ou le type de chien"
+            },
+            "dogSize": {
+                "label": "Taille du chien",
                 "placeholder": "Sélectionner la taille",
-                "small": "Petit (table de chevet, étagère)",
-                "medium": "Moyen (bureau, commode)",
-                "large": "Grand (armoire, bibliothèque)"
+                "description": "Quelle est la taille de votre chien ?",
+                "small": "Petit (moins de 10kg)",
+                "medium": "Moyen (10-25kg)",
+                "large": "Grand (plus de 25kg)"
+            },
+            "temperament": {
+                "label": "Tempérament",
+                "description": "Cochez les traits de caractère de votre chien",
+                "sociable": "Sociable avec autres chiens",
+                "reactive": "Réactif/Craintif",
+                "calm": "Calme et posé",
+                "energetic": "Très énergique"
+            },
+            "walksPerDay": {
+                "label": "Nombre de sorties par jour",
+                "description": "Combien de promenades souhaitées par jour ?"
+            },
+            "walkDuration": {
+                "30": "30 minutes",
+                "60": "1 heure",
+                "90": "1h30",
+                "label": "Durée de chaque sortie",
+                "placeholder": "Sélectionner la durée",
+                "description": "Durée souhaitée pour chaque promenade"
+            },
+            "specialNeeds": {
+                "label": "Besoins particuliers",
+                "description": "Cochez si applicable",
+                "medication": "Médicament à administrer pendant la sortie",
+                "feeding": "Nourriture à donner (collation)"
+            },
+            "equipment": {
+                "label": "Équipement requis",
+                "description": "Cochez l'équipement nécessaire",
+                "leash": "Laisse obligatoire",
+                "muzzle": "Muselière obligatoire",
+                "waste_bags": "Sacs à déjections fournis"
             }
         },
-        "toolsProvidedBy": {
-            "label": "Outils fournis par",
-            "placeholder": "Qui fournit les outils ?",
-            "description": "Qui apporte le matériel nécessaire ?",
-            "client": "J'ai les outils nécessaires",
-            "provider": "Le prestataire apporte ses outils"
-        },
-        "workHeight": {
-            "label": "Hauteur de travail",
-            "placeholder": "Sélectionner la hauteur",
-            "description": "À quelle hauteur se situe le travail ?",
-            "ground": "Au sol / Hauteur normale",
-            "medium": "Mi-hauteur (échelle simple)",
-            "high": "En hauteur (escabeau, échafaudage)"
-        },
-        "wallType": {
-            "label": "Type de mur",
-            "placeholder": "Sélectionner le type de mur",
-            "description": "Quel est le type de mur pour la fixation ?",
-            "plaster": "Plâtre / Placo",
-            "concrete": "Béton / Brique pleine",
-            "wood": "Bois",
-            "unknown": "Je ne sais pas"
-        },
-        "materialDetails": {
-            "label": "Détails matériaux (optionnel)",
-            "placeholder": "Ex: Vis et chevilles fournies, notice d'assemblage incluse, couleur de peinture nécessaire...",
-            "description": "Précisez les matériaux disponibles ou à prévoir"
-        }
-    },
-    "Organization": {
-        "title": "Détails du rangement",
-        "subtitle": "Précisez les zones et objectifs",
-        "areasToOrganize": {
-            "label": "Zones à organiser",
-            "description": "Sélectionnez les espaces concernés",
-            "closet": "Placard / Dressing",
-            "library": "Bibliothèque",
-            "cellar": "Cave / Grenier",
-            "garage": "Garage",
-            "kitchen": "Cuisine",
-            "office": "Bureau",
-            "other": "Autre"
-        },
-        "goal": {
-            "label": "Objectif principal",
-            "placeholder": "Sélectionner l'objectif",
-            "description": "Que souhaitez-vous accomplir ?",
-            "declutter": "Désencombrer",
-            "sort": "Trier",
-            "classify": "Classer / Organiser",
-            "optimize": "Optimiser l'espace"
-        },
-        "volumeEstimate": {
-            "label": "Volume estimé",
-            "placeholder": "Sélectionner le volume",
-            "description": "Estimation du volume à organiser",
-            "small": "Petit (quelques étagères)",
-            "medium": "Moyen (une pièce)",
-            "large": "Grand (plusieurs pièces)"
-        }
-    },
-    "Package": {
-        "title": "Détails du colis",
-        "subtitle": "Informations sur le retrait/dépôt",
-        "serviceType": {
-            "label": "Type de service",
-            "placeholder": "Sélectionner le service",
-            "description": "Que doit faire le prestataire ?",
-            "pickup": "Retrait de colis",
-            "dropoff": "Dépôt de colis",
-            "mail": "Envoi courrier/colis"
-        },
-        "locationName": {
-            "label": "Nom du lieu",
-            "placeholder": "Ex: La Poste Centrale, Mondial Relay, Relais Colis...",
-            "description": "Nom du point de retrait/dépôt"
-        },
-        "locationAddress": {
-            "label": "Adresse du lieu",
-            "placeholder": "Adresse complète...",
-            "description": "Adresse exacte du point de service"
-        },
-        "packageSize": {
-            "label": "Taille du colis",
-            "placeholder": "Sélectionner la taille",
-            "description": "Volume et poids estimés",
-            "small": "Petit (enveloppe, petit colis)",
-            "medium": "Moyen (carton standard)",
-            "large_heavy": "Grand / Lourd (nécessite 2 mains)"
-        },
-        "trackingNumber": {
-            "label": "Numéro de suivi (optionnel)",
-            "placeholder": "Ex: 1Z999AA10123456784",
-            "description": "Si vous avez déjà un numéro de suivi"
-        },
-        "paymentMethod": {
-            "label": "Modalité de paiement",
-            "placeholder": "Sélectionner le mode",
-            "description": "Comment sera payé le service postal ?",
-            "cash": "Espèces remises au prestataire",
-            "provider_advance": "Avance du prestataire (remboursement immédiat)"
-        }
-    },
-    "TechHelp": {
-        "title": "Détails de l'aide informatique",
-        "subtitle": "Précisez votre problème technique",
-        "deviceType": {
-            "label": "Type d'appareil",
-            "placeholder": "Sélectionner l'appareil",
-            "description": "Quel appareil est concerné ?",
-            "smartphone": "Smartphone",
-            "tablet": "Tablette",
-            "laptop": "Ordinateur portable",
-            "desktop": "Ordinateur fixe",
-            "smart_tv": "TV connectée / Box",
-            "internet_box": "Box Internet / Routeur"
-        },
-        "operatingSystem": {
-            "label": "Système d'exploitation",
-            "placeholder": "Sélectionner le système",
-            "description": "Quel système utilise votre appareil ?",
-            "windows": "Windows",
-            "macos": "macOS",
-            "ios": "iOS (iPhone/iPad)",
-            "android": "Android",
-            "linux": "Linux",
-            "other": "Autre / Je ne sais pas"
-        },
-        "issueType": {
-            "label": "Type de problème",
-            "placeholder": "Sélectionner le type",
-            "description": "Quelle est la nature de l'aide ?",
-            "installation": "Installation (logiciel, périphérique)",
-            "training": "Formation / Apprentissage",
-            "troubleshooting": "Dépannage / Réparation",
-            "backup": "Sauvegarde de données",
-            "other": "Autre"
-        },
-        "specificIssue": {
-            "label": "Description du problème",
-            "placeholder": "Ex: Impossible de me connecter à ma boîte mail...",
-            "description": "Décrivez précisément votre besoin"
-        },
-        "remoteAccessPossible": {
-            "label": "Accès à distance possible",
-            "description": "Cochez si vous acceptez une assistance à distance (TeamViewer, AnyDesk...)"
-        }
-    },
-    "AdminHelp": {
-        "title": "Détails de l'aide administrative",
-        "subtitle": "Précisez votre besoin administratif",
-        "taskType": {
-            "label": "Type de tâche",
-            "placeholder": "Sélectionner la tâche",
-            "description": "Quelle est la nature du travail administratif ?",
-            "form_filling": "Remplissage de formulaires",
-            "scanning": "Numérisation de documents",
-            "email": "Gestion d'e-mails",
-            "filing": "Classement / Archivage",
-            "writing": "Rédaction de courriers"
-        },
-        "softwareNeeded": {
-            "label": "Logiciels nécessaires",
-            "description": "Cochez les logiciels requis",
-            "word": "Traitement de texte (Word)",
-            "excel": "Tableur (Excel)",
-            "powerpoint": "Présentation (PowerPoint)",
-            "pdf": "Lecteur / Éditeur PDF"
-        },
-        "confidentialityLevel": {
-            "label": "Niveau de confidentialité",
-            "placeholder": "Sélectionner le niveau",
-            "description": "Sensibilité des documents",
-            "sensitive": "Documents sensibles (médical, bancaire...)",
-            "normal": "Documents standard"
-        },
-        "hasPrinterScanner": {
-            "label": "J'ai une imprimante/scanner à disposition",
-            "description": "Cochez si vous fournissez l'équipement"
-        }
-    },
-    "Moving": {
-        "title": "Détails du déménagement",
-        "subtitle": "Précisez le volume et les conditions",
-        "volumeEstimate": {
-            "label": "Volume estimé",
-            "placeholder": "Sélectionner le volume",
-            "description": "Estimation du volume à déménager",
-            "few_boxes": "Quelques cartons seulement",
-            "studio": "Studio / T1",
-            "t2": "T2 / T3",
-            "cellar": "Cave / Garage"
-        },
-        "peopleRequired": {
-            "label": "Nombre de personnes nécessaires",
-            "description": "Combien d'aides estimez-vous nécessaires ?"
-        },
-        "departure": {
-            "title": "Point de départ",
-            "floor": {
-                "label": "Étage (0 = rez-de-chaussée)",
-                "description": "À quel étage se situe le logement de départ ?"
+        "Handyman": {
+            "title": "Détails du bricolage",
+            "subtitle": "Précisez la nature des travaux à effectuer",
+            "taskType": {
+                "label": "Type de tâche",
+                "placeholder": "Sélectionner le type de tâche",
+                "description": "Quelle est la nature de l'intervention ?",
+                "assemble": "Assemblage de meuble",
+                "hang": "Fixation / Accrochage",
+                "fix": "Réparation",
+                "install": "Installation (tringle, étagère...)",
+                "repair": "Petite réparation",
+                "other": "Autre"
             },
-            "hasElevator": "Ascenseur disponible"
-        },
-        "arrival": {
-            "title": "Point d'arrivée",
-            "floor": {
-                "label": "Étage (0 = rez-de-chaussée)",
-                "description": "À quel étage se situe le logement d'arrivée ?"
-            },
-            "hasElevator": "Ascenseur disponible"
-        },
-        "vehicleNeeded": {
-            "label": "Véhicule nécessaire",
-            "placeholder": "Sélectionner l'option",
-            "description": "Besoin d'un véhicule pour le transport ?",
-            "client_has": "J'ai déjà un véhicule",
-            "short_distance": "Courte distance (à pied/escalier uniquement)",
-            "provider_needed": "Le prestataire doit avoir un véhicule"
-        }
-    },
-    "Handling": {
-        "title": "Détails de la manutention",
-        "subtitle": "Précisez les objets à déplacer",
-        "taskType": {
-            "label": "Type de tâche",
-            "placeholder": "Sélectionner le type",
-            "description": "Quelle est la nature de la manutention ?",
-            "move_furniture": "Déplacer un meuble",
-            "to_cellar": "Descendre à la cave/monter au grenier",
-            "carry_groceries": "Porter des courses"
-        },
-        "itemsDescription": {
-            "label": "Description des objets",
-            "placeholder": "Ex: Canapé 3 places + table basse en verre, environ 50kg au total...",
-            "description": "Décrivez les objets à déplacer (poids, fragilité...)"
-        },
-        "floorsCount": {
-            "label": "Nombre d'étages",
-            "description": "Combien d'étages à monter/descendre ?"
-        },
-        "hasElevator": {
-            "label": "Ascenseur disponible",
-            "description": "Cochez si un ascenseur est accessible"
-        }
-    },
-    "Accompaniment": {
-        "title": "Détails de l'accompagnement",
-        "subtitle": "Précisez le type de déplacement",
-        "accompanimentType": {
-            "label": "Type d'accompagnement",
-            "placeholder": "Sélectionner le type",
-            "description": "Quelle est la nature de l'accompagnement ?",
-            "medical": "Rendez-vous médical",
-            "walk": "Promenade",
-            "shopping": "Courses",
-            "social": "Visite sociale / Amis",
-            "visit": "Démarche administrative"
-        },
-        "fromAddress": {
-            "label": "Adresse de départ",
-            "placeholder": "Ex: 12 rue de la Paix, Paris...",
-            "description": "D'où part le trajet ?"
-        },
-        "toAddress": {
-            "label": "Adresse d'arrivée",
-            "placeholder": "Ex: Hôpital Saint-Louis, 1 avenue Claude Vellefaux...",
-            "description": "Où se rendre ?"
-        },
-        "duration": {
-            "label": "Durée estimée (minutes)",
-            "description": "Durée totale estimée (trajet + attente éventuelle)"
-        },
-        "specialNeeds": {
-            "label": "Besoins spécifiques",
-            "description": "Cochez si applicable",
-            "reduced_mobility": "Mobilité réduite",
-            "wheelchair": "Fauteuil roulant",
-            "hearing": "Déficience auditive",
-            "visual": "Déficience visuelle"
-        },
-        "transportMode": {
-            "label": "Mode de transport",
-            "placeholder": "Sélectionner le mode",
-            "description": "Comment se déplacer ?",
-            "walk": "À pied",
-            "public_transport": "Transports en commun",
-            "provider_car": "Véhicule du prestataire",
-            "taxi": "Taxi / VTC"
-        }
-    },
-    "Companionship": {
-        "title": "Détails de la compagnie",
-        "subtitle": "Précisez l'activité souhaitée",
-        "activityType": {
-            "label": "Type d'activité",
-            "placeholder": "Sélectionner l'activité",
-            "description": "Que souhaitez-vous partager ?",
-            "conversation": "Conversation",
-            "reading": "Lecture",
-            "games": "Jeux de société / Cartes",
-            "cultural": "Activité culturelle (cinéma, musée...)",
-            "walk": "Promenade"
-        },
-        "duration": {
-            "label": "Durée souhaitée (minutes)",
-            "description": "Combien de temps pour cette visite ?"
-        },
-        "clientInterests": {
-            "label": "Centres d'intérêt",
-            "placeholder": "Ex: Passionné de jardinage, aime la lecture policière, fan de musique classique...",
-            "description": "Partagez vos centres d'intérêt pour faciliter l'échange"
-        }
-    },
-    "Gardening": {
-        "title": "Détails du jardinage",
-        "subtitle": "Précisez le type d'intervention",
-        "placeType": {
-            "label": "Type de lieu",
-            "placeholder": "Sélectionner le type",
-            "description": "Quel espace est concerné ?",
-            "garden": "Jardin",
-            "balcony": "Balcon / Terrasse",
-            "courtyard": "Cour",
-            "driveway": "Allée / Entrée"
-        },
-        "surfaceArea": {
-            "label": "Surface estimée",
-            "placeholder": "Sélectionner la surface",
-            "description": "Taille approximative de la zone",
-            "under_50": "Moins de 50m²",
-            "50_150": "50-150m²",
-            "over_150": "Plus de 150m²"
-        },
-        "serviceType": {
-            "label": "Type de prestation",
-            "description": "Cochez les tâches à effectuer",
-            "mowing": "Tonte de pelouse",
-            "leaf_raking": "Ramassage de feuilles",
-            "weeding": "Désherbage",
-            "watering": "Arrosage",
-            "planting": "Plantation",
-            "terrace_cleaning": "Nettoyage de terrasse",
-            "hedge_trimming": "Taille de haies"
-        },
-        "toolsProvidedBy": {
-            "label": "Outils fournis par",
-            "placeholder": "Qui fournit les outils ?",
-            "description": "Qui apporte le matériel de jardinage ?",
-            "client": "J'ai le matériel nécessaire",
-            "provider": "Le prestataire apporte ses outils"
-        },
-        "wasteDisposal": {
-            "label": "Évacuation des déchets verts",
-            "placeholder": "Sélectionner le mode",
-            "description": "Comment gérer les déchets végétaux ?",
-            "green_bin": "Bac vert disponible",
-            "compost": "Compostage sur place",
-            "provider_removes": "Le prestataire évacue les déchets"
-        }
-    },
-    "PetSitting": {
-        "title": "Détails de la garde",
-        "subtitle": "Informations sur vos animaux",
-        "petType": {
-            "label": "Type d'animal",
-            "placeholder": "Ex: Chat, Chien, Lapin, Oiseaux...",
-            "description": "Quel type d'animal à garder ?"
-        },
-        "petCount": {
-            "label": "Nombre d'animaux",
-            "description": "Combien d'animaux à garder ?"
-        },
-        "absence": {
-            "title": "Dates d'absence",
-            "startDate": "Date de début",
-            "endDate": "Date de fin"
-        },
-        "visitsPerDay": {
-            "label": "Visites par jour",
-            "description": "Combien de passages quotidiens nécessaires ?"
-        },
-        "tasks": {
-            "label": "Tâches à effectuer",
-            "description": "Cochez les services requis",
-            "feeding": "Nourriture",
-            "litter": "Litière (chats)",
-            "play": "Jouer / Câlins",
-            "medication": "Médicaments à administrer",
-            "water_plants": "Arrosage des plantes"
-        }
-    },
-    "EventHelp": {
-        "title": "Détails de l'événement",
-        "subtitle": "Précisez le type d'aide nécessaire",
-        "eventType": {
-            "label": "Type d'événement",
-            "placeholder": "Sélectionner le type",
-            "description": "Quelle est la nature de l'événement ?",
-            "birthday": "Anniversaire",
-            "family_reception": "Réception familiale",
-            "association": "Événement associatif",
-            "small_business": "Petite entreprise / Startup"
-        },
-        "guestCount": {
-            "label": "Nombre d'invités",
-            "description": "Combien de personnes attendues ?"
-        },
-        "serviceType": {
-            "label": "Type de service",
-            "description": "Cochez les tâches nécessaires",
-            "setup": "Installation / Préparation",
-            "cleanup": "Nettoyage / Rangement",
-            "serving": "Service à table",
-            "greeting": "Accueil des invités",
-            "preparation": "Aide en cuisine"
-        },
-        "duration": {
-            "label": "Durée estimée (heures)",
-            "description": "Combien d'heures d'aide nécessaires ?"
-        },
-        "heavyEquipment": {
-            "label": "Équipement lourd (optionnel)",
-            "placeholder": "Ex: Tables et chaises pour 50 personnes, barnums 3x3m...",
-            "description": "Précisez si manipulation d'équipements volumineux"
-        }
-    }
-},
-"Offers": {
-    "submitOffer": "Soumettre une offre",
-    "submitOfferTitle": "Faire une proposition",
-    "submitOfferDescription": "Proposez vos services pour cette tâche",
-    "offerForTask": "Offre pour la tâche",
-    "proposedPrice": "Prix proposé",
-    "budgetIndicated": "Budget indiqué",
-    "message": "Votre message",
-    "messagePlaceholder": "Expliquez pourquoi vous êtes le meilleur choix pour cette tâche...",
-    "messageHint": "Présentez votre expérience, disponibilité et approche",
-    "estimatedDuration": "Durée estimée",
-    "optional": "optionnel",
-    "hours": "heures",
-    "cancel": "Annuler",
-    "submit": "Envoyer l'offre",
-    "submitting": "Envoi en cours...",
-    "offerSubmitted": "✓ Offre envoyée avec succès !",
-    "viewMyOffers": "Voir mes offres",
-    "offerAcceptedTitle": "Offre acceptée",
-    "offerAcceptedDescription": "Vous avez accepté l'offre. Les autres offres ont été automatiquement rejetées.",
-    "offerRejectedTitle": "Offre rejetée",
-    "offerRejectedDescription": "L'offre a été rejetée avec succès.",
-    "offerAcceptError": "Impossible d'accepter l'offre",
-    "offerRejectError": "Impossible de rejeter l'offre",
-    "offersReceivedTitle": "Offres reçues",
-    "taskTitle": "Tâche",
-    "pendingOffers": "Offres en attente",
-    "acceptedOffers": "Offres acceptées",
-    "lowestOffer": "Offre la plus basse",
-    "sortRecent": "Plus récentes",
-    "sortPriceLow": "Prix croissant",
-    "sortPriceHigh": "Prix décroissant",
-    "sortRating": "Mieux notés",
-    "acceptedOffersSection": "✓ Offres acceptées",
-    "pendingOffersSection": "Offres en attente",
-    "showRejected": "Afficher les offres rejetées",
-    "noOffersYet": "Aucune offre pour le moment",
-    "noOffersHint": "Les prestataires intéressés pourront soumettre leurs propositions bientôt.",
-    "statusPending": "En attente",
-    "statusAccepted": "Acceptée",
-    "statusRejected": "Rejetée",
-    "statusWithdrawn": "Retirée",
-    "reviews": "avis",
-    "providerMessage": "Message du prestataire",
-    "availableFrom": "Disponible du",
-    "to": "au",
-    "acceptOffer": "Accepter",
-    "rejectOffer": "Refuser",
-    "contactProvider": "Contacter",
-    "offerAcceptedMessage": "✓ Cette offre a été acceptée. Une réservation a été créée automatiquement.",
-    "rejectionReason": "Raison du refus",
-    "goBack": "Retour"
-},
-"Availability": {
-    "calendar": {
-        "title": "Calendrier de disponibilités",
-        "loading": "Chargement...",
-        "previousMonth": "Mois précédent",
-        "nextMonth": "Mois suivant",
-        "add": "Ajouter disponibilité",
-        "edit": "Modifier disponibilité",
-        "blocked": "Bloqué",
-        "slots": "créneaux",
-        "availableSlots": "Créneaux disponibles",
-        "days": {
-            "sun": "Dim",
-            "mon": "Lun",
-            "tue": "Mar",
-            "wed": "Mer",
-            "thu": "Jeu",
-            "fri": "Ven",
-            "sat": "Sam"
-        },
-        "legend": {
-            "today": "Aujourd'hui",
-            "available": "Disponible",
-            "hasSlots": "Avec créneaux",
-            "blocked": "Bloqué",
-            "unavailable": "Indisponible"
-        }
-    },
-    "recurringSchedule": {
-        "title": "Horaires récurrents",
-        "description": "Définissez vos horaires de disponibilité par défaut pour chaque jour de la semaine",
-        "addDay": "Ajouter un jour",
-        "addSlot": "Ajouter un créneau",
-        "removeSlot": "Retirer le créneau",
-        "monday": "Lundi",
-        "tuesday": "Mardi",
-        "wednesday": "Mercredi",
-        "thursday": "Jeudi",
-        "friday": "Vendredi",
-        "saturday": "Samedi",
-        "sunday": "Dimanche",
-        "from": "De",
-        "to": "À",
-        "save": "Enregistrer",
-        "cancel": "Annuler",
-        "successMessage": "Horaires enregistrés avec succès",
-        "errorMessage": "Erreur lors de l'enregistrement"
-    },
-    "blockedPeriods": {
-        "title": "Périodes bloquées",
-        "description": "Gérez vos indisponibilités (vacances, congés, etc.)",
-        "addPeriod": "Ajouter une période",
-        "editPeriod": "Modifier la période",
-        "deletePeriod": "Supprimer",
-        "startDate": "Date de début",
-        "endDate": "Date de fin",
-        "reason": "Raison",
-        "type": "Type",
-        "types": {
-            "vacation": "Vacances",
-            "sick": "Maladie",
-            "personal": "Personnel",
-            "other": "Autre"
-        },
-        "noPeriods": "Aucune période bloquée",
-        "save": "Enregistrer",
-        "cancel": "Annuler",
-        "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette période ?",
-        "successAdd": "Période bloquée ajoutée",
-        "successUpdate": "Période bloquée mise à jour",
-        "successDelete": "Période bloquée supprimée",
-        "errorAdd": "Erreur lors de l'ajout",
-        "errorUpdate": "Erreur lors de la mise à jour",
-        "errorDelete": "Erreur lors de la suppression"
-    },
-    "specificDate": {
-        "title": "Disponibilité spécifique",
-        "description": "Définissez une disponibilité pour une date précise (remplace les horaires récurrents)",
-        "date": "Date",
-        "addSlot": "Ajouter un créneau",
-        "removeSlot": "Retirer",
-        "from": "De",
-        "to": "À",
-        "reason": "Raison (optionnel)",
-        "save": "Enregistrer",
-        "cancel": "Annuler",
-        "successMessage": "Disponibilité spécifique enregistrée",
-        "errorMessage": "Erreur lors de l'enregistrement"
-    },
-    "settings": {
-        "title": "Paramètres de disponibilité",
-        "timezone": "Fuseau horaire",
-        "minAdvanceHours": "Réservation minimum à l'avance (heures)",
-        "maxAdvanceDays": "Réservation maximum à l'avance (jours)",
-        "minDuration": "Durée minimum d'une réservation (minutes)",
-        "maxDuration": "Durée maximum d'une réservation (heures)",
-        "buffer": "Temps de battement entre réservations (minutes)",
-        "autoAccept": "Acceptation automatique des réservations",
-        "save": "Enregistrer",
-        "successMessage": "Paramètres enregistrés",
-        "errorMessage": "Erreur lors de l'enregistrement"
-    }
-},
-"Reviews": {
-    "form": {
-        "rating": {
-            "label": "Note générale",
-            "description": "Comment évaluez-vous votre expérience ?"
-        },
-        "detailedRatings": {
-            "title": "Évaluations détaillées (Optionnel)",
-            "description": "Aidez-nous à mieux comprendre votre expérience",
-            "communication": "Communication",
-            "quality": "Qualité du travail",
-            "professionalism": "Professionnalisme",
-            "timeliness": "Ponctualité",
-            "valueForMoney": "Rapport qualité-prix"
-        },
-        "comment": {
-            "label": "Votre avis",
-            "placeholder": "Partagez votre expérience en détail...",
-            "description": "Minimum 20 caractères"
-        },
-        "photos": {
-            "label": "Photos (optionnel)",
-            "description": "Ajoutez des photos pour illustrer votre expérience (max 5 photos, 2Mo chacune)"
-        },
-        "submit": "Soumettre l'avis",
-        "cancel": "Annuler",
-        "success": {
-            "title": "Avis soumis",
-            "description": "Merci pour votre retour !"
-        },
-        "error": {
-            "title": "Erreur",
-            "description": "Échec de la soumission de l'avis. Veuillez réessayer."
-        }
-    },
-    "card": {
-        "verified": "Vérifié",
-        "helpful": "Utile",
-        "helpfulCount": "{count} personnes ont trouvé cela utile",
-        "report": "Signaler",
-        "respond": "Répondre",
-        "response": "Réponse du prestataire",
-        "respondedOn": "A répondu le {date}",
-        "noComment": "Aucun commentaire fourni"
-    },
-    "stats": {
-        "title": "Aperçu des évaluations",
-        "averageRating": "Note moyenne",
-        "totalReviews": "{count} avis",
-        "distribution": "Distribution des notes",
-        "basedOn": "Basé sur {count} avis"
-    },
-    "filters": {
-        "all": "Tous les avis",
-        "verified": "Vérifiés uniquement",
-        "withPhotos": "Avec photos",
-        "withResponse": "Avec réponse",
-        "sortBy": "Trier par",
-        "recent": "Plus récents",
-        "highest": "Meilleure note",
-        "lowest": "Moins bonne note",
-        "helpful": "Plus utiles"
-    },
-    "badges": {
-        "top_rated": "Très bien noté",
-        "excellent_service": "Service excellent",
-        "responsive": "Réactif",
-        "verified_pro": "Pro vérifié",
-        "rising_star": "Étoile montante",
-        "reliable": "Fiable",
-        "great_communicator": "Excellent communicant",
-        "punctual": "Ponctuel",
-        "value_champion": "Champion du rapport qualité-prix"
-    },
-    "empty": {
-        "title": "Aucun avis pour le moment",
-        "description": "Soyez le premier à laisser un avis !"
-    },
-    "respond": {
-        "trigger": "Répondre",
-        "title": "Répondre à l'avis",
-        "description": "Votre réponse sera publique et visible par tous.",
-        "descriptionWithName": "Répondre à l'avis de {name}. Votre réponse sera publique.",
-        "responseLabel": "Votre réponse",
-        "responsePlaceholder": "Merci pour votre retour...",
-        "responseDescription": "Minimum 10 caractères",
-        "preview": "Aperçu",
-        "submit": "Publier la réponse",
-        "cancel": "Annuler",
-        "success": {
-            "title": "Réponse publiée",
-            "description": "Votre réponse a été publiée avec succès."
-        },
-        "error": {
-            "title": "Erreur",
-            "description": "Échec de la publication de la réponse. Veuillez réessayer."
-        }
-    },
-    "report": {
-        "trigger": "Signaler",
-        "title": "Signaler cet avis",
-        "description": "Aidez-nous à maintenir la qualité de notre communauté.",
-        "descriptionWithName": "Signaler l'avis de {name}",
-        "reasonLabel": "Raison du signalement",
-        "reasonPlaceholder": "Sélectionnez une raison",
-        "reasonDescription": "Pourquoi signalez-vous cet avis ?",
-        "detailsLabel": "Détails",
-        "detailsPlaceholder": "Veuillez fournir plus d'informations...",
-        "detailsDescription": "Minimum 10 caractères, maximum 500 caractères",
-        "reasons": {
-            "spam": "Spam ou publicité",
-            "inappropriate": "Contenu inapproprié",
-            "offensive": "Langage offensant",
-            "fake": "Faux avis",
-            "irrelevant": "Non pertinent",
-            "other": "Autre"
-        },
-        "warning": {
-            "title": "Attention",
-            "description": "Les faux signalements peuvent entraîner la suspension de votre compte."
-        },
-        "cancel": "Annuler",
-        "submit": "Signaler",
-        "success": {
-            "title": "Avis signalé",
-            "description": "Notre équipe examinera votre signalement dans les plus brefs délais."
-        },
-        "error": {
-            "title": "Erreur",
-            "description": "Échec du signalement. Veuillez réessayer."
-        }
-    },
-    "photoUpload": {
-        "addPhotos": "Ajouter des photos ({current}/{max})",
-        "uploading": "Téléversement...",
-        "removePhoto": "Supprimer la photo",
-        "description": "JPEG, PNG ou WebP. Max {maxSize}Mo par photo.",
-        "emptyState": "Aucune photo pour le moment. Ajoutez des photos pour illustrer votre avis.",
-        "success": "{count} photo(s) ajoutée(s) avec succès",
-        "errors": {
-            "tooManyPhotos": "Maximum {max} photos autorisées",
-            "invalidFileType": "\"{name}\" n'est pas un fichier image valide",
-            "compressionFailed": "Échec de la compression de \"{name}\"",
-            "uploadFailed": "Échec du téléversement de la photo"
-        }
-    }
-},
-"Admin": {
-    "moderation": {
-        "loading": "Chargement...",
-        "page": {
-            "title": "Modération des Avis",
-            "description": "Gérez les avis signalés et maintenez les standards de la communauté"
-        },
-        "stats": {
-            "totalReports": "Total Signalements",
-            "pending": "En attente",
-            "approved": "Approuvés",
-            "removed": "Supprimés",
-            "dismissed": "Rejetés"
-        },
-        "status": {
-            "pending": "En attente",
-            "approved": "Approuvé",
-            "removed": "Supprimé",
-            "dismissed": "Rejeté"
-        },
-        "queue": {
-            "title": "Avis Signalés",
-            "description": "Avis qui ont été signalés par les utilisateurs",
-            "filter": "Filtrer par statut",
-            "reviewedUser": "Utilisateur évalué",
-            "rating": "Note",
-            "reports": "{count} signalement(s)",
-            "review": "Examiner",
-            "noComment": "Aucun commentaire fourni",
-            "empty": {
-                "title": "Aucun avis à modérer",
-                "description": "Tous les avis signalés ont été examinés"
-            }
-        },
-        "filters": {
-            "all": "Tous",
-            "pending": "En attente",
-            "approved": "Approuvés",
-            "removed": "Supprimés",
-            "dismissed": "Rejetés"
-        },
-        "form": {
-            "title": "Détails de l'avis",
-            "description": "Examinez le contenu signalé et prenez une décision",
-            "reportCount": "{count} signalement(s)",
-            "reviewedUser": "Utilisateur évalué",
-            "comment": "Commentaire de l'avis",
-            "noComment": "Aucun commentaire fourni",
-            "photos": "Photos jointes",
-            "adminNote": {
-                "label": "Note admin (optionnelle pour approuver/rejeter, requise pour supprimer)",
-                "placeholder": "Ajoutez une note expliquant votre décision...",
-                "description": "Cette note sera sauvegardée avec l'action de modération"
-            },
-            "approve": "Approuver",
-            "remove": "Supprimer",
-            "dismiss": "Rejeter le signalement",
-            "cancel": "Annuler",
-            "approveDialog": {
-                "title": "Approuver cet avis ?",
-                "description": "L'avis sera marqué comme légitime et le signalement sera effacé.",
-                "cancel": "Annuler",
-                "confirm": "Approuver l'avis"
-            },
-            "removeDialog": {
-                "title": "Supprimer cet avis ?",
-                "description": "L'avis sera caché de la vue publique. Cette action ne peut pas être annulée. Veuillez fournir une raison.",
-                "cancel": "Annuler",
-                "confirm": "Supprimer l'avis"
-            },
-            "dismissDialog": {
-                "title": "Rejeter ce signalement ?",
-                "description": "Le signalement sera marqué comme non fondé et effacé.",
-                "cancel": "Annuler",
-                "confirm": "Rejeter le signalement"
-            },
-            "selectReview": {
-                "title": "Sélectionnez un avis à modérer",
-                "description": "Cliquez sur un avis de la file pour voir les détails et prendre une action"
-            },
-            "success": {
-                "approve": {
-                    "title": "Avis approuvé",
-                    "description": "L'avis a été approuvé et le signalement effacé"
+            "furnitureDetails": {
+                "title": "Détails du meuble à assembler",
+                "brand": {
+                    "label": "Marque du meuble",
+                    "placeholder": "Ex: IKEA, Conforama, Maisons du Monde..."
                 },
-                "remove": {
-                    "title": "Avis supprimé",
-                    "description": "L'avis a été supprimé de la vue publique"
+                "type": {
+                    "label": "Type de meuble",
+                    "placeholder": "Ex: Armoire, Bureau, Commode, Lit..."
                 },
-                "dismiss": {
-                    "title": "Signalement rejeté",
-                    "description": "Le signalement a été rejeté et effacé"
+                "packageCount": {
+                    "label": "Nombre de colis",
+                    "description": "Combien de colis à assembler ?"
+                },
+                "size": {
+                    "label": "Taille du meuble",
+                    "placeholder": "Sélectionner la taille",
+                    "small": "Petit (table de chevet, étagère)",
+                    "medium": "Moyen (bureau, commode)",
+                    "large": "Grand (armoire, bibliothèque)"
                 }
+            },
+            "toolsProvidedBy": {
+                "label": "Outils fournis par",
+                "placeholder": "Qui fournit les outils ?",
+                "description": "Qui apporte le matériel nécessaire ?",
+                "client": "J'ai les outils nécessaires",
+                "provider": "Le prestataire apporte ses outils"
+            },
+            "workHeight": {
+                "label": "Hauteur de travail",
+                "placeholder": "Sélectionner la hauteur",
+                "description": "À quelle hauteur se situe le travail ?",
+                "ground": "Au sol / Hauteur normale",
+                "medium": "Mi-hauteur (échelle simple)",
+                "high": "En hauteur (escabeau, échafaudage)"
+            },
+            "wallType": {
+                "label": "Type de mur",
+                "placeholder": "Sélectionner le type de mur",
+                "description": "Quel est le type de mur pour la fixation ?",
+                "plaster": "Plâtre / Placo",
+                "concrete": "Béton / Brique pleine",
+                "wood": "Bois",
+                "unknown": "Je ne sais pas"
+            },
+            "materialDetails": {
+                "label": "Détails matériaux (optionnel)",
+                "placeholder": "Ex: Vis et chevilles fournies, notice d'assemblage incluse, couleur de peinture nécessaire...",
+                "description": "Précisez les matériaux disponibles ou à prévoir"
+            }
+        },
+        "Organization": {
+            "title": "Détails du rangement",
+            "subtitle": "Précisez les zones et objectifs",
+            "areasToOrganize": {
+                "label": "Zones à organiser",
+                "description": "Sélectionnez les espaces concernés",
+                "closet": "Placard / Dressing",
+                "library": "Bibliothèque",
+                "cellar": "Cave / Grenier",
+                "garage": "Garage",
+                "kitchen": "Cuisine",
+                "office": "Bureau",
+                "other": "Autre"
+            },
+            "goal": {
+                "label": "Objectif principal",
+                "placeholder": "Sélectionner l'objectif",
+                "description": "Que souhaitez-vous accomplir ?",
+                "declutter": "Désencombrer",
+                "sort": "Trier",
+                "classify": "Classer / Organiser",
+                "optimize": "Optimiser l'espace"
+            },
+            "volumeEstimate": {
+                "label": "Volume estimé",
+                "placeholder": "Sélectionner le volume",
+                "description": "Estimation du volume à organiser",
+                "small": "Petit (quelques étagères)",
+                "medium": "Moyen (une pièce)",
+                "large": "Grand (plusieurs pièces)"
+            }
+        },
+        "Package": {
+            "title": "Détails du colis",
+            "subtitle": "Informations sur le retrait/dépôt",
+            "serviceType": {
+                "label": "Type de service",
+                "placeholder": "Sélectionner le service",
+                "description": "Que doit faire le prestataire ?",
+                "pickup": "Retrait de colis",
+                "dropoff": "Dépôt de colis",
+                "mail": "Envoi courrier/colis"
+            },
+            "locationName": {
+                "label": "Nom du lieu",
+                "placeholder": "Ex: La Poste Centrale, Mondial Relay, Relais Colis...",
+                "description": "Nom du point de retrait/dépôt"
+            },
+            "locationAddress": {
+                "label": "Adresse du lieu",
+                "placeholder": "Adresse complète...",
+                "description": "Adresse exacte du point de service"
+            },
+            "packageSize": {
+                "label": "Taille du colis",
+                "placeholder": "Sélectionner la taille",
+                "description": "Volume et poids estimés",
+                "small": "Petit (enveloppe, petit colis)",
+                "medium": "Moyen (carton standard)",
+                "large_heavy": "Grand / Lourd (nécessite 2 mains)"
+            },
+            "trackingNumber": {
+                "label": "Numéro de suivi (optionnel)",
+                "placeholder": "Ex: 1Z999AA10123456784",
+                "description": "Si vous avez déjà un numéro de suivi"
+            },
+            "paymentMethod": {
+                "label": "Modalité de paiement",
+                "placeholder": "Sélectionner le mode",
+                "description": "Comment sera payé le service postal ?",
+                "cash": "Espèces remises au prestataire",
+                "provider_advance": "Avance du prestataire (remboursement immédiat)"
+            }
+        },
+        "TechHelp": {
+            "title": "Détails de l'aide informatique",
+            "subtitle": "Précisez votre problème technique",
+            "deviceType": {
+                "label": "Type d'appareil",
+                "placeholder": "Sélectionner l'appareil",
+                "description": "Quel appareil est concerné ?",
+                "smartphone": "Smartphone",
+                "tablet": "Tablette",
+                "laptop": "Ordinateur portable",
+                "desktop": "Ordinateur fixe",
+                "smart_tv": "TV connectée / Box",
+                "internet_box": "Box Internet / Routeur"
+            },
+            "operatingSystem": {
+                "label": "Système d'exploitation",
+                "placeholder": "Sélectionner le système",
+                "description": "Quel système utilise votre appareil ?",
+                "windows": "Windows",
+                "macos": "macOS",
+                "ios": "iOS (iPhone/iPad)",
+                "android": "Android",
+                "linux": "Linux",
+                "other": "Autre / Je ne sais pas"
+            },
+            "issueType": {
+                "label": "Type de problème",
+                "placeholder": "Sélectionner le type",
+                "description": "Quelle est la nature de l'aide ?",
+                "installation": "Installation (logiciel, périphérique)",
+                "training": "Formation / Apprentissage",
+                "troubleshooting": "Dépannage / Réparation",
+                "backup": "Sauvegarde de données",
+                "other": "Autre"
+            },
+            "specificIssue": {
+                "label": "Description du problème",
+                "placeholder": "Ex: Impossible de me connecter à ma boîte mail...",
+                "description": "Décrivez précisément votre besoin"
+            },
+            "remoteAccessPossible": {
+                "label": "Accès à distance possible",
+                "description": "Cochez si vous acceptez une assistance à distance (TeamViewer, AnyDesk...)"
+            }
+        },
+        "AdminHelp": {
+            "title": "Détails de l'aide administrative",
+            "subtitle": "Précisez votre besoin administratif",
+            "taskType": {
+                "label": "Type de tâche",
+                "placeholder": "Sélectionner la tâche",
+                "description": "Quelle est la nature du travail administratif ?",
+                "form_filling": "Remplissage de formulaires",
+                "scanning": "Numérisation de documents",
+                "email": "Gestion d'e-mails",
+                "filing": "Classement / Archivage",
+                "writing": "Rédaction de courriers"
+            },
+            "softwareNeeded": {
+                "label": "Logiciels nécessaires",
+                "description": "Cochez les logiciels requis",
+                "word": "Traitement de texte (Word)",
+                "excel": "Tableur (Excel)",
+                "powerpoint": "Présentation (PowerPoint)",
+                "pdf": "Lecteur / Éditeur PDF"
+            },
+            "confidentialityLevel": {
+                "label": "Niveau de confidentialité",
+                "placeholder": "Sélectionner le niveau",
+                "description": "Sensibilité des documents",
+                "sensitive": "Documents sensibles (médical, bancaire...)",
+                "normal": "Documents standard"
+            },
+            "hasPrinterScanner": {
+                "label": "J'ai une imprimante/scanner à disposition",
+                "description": "Cochez si vous fournissez l'équipement"
+            }
+        },
+        "Moving": {
+            "title": "Détails du déménagement",
+            "subtitle": "Précisez le volume et les conditions",
+            "volumeEstimate": {
+                "label": "Volume estimé",
+                "placeholder": "Sélectionner le volume",
+                "description": "Estimation du volume à déménager",
+                "few_boxes": "Quelques cartons seulement",
+                "studio": "Studio / T1",
+                "t2": "T2 / T3",
+                "cellar": "Cave / Garage"
+            },
+            "peopleRequired": {
+                "label": "Nombre de personnes nécessaires",
+                "description": "Combien d'aides estimez-vous nécessaires ?"
+            },
+            "departure": {
+                "title": "Point de départ",
+                "floor": {
+                    "label": "Étage (0 = rez-de-chaussée)",
+                    "description": "À quel étage se situe le logement de départ ?"
+                },
+                "hasElevator": "Ascenseur disponible"
+            },
+            "arrival": {
+                "title": "Point d'arrivée",
+                "floor": {
+                    "label": "Étage (0 = rez-de-chaussée)",
+                    "description": "À quel étage se situe le logement d'arrivée ?"
+                },
+                "hasElevator": "Ascenseur disponible"
+            },
+            "vehicleNeeded": {
+                "label": "Véhicule nécessaire",
+                "placeholder": "Sélectionner l'option",
+                "description": "Besoin d'un véhicule pour le transport ?",
+                "client_has": "J'ai déjà un véhicule",
+                "short_distance": "Courte distance (à pied/escalier uniquement)",
+                "provider_needed": "Le prestataire doit avoir un véhicule"
+            }
+        },
+        "Handling": {
+            "title": "Détails de la manutention",
+            "subtitle": "Précisez les objets à déplacer",
+            "taskType": {
+                "label": "Type de tâche",
+                "placeholder": "Sélectionner le type",
+                "description": "Quelle est la nature de la manutention ?",
+                "move_furniture": "Déplacer un meuble",
+                "to_cellar": "Descendre à la cave/monter au grenier",
+                "carry_groceries": "Porter des courses"
+            },
+            "itemsDescription": {
+                "label": "Description des objets",
+                "placeholder": "Ex: Canapé 3 places + table basse en verre, environ 50kg au total...",
+                "description": "Décrivez les objets à déplacer (poids, fragilité...)"
+            },
+            "floorsCount": {
+                "label": "Nombre d'étages",
+                "description": "Combien d'étages à monter/descendre ?"
+            },
+            "hasElevator": {
+                "label": "Ascenseur disponible",
+                "description": "Cochez si un ascenseur est accessible"
+            }
+        },
+        "Accompaniment": {
+            "title": "Détails de l'accompagnement",
+            "subtitle": "Précisez le type de déplacement",
+            "accompanimentType": {
+                "label": "Type d'accompagnement",
+                "placeholder": "Sélectionner le type",
+                "description": "Quelle est la nature de l'accompagnement ?",
+                "medical": "Rendez-vous médical",
+                "walk": "Promenade",
+                "shopping": "Courses",
+                "social": "Visite sociale / Amis",
+                "visit": "Démarche administrative"
+            },
+            "fromAddress": {
+                "label": "Adresse de départ",
+                "placeholder": "Ex: 12 rue de la Paix, Paris...",
+                "description": "D'où part le trajet ?"
+            },
+            "toAddress": {
+                "label": "Adresse d'arrivée",
+                "placeholder": "Ex: Hôpital Saint-Louis, 1 avenue Claude Vellefaux...",
+                "description": "Où se rendre ?"
+            },
+            "duration": {
+                "label": "Durée estimée (minutes)",
+                "description": "Durée totale estimée (trajet + attente éventuelle)"
+            },
+            "specialNeeds": {
+                "label": "Besoins spécifiques",
+                "description": "Cochez si applicable",
+                "reduced_mobility": "Mobilité réduite",
+                "wheelchair": "Fauteuil roulant",
+                "hearing": "Déficience auditive",
+                "visual": "Déficience visuelle"
+            },
+            "transportMode": {
+                "label": "Mode de transport",
+                "placeholder": "Sélectionner le mode",
+                "description": "Comment se déplacer ?",
+                "walk": "À pied",
+                "public_transport": "Transports en commun",
+                "provider_car": "Véhicule du prestataire",
+                "taxi": "Taxi / VTC"
+            }
+        },
+        "Companionship": {
+            "title": "Détails de la compagnie",
+            "subtitle": "Précisez l'activité souhaitée",
+            "activityType": {
+                "label": "Type d'activité",
+                "placeholder": "Sélectionner l'activité",
+                "description": "Que souhaitez-vous partager ?",
+                "conversation": "Conversation",
+                "reading": "Lecture",
+                "games": "Jeux de société / Cartes",
+                "cultural": "Activité culturelle (cinéma, musée...)",
+                "walk": "Promenade"
+            },
+            "duration": {
+                "label": "Durée souhaitée (minutes)",
+                "description": "Combien de temps pour cette visite ?"
+            },
+            "clientInterests": {
+                "label": "Centres d'intérêt",
+                "placeholder": "Ex: Passionné de jardinage, aime la lecture policière, fan de musique classique...",
+                "description": "Partagez vos centres d'intérêt pour faciliter l'échange"
+            }
+        },
+        "Gardening": {
+            "title": "Détails du jardinage",
+            "subtitle": "Précisez le type d'intervention",
+            "placeType": {
+                "label": "Type de lieu",
+                "placeholder": "Sélectionner le type",
+                "description": "Quel espace est concerné ?",
+                "garden": "Jardin",
+                "balcony": "Balcon / Terrasse",
+                "courtyard": "Cour",
+                "driveway": "Allée / Entrée"
+            },
+            "surfaceArea": {
+                "label": "Surface estimée",
+                "placeholder": "Sélectionner la surface",
+                "description": "Taille approximative de la zone",
+                "under_50": "Moins de 50m²",
+                "50_150": "50-150m²",
+                "over_150": "Plus de 150m²"
+            },
+            "serviceType": {
+                "label": "Type de prestation",
+                "description": "Cochez les tâches à effectuer",
+                "mowing": "Tonte de pelouse",
+                "leaf_raking": "Ramassage de feuilles",
+                "weeding": "Désherbage",
+                "watering": "Arrosage",
+                "planting": "Plantation",
+                "terrace_cleaning": "Nettoyage de terrasse",
+                "hedge_trimming": "Taille de haies"
+            },
+            "toolsProvidedBy": {
+                "label": "Outils fournis par",
+                "placeholder": "Qui fournit les outils ?",
+                "description": "Qui apporte le matériel de jardinage ?",
+                "client": "J'ai le matériel nécessaire",
+                "provider": "Le prestataire apporte ses outils"
+            },
+            "wasteDisposal": {
+                "label": "Évacuation des déchets verts",
+                "placeholder": "Sélectionner le mode",
+                "description": "Comment gérer les déchets végétaux ?",
+                "green_bin": "Bac vert disponible",
+                "compost": "Compostage sur place",
+                "provider_removes": "Le prestataire évacue les déchets"
+            }
+        },
+        "PetSitting": {
+            "title": "Détails de la garde",
+            "subtitle": "Informations sur vos animaux",
+            "petType": {
+                "label": "Type d'animal",
+                "placeholder": "Ex: Chat, Chien, Lapin, Oiseaux...",
+                "description": "Quel type d'animal à garder ?"
+            },
+            "petCount": {
+                "label": "Nombre d'animaux",
+                "description": "Combien d'animaux à garder ?"
+            },
+            "absence": {
+                "title": "Dates d'absence",
+                "startDate": "Date de début",
+                "endDate": "Date de fin"
+            },
+            "visitsPerDay": {
+                "label": "Visites par jour",
+                "description": "Combien de passages quotidiens nécessaires ?"
+            },
+            "tasks": {
+                "label": "Tâches à effectuer",
+                "description": "Cochez les services requis",
+                "feeding": "Nourriture",
+                "litter": "Litière (chats)",
+                "play": "Jouer / Câlins",
+                "medication": "Médicaments à administrer",
+                "water_plants": "Arrosage des plantes"
+            }
+        },
+        "EventHelp": {
+            "title": "Détails de l'événement",
+            "subtitle": "Précisez le type d'aide nécessaire",
+            "eventType": {
+                "label": "Type d'événement",
+                "placeholder": "Sélectionner le type",
+                "description": "Quelle est la nature de l'événement ?",
+                "birthday": "Anniversaire",
+                "family_reception": "Réception familiale",
+                "association": "Événement associatif",
+                "small_business": "Petite entreprise / Startup"
+            },
+            "guestCount": {
+                "label": "Nombre d'invités",
+                "description": "Combien de personnes attendues ?"
+            },
+            "serviceType": {
+                "label": "Type de service",
+                "description": "Cochez les tâches nécessaires",
+                "setup": "Installation / Préparation",
+                "cleanup": "Nettoyage / Rangement",
+                "serving": "Service à table",
+                "greeting": "Accueil des invités",
+                "preparation": "Aide en cuisine"
+            },
+            "duration": {
+                "label": "Durée estimée (heures)",
+                "description": "Combien d'heures d'aide nécessaires ?"
+            },
+            "heavyEquipment": {
+                "label": "Équipement lourd (optionnel)",
+                "placeholder": "Ex: Tables et chaises pour 50 personnes, barnums 3x3m...",
+                "description": "Précisez si manipulation d'équipements volumineux"
+            }
+        }
+    },
+    "Offers": {
+        "submitOffer": "Soumettre une offre",
+        "submitOfferTitle": "Faire une proposition",
+        "submitOfferDescription": "Proposez vos services pour cette tâche",
+        "offerForTask": "Offre pour la tâche",
+        "proposedPrice": "Prix proposé",
+        "budgetIndicated": "Budget indiqué",
+        "message": "Votre message",
+        "messagePlaceholder": "Expliquez pourquoi vous êtes le meilleur choix pour cette tâche...",
+        "messageHint": "Présentez votre expérience, disponibilité et approche",
+        "estimatedDuration": "Durée estimée",
+        "optional": "optionnel",
+        "hours": "heures",
+        "cancel": "Annuler",
+        "submit": "Envoyer l'offre",
+        "submitting": "Envoi en cours...",
+        "offerSubmitted": "✓ Offre envoyée avec succès !",
+        "viewMyOffers": "Voir mes offres",
+        "offerAcceptedTitle": "Offre acceptée",
+        "offerAcceptedDescription": "Vous avez accepté l'offre. Les autres offres ont été automatiquement rejetées.",
+        "offerRejectedTitle": "Offre rejetée",
+        "offerRejectedDescription": "L'offre a été rejetée avec succès.",
+        "offerAcceptError": "Impossible d'accepter l'offre",
+        "offerRejectError": "Impossible de rejeter l'offre",
+        "offersReceivedTitle": "Offres reçues",
+        "taskTitle": "Tâche",
+        "pendingOffers": "Offres en attente",
+        "acceptedOffers": "Offres acceptées",
+        "lowestOffer": "Offre la plus basse",
+        "sortRecent": "Plus récentes",
+        "sortPriceLow": "Prix croissant",
+        "sortPriceHigh": "Prix décroissant",
+        "sortRating": "Mieux notés",
+        "acceptedOffersSection": "✓ Offres acceptées",
+        "pendingOffersSection": "Offres en attente",
+        "showRejected": "Afficher les offres rejetées",
+        "noOffersYet": "Aucune offre pour le moment",
+        "noOffersHint": "Les prestataires intéressés pourront soumettre leurs propositions bientôt.",
+        "statusPending": "En attente",
+        "statusAccepted": "Acceptée",
+        "statusRejected": "Rejetée",
+        "statusWithdrawn": "Retirée",
+        "reviews": "avis",
+        "providerMessage": "Message du prestataire",
+        "availableFrom": "Disponible du",
+        "to": "au",
+        "acceptOffer": "Accepter",
+        "rejectOffer": "Refuser",
+        "contactProvider": "Contacter",
+        "offerAcceptedMessage": "✓ Cette offre a été acceptée. Une réservation a été créée automatiquement.",
+        "rejectionReason": "Raison du refus",
+        "goBack": "Retour"
+    },
+    "Availability": {
+        "calendar": {
+            "title": "Calendrier de disponibilités",
+            "loading": "Chargement...",
+            "previousMonth": "Mois précédent",
+            "nextMonth": "Mois suivant",
+            "add": "Ajouter disponibilité",
+            "edit": "Modifier disponibilité",
+            "blocked": "Bloqué",
+            "slots": "créneaux",
+            "availableSlots": "Créneaux disponibles",
+            "days": {
+                "sun": "Dim",
+                "mon": "Lun",
+                "tue": "Mar",
+                "wed": "Mer",
+                "thu": "Jeu",
+                "fri": "Ven",
+                "sat": "Sam"
+            },
+            "legend": {
+                "today": "Aujourd'hui",
+                "available": "Disponible",
+                "hasSlots": "Avec créneaux",
+                "blocked": "Bloqué",
+                "unavailable": "Indisponible"
+            }
+        },
+        "recurringSchedule": {
+            "title": "Horaires récurrents",
+            "description": "Définissez vos horaires de disponibilité par défaut pour chaque jour de la semaine",
+            "addDay": "Ajouter un jour",
+            "addSlot": "Ajouter un créneau",
+            "removeSlot": "Retirer le créneau",
+            "monday": "Lundi",
+            "tuesday": "Mardi",
+            "wednesday": "Mercredi",
+            "thursday": "Jeudi",
+            "friday": "Vendredi",
+            "saturday": "Samedi",
+            "sunday": "Dimanche",
+            "from": "De",
+            "to": "À",
+            "save": "Enregistrer",
+            "cancel": "Annuler",
+            "successMessage": "Horaires enregistrés avec succès",
+            "errorMessage": "Erreur lors de l'enregistrement"
+        },
+        "blockedPeriods": {
+            "title": "Périodes bloquées",
+            "description": "Gérez vos indisponibilités (vacances, congés, etc.)",
+            "addPeriod": "Ajouter une période",
+            "editPeriod": "Modifier la période",
+            "deletePeriod": "Supprimer",
+            "startDate": "Date de début",
+            "endDate": "Date de fin",
+            "reason": "Raison",
+            "type": "Type",
+            "types": {
+                "vacation": "Vacances",
+                "sick": "Maladie",
+                "personal": "Personnel",
+                "other": "Autre"
+            },
+            "noPeriods": "Aucune période bloquée",
+            "save": "Enregistrer",
+            "cancel": "Annuler",
+            "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette période ?",
+            "successAdd": "Période bloquée ajoutée",
+            "successUpdate": "Période bloquée mise à jour",
+            "successDelete": "Période bloquée supprimée",
+            "errorAdd": "Erreur lors de l'ajout",
+            "errorUpdate": "Erreur lors de la mise à jour",
+            "errorDelete": "Erreur lors de la suppression"
+        },
+        "specificDate": {
+            "title": "Disponibilité spécifique",
+            "description": "Définissez une disponibilité pour une date précise (remplace les horaires récurrents)",
+            "date": "Date",
+            "addSlot": "Ajouter un créneau",
+            "removeSlot": "Retirer",
+            "from": "De",
+            "to": "À",
+            "reason": "Raison (optionnel)",
+            "save": "Enregistrer",
+            "cancel": "Annuler",
+            "successMessage": "Disponibilité spécifique enregistrée",
+            "errorMessage": "Erreur lors de l'enregistrement"
+        },
+        "settings": {
+            "title": "Paramètres de disponibilité",
+            "timezone": "Fuseau horaire",
+            "minAdvanceHours": "Réservation minimum à l'avance (heures)",
+            "maxAdvanceDays": "Réservation maximum à l'avance (jours)",
+            "minDuration": "Durée minimum d'une réservation (minutes)",
+            "maxDuration": "Durée maximum d'une réservation (heures)",
+            "buffer": "Temps de battement entre réservations (minutes)",
+            "autoAccept": "Acceptation automatique des réservations",
+            "save": "Enregistrer",
+            "successMessage": "Paramètres enregistrés",
+            "errorMessage": "Erreur lors de l'enregistrement"
+        }
+    },
+    "Reviews": {
+        "form": {
+            "rating": {
+                "label": "Note générale",
+                "description": "Comment évaluez-vous votre expérience ?"
+            },
+            "detailedRatings": {
+                "title": "Évaluations détaillées (Optionnel)",
+                "description": "Aidez-nous à mieux comprendre votre expérience",
+                "communication": "Communication",
+                "quality": "Qualité du travail",
+                "professionalism": "Professionnalisme",
+                "timeliness": "Ponctualité",
+                "valueForMoney": "Rapport qualité-prix"
+            },
+            "comment": {
+                "label": "Votre avis",
+                "placeholder": "Partagez votre expérience en détail...",
+                "description": "Minimum 20 caractères"
+            },
+            "photos": {
+                "label": "Photos (optionnel)",
+                "description": "Ajoutez des photos pour illustrer votre expérience (max 5 photos, 2Mo chacune)"
+            },
+            "submit": "Soumettre l'avis",
+            "cancel": "Annuler",
+            "success": {
+                "title": "Avis soumis",
+                "description": "Merci pour votre retour !"
             },
             "error": {
                 "title": "Erreur",
-                "description": "Échec de l'action de modération",
-                "reasonRequired": "Veuillez fournir une raison pour supprimer l'avis"
+                "description": "Échec de la soumission de l'avis. Veuillez réessayer."
+            }
+        },
+        "card": {
+            "verified": "Vérifié",
+            "helpful": "Utile",
+            "helpfulCount": "{count} personnes ont trouvé cela utile",
+            "report": "Signaler",
+            "respond": "Répondre",
+            "response": "Réponse du prestataire",
+            "respondedOn": "A répondu le {date}",
+            "noComment": "Aucun commentaire fourni"
+        },
+        "stats": {
+            "title": "Aperçu des évaluations",
+            "averageRating": "Note moyenne",
+            "totalReviews": "{count} avis",
+            "distribution": "Distribution des notes",
+            "basedOn": "Basé sur {count} avis"
+        },
+        "filters": {
+            "all": "Tous les avis",
+            "verified": "Vérifiés uniquement",
+            "withPhotos": "Avec photos",
+            "withResponse": "Avec réponse",
+            "sortBy": "Trier par",
+            "recent": "Plus récents",
+            "highest": "Meilleure note",
+            "lowest": "Moins bonne note",
+            "helpful": "Plus utiles"
+        },
+        "badges": {
+            "top_rated": "Très bien noté",
+            "excellent_service": "Service excellent",
+            "responsive": "Réactif",
+            "verified_pro": "Pro vérifié",
+            "rising_star": "Étoile montante",
+            "reliable": "Fiable",
+            "great_communicator": "Excellent communicant",
+            "punctual": "Ponctuel",
+            "value_champion": "Champion du rapport qualité-prix"
+        },
+        "empty": {
+            "title": "Aucun avis pour le moment",
+            "description": "Soyez le premier à laisser un avis !"
+        },
+        "respond": {
+            "trigger": "Répondre",
+            "title": "Répondre à l'avis",
+            "description": "Votre réponse sera publique et visible par tous.",
+            "descriptionWithName": "Répondre à l'avis de {name}. Votre réponse sera publique.",
+            "responseLabel": "Votre réponse",
+            "responsePlaceholder": "Merci pour votre retour...",
+            "responseDescription": "Minimum 10 caractères",
+            "preview": "Aperçu",
+            "submit": "Publier la réponse",
+            "cancel": "Annuler",
+            "success": {
+                "title": "Réponse publiée",
+                "description": "Votre réponse a été publiée avec succès."
+            },
+            "error": {
+                "title": "Erreur",
+                "description": "Échec de la publication de la réponse. Veuillez réessayer."
+            }
+        },
+        "report": {
+            "trigger": "Signaler",
+            "title": "Signaler cet avis",
+            "description": "Aidez-nous à maintenir la qualité de notre communauté.",
+            "descriptionWithName": "Signaler l'avis de {name}",
+            "reasonLabel": "Raison du signalement",
+            "reasonPlaceholder": "Sélectionnez une raison",
+            "reasonDescription": "Pourquoi signalez-vous cet avis ?",
+            "detailsLabel": "Détails",
+            "detailsPlaceholder": "Veuillez fournir plus d'informations...",
+            "detailsDescription": "Minimum 10 caractères, maximum 500 caractères",
+            "reasons": {
+                "spam": "Spam ou publicité",
+                "inappropriate": "Contenu inapproprié",
+                "offensive": "Langage offensant",
+                "fake": "Faux avis",
+                "irrelevant": "Non pertinent",
+                "other": "Autre"
+            },
+            "warning": {
+                "title": "Attention",
+                "description": "Les faux signalements peuvent entraîner la suspension de votre compte."
+            },
+            "cancel": "Annuler",
+            "submit": "Signaler",
+            "success": {
+                "title": "Avis signalé",
+                "description": "Notre équipe examinera votre signalement dans les plus brefs délais."
+            },
+            "error": {
+                "title": "Erreur",
+                "description": "Échec du signalement. Veuillez réessayer."
+            }
+        },
+        "photoUpload": {
+            "addPhotos": "Ajouter des photos ({current}/{max})",
+            "uploading": "Téléversement...",
+            "removePhoto": "Supprimer la photo",
+            "description": "JPEG, PNG ou WebP. Max {maxSize}Mo par photo.",
+            "emptyState": "Aucune photo pour le moment. Ajoutez des photos pour illustrer votre avis.",
+            "success": "{count} photo(s) ajoutée(s) avec succès",
+            "errors": {
+                "tooManyPhotos": "Maximum {max} photos autorisées",
+                "invalidFileType": "\"{name}\" n'est pas un fichier image valide",
+                "compressionFailed": "Échec de la compression de \"{name}\"",
+                "uploadFailed": "Échec du téléversement de la photo"
             }
         }
     },
-    "gmv": {
-        "title": "GMV & Revenus Plateforme",
-        "description": "Gross Merchandise Value et revenus de la plateforme par commission",
-        "totalGMV": "GMV Total",
-        "platformRevenue": "Revenus Plateforme",
-        "avgTransaction": "Transaction Moyenne",
-        "summary": "{transactions} transactions sur les {months} derniers mois",
-        "noData": "Aucune donnée de transaction disponible pour le moment.",
-        "error": "Impossible de charger les données GMV."
-    },
-    "userGrowth": {
-        "title": "Croissance des Utilisateurs",
-        "description": "Nouveaux clients et providers par mois",
-        "newClients": "Nouveaux Clients",
-        "newProviders": "Nouveaux Providers",
-        "totalUsers": "Total Utilisateurs",
-        "summary": "+{total} nouveaux utilisateurs sur les {months} derniers mois",
-        "noData": "Aucune donnée de croissance disponible.",
-        "error": "Impossible de charger les données de croissance."
-    },
-    "stats": {
-        "totalUsers": "Total Utilisateurs",
-        "totalUsersDesc": "Inscrits sur la plateforme",
-        "activeClients": "Clients Actifs",
-        "activeProviders": "Providers Actifs",
-        "ofTotal": "du total",
-        "totalTasks": "Total Missions",
-        "totalTasksDesc": "Créées sur la plateforme",
-        "completedTasks": "Missions Complétées",
-        "completionRate": "taux de complétion",
-        "activeTasks": "Missions Actives",
-        "activeTasksDesc": "Ouvertes ou en cours",
-        "error": "Erreur de chargement"
-    }
-},
-"Services": {
-    "categories": {
-        "aide_domicile_petits_travaux": "Aide à domicile & Petits travaux",
-        "courses_livraisons": "Courses & Livraisons",
-        "aide_numerique_administrative": "Aide Numérique & Administrative",
-        "demenagement_manutention": "Déménagement & Manutention",
-        "accompagnement_presence": "Accompagnement & Présence",
-        "jardinage_exterieur": "Jardinage & Extérieur",
-        "animaux_compagnie": "Animaux de compagnie",
-        "evenements_occasions": "Événements & Occasions spéciales"
-    }
-},
-"Dashboard": {
-    "filters": {
-        "title": "Filtres",
-        "search": "Rechercher",
-        "searchPlaceholder": "Rechercher par titre ou description...",
-        "clearSearch": "Effacer la recherche",
-        "dateRange": {
-            "label": "Période",
-            "preset": "Sélectionner une période",
-            "today": "Aujourd'hui",
-            "last7days": "7 derniers jours",
-            "last30days": "30 derniers jours",
-            "thisMonth": "Ce mois-ci",
-            "lastMonth": "Mois dernier",
-            "custom": "Période personnalisée",
-            "selectCustom": "Sélectionner des dates",
-            "selectRange": "Choisir une plage de dates"
+    "Admin": {
+        "moderation": {
+            "loading": "Chargement...",
+            "page": {
+                "title": "Modération des Avis",
+                "description": "Gérez les avis signalés et maintenez les standards de la communauté"
+            },
+            "stats": {
+                "totalReports": "Total Signalements",
+                "pending": "En attente",
+                "approved": "Approuvés",
+                "removed": "Supprimés",
+                "dismissed": "Rejetés"
+            },
+            "status": {
+                "pending": "En attente",
+                "approved": "Approuvé",
+                "removed": "Supprimé",
+                "dismissed": "Rejeté"
+            },
+            "queue": {
+                "title": "Avis Signalés",
+                "description": "Avis qui ont été signalés par les utilisateurs",
+                "filter": "Filtrer par statut",
+                "reviewedUser": "Utilisateur évalué",
+                "rating": "Note",
+                "reports": "{count} signalement(s)",
+                "review": "Examiner",
+                "noComment": "Aucun commentaire fourni",
+                "empty": {
+                    "title": "Aucun avis à modérer",
+                    "description": "Tous les avis signalés ont été examinés"
+                }
+            },
+            "filters": {
+                "all": "Tous",
+                "pending": "En attente",
+                "approved": "Approuvés",
+                "removed": "Supprimés",
+                "dismissed": "Rejetés"
+            },
+            "form": {
+                "title": "Détails de l'avis",
+                "description": "Examinez le contenu signalé et prenez une décision",
+                "reportCount": "{count} signalement(s)",
+                "reviewedUser": "Utilisateur évalué",
+                "comment": "Commentaire de l'avis",
+                "noComment": "Aucun commentaire fourni",
+                "photos": "Photos jointes",
+                "adminNote": {
+                    "label": "Note admin (optionnelle pour approuver/rejeter, requise pour supprimer)",
+                    "placeholder": "Ajoutez une note expliquant votre décision...",
+                    "description": "Cette note sera sauvegardée avec l'action de modération"
+                },
+                "approve": "Approuver",
+                "remove": "Supprimer",
+                "dismiss": "Rejeter le signalement",
+                "cancel": "Annuler",
+                "approveDialog": {
+                    "title": "Approuver cet avis ?",
+                    "description": "L'avis sera marqué comme légitime et le signalement sera effacé.",
+                    "cancel": "Annuler",
+                    "confirm": "Approuver l'avis"
+                },
+                "removeDialog": {
+                    "title": "Supprimer cet avis ?",
+                    "description": "L'avis sera caché de la vue publique. Cette action ne peut pas être annulée. Veuillez fournir une raison.",
+                    "cancel": "Annuler",
+                    "confirm": "Supprimer l'avis"
+                },
+                "dismissDialog": {
+                    "title": "Rejeter ce signalement ?",
+                    "description": "Le signalement sera marqué comme non fondé et effacé.",
+                    "cancel": "Annuler",
+                    "confirm": "Rejeter le signalement"
+                },
+                "selectReview": {
+                    "title": "Sélectionnez un avis à modérer",
+                    "description": "Cliquez sur un avis de la file pour voir les détails et prendre une action"
+                },
+                "success": {
+                    "approve": {
+                        "title": "Avis approuvé",
+                        "description": "L'avis a été approuvé et le signalement effacé"
+                    },
+                    "remove": {
+                        "title": "Avis supprimé",
+                        "description": "L'avis a été supprimé de la vue publique"
+                    },
+                    "dismiss": {
+                        "title": "Signalement rejeté",
+                        "description": "Le signalement a été rejeté et effacé"
+                    }
+                },
+                "error": {
+                    "title": "Erreur",
+                    "description": "Échec de l'action de modération",
+                    "reasonRequired": "Veuillez fournir une raison pour supprimer l'avis"
+                }
+            }
         },
-        "status": {
-            "label": "Statut",
-            "all": "Tous",
-            "completed": "Complétées",
-            "active": "Actives",
-            "cancelled": "Annulées"
+        "gmv": {
+            "title": "GMV & Revenus Plateforme",
+            "description": "Gross Merchandise Value et revenus de la plateforme par commission",
+            "totalGMV": "GMV Total",
+            "platformRevenue": "Revenus Plateforme",
+            "avgTransaction": "Transaction Moyenne",
+            "summary": "{transactions} transactions sur les {months} derniers mois",
+            "noData": "Aucune donnée de transaction disponible pour le moment.",
+            "error": "Impossible de charger les données GMV."
         },
-        "categories": "Catégories",
-        "selectAll": "Tout sélectionner",
-        "clearAll": "Tout effacer",
-        "resetAll": "Réinitialiser tous les filtres",
-        "activeFilters": "{count, plural, =0 {Aucun filtre} =1 {1 filtre actif} other {# filtres actifs}}"
-    },
-    "live": {
-        "indicator": "En direct",
-        "updated": "Mis à jour {time}",
-        "activity": "Activité récente",
-        "noActivity": "Aucune activité récente",
-        "types": {
-            "NEW_BOOKING": "Nouveau booking",
-            "TASK_COMPLETED": "Tâche complétée",
-            "NEW_USER": "Nouvel utilisateur",
-            "KYC_SUBMITTED": "KYC soumis",
-            "PROPOSAL_CREATED": "Nouvelle proposition"
+        "userGrowth": {
+            "title": "Croissance des Utilisateurs",
+            "description": "Nouveaux clients et providers par mois",
+            "newClients": "Nouveaux Clients",
+            "newProviders": "Nouveaux Providers",
+            "totalUsers": "Total Utilisateurs",
+            "summary": "+{total} nouveaux utilisateurs sur les {months} derniers mois",
+            "noData": "Aucune donnée de croissance disponible.",
+            "error": "Impossible de charger les données de croissance."
+        },
+        "stats": {
+            "totalUsers": "Total Utilisateurs",
+            "totalUsersDesc": "Inscrits sur la plateforme",
+            "activeClients": "Clients Actifs",
+            "activeProviders": "Providers Actifs",
+            "ofTotal": "du total",
+            "totalTasks": "Total Missions",
+            "totalTasksDesc": "Créées sur la plateforme",
+            "completedTasks": "Missions Complétées",
+            "completionRate": "taux de complétion",
+            "activeTasks": "Missions Actives",
+            "activeTasksDesc": "Ouvertes ou en cours",
+            "error": "Erreur de chargement"
         }
     },
-    "revenue": {
-        "title": "Évolution des Revenus",
-        "description": "Analyse de vos revenus sur les derniers mois",
-        "totalRevenue": "Total des revenus",
-        "avgPerMonth": "Moyenne mensuelle",
-        "trend": "Tendance",
-        "summary": "{count, plural, =0 {Aucune mission complétée} =1 {1 mission complétée} other {# missions complétées}} sur les {months} derniers mois",
-        "noData": "Aucune donnée de revenus disponible pour le moment. Complétez votre première mission pour voir vos statistiques.",
-        "error": "Impossible de charger les données de revenus. Veuillez réessayer plus tard."
+    "Services": {
+        "categories": {
+            "aide_domicile_petits_travaux": "Aide à domicile & Petits travaux",
+            "courses_livraisons": "Courses & Livraisons",
+            "aide_numerique_administrative": "Aide Numérique & Administrative",
+            "demenagement_manutention": "Déménagement & Manutention",
+            "accompagnement_presence": "Accompagnement & Présence",
+            "jardinage_exterieur": "Jardinage & Extérieur",
+            "animaux_compagnie": "Animaux de compagnie",
+            "evenements_occasions": "Événements & Occasions spéciales"
+        }
     },
-    "spending": {
-        "title": "Évolution des Dépenses",
-        "description": "Analyse de vos dépenses sur les derniers mois",
-        "totalSpending": "Total dépensé",
-        "avgPerMonth": "Moyenne mensuelle",
-        "trend": "Tendance",
-        "summary": "{count, plural, =0 {Aucune mission réservée} =1 {1 mission réservée} other {# missions réservées}} sur les {months} derniers mois",
-        "noData": "Aucune donnée de dépenses disponible. Réservez votre première mission pour voir vos statistiques.",
-        "error": "Impossible de charger les données de dépenses. Veuillez réessayer plus tard."
-    },
-    "categories": {
-        "title": "Répartition par Catégorie",
-        "description": "Vos dépenses par type de service",
-        "totalSpending": "Total dépensé",
-        "totalTasks": "Missions totales",
-        "moreCategories": "autres catégories",
-        "noData": "Aucune mission complétée. Vos statistiques par catégorie apparaîtront ici.",
-        "error": "Impossible de charger les données par catégorie. Veuillez réessayer plus tard."
+    "Dashboard": {
+        "filters": {
+            "title": "Filtres",
+            "search": "Rechercher",
+            "searchPlaceholder": "Rechercher par titre ou description...",
+            "clearSearch": "Effacer la recherche",
+            "dateRange": {
+                "label": "Période",
+                "preset": "Sélectionner une période",
+                "today": "Aujourd'hui",
+                "last7days": "7 derniers jours",
+                "last30days": "30 derniers jours",
+                "thisMonth": "Ce mois-ci",
+                "lastMonth": "Mois dernier",
+                "custom": "Période personnalisée",
+                "selectCustom": "Sélectionner des dates",
+                "selectRange": "Choisir une plage de dates"
+            },
+            "status": {
+                "label": "Statut",
+                "all": "Tous",
+                "completed": "Complétées",
+                "active": "Actives",
+                "cancelled": "Annulées"
+            },
+            "categories": "Catégories",
+            "selectAll": "Tout sélectionner",
+            "clearAll": "Tout effacer",
+            "resetAll": "Réinitialiser tous les filtres",
+            "activeFilters": "{count, plural, =0 {Aucun filtre} =1 {1 filtre actif} other {# filtres actifs}}"
+        },
+        "live": {
+            "indicator": "En direct",
+            "updated": "Mis à jour {time}",
+            "activity": "Activité récente",
+            "noActivity": "Aucune activité récente",
+            "types": {
+                "NEW_BOOKING": "Nouveau booking",
+                "TASK_COMPLETED": "Tâche complétée",
+                "NEW_USER": "Nouvel utilisateur",
+                "KYC_SUBMITTED": "KYC soumis",
+                "PROPOSAL_CREATED": "Nouvelle proposition"
+            }
+        },
+        "revenue": {
+            "title": "Évolution des Revenus",
+            "description": "Analyse de vos revenus sur les derniers mois",
+            "totalRevenue": "Total des revenus",
+            "avgPerMonth": "Moyenne mensuelle",
+            "trend": "Tendance",
+            "summary": "{count, plural, =0 {Aucune mission complétée} =1 {1 mission complétée} other {# missions complétées}} sur les {months} derniers mois",
+            "noData": "Aucune donnée de revenus disponible pour le moment. Complétez votre première mission pour voir vos statistiques.",
+            "error": "Impossible de charger les données de revenus. Veuillez réessayer plus tard."
+        },
+        "spending": {
+            "title": "Évolution des Dépenses",
+            "description": "Analyse de vos dépenses sur les derniers mois",
+            "totalSpending": "Total dépensé",
+            "avgPerMonth": "Moyenne mensuelle",
+            "trend": "Tendance",
+            "summary": "{count, plural, =0 {Aucune mission réservée} =1 {1 mission réservée} other {# missions réservées}} sur les {months} derniers mois",
+            "noData": "Aucune donnée de dépenses disponible. Réservez votre première mission pour voir vos statistiques.",
+            "error": "Impossible de charger les données de dépenses. Veuillez réessayer plus tard."
+        },
+        "categories": {
+            "title": "Répartition par Catégorie",
+            "description": "Vos dépenses par type de service",
+            "totalSpending": "Total dépensé",
+            "totalTasks": "Missions totales",
+            "moreCategories": "autres catégories",
+            "noData": "Aucune mission complétée. Vos statistiques par catégorie apparaîtront ici.",
+            "error": "Impossible de charger les données par catégorie. Veuillez réessayer plus tard."
+        }
     }
-}
 }

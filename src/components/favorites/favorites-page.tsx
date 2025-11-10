@@ -109,7 +109,7 @@ interface FavoritesListProps {
 function FavoritesList({ favorites, onRemove, locale, t }: FavoritesListProps) {
   if (favorites.length === 0) {
     return (
-      <Card className="border-dashed">
+      <Card className="border-dashed" data-testid="favorites-empty-state">
         <CardContent className="flex flex-col items-center justify-center py-12">
           <Heart className="h-12 w-12 text-muted-foreground/50 mb-4" />
           <h3 className="text-lg font-semibold mb-2">{t('noFavorites')}</h3>
@@ -122,9 +122,9 @@ function FavoritesList({ favorites, onRemove, locale, t }: FavoritesListProps) {
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3" data-testid="favorites-grid">
       {favorites.map((favorite) => (
-        <Card key={favorite.id} className="group hover:shadow-lg transition-shadow">
+        <Card key={favorite.id} className="group hover:shadow-lg transition-shadow" data-testid="favorite-item">
           <CardHeader className="relative">
             {favorite.metadata?.imageUrl && (
               <div className="relative w-full h-40 mb-4 rounded-md overflow-hidden">
@@ -195,7 +195,7 @@ function FavoritesList({ favorites, onRemove, locale, t }: FavoritesListProps) {
                 size="sm"
                 onClick={() => onRemove(favorite.id)}
                 className="hover:bg-destructive hover:text-destructive-foreground"
-                data-testid="remove-favorite"
+                data-testid="favorite-remove-button"
               >
                 {t('removeButton')}
               </Button>

@@ -36,6 +36,7 @@ import {
     ArrowUpRight,
     Bell,
     TrendingDown,
+    Heart,
 } from 'lucide-react';
 import { Link } from '@/navigation';
 import { useTranslations } from 'next-intl';
@@ -62,6 +63,7 @@ import {
   logAnimatedElementInteraction
 } from '@/lib/analytics';
 import { getMonthlyRevenue, getMonthlyMissions, getProviderStats } from '@/lib/firestore-analytics';
+import { useFavorites } from '@/hooks/use-favorites';
 
 interface ProProfile {
     userId: string;
@@ -121,6 +123,7 @@ export default function ProDashboardPage() {
     const { user } = useAuth();
     const router = useRouter();
     const t = useTranslations('Breadcrumbs');
+    const { favorites: userFavorites } = useFavorites();
 
     const [loading, setLoading] = useState(true);
     const [proProfile, setProProfile] = useState<ProProfile | null>(null);
@@ -428,7 +431,7 @@ export default function ProDashboardPage() {
             )}
 
             {/* KPI Cards avec animations */}
-            <AnimatedList className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <AnimatedList className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
                 {/* Revenus du mois */}
                 <AnimatedListItem>
                     <GlowCard glowColor="rgba(34, 197, 94, 0.5)">
@@ -550,6 +553,37 @@ export default function ProDashboardPage() {
                                     </div>
                                     <p className="text-xs text-muted-foreground">
                                         Temps de réponse : {stats.responseTime}h
+                                    </p>
+                                </CardContent>
+                            </Card>
+                        </AnimatedCard>
+                    </GlowCard>
+                </AnimatedListItem>
+
+                {/* Mes Favoris */}
+                <AnimatedListItem>
+                    <GlowCard glowColor="rgba(236, 72, 153, 0.5)">
+                        <AnimatedCard 
+                            clickable 
+                            onClick={() => {
+                                if (userFavorites.length > 0) {
+                                    logKpiCardClick(AccountType.professional, 'favorites', userFavorites.length);
+                                    logGlowCardClick('kpi_favorites_pro', userFavorites.length);
+                                    router.push('/dashboard/favorites');
+                                }
+                            }}
+                        >
+                            <Card className="border-2 bg-gradient-to-br from-pink-50 to-white dark:from-pink-950 dark:to-background">
+                                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                                    <CardTitle className="text-sm font-medium">Mes Favoris</CardTitle>
+                                    <Heart className="h-4 w-4 text-pink-600 dark:text-pink-400" />
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="text-2xl font-bold text-pink-700 dark:text-pink-300">
+                                        {userFavorites.length}
+                                    </div>
+                                    <p className="text-xs text-muted-foreground">
+                                        Tâches sauvegardées
                                     </p>
                                 </CardContent>
                             </Card>

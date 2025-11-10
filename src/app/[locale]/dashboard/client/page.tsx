@@ -51,6 +51,7 @@ import {
 } from '@/components/ui/animated';
 import { ClientSpendingChart } from '@/components/dashboard/client-spending-chart';
 import { TaskCategoryChart } from '@/components/dashboard/task-category-chart';
+import { useFavorites } from '@/hooks/use-favorites';
 
 interface ServicePack {
   id: string;
@@ -80,6 +81,7 @@ export default function DashboardPage() {
   const tBreadcrumbs = useTranslations('Breadcrumbs');
   const { user } = useAuth();
   const router = useRouter();
+  const { favorites: userFavorites } = useFavorites();
 
   // Fetch user's posted tasks from Firestore
   useEffect(() => {
@@ -317,7 +319,7 @@ export default function DashboardPage() {
         </AnimatedDiv>
 
         {/* KPIs modernes avec animations et effets de lueur */}
-        <AnimatedList className="grid gap-4 md:grid-cols-3">
+        <AnimatedList className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <AnimatedListItem>
             <GlowCard glowColor="rgba(102, 126, 234, 0.5)">
               <AnimatedCard 
@@ -410,6 +412,43 @@ export default function DashboardPage() {
                     <p className="text-xs text-muted-foreground mt-1">
                       Avec succès
                     </p>
+                  </CardContent>
+                </Card>
+              </AnimatedCard>
+            </GlowCard>
+          </AnimatedListItem>
+
+          <AnimatedListItem>
+            <GlowCard glowColor="rgba(236, 72, 153, 0.5)">
+              <AnimatedCard 
+                clickable
+                onClick={() => {
+                  if (userFavorites.length > 0) {
+                    logKpiCardClick(AccountType.individual, 'favorites', userFavorites.length);
+                    logGlowCardClick('kpi_favorites', userFavorites.length);
+                    router.push('/dashboard/favorites');
+                  }
+                }}
+              >
+                <Card className="border-2 h-full cursor-pointer bg-gradient-to-br from-pink-50 to-white dark:from-slate-900 dark:to-slate-800">
+                  <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                    <CardTitle className="text-sm font-medium">Mes Favoris</CardTitle>
+                    <Heart className="h-5 w-5 text-pink-500" />
+                  </CardHeader>
+                  <CardContent>
+                    <div className="text-3xl font-bold text-pink-500">{userFavorites.length}</div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Tâches et prestataires sauvegardés
+                    </p>
+                    {userFavorites.length > 0 && (
+                      <div className="mt-2">
+                        <Link href="/dashboard/favorites">
+                          <Button variant="link" size="sm" className="px-0 h-auto">
+                            Voir mes favoris →
+                          </Button>
+                        </Link>
+                      </div>
+                    )}
                   </CardContent>
                 </Card>
               </AnimatedCard>

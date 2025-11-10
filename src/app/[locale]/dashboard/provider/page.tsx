@@ -7,14 +7,17 @@
 import { useAuth } from '@/contexts/AuthContext';
 import { UserRole } from '@/lib/types';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { CheckCircle, DollarSign, Briefcase, Star, TrendingUp, Clock, Award } from 'lucide-react';
+import { CheckCircle, DollarSign, Briefcase, Star, TrendingUp, Clock, Award, Heart } from 'lucide-react';
 import { useProviderStats } from '@/hooks/use-dashboard-data';
 import { Skeleton } from '@/components/ui/skeleton';
 import { RevenueChart } from '@/components/dashboard/revenue-chart';
+import { useFavorites } from '@/hooks/use-favorites';
+import { Link } from '@/navigation';
 
 export default function ProviderDashboardPage() {
     const { user } = useAuth();
     const { data: stats, loading, error } = useProviderStats(user?.uid);
+    const { favorites: userFavorites } = useFavorites();
 
     const isProvider = user?.roles?.includes(UserRole.provider) ?? false;
 
@@ -198,6 +201,25 @@ export default function ProviderDashboardPage() {
                     </CardHeader>
                     <CardContent>
                         <p className="text-2xl font-bold">{stats?.responseRate || 0}%</p>
+                    </CardContent>
+                </Card>
+
+                {/* Favorites */}
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                            <Heart className="h-5 w-5 text-pink-500" />
+                            Mes Favoris
+                        </CardTitle>
+                        <CardDescription>Tâches sauvegardées</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-2xl font-bold">{userFavorites.length}</p>
+                        {userFavorites.length > 0 && (
+                            <Link href="/dashboard/favorites" className="text-sm text-primary hover:underline mt-2 inline-block">
+                                Voir mes favoris →
+                            </Link>
+                        )}
                     </CardContent>
                 </Card>
             </div>

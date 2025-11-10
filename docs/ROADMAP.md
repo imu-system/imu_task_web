@@ -896,9 +896,9 @@
 
 ---
 
-### Phase 10: Fonctionnalités Avancées � (30% complété)
+### Phase 10: Fonctionnalités Avancées 🟢 (40% complété)
 
-**Statut:** � En développement
+**Statut:** 🟢 En développement
 
 #### ✅ Complété
 - [x] **Mode sombre**
@@ -912,24 +912,39 @@
   - [x] Persistance localStorage + détection système
   - [x] Animations smooth pour transitions
 
-- [x] **Système de Favoris - Infrastructure**
+- [x] **Système de Favoris - Backend**
   - [x] Collection Firestore `favorites` créée
-  - [x] Security rules (owner-based access)
-  - [x] Indexes composites (userId + createdAt, userId + itemType + createdAt)
-  - [x] Service `firestore-favorites.ts` (CRUD operations)
-  - [x] Hook `useFavorites` (liste complète)
-  - [x] Hook `useToggleFavorite` (toggle individuel)
-  - [x] Traductions FR/EN/JA (18+ keys)
+  - [x] Security rules (lines 253-283, owner-based access)
+  - [x] 2 indexes composites (userId + createdAt DESC, userId + itemType + createdAt DESC)
+  - [x] Service `firestore-favorites.ts` (6 CRUD functions: add, remove, get, getByItem, isFavorited, count)
+  - [x] Hook `useFavorites` (full list management, loading/error/refetch)
+  - [x] Hook `useToggleFavorite` (optimized single-item toggle)
+  - [x] Traductions FR/EN/JA (18 keys: Common.favorites + Favorites.*)
+  - [x] Script de déploiement `deploy-favorites.sh`
+  - [x] Documentation backend complète (FAVORITES_BACKEND_INTEGRATION.md)
+
+- [x] **Système de Favoris - UI**
+  - [x] Composant FavoriteButton (animated heart icon, 3 sizes, 2 variants)
+  - [x] Intégration dans TaskCard (header section avec metadata)
+  - [x] Intégration dans ProviderCard (header section near rating)
+  - [x] Page /dashboard/favorites (FavoritesPage avec tabs)
+  - [x] Filtres (all/tasks/providers via onglets)
+  - [x] Empty states (global + par type)
+  - [x] Link "Mes Favoris" dans Header UserMenu
+  - [x] KPI cards dans dashboards (Client/Provider/Pro)
+
+- [x] **Système de Favoris - Tests**
+  - [x] 17 scénarios E2E Playwright (e2e/favorites.spec.ts)
+  - [x] Tests d'affichage (TaskCard/ProviderCard buttons)
+  - [x] Tests d'ajout/suppression
+  - [x] Tests de navigation et filtrage
+  - [x] Tests états vides
+  - [x] Tests i18n (FR/EN/JA)
+  - [x] Tests responsive (mobile 375x667)
+  - [x] data-testid ajoutés (11 attributs)
+  - [x] Documentation tests complète (FAVORITES_E2E_TESTS_COMPLETE.md)
 
 #### 📋 À faire
-- [ ] **Système de Favoris - UI**
-  - [ ] Composant FavoriteButton (heart icon)
-  - [ ] Intégration dans TaskCard
-  - [ ] Intégration dans ProviderCard
-  - [ ] Page /dashboard/favorites
-  - [ ] Filtres (all/tasks/providers)
-  - [ ] Empty states
-
 - [ ] Système de disputes et résolution
 - [ ] Programme de parrainage
 - [ ] Progressive Web App (PWA)
@@ -940,6 +955,7 @@
 - [ ] Support client intégré
 
 **Date de début:** 10 novembre 2025  
+**Date mise à jour:** 10 novembre 2025  
 **Date cible:** 31 mars 2026
 
 ---
