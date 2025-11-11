@@ -143,7 +143,7 @@ export function ServiceCategoriesShowcase() {
   ];
 
   const handleCategoryClick = (slug: string) => {
-    router.push(`/tasks/browse?category=${slug}`);
+    router.push(`/tasks?category=${slug}`);
   };
 
   const containerVariants = {
@@ -253,7 +253,7 @@ export function ServiceCategoriesShowcase() {
         >
           <Button
             size="lg"
-            onClick={() => router.push('/tasks/browse')}
+            onClick={() => router.push('/tasks')}
             className="gap-2 shadow-lg hover:shadow-xl transition-all duration-300"
           >
             {t('viewAllServices')}

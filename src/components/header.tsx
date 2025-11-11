@@ -44,23 +44,9 @@ export default function Header() {
   const pathname = usePathname();
   const { user, logout } = useAuth();
   const isAuthenticated = !!user;
-  const { scrollY, scrollDirection } = useScrollPosition();
 
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    // Hide header when scrolling down past 100px, show when scrolling up
-    if (scrollY > 100) {
-      if (scrollDirection === 'down') {
-        setIsVisible(false);
-      } else if (scrollDirection === 'up') {
-        setIsVisible(true);
-      }
-    } else {
-      setIsVisible(true);
-    }
-  }, [scrollY, scrollDirection]);
+  // Header reste toujours visible (pas de masquage au scroll)
+  const isVisible = true;
 
   const navLinks = [
     { href: '#features', label: t('features') },

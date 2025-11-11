@@ -9,13 +9,22 @@ import { cn } from '@/lib/utils';
 import { TASK_CATEGORIES } from '@/lib/constants/categories';
 import { logCategoryClick } from '@/lib/analytics';
 
-export function CategoryPills() {
+interface CategoryPillsProps {
+  selectedCategory?: string | null;
+  onCategorySelect?: (category: string | null) => void;
+}
+
+export function CategoryPills({ selectedCategory: externalSelectedCategory, onCategorySelect }: CategoryPillsProps = {}) {
   const router = useRouter();
   const t = useTranslations('LandingPage.categories');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [internalSelectedCategory, setInternalSelectedCategory] = useState<string | null>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+
+  // Use external state if provided, otherwise use internal state
+  const selectedCategory = externalSelectedCategory !== undefined ? externalSelectedCategory : internalSelectedCategory;
+  const setSelectedCategory = onCategorySelect || setInternalSelectedCategory;
 
   useEffect(() => {
     checkScroll();
@@ -44,9 +53,15 @@ export function CategoryPills() {
   };
 
   const handleCategoryClick = (slug: string, categoryName: string, isAccessible: boolean = false) => {
-    setSelectedCategory(slug);
+    // If filtering on homepage, use callback; otherwise navigate
+    if (onCategorySelect) {
+      // Toggle category (click again to reset)
+      setSelectedCategory(selectedCategory === slug ? null : slug);
+    } else {
+      setSelectedCategory(slug);
+      router.push(`/tasks?category=${slug}`);
+    }
     logCategoryClick(slug, categoryName, isAccessible);
-    router.push(`/tasks/browse?category=${slug}`);
   };
 
   return (

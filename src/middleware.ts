@@ -16,7 +16,10 @@ const publicRoutes = [
   '/legal/terms',
   '/legal/privacy',
   '/test-firebase',
-  '/tasks/browse'  // Page de navigation des services (publique)
+  '/',
+  '/particuliers',
+  '/professionnels',
+  '/about'
 ];
 
 // Routes protégées nécessitant une authentification

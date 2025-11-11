@@ -43,7 +43,7 @@ export function HeroSearchBar({ variant = 'hero', className = '' }: HeroSearchBa
     if (maxBudget) params.set('maxBudget', maxBudget);
 
     // Navigate to browse page with filters
-    router.push(`/tasks/browse?${params.toString()}`);
+    router.push(`/tasks?${params.toString()}`);
   };
 
   const isHero = variant === 'hero';

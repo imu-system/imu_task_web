@@ -71,7 +71,7 @@ export function StickySearchBar({ className = '' }: StickySearchBarProps) {
       }
     });
 
-    router.push(`/tasks/browse?${params.toString()}`);
+    router.push(`/tasks?${params.toString()}`);
   };
 
   const handleQuickSearch = (term: string) => {
@@ -82,7 +82,7 @@ export function StickySearchBar({ className = '' }: StickySearchBarProps) {
       const params = new URLSearchParams();
       params.set('q', term);
       if (location) params.set('location', location);
-      router.push(`/tasks/browse?${params.toString()}`);
+      router.push(`/tasks?${params.toString()}`);
     }, 100);
   };
 

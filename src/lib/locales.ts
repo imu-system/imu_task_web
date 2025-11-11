@@ -73,7 +73,6 @@ export const pathnames = {
   '/dashboard/offline': '/dashboard/offline',
   '/dashboard/admin/partnerships': '/dashboard/admin/partnerships',
   '/dashboard/admin/partnerships/[id]': '/dashboard/admin/partnerships/[id]',
-  '/tasks/browse': '/tasks/browse',
   '/tasks/[id]': '/tasks/[id]',
 
   // If locales use different paths, you can

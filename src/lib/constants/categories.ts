@@ -116,3 +116,41 @@ export const CATEGORY_IDS = TASK_CATEGORIES.map((cat) => cat.id);
  * Get category slugs as array
  */
 export const CATEGORY_SLUGS = TASK_CATEGORIES.map((cat) => cat.slug);
+
+/**
+ * Mapping between frontend slugs and Firestore category values
+ * This is needed because the seed script uses different category names
+ * Note: 'autres' is a special case - it will show all tasks that don't match other categories
+ */
+export const SLUG_TO_FIRESTORE_CATEGORY: Record<string, string> = {
+    'menage': 'aide_domicile',
+    'demenagement': 'demenagement',
+    'jardinage': 'jardinage',
+    'livraison': 'courses_livraisons',
+    'bricolage': 'aide_domicile',
+    'garde-animaux': 'animaux',
+    'cours-particuliers': 'accompagnement',
+    'services-maison': 'aide_domicile',
+    'autres': 'OTHER_CATEGORIES' // Special marker for filtering
+};
+
+/**
+ * Get all Firestore categories (for "autres" exclusion filter)
+ */
+export const FIRESTORE_CATEGORIES = [
+    'aide_domicile',
+    'courses_livraisons',
+    'aide_numerique',
+    'demenagement',
+    'accompagnement',
+    'jardinage',
+    'animaux',
+    'evenements'
+] as const;
+
+/**
+ * Convert frontend slug to Firestore category value
+ */
+export function slugToFirestoreCategory(slug: string): string {
+    return SLUG_TO_FIRESTORE_CATEGORY[slug] || slug;
+}

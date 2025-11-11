@@ -1,14 +1,32 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { MapPin, Star, Clock, TrendingUp } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { MapPin, Star, Clock, TrendingUp, Heart } from 'lucide-react';
 import { Link } from '@/navigation';
 import Image from 'next/image';
 import { type Task } from '@/lib/types';
 import { useLocale } from 'next-intl';
 import { cn } from '@/lib/utils';
+import { getCategoryById, TASK_CATEGORIES } from '@/lib/constants/categories';
+import { useFavorites } from '@/hooks/use-favorites';
+import { useAuth } from '@/hooks/use-auth';
+import { useToast } from '@/hooks/use-toast';
+
+// Unsplash images par catégorie (gratuites et de haute qualité)
+const CATEGORY_IMAGES: Record<string, string> = {
+  'aide_domicile': 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80', // Cleaning
+  'courses_livraisons': 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80', // Grocery
+  'aide_numerique': 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&q=80', // Tech
+  'demenagement': 'https://images.unsplash.com/photo-1600518464441-9154a4dea21b?w=800&q=80', // Moving
+  'accompagnement': 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&q=80', // Walking
+  'jardinage': 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=800&q=80', // Gardening
+  'animaux': 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=800&q=80', // Pets
+  'evenements': 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80', // Events
+};
 
 interface TaskCardModernProps {
   task: Task & {
@@ -27,6 +45,12 @@ interface TaskCardModernProps {
 
 export function TaskCardModern({ task, className }: TaskCardModernProps) {
   const locale = useLocale();
+  const { user } = useAuth();
+  const { toast } = useToast();
+  const { isFavorite, toggleFavorite } = useFavorites();
+  
+  // Check if task is favorite
+  const isTaskFavorite = isFavorite(task.id);
 
   // Extract data
   const clientName = task.client?.profile?.displayName || 'Utilisateur';
@@ -65,10 +89,52 @@ export function TaskCardModern({ task, className }: TaskCardModernProps) {
 
   // Category label
   const categoryLabel = typeof task.category === 'string' ? task.category : 'Catégorie';
+  
+  // Get category image
+  const categoryImage = CATEGORY_IMAGES[categoryLabel] || CATEGORY_IMAGES['aide_domicile'];
+  
+  // Get category icon and color
+  const categoryData = TASK_CATEGORIES.find(cat => 
+    cat.slug === categoryLabel || cat.id === categoryLabel
+  );
+  const CategoryIcon = categoryData?.icon;
+  const categoryColor = categoryData?.color || '#3B82F6';
 
   // Rating display
   const rating = task.averageRating || 0;
   const reviewCount = task.reviewCount || 0;
+  
+  // Handle favorite toggle
+  const handleFavoriteClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (!user) {
+      toast({
+        title: 'Connexion requise',
+        description: 'Vous devez être connecté pour ajouter des favoris',
+        variant: 'destructive',
+      });
+      return;
+    }
+    
+    try {
+      await toggleFavorite(task.id);
+      toast({
+        title: isTaskFavorite ? 'Retiré des favoris' : 'Ajouté aux favoris',
+        description: isTaskFavorite 
+          ? 'La mission a été retirée de vos favoris' 
+          : 'Vous pouvez retrouver cette mission dans votre page Favoris',
+      });
+    } catch (error) {
+      console.error('Error toggling favorite:', error);
+      toast({
+        title: 'Erreur',
+        description: 'Une erreur est survenue',
+        variant: 'destructive',
+      });
+    }
+  };
 
   return (
     <Link 
@@ -84,14 +150,18 @@ export function TaskCardModern({ task, className }: TaskCardModernProps) {
         )}
       >
         {/* Image Section */}
-        <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10">
-          {/* Placeholder image with category icon overlay */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-6xl opacity-20">
-              {/* You can add category-specific icons here */}
-              📋
-            </div>
-          </div>
+        <div className="relative h-48 overflow-hidden">
+          {/* Unsplash Image */}
+          <Image
+            src={categoryImage}
+            alt={categoryLabel}
+            fill
+            className="object-cover transition-transform duration-300 group-hover:scale-110"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+          
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
           {/* Badges */}
           <div className="absolute top-3 left-3 flex gap-2">
@@ -101,6 +171,16 @@ export function TaskCardModern({ task, className }: TaskCardModernProps) {
                 Nouveau
               </Badge>
             )}
+            
+            {/* Category Badge with Icon */}
+            <Badge 
+              variant="secondary" 
+              className="shadow-md backdrop-blur-sm bg-background/90"
+              style={{ borderLeft: `3px solid ${categoryColor}` }}
+            >
+              {CategoryIcon && <CategoryIcon className="mr-1 h-3 w-3" style={{ color: categoryColor }} />}
+              {categoryLabel}
+            </Badge>
           </div>
 
           {/* Price Badge */}
@@ -109,14 +189,24 @@ export function TaskCardModern({ task, className }: TaskCardModernProps) {
               {budgetDisplay}
             </Badge>
           </div>
+          
+          {/* Favorite Button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute bottom-3 right-3 h-10 w-10 rounded-full bg-background/90 backdrop-blur-sm hover:bg-background shadow-md"
+            onClick={handleFavoriteClick}
+          >
+            <Heart 
+              className={cn(
+                "h-5 w-5 transition-all",
+                isTaskFavorite ? "fill-red-500 text-red-500" : "text-muted-foreground"
+              )} 
+            />
+          </Button>
         </div>
 
         <CardContent className="p-4">
-          {/* Category Badge */}
-          <Badge variant="outline" className="mb-2 text-xs">
-            {categoryLabel}
-          </Badge>
-
           {/* Title */}
           <h3 className="font-semibold text-lg line-clamp-2 mb-2 group-hover:text-primary transition-colors">
             {task.title}
