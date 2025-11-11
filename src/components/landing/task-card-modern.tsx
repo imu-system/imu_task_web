@@ -12,9 +12,7 @@ import { type Task } from '@/lib/types';
 import { useLocale } from 'next-intl';
 import { cn } from '@/lib/utils';
 import { getCategoryById, TASK_CATEGORIES } from '@/lib/constants/categories';
-import { useFavorites } from '@/hooks/use-favorites';
-import { useAuth } from '@/hooks/use-auth';
-import { useToast } from '@/hooks/use-toast';
+import { useToggleFavorite } from '@/hooks/use-favorites';
 
 // Unsplash images par catégorie (gratuites et de haute qualité)
 const CATEGORY_IMAGES: Record<string, string> = {
@@ -45,13 +43,21 @@ interface TaskCardModernProps {
 
 export function TaskCardModern({ task, className }: TaskCardModernProps) {
   const locale = useLocale();
-  const { user } = useAuth();
-  const { toast } = useToast();
-  const { isFavorite, toggleFavorite } = useFavorites();
   
-  // Check if task is favorite
-  const isTaskFavorite = isFavorite(task.id);
-
+  // Use existing toggle favorite hook with metadata
+  const { isFavorited, toggle: toggleFavorite, loading: favoriteLoading } = useToggleFavorite(
+    task.id,
+    'task',
+    {
+      title: task.title,
+      imageUrl: CATEGORY_IMAGES[task.category as string] || CATEGORY_IMAGES['aide_domicile'],
+      category: task.category as string,
+      location: typeof task.location === 'string' 
+        ? task.location 
+        : (task.location as any)?.city || (task.location as any)?.address,
+    }
+  );
+  
   // Extract data
   const clientName = task.client?.profile?.displayName || 'Utilisateur';
   const clientAvatar = task.client?.profile?.photoUrl;
@@ -109,31 +115,7 @@ export function TaskCardModern({ task, className }: TaskCardModernProps) {
     e.preventDefault();
     e.stopPropagation();
     
-    if (!user) {
-      toast({
-        title: 'Connexion requise',
-        description: 'Vous devez être connecté pour ajouter des favoris',
-        variant: 'destructive',
-      });
-      return;
-    }
-    
-    try {
-      await toggleFavorite(task.id);
-      toast({
-        title: isTaskFavorite ? 'Retiré des favoris' : 'Ajouté aux favoris',
-        description: isTaskFavorite 
-          ? 'La mission a été retirée de vos favoris' 
-          : 'Vous pouvez retrouver cette mission dans votre page Favoris',
-      });
-    } catch (error) {
-      console.error('Error toggling favorite:', error);
-      toast({
-        title: 'Erreur',
-        description: 'Une erreur est survenue',
-        variant: 'destructive',
-      });
-    }
+    await toggleFavorite();
   };
 
   return (
@@ -196,11 +178,12 @@ export function TaskCardModern({ task, className }: TaskCardModernProps) {
             size="icon"
             className="absolute bottom-3 right-3 h-10 w-10 rounded-full bg-background/90 backdrop-blur-sm hover:bg-background shadow-md"
             onClick={handleFavoriteClick}
+            disabled={favoriteLoading}
           >
             <Heart 
               className={cn(
                 "h-5 w-5 transition-all",
-                isTaskFavorite ? "fill-red-500 text-red-500" : "text-muted-foreground"
+                isFavorited ? "fill-red-500 text-red-500" : "text-muted-foreground"
               )} 
             />
           </Button>
