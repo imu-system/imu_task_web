@@ -1,0 +1,100 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - img "ImuTask" [ref=e7]
+      - generic [ref=e8]:
+        - heading "Bienvenue sur ImuTask 👋" [level=1] [ref=e9]
+        - paragraph [ref=e10]: Pour personnaliser votre expérience, quel type de profil vous correspond ?
+      - generic [ref=e11]:
+        - img [ref=e12]
+        - generic [ref=e14]: Étape 1 sur 2 - Choix du profil
+    - generic [ref=e16]:
+      - generic [ref=e19] [cursor=pointer]:
+        - button "En savoir plus" [ref=e20]:
+          - img
+        - generic [ref=e21]:
+          - img [ref=e24]
+          - generic [ref=e27]:
+            - generic [ref=e28]: Particulier
+            - generic [ref=e29]: Je cherche de l'aide pour mes tâches quotidiennes
+        - list [ref=e31]:
+          - listitem [ref=e32]:
+            - img [ref=e34]
+            - generic [ref=e36]: Trouver des prestataires locaux qualifiés
+          - listitem [ref=e37]:
+            - img [ref=e39]
+            - generic [ref=e41]: Paiement sécurisé après service rendu
+          - listitem [ref=e42]:
+            - img [ref=e44]
+            - generic [ref=e46]: Avis et notes vérifiés de la communauté
+          - listitem [ref=e47]:
+            - img [ref=e49]
+            - generic [ref=e51]: Support client disponible 7j/7
+      - generic [ref=e54] [cursor=pointer]:
+        - button "En savoir plus" [ref=e55]:
+          - img
+        - generic [ref=e56]:
+          - img [ref=e59]
+          - generic [ref=e62]:
+            - generic [ref=e63]: Professionnel
+            - generic [ref=e64]: Je propose mes services et souhaite développer mon activité
+        - list [ref=e66]:
+          - listitem [ref=e67]:
+            - img [ref=e69]
+            - generic [ref=e71]: Clients qualifiés près de chez vous
+          - listitem [ref=e72]:
+            - img [ref=e74]
+            - generic [ref=e76]: Calendrier et planning intégré
+          - listitem [ref=e77]:
+            - img [ref=e79]
+            - generic [ref=e81]: Paiements automatiques sécurisés
+          - listitem [ref=e82]:
+            - img [ref=e84]
+            - generic [ref=e86]: Assurance responsabilité civile incluse
+      - generic [ref=e89] [cursor=pointer]:
+        - button "En savoir plus" [ref=e90]:
+          - img
+        - generic [ref=e91]:
+          - img [ref=e94]
+          - generic [ref=e96]:
+            - generic [ref=e97]: Senior / Aidant
+            - generic [ref=e98]: J'ai besoin de services adaptés et d'un accompagnement bienveillant
+        - list [ref=e100]:
+          - listitem [ref=e101]:
+            - img [ref=e103]
+            - generic [ref=e105]: Services certifiés PMR ♿ accessibles
+          - listitem [ref=e106]:
+            - img [ref=e108]
+            - generic [ref=e110]: Contacts aidants d'urgence configurables
+          - listitem [ref=e111]:
+            - img [ref=e113]
+            - generic [ref=e115]: Bouton SOS rapide intégré à l'app
+          - listitem [ref=e116]:
+            - img [ref=e118]
+            - generic [ref=e120]: Interface vocale simplifiée (optionnel)
+    - generic [ref=e121]:
+      - button "Continuer" [disabled]:
+        - text: Continuer
+        - img
+      - paragraph [ref=e122]: 👆 Sélectionnez un type de compte pour continuer
+    - generic [ref=e123]:
+      - generic [ref=e125]:
+        - generic [ref=e126]: 💡
+        - generic [ref=e127]: "Astuce:"
+        - generic [ref=e128]: Vous pourrez modifier votre type de compte plus tard dans vos paramètres
+      - generic [ref=e129]:
+        - generic [ref=e130]: 🔒
+        - generic [ref=e131]: Vos données sont sécurisées et ne seront jamais partagées
+  - region "Notifications (F8)":
+    - list
+  - generic [ref=e132]:
+    - img [ref=e134]
+    - button "Open Tanstack query devtools" [ref=e182] [cursor=pointer]:
+      - img [ref=e183]
+  - alert [ref=e231]: ImuTask
+  - button "Open Next.js Dev Tools" [ref=e237] [cursor=pointer]:
+    - img [ref=e238]
+```
