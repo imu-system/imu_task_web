@@ -76,6 +76,7 @@ export function AccountTypeCard({ type, selected, onSelect }: AccountTypeCardPro
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
         <Card
+          data-testid={`account-type-${type}`}
           className={cn(
             'relative cursor-pointer transition-all duration-300 h-full',
             'border-2 hover:shadow-2xl',

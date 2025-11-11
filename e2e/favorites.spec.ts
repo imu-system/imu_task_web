@@ -32,8 +32,8 @@ test.describe('Système de favoris', () => {
         // Si on est sur l'onboarding, sélectionner le type de compte
         const currentUrl = page.url();
         if (currentUrl.includes('/onboarding')) {
-            // Sélectionner "Client"
-            await page.click('[data-testid="account-type-client"]');
+            // Sélectionner "Individual" (anciennement "Client")
+            await page.click('[data-testid="account-type-individual"]');
             await page.click('button:has-text("Continuer")');
             await page.waitForURL(/\/dashboard/, { timeout: 10000 });
         }
@@ -349,7 +349,7 @@ test.describe('Favoris - Intégration i18n', () => {
 
         // Compléter l'onboarding si nécessaire
         if (page.url().includes('/onboarding')) {
-            await page.click('[data-testid="account-type-client"]');
+            await page.click('[data-testid="account-type-individual"]');
             await page.click('button:has-text("Continue")');
             await page.waitForURL(/\/dashboard/, { timeout: 10000 });
         }
@@ -379,7 +379,7 @@ test.describe('Favoris - Intégration i18n', () => {
 
         // Compléter l'onboarding si nécessaire
         if (page.url().includes('/onboarding')) {
-            await page.click('[data-testid="account-type-client"]');
+            await page.click('[data-testid="account-type-individual"]');
             await page.click('button:has-text("続ける")');
             await page.waitForURL(/\/dashboard/, { timeout: 10000 });
         }

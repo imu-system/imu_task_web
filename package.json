@@ -15,7 +15,8 @@
     "test:coverage": "jest --coverage",
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
-    "algolia:index": "tsx src/scripts/algolia-index.ts"
+    "algolia:index": "tsx src/scripts/algolia-index.ts",
+    "seed:test": "tsx scripts/seed-test-data.ts"
   },
   "dependencies": {
     "@genkit-ai/googleai": "^1.14.1",
