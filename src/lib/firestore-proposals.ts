@@ -134,10 +134,12 @@ export async function getProviderProposals(providerId: string): Promise<Proposal
 export async function getTaskProposals(taskId: string): Promise<Proposal[]> {
     try {
         const proposalsRef = collection(db, 'proposals');
+        // TEMPORARY: Removed orderBy until Firestore index is built
+        // Index creation: https://console.firebase.google.com/.../firestore/indexes
         const q = query(
             proposalsRef,
-            where('taskId', '==', taskId),
-            orderBy('createdAt', 'desc')
+            where('taskId', '==', taskId)
+            // orderBy('createdAt', 'desc') // TODO: Uncomment when index is ready
         );
 
         const querySnapshot = await getDocs(q);
@@ -157,6 +159,9 @@ export async function getTaskProposals(taskId: string): Promise<Proposal[]> {
                 updatedAt: data.updatedAt?.toDate() || new Date(),
             };
         });
+
+        // Sort client-side until index is ready
+        proposals.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
 
         console.log('✅ Found', proposals.length, 'proposals for task:', taskId);
         return proposals;

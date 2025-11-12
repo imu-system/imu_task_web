@@ -1,16 +1,19 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from '@/navigation';
-import { getOpenTasks, type Task } from '@/lib/firestore-tasks';
+import { type Task } from '@/lib/firestore-tasks';
+import { useTasksOptimized } from '@/hooks/useTasksOptimized';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
 import { TasksMap } from '@/components/tasks/tasks-map';
+import { TasksLoadingSkeleton } from '@/components/tasks/tasks-loading-skeleton';
+import { InfiniteScrollTrigger } from '@/components/tasks/infinite-scroll-trigger';
+import { debounce } from '@/lib/utils';
 import { 
   MapIcon, 
   ListIcon, 
@@ -21,7 +24,8 @@ import {
   Calendar,
   DollarSign,
   MapPin,
-  Send
+  Send,
+  RefreshCw
 } from 'lucide-react';
 import { 
   Select,
@@ -32,13 +36,6 @@ import {
 } from '@/components/ui/select';
 import { Slider } from '@/components/ui/slider';
 import { Label } from '@/components/ui/label';
-import { 
-  getCurrentPosition, 
-  filterTasksByDistance, 
-  sortTasksByDistance,
-  formatDistance,
-  calculateDistance
-} from '@/lib/geolocation';
 
 // Service categories (matching your system)
 const SERVICE_CATEGORIES = [
@@ -69,17 +66,12 @@ export default function BrowseTasksPage() {
   const t = useTranslations('BrowseTasks');
   const tCommon = useTranslations('Common');
 
-  // State
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
-
   // View mode: list or map
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
 
   // Filters
   const [searchQuery, setSearchQuery] = useState('');
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [minBudget, setMinBudget] = useState(0);
   const [maxBudget, setMaxBudget] = useState(500);
@@ -90,6 +82,38 @@ export default function BrowseTasksPage() {
   // Geolocation
   const [userLocation, setUserLocation] = useState<{lat: number; lng: number} | null>(null);
   const [locating, setLocating] = useState(false);
+
+  // Debounce search query
+  useEffect(() => {
+    const debouncedUpdate = debounce((value: string) => {
+      setDebouncedSearchQuery(value);
+    }, 300);
+
+    debouncedUpdate(searchQuery);
+
+    return () => {
+      debouncedUpdate.cancel?.();
+    };
+  }, [searchQuery]);
+
+  // Use optimized tasks hook with filters
+  const {
+    tasks,
+    loading,
+    loadingMore,
+    error,
+    hasMore,
+    loadMore,
+    refresh
+  } = useTasksOptimized({
+    filters: {
+      status: 'open',
+      category: selectedCategories.length > 0 ? selectedCategories : undefined,
+    },
+    pageSize: 12,
+    enableCache: true,
+    cacheTTL: 3 * 60 * 1000 // 3 minutes cache for provider browse
+  });
 
   // Check if user is provider
   useEffect(() => {
@@ -108,76 +132,39 @@ export default function BrowseTasksPage() {
     }
   }, [user, router]);
 
-  // Fetch open tasks
-  useEffect(() => {
-    const fetchTasks = async () => {
-      setLoading(true);
-      setError('');
-
-      try {
-        const openTasks = await getOpenTasks();
-        setTasks(openTasks);
-        setFilteredTasks(openTasks);
-      } catch (err) {
-        console.error('Error fetching tasks:', err);
-        setError(t('errorLoading') || 'Failed to load tasks');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    if (user) {
-      fetchTasks();
-    }
-  }, [user, t]);
-
-  // Get user location
-  const handleGetLocation = async () => {
-    setLocating(true);
-    try {
-      const position = await getCurrentPosition();
-      setUserLocation({ lat: position.coords.latitude, lng: position?.coords.longitude });
-      setSortBy('distance'); // Auto-switch to distance sort
-    } catch (err) {
-      console.error('Error getting location:', err);
-    }
-    setLocating(false);
-  };
-
-  // Apply filters
-  useEffect(() => {
+  // Filter and sort tasks (client-side for search, budget, and distance)
+  const filteredTasks = useMemo(() => {
     let result = [...tasks];
 
-    // Search filter
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
+    // Search filter (client-side with debounce)
+    if (debouncedSearchQuery.trim()) {
+      const query = debouncedSearchQuery.toLowerCase();
       result = result.filter(task => 
         task.title.toLowerCase().includes(query) ||
         task.description.toLowerCase().includes(query)
       );
     }
 
-    // Category filter
-    if (selectedCategories.length > 0) {
-      result = result.filter(task => 
-        task.category && selectedCategories.includes(task.category)
-      );
-    }
-
-    // Budget filter
+    // Budget filter (client-side)
     result = result.filter(task => {
       const budget = task.budget || 0;
       return budget >= minBudget && budget <= maxBudget;
     });
 
-    // Distance filter (if location available)
+    // Distance filter (client-side if location available)
     if (userLocation && maxDistance < 50) {
-      result = filterTasksByDistance(
-        result as any, 
-        userLocation.lat, 
-        userLocation.lng, 
-        maxDistance
-      ) as Task[];
+      result = result.filter(task => {
+        if (!task.adresse?.latitude || !task.adresse?.longitude) return false;
+        
+        const { calculateDistance } = require('@/lib/geolocation');
+        const distance = calculateDistance(
+          userLocation.lat,
+          userLocation.lng,
+          task.adresse.latitude,
+          task.adresse.longitude
+        );
+        return distance <= maxDistance;
+      });
     }
 
     // Sorting
@@ -190,6 +177,7 @@ export default function BrowseTasksPage() {
     } else if (sortBy === 'budget') {
       result.sort((a, b) => (b.budget || 0) - (a.budget || 0));
     } else if (sortBy === 'distance' && userLocation) {
+      const { sortTasksByDistance } = require('@/lib/geolocation');
       result = sortTasksByDistance(
         result as any,
         userLocation.lat,
@@ -197,12 +185,32 @@ export default function BrowseTasksPage() {
       ) as Task[];
     }
 
-    setFilteredTasks(result);
-  }, [tasks, searchQuery, selectedCategories, minBudget, maxBudget, maxDistance, sortBy, userLocation]);
+    return result;
+  }, [tasks, debouncedSearchQuery, minBudget, maxBudget, maxDistance, sortBy, userLocation]);
+
+  // Get user location
+  const handleGetLocation = async () => {
+    setLocating(true);
+    try {
+      const { getCurrentPosition } = await import('@/lib/geolocation');
+      const position = await getCurrentPosition();
+      if (position && position.coords) {
+        setUserLocation({ 
+          lat: position.coords.latitude, 
+          lng: position.coords.longitude 
+        });
+        setSortBy('distance'); // Auto-switch to distance sort
+      }
+    } catch (err) {
+      console.error('Error getting location:', err);
+    }
+    setLocating(false);
+  };
 
   // Reset filters
   const handleResetFilters = () => {
     setSearchQuery('');
+    setDebouncedSearchQuery('');
     setSelectedCategories([]);
     setMinBudget(0);
     setMaxBudget(500);
@@ -259,6 +267,17 @@ export default function BrowseTasksPage() {
                 </Button>
 
                 <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={refresh}
+                  disabled={loadingMore}
+                  data-testid="refresh-button"
+                  title={t('refresh') || 'Actualiser'}
+                >
+                  <RefreshCw className={`h-4 w-4 ${loadingMore ? 'animate-spin' : ''}`} />
+                </Button>
+
+                <Button
                   variant={viewMode === 'list' ? 'default' : 'outline'}
                   size="icon"
                   onClick={() => setViewMode('list')}
@@ -277,11 +296,12 @@ export default function BrowseTasksPage() {
                 </Button>
 
                 <Button
-                  variant="outline"
+                  variant={userLocation ? "default" : "outline"}
                   size="icon"
                   onClick={handleGetLocation}
                   disabled={locating}
                   data-testid="get-location-button"
+                  title={userLocation ? t('locationActive') || 'Position active' : t('getLocation') || 'Ma position'}
                 >
                   {locating ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -395,20 +415,8 @@ export default function BrowseTasksPage() {
       </div>
 
       {/* Loading State */}
-      {loading && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" data-testid="loading-skeleton">
-          {[...Array(6)].map((_, i) => (
-            <Card key={i}>
-              <CardHeader>
-                <Skeleton className="h-6 w-3/4 mb-2" />
-                <Skeleton className="h-4 w-1/2" />
-              </CardHeader>
-              <CardContent>
-                <Skeleton className="h-20 w-full" />
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+      {loading && tasks.length === 0 && (
+        <TasksLoadingSkeleton count={12} />
       )}
 
       {/* Error State */}
@@ -416,6 +424,9 @@ export default function BrowseTasksPage() {
         <Card className="border-destructive" data-testid="error-message">
           <CardContent className="pt-6">
             <p className="text-destructive">{error}</p>
+            <Button variant="outline" onClick={refresh} className="mt-4">
+              {t('retry') || 'Réessayer'}
+            </Button>
           </CardContent>
         </Card>
       )}
@@ -435,88 +446,107 @@ export default function BrowseTasksPage() {
       )}
 
       {/* Tasks List View */}
-      {!loading && !error && viewMode === 'list' && filteredTasks.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" data-testid="tasks-list">
-          {filteredTasks.map(task => {
-            const distance = userLocation && task.adresse?.latitude && task.adresse?.longitude
-              ? calculateDistance(
-                  userLocation.lat,
-                  userLocation.lng,
-                  task.adresse.latitude,
-                  task.adresse.longitude
-                )
-              : null;
+      {!error && viewMode === 'list' && filteredTasks.length > 0 && (
+        <>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" data-testid="tasks-list">
+            {filteredTasks.map(task => {
+              const distance = userLocation && task.adresse?.latitude && task.adresse?.longitude
+                ? (() => {
+                    const { calculateDistance } = require('@/lib/geolocation');
+                    return calculateDistance(
+                      userLocation.lat,
+                      userLocation.lng,
+                      task.adresse.latitude,
+                      task.adresse.longitude
+                    );
+                  })()
+                : null;
 
-            return (
-              <Card key={task.id} className="hover:shadow-lg transition-shadow" data-testid={`task-card-${task.id}`}>
-                <CardHeader>
-                  <div className="flex justify-between items-start mb-2">
-                    <CardTitle className="text-lg line-clamp-1">{task.title}</CardTitle>
-                    {task.category && (
-                      <Badge variant="outline" data-testid={`task-category-${task.id}`}>
-                        {tCommon(`categories.${task.category}` as any) || task.category}
-                      </Badge>
-                    )}
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
-                    {task.description}
-                  </p>
-
-                  <div className="space-y-2 text-sm">
-                    {task.budget && (
-                      <div className="flex items-center gap-2">
-                        <DollarSign className="h-4 w-4 text-green-600" />
-                        <span className="font-semibold">{task.budget}€</span>
-                      </div>
-                    )}
-
-                    {task.location && (
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 text-blue-600" />
-                        <span className="text-muted-foreground">{getLocationString(task.location)}</span>
-                      </div>
-                    )}
-
-                    {distance !== null && (
-                      <div className="flex items-center gap-2">
-                        <Navigation className="h-4 w-4 text-purple-600" />
-                        <span className="text-muted-foreground">{formatDistance(distance)}</span>
-                      </div>
-                    )}
-
-                    <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4 text-gray-600" />
-                      <span className="text-muted-foreground">
-                        {new Date(task.createdAt).toLocaleDateString()}
-                      </span>
+              return (
+                <Card key={task.id} className="hover:shadow-lg transition-shadow" data-testid={`task-card-${task.id}`}>
+                  <CardHeader>
+                    <div className="flex justify-between items-start mb-2">
+                      <CardTitle className="text-lg line-clamp-1">{task.title}</CardTitle>
+                      {task.category && (
+                        <Badge variant="outline" data-testid={`task-category-${task.id}`}>
+                          {tCommon(`categories.${task.category}` as any) || task.category}
+                        </Badge>
+                      )}
                     </div>
-                  </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-sm text-muted-foreground line-clamp-2 mb-4">
+                      {task.description}
+                    </p>
 
-                  <div className="flex gap-2 mt-4">
-                    <Button 
-                      variant="outline"
-                      className="flex-1" 
-                      onClick={() => router.push(`/dashboard/tasks/${task.id}` as any)}
-                      data-testid={`view-task-button-${task.id}`}
-                    >
-                      {t('viewDetails') || 'Voir les détails'}
-                    </Button>
-                    <Button 
-                      className="flex-1" 
-                      onClick={() => router.push(`/dashboard/tasks/${task.id}/submit-offer` as any)}
-                      data-testid={`submit-offer-button-${task.id}`}
-                    >
-                      <Send className="mr-2 h-4 w-4" />
-                      {t('submitOffer') || 'Faire une offre'}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
+                    <div className="space-y-2 text-sm">
+                      {task.budget && (
+                        <div className="flex items-center gap-2">
+                          <DollarSign className="h-4 w-4 text-green-600" />
+                          <span className="font-semibold">{task.budget}€</span>
+                        </div>
+                      )}
+
+                      {task.location && (
+                        <div className="flex items-center gap-2">
+                          <MapPin className="h-4 w-4 text-blue-600" />
+                          <span className="text-muted-foreground">{getLocationString(task.location)}</span>
+                        </div>
+                      )}
+
+                      {distance !== null && (
+                        <div className="flex items-center gap-2">
+                          <Navigation className="h-4 w-4 text-purple-600" />
+                          <span className="text-muted-foreground">
+                            {(() => {
+                              const { formatDistance } = require('@/lib/geolocation');
+                              return formatDistance(distance);
+                            })()}
+                          </span>
+                        </div>
+                      )}
+
+                      <div className="flex items-center gap-2">
+                        <Calendar className="h-4 w-4 text-gray-600" />
+                        <span className="text-muted-foreground">
+                          {new Date(task.createdAt).toLocaleDateString()}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-2 mt-4">
+                      <Button 
+                        variant="outline"
+                        className="flex-1" 
+                        onClick={() => router.push(`/dashboard/tasks/${task.id}` as any)}
+                        data-testid={`view-task-button-${task.id}`}
+                      >
+                        {t('viewDetails') || 'Voir les détails'}
+                      </Button>
+                      <Button 
+                        className="flex-1" 
+                        onClick={() => router.push(`/dashboard/tasks/${task.id}/submit-offer` as any)}
+                        data-testid={`submit-offer-button-${task.id}`}
+                      >
+                        <Send className="mr-2 h-4 w-4" />
+                        {t('submitOffer') || 'Faire une offre'}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+
+          {/* Infinite Scroll Trigger */}
+          {hasMore && (
+            <InfiniteScrollTrigger
+              onLoadMore={loadMore}
+              loading={loadingMore}
+              hasMore={hasMore}
+            />
+          )}
+        </>
       )}
 
       {/* Map View */}

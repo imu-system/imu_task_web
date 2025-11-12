@@ -1,2268 +1,2289 @@
 {
-  "Common": {
-    "toggleTheme": "テーマを切り替える",
-    "lightTheme": "ライト",
-    "darkTheme": "ダーク",
-    "systemTheme": "システム"
-  },
-  "Header": {
-    "features": "特徴",
-    "howItWorks": "使い方",
-    "categories": "カテゴリー",
-    "signIn": "サインイン",
-    "signUp": "サインアップ",
-    "signOut": "サインアウト",
-    "dashboard": "ダッシュボード",
-    "profile": "プロフィール",
-    "openMenu": "メニューを開く",
-    "search": "検索",
-    "searchPlaceholder": "検索...",
-    "create": "作成",
-    "createTask": "タスクを作成",
-    "setAvailability": "利用可能性を設定",
-    "settings": "設定",
-    "support": "サポート",
-    "suggestedAction": "「買い物」タスクを作成（テンプレート）",
-    "notificationsTitle": "通知",
-    "viewAllNotifications": "すべての通知を表示",
-    "lastSync": "最終同期：たった今",
-    "status": {
-      "online": "オンラインで同期済み",
-      "offline": "オフライン",
-      "pending": "同期保留中の変更"
+    "Common": {
+        "toggleTheme": "テーマを切り替える",
+        "lightTheme": "ライト",
+        "darkTheme": "ダーク",
+        "systemTheme": "システム"
     },
-    "availableForMissions": "新しいミッションに対応可能",
-    "favorites": {
-      "title": "お気に入り",
-      "myStats": "私の統計"
-    },
-    "theme": {
-      "title": "テーマ",
-      "light": "ライト",
-      "dark": "ダーク",
-      "system": "システム"
-    }
-  },
-  "Footer": {
-    "rights": "© {currentYear} ImuTask. 無断複写・転載を禁じます。",
-    "terms": "利用規約",
-    "privacy": "プライバシーポリシー"
-  },
-  "HomePage": {
-    "title": "ImuTask",
-    "subtitle": "あなたのニーズ、彼らのミッション。",
-    "description": "世代をつなぎ、日常のサービスをシンプルに、信頼性高く、安全に提供します。",
-    "signIn": "サインイン",
-    "signUp": "サインアップ",
-    "whyChoose": "ImuTaskを選ぶ理由",
-    "feature1Title": "世代間の相互扶助",
-    "feature1Desc": "コミュニティの人々を助けたり、助けられたりすることで、ユニークな絆を築きましょう。",
-    "feature2Title": "信頼と安全",
-    "feature2Desc": "検証済みのプロフィール（KYC）、安全な支払い、レビューにより、安心してミッションを完了できます。",
-    "feature3Title": "シンプルなコミュニケーション",
-    "feature3Desc": "統合されたメッセージングシステムでメンバーと簡単にチャットし、ミッションの詳細を調整できます。",
-    "howItWorksTitle": "それぞれのニーズに、解決策を",
-    "forClients": {
-      "title": "クライアント向け",
-      "description": "迅速かつ安全に助けを見つけましょう。タスクを投稿し、プロバイダーを選び、安心して物事を進めましょう。",
-      "button": "ミッションを投稿"
-    },
-    "forProviders": {
-      "title": "プロバイダー向け",
-      "description": "コミュニティを助けて副収入を得ましょう。ミッションを選び、スケジュールを管理し、安全に支払いを受け取りましょう。",
-      "button": "プロバイダーになる"
-    },
-    "categoriesTitle": "あらゆるニーズに応えるサービス",
-    "categoryShopping": "買い物",
-    "categoryGardening": "ガーデニング",
-    "categoryCleaning": "掃除",
-    "categoryAdmin": "事務手伝い",
-    "readyToStartTitle": "準備はいいですか？",
-    "readyToStartDesc": "思いやりのある支援的なコミュニティに参加しましょう。",
-    "signUpFree": "無料でサインアップ",
-    "testimonials": {
-      "title": "メンバーの声",
-      "testimonial1": {
-        "text": "ImuTaskのおかげで、2週間ごとに芝生を刈りに来てくれる素敵な学生のルーカス君を見つけました。本当に助かりますし、彼とのおしゃべりもいつも楽しいです！",
-        "name": "マリー＝エレーヌ、72歳",
-        "role": "クライアント"
-      },
-      "testimonial2": {
-        "text": "ImuTaskでちょっとした仕事をして、学費の一部を稼いでいます。柔軟に働けるし、給料もいいし、近所の人たちの役に立っていると実感できます。",
-        "name": "ルーカス、21歳",
-        "role": "プロバイダー"
-      }
-    },
-    "stats": {
-      "missions": "完了したミッション",
-      "members": "アクティブメンバー",
-      "rating": "プロバイダーの平均評価"
-    },
-    "faq": {
-      "title": "よくある質問",
-      "q1": {
-        "question": "価格はどのように設定されますか？",
-        "answer": "クライアントはタスクを投稿する際に予算を提案します。プロバイダーはその価格でオファーを出すか、別の価格を提案することができます。最終的な価格は、クライアントとプロバイダーの間で合意されたものです。"
-      },
-      "q2": {
-        "question": "プラットフォームは安全ですか？",
-        "answer": "はい、セキュリティは私たちの最優先事項です。プロバイダーの本人確認（KYC）を行い、すべての支払いはパートナーであるStripeを通じて安全に処理され、コミュニティ内の信頼を築くための評価システムがあります。"
-      },
-      "q3": {
-        "question": "ミッション中に問題が発生した場合はどうなりますか？",
-        "answer": "予約詳細ページから直接紛争を開始できます。その後、私たちのサポートチームが介入し、友好的な解決策を見つけるお手伝いをします。"
-      }
-    }
-  },
-  "LanguageSwitcher": {
-    "changeLanguage": "言語を変更",
-    "changeLanguageRegionCurrency": "言語、地域、通貨を変更",
-    "languageRegion": "言語と地域",
-    "currency": "通貨",
-    "languageRegionDescription": "ご希望の言語と地域を選択してください。",
-    "currencyDescription": "ご希望の通貨を選択してください。",
-    "searchPlaceholder": "言語を検索..."
-  },
-  "DashboardNav": {
-    "dashboard": "ダッシュボード",
-    "createTask": "タスクを作成",
-    "myTasks": "私のタスク",
-    "messages": "メッセージ",
-    "wallet": "ウォレット",
-    "profile": "プロフィール",
-    "logout": "ログアウト",
-    "admin": "管理",
-    "findProvider": "プロバイダーを探す",
-    "findTask": "タスクを探す",
-    "myBookings": "私の予約",
-    "reviews": "レビュー",
-    "referrals": "紹介",
-    "provider": "プロバイダースペース",
-    "availability": "利用可能性",
-    "stats": "統計",
-    "academy": "アカデミー",
-    "users": "ユーザー",
-    "tasks": "タスク",
-    "offers": "オファー",
-    "bookings": "予約",
-    "moderation": "モデレーション",
-    "kycVerification": "KYC認証",
-    "disputes": "紛争",
-    "support": "サポート",
-    "categories": "カテゴリー",
-    "cms": "CMS",
-    "notifications": "通知",
-    "translations": "翻訳",
-    "payments": "支払い",
-    "pricing": "価格設定",
-    "reports": "レポート",
-    "integrations": "統合",
-    "settings": "設定",
-    "auditLog": "監査ログ",
-    "marketInsights": "市場インサイト",
-    "templates": "テンプレート",
-    "devTools": "開発者ツール",
-    "partnerships": "パートナーシップ",
-    "offline": "オフラインステータス",
-    "adminNav": {
-      "community": "コミュニティ",
-      "moderation": "モデレーション",
-      "platform": "プラットフォーム",
-      "finance": "ファイナンス",
-      "config": "設定"
-    }
-  },
-  "AdminDashboard": {
-    "subtitle": "プラットフォーム概要とクイックアクション",
-    "quickActionsTitle": "クイックアクション"
-  },
-  "DashboardPage": {
-    "title": "利用可能なタスク",
-    "subtitle": "近くであなたに合ったタスクを見つけましょう。",
-    "createTask": "タスクを作成",
-    "noTasks": "現在利用可能なタスクはありません。",
-    "welcome": "おかえりなさい、{name}さん！",
-    "welcomeSubtitle": "今日の状況は以下の通りです。",
-    "kpi": {
-      "activeTasks": "アクティブなタスク",
-      "pendingOffers": "保留中のオファー",
-      "completedMissions": "完了したミッション",
-      "walletBalance": "ウォレット残高"
-    },
-    "recommendedTasks": {
-      "title": "あなたへのおすすめ"
-    },
-    "upcomingBookings": {
-      "title": "今後の予約",
-      "description": "次に予定されているミッション。",
-      "noBookings": "今後の予約はありません。"
-    },
-    "recentNotifications": {
-      "title": "最近の通知",
-      "description": "最新情報を確認。",
-      "noNotifications": "新しい通知はありません。",
-      "viewAll": "すべての通知を表示"
-    },
-    "popularPacks": {
-      "title": "人気のプロバイダーオファー"
-    }
-  },
-  "ServicePackCard": {
-    "book": "予約"
-  },
-  "NewTaskPage": {
-    "title": "新しいタスクを作成",
-    "subtitle": "すぐに助けを見つけるために、以下の詳細を記入してください。"
-  },
-  "TaskCard": {
-    "viewTask": "タスクを表示",
-    "reviews": "({count}件のレビュー)",
-    "makeOffer": "Make Offer"
-  },
-  "CreateTaskForm": {
-    "taskTitleLabel": "タスクのタイトル",
-    "taskTitlePlaceholder": "例：芝刈り",
-    "descriptionLabel": "詳細な説明",
-    "descriptionPlaceholder": "必要なことを正確に説明してください...",
-    "descriptionHelp": "詳細であるほど、より関連性の高いオファーを受け取ることができます。",
-    "suggestCategoriesButton": "AIでカテゴリを提案",
-    "suggestionsLabel": "提案：",
-    "categoryLabel": "カテゴリ",
-    "categoryPlaceholder": "カテゴリを選択",
-    "categoryLoading": "読み込み中...",
-    "locationLabel": "タスクの場所",
-    "locationPlaceholder": "保存された住所を選択",
-    "startTimeLabel": "開始時間",
-    "endTimeLabel": "終了時間",
-    "datePlaceholder": "日付を選択",
-    "budgetLabel": "提示価格（€）",
-    "budgetHelp": "これはプロバイダーに提供される金額です。",
-    "submitButton": "タスクを公開",
-    "toastSuccessTitle": "タスクが作成されました！",
-    "toastSuccessDescription": "あなたのタスクは正常に公開されました。",
-    "toastErrorTitle": "エラー",
-    "toastErrorDescription": "カテゴリの提案中にエラーが発生しました。",
-    "durationLabel": "推定時間（分）",
-    "durationPlaceholder": "例: 60",
-    "durationHelp": "タスクにかかる時間を推定してください。",
-    "providersLabel": "プロバイダーの数",
-    "providersHelp": "複数の人が必要なタスクの場合（例：引っ越し）。",
-    "attachmentsLabel": "添付ファイル",
-    "attachmentsPlaceholder": "ここをクリックまたはドラッグ＆ドロップしてファイルを追加"
-  },
-  "ImpersonationBanner": {
-    "impersonateWarning": "現在、{email}になりすましています。",
-    "stopImpersonation": "なりすましを停止"
-  },
-  "TaskDetailPage": {
-    "providersRequired": "{count}人のプロバイダーが必要です",
-    "providersNeeded": "{accepted} / {required} プロバイダー",
-    "notFound": "タスクが見つかりません",
-    "notFoundDescription": "お探しのタスクは存在しないか、削除されました。",
-    "offersReceived": "Offers received ({count})",
-    "noOffers": "You haven't received any offers for this task yet.",
-    "budget": "Client budget",
-    "client": "Client",
-    "memberSince": "Member since {year}",
-    "identityVerified": "Identity verified",
-    "paymentVerified": "Payment verified",
-    "actions": {
-      "title": "Actions",
-      "edit": "Edit Task",
-      "cancel": "Cancel Task",
-      "receipt": "View Receipt",
-      "reportProblem": "Report a Problem"
-    },
-    "messaging": {
-      "title": "メッセージ",
-      "newThread": "新しいメッセージ",
-      "newConversation": "新しい会話",
-      "searchPlaceholder": "会話を検索...",
-      "searchUsers": "ユーザーを検索...",
-      "selectThread": "会話を選択",
-      "selectThreadDescription": "既存の会話を選択するか、新しい会話を開始してチャットを始めましょう",
-      "encryptionInfo": "会話はエンドツーエンドで暗号化されています",
-      "noMessages": "メッセージなし",
-      "noUsersFound": "ユーザーが見つかりません",
-      "noUsersAvailable": "利用可能なユーザーがいません",
-      "you": "あなた",
-      "typing": "入力中...",
-      "unknownUser": "不明なユーザー",
-      "relatedTask": "関連タスク",
-      "confirmDelete": "この会話を削除してもよろしいですか？",
-      "tabs": {
-        "active": "アクティブ",
-        "archived": "アーカイブ済み"
-      },
-      "filters": {
-        "all": "すべて",
-        "unread": "未読",
-        "favorites": "お気に入り",
-        "groups": "グループ"
-      },
-      "actions": {
-        "archive": "アーカイブ",
-        "unarchive": "アーカイブ解除",
-        "delete": "削除",
-        "mute": "通知をミュート",
-        "unmute": "通知をオン",
-        "call": "通話",
-        "videoCall": "ビデオ通話",
+    "Header": {
+        "features": "特徴",
+        "howItWorks": "使い方",
+        "categories": "カテゴリー",
+        "signIn": "サインイン",
+        "signUp": "サインアップ",
+        "signOut": "サインアウト",
+        "dashboard": "ダッシュボード",
+        "profile": "プロフィール",
+        "openMenu": "メニューを開く",
         "search": "検索",
+        "searchPlaceholder": "検索...",
+        "create": "作成",
+        "createTask": "タスクを作成",
+        "setAvailability": "利用可能性を設定",
+        "settings": "設定",
+        "support": "サポート",
+        "suggestedAction": "「買い物」タスクを作成（テンプレート）",
+        "notificationsTitle": "通知",
+        "viewAllNotifications": "すべての通知を表示",
+        "lastSync": "最終同期：たった今",
+        "status": {
+            "online": "オンラインで同期済み",
+            "offline": "オフライン",
+            "pending": "同期保留中の変更"
+        },
+        "availableForMissions": "新しいミッションに対応可能",
+        "favorites": {
+            "title": "お気に入り",
+            "myStats": "私の統計"
+        },
+        "theme": {
+            "title": "テーマ",
+            "light": "ライト",
+            "dark": "ダーク",
+            "system": "システム"
+        }
+    },
+    "Footer": {
+        "rights": "© {currentYear} ImuTask. 無断複写・転載を禁じます。",
+        "terms": "利用規約",
+        "privacy": "プライバシーポリシー"
+    },
+    "HomePage": {
+        "title": "ImuTask",
+        "subtitle": "あなたのニーズ、彼らのミッション。",
+        "description": "世代をつなぎ、日常のサービスをシンプルに、信頼性高く、安全に提供します。",
+        "signIn": "サインイン",
+        "signUp": "サインアップ",
+        "whyChoose": "ImuTaskを選ぶ理由",
+        "feature1Title": "世代間の相互扶助",
+        "feature1Desc": "コミュニティの人々を助けたり、助けられたりすることで、ユニークな絆を築きましょう。",
+        "feature2Title": "信頼と安全",
+        "feature2Desc": "検証済みのプロフィール（KYC）、安全な支払い、レビューにより、安心してミッションを完了できます。",
+        "feature3Title": "シンプルなコミュニケーション",
+        "feature3Desc": "統合されたメッセージングシステムでメンバーと簡単にチャットし、ミッションの詳細を調整できます。",
+        "howItWorksTitle": "それぞれのニーズに、解決策を",
+        "forClients": {
+            "title": "クライアント向け",
+            "description": "迅速かつ安全に助けを見つけましょう。タスクを投稿し、プロバイダーを選び、安心して物事を進めましょう。",
+            "button": "ミッションを投稿"
+        },
+        "forProviders": {
+            "title": "プロバイダー向け",
+            "description": "コミュニティを助けて副収入を得ましょう。ミッションを選び、スケジュールを管理し、安全に支払いを受け取りましょう。",
+            "button": "プロバイダーになる"
+        },
+        "categoriesTitle": "あらゆるニーズに応えるサービス",
+        "categoryShopping": "買い物",
+        "categoryGardening": "ガーデニング",
+        "categoryCleaning": "掃除",
+        "categoryAdmin": "事務手伝い",
+        "readyToStartTitle": "準備はいいですか？",
+        "readyToStartDesc": "思いやりのある支援的なコミュニティに参加しましょう。",
+        "signUpFree": "無料でサインアップ",
+        "testimonials": {
+            "title": "メンバーの声",
+            "testimonial1": {
+                "text": "ImuTaskのおかげで、2週間ごとに芝生を刈りに来てくれる素敵な学生のルーカス君を見つけました。本当に助かりますし、彼とのおしゃべりもいつも楽しいです！",
+                "name": "マリー＝エレーヌ、72歳",
+                "role": "クライアント"
+            },
+            "testimonial2": {
+                "text": "ImuTaskでちょっとした仕事をして、学費の一部を稼いでいます。柔軟に働けるし、給料もいいし、近所の人たちの役に立っていると実感できます。",
+                "name": "ルーカス、21歳",
+                "role": "プロバイダー"
+            }
+        },
+        "stats": {
+            "missions": "完了したミッション",
+            "members": "アクティブメンバー",
+            "rating": "プロバイダーの平均評価"
+        },
+        "faq": {
+            "title": "よくある質問",
+            "q1": {
+                "question": "価格はどのように設定されますか？",
+                "answer": "クライアントはタスクを投稿する際に予算を提案します。プロバイダーはその価格でオファーを出すか、別の価格を提案することができます。最終的な価格は、クライアントとプロバイダーの間で合意されたものです。"
+            },
+            "q2": {
+                "question": "プラットフォームは安全ですか？",
+                "answer": "はい、セキュリティは私たちの最優先事項です。プロバイダーの本人確認（KYC）を行い、すべての支払いはパートナーであるStripeを通じて安全に処理され、コミュニティ内の信頼を築くための評価システムがあります。"
+            },
+            "q3": {
+                "question": "ミッション中に問題が発生した場合はどうなりますか？",
+                "answer": "予約詳細ページから直接紛争を開始できます。その後、私たちのサポートチームが介入し、友好的な解決策を見つけるお手伝いをします。"
+            }
+        }
+    },
+    "LanguageSwitcher": {
+        "changeLanguage": "言語を変更",
+        "changeLanguageRegionCurrency": "言語、地域、通貨を変更",
+        "languageRegion": "言語と地域",
+        "currency": "通貨",
+        "languageRegionDescription": "ご希望の言語と地域を選択してください。",
+        "currencyDescription": "ご希望の通貨を選択してください。",
+        "searchPlaceholder": "言語を検索..."
+    },
+    "DashboardNav": {
+        "dashboard": "ダッシュボード",
+        "createTask": "タスクを作成",
+        "myTasks": "私のタスク",
+        "messages": "メッセージ",
+        "wallet": "ウォレット",
+        "profile": "プロフィール",
+        "logout": "ログアウト",
+        "admin": "管理",
+        "findProvider": "プロバイダーを探す",
+        "findTask": "タスクを探す",
+        "myBookings": "私の予約",
+        "reviews": "レビュー",
+        "referrals": "紹介",
+        "provider": "プロバイダースペース",
+        "availability": "利用可能性",
+        "stats": "統計",
+        "academy": "アカデミー",
+        "users": "ユーザー",
+        "tasks": "タスク",
+        "offers": "オファー",
+        "bookings": "予約",
+        "moderation": "モデレーション",
+        "kycVerification": "KYC認証",
+        "disputes": "紛争",
+        "support": "サポート",
+        "categories": "カテゴリー",
+        "cms": "CMS",
+        "notifications": "通知",
+        "translations": "翻訳",
+        "payments": "支払い",
+        "pricing": "価格設定",
+        "reports": "レポート",
+        "integrations": "統合",
+        "settings": "設定",
+        "auditLog": "監査ログ",
+        "marketInsights": "市場インサイト",
+        "templates": "テンプレート",
+        "devTools": "開発者ツール",
+        "partnerships": "パートナーシップ",
+        "offline": "オフラインステータス",
+        "adminNav": {
+            "community": "コミュニティ",
+            "moderation": "モデレーション",
+            "platform": "プラットフォーム",
+            "finance": "ファイナンス",
+            "config": "設定"
+        }
+    },
+    "AdminDashboard": {
+        "subtitle": "プラットフォーム概要とクイックアクション",
+        "quickActionsTitle": "クイックアクション"
+    },
+    "DashboardPage": {
+        "title": "利用可能なタスク",
+        "subtitle": "近くであなたに合ったタスクを見つけましょう。",
+        "createTask": "タスクを作成",
+        "noTasks": "現在利用可能なタスクはありません。",
+        "welcome": "おかえりなさい、{name}さん！",
+        "welcomeSubtitle": "今日の状況は以下の通りです。",
+        "kpi": {
+            "activeTasks": "アクティブなタスク",
+            "pendingOffers": "保留中のオファー",
+            "completedMissions": "完了したミッション",
+            "walletBalance": "ウォレット残高"
+        },
+        "recommendedTasks": {
+            "title": "あなたへのおすすめ"
+        },
+        "upcomingBookings": {
+            "title": "今後の予約",
+            "description": "次に予定されているミッション。",
+            "noBookings": "今後の予約はありません。"
+        },
+        "recentNotifications": {
+            "title": "最近の通知",
+            "description": "最新情報を確認。",
+            "noNotifications": "新しい通知はありません。",
+            "viewAll": "すべての通知を表示"
+        },
+        "popularPacks": {
+            "title": "人気のプロバイダーオファー"
+        }
+    },
+    "ServicePackCard": {
+        "book": "予約"
+    },
+    "NewTaskPage": {
+        "title": "新しいタスクを作成",
+        "subtitle": "すぐに助けを見つけるために、以下の詳細を記入してください。"
+    },
+    "TaskCard": {
         "viewTask": "タスクを表示",
-        "pin": "ピン留め",
-        "viewProfile": "プロフィールを表示",
-        "block": "ブロック",
-        "report": "報告"
-      },
-      "emptyStates": {
-        "noThreads": "まだ会話はありません",
-        "noArchived": "アーカイブされた会話はありません",
-        "noResults": "結果が見つかりません",
-        "noUnread": "未読の会話はありません",
-        "noFavorites": "お気に入りの会話はありません",
-        "noGroups": "グループはありません",
-        "noConversations": "会話がありません",
-        "noConversationsDesc": "下のボタンをクリックして新しい会話を始めましょう",
-        "noUnreadDesc": "すべての会話が最新の状態です！🎉",
-        "noFavoritesDesc": "まだお気に入りの会話がありません",
-        "noGroupsDesc": "現在、どのグループにも参加していません",
-        "searchEmpty": "この検索の結果はありません",
-        "searchEmptyDesc": "\"{query}\"に一致する会話はありません",
-        "clickNewChat": "💬 +ボタンをクリックして会話を開始"
-      },
-      "errors": {
-        "loadThreads": "会話を読み込めません",
-        "sendMessage": "メッセージを送信できません",
-        "uploadFile": "ファイルをアップロードできません"
-      },
-      "contactProvider": "プロバイダーに連絡",
-      "notMatched": "オファーを受け入れると、メッセージング機能が利用可能になります。",
-      "online": "オンライン",
-      "offline": "オフライン",
-      "activeAgo": "{time}前にアクティブ",
-      "status": {
-        "online": "オンライン",
-        "offline": "オフライン",
-        "typing": "入力中..."
-      },
-      "input": {
-        "placeholder": "メッセージを入力...",
-        "send": "送信",
-        "emoji": "絵文字",
-        "attach": "ファイルを添付",
-        "voice": "音声メッセージ",
-        "cancel": "キャンセル",
-        "recording": "録音中...",
-        "photo": "写真または動画",
-        "document": "ドキュメント",
-        "location": "位置を共有"
-      },
-      "piiWarning": {
-        "title": "個人情報が検出されました",
-        "description": "メッセージに個人情報（メール、電話、住所）が含まれています。安全のため、プラットフォーム上でやり取りすることをお勧めします。",
-        "sendAnyway": "それでも送信"
-      },
-      "readReceipts": {
-        "sent": "送信済み",
-        "delivered": "配信済み",
-        "read": "既読",
-        "seenBy": "{time}に既読"
-      },
-      "reactions": {
-        "add": "リアクションを追加",
-        "remove": "リアクションを削除",
-        "reactedWith": "がリアクションしました"
-      },
-      "messageActions": {
-        "reply": "返信",
-        "edit": "編集",
+        "reviews": "({count}件のレビュー)",
+        "makeOffer": "Make Offer"
+    },
+    "CreateTaskForm": {
+        "taskTitleLabel": "タスクのタイトル",
+        "taskTitlePlaceholder": "例：芝刈り",
+        "descriptionLabel": "詳細な説明",
+        "descriptionPlaceholder": "必要なことを正確に説明してください...",
+        "descriptionHelp": "詳細であるほど、より関連性の高いオファーを受け取ることができます。",
+        "suggestCategoriesButton": "AIでカテゴリを提案",
+        "suggestionsLabel": "提案：",
+        "categoryLabel": "カテゴリ",
+        "categoryPlaceholder": "カテゴリを選択",
+        "categoryLoading": "読み込み中...",
+        "locationLabel": "タスクの場所",
+        "locationPlaceholder": "保存された住所を選択",
+        "startTimeLabel": "開始時間",
+        "endTimeLabel": "終了時間",
+        "datePlaceholder": "日付を選択",
+        "budgetLabel": "提示価格（€）",
+        "budgetHelp": "これはプロバイダーに提供される金額です。",
+        "submitButton": "タスクを公開",
+        "toastSuccessTitle": "タスクが作成されました！",
+        "toastSuccessDescription": "あなたのタスクは正常に公開されました。",
+        "toastErrorTitle": "エラー",
+        "toastErrorDescription": "カテゴリの提案中にエラーが発生しました。",
+        "durationLabel": "推定時間（分）",
+        "durationPlaceholder": "例: 60",
+        "durationHelp": "タスクにかかる時間を推定してください。",
+        "providersLabel": "プロバイダーの数",
+        "providersHelp": "複数の人が必要なタスクの場合（例：引っ越し）。",
+        "attachmentsLabel": "添付ファイル",
+        "attachmentsPlaceholder": "ここをクリックまたはドラッグ＆ドロップしてファイルを追加"
+    },
+    "ImpersonationBanner": {
+        "impersonateWarning": "現在、{email}になりすましています。",
+        "stopImpersonation": "なりすましを停止"
+    },
+    "TaskDetailPage": {
+        "providersRequired": "{count}人のプロバイダーが必要です",
+        "providersNeeded": "{accepted} / {required} プロバイダー",
+        "notFound": "タスクが見つかりません",
+        "notFoundDescription": "お探しのタスクは存在しないか、削除されました。",
+        "offersReceived": "Offers received ({count})",
+        "noOffers": "You haven't received any offers for this task yet.",
+        "budget": "Client budget",
+        "client": "Client",
+        "memberSince": "Member since {year}",
+        "identityVerified": "Identity verified",
+        "paymentVerified": "Payment verified",
+        "actions": {
+            "title": "Actions",
+            "edit": "Edit Task",
+            "cancel": "Cancel Task",
+            "receipt": "View Receipt",
+            "reportProblem": "Report a Problem"
+        },
+        "messaging": {
+            "title": "メッセージ",
+            "newThread": "新しいメッセージ",
+            "newConversation": "新しい会話",
+            "searchPlaceholder": "会話を検索...",
+            "searchUsers": "ユーザーを検索...",
+            "selectThread": "会話を選択",
+            "selectThreadDescription": "既存の会話を選択するか、新しい会話を開始してチャットを始めましょう",
+            "encryptionInfo": "会話はエンドツーエンドで暗号化されています",
+            "noMessages": "メッセージなし",
+            "noUsersFound": "ユーザーが見つかりません",
+            "noUsersAvailable": "利用可能なユーザーがいません",
+            "you": "あなた",
+            "typing": "入力中...",
+            "unknownUser": "不明なユーザー",
+            "relatedTask": "関連タスク",
+            "confirmDelete": "この会話を削除してもよろしいですか？",
+            "tabs": {
+                "active": "アクティブ",
+                "archived": "アーカイブ済み"
+            },
+            "filters": {
+                "all": "すべて",
+                "unread": "未読",
+                "favorites": "お気に入り",
+                "groups": "グループ"
+            },
+            "actions": {
+                "archive": "アーカイブ",
+                "unarchive": "アーカイブ解除",
+                "delete": "削除",
+                "mute": "通知をミュート",
+                "unmute": "通知をオン",
+                "call": "通話",
+                "videoCall": "ビデオ通話",
+                "search": "検索",
+                "viewTask": "タスクを表示",
+                "pin": "ピン留め",
+                "viewProfile": "プロフィールを表示",
+                "block": "ブロック",
+                "report": "報告"
+            },
+            "emptyStates": {
+                "noThreads": "まだ会話はありません",
+                "noArchived": "アーカイブされた会話はありません",
+                "noResults": "結果が見つかりません",
+                "noUnread": "未読の会話はありません",
+                "noFavorites": "お気に入りの会話はありません",
+                "noGroups": "グループはありません",
+                "noConversations": "会話がありません",
+                "noConversationsDesc": "下のボタンをクリックして新しい会話を始めましょう",
+                "noUnreadDesc": "すべての会話が最新の状態です！🎉",
+                "noFavoritesDesc": "まだお気に入りの会話がありません",
+                "noGroupsDesc": "現在、どのグループにも参加していません",
+                "searchEmpty": "この検索の結果はありません",
+                "searchEmptyDesc": "\"{query}\"に一致する会話はありません",
+                "clickNewChat": "💬 +ボタンをクリックして会話を開始"
+            },
+            "errors": {
+                "loadThreads": "会話を読み込めません",
+                "sendMessage": "メッセージを送信できません",
+                "uploadFile": "ファイルをアップロードできません"
+            },
+            "contactProvider": "プロバイダーに連絡",
+            "notMatched": "オファーを受け入れると、メッセージング機能が利用可能になります。",
+            "online": "オンライン",
+            "offline": "オフライン",
+            "activeAgo": "{time}前にアクティブ",
+            "status": {
+                "online": "オンライン",
+                "offline": "オフライン",
+                "typing": "入力中..."
+            },
+            "input": {
+                "placeholder": "メッセージを入力...",
+                "send": "送信",
+                "emoji": "絵文字",
+                "attach": "ファイルを添付",
+                "voice": "音声メッセージ",
+                "cancel": "キャンセル",
+                "recording": "録音中...",
+                "photo": "写真または動画",
+                "document": "ドキュメント",
+                "location": "位置を共有"
+            },
+            "piiWarning": {
+                "title": "個人情報が検出されました",
+                "description": "メッセージに個人情報（メール、電話、住所）が含まれています。安全のため、プラットフォーム上でやり取りすることをお勧めします。",
+                "sendAnyway": "それでも送信"
+            },
+            "readReceipts": {
+                "sent": "送信済み",
+                "delivered": "配信済み",
+                "read": "既読",
+                "seenBy": "{time}に既読"
+            },
+            "reactions": {
+                "add": "リアクションを追加",
+                "remove": "リアクションを削除",
+                "reactedWith": "がリアクションしました"
+            },
+            "messageActions": {
+                "reply": "返信",
+                "edit": "編集",
+                "delete": "削除",
+                "forward": "転送",
+                "copy": "コピー",
+                "pin": "ピン留め",
+                "unpin": "ピン留め解除",
+                "star": "スター",
+                "unstar": "スター解除",
+                "info": "情報",
+                "select": "選択"
+            },
+            "deleteMessage": {
+                "title": "メッセージを削除しますか？",
+                "description": "この操作は元に戻せません。",
+                "deleteForMe": "自分用に削除",
+                "deleteForEveryone": "全員に削除",
+                "cancel": "キャンセル"
+            },
+            "editMode": {
+                "title": "メッセージを編集",
+                "save": "保存",
+                "cancel": "キャンセル"
+            },
+            "replyMode": {
+                "replyingTo": "{name}に返信中",
+                "cancel": "キャンセル"
+            },
+            "forward": {
+                "title": "転送先",
+                "selectConversation": "会話を選択",
+                "send": "転送",
+                "cancel": "キャンセル",
+                "success": "メッセージを転送しました",
+                "error": "メッセージを転送できません"
+            },
+            "search": {
+                "placeholder": "会話内を検索...",
+                "results": "{count}件の結果",
+                "noResults": "結果なし",
+                "previous": "前へ",
+                "next": "次へ",
+                "close": "閉じる"
+            },
+            "pinnedMessages": {
+                "title": "ピン留めされたメッセージ",
+                "viewAll": "すべて表示 ({count})",
+                "noPinned": "ピン留めされたメッセージはありません",
+                "close": "閉じる"
+            },
+            "starredMessages": {
+                "title": "スター付きメッセージ",
+                "noStarred": "スター付きメッセージはありません",
+                "viewAll": "すべて表示"
+            },
+            "sharedMedia": {
+                "title": "共有メディア",
+                "photos": "写真",
+                "videos": "動画",
+                "documents": "ドキュメント",
+                "links": "リンク",
+                "noMedia": "共有メディアはありません",
+                "loadMore": "さらに読み込む"
+            },
+            "voiceRecorder": {
+                "recording": "録音中 {duration}",
+                "cancel": "キャンセル",
+                "send": "音声を送信",
+                "permission": "マイクの許可が必要です",
+                "error": "録音エラー"
+            },
+            "fileUpload": {
+                "title": "ファイルを追加",
+                "dragDrop": "ドラッグ＆ドロップまたはクリックして選択",
+                "selectFiles": "ファイルを選択",
+                "preview": "プレビュー",
+                "caption": "キャプションを追加...",
+                "send": "{count}個のファイルを送信",
+                "cancel": "キャンセル",
+                "maxSize": "最大サイズ：{size}",
+                "invalidType": "許可されていないファイルタイプ",
+                "uploadError": "アップロードエラー"
+            },
+            "messageTypes": {
+                "text": "テキストメッセージ",
+                "image": "画像",
+                "audio": "音声",
+                "video": "動画",
+                "file": "ファイル",
+                "location": "位置"
+            },
+            "messageStatus": {
+                "sending": "送信中...",
+                "sent": "送信済み",
+                "delivered": "配信済み",
+                "read": "既読",
+                "failed": "失敗"
+            },
+            "infoPanel": {
+                "title": "情報",
+                "contact": "連絡先",
+                "email": "メール",
+                "phone": "電話",
+                "notifications": "通知",
+                "mute": "ミュート",
+                "unmute": "ミュート解除",
+                "muteFor": "ミュート期間",
+                "muteOptions": {
+                    "1hour": "1時間",
+                    "8hours": "8時間",
+                    "1week": "1週間",
+                    "always": "常に"
+                },
+                "sharedMedia": "共有メディア",
+                "viewAll": "すべて表示",
+                "clearChat": "チャットをクリア",
+                "blockUser": "ユーザーをブロック",
+                "reportUser": "報告"
+            },
+            "lastSeen": {
+                "online": "オンライン",
+                "justNow": "たった今",
+                "minutesAgo": "{count}分前",
+                "hoursAgo": "{count}時間前",
+                "yesterday": "昨日",
+                "daysAgo": "{count}日前",
+                "weeksAgo": "{count}週間前"
+            }
+        },
+        "providerActions": {
+            "title": "Your Actions",
+            "makeOffer": "Make an Offer"
+        }
+    },
+    "TaskStatusTimeline": {
+        "published": "公開済み",
+        "partially_matched": "一部割り当て済み",
+        "matched": "割り当て済み",
+        "in_progress": "進行中",
+        "completed": "完了",
+        "canceled": "タスクキャンセル"
+    },
+    "OfferCard": {
+        "confirmAccept": {
+            "title": "オファーの受け入れを確認",
+            "description": "{name}からの{amount}€のオファーを本当に受け入れますか？支払いが承認されます。",
+            "cancel": "キャンセル",
+            "confirm": "確認して支払う"
+        },
+        "toastAcceptTitle": "Offer accepted!",
+        "toastAcceptDescription": "The task is now assigned to {name}.",
+        "reviews": "({count} reviews)",
+        "accept": "Accept offer",
+        "contact": "Contact"
+    },
+    "ThreadPage": {
+        "task": "タスク",
+        "placeholder": "メッセージを入力してください...",
+        "toastErrorTitle": "メッセージの送信エラー",
+        "toastErrorDescription": "接続を確認して再試行してください。"
+    },
+    "CallPage": {
+        "ringing": "呼び出し中...",
+        "callInProgress": "通話中",
+        "recordingConsent": "録音が有効です。すべての参加者の同意が必要です。"
+    },
+    "AttachmentPreview": {
+        "addAsEvidence": "証拠として追加",
         "delete": "削除",
-        "forward": "転送",
-        "copy": "コピー",
-        "pin": "ピン留め",
-        "unpin": "ピン留め解除",
-        "star": "スター",
-        "unstar": "スター解除",
-        "info": "情報",
-        "select": "選択"
-      },
-      "deleteMessage": {
-        "title": "メッセージを削除しますか？",
-        "description": "この操作は元に戻せません。",
-        "deleteForMe": "自分用に削除",
-        "deleteForEveryone": "全員に削除",
-        "cancel": "キャンセル"
-      },
-      "editMode": {
-        "title": "メッセージを編集",
-        "save": "保存",
-        "cancel": "キャンセル"
-      },
-      "replyMode": {
-        "replyingTo": "{name}に返信中",
-        "cancel": "キャンセル"
-      },
-      "forward": {
-        "title": "転送先",
-        "selectConversation": "会話を選択",
-        "send": "転送",
-        "cancel": "キャンセル",
-        "success": "メッセージを転送しました",
-        "error": "メッセージを転送できません"
-      },
-      "search": {
-        "placeholder": "会話内を検索...",
-        "results": "{count}件の結果",
-        "noResults": "結果なし",
-        "previous": "前へ",
+        "open": "開く",
+        "toastSuccessTitle": "Evidence added",
+        "toastSuccessDescription": "The file '{filename}' has been added as evidence."
+    },
+    "ThreadRightPanel": {
+        "timeline": {
+            "title": "タイムライン"
+        },
+        "evidence": {
+            "title": "証拠"
+        },
+        "actions": {
+            "title": "クイックアクション",
+            "openDispute": "紛争を開始",
+            "createTask": "タスクを作成"
+        },
+        "moderator": {
+            "title": "モデレータービュー",
+            "threadId": "スレッドID",
+            "participants": "参加者",
+            "lastMessage": "最後のメッセージ",
+            "hide": "非表示",
+            "warn": "警告",
+            "suspend": "停止"
+        }
+    },
+    "OfflineBanner": {
+        "offlineMessage": "⚠️ 現在オフラインです。再接続を試みています..."
+    },
+    "OfflinePage": {
+        "title": "オフライン/同期ステータス",
+        "globalStatusCard": {
+            "title": "グローバルステータス",
+            "statusOffline": "現在オフラインです",
+            "statusOnline": "接続および同期済み",
+            "lastSync": "最終同期：{time}",
+            "forceSync": "同期を強制",
+            "purgeFiles": "ファイルをパージ"
+        },
+        "outbox": {
+            "title": "同期保留中 ({count})",
+            "retry": "再試行"
+        },
+        "purgeDialog": {
+            "title": "キャッシュされたファイルをパージしますか？",
+            "description": "この操作は、ローカルにキャッシュされたすべてのファイルとデータを削除します。元に戻すことはできません。",
+            "cancel": "キャンセル",
+            "confirm": "パージを確定"
+        },
+        "historyCard": {
+            "title": "同期履歴",
+            "history": {
+                "success": "同期成功（{count}アイテム送信）",
+                "partial": "部分的同期（{reason}）"
+            },
+            "advancedLogs": "高度なログを表示"
+        },
+        "toast": {
+            "sync": {
+                "title": "同期中...",
+                "description": "サーバーとのデータ同期を試みています。"
+            },
+            "syncSuccess": {
+                "title": "同期成功",
+                "description": "すべてのデータが最新です。"
+            },
+            "purge": {
+                "title": "キャッシュをパージ中..."
+            },
+            "purgeSuccess": {
+                "title": "キャッシュが正常にパージされました"
+            }
+        },
+        "advancedLogs": {
+            "title": "同期ログ",
+            "export": "JSONをエクスポート",
+            "close": "閉じる"
+        }
+    },
+    "WalletPage": {
+        "title": "ウォレット",
+        "subtitle": "残高を確認し、取引を管理します。",
+        "viewTransactions": "すべての取引を表示",
+        "viewPayouts": "支払い履歴を表示",
+        "payoutsPageKycRequired": "引き出しを行うには本人確認が必要です。",
+        "balance": {
+            "title": "残高",
+            "current": "現在の残高",
+            "withdraw": "引き出しを行う",
+            "viewInvoices": "請求書を表示"
+        },
+        "summary": {
+            "title": "クイックサマリー",
+            "earnedThisMonth": "今月の収益",
+            "paidThisMonth": "今月の支出"
+        }
+    },
+    "PayoutsPage": {
+        "title": "引き出し",
+        "subtitle": "引き出しを追跡し、設定を管理します。",
+        "schedule": {
+            "title": "次の引き出し",
+            "nextPayout": "次の予定されている引き出し",
+            "amount": "支払われる金額"
+        },
+        "history": {
+            "title": "引き出し履歴",
+            "table": {
+                "date": "日付",
+                "amount": "金額",
+                "status": "ステータス",
+                "provider": "プロバイダー"
+            },
+            "status": {
+                "paid": "支払い済み",
+                "in_progress": "処理中",
+                "failed": "失敗"
+            }
+        },
+        "requestPayout": "引き出しをリクエスト",
+        "kycRequired": "引き出しをリクエストするには、本人確認が必要です。"
+    },
+    "TransactionsPage": {
+        "title": "取引",
+        "subtitle": "支払いと取引の履歴を表示します。",
+        "table": {
+            "title": "取引履歴",
+            "date": "日付",
+            "description": "説明",
+            "status": "ステータス",
+            "amount": "金額",
+            "details": "詳細"
+        }
+    },
+    "TransactionDetailPage": {
+        "title": "取引 #{id}",
+        "backToList": "取引一覧に戻る",
+        "notFound": "取引が見つかりません。",
+        "status": {
+            "confirmed": "確認済み"
+        },
+        "details": {
+            "title": "詳細",
+            "client": "クライアント",
+            "provider": "プロバイダー",
+            "service": "サービス"
+        },
+        "actions": {
+            "title": "利用可能なアクション",
+            "downloadInvoice": "請求書をダウンロード (PDF)",
+            "requestRefund": "返金をリクエスト"
+        }
+    },
+    "WithdrawPage": {
+        "title": "引き出しを開始",
+        "availableBalance": "利用可能な残高",
+        "form": {
+            "amountLabel": "引き出し額",
+            "methodLabel": "方法",
+            "accountLabel": "アカウント",
+            "confirmButton": "引き出しを確定"
+        },
+        "kyc": {
+            "title": "KYCが必要です",
+            "description": "引き出しを行うには、本人確認が必要です。",
+            "link": "本人確認を行う"
+        },
+        "toast": {
+            "successTitle": "引き出し開始",
+            "successDescription": "引き出しリクエストが送信され、処理中です。"
+        }
+    },
+    "ProfilePage": {
+        "portfolio": {
+            "title": "私のポートフォリオ",
+            "empty": "あなたの仕事を追加して、信頼性を80％向上させましょう！",
+            "addWork": "仕事を追加",
+            "form": {
+                "title": "ポートフォリオに項目を追加",
+                "titleEdit": "ポートフォリオ項目を編集",
+                "description": "過去の仕事であなたのスキルを披露しましょう。",
+                "titleLabel": "タイトル",
+                "titlePlaceholder": "例：スタートアップのロゴ",
+                "typeLabel": "項目の種類",
+                "typeLink": "外部リンク",
+                "typeFile": "ファイル",
+                "urlLabel": "URL",
+                "fileLabel": "ファイル",
+                "fileCurrent": "現在のファイル：{file}。新しいファイルをアップロードして置き換えます。",
+                "descriptionLabel": "説明（任意）",
+                "descriptionPlaceholder": "このプロジェクトについて少し説明してください...",
+                "save": "保存",
+                "cancel": "キャンセル"
+            },
+            "deleteDialog": {
+                "title": "項目を削除しますか？",
+                "description": "'{title}'という項目を削除してもよろしいですか？この操作は元に戻せません。"
+            }
+        },
+        "edit": "編集",
+        "title": "My Profile",
+        "subtitle": "Manage your personal information and preferences.",
+        "editProfile": "Edit Profile",
+        "personalInfoDesc": "Update your information so the community can get to know you better.",
+        "personalInfo": "Personal Information",
+        "changePhoto": "Change Photo",
+        "fullName": "Full Name",
+        "emailAddress": "Email Address",
+        "bio": "Bio",
+        "bioPlaceholder": "Tell us a little about yourself...",
+        "providerInfo": "Provider Information",
+        "languages": "Languages Spoken",
+        "languagesPlaceholder": "Select your languages",
+        "skills": "Skills",
+        "skillsPlaceholder": "Add skills (e.g. Gardening)",
+        "commaSeparated": "Separate with commas",
+        "serviceRadius": "Service Radius",
+        "serviceRadiusPlaceholder": "Enter a radius in km",
+        "saveChanges": "Save Changes",
+        "toastSuccessTitle": "Profile Updated",
+        "toastSuccessDescription": "Your information has been successfully saved.",
+        "toastErrorTitle": "Error",
+        "toastErrorDescription": "An error occurred while updating your profile.",
+        "addressesTitle": "My Addresses",
+        "addressesDesc": "Manage your addresses for missions.",
+        "addAddress": "Add Address",
+        "setDefault": "Set as default",
+        "delete": "Delete",
+        "noAddresses": "No saved addresses.",
+        "kycVerification": "Identity Verification (KYC)",
+        "averageRating": "Average Rating",
+        "basedOn": "Based on {count} reviews",
+        "completedMissions": "Completed Missions",
+        "totalCompleted": "Total since registration",
+        "myBadges": "My Badges",
+        "earnedBadges": "Earned Badges",
+        "seeAllBadges": "See All Badges",
+        "earnedOn": "Earned on {date}",
+        "noBio": "This user does not have a bio yet.",
+        "serviceRadiusDisplay": "{km} km radius",
+        "addressForm": {
+            "title": "Add a new address",
+            "label": "Address Name",
+            "labelPlaceholder": "e.g. Home, Office",
+            "address": "Full Address",
+            "addressPlaceholder": "Start typing your address...",
+            "cancel": "Cancel",
+            "save": "Save Address"
+        }
+    },
+    "BadgesPage": {
+        "title": "私の証明書とバッジ",
+        "subtitle": "ロック解除したバッジはこちらです。",
+        "cardTitle": "私のバッジ",
+        "cardDescription": "バッジはプラットフォームでのあなたの活動と信頼性を報酬します。",
+        "history": {
+            "title": "ミッション履歴",
+            "description": "あなたの最後の完了したミッション。"
+        },
+        "shareProfile": "プロフィールを共有",
+        "badges": {
+            "firstMission": {
+                "title": "最初のミッション",
+                "description": "最初のミッションを完了しました。"
+            },
+            "verified": {
+                "title": "確認済み",
+                "description": "本人確認が正常に完了しました。"
+            },
+            "topRated": {
+                "title": "トップ評価",
+                "description": "平均評価4.8以上"
+            },
+            "communityHelper": {
+                "title": "コミュニティヘルパー",
+                "description": "25件のミッションを完了しました。"
+            },
+            "profileComplete": {
+                "title": "完全なプロフィール",
+                "description": "すべてのプロフィール情報を入力しました。"
+            },
+            "pioneer": {
+                "title": "パイオニア",
+                "description": "最初の年に参加しました。"
+            }
+        },
+        "filters": {
+            "all": "すべて",
+            "badges": "バッジ",
+            "certificates": "証明書"
+        },
+        "earnedOn": "{date}に獲得",
+        "share": "共有"
+    },
+    "KycPage": {
+        "title": "本人確認（KYC）",
+        "subtitle": "アカウントを保護し、すべての機能にアクセスするために本人確認を行ってください。",
+        "card": {
+            "title": "なぜ本人確認が必要なのですか？",
+            "description": "本人確認（KYC）は、以下の目的のための重要なセキュリティステップです：",
+            "item1": "詐欺からコミュニティを保護する。",
+            "item2": "プロバイダーの金融取引（引き出し）を可能にする。",
+            "item3": "メンバー間の信頼を高める。"
+        },
+        "startVerification": "確認を開始",
+        "status": {
+            "verified": {
+                "title": "本人確認済みです",
+                "description": "ありがとうございます！すべてのプラットフォーム機能にアクセスできます。"
+            },
+            "pending": {
+                "title": "確認中です",
+                "description": "あなたの書類は審査中です。通常、数時間かかります。"
+            },
+            "rejected": {
+                "title": "確認に失敗しました",
+                "description": "書類の審査中に問題が発生しました。もう一度お試しください。"
+            }
+        },
+        "toast": {
+            "title": "リダイレクト中...",
+            "description": "確認パートナーにリダイレクトされます。"
+        },
+        "documents": {
+            "title": "必要な書類",
+            "description": "以下の書類をアップロードしてください。",
+            "idCard": "IDカード（表/裏）",
+            "selfie": "セルフィー",
+            "proofOfAddress": "住所証明",
+            "upload": "アップロード",
+            "takePicture": "写真を撮る"
+        },
+        "history": {
+            "title": "確認履歴"
+        },
+        "stripe": {
+            "title": "支払い情報",
+            "description": "安全なパートナーであるStripeを介して銀行情報を追加し、支払いを受け取ります。",
+            "button": "Stripeで支払いを設定する"
+        },
+        "submitButton": "検証のために送信"
+    },
+    "Countries": {
+        "fr": "フランス",
+        "en": "アメリカ合衆国",
+        "jp": "日本",
+        "es": "スペイン",
+        "de": "ドイツ",
+        "zh": "中国"
+    },
+    "Languages": {
+        "fr": "フランス語",
+        "en": "英語",
+        "jp": "日本語",
+        "es": "スペイン語",
+        "de": "ドイツ語",
+        "zh": "中国語（簡体字）"
+    },
+    "Currencies": {
+        "EUR": "ユーロ",
+        "USD": "米ドル",
+        "JPY": "日本円"
+    },
+    "Quotes": {
+        "title": "見積もり",
+        "newQuote": "新規見積もり",
+        "createQuote": "見積もりを作成",
+        "quoteNumber": "見積もり番号",
+        "client": "顧客",
+        "status": "ステータス",
+        "amount": "金額",
+        "validUntil": "有効期限",
+        "actions": "アクション",
+        "view": "詳細を表示",
+        "edit": "編集",
+        "send": "送信",
+        "accept": "承認",
+        "decline": "拒否",
+        "statuses": {
+            "draft": "下書き",
+            "sent": "送信済み",
+            "viewed": "閲覧済み",
+            "accepted": "承認済み",
+            "declined": "拒否済み",
+            "expired": "期限切れ",
+            "cancelled": "キャンセル"
+        }
+    },
+    "Invoices": {
+        "title": "請求書",
+        "uploadInvoice": "請求書をアップロード",
+        "invoiceNumber": "請求書番号",
+        "status": "ステータス",
+        "amount": "金額",
+        "statuses": {
+            "draft": "下書き",
+            "submitted": "提出済み",
+            "validated": "検証済み",
+            "rejected": "却下",
+            "paid": "支払い済み"
+        }
+    },
+    "Onboarding": {
+        "title": "プロフェッショナルになる",
+        "subtitle": "{steps}ステップでプロファイルを完成させる",
         "next": "次へ",
-        "close": "閉じる"
-      },
-      "pinnedMessages": {
-        "title": "ピン留めされたメッセージ",
-        "viewAll": "すべて表示 ({count})",
-        "noPinned": "ピン留めされたメッセージはありません",
-        "close": "閉じる"
-      },
-      "starredMessages": {
-        "title": "スター付きメッセージ",
-        "noStarred": "スター付きメッセージはありません",
-        "viewAll": "すべて表示"
-      },
-      "sharedMedia": {
-        "title": "共有メディア",
-        "photos": "写真",
-        "videos": "動画",
-        "documents": "ドキュメント",
-        "links": "リンク",
-        "noMedia": "共有メディアはありません",
-        "loadMore": "さらに読み込む"
-      },
-      "voiceRecorder": {
-        "recording": "録音中 {duration}",
-        "cancel": "キャンセル",
-        "send": "音声を送信",
-        "permission": "マイクの許可が必要です",
-        "error": "録音エラー"
-      },
-      "fileUpload": {
-        "title": "ファイルを追加",
-        "dragDrop": "ドラッグ＆ドロップまたはクリックして選択",
-        "selectFiles": "ファイルを選択",
-        "preview": "プレビュー",
-        "caption": "キャプションを追加...",
-        "send": "{count}個のファイルを送信",
-        "cancel": "キャンセル",
-        "maxSize": "最大サイズ：{size}",
-        "invalidType": "許可されていないファイルタイプ",
-        "uploadError": "アップロードエラー"
-      },
-      "messageTypes": {
-        "text": "テキストメッセージ",
-        "image": "画像",
-        "audio": "音声",
-        "video": "動画",
-        "file": "ファイル",
-        "location": "位置"
-      },
-      "messageStatus": {
-        "sending": "送信中...",
-        "sent": "送信済み",
-        "delivered": "配信済み",
-        "read": "既読",
-        "failed": "失敗"
-      },
-      "infoPanel": {
-        "title": "情報",
-        "contact": "連絡先",
+        "previous": "戻る",
+        "finish": "完了",
+        "steps": {
+            "general": "基本情報",
+            "kyb": "企業認証",
+            "services": "サービスと料金",
+            "zones": "サービスエリア",
+            "portfolio": "ポートフォリオ",
+            "availability": "スケジュール",
+            "terms": "利用規約"
+        }
+    },
+    "Legal": {
+        "backButton": "戻る",
+        "lastUpdated": "最終更新日",
+        "version": "バージョン 1.0",
+        "contact": "お問い合わせ",
         "email": "メール",
         "phone": "電話",
-        "notifications": "通知",
-        "mute": "ミュート",
-        "unmute": "ミュート解除",
-        "muteFor": "ミュート期間",
-        "muteOptions": {
-          "1hour": "1時間",
-          "8hours": "8時間",
-          "1week": "1週間",
-          "always": "常に"
+        "address": "住所",
+        "Terms": {
+            "title": "利用規約",
+            "subtitle": "プラットフォーム利用者向け"
         },
-        "sharedMedia": "共有メディア",
-        "viewAll": "すべて表示",
-        "clearChat": "チャットをクリア",
-        "blockUser": "ユーザーをブロック",
-        "reportUser": "報告"
-      },
-      "lastSeen": {
-        "online": "オンライン",
-        "justNow": "たった今",
-        "minutesAgo": "{count}分前",
-        "hoursAgo": "{count}時間前",
-        "yesterday": "昨日",
-        "daysAgo": "{count}日前",
-        "weeksAgo": "{count}週間前"
-      }
+        "Privacy": {
+            "back": "戻る",
+            "title": "プライバシーポリシー",
+            "subtitle": "個人情報の保護",
+            "version": "バージョン 1.0",
+            "lastUpdate": "最終更新",
+            "section1": {
+                "title": "はじめに",
+                "content": "IMU Task（以下「当社」または「プラットフォーム」）は、ユーザーのプライバシー保護に取り組んでいます。本プライバシーポリシーは、一般データ保護規則（GDPR）および適用されるデータ保護法に従って、個人データの収集、使用、保存、保護方法について説明します。"
+            },
+            "section2": {
+                "title": "データ管理者",
+                "intro": "個人データの管理者は以下の通りです：",
+                "companyName": "IMU Task",
+                "contactEmail": "contact@imutask.com",
+                "dpoEmail": "dpo@imutask.com"
+            },
+            "section3": {
+                "title": "収集されるデータ",
+                "subtitle1": "識別データ",
+                "item1_1": "氏名",
+                "item1_2": "メールアドレス",
+                "item1_3": "電話番号（任意）",
+                "item1_4": "アカウント作成日",
+                "subtitle2": "専門家データ",
+                "item2_1": "SIRET番号",
+                "item2_2": "会社名",
+                "item2_3": "事業所住所",
+                "item2_4": "業種",
+                "item2_5": "提供サービス",
+                "item2_6": "サービス提供地域",
+                "item2_7": "ポートフォリオ（写真、説明）",
+                "subtitle3": "ナビゲーションデータ",
+                "item3_1": "IPアドレス",
+                "item3_2": "ブラウザタイプ",
+                "item3_3": "閲覧ページ",
+                "item3_4": "接続日時",
+                "item3_5": "Cookie（専用セクション参照）",
+                "subtitle4": "取引データ",
+                "item4_1": "作成・承認された見積",
+                "item4_2": "アップロードされた請求書",
+                "item4_3": "予約",
+                "item4_4": "メッセージ交換",
+                "item4_5": "レビューと評価"
+            },
+            "section4": {
+                "title": "処理目的",
+                "intro": "以下の目的で個人データを収集・処理します：",
+                "purpose1": "アカウント管理",
+                "purpose1_desc": "ユーザープロフィールの作成、認証、管理",
+                "purpose2": "サービス提供",
+                "purpose2_desc": "専門家との連絡、メッセージ交換、見積・予約管理",
+                "purpose3": "KYB確認",
+                "purpose3_desc": "SIRET番号による専門家の本人確認",
+                "purpose4": "プラットフォーム改善",
+                "purpose4_desc": "サービス改善のための利用分析",
+                "purpose5": "コミュニケーション",
+                "purpose5_desc": "アカウントと予約に関する通知送信",
+                "purpose6": "セキュリティ",
+                "purpose6_desc": "不正防止と法的義務の遵守",
+                "purpose7": "マーケティング",
+                "purpose7_desc": "商業オファーの送信（事前同意が必要）"
+            },
+            "section5": {
+                "title": "処理の法的根拠",
+                "intro": "データ処理は以下の法的根拠に基づいています：",
+                "basis1": "契約履行",
+                "basis1_desc": "プラットフォームサービスの提供",
+                "basis2": "同意",
+                "basis2_desc": "マーケティング通信、非必須Cookie",
+                "basis3": "正当な利益",
+                "basis3_desc": "サービス改善、プラットフォームセキュリティ",
+                "basis4": "法的義務",
+                "basis4_desc": "請求データの保持、KYB確認"
+            },
+            "section6": {
+                "title": "データ受領者",
+                "intro": "個人データは以下の受領者に送信される場合があります：",
+                "recipient1": "承認された担当者",
+                "recipient1_desc": "プラットフォームの技術・カスタマーサポートチーム",
+                "recipient2": "専門家",
+                "recipient2_desc": "見積依頼または予約の一環として",
+                "recipient3": "技術サービスプロバイダー",
+                "recipient3_desc": "ホスティング（Firebase/Google Cloud）、決済サービス、分析ツール",
+                "recipient4": "管轄当局",
+                "recipient4_desc": "法的または司法的要請に基づく"
+            },
+            "section7": {
+                "title": "保存期間",
+                "intro": "個人データは以下の期間保存されます：",
+                "duration1": "アクティブアカウント",
+                "duration1_desc": "アカウント使用期間中",
+                "duration2": "アカウント削除後",
+                "duration2_desc": "30日間（復元可能、その後完全削除）",
+                "duration3": "請求データ",
+                "duration3_desc": "10年間（法的義務）",
+                "duration4": "ナビゲーションデータ",
+                "duration4_desc": "最大13ヶ月",
+                "duration5": "マーケティングデータ",
+                "duration5_desc": "最後の連絡から3年間"
+            },
+            "section8": {
+                "title": "ユーザーの権利",
+                "intro": "GDPRに従い、以下の権利があります：",
+                "right1": "アクセス権",
+                "right1_desc": "個人データのコピーを取得",
+                "right2": "修正権",
+                "right2_desc": "不正確または不完全なデータを修正",
+                "right3": "削除権",
+                "right3_desc": "データを削除（「忘れられる権利」）",
+                "right4": "制限権",
+                "right4_desc": "データ処理を制限",
+                "right5": "反対権",
+                "right5_desc": "データ処理に反対（特にマーケティング）",
+                "right6": "データポータビリティ権",
+                "right6_desc": "構造化された形式でデータを受け取る",
+                "right7": "同意撤回権",
+                "right7_desc": "いつでも可能",
+                "exerciseRights": "権利を行使するには、以下にご連絡ください：",
+                "complaint": "また、国のデータ保護機関に苦情を申し立てる権利もあります。"
+            },
+            "section9": {
+                "title": "データセキュリティ",
+                "intro": "不正アクセス、紛失、破壊、開示から個人データを保護するため、適切な技術的・組織的措置を実施しています：",
+                "measure1": "機密データの暗号化（SSL/TLS）",
+                "measure2": "セキュアな認証（Firebase認証）",
+                "measure3": "厳格なデータアクセス制御",
+                "measure4": "定期的なバックアップ",
+                "measure5": "定期的なセキュリティ監査"
+            },
+            "section10": {
+                "title": "Cookie",
+                "intro": "プラットフォームはユーザー体験を向上させるためにCookieを使用します。Cookieはデバイスに保存される小さなテキストファイルです。",
+                "typesTitle": "使用するCookieの種類：",
+                "type1": "必須Cookie",
+                "type1_desc": "プラットフォーム動作に必要（セッション、認証）",
+                "type2": "パフォーマンスCookie",
+                "type2_desc": "利用分析（Google Analytics）",
+                "type3": "機能Cookie",
+                "type3_desc": "設定の記憶",
+                "settings": "Cookieを拒否するようブラウザを設定できますが、プラットフォームの機能に影響する場合があります。"
+            },
+            "section11": {
+                "title": "国際転送",
+                "content": "データはGoogle Cloud（Firebase）サーバーにホストされており、欧州連合外に所在する場合があります。これらの転送は欧州委員会の標準契約条項に準拠し、適切な保護措置が講じられています。"
+            },
+            "section12": {
+                "title": "ポリシーの変更",
+                "content": "本プライバシーポリシーはいつでも変更する権利を留保します。変更があった場合は、プラットフォーム上の通知またはメールで連絡します。最終更新日は本文書の上部に表示されています。"
+            },
+            "section13": {
+                "title": "お問い合わせ",
+                "intro": "本プライバシーポリシーまたは個人データに関するご質問は、以下にご連絡ください：",
+                "dpoLabel": "DPOメール",
+                "generalLabel": "一般メール"
+            }
+        },
+        "Mentions": {
+            "back": "戻る",
+            "title": "法的事項",
+            "lastUpdate": "最終更新",
+            "section1": {
+                "title": "プラットフォーム発行者",
+                "legalName": "法人名",
+                "companyName": "IMU Task",
+                "legalForm": "法的形態",
+                "legalFormValue": "簡易株式会社（SAS）",
+                "capital": "資本金",
+                "capitalValue": "10,000ユーロ",
+                "siret": "SIRET番号",
+                "siretValue": "123 456 789 00010",
+                "rcs": "RCS番号",
+                "rcsValue": "Paris B 123 456 789",
+                "headquarters": "本社",
+                "headquartersValue": "123 Avenue des Champs-Élysées, 75008 Paris, France",
+                "vat": "EU VAT番号",
+                "vatValue": "FR 12 123456789",
+                "emailLabel": "メール",
+                "email": "contact@imutask.com",
+                "phoneLabel": "電話",
+                "phone": "+33 1 23 45 67 89",
+                "director": "発行責任者",
+                "directorName": "John Doe、IMU Task SAS社長",
+                "directorEmail": "direction@imutask.com"
+            },
+            "section2": {
+                "title": "ホスティングプロバイダー",
+                "nameLabel": "名前",
+                "name": "Google Cloud Platform（Firebase）",
+                "companyLabel": "会社",
+                "company": "Google LLC",
+                "addressLabel": "住所",
+                "address": "1600 Amphitheatre Parkway, Mountain View, CA 94043, United States",
+                "websiteLabel": "ウェブサイト",
+                "details": "サーバーはISO 27001認証を受けたデータセンターに配置され、欧州のセキュリティおよびデータ保護基準に準拠しています。データは主に欧州地域（europe-west1 - ベルギー）にホストされています。"
+            },
+            "section3": {
+                "title": "知的財産",
+                "paragraph1": "IMU Taskプラットフォームを構成するすべての要素（テキスト、グラフィックス、ソフトウェア、写真、画像、動画、音声、計画、名称、ロゴ、商標、様々な保護可能な創作物および著作物、データベースなど）およびプラットフォーム自体は、IMU Taskの独占的財産であるか、使用許可の対象となっています。",
+                "paragraph2": "いかなる手段によっても、またいかなる媒体によっても、プラットフォームまたはそのコンテンツの全部または一部の複製、表現、修正、公開、伝送、改変は、IMU Taskの事前書面による許可なしに禁止されています。",
+                "paragraph3": "プラットフォーム、そのコンテンツ、またはそれに組み込まれた要素の無許可の利用は、侵害行為とみなされ、知的財産法第L.335-2条以降の規定に従って訴追されます。"
+            },
+            "section4": {
+                "title": "Cookie",
+                "paragraph1": "プラットフォームは、ユーザー体験を向上させ、トラフィックを分析するためにCookieを使用します。プラットフォームの閲覧を続けることにより、これらのCookieの使用に同意したことになります。",
+                "paragraph2": "Cookieを拒否したり、Cookieが設置されたときに通知を受けるようブラウザを設定できます。ただし、特定のCookieを拒否すると、プラットフォームの正常な動作に影響する場合があります。",
+                "paragraph3": "Cookieとその管理の詳細については、当社の",
+                "privacyLink": "プライバシーポリシー"
+            },
+            "section5": {
+                "title": "個人データ",
+                "paragraph1": "IMU Taskは、一般データ保護規則（GDPR）および適用されるデータ保護法に従って個人データを収集・処理します。",
+                "paragraph2": "データ管理者は、社長John Doeが代表するIMU Taskです。",
+                "paragraph3": "個人データの処理に関するご質問は、当社のデータ保護責任者（DPO）にご連絡ください：",
+                "dpoLabel": "DPOメール",
+                "dpoEmail": "dpo@imutask.com",
+                "paragraph4": "権利とデータ処理の詳細については、当社の",
+                "privacyLink": "プライバシーポリシー"
+            },
+            "section6": {
+                "title": "クレジット",
+                "design": "設計・開発",
+                "designValue": "IMU Task",
+                "uiLabel": "UI/UXデザイン",
+                "framework": "フレームワーク",
+                "backend": "バックエンド・ホスティング",
+                "backendValue": "Firebase / Google Cloud Platform",
+                "icons": "アイコン"
+            },
+            "section7": {
+                "title": "責任の制限",
+                "paragraph1": "IMU Taskはプラットフォームの可用性とセキュリティを確保するために最善を尽くしますが、中断やエラーのないアクセスを保証することはできません。プラットフォームは、メンテナンス、更新、または当社の管理外の原因により一時的に利用できなくなる場合があります。",
+                "paragraph2": "IMU Taskは以下について責任を負いません：",
+                "item1": "プラットフォームの使用またはアクセス不能に起因する直接的または間接的な損害",
+                "item2": "コンピュータ機器に感染する可能性のあるウイルスや悪意のあるプログラム",
+                "item3": "第三者によるプラットフォームの不正または不適切な使用",
+                "item4": "ユーザーと専門家間の紛争",
+                "item5": "プラットフォームに登録されている専門家が提供するサービスの品質",
+                "item6": "ユーザーが公開したコンテンツ"
+            },
+            "section8": {
+                "title": "ハイパーリンク",
+                "paragraph1": "プラットフォームには他のウェブサイトへのリンクが含まれる場合があります。IMU Taskはこれらのサイトを管理しておらず、そのコンテンツ、可用性、プライバシーポリシーについて一切の責任を負いません。",
+                "paragraph2": "プラットフォームへのハイパーリンクの作成には、IMU Taskの事前書面による許可が必要です。リクエストについては、contact@imutask.comまでご連絡ください。"
+            },
+            "section9": {
+                "title": "準拠法と管轄裁判所",
+                "paragraph1": "本法的事項はフランス法に準拠します。紛争が発生した場合、友好的な合意が得られない限り、フランスの裁判所が唯一の管轄権を有します。",
+                "paragraph2": "紛争の友好的解決に関する消費者法の規定に従い、IMU Taskは所属する消費者調停サービスに加入しています。紛争が発生した場合は、次のウェブサイトで苦情を申し立てることができます："
+            },
+            "section10": {
+                "title": "法的事項の変更",
+                "paragraph1": "IMU Taskは、本法的事項をいつでも変更する権利を留保します。変更はプラットフォームでの公開時に有効になります。最終更新日は本文書の上部に表示されています。"
+            },
+            "section11": {
+                "title": "お問い合わせ",
+                "intro": "本法的事項に関するご質問は、以下にご連絡ください：",
+                "emailLabel": "メール",
+                "email": "contact@imutask.com",
+                "legalEmailLabel": "法務メール",
+                "legalEmail": "legal@imutask.com",
+                "phoneLabel": "電話",
+                "phone": "+33 1 23 45 67 89",
+                "mailLabel": "郵便",
+                "mailAddress": "IMU Task - 法務部",
+                "mailStreet": "123 Avenue des Champs-Élysées",
+                "mailCity": "75008 Paris",
+                "mailCountry": "France"
+            }
+        }
     },
-    "providerActions": {
-      "title": "Your Actions",
-      "makeOffer": "Make an Offer"
-    }
-  },
-  "TaskStatusTimeline": {
-    "published": "公開済み",
-    "partially_matched": "一部割り当て済み",
-    "matched": "割り当て済み",
-    "in_progress": "進行中",
-    "completed": "完了",
-    "canceled": "タスクキャンセル"
-  },
-  "OfferCard": {
-    "confirmAccept": {
-      "title": "オファーの受け入れを確認",
-      "description": "{name}からの{amount}€のオファーを本当に受け入れますか？支払いが承認されます。",
-      "cancel": "キャンセル",
-      "confirm": "確認して支払う"
+    "MyTasksPage": {
+        "title": "My Requests",
+        "subtitle": "Manage the tasks you have created.",
+        "createTask": "Create new task",
+        "noTasks": "You haven't created any tasks yet.",
+        "createFirstTask": "Create your first task",
+        "searchPlaceholder": "Search in your tasks...",
+        "viewGrid": "Grid view",
+        "viewList": "List view",
+        "noSearchResults": "No results for your search.",
+        "view": "View"
     },
-    "toastAcceptTitle": "Offer accepted!",
-    "toastAcceptDescription": "The task is now assigned to {name}.",
-    "reviews": "({count} reviews)",
-    "accept": "Accept offer",
-    "contact": "Contact"
-  },
-  "ThreadPage": {
-    "task": "タスク",
-    "placeholder": "メッセージを入力してください...",
-    "toastErrorTitle": "メッセージの送信エラー",
-    "toastErrorDescription": "接続を確認して再試行してください。"
-  },
-  "CallPage": {
-    "ringing": "呼び出し中...",
-    "callInProgress": "通話中",
-    "recordingConsent": "録音が有効です。すべての参加者の同意が必要です。"
-  },
-  "AttachmentPreview": {
-    "addAsEvidence": "証拠として追加",
-    "delete": "削除",
-    "open": "開く",
-    "toastSuccessTitle": "Evidence added",
-    "toastSuccessDescription": "The file '{filename}' has been added as evidence."
-  },
-  "ThreadRightPanel": {
-    "timeline": {
-      "title": "タイムライン"
+    "EditTaskPage": {
+        "title": "Edit Task",
+        "subtitle": "Update the details of your task below.",
+        "submitButton": "Save Changes",
+        "toastSuccessTitle": "Task Updated",
+        "toastSuccessDescription": "Your task has been successfully updated.",
+        "toastErrorTitle": "Error",
+        "toastErrorDescription": "An error occurred while updating the task.",
+        "toastNotFoundTitle": "Task Not Found",
+        "toastNotFoundDescription": "The requested task could not be found or you don't have permission to edit it."
     },
-    "evidence": {
-      "title": "証拠"
+    "TaskCategories": {
+        "shopping": "Shopping",
+        "gardening": "Gardening",
+        "lightCleaning": "Light cleaning",
+        "digitalHelp": "Digital help",
+        "administrativeHelp": "Administrative help",
+        "handyman": "Handyman",
+        "petSitting": "Pet sitting"
     },
-    "actions": {
-      "title": "クイックアクション",
-      "openDispute": "紛争を開始",
-      "createTask": "タスクを作成"
+    "SignInPage": {
+        "title": "Sign in to your account",
+        "orSignUp": "Or",
+        "signUpLink": "create a new account",
+        "emailLabel": "Email address",
+        "passwordLabel": "Password",
+        "forgotPasswordLink": "Forgot password?",
+        "submitButton": "Sign in",
+        "errorTitle": "Authentication Error",
+        "continueWithGoogle": "Continue with Google",
+        "orContinueWith": "Or continue with"
     },
-    "moderator": {
-      "title": "モデレータービュー",
-      "threadId": "スレッドID",
-      "participants": "参加者",
-      "lastMessage": "最後のメッセージ",
-      "hide": "非表示",
-      "warn": "警告",
-      "suspend": "停止"
-    }
-  },
-  "OfflineBanner": {
-    "offlineMessage": "⚠️ 現在オフラインです。再接続を試みています..."
-  },
-  "OfflinePage": {
-    "title": "オフライン/同期ステータス",
-    "globalStatusCard": {
-      "title": "グローバルステータス",
-      "statusOffline": "現在オフラインです",
-      "statusOnline": "接続および同期済み",
-      "lastSync": "最終同期：{time}",
-      "forceSync": "同期を強制",
-      "purgeFiles": "ファイルをパージ"
+    "SignUpPage": {
+        "title": "Create your ImuTask account",
+        "orSignIn": "Already a member?",
+        "signInLink": "Sign in",
+        "nameLabel": "Full name",
+        "emailLabel": "Email address",
+        "passwordLabel": "Password",
+        "submitButton": "Create account",
+        "termsPrefix": "By creating an account, you agree to our",
+        "termsLink": "Terms of Service",
+        "errorTitle": "Registration Error",
+        "continueWithGoogle": "Continue with Google",
+        "orContinueWith": "Or continue with",
+        "referralCodeLabel": "Referral Code (Optional)",
+        "referralCodePlaceholder": "Enter code if you have one"
     },
-    "outbox": {
-      "title": "同期保留中 ({count})",
-      "retry": "再試行"
+    "OfferForm": {
+        "title": "Make an offer",
+        "description": "Propose your services for this task.",
+        "priceLabel": "Your price (€)",
+        "messageLabel": "Your message",
+        "messagePlaceholder": "Introduce yourself and explain why you're the right person for this task.",
+        "submit": "Send my offer",
+        "toastSuccessTitle": "Offer Sent!",
+        "toastSuccessDescription": "Your offer has been sent to the client."
     },
-    "purgeDialog": {
-      "title": "キャッシュされたファイルをパージしますか？",
-      "description": "この操作は、ローカルにキャッシュされたすべてのファイルとデータを削除します。元に戻すことはできません。",
-      "cancel": "キャンセル",
-      "confirm": "パージを確定"
-    },
-    "historyCard": {
-      "title": "同期履歴",
-      "history": {
-        "success": "同期成功（{count}アイテム送信）",
-        "partial": "部分的同期（{reason}）"
-      },
-      "advancedLogs": "高度なログを表示"
-    },
-    "toast": {
-      "sync": {
-        "title": "同期中...",
-        "description": "サーバーとのデータ同期を試みています。"
-      },
-      "syncSuccess": {
-        "title": "同期成功",
-        "description": "すべてのデータが最新です。"
-      },
-      "purge": {
-        "title": "キャッシュをパージ中..."
-      },
-      "purgeSuccess": {
-        "title": "キャッシュが正常にパージされました"
-      }
-    },
-    "advancedLogs": {
-      "title": "同期ログ",
-      "export": "JSONをエクスポート",
-      "close": "閉じる"
-    }
-  },
-  "WalletPage": {
-    "title": "ウォレット",
-    "subtitle": "残高を確認し、取引を管理します。",
-    "viewTransactions": "すべての取引を表示",
-    "viewPayouts": "支払い履歴を表示",
-    "payoutsPageKycRequired": "引き出しを行うには本人確認が必要です。",
-    "balance": {
-      "title": "残高",
-      "current": "現在の残高",
-      "withdraw": "引き出しを行う",
-      "viewInvoices": "請求書を表示"
-    },
-    "summary": {
-      "title": "クイックサマリー",
-      "earnedThisMonth": "今月の収益",
-      "paidThisMonth": "今月の支出"
-    }
-  },
-  "PayoutsPage": {
-    "title": "引き出し",
-    "subtitle": "引き出しを追跡し、設定を管理します。",
-    "schedule": {
-      "title": "次の引き出し",
-      "nextPayout": "次の予定されている引き出し",
-      "amount": "支払われる金額"
-    },
-    "history": {
-      "title": "引き出し履歴",
-      "table": {
-        "date": "日付",
-        "amount": "金額",
-        "status": "ステータス",
-        "provider": "プロバイダー"
-      },
-      "status": {
-        "paid": "支払い済み",
-        "in_progress": "処理中",
-        "failed": "失敗"
-      }
-    },
-    "requestPayout": "引き出しをリクエスト",
-    "kycRequired": "引き出しをリクエストするには、本人確認が必要です。"
-  },
-  "TransactionsPage": {
-    "title": "取引",
-    "subtitle": "支払いと取引の履歴を表示します。",
-    "table": {
-      "title": "取引履歴",
-      "date": "日付",
-      "description": "説明",
-      "status": "ステータス",
-      "amount": "金額",
-      "details": "詳細"
-    }
-  },
-  "TransactionDetailPage": {
-    "title": "取引 #{id}",
-    "backToList": "取引一覧に戻る",
-    "notFound": "取引が見つかりません。",
-    "status": {
-      "confirmed": "確認済み"
-    },
-    "details": {
-      "title": "詳細",
-      "client": "クライアント",
-      "provider": "プロバイダー",
-      "service": "サービス"
-    },
-    "actions": {
-      "title": "利用可能なアクション",
-      "downloadInvoice": "請求書をダウンロード (PDF)",
-      "requestRefund": "返金をリクエスト"
-    }
-  },
-  "WithdrawPage": {
-    "title": "引き出しを開始",
-    "availableBalance": "利用可能な残高",
-    "form": {
-      "amountLabel": "引き出し額",
-      "methodLabel": "方法",
-      "accountLabel": "アカウント",
-      "confirmButton": "引き出しを確定"
-    },
-    "kyc": {
-      "title": "KYCが必要です",
-      "description": "引き出しを行うには、本人確認が必要です。",
-      "link": "本人確認を行う"
-    },
-    "toast": {
-      "successTitle": "引き出し開始",
-      "successDescription": "引き出しリクエストが送信され、処理中です。"
-    }
-  },
-  "ProfilePage": {
-    "portfolio": {
-      "title": "私のポートフォリオ",
-      "empty": "あなたの仕事を追加して、信頼性を80％向上させましょう！",
-      "addWork": "仕事を追加",
-      "form": {
-        "title": "ポートフォリオに項目を追加",
-        "titleEdit": "ポートフォリオ項目を編集",
-        "description": "過去の仕事であなたのスキルを披露しましょう。",
-        "titleLabel": "タイトル",
-        "titlePlaceholder": "例：スタートアップのロゴ",
-        "typeLabel": "項目の種類",
-        "typeLink": "外部リンク",
-        "typeFile": "ファイル",
-        "urlLabel": "URL",
-        "fileLabel": "ファイル",
-        "fileCurrent": "現在のファイル：{file}。新しいファイルをアップロードして置き換えます。",
-        "descriptionLabel": "説明（任意）",
-        "descriptionPlaceholder": "このプロジェクトについて少し説明してください...",
-        "save": "保存",
-        "cancel": "キャンセル"
-      },
-      "deleteDialog": {
-        "title": "項目を削除しますか？",
-        "description": "'{title}'という項目を削除してもよろしいですか？この操作は元に戻せません。"
-      }
-    },
-    "edit": "編集",
-    "title": "My Profile",
-    "subtitle": "Manage your personal information and preferences.",
-    "editProfile": "Edit Profile",
-    "personalInfoDesc": "Update your information so the community can get to know you better.",
-    "personalInfo": "Personal Information",
-    "changePhoto": "Change Photo",
-    "fullName": "Full Name",
-    "emailAddress": "Email Address",
-    "bio": "Bio",
-    "bioPlaceholder": "Tell us a little about yourself...",
-    "providerInfo": "Provider Information",
-    "languages": "Languages Spoken",
-    "languagesPlaceholder": "Select your languages",
-    "skills": "Skills",
-    "skillsPlaceholder": "Add skills (e.g. Gardening)",
-    "commaSeparated": "Separate with commas",
-    "serviceRadius": "Service Radius",
-    "serviceRadiusPlaceholder": "Enter a radius in km",
-    "saveChanges": "Save Changes",
-    "toastSuccessTitle": "Profile Updated",
-    "toastSuccessDescription": "Your information has been successfully saved.",
-    "toastErrorTitle": "Error",
-    "toastErrorDescription": "An error occurred while updating your profile.",
-    "addressesTitle": "My Addresses",
-    "addressesDesc": "Manage your addresses for missions.",
-    "addAddress": "Add Address",
-    "setDefault": "Set as default",
-    "delete": "Delete",
-    "noAddresses": "No saved addresses.",
-    "kycVerification": "Identity Verification (KYC)",
-    "averageRating": "Average Rating",
-    "basedOn": "Based on {count} reviews",
-    "completedMissions": "Completed Missions",
-    "totalCompleted": "Total since registration",
-    "myBadges": "My Badges",
-    "earnedBadges": "Earned Badges",
-    "seeAllBadges": "See All Badges",
-    "earnedOn": "Earned on {date}",
-    "noBio": "This user does not have a bio yet.",
-    "serviceRadiusDisplay": "{km} km radius",
-    "addressForm": {
-      "title": "Add a new address",
-      "label": "Address Name",
-      "labelPlaceholder": "e.g. Home, Office",
-      "address": "Full Address",
-      "addressPlaceholder": "Start typing your address...",
-      "cancel": "Cancel",
-      "save": "Save Address"
-    }
-  },
-  "BadgesPage": {
-    "title": "私の証明書とバッジ",
-    "subtitle": "ロック解除したバッジはこちらです。",
-    "cardTitle": "私のバッジ",
-    "cardDescription": "バッジはプラットフォームでのあなたの活動と信頼性を報酬します。",
-    "history": {
-      "title": "ミッション履歴",
-      "description": "あなたの最後の完了したミッション。"
-    },
-    "shareProfile": "プロフィールを共有",
-    "badges": {
-      "firstMission": {
-        "title": "最初のミッション",
-        "description": "最初のミッションを完了しました。"
-      },
-      "verified": {
-        "title": "確認済み",
-        "description": "本人確認が正常に完了しました。"
-      },
-      "topRated": {
-        "title": "トップ評価",
-        "description": "平均評価4.8以上"
-      },
-      "communityHelper": {
-        "title": "コミュニティヘルパー",
-        "description": "25件のミッションを完了しました。"
-      },
-      "profileComplete": {
-        "title": "完全なプロフィール",
-        "description": "すべてのプロフィール情報を入力しました。"
-      },
-      "pioneer": {
-        "title": "パイオニア",
-        "description": "最初の年に参加しました。"
-      }
-    },
-    "filters": {
-      "all": "すべて",
-      "badges": "バッジ",
-      "certificates": "証明書"
-    },
-    "earnedOn": "{date}に獲得",
-    "share": "共有"
-  },
-  "KycPage": {
-    "title": "本人確認（KYC）",
-    "subtitle": "アカウントを保護し、すべての機能にアクセスするために本人確認を行ってください。",
-    "card": {
-      "title": "なぜ本人確認が必要なのですか？",
-      "description": "本人確認（KYC）は、以下の目的のための重要なセキュリティステップです：",
-      "item1": "詐欺からコミュニティを保護する。",
-      "item2": "プロバイダーの金融取引（引き出し）を可能にする。",
-      "item3": "メンバー間の信頼を高める。"
-    },
-    "startVerification": "確認を開始",
-    "status": {
-      "verified": {
-        "title": "本人確認済みです",
-        "description": "ありがとうございます！すべてのプラットフォーム機能にアクセスできます。"
-      },
-      "pending": {
-        "title": "確認中です",
-        "description": "あなたの書類は審査中です。通常、数時間かかります。"
-      },
-      "rejected": {
-        "title": "確認に失敗しました",
-        "description": "書類の審査中に問題が発生しました。もう一度お試しください。"
-      }
-    },
-    "toast": {
-      "title": "リダイレクト中...",
-      "description": "確認パートナーにリダイレクトされます。"
-    },
-    "documents": {
-      "title": "必要な書類",
-      "description": "以下の書類をアップロードしてください。",
-      "idCard": "IDカード（表/裏）",
-      "selfie": "セルフィー",
-      "proofOfAddress": "住所証明",
-      "upload": "アップロード",
-      "takePicture": "写真を撮る"
-    },
-    "history": {
-      "title": "確認履歴"
-    },
-    "stripe": {
-      "title": "支払い情報",
-      "description": "安全なパートナーであるStripeを介して銀行情報を追加し、支払いを受け取ります。",
-      "button": "Stripeで支払いを設定する"
-    },
-    "submitButton": "検証のために送信"
-  },
-  "Countries": {
-    "fr": "フランス",
-    "en": "アメリカ合衆国",
-    "jp": "日本",
-    "es": "スペイン",
-    "de": "ドイツ",
-    "zh": "中国"
-  },
-  "Languages": {
-    "fr": "フランス語",
-    "en": "英語",
-    "jp": "日本語",
-    "es": "スペイン語",
-    "de": "ドイツ語",
-    "zh": "中国語（簡体字）"
-  },
-  "Currencies": {
-    "EUR": "ユーロ",
-    "USD": "米ドル",
-    "JPY": "日本円"
-  },
-  "Quotes": {
-    "title": "見積もり",
-    "newQuote": "新規見積もり",
-    "createQuote": "見積もりを作成",
-    "quoteNumber": "見積もり番号",
-    "client": "顧客",
-    "status": "ステータス",
-    "amount": "金額",
-    "validUntil": "有効期限",
-    "actions": "アクション",
-    "view": "詳細を表示",
-    "edit": "編集",
-    "send": "送信",
-    "accept": "承認",
-    "decline": "拒否",
-    "statuses": {
-      "draft": "下書き",
-      "sent": "送信済み",
-      "viewed": "閲覧済み",
-      "accepted": "承認済み",
-      "declined": "拒否済み",
-      "expired": "期限切れ",
-      "cancelled": "キャンセル"
-    }
-  },
-  "Invoices": {
-    "title": "請求書",
-    "uploadInvoice": "請求書をアップロード",
-    "invoiceNumber": "請求書番号",
-    "status": "ステータス",
-    "amount": "金額",
-    "statuses": {
-      "draft": "下書き",
-      "submitted": "提出済み",
-      "validated": "検証済み",
-      "rejected": "却下",
-      "paid": "支払い済み"
-    }
-  },
-  "Onboarding": {
-    "title": "プロフェッショナルになる",
-    "subtitle": "{steps}ステップでプロファイルを完成させる",
-    "next": "次へ",
-    "previous": "戻る",
-    "finish": "完了",
-    "steps": {
-      "general": "基本情報",
-      "kyb": "企業認証",
-      "services": "サービスと料金",
-      "zones": "サービスエリア",
-      "portfolio": "ポートフォリオ",
-      "availability": "スケジュール",
-      "terms": "利用規約"
-    }
-  },
-  "Legal": {
-    "backButton": "戻る",
-    "lastUpdated": "最終更新日",
-    "version": "バージョン 1.0",
-    "contact": "お問い合わせ",
-    "email": "メール",
-    "phone": "電話",
-    "address": "住所",
-    "Terms": {
-      "title": "利用規約",
-      "subtitle": "プラットフォーム利用者向け"
-    },
-    "Privacy": {
-      "back": "戻る",
-      "title": "プライバシーポリシー",
-      "subtitle": "個人情報の保護",
-      "version": "バージョン 1.0",
-      "lastUpdate": "最終更新",
-      "section1": {
-        "title": "はじめに",
-        "content": "IMU Task（以下「当社」または「プラットフォーム」）は、ユーザーのプライバシー保護に取り組んでいます。本プライバシーポリシーは、一般データ保護規則（GDPR）および適用されるデータ保護法に従って、個人データの収集、使用、保存、保護方法について説明します。"
-      },
-      "section2": {
-        "title": "データ管理者",
-        "intro": "個人データの管理者は以下の通りです：",
-        "companyName": "IMU Task",
-        "contactEmail": "contact@imutask.com",
-        "dpoEmail": "dpo@imutask.com"
-      },
-      "section3": {
-        "title": "収集されるデータ",
-        "subtitle1": "識別データ",
-        "item1_1": "氏名",
-        "item1_2": "メールアドレス",
-        "item1_3": "電話番号（任意）",
-        "item1_4": "アカウント作成日",
-        "subtitle2": "専門家データ",
-        "item2_1": "SIRET番号",
-        "item2_2": "会社名",
-        "item2_3": "事業所住所",
-        "item2_4": "業種",
-        "item2_5": "提供サービス",
-        "item2_6": "サービス提供地域",
-        "item2_7": "ポートフォリオ（写真、説明）",
-        "subtitle3": "ナビゲーションデータ",
-        "item3_1": "IPアドレス",
-        "item3_2": "ブラウザタイプ",
-        "item3_3": "閲覧ページ",
-        "item3_4": "接続日時",
-        "item3_5": "Cookie（専用セクション参照）",
-        "subtitle4": "取引データ",
-        "item4_1": "作成・承認された見積",
-        "item4_2": "アップロードされた請求書",
-        "item4_3": "予約",
-        "item4_4": "メッセージ交換",
-        "item4_5": "レビューと評価"
-      },
-      "section4": {
-        "title": "処理目的",
-        "intro": "以下の目的で個人データを収集・処理します：",
-        "purpose1": "アカウント管理",
-        "purpose1_desc": "ユーザープロフィールの作成、認証、管理",
-        "purpose2": "サービス提供",
-        "purpose2_desc": "専門家との連絡、メッセージ交換、見積・予約管理",
-        "purpose3": "KYB確認",
-        "purpose3_desc": "SIRET番号による専門家の本人確認",
-        "purpose4": "プラットフォーム改善",
-        "purpose4_desc": "サービス改善のための利用分析",
-        "purpose5": "コミュニケーション",
-        "purpose5_desc": "アカウントと予約に関する通知送信",
-        "purpose6": "セキュリティ",
-        "purpose6_desc": "不正防止と法的義務の遵守",
-        "purpose7": "マーケティング",
-        "purpose7_desc": "商業オファーの送信（事前同意が必要）"
-      },
-      "section5": {
-        "title": "処理の法的根拠",
-        "intro": "データ処理は以下の法的根拠に基づいています：",
-        "basis1": "契約履行",
-        "basis1_desc": "プラットフォームサービスの提供",
-        "basis2": "同意",
-        "basis2_desc": "マーケティング通信、非必須Cookie",
-        "basis3": "正当な利益",
-        "basis3_desc": "サービス改善、プラットフォームセキュリティ",
-        "basis4": "法的義務",
-        "basis4_desc": "請求データの保持、KYB確認"
-      },
-      "section6": {
-        "title": "データ受領者",
-        "intro": "個人データは以下の受領者に送信される場合があります：",
-        "recipient1": "承認された担当者",
-        "recipient1_desc": "プラットフォームの技術・カスタマーサポートチーム",
-        "recipient2": "専門家",
-        "recipient2_desc": "見積依頼または予約の一環として",
-        "recipient3": "技術サービスプロバイダー",
-        "recipient3_desc": "ホスティング（Firebase/Google Cloud）、決済サービス、分析ツール",
-        "recipient4": "管轄当局",
-        "recipient4_desc": "法的または司法的要請に基づく"
-      },
-      "section7": {
-        "title": "保存期間",
-        "intro": "個人データは以下の期間保存されます：",
-        "duration1": "アクティブアカウント",
-        "duration1_desc": "アカウント使用期間中",
-        "duration2": "アカウント削除後",
-        "duration2_desc": "30日間（復元可能、その後完全削除）",
-        "duration3": "請求データ",
-        "duration3_desc": "10年間（法的義務）",
-        "duration4": "ナビゲーションデータ",
-        "duration4_desc": "最大13ヶ月",
-        "duration5": "マーケティングデータ",
-        "duration5_desc": "最後の連絡から3年間"
-      },
-      "section8": {
-        "title": "ユーザーの権利",
-        "intro": "GDPRに従い、以下の権利があります：",
-        "right1": "アクセス権",
-        "right1_desc": "個人データのコピーを取得",
-        "right2": "修正権",
-        "right2_desc": "不正確または不完全なデータを修正",
-        "right3": "削除権",
-        "right3_desc": "データを削除（「忘れられる権利」）",
-        "right4": "制限権",
-        "right4_desc": "データ処理を制限",
-        "right5": "反対権",
-        "right5_desc": "データ処理に反対（特にマーケティング）",
-        "right6": "データポータビリティ権",
-        "right6_desc": "構造化された形式でデータを受け取る",
-        "right7": "同意撤回権",
-        "right7_desc": "いつでも可能",
-        "exerciseRights": "権利を行使するには、以下にご連絡ください：",
-        "complaint": "また、国のデータ保護機関に苦情を申し立てる権利もあります。"
-      },
-      "section9": {
-        "title": "データセキュリティ",
-        "intro": "不正アクセス、紛失、破壊、開示から個人データを保護するため、適切な技術的・組織的措置を実施しています：",
-        "measure1": "機密データの暗号化（SSL/TLS）",
-        "measure2": "セキュアな認証（Firebase認証）",
-        "measure3": "厳格なデータアクセス制御",
-        "measure4": "定期的なバックアップ",
-        "measure5": "定期的なセキュリティ監査"
-      },
-      "section10": {
-        "title": "Cookie",
-        "intro": "プラットフォームはユーザー体験を向上させるためにCookieを使用します。Cookieはデバイスに保存される小さなテキストファイルです。",
-        "typesTitle": "使用するCookieの種類：",
-        "type1": "必須Cookie",
-        "type1_desc": "プラットフォーム動作に必要（セッション、認証）",
-        "type2": "パフォーマンスCookie",
-        "type2_desc": "利用分析（Google Analytics）",
-        "type3": "機能Cookie",
-        "type3_desc": "設定の記憶",
-        "settings": "Cookieを拒否するようブラウザを設定できますが、プラットフォームの機能に影響する場合があります。"
-      },
-      "section11": {
-        "title": "国際転送",
-        "content": "データはGoogle Cloud（Firebase）サーバーにホストされており、欧州連合外に所在する場合があります。これらの転送は欧州委員会の標準契約条項に準拠し、適切な保護措置が講じられています。"
-      },
-      "section12": {
-        "title": "ポリシーの変更",
-        "content": "本プライバシーポリシーはいつでも変更する権利を留保します。変更があった場合は、プラットフォーム上の通知またはメールで連絡します。最終更新日は本文書の上部に表示されています。"
-      },
-      "section13": {
-        "title": "お問い合わせ",
-        "intro": "本プライバシーポリシーまたは個人データに関するご質問は、以下にご連絡ください：",
-        "dpoLabel": "DPOメール",
-        "generalLabel": "一般メール"
-      }
-    },
-    "Mentions": {
-      "back": "戻る",
-      "title": "法的事項",
-      "lastUpdate": "最終更新",
-      "section1": {
-        "title": "プラットフォーム発行者",
-        "legalName": "法人名",
-        "companyName": "IMU Task",
-        "legalForm": "法的形態",
-        "legalFormValue": "簡易株式会社（SAS）",
-        "capital": "資本金",
-        "capitalValue": "10,000ユーロ",
-        "siret": "SIRET番号",
-        "siretValue": "123 456 789 00010",
-        "rcs": "RCS番号",
-        "rcsValue": "Paris B 123 456 789",
-        "headquarters": "本社",
-        "headquartersValue": "123 Avenue des Champs-Élysées, 75008 Paris, France",
-        "vat": "EU VAT番号",
-        "vatValue": "FR 12 123456789",
-        "emailLabel": "メール",
-        "email": "contact@imutask.com",
-        "phoneLabel": "電話",
-        "phone": "+33 1 23 45 67 89",
-        "director": "発行責任者",
-        "directorName": "John Doe、IMU Task SAS社長",
-        "directorEmail": "direction@imutask.com"
-      },
-      "section2": {
-        "title": "ホスティングプロバイダー",
-        "nameLabel": "名前",
-        "name": "Google Cloud Platform（Firebase）",
-        "companyLabel": "会社",
-        "company": "Google LLC",
-        "addressLabel": "住所",
-        "address": "1600 Amphitheatre Parkway, Mountain View, CA 94043, United States",
-        "websiteLabel": "ウェブサイト",
-        "details": "サーバーはISO 27001認証を受けたデータセンターに配置され、欧州のセキュリティおよびデータ保護基準に準拠しています。データは主に欧州地域（europe-west1 - ベルギー）にホストされています。"
-      },
-      "section3": {
-        "title": "知的財産",
-        "paragraph1": "IMU Taskプラットフォームを構成するすべての要素（テキスト、グラフィックス、ソフトウェア、写真、画像、動画、音声、計画、名称、ロゴ、商標、様々な保護可能な創作物および著作物、データベースなど）およびプラットフォーム自体は、IMU Taskの独占的財産であるか、使用許可の対象となっています。",
-        "paragraph2": "いかなる手段によっても、またいかなる媒体によっても、プラットフォームまたはそのコンテンツの全部または一部の複製、表現、修正、公開、伝送、改変は、IMU Taskの事前書面による許可なしに禁止されています。",
-        "paragraph3": "プラットフォーム、そのコンテンツ、またはそれに組み込まれた要素の無許可の利用は、侵害行為とみなされ、知的財産法第L.335-2条以降の規定に従って訴追されます。"
-      },
-      "section4": {
-        "title": "Cookie",
-        "paragraph1": "プラットフォームは、ユーザー体験を向上させ、トラフィックを分析するためにCookieを使用します。プラットフォームの閲覧を続けることにより、これらのCookieの使用に同意したことになります。",
-        "paragraph2": "Cookieを拒否したり、Cookieが設置されたときに通知を受けるようブラウザを設定できます。ただし、特定のCookieを拒否すると、プラットフォームの正常な動作に影響する場合があります。",
-        "paragraph3": "Cookieとその管理の詳細については、当社の",
-        "privacyLink": "プライバシーポリシー"
-      },
-      "section5": {
-        "title": "個人データ",
-        "paragraph1": "IMU Taskは、一般データ保護規則（GDPR）および適用されるデータ保護法に従って個人データを収集・処理します。",
-        "paragraph2": "データ管理者は、社長John Doeが代表するIMU Taskです。",
-        "paragraph3": "個人データの処理に関するご質問は、当社のデータ保護責任者（DPO）にご連絡ください：",
-        "dpoLabel": "DPOメール",
-        "dpoEmail": "dpo@imutask.com",
-        "paragraph4": "権利とデータ処理の詳細については、当社の",
-        "privacyLink": "プライバシーポリシー"
-      },
-      "section6": {
-        "title": "クレジット",
-        "design": "設計・開発",
-        "designValue": "IMU Task",
-        "uiLabel": "UI/UXデザイン",
-        "framework": "フレームワーク",
-        "backend": "バックエンド・ホスティング",
-        "backendValue": "Firebase / Google Cloud Platform",
-        "icons": "アイコン"
-      },
-      "section7": {
-        "title": "責任の制限",
-        "paragraph1": "IMU Taskはプラットフォームの可用性とセキュリティを確保するために最善を尽くしますが、中断やエラーのないアクセスを保証することはできません。プラットフォームは、メンテナンス、更新、または当社の管理外の原因により一時的に利用できなくなる場合があります。",
-        "paragraph2": "IMU Taskは以下について責任を負いません：",
-        "item1": "プラットフォームの使用またはアクセス不能に起因する直接的または間接的な損害",
-        "item2": "コンピュータ機器に感染する可能性のあるウイルスや悪意のあるプログラム",
-        "item3": "第三者によるプラットフォームの不正または不適切な使用",
-        "item4": "ユーザーと専門家間の紛争",
-        "item5": "プラットフォームに登録されている専門家が提供するサービスの品質",
-        "item6": "ユーザーが公開したコンテンツ"
-      },
-      "section8": {
-        "title": "ハイパーリンク",
-        "paragraph1": "プラットフォームには他のウェブサイトへのリンクが含まれる場合があります。IMU Taskはこれらのサイトを管理しておらず、そのコンテンツ、可用性、プライバシーポリシーについて一切の責任を負いません。",
-        "paragraph2": "プラットフォームへのハイパーリンクの作成には、IMU Taskの事前書面による許可が必要です。リクエストについては、contact@imutask.comまでご連絡ください。"
-      },
-      "section9": {
-        "title": "準拠法と管轄裁判所",
-        "paragraph1": "本法的事項はフランス法に準拠します。紛争が発生した場合、友好的な合意が得られない限り、フランスの裁判所が唯一の管轄権を有します。",
-        "paragraph2": "紛争の友好的解決に関する消費者法の規定に従い、IMU Taskは所属する消費者調停サービスに加入しています。紛争が発生した場合は、次のウェブサイトで苦情を申し立てることができます："
-      },
-      "section10": {
-        "title": "法的事項の変更",
-        "paragraph1": "IMU Taskは、本法的事項をいつでも変更する権利を留保します。変更はプラットフォームでの公開時に有効になります。最終更新日は本文書の上部に表示されています。"
-      },
-      "section11": {
-        "title": "お問い合わせ",
-        "intro": "本法的事項に関するご質問は、以下にご連絡ください：",
-        "emailLabel": "メール",
-        "email": "contact@imutask.com",
-        "legalEmailLabel": "法務メール",
-        "legalEmail": "legal@imutask.com",
-        "phoneLabel": "電話",
-        "phone": "+33 1 23 45 67 89",
-        "mailLabel": "郵便",
-        "mailAddress": "IMU Task - 法務部",
-        "mailStreet": "123 Avenue des Champs-Élysées",
-        "mailCity": "75008 Paris",
-        "mailCountry": "France"
-      }
-    }
-  },
-  "MyTasksPage": {
-    "title": "My Requests",
-    "subtitle": "Manage the tasks you have created.",
-    "createTask": "Create new task",
-    "noTasks": "You haven't created any tasks yet.",
-    "createFirstTask": "Create your first task",
-    "searchPlaceholder": "Search in your tasks...",
-    "viewGrid": "Grid view",
-    "viewList": "List view",
-    "noSearchResults": "No results for your search.",
-    "view": "View"
-  },
-  "EditTaskPage": {
-    "title": "Edit Task",
-    "subtitle": "Update the details of your task below.",
-    "submitButton": "Save Changes",
-    "toastSuccessTitle": "Task Updated",
-    "toastSuccessDescription": "Your task has been successfully updated.",
-    "toastErrorTitle": "Error",
-    "toastErrorDescription": "An error occurred while updating the task.",
-    "toastNotFoundTitle": "Task Not Found",
-    "toastNotFoundDescription": "The requested task could not be found or you don't have permission to edit it."
-  },
-  "TaskCategories": {
-    "shopping": "Shopping",
-    "gardening": "Gardening",
-    "lightCleaning": "Light cleaning",
-    "digitalHelp": "Digital help",
-    "administrativeHelp": "Administrative help",
-    "handyman": "Handyman",
-    "petSitting": "Pet sitting"
-  },
-  "SignInPage": {
-    "title": "Sign in to your account",
-    "orSignUp": "Or",
-    "signUpLink": "create a new account",
-    "emailLabel": "Email address",
-    "passwordLabel": "Password",
-    "forgotPasswordLink": "Forgot password?",
-    "submitButton": "Sign in",
-    "errorTitle": "Authentication Error",
-    "continueWithGoogle": "Continue with Google",
-    "orContinueWith": "Or continue with"
-  },
-  "SignUpPage": {
-    "title": "Create your ImuTask account",
-    "orSignIn": "Already a member?",
-    "signInLink": "Sign in",
-    "nameLabel": "Full name",
-    "emailLabel": "Email address",
-    "passwordLabel": "Password",
-    "submitButton": "Create account",
-    "termsPrefix": "By creating an account, you agree to our",
-    "termsLink": "Terms of Service",
-    "errorTitle": "Registration Error",
-    "continueWithGoogle": "Continue with Google",
-    "orContinueWith": "Or continue with",
-    "referralCodeLabel": "Referral Code (Optional)",
-    "referralCodePlaceholder": "Enter code if you have one"
-  },
-  "OfferForm": {
-    "title": "Make an offer",
-    "description": "Propose your services for this task.",
-    "priceLabel": "Your price (€)",
-    "messageLabel": "Your message",
-    "messagePlaceholder": "Introduce yourself and explain why you're the right person for this task.",
-    "submit": "Send my offer",
-    "toastSuccessTitle": "Offer Sent!",
-    "toastSuccessDescription": "Your offer has been sent to the client."
-  },
-  "AddressForm": {
-    "title": "Add a new address",
-    "label": "Address Name",
-    "labelPlaceholder": "e.g. Home, Office",
-    "address": "Full Address",
-    "addressPlaceholder": "Start typing your address...",
-    "cancel": "Cancel",
-    "save": "Save Address"
-  },
-  "TaskActions": {
-    "cancelDialogTitle": "Are you sure you want to cancel this task?",
-    "cancelDialogDescription": "This action cannot be undone. All offers will be declined and the task will be removed from the marketplace.",
-    "cancelDialogCancel": "Go back",
-    "cancelDialogConfirm": "Yes, cancel task",
-    "reportProblem": {
-      "title": "Report a Problem",
-      "description": "If you've encountered an issue with this task, please let us know.",
-      "reasonLabel": "Reason for reporting",
-      "reasonPlaceholder": "Select a reason",
-      "reasons": {
-        "noShow": "The provider did not show up",
-        "quality": "The work was not done correctly",
-        "delay": "The provider was significantly late",
-        "other": "Other"
-      },
-      "commentLabel": "Details",
-      "commentPlaceholder": "Please provide as much detail as possible...",
-      "attachmentsLabel": "Add attachments",
-      "attachmentsButton": "Upload photos or documents",
-      "submitButton": "Submit Report",
-      "toastSuccessTitle": "Report Sent",
-      "toastSuccessDescription": "Your report has been submitted and our team will review it shortly."
-    }
-  },
-  "TaskDetail": {
-    "location": "場所",
-    "noLocation": "指定なし",
-    "noMapAvailable": "地図がありません",
-    "images": "画像",
-    "image": "画像",
-    "suggestedProviders": "おすすめのプロバイダー",
-    "suggestedProvidersDesc": "スキルと近さに基づく",
-    "noProvidersFound": "このカテゴリのプロバイダーが見つかりません。",
-    "completedTasks": "タスク",
-    "viewProfile": "プロフィールを見る",
-    "contact": "連絡する",
-    "description": "説明",
-    "budget": "提案予算",
-    "createdAt": "作成日",
-    "deadline": "期限",
-    "client": "クライアント",
-    "provider": "プロバイダー",
-    "you": "あなた",
-    "notAuthenticated": "タスクの詳細を表示するにはログインが必要です。",
-    "loginLink": "ログイン",
-    "taskNotFound": "タスクが見つかりません",
-    "error": "エラーが発生しました",
-    "backToTasks": "タスクに戻る",
-    "edit": "編集",
-    "delete": "削除",
-    "deleting": "削除中...",
-    "deleteConfirmTitle": "このタスクを削除しますか？",
-    "deleteConfirmDescription": "この操作は元に戻せません。タスクは完全に削除されます。",
-    "deleteConfirmCancel": "キャンセル",
-    "deleteConfirmDelete": "削除",
-    "interestedInTask": "このタスクに興味がありますか？",
-    "submitOfferDescription": "クライアントに提案する",
-    "submitOffer": "オファーを送信"
-  },
-  "SearchPage": {
-    "title": "Find a Provider",
-    "subtitle": "Browse profiles and find the perfect person for your task.",
-    "filters": {
-      "keywordLabel": "Keyword or skill",
-      "keywordPlaceholder": "E.g. gardener, shopping, handyman...",
-      "addressLabel": "Location",
-      "addressPlaceholder": "Enter a city or address",
-      "distanceLabel": "Distance",
-      "availabilityLabel": "Availability",
-      "availabilityPlaceholder": "All availabilities",
-      "categoryLabel": "Category",
-      "categoryPlaceholder": "All categories",
-      "priceLabel": "Hourly rate (€)",
-      "minPricePlaceholder": "Min",
-      "maxPricePlaceholder": "Max",
-      "searchButton": "Search",
-      "moreFilters": "More Filters",
-      "hideFilters": "Hide Filters"
-    }
-  },
-  "ProviderCard": {
-    "reviews": "reviews",
-    "noBio": "This provider does not have a bio yet.",
-    "viewProfile": "View Profile",
-    "contact": "Contact"
-  },
-  "ProviderOffersPage": {
-    "title": "Tasks & Offers",
-    "subtitle": "Find tasks and manage your offers.",
-    "notProvider": {
-      "title": "This section is for providers.",
-      "description": "To offer your services, please complete your provider profile.",
-      "button": "Go to Profile"
-    },
-    "recommendedTasks": {
-      "title": "Recommended Tasks",
-      "noTasks": "No recommended tasks at the moment."
-    },
-    "sentOffers": {
-      "title": "My Sent Offers",
-      "table": {
-        "task": "Task",
-        "yourPrice": "Your Price",
-        "status": "Status",
-        "viewTask": "View Task",
-        "editOffer": "Edit Offer",
-        "withdrawOffer": "Withdraw Offer"
-      },
-      "noOffers": "You have not sent any offers yet.",
-      "dialog": {
-        "withdrawTitle": "Withdraw Offer",
-        "withdrawDescription": "Are you sure you want to withdraw your offer for this task? This action cannot be undone.",
+    "AddressForm": {
+        "title": "Add a new address",
+        "label": "Address Name",
+        "labelPlaceholder": "e.g. Home, Office",
+        "address": "Full Address",
+        "addressPlaceholder": "Start typing your address...",
         "cancel": "Cancel",
-        "confirm": "Yes, withdraw"
-      },
-      "toast": {
-        "withdrawSuccessTitle": "Offer Withdrawn",
-        "withdrawSuccessDescription": "Your offer has been successfully withdrawn."
-      }
+        "save": "Save Address"
     },
-    "tabs": {
-      "list": "List",
-      "calendar": "Calendar"
-    },
-    "calendarView": {
-      "title": "Calendar View",
-      "description": "See available tasks on a calendar.",
-      "tasksFor": "Tasks for {date}",
-      "noTasksForDay": "No tasks available for this day."
-    }
-  },
-  "MyBookingsPage": {
-    "title": "My Bookings",
-    "subtitle": "Track your scheduled and past missions.",
-    "table": {
-      "title": "Booking History",
-      "description": "A list of all your missions, whether you are the client or the provider.",
-      "task": "Task",
-      "client": "Client",
-      "provider": "Provider",
-      "amount": "Amount",
-      "status": "Status",
-      "actions": "Actions",
-      "details": "Details"
-    },
-    "status": {
-      "scheduled": "Scheduled",
-      "in_progress": "In Progress",
-      "completed": "Completed",
-      "no_show_client": "Client No-Show",
-      "no_show_provider": "Provider No-Show",
-      "canceled": "Canceled"
-    },
-    "statusVariants": {
-      "scheduled": "secondary",
-      "in_progress": "secondary",
-      "completed": "default",
-      "no_show_client": "destructive",
-      "no_show_provider": "destructive",
-      "canceled": "destructive"
-    }
-  },
-  "BookingDetailPage": {
-    "title": "Booking Details",
-    "notFound": "Booking not found.",
-    "backToList": "Back to bookings list",
-    "viewProfile": "View profile",
-    "cards": {
-      "summary": {
-        "title": "Mission Summary",
-        "description": "Details of the mission \"{taskTitle}\".",
-        "client": "Client",
-        "provider": "Provider",
-        "amount": "Agreed Amount",
-        "date": "Scheduled Date"
-      },
-      "timeline": {
-        "title": "Timeline",
-        "description": "History of the booking's key events.",
-        "events": {
-          "offerAccepted": "Offer Accepted",
-          "offerAcceptedDesc": "The client has accepted the provider's offer.",
-          "paymentAuthorized": "Payment Authorized",
-          "paymentAuthorizedDesc": "The client's payment has been pre-authorized and is held securely.",
-          "bookingConfirmed": "Booking Confirmed",
-          "bookingConfirmedDesc": "The mission is officially scheduled.",
-          "taskCompleted": "Task Completed",
-          "taskCompletedDesc": "The task has been marked as completed by the client."
+    "TaskActions": {
+        "cancelDialogTitle": "Are you sure you want to cancel this task?",
+        "cancelDialogDescription": "This action cannot be undone. All offers will be declined and the task will be removed from the marketplace.",
+        "cancelDialogCancel": "Go back",
+        "cancelDialogConfirm": "Yes, cancel task",
+        "reportProblem": {
+            "title": "Report a Problem",
+            "description": "If you've encountered an issue with this task, please let us know.",
+            "reasonLabel": "Reason for reporting",
+            "reasonPlaceholder": "Select a reason",
+            "reasons": {
+                "noShow": "The provider did not show up",
+                "quality": "The work was not done correctly",
+                "delay": "The provider was significantly late",
+                "other": "Other"
+            },
+            "commentLabel": "Details",
+            "commentPlaceholder": "Please provide as much detail as possible...",
+            "attachmentsLabel": "Add attachments",
+            "attachmentsButton": "Upload photos or documents",
+            "submitButton": "Submit Report",
+            "toastSuccessTitle": "Report Sent",
+            "toastSuccessDescription": "Your report has been submitted and our team will review it shortly."
         }
-      },
-      "actions": {
-        "title": "Actions",
-        "description": "Manage the booking.",
-        "confirmCompletion": "Confirm Completion",
-        "reschedule": "Request Reschedule",
-        "cancel": "Cancel Booking",
-        "openDispute": "Open a Dispute",
-        "rescheduleDialog": {
-          "title": "Request a Reschedule",
-          "description": "Propose a new date and time for this mission. The other party will have to approve.",
-          "startTime": "New start time",
-          "endTime": "New end time",
-          "cancel": "Cancel",
-          "confirm": "Send Request"
-        },
-        "cancelDialog": {
-          "title": "Are you sure you want to cancel?",
-          "description": "This action cannot be undone. Penalties may apply according to our terms of service.",
-          "reasonLabel": "Reason for cancellation",
-          "reasonPlaceholder": "Please specify the reason for cancellation...",
-          "cancel": "Cancel",
-          "confirm": "Confirm Cancellation"
+    },
+    "TaskDetail": {
+        "location": "場所",
+        "noLocation": "指定なし",
+        "noMapAvailable": "地図がありません",
+        "images": "画像",
+        "image": "画像",
+        "suggestedProviders": "おすすめのプロバイダー",
+        "suggestedProvidersDesc": "スキルと近さに基づく",
+        "noProvidersFound": "このカテゴリのプロバイダーが見つかりません。",
+        "completedTasks": "タスク",
+        "viewProfile": "プロフィールを見る",
+        "contact": "連絡する",
+        "description": "説明",
+        "budget": "提案予算",
+        "createdAt": "作成日",
+        "deadline": "期限",
+        "client": "クライアント",
+        "provider": "プロバイダー",
+        "you": "あなた",
+        "notAuthenticated": "タスクの詳細を表示するにはログインが必要です。",
+        "loginLink": "ログイン",
+        "taskNotFound": "タスクが見つかりません",
+        "error": "エラーが発生しました",
+        "backToTasks": "タスクに戻る",
+        "edit": "編集",
+        "delete": "削除",
+        "deleting": "削除中...",
+        "deleteConfirmTitle": "このタスクを削除しますか？",
+        "deleteConfirmDescription": "この操作は元に戻せません。タスクは完全に削除されます。",
+        "deleteConfirmCancel": "キャンセル",
+        "deleteConfirmDelete": "削除",
+        "interestedInTask": "このタスクに興味がありますか？",
+        "submitOfferDescription": "クライアントに提案する",
+        "submitOffer": "オファーを送信"
+    },
+    "SearchPage": {
+        "title": "Find a Provider",
+        "subtitle": "Browse profiles and find the perfect person for your task.",
+        "filters": {
+            "keywordLabel": "Keyword or skill",
+            "keywordPlaceholder": "E.g. gardener, shopping, handyman...",
+            "addressLabel": "Location",
+            "addressPlaceholder": "Enter a city or address",
+            "distanceLabel": "Distance",
+            "availabilityLabel": "Availability",
+            "availabilityPlaceholder": "All availabilities",
+            "categoryLabel": "Category",
+            "categoryPlaceholder": "All categories",
+            "priceLabel": "Hourly rate (€)",
+            "minPricePlaceholder": "Min",
+            "maxPricePlaceholder": "Max",
+            "searchButton": "Search",
+            "moreFilters": "More Filters",
+            "hideFilters": "Hide Filters"
         }
-      }
-    }
-  },
-  "MessagesPage": {
-    "title": "Select a conversation",
-    "description": "Choose a conversation from the list to start messaging."
-  },
-  "PartnershipsPage": {
-    "title": "University Partnerships",
-    "subtitle": "Manage partnerships with universities and schools.",
-    "searchPlaceholder": "Search partnerships...",
-    "createButton": "Create Partnership",
-    "table": {
-      "university": "University",
-      "campus": "Campus",
-      "students": "Students",
-      "status": "Status",
-      "actions": "Actions",
-      "viewDetails": "View Details",
-      "edit": "Edit",
-      "delete": "Delete"
     },
-    "status": {
-      "active": "Active",
-      "pending": "Pending",
-      "expired": "Expired"
+    "ProviderCard": {
+        "reviews": "reviews",
+        "noBio": "This provider does not have a bio yet.",
+        "viewProfile": "View Profile",
+        "contact": "Contact"
     },
-    "dialog": {
-      "title": "Delete Partnership?",
-      "description": "Are you sure you want to delete the partnership with {name}? This action is irreversible.",
-      "cancel": "Cancel",
-      "confirm": "Confirm"
-    },
-    "detail": {
-      "info": {
-        "title": "General Information",
-        "campus": "Campus",
-        "contact": "Contact Person",
-        "status": "Status",
-        "createdAt": "Creation Date",
-        "expiresAt": "Expiration Date",
-        "edit": "Edit Info",
-        "terminate": "Terminate Partnership"
-      },
-      "promo": {
-        "title": "Student Promo Codes",
-        "generate": "Generate New Code"
-      },
-      "audience": {
-        "title": "Connected Audience",
-        "students": "registered students",
-        "hours": "total validated hours",
-        "exportCsv": "Export Students CSV"
-      },
-      "stats": {
-        "title": "Campus Statistics",
-        "graphPlaceholder": "[Graphs of campus metrics]",
-        "exportPdf": "Export PDF Report"
-      },
-      "ects": {
-        "title": "ECTS Credit Validation",
-        "student": "Student",
-        "missions": "Completed Missions",
-        "hours": "Total Requested Hours",
-        "status": {
-          "pending": "Pending"
+    "ProviderOffersPage": {
+        "title": "Tasks & Offers",
+        "subtitle": "Find tasks and manage your offers.",
+        "notProvider": {
+            "title": "This section is for providers.",
+            "description": "To offer your services, please complete your provider profile.",
+            "button": "Go to Profile"
         },
-        "validate": "Validate Hours",
-        "reject": "Reject",
-        "export": "Export Certificate"
-      }
-    }
-  },
-  "AcademyPage": {
-    "title": "ImuTask Academy",
-    "subtitle": "Improve your skills and unlock new opportunities.",
-    "searchPlaceholder": "Search for a course...",
-    "filterPlaceholder": "Filter by role",
-    "filters": {
-      "all": "All roles",
-      "provider": "Provider",
-      "client": "Client"
-    },
-    "courseCard": {
-      "progress": "Progress",
-      "continue": "Continue",
-      "start": "Start Course"
-    }
-  },
-  "AcademyDetailPage": {
-    "notFound": "Course not found",
-    "backToAcademy": "Back to academy",
-    "sections": {
-      "title": "Sections"
-    },
-    "downloadResources": "Download Resources",
-    "continueModule": "Continue Module",
-    "startQuiz": "Start Quiz"
-  },
-  "AdminAcademyPage": {
-    "title": "Academy Management",
-    "subtitle": "Create, edit, and manage all platform courses.",
-    "manageBadges": "Manage Badges",
-    "globalProgress": "Global Progress",
-    "createCourse": "Create Course",
-    "courseList": {
-      "title": "Course List",
-      "description": "Monitor the performance of each course.",
-      "table": {
-        "course": "Course",
-        "enrolled": "Enrolled",
-        "completed": "Completed",
-        "completionRate": "Completion Rate"
-      },
-      "actions": {
-        "edit": "Edit",
-        "delete": "Delete"
-      }
-    }
-  },
-  "AvailabilityPage": {
-    "title": "My Schedule",
-    "subtitle": "Manage your schedule to receive relevant mission offers.",
-    "notProvider": {
-      "title": "This section is for providers.",
-      "description": "To manage your availability, please complete your provider profile.",
-      "button": "Go to Profile"
-    },
-    "weekGrid": {
-      "title": "My Week",
-      "time": "Time"
-    },
-    "days": {
-      "mon": "Mon",
-      "tue": "Tue",
-      "wed": "Wed",
-      "thu": "Thu",
-      "fri": "Fri",
-      "sat": "Sat",
-      "sun": "Sun"
-    },
-    "actions": {
-      "title": "Quick Actions",
-      "recurring": "Set recurring slots",
-      "exception": "Add exception",
-      "sync": "Sync Calendar",
-      "settings": "Settings"
-    },
-    "autoBusy": {
-      "title": "Auto-Busy Rules",
-      "decline": "Automatically decline bookings during study blocks",
-      "markBusy": "Mark as 'Busy' when a slot is filled"
-    },
-    "exceptionModal": {
-      "title": "Add Exception",
-      "description": "Block a specific slot or make yourself available exceptionally.",
-      "date": "Date",
-      "startTime": "Start time",
-      "endTime": "End time",
-      "type": "Type",
-      "types": {
-        "blocked": "Blocked",
-        "available": "Exceptionally available"
-      },
-      "comment": "Comment (optional)",
-      "commentPlaceholder": "E.g., Doctor's appointment",
-      "cancel": "Cancel",
-      "save": "Save Exception"
-    },
-    "recurringModal": {
-      "title": "Recurring Availability",
-      "description": "Define your standard weekly schedule.",
-      "autoAccept": "Automatically accept missions in these slots",
-      "cancel": "Cancel",
-      "save": "Save"
-    },
-    "syncModal": {
-      "title": "Sync Calendar",
-      "description": "Connect your external calendars for simplified management.",
-      "google": "Connect Google Calendar",
-      "apple": "Connect Apple Calendar",
-      "export": "Export iCal"
-    }
-  },
-  "SettingsPage": {
-    "account": {
-      "title": "アカウント",
-      "email": {
-        "title": "メールアドレス",
-        "button": "変更",
-        "description": "メールアドレスはログインと通知の受信に使用されます"
-      },
-      "phone": {
-        "title": "電話番号",
-        "notProvided": "未設定",
-        "buttonAdd": "追加",
-        "buttonEdit": "編集",
-        "description": "二要素認証のために電話番号を追加してください"
-      },
-      "linkedAccounts": {
-        "title": "連携アカウント",
-        "google": "Google",
-        "notLinked": "連携アカウントなし",
-        "manage": "管理",
-        "linkGoogle": "Googleアカウントをリンク",
-        "description": "ImuTaskアカウントに接続されているサードパーティアカウントを管理"
-      },
-      "deleteAccount": {
-        "title": "アカウントを削除",
-        "description": "この操作は取り消せません。すべてのデータが完全に削除されます。",
-        "button": "アカウントを削除",
-        "password": "現在のパスワード",
-        "confirmTitle": "本当によろしいですか？",
-        "confirmDescription": "この操作は元に戻せません。アカウントとすべてのデータがサーバーから完全に削除されます。",
-        "confirmInput": "確認のため DELETE と入力してください",
-        "cancel": "キャンセル",
-        "confirm": "完全に削除"
-      },
-      "deleteSuccess": "アカウントが正常に削除されました",
-      "wrongPassword": "パスワードが正しくありません",
-      "deleteError": "アカウントの削除中にエラーが発生しました",
-      "phoneSuccess": "電話番号が正常に更新されました",
-      "phoneError": "電話番号の更新中にエラーが発生しました",
-      "emailSuccess": "メールアドレスが正常に更新されました",
-      "emailInUse": "このメールアドレスは既に使用されています",
-      "emailError": "メールアドレスの更新中にエラーが発生しました",
-      "photoError": "写真の更新中にエラーが発生しました",
-      "displayNameSuccess": "表示名が正常に更新されました",
-      "displayNameError": "表示名の更新中にエラーが発生しました"
-    },
-    "security": {
-      "title": "セキュリティ",
-      "password": {
-        "title": "パスワード",
-        "button": "パスワードを変更",
-        "lastChanged": "最終変更: {date}",
-        "description": "強力で一意なパスワードを使用してください",
-        "changeSuccess": "パスワードが正常に変更されました",
-        "wrongPassword": "現在のパスワードが正しくありません",
-        "weakPassword": "パスワードが弱すぎます",
-        "changeError": "パスワードの変更中にエラーが発生しました",
-        "notAvailable": "Googleアカウントでは利用できません"
-      },
-      "twoFactor": {
-        "title": "二要素認証（2FA）",
-        "statusLabel": "ステータス",
-        "status": {
-          "enabled": "有効",
-          "disabled": "無効"
+        "recommendedTasks": {
+            "title": "Recommended Tasks",
+            "noTasks": "No recommended tasks at the moment."
         },
-        "enableSms": "SMSで有効化",
-        "enableApp": "アプリで有効化",
-        "disable": "無効化",
-        "description": "アカウントにセキュリティレイヤーを追加",
-        "enableSuccess": "2FAが正常に有効化されました",
-        "enableError": "2FAの有効化中にエラーが発生しました",
-        "disableSuccess": "2FAが正常に無効化されました",
-        "disableError": "2FAの無効化中にエラーが発生しました"
-      },
-      "sessions": {
-        "title": "アクティブなセッション",
-        "description": "異なるデバイスでのアクティブなセッションを管理",
-        "current": "現在のセッション",
-        "lastActive": "最終アクティブ",
-        "logout": "ログアウト",
-        "logoutAll": "すべてのデバイスからログアウト",
-        "logoutSuccess": "セッションが正常にログアウトされました",
-        "logoutError": "ログアウト中にエラーが発生しました",
-        "logoutAllSuccess": "すべてのセッションが正常にログアウトされました",
-        "logoutAllError": "すべてのセッションのログアウト中にエラーが発生しました"
-      },
-      "trustedDevices": {
-        "title": "信頼できるデバイス",
-        "description": "2FAを要求しないデバイス",
-        "remove": "削除",
-        "noDevices": "信頼できるデバイスなし"
-      }
-    },
-    "billing": {
-      "title": "請求",
-      "plan": {
-        "title": "現在のサブスクリプション",
-        "current": "現在のプラン",
-        "free": "無料",
-        "pro": "プロ",
-        "business": "ビジネス",
-        "freePrice": "0円/月",
-        "proPrice": "49€/月",
-        "businessPrice": "149€/月",
-        "upgrade": "アップグレード",
-        "manage": "サブスクリプションを管理",
-        "description": "サブスクリプションと機能を管理する",
-        "features": {
-          "free": {
-            "tasks": "月に最大10タスク",
-            "basicSupport": "メールサポート",
-            "community": "コミュニティアクセス"
-          },
-          "pro": {
-            "unlimitedTasks": "無制限のタスク",
-            "prioritySupport": "24/7優先サポート",
-            "analytics": "高度な分析と統計",
-            "customBranding": "カスタムプロフィールブランディング"
-          },
-          "business": {
-            "everything": "プロプランのすべて",
-            "team": "最大50ユーザーのチーム管理",
-            "api": "完全なAPIアクセス",
-            "sla": "99.9% SLA保証",
-            "dedicated": "専任アカウントマネージャー"
-          }
+        "sentOffers": {
+            "title": "My Sent Offers",
+            "table": {
+                "task": "Task",
+                "yourPrice": "Your Price",
+                "status": "Status",
+                "viewTask": "View Task",
+                "editOffer": "Edit Offer",
+                "withdrawOffer": "Withdraw Offer"
+            },
+            "noOffers": "You have not sent any offers yet.",
+            "dialog": {
+                "withdrawTitle": "Withdraw Offer",
+                "withdrawDescription": "Are you sure you want to withdraw your offer for this task? This action cannot be undone.",
+                "cancel": "Cancel",
+                "confirm": "Yes, withdraw"
+            },
+            "toast": {
+                "withdrawSuccessTitle": "Offer Withdrawn",
+                "withdrawSuccessDescription": "Your offer has been successfully withdrawn."
+            }
+        },
+        "tabs": {
+            "list": "List",
+            "calendar": "Calendar"
+        },
+        "calendarView": {
+            "title": "Calendar View",
+            "description": "See available tasks on a calendar.",
+            "tasksFor": "Tasks for {date}",
+            "noTasksForDay": "No tasks available for this day."
         }
-      },
-      "paymentMethods": {
-        "title": "支払い方法",
-        "description": "クレジットカードと支払い方法を管理",
-        "add": "支払い方法を追加",
-        "addCard": "カードを追加",
-        "addSuccess": "カードが正常に追加されました！",
-        "default": "デフォルト",
-        "setDefault": "デフォルトに設定",
-        "remove": "削除",
-        "endingIn": "末尾",
-        "expires": "有効期限",
-        "noMethods": "保存された支払い方法なし",
-        "deleteTitle": "支払い方法を削除",
-        "deleteDescription": "この支払い方法を削除してもよろしいですか？",
-        "deleteCancel": "キャンセル",
-        "deleteConfirm": "削除",
-        "deleteSuccess": "カードが正常に削除されました！",
-        "deleteError": "カードの削除中にエラーが発生しました",
-        "dialog": {
-          "addTitle": "クレジットカードを追加",
-          "editTitle": "クレジットカードを編集",
-          "addDescription": "支払い用の新しいクレジットカードを追加",
-          "editDescription": "クレジットカード情報を編集",
-          "cardNumber": "カード番号",
-          "expiryMonth": "月",
-          "expiryYear": "年",
-          "cvv": "CVV",
-          "cardholderName": "カード名義人",
-          "cancel": "キャンセル",
-          "addCard": "追加",
-          "saveChanges": "保存",
-          "errors": {
-            "invalidCard": "無効なカード番号",
-            "invalidExpiry": "無効な有効期限",
-            "expiredCard": "このカードは期限切れです",
-            "invalidCvv": "無効なCVV",
-            "invalidName": "無効な名前（最低3文字）",
-            "saveFailed": "カードを保存できません"
-          }
-        },
-        "addError": "カードの追加中にエラーが発生しました",
-        "setDefaultSuccess": "カードが正常にデフォルトに設定されました！",
-        "setDefaultError": "カードのデフォルト設定中にエラーが発生しました"
-      },
-      "invoices": {
-        "title": "請求書",
-        "description": "請求書を表示してダウンロード",
-        "date": "日付",
-        "amount": "金額",
-        "download": "ダウンロード",
-        "downloadSuccess": "請求書が正常にダウンロードされました！",
-        "noInvoices": "利用可能な請求書なし",
+    },
+    "MyBookingsPage": {
+        "title": "My Bookings",
+        "subtitle": "Track your scheduled and past missions.",
         "table": {
-          "number": "請求書番号",
-          "date": "日付",
-          "plan": "プラン",
-          "amount": "金額",
-          "status": "ステータス",
-          "actions": "アクション",
-          "download": "ダウンロード"
+            "title": "Booking History",
+            "description": "A list of all your missions, whether you are the client or the provider.",
+            "task": "Task",
+            "client": "Client",
+            "provider": "Provider",
+            "amount": "Amount",
+            "status": "Status",
+            "actions": "Actions",
+            "details": "Details"
         },
         "status": {
-          "paid": "支払い済み",
-          "pending": "保留中",
-          "failed": "失敗"
+            "scheduled": "Scheduled",
+            "in_progress": "In Progress",
+            "completed": "Completed",
+            "no_show_client": "Client No-Show",
+            "no_show_provider": "Provider No-Show",
+            "canceled": "Canceled"
         },
-        "empty": {
-          "title": "請求書なし",
-          "description": "アクティブなサブスクリプションがあると、ここに請求書が表示されます"
-        },
-        "errors": {
-          "downloadFailed": "請求書をダウンロードできません",
-          "notFound": "請求書が見つかりません"
+        "statusVariants": {
+            "scheduled": "secondary",
+            "in_progress": "secondary",
+            "completed": "default",
+            "no_show_client": "destructive",
+            "no_show_provider": "destructive",
+            "canceled": "destructive"
         }
-      },
-      "subscription": {
-        "title": "サブスクリプション管理",
-        "currentPlan": "現在のプラン",
-        "changePlan": "プランを変更",
-        "cancel": "サブスクリプションをキャンセル",
-        "changeSuccess": "プランが正常に変更されました！",
-        "cancelSuccess": "サブスクリプションが正常にキャンセルされました",
-        "cancelButton": "サブスクリプションをキャンセル",
-        "renewsOn": "{date}に更新",
-        "canceledOn": "{date}にキャンセル",
-        "expiresOn": "{date}に期限切れ",
-        "dialog": {
-          "title": "サブスクリプションを管理",
-          "description": "ニーズに最適なプランを選択",
-          "monthly": "月額",
-          "annual": "年額",
-          "save": "節約",
-          "saveAmount": "年間{amount}€節約",
-          "month": "月",
-          "currentPlan": "現在のプラン",
-          "current": "現在",
-          "upgrade": "アップグレード",
-          "downgrade": "ダウングレード",
-          "close": "閉じる",
-          "cancelTitle": "サブスクリプションをキャンセル",
-          "cancelDescription": "現在の請求期間が終了するまでサブスクリプションは有効です",
-          "cancelButton": "サブスクリプションをキャンセル",
-          "cancelConfirmTitle": "キャンセルの確認",
-          "cancelConfirmDescription": "サブスクリプションをキャンセルしてもよろしいですか？請求期間の終了時にプレミアム機能へのアクセスが失われます。",
-          "cancelNo": "いいえ、サブスクリプションを維持",
-          "cancelYes": "はい、キャンセル",
-          "errors": {
-            "changeFailed": "プランを変更できません。もう一度お試しください。",
-            "cancelFailed": "サブスクリプションをキャンセルできません。もう一度お試しください。"
-          }
+    },
+    "BookingDetailPage": {
+        "title": "Booking Details",
+        "notFound": "Booking not found.",
+        "backToList": "Back to bookings list",
+        "viewProfile": "View profile",
+        "cards": {
+            "summary": {
+                "title": "Mission Summary",
+                "description": "Details of the mission \"{taskTitle}\".",
+                "client": "Client",
+                "provider": "Provider",
+                "amount": "Agreed Amount",
+                "date": "Scheduled Date"
+            },
+            "timeline": {
+                "title": "Timeline",
+                "description": "History of the booking's key events.",
+                "events": {
+                    "offerAccepted": "Offer Accepted",
+                    "offerAcceptedDesc": "The client has accepted the provider's offer.",
+                    "paymentAuthorized": "Payment Authorized",
+                    "paymentAuthorizedDesc": "The client's payment has been pre-authorized and is held securely.",
+                    "bookingConfirmed": "Booking Confirmed",
+                    "bookingConfirmedDesc": "The mission is officially scheduled.",
+                    "taskCompleted": "Task Completed",
+                    "taskCompletedDesc": "The task has been marked as completed by the client."
+                }
+            },
+            "actions": {
+                "title": "Actions",
+                "description": "Manage the booking.",
+                "confirmCompletion": "Confirm Completion",
+                "reschedule": "Request Reschedule",
+                "cancel": "Cancel Booking",
+                "openDispute": "Open a Dispute",
+                "rescheduleDialog": {
+                    "title": "Request a Reschedule",
+                    "description": "Propose a new date and time for this mission. The other party will have to approve.",
+                    "startTime": "New start time",
+                    "endTime": "New end time",
+                    "cancel": "Cancel",
+                    "confirm": "Send Request"
+                },
+                "cancelDialog": {
+                    "title": "Are you sure you want to cancel?",
+                    "description": "This action cannot be undone. Penalties may apply according to our terms of service.",
+                    "reasonLabel": "Reason for cancellation",
+                    "reasonPlaceholder": "Please specify the reason for cancellation...",
+                    "cancel": "Cancel",
+                    "confirm": "Confirm Cancellation"
+                }
+            }
+        }
+    },
+    "MessagesPage": {
+        "title": "Select a conversation",
+        "description": "Choose a conversation from the list to start messaging."
+    },
+    "PartnershipsPage": {
+        "title": "University Partnerships",
+        "subtitle": "Manage partnerships with universities and schools.",
+        "searchPlaceholder": "Search partnerships...",
+        "createButton": "Create Partnership",
+        "table": {
+            "university": "University",
+            "campus": "Campus",
+            "students": "Students",
+            "status": "Status",
+            "actions": "Actions",
+            "viewDetails": "View Details",
+            "edit": "Edit",
+            "delete": "Delete"
         },
-        "downgradeSuccess": "プランが正常にダウングレードされました！",
-        "changeError": "プランの変更中にエラーが発生しました",
-        "cancelError": "サブスクリプションのキャンセル中にエラーが発生しました"
-      }
-    },
-    "privacy": {
-      "title": "プライバシー",
-      "dataDownload": {
-        "title": "データをダウンロード",
-        "description": "すべてのデータのコピーをJSON形式で取得",
-        "button": "コピーをリクエスト",
-        "processing": "処理中...",
-        "ready": "ダウンロード準備完了",
-        "dialog": {
-          "title": "データをエクスポート",
-          "description": "エクスポートする形式とデータカテゴリを選択",
-          "format": "エクスポート形式",
-          "categories": "含めるカテゴリ",
-          "selectAll": "すべて選択",
-          "profile": "プロフィール",
-          "tasks": "タスク",
-          "bookings": "予約",
-          "messages": "メッセージ",
-          "reviews": "レビュー",
-          "transactions": "取引",
-          "cancel": "キャンセル",
-          "export": "エクスポート",
-          "exporting": "エクスポート中...",
-          "errors": {
-            "noCategories": "少なくとも1つのカテゴリを選択してください",
-            "exportFailed": "データのエクスポートに失敗しました"
-          }
+        "status": {
+            "active": "Active",
+            "pending": "Pending",
+            "expired": "Expired"
         },
-        "exportSuccess": "エクスポートが正常に開始されました！",
-        "exportError": "データのエクスポート中にエラーが発生しました"
-      },
-      "dataVisibility": {
-        "title": "プロフィールの公開設定",
-        "description": "プロフィールを表示できるユーザーを管理",
-        "public": "公開",
-        "publicDesc": "すべてのユーザーに公開されます",
-        "private": "非公開",
-        "privateDesc": "自分だけが閲覧できます",
-        "friendsOnly": "友達のみ",
-        "friendsOnlyDesc": "友達だけが閲覧できます",
-        "saveSuccess": "表示設定が正常に保存されました！",
-        "saveError": "表示設定の保存中にエラーが発生しました",
-        "searchEngine": "検索エンジンのインデックス作成",
-        "searchEngineDesc": "検索エンジンによるプロフィールのインデックス作成を許可する",
-        "save": "設定を保存"
-      },
-      "cookies": {
-        "title": "Cookieの設定",
-        "description": "Cookieの設定を管理",
-        "essential": "必須Cookie（必須）",
-        "analytics": "分析Cookie",
-        "marketing": "マーケティングCookie",
-        "manage": "設定を管理",
-        "saveSuccess": "Cookieの設定が正常に保存されました！",
-        "saveError": "Cookieの設定の保存中にエラーが発生しました",
-        "essentialDesc": "サイトの機能に必要",
-        "analyticsDesc": "体験の改善にご協力ください",
-        "marketingDesc": "広告のパーソナライズに使用",
-        "save": "設定を保存"
-      },
-      "notifications": {
-        "title": "メール通知",
-        "description": "受信するメールを選択",
-        "newsletter": "ニュースレターと更新情報",
-        "marketing": "プロモーションオファー",
-        "updates": "製品アップデート",
-        "security": "セキュリティアラート（推奨）",
-        "saveSuccess": "通知設定が正常に保存されました！",
-        "saveError": "通知設定の保存中にエラーが発生しました",
-        "securityDesc": "不審なアクティビティのアラートを受信する",
-        "save": "設定を保存"
-      }
-    }
-  },
-  "AvailabilitySettingsPage": {
-    "title": "Availability Settings",
-    "sync": {
-      "title": "Calendar Sync",
-      "description": "Connect your external calendars to automatically block out busy times.",
-      "google": "Google Calendar",
-      "apple": "Apple Calendar",
-      "export": "Export my availability (iCal)"
+        "dialog": {
+            "title": "Delete Partnership?",
+            "description": "Are you sure you want to delete the partnership with {name}? This action is irreversible.",
+            "cancel": "Cancel",
+            "confirm": "Confirm"
+        },
+        "detail": {
+            "info": {
+                "title": "General Information",
+                "campus": "Campus",
+                "contact": "Contact Person",
+                "status": "Status",
+                "createdAt": "Creation Date",
+                "expiresAt": "Expiration Date",
+                "edit": "Edit Info",
+                "terminate": "Terminate Partnership"
+            },
+            "promo": {
+                "title": "Student Promo Codes",
+                "generate": "Generate New Code"
+            },
+            "audience": {
+                "title": "Connected Audience",
+                "students": "registered students",
+                "hours": "total validated hours",
+                "exportCsv": "Export Students CSV"
+            },
+            "stats": {
+                "title": "Campus Statistics",
+                "graphPlaceholder": "[Graphs of campus metrics]",
+                "exportPdf": "Export PDF Report"
+            },
+            "ects": {
+                "title": "ECTS Credit Validation",
+                "student": "Student",
+                "missions": "Completed Missions",
+                "hours": "Total Requested Hours",
+                "status": {
+                    "pending": "Pending"
+                },
+                "validate": "Validate Hours",
+                "reject": "Reject",
+                "export": "Export Certificate"
+            }
+        }
     },
-    "rules": {
-      "title": "Auto-Busy Rules",
-      "description": "Set rules to automatically manage your schedule.",
-      "decline": "Automatically decline bookings during study blocks.",
-      "markBusy": "Mark as 'Busy' when a mission slot is filled."
+    "AcademyPage": {
+        "title": "ImuTask Academy",
+        "subtitle": "Improve your skills and unlock new opportunities.",
+        "searchPlaceholder": "Search for a course...",
+        "filterPlaceholder": "Filter by role",
+        "filters": {
+            "all": "All roles",
+            "provider": "Provider",
+            "client": "Client"
+        },
+        "courseCard": {
+            "progress": "Progress",
+            "continue": "Continue",
+            "start": "Start Course"
+        }
     },
-    "saveButton": "Save Settings",
-    "toast": {
-      "successTitle": "Settings Saved",
-      "successDescription": "Your availability settings have been updated."
-    }
-  },
-  "Offers": {
-    "submitOffer": "オファーを送信",
-    "submitOfferTitle": "提案する",
-    "submitOfferDescription": "このタスクのサービスを提案",
-    "offerForTask": "タスクのオファー",
-    "proposedPrice": "提案価格",
-    "budgetIndicated": "表示予算",
-    "message": "メッセージ",
-    "messagePlaceholder": "このタスクに最適な理由を説明してください...",
-    "messageHint": "経験、可用性、アプローチを提示",
-    "estimatedDuration": "推定時間",
-    "optional": "任意",
-    "hours": "時間",
-    "cancel": "キャンセル",
-    "submit": "オファーを送信",
-    "submitting": "送信中...",
-    "offerSubmitted": "✓ オファーが正常に送信されました！",
-    "viewMyOffers": "私のオファーを表示",
-    "offerAcceptedTitle": "オファーが承認されました",
-    "offerAcceptedDescription": "オファーを承認しました。他のオファーは自動的に拒否されました。",
-    "offerRejectedTitle": "オファーが拒否されました",
-    "offerRejectedDescription": "オファーが正常に拒否されました。",
-    "offerAcceptError": "オファーを承認できません",
-    "offerRejectError": "オファーを拒否できません"
-  },
-  "Reviews": {
-    "report": {
-      "trigger": "報告する",
-      "title": "このレビューを報告",
-      "description": "コミュニティの質を維持するためにご協力ください。",
-      "descriptionWithName": "{name}のレビューを報告",
-      "reasonLabel": "報告の理由",
-      "reasonPlaceholder": "理由を選択してください",
-      "reasonDescription": "このレビューを報告する理由は何ですか？",
-      "detailsLabel": "詳細",
-      "detailsPlaceholder": "詳細情報を提供してください...",
-      "detailsDescription": "最小10文字、最大500文字",
-      "reasons": {
-        "spam": "スパムまたは広告",
-        "inappropriate": "不適切なコンテンツ",
-        "offensive": "攻撃的な言葉遣い",
-        "fake": "偽のレビュー",
-        "irrelevant": "無関係",
-        "other": "その他"
-      },
-      "warning": {
-        "title": "警告",
-        "description": "虚偽の報告はアカウント停止につながる可能性があります。"
-      },
-      "cancel": "キャンセル",
-      "submit": "報告を送信",
-      "success": {
-        "title": "レビューが報告されました",
-        "description": "チームが速やかに報告を確認いたします。"
-      },
-      "error": {
-        "title": "エラー",
-        "description": "報告の送信に失敗しました。もう一度お試しください。"
-      }
-    }
-  },
-  "Services": {
-    "categories": {
-      "aide_domicile_petits_travaux": "家事代行・小さな仕事",
-      "courses_livraisons": "買い物・配達",
-      "aide_numerique_administrative": "デジタル・事務サポート",
-      "demenagement_manutention": "引越し・運搬",
-      "accompagnement_presence": "付き添い・見守り",
-      "jardinage_exterieur": "庭仕事・屋外作業",
-      "animaux_compagnie": "ペットケア",
-      "evenements_occasions": "イベント・特別な行事"
-    }
-  },
-  "Dashboard": {
-    "filters": {
-      "title": "フィルター",
-      "search": "検索",
-      "searchPlaceholder": "タイトルまたは説明で検索...",
-      "clearSearch": "検索をクリア",
-      "dateRange": {
-        "label": "期間",
-        "preset": "期間を選択",
-        "today": "今日",
-        "last7days": "過去7日間",
-        "last30days": "過去30日間",
-        "thisMonth": "今月",
-        "lastMonth": "先月",
-        "custom": "カスタム期間",
-        "selectCustom": "日付を選択",
-        "selectRange": "日付範囲を選択"
-      },
-      "status": {
-        "label": "ステータス",
+    "AcademyDetailPage": {
+        "notFound": "Course not found",
+        "backToAcademy": "Back to academy",
+        "sections": {
+            "title": "Sections"
+        },
+        "downloadResources": "Download Resources",
+        "continueModule": "Continue Module",
+        "startQuiz": "Start Quiz"
+    },
+    "AdminAcademyPage": {
+        "title": "Academy Management",
+        "subtitle": "Create, edit, and manage all platform courses.",
+        "manageBadges": "Manage Badges",
+        "globalProgress": "Global Progress",
+        "createCourse": "Create Course",
+        "courseList": {
+            "title": "Course List",
+            "description": "Monitor the performance of each course.",
+            "table": {
+                "course": "Course",
+                "enrolled": "Enrolled",
+                "completed": "Completed",
+                "completionRate": "Completion Rate"
+            },
+            "actions": {
+                "edit": "Edit",
+                "delete": "Delete"
+            }
+        }
+    },
+    "AvailabilityPage": {
+        "title": "My Schedule",
+        "subtitle": "Manage your schedule to receive relevant mission offers.",
+        "notProvider": {
+            "title": "This section is for providers.",
+            "description": "To manage your availability, please complete your provider profile.",
+            "button": "Go to Profile"
+        },
+        "weekGrid": {
+            "title": "My Week",
+            "time": "Time"
+        },
+        "days": {
+            "mon": "Mon",
+            "tue": "Tue",
+            "wed": "Wed",
+            "thu": "Thu",
+            "fri": "Fri",
+            "sat": "Sat",
+            "sun": "Sun"
+        },
+        "actions": {
+            "title": "Quick Actions",
+            "recurring": "Set recurring slots",
+            "exception": "Add exception",
+            "sync": "Sync Calendar",
+            "settings": "Settings"
+        },
+        "autoBusy": {
+            "title": "Auto-Busy Rules",
+            "decline": "Automatically decline bookings during study blocks",
+            "markBusy": "Mark as 'Busy' when a slot is filled"
+        },
+        "exceptionModal": {
+            "title": "Add Exception",
+            "description": "Block a specific slot or make yourself available exceptionally.",
+            "date": "Date",
+            "startTime": "Start time",
+            "endTime": "End time",
+            "type": "Type",
+            "types": {
+                "blocked": "Blocked",
+                "available": "Exceptionally available"
+            },
+            "comment": "Comment (optional)",
+            "commentPlaceholder": "E.g., Doctor's appointment",
+            "cancel": "Cancel",
+            "save": "Save Exception"
+        },
+        "recurringModal": {
+            "title": "Recurring Availability",
+            "description": "Define your standard weekly schedule.",
+            "autoAccept": "Automatically accept missions in these slots",
+            "cancel": "Cancel",
+            "save": "Save"
+        },
+        "syncModal": {
+            "title": "Sync Calendar",
+            "description": "Connect your external calendars for simplified management.",
+            "google": "Connect Google Calendar",
+            "apple": "Connect Apple Calendar",
+            "export": "Export iCal"
+        }
+    },
+    "SettingsPage": {
+        "account": {
+            "title": "アカウント",
+            "email": {
+                "title": "メールアドレス",
+                "button": "変更",
+                "description": "メールアドレスはログインと通知の受信に使用されます"
+            },
+            "phone": {
+                "title": "電話番号",
+                "notProvided": "未設定",
+                "buttonAdd": "追加",
+                "buttonEdit": "編集",
+                "description": "二要素認証のために電話番号を追加してください"
+            },
+            "linkedAccounts": {
+                "title": "連携アカウント",
+                "google": "Google",
+                "notLinked": "連携アカウントなし",
+                "manage": "管理",
+                "linkGoogle": "Googleアカウントをリンク",
+                "description": "ImuTaskアカウントに接続されているサードパーティアカウントを管理"
+            },
+            "deleteAccount": {
+                "title": "アカウントを削除",
+                "description": "この操作は取り消せません。すべてのデータが完全に削除されます。",
+                "button": "アカウントを削除",
+                "password": "現在のパスワード",
+                "confirmTitle": "本当によろしいですか？",
+                "confirmDescription": "この操作は元に戻せません。アカウントとすべてのデータがサーバーから完全に削除されます。",
+                "confirmInput": "確認のため DELETE と入力してください",
+                "cancel": "キャンセル",
+                "confirm": "完全に削除"
+            },
+            "deleteSuccess": "アカウントが正常に削除されました",
+            "wrongPassword": "パスワードが正しくありません",
+            "deleteError": "アカウントの削除中にエラーが発生しました",
+            "phoneSuccess": "電話番号が正常に更新されました",
+            "phoneError": "電話番号の更新中にエラーが発生しました",
+            "emailSuccess": "メールアドレスが正常に更新されました",
+            "emailInUse": "このメールアドレスは既に使用されています",
+            "emailError": "メールアドレスの更新中にエラーが発生しました",
+            "photoError": "写真の更新中にエラーが発生しました",
+            "displayNameSuccess": "表示名が正常に更新されました",
+            "displayNameError": "表示名の更新中にエラーが発生しました"
+        },
+        "security": {
+            "title": "セキュリティ",
+            "password": {
+                "title": "パスワード",
+                "button": "パスワードを変更",
+                "lastChanged": "最終変更: {date}",
+                "description": "強力で一意なパスワードを使用してください",
+                "changeSuccess": "パスワードが正常に変更されました",
+                "wrongPassword": "現在のパスワードが正しくありません",
+                "weakPassword": "パスワードが弱すぎます",
+                "changeError": "パスワードの変更中にエラーが発生しました",
+                "notAvailable": "Googleアカウントでは利用できません"
+            },
+            "twoFactor": {
+                "title": "二要素認証（2FA）",
+                "statusLabel": "ステータス",
+                "status": {
+                    "enabled": "有効",
+                    "disabled": "無効"
+                },
+                "enableSms": "SMSで有効化",
+                "enableApp": "アプリで有効化",
+                "disable": "無効化",
+                "description": "アカウントにセキュリティレイヤーを追加",
+                "enableSuccess": "2FAが正常に有効化されました",
+                "enableError": "2FAの有効化中にエラーが発生しました",
+                "disableSuccess": "2FAが正常に無効化されました",
+                "disableError": "2FAの無効化中にエラーが発生しました"
+            },
+            "sessions": {
+                "title": "アクティブなセッション",
+                "description": "異なるデバイスでのアクティブなセッションを管理",
+                "current": "現在のセッション",
+                "lastActive": "最終アクティブ",
+                "logout": "ログアウト",
+                "logoutAll": "すべてのデバイスからログアウト",
+                "logoutSuccess": "セッションが正常にログアウトされました",
+                "logoutError": "ログアウト中にエラーが発生しました",
+                "logoutAllSuccess": "すべてのセッションが正常にログアウトされました",
+                "logoutAllError": "すべてのセッションのログアウト中にエラーが発生しました"
+            },
+            "trustedDevices": {
+                "title": "信頼できるデバイス",
+                "description": "2FAを要求しないデバイス",
+                "remove": "削除",
+                "noDevices": "信頼できるデバイスなし"
+            }
+        },
+        "billing": {
+            "title": "請求",
+            "plan": {
+                "title": "現在のサブスクリプション",
+                "current": "現在のプラン",
+                "free": "無料",
+                "pro": "プロ",
+                "business": "ビジネス",
+                "freePrice": "0円/月",
+                "proPrice": "49€/月",
+                "businessPrice": "149€/月",
+                "upgrade": "アップグレード",
+                "manage": "サブスクリプションを管理",
+                "description": "サブスクリプションと機能を管理する",
+                "features": {
+                    "free": {
+                        "tasks": "月に最大10タスク",
+                        "basicSupport": "メールサポート",
+                        "community": "コミュニティアクセス"
+                    },
+                    "pro": {
+                        "unlimitedTasks": "無制限のタスク",
+                        "prioritySupport": "24/7優先サポート",
+                        "analytics": "高度な分析と統計",
+                        "customBranding": "カスタムプロフィールブランディング"
+                    },
+                    "business": {
+                        "everything": "プロプランのすべて",
+                        "team": "最大50ユーザーのチーム管理",
+                        "api": "完全なAPIアクセス",
+                        "sla": "99.9% SLA保証",
+                        "dedicated": "専任アカウントマネージャー"
+                    }
+                }
+            },
+            "paymentMethods": {
+                "title": "支払い方法",
+                "description": "クレジットカードと支払い方法を管理",
+                "add": "支払い方法を追加",
+                "addCard": "カードを追加",
+                "addSuccess": "カードが正常に追加されました！",
+                "default": "デフォルト",
+                "setDefault": "デフォルトに設定",
+                "remove": "削除",
+                "endingIn": "末尾",
+                "expires": "有効期限",
+                "noMethods": "保存された支払い方法なし",
+                "deleteTitle": "支払い方法を削除",
+                "deleteDescription": "この支払い方法を削除してもよろしいですか？",
+                "deleteCancel": "キャンセル",
+                "deleteConfirm": "削除",
+                "deleteSuccess": "カードが正常に削除されました！",
+                "deleteError": "カードの削除中にエラーが発生しました",
+                "dialog": {
+                    "addTitle": "クレジットカードを追加",
+                    "editTitle": "クレジットカードを編集",
+                    "addDescription": "支払い用の新しいクレジットカードを追加",
+                    "editDescription": "クレジットカード情報を編集",
+                    "cardNumber": "カード番号",
+                    "expiryMonth": "月",
+                    "expiryYear": "年",
+                    "cvv": "CVV",
+                    "cardholderName": "カード名義人",
+                    "cancel": "キャンセル",
+                    "addCard": "追加",
+                    "saveChanges": "保存",
+                    "errors": {
+                        "invalidCard": "無効なカード番号",
+                        "invalidExpiry": "無効な有効期限",
+                        "expiredCard": "このカードは期限切れです",
+                        "invalidCvv": "無効なCVV",
+                        "invalidName": "無効な名前（最低3文字）",
+                        "saveFailed": "カードを保存できません"
+                    }
+                },
+                "addError": "カードの追加中にエラーが発生しました",
+                "setDefaultSuccess": "カードが正常にデフォルトに設定されました！",
+                "setDefaultError": "カードのデフォルト設定中にエラーが発生しました"
+            },
+            "invoices": {
+                "title": "請求書",
+                "description": "請求書を表示してダウンロード",
+                "date": "日付",
+                "amount": "金額",
+                "download": "ダウンロード",
+                "downloadSuccess": "請求書が正常にダウンロードされました！",
+                "noInvoices": "利用可能な請求書なし",
+                "table": {
+                    "number": "請求書番号",
+                    "date": "日付",
+                    "plan": "プラン",
+                    "amount": "金額",
+                    "status": "ステータス",
+                    "actions": "アクション",
+                    "download": "ダウンロード"
+                },
+                "status": {
+                    "paid": "支払い済み",
+                    "pending": "保留中",
+                    "failed": "失敗"
+                },
+                "empty": {
+                    "title": "請求書なし",
+                    "description": "アクティブなサブスクリプションがあると、ここに請求書が表示されます"
+                },
+                "errors": {
+                    "downloadFailed": "請求書をダウンロードできません",
+                    "notFound": "請求書が見つかりません"
+                }
+            },
+            "subscription": {
+                "title": "サブスクリプション管理",
+                "currentPlan": "現在のプラン",
+                "changePlan": "プランを変更",
+                "cancel": "サブスクリプションをキャンセル",
+                "changeSuccess": "プランが正常に変更されました！",
+                "cancelSuccess": "サブスクリプションが正常にキャンセルされました",
+                "cancelButton": "サブスクリプションをキャンセル",
+                "renewsOn": "{date}に更新",
+                "canceledOn": "{date}にキャンセル",
+                "expiresOn": "{date}に期限切れ",
+                "dialog": {
+                    "title": "サブスクリプションを管理",
+                    "description": "ニーズに最適なプランを選択",
+                    "monthly": "月額",
+                    "annual": "年額",
+                    "save": "節約",
+                    "saveAmount": "年間{amount}€節約",
+                    "month": "月",
+                    "currentPlan": "現在のプラン",
+                    "current": "現在",
+                    "upgrade": "アップグレード",
+                    "downgrade": "ダウングレード",
+                    "close": "閉じる",
+                    "cancelTitle": "サブスクリプションをキャンセル",
+                    "cancelDescription": "現在の請求期間が終了するまでサブスクリプションは有効です",
+                    "cancelButton": "サブスクリプションをキャンセル",
+                    "cancelConfirmTitle": "キャンセルの確認",
+                    "cancelConfirmDescription": "サブスクリプションをキャンセルしてもよろしいですか？請求期間の終了時にプレミアム機能へのアクセスが失われます。",
+                    "cancelNo": "いいえ、サブスクリプションを維持",
+                    "cancelYes": "はい、キャンセル",
+                    "errors": {
+                        "changeFailed": "プランを変更できません。もう一度お試しください。",
+                        "cancelFailed": "サブスクリプションをキャンセルできません。もう一度お試しください。"
+                    }
+                },
+                "downgradeSuccess": "プランが正常にダウングレードされました！",
+                "changeError": "プランの変更中にエラーが発生しました",
+                "cancelError": "サブスクリプションのキャンセル中にエラーが発生しました"
+            }
+        },
+        "privacy": {
+            "title": "プライバシー",
+            "dataDownload": {
+                "title": "データをダウンロード",
+                "description": "すべてのデータのコピーをJSON形式で取得",
+                "button": "コピーをリクエスト",
+                "processing": "処理中...",
+                "ready": "ダウンロード準備完了",
+                "dialog": {
+                    "title": "データをエクスポート",
+                    "description": "エクスポートする形式とデータカテゴリを選択",
+                    "format": "エクスポート形式",
+                    "categories": "含めるカテゴリ",
+                    "selectAll": "すべて選択",
+                    "profile": "プロフィール",
+                    "tasks": "タスク",
+                    "bookings": "予約",
+                    "messages": "メッセージ",
+                    "reviews": "レビュー",
+                    "transactions": "取引",
+                    "cancel": "キャンセル",
+                    "export": "エクスポート",
+                    "exporting": "エクスポート中...",
+                    "errors": {
+                        "noCategories": "少なくとも1つのカテゴリを選択してください",
+                        "exportFailed": "データのエクスポートに失敗しました"
+                    }
+                },
+                "exportSuccess": "エクスポートが正常に開始されました！",
+                "exportError": "データのエクスポート中にエラーが発生しました"
+            },
+            "dataVisibility": {
+                "title": "プロフィールの公開設定",
+                "description": "プロフィールを表示できるユーザーを管理",
+                "public": "公開",
+                "publicDesc": "すべてのユーザーに公開されます",
+                "private": "非公開",
+                "privateDesc": "自分だけが閲覧できます",
+                "friendsOnly": "友達のみ",
+                "friendsOnlyDesc": "友達だけが閲覧できます",
+                "saveSuccess": "表示設定が正常に保存されました！",
+                "saveError": "表示設定の保存中にエラーが発生しました",
+                "searchEngine": "検索エンジンのインデックス作成",
+                "searchEngineDesc": "検索エンジンによるプロフィールのインデックス作成を許可する",
+                "save": "設定を保存"
+            },
+            "cookies": {
+                "title": "Cookieの設定",
+                "description": "Cookieの設定を管理",
+                "essential": "必須Cookie（必須）",
+                "analytics": "分析Cookie",
+                "marketing": "マーケティングCookie",
+                "manage": "設定を管理",
+                "saveSuccess": "Cookieの設定が正常に保存されました！",
+                "saveError": "Cookieの設定の保存中にエラーが発生しました",
+                "essentialDesc": "サイトの機能に必要",
+                "analyticsDesc": "体験の改善にご協力ください",
+                "marketingDesc": "広告のパーソナライズに使用",
+                "save": "設定を保存"
+            },
+            "notifications": {
+                "title": "メール通知",
+                "description": "受信するメールを選択",
+                "newsletter": "ニュースレターと更新情報",
+                "marketing": "プロモーションオファー",
+                "updates": "製品アップデート",
+                "security": "セキュリティアラート（推奨）",
+                "saveSuccess": "通知設定が正常に保存されました！",
+                "saveError": "通知設定の保存中にエラーが発生しました",
+                "securityDesc": "不審なアクティビティのアラートを受信する",
+                "save": "設定を保存"
+            }
+        }
+    },
+    "AvailabilitySettingsPage": {
+        "title": "Availability Settings",
+        "sync": {
+            "title": "Calendar Sync",
+            "description": "Connect your external calendars to automatically block out busy times.",
+            "google": "Google Calendar",
+            "apple": "Apple Calendar",
+            "export": "Export my availability (iCal)"
+        },
+        "rules": {
+            "title": "Auto-Busy Rules",
+            "description": "Set rules to automatically manage your schedule.",
+            "decline": "Automatically decline bookings during study blocks.",
+            "markBusy": "Mark as 'Busy' when a mission slot is filled."
+        },
+        "saveButton": "Save Settings",
+        "toast": {
+            "successTitle": "Settings Saved",
+            "successDescription": "Your availability settings have been updated."
+        }
+    },
+    "Offers": {
+        "submitOffer": "オファーを送信",
+        "submitOfferTitle": "提案する",
+        "submitOfferDescription": "このタスクのサービスを提案",
+        "offerForTask": "タスクのオファー",
+        "proposedPrice": "提案価格",
+        "budgetIndicated": "表示予算",
+        "message": "メッセージ",
+        "messagePlaceholder": "このタスクに最適な理由を説明してください...",
+        "messageHint": "経験、可用性、アプローチを提示",
+        "estimatedDuration": "推定時間",
+        "optional": "任意",
+        "hours": "時間",
+        "cancel": "キャンセル",
+        "submit": "オファーを送信",
+        "submitting": "送信中...",
+        "offerSubmitted": "✓ オファーが正常に送信されました！",
+        "viewMyOffers": "私のオファーを表示",
+        "offerAcceptedTitle": "オファーが承認されました",
+        "offerAcceptedDescription": "オファーを承認しました。他のオファーは自動的に拒否されました。",
+        "offerRejectedTitle": "オファーが拒否されました",
+        "offerRejectedDescription": "オファーが正常に拒否されました。",
+        "offerAcceptError": "オファーを承認できません",
+        "offerRejectError": "オファーを拒否できません"
+    },
+    "Reviews": {
+        "report": {
+            "trigger": "報告する",
+            "title": "このレビューを報告",
+            "description": "コミュニティの質を維持するためにご協力ください。",
+            "descriptionWithName": "{name}のレビューを報告",
+            "reasonLabel": "報告の理由",
+            "reasonPlaceholder": "理由を選択してください",
+            "reasonDescription": "このレビューを報告する理由は何ですか？",
+            "detailsLabel": "詳細",
+            "detailsPlaceholder": "詳細情報を提供してください...",
+            "detailsDescription": "最小10文字、最大500文字",
+            "reasons": {
+                "spam": "スパムまたは広告",
+                "inappropriate": "不適切なコンテンツ",
+                "offensive": "攻撃的な言葉遣い",
+                "fake": "偽のレビュー",
+                "irrelevant": "無関係",
+                "other": "その他"
+            },
+            "warning": {
+                "title": "警告",
+                "description": "虚偽の報告はアカウント停止につながる可能性があります。"
+            },
+            "cancel": "キャンセル",
+            "submit": "報告を送信",
+            "success": {
+                "title": "レビューが報告されました",
+                "description": "チームが速やかに報告を確認いたします。"
+            },
+            "error": {
+                "title": "エラー",
+                "description": "報告の送信に失敗しました。もう一度お試しください。"
+            }
+        }
+    },
+    "Services": {
+        "categories": {
+            "aide_domicile_petits_travaux": "家事代行・小さな仕事",
+            "courses_livraisons": "買い物・配達",
+            "aide_numerique_administrative": "デジタル・事務サポート",
+            "demenagement_manutention": "引越し・運搬",
+            "accompagnement_presence": "付き添い・見守り",
+            "jardinage_exterieur": "庭仕事・屋外作業",
+            "animaux_compagnie": "ペットケア",
+            "evenements_occasions": "イベント・特別な行事"
+        }
+    },
+    "Dashboard": {
+        "filters": {
+            "title": "フィルター",
+            "search": "検索",
+            "searchPlaceholder": "タイトルまたは説明で検索...",
+            "clearSearch": "検索をクリア",
+            "dateRange": {
+                "label": "期間",
+                "preset": "期間を選択",
+                "today": "今日",
+                "last7days": "過去7日間",
+                "last30days": "過去30日間",
+                "thisMonth": "今月",
+                "lastMonth": "先月",
+                "custom": "カスタム期間",
+                "selectCustom": "日付を選択",
+                "selectRange": "日付範囲を選択"
+            },
+            "status": {
+                "label": "ステータス",
+                "all": "すべて",
+                "completed": "完了",
+                "active": "アクティブ",
+                "cancelled": "キャンセル済み"
+            },
+            "categories": "カテゴリー",
+            "selectAll": "すべて選択",
+            "clearAll": "すべてクリア",
+            "resetAll": "すべてのフィルターをリセット",
+            "activeFilters": "{count, plural, =0 {フィルターなし} =1 {1個のアクティブフィルター} other {#個のアクティブフィルター}}"
+        },
+        "live": {
+            "indicator": "ライブ",
+            "updated": "{time}に更新",
+            "activity": "最近のアクティビティ",
+            "noActivity": "最近のアクティビティはありません",
+            "types": {
+                "NEW_BOOKING": "新しい予約",
+                "TASK_COMPLETED": "タスク完了",
+                "NEW_USER": "新規ユーザー",
+                "KYC_SUBMITTED": "KYC提出済み",
+                "PROPOSAL_CREATED": "新しい提案"
+            }
+        },
+        "revenue": {
+            "title": "収益の推移",
+            "description": "過去数ヶ月の収益分析",
+            "totalRevenue": "総収益",
+            "avgPerMonth": "月平均",
+            "trend": "トレンド",
+            "summary": "過去{months}ヶ月間で{count, plural, =0 {完了したミッションはありません} =1 {1件のミッション完了} other {#件のミッション完了}}",
+            "noData": "収益データはまだありません。最初のミッションを完了すると統計が表示されます。",
+            "error": "収益データを読み込めませんでした。後でもう一度お試しください。"
+        },
+        "spending": {
+            "title": "支出の推移",
+            "description": "過去数ヶ月の支出分析",
+            "totalSpending": "総支出",
+            "avgPerMonth": "月平均",
+            "trend": "トレンド",
+            "summary": "過去{months}ヶ月間で{count, plural, =0 {予約したミッションはありません} =1 {1件のミッション予約} other {#件のミッション予約}}",
+            "noData": "支出データはありません。最初のミッションを予約すると統計が表示されます。",
+            "error": "支出データを読み込めませんでした。後でもう一度お試しください。"
+        },
+        "categories": {
+            "title": "カテゴリー別内訳",
+            "description": "サービスタイプ別の支出",
+            "totalSpending": "総支出",
+            "totalTasks": "総ミッション数",
+            "moreCategories": "その他のカテゴリー",
+            "noData": "完了したミッションはありません。カテゴリー統計はここに表示されます。",
+            "error": "カテゴリーデータを読み込めませんでした。後でもう一度お試しください。"
+        }
+    },
+    "Favorites": {
+        "title": "お気に入り",
+        "subtitle": "お気に入りのミッションと提供者を管理",
         "all": "すべて",
-        "completed": "完了",
-        "active": "アクティブ",
-        "cancelled": "キャンセル済み"
-      },
-      "categories": "カテゴリー",
-      "selectAll": "すべて選択",
-      "clearAll": "すべてクリア",
-      "resetAll": "すべてのフィルターをリセット",
-      "activeFilters": "{count, plural, =0 {フィルターなし} =1 {1個のアクティブフィルター} other {#個のアクティブフィルター}}"
+        "tasks": "ミッション",
+        "providers": "提供者",
+        "added": "お気に入りに追加されました",
+        "addedSuccess": "アイテムがお気に入りに追加されました",
+        "removed": "お気に入りから削除されました",
+        "removedSuccess": "アイテムがお気に入りから削除されました",
+        "error": "エラー",
+        "addError": "お気に入りに追加できませんでした",
+        "removeError": "お気に入りから削除できませんでした",
+        "toggleError": "エラーが発生しました",
+        "loginRequired": "お気に入りを管理するにはログインが必要です",
+        "noFavorites": "お気に入りがありません",
+        "noFavoritesDesc": "ミッションや提供者をお気に入りに追加してください",
+        "viewTask": "ミッションを見る",
+        "viewProvider": "プロフィールを見る",
+        "removeButton": "削除",
+        "addToFavorites": "お気に入りに追加",
+        "removeFromFavorites": "お気に入りから削除"
     },
-    "live": {
-      "indicator": "ライブ",
-      "updated": "{time}に更新",
-      "activity": "最近のアクティビティ",
-      "noActivity": "最近のアクティビティはありません",
-      "types": {
-        "NEW_BOOKING": "新しい予約",
-        "TASK_COMPLETED": "タスク完了",
-        "NEW_USER": "新規ユーザー",
-        "KYC_SUBMITTED": "KYC提出済み",
-        "PROPOSAL_CREATED": "新しい提案"
-      }
-    },
-    "revenue": {
-      "title": "収益の推移",
-      "description": "過去数ヶ月の収益分析",
-      "totalRevenue": "総収益",
-      "avgPerMonth": "月平均",
-      "trend": "トレンド",
-      "summary": "過去{months}ヶ月間で{count, plural, =0 {完了したミッションはありません} =1 {1件のミッション完了} other {#件のミッション完了}}",
-      "noData": "収益データはまだありません。最初のミッションを完了すると統計が表示されます。",
-      "error": "収益データを読み込めませんでした。後でもう一度お試しください。"
-    },
-    "spending": {
-      "title": "支出の推移",
-      "description": "過去数ヶ月の支出分析",
-      "totalSpending": "総支出",
-      "avgPerMonth": "月平均",
-      "trend": "トレンド",
-      "summary": "過去{months}ヶ月間で{count, plural, =0 {予約したミッションはありません} =1 {1件のミッション予約} other {#件のミッション予約}}",
-      "noData": "支出データはありません。最初のミッションを予約すると統計が表示されます。",
-      "error": "支出データを読み込めませんでした。後でもう一度お試しください。"
-    },
-    "categories": {
-      "title": "カテゴリー別内訳",
-      "description": "サービスタイプ別の支出",
-      "totalSpending": "総支出",
-      "totalTasks": "総ミッション数",
-      "moreCategories": "その他のカテゴリー",
-      "noData": "完了したミッションはありません。カテゴリー統計はここに表示されます。",
-      "error": "カテゴリーデータを読み込めませんでした。後でもう一度お試しください。"
+    "Proposals": {
+        "listTitle": "このタスクへの提案",
+        "proposalCount": "{count, plural, =0 {提案なし} other {# 件の提案}}",
+        "errorLoadingProposals": "提案の読み込みエラー",
+        "errorTitle": "エラー",
+        "errorGeneric": "エラーが発生しました。もう一度お試しください。",
+        "acceptSuccessTitle": "提案を承認しました",
+        "acceptSuccessDescription": "提案が正常に承認されました。プロバイダーに通知されます。",
+        "rejectSuccessTitle": "提案を拒否しました",
+        "rejectSuccessDescription": "提案が拒否されました。",
+        "deleteSuccessTitle": "提案を削除しました",
+        "deleteSuccessDescription": "あなたの提案が正常に削除されました。",
+        "noProposalsOwner": "このタスクへの提案はありません",
+        "noProposalsProvider": "まだ提案を送信していません",
+        "emptyStateOwner": "まだプロバイダーからの回答がありません。後でまた確認してください！",
+        "emptyStateProvider": "提案を送信してサービスを提供してください。",
+        "you": "あなた",
+        "provider": "プロバイダー",
+        "statusAccepted": "承認済み",
+        "statusRejected": "拒否済み",
+        "statusPending": "保留中",
+        "message": "メッセージ",
+        "accept": "承認",
+        "reject": "拒否",
+        "delete": "削除",
+        "cancel": "キャンセル",
+        "acceptConfirmTitle": "この提案を承認しますか？",
+        "acceptConfirmDescription": "{amount} €の提案を承認すると、このプロバイダーがタスクを実行することを確認します。他の提案は自動的に拒否されます。",
+        "acceptConfirm": "承認を確認",
+        "deleteConfirmTitle": "提案を削除しますか？",
+        "deleteConfirmDescription": "この操作は元に戻せません。提案を復元できなくなります。",
+        "deleteConfirm": "削除を確認",
+        "formTitle": "提案を送信",
+        "formDescription": "{taskTitle} のサービスを提案する",
+        "labelAmount": "提案金額",
+        "budgetReference": "参考予算",
+        "placeholderAmount": "金額を入力",
+        "hintAmount": "このタスクに競争力のある金額を提案してください",
+        "labelDuration": "推定所要時間",
+        "optional": "任意",
+        "placeholderDuration": "例：2時間、1日など",
+        "hintDuration": "タスク完了に必要な時間を見積もる",
+        "labelMessage": "メッセージ",
+        "placeholderMessage": "なぜあなたが最適な選択肢なのか説明してください...",
+        "characters": "文字",
+        "hintMessage": "あなたの経験とアプローチを詳しく説明してください",
+        "formFooterNote": "あなたの提案はクライアントに表示されます。必ず詳細を記載してください。",
+        "submit": "提案を送信",
+        "submitting": "送信中...",
+        "errorInvalidAmount": "金額は0より大きくなければなりません",
+        "errorMessageTooShort": "メッセージは20文字以上である必要があります",
+        "successTitle": "提案が送信されました！",
+        "successDescription": "提案が正常に送信されました。クライアントに通知されます。"
     }
-  },
-  "Favorites": {
-    "title": "お気に入り",
-    "subtitle": "お気に入りのミッションと提供者を管理",
-    "all": "すべて",
-    "tasks": "ミッション",
-    "providers": "提供者",
-    "added": "お気に入りに追加されました",
-    "addedSuccess": "アイテムがお気に入りに追加されました",
-    "removed": "お気に入りから削除されました",
-    "removedSuccess": "アイテムがお気に入りから削除されました",
-    "error": "エラー",
-    "addError": "お気に入りに追加できませんでした",
-    "removeError": "お気に入りから削除できませんでした",
-    "toggleError": "エラーが発生しました",
-    "loginRequired": "お気に入りを管理するにはログインが必要です",
-    "noFavorites": "お気に入りがありません",
-    "noFavoritesDesc": "ミッションや提供者をお気に入りに追加してください",
-    "viewTask": "ミッションを見る",
-    "viewProvider": "プロフィールを見る",
-    "removeButton": "削除",
-    "addToFavorites": "お気に入りに追加",
-    "removeFromFavorites": "お気に入りから削除"
-  },
-  "Proposals": {
-    "listTitle": "このタスクへの提案",
-    "proposalCount": "{count, plural, =0 {提案なし} other {# 件の提案}}",
-    "errorLoadingProposals": "提案の読み込みエラー",
-    "errorTitle": "エラー",
-    "errorGeneric": "エラーが発生しました。もう一度お試しください。",
-    "acceptSuccessTitle": "提案を承認しました",
-    "acceptSuccessDescription": "提案が正常に承認されました。プロバイダーに通知されます。",
-    "rejectSuccessTitle": "提案を拒否しました",
-    "rejectSuccessDescription": "提案が拒否されました。",
-    "deleteSuccessTitle": "提案を削除しました",
-    "deleteSuccessDescription": "あなたの提案が正常に削除されました。",
-    "noProposalsOwner": "このタスクへの提案はありません",
-    "noProposalsProvider": "まだ提案を送信していません",
-    "emptyStateOwner": "まだプロバイダーからの回答がありません。後でまた確認してください！",
-    "emptyStateProvider": "提案を送信してサービスを提供してください。",
-    "you": "あなた",
-    "provider": "プロバイダー",
-    "statusAccepted": "承認済み",
-    "statusRejected": "拒否済み",
-    "statusPending": "保留中",
-    "message": "メッセージ",
-    "accept": "承認",
-    "reject": "拒否",
-    "delete": "削除",
-    "cancel": "キャンセル",
-    "acceptConfirmTitle": "この提案を承認しますか？",
-    "acceptConfirmDescription": "{amount} €の提案を承認すると、このプロバイダーがタスクを実行することを確認します。他の提案は自動的に拒否されます。",
-    "acceptConfirm": "承認を確認",
-    "deleteConfirmTitle": "提案を削除しますか？",
-    "deleteConfirmDescription": "この操作は元に戻せません。提案を復元できなくなります。",
-    "deleteConfirm": "削除を確認"
-  }
 }

@@ -5,8 +5,8 @@ import TaskCard from '@/components/task-card';
 import { Button } from '@/components/ui/button';
 import { db } from '@/lib/firebase';
 import { Task } from '@/lib/types';
-import { collection, onSnapshot, query, where, Timestamp } from 'firebase/firestore';
-import { PlusCircle, Loader2, LayoutGrid, List, Navigation } from 'lucide-react';
+import { collection, onSnapshot, query, where, Timestamp, orderBy, limit } from 'firebase/firestore';
+import { PlusCircle, Loader2, LayoutGrid, List, Navigation, RefreshCw } from 'lucide-react';
 import { Link, useRouter } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import { useEffect, useState, useMemo, useCallback } from 'react';
@@ -24,12 +24,15 @@ import { ServiceCategory as ServiceCategoryEnum } from '@/types/services';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { getCurrentPosition, sortTasksByDistance } from '@/lib/geolocation';
 import { Badge } from '@/components/ui/badge';
+import { TasksLoadingSkeleton, TaskListLoadingSkeleton } from '@/components/tasks/tasks-loading-skeleton';
+import { debounce } from '@/lib/utils';
 
 export default function DashboardTasksPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState<'grid' | 'list'>('grid');
   const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryEnum[]>([]);
   const [sortBy, setSortBy] = useState<'date' | 'distance' | 'budget'>('date');
   const [userLocation, setUserLocation] = useState<{lat: number; lng: number} | null>(null);
@@ -37,6 +40,19 @@ export default function DashboardTasksPage() {
   const t = useTranslations('MyTasksPage');
   const { user } = useAuth();
   const router = useRouter();
+
+  // Debounce search term
+  useEffect(() => {
+    const debouncedUpdate = debounce((value: string) => {
+      setDebouncedSearchTerm(value);
+    }, 300);
+
+    debouncedUpdate(searchTerm);
+
+    return () => {
+      debouncedUpdate.cancel?.();
+    };
+  }, [searchTerm]);
 
   // Get user's location
   const handleGetLocation = useCallback(async () => {
@@ -60,7 +76,14 @@ export default function DashboardTasksPage() {
     
     console.log('🔍 [DashboardTasks] Fetching tasks for user:', user.uid);
     setLoading(true);
-    const q = query(collection(db, 'tasks'), where('clientId', '==', user.uid));
+    
+    // Optimized query: order by createdAt and limit to 50 most recent tasks
+    const q = query(
+      collection(db, 'tasks'), 
+      where('clientId', '==', user.uid),
+      orderBy('createdAt', 'desc'),
+      limit(50) // Limit to avoid loading too many tasks
+    );
     
     const unsubscribe = onSnapshot(q, async (querySnapshot) => {
         console.log(`📊 [DashboardTasks] Found ${querySnapshot.size} tasks`);
@@ -98,9 +121,10 @@ export default function DashboardTasksPage() {
   const filteredAndSortedTasks = useMemo(() => {
     // Filter tasks
     let filtered = tasks.filter(task => {
-      // Text search filter
-      const matchesSearch = task.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        task.description.toLowerCase().includes(searchTerm.toLowerCase());
+      // Text search filter (using debounced term)
+      const matchesSearch = debouncedSearchTerm === '' || 
+        task.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
+        task.description.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
       
       // Category filter
       const matchesCategory = selectedCategories.length === 0 || 
@@ -130,7 +154,7 @@ export default function DashboardTasksPage() {
     }
 
     return filtered;
-  }, [tasks, searchTerm, selectedCategories, sortBy, userLocation]);
+  }, [tasks, debouncedSearchTerm, selectedCategories, sortBy, userLocation]);
   
   const handleOpenSheet = (taskId: string) => {
     // Navigate to task detail page
@@ -245,9 +269,11 @@ export default function DashboardTasksPage() {
         )}
 
         {loading ? (
-          <div className="flex justify-center items-center h-64">
-            <Loader2 className="h-16 w-16 animate-spin text-primary" />
-          </div>
+          view === 'grid' ? (
+            <TasksLoadingSkeleton count={6} />
+          ) : (
+            <TaskListLoadingSkeleton count={6} />
+          )
         ) : filteredAndSortedTasks.length === 0 ? (
           <div className="text-center py-12 rounded-lg border bg-card">
               <p className="text-muted-foreground">{searchTerm ? t('noSearchResults') : t('noTasks')}</p>

@@ -384,6 +384,16 @@ export default function TaskDetailPage() {
     }
   }, [task, user, taskId, router, t]);
 
+  // ENHANCEMENT 6: Image captions with metadata
+  const getImageCaption = useCallback((index: number) => {
+    if (!task || !categoryData) return '';
+    
+    if (task.images && task.images.length > 0) {
+      return `Photo ${index + 1} de ${taskImages.length} - ${task.title}`;
+    }
+    return `Image de catégorie - ${categoryData.displayName}`;
+  }, [task, taskImages.length, categoryData]);
+
   // OPTIMIZED: Share handlers with useCallback
   const handleCopyLink = useCallback(async () => {
     const url = `${window.location.origin}/${locale}/tasks/${taskId}`;
@@ -502,15 +512,6 @@ export default function TaskDetailPage() {
   const CategoryIcon = categoryData?.icon;
   const categoryColor = categoryData?.color || '#3B82F6';
   const categoryDisplayName = categoryData?.displayName || '';
-  
-  // Image captions (can be extended to support real metadata from task.imageMetadata)
-  const getImageCaption = (index: number) => {
-    if (task.images && task.images.length > 0) {
-      return `Photo ${index + 1} de ${taskImages.length} - ${task.title}`;
-    }
-    return `Image de catégorie - ${categoryDisplayName}`;
-  };
-
 
   return (
     <div className="min-h-screen bg-gray-50">

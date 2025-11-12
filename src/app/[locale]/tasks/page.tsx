@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { Link } from '@/navigation';
 import { useAuth } from '@/contexts/AuthContext';
-import { getTasksWithFilters, type Task, type TaskLocation } from '@/lib/firestore-tasks';
+import { useTasksOptimized } from '@/hooks/useTasksOptimized';
+import { type Task, type TaskLocation } from '@/lib/firestore-tasks';
 import {
   Card,
   CardContent,
@@ -14,29 +15,26 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Slider } from '@/components/ui/slider';
 import { 
   Plus, 
   MapPin, 
   DollarSign, 
   Calendar,
-  Loader2,
-  FileText,
   Filter,
-  TrendingUp,
-  Clock,
   Navigation,
   X,
-  ChevronLeft,
-  ChevronRight,
+  RefreshCw,
 } from 'lucide-react';
-import { ServiceCategorySelector, ServiceCategoryBadge } from '@/components/services/category-selector';
-import { ServiceCategory, ServiceTags } from '@/types/services';
-import { Slider } from '@/components/ui/slider';
-import { Label } from '@/components/ui/label';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { ServiceCategoryFilter, ServiceCategoryBadge } from '@/components/services/category-selector';
+import { ServiceCategory } from '@/types/services';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+import { InfiniteScrollTrigger } from '@/components/tasks/infinite-scroll-trigger';
+import { TasksLoadingSkeleton } from '@/components/tasks/tasks-loading-skeleton';
 import { 
   getCurrentPosition, 
   filterTasksByDistance, 
@@ -53,25 +51,23 @@ const statusColors = {
 };
 
 const statusLabels = {
-  open: 'Open',
-  assigned: 'Assigned',
-  'in-progress': 'In Progress',
-  completed: 'Completed',
-  cancelled: 'Cancelled',
+  open: 'Ouvert',
+  assigned: 'Assigné',
+  'in-progress': 'En cours',
+  completed: 'Terminé',
+  cancelled: 'Annulé',
 };
 
 export default function TasksPage() {
   const { user } = useAuth();
-  const [tasks, setTasks] = useState<Task[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   
   // Filters state
   const [selectedCategories, setSelectedCategories] = useState<ServiceCategory[]>([]);
-  const [selectedStatuses, setSelectedStatuses] = useState<string[]>(['open']); // Par défaut: tâches ouvertes
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>(['open']);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 500]);
-  const [maxDistance, setMaxDistance] = useState<number>(50); // km
+  const [maxDistance, setMaxDistance] = useState<number>(50);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   
   // Geolocation state
   const [userLocation, setUserLocation] = useState<{lat: number; lng: number} | null>(null);
@@ -80,38 +76,29 @@ export default function TasksPage() {
   
   // Sorting state
   const [sortBy, setSortBy] = useState<'distance' | 'price' | 'date'>('date');
-  
-  // Pagination state
-  const [currentPage, setCurrentPage] = useState(1);
-  const tasksPerPage = 12;
 
-  // Fetch tasks (all public tasks, not just user's tasks)
-  useEffect(() => {
-    const fetchTasks = async () => {
-      try {
-        setLoading(true);
-        setError('');
-        
-        // Fetch tasks with basic filters
-        const filters = {
-          status: selectedStatuses.length > 0 ? selectedStatuses : undefined,
-          category: selectedCategories.length === 1 ? selectedCategories[0] : undefined,
-          minBudget: priceRange[0],
-          maxBudget: priceRange[1],
-        };
-        
-        const fetchedTasks = await getTasksWithFilters(filters);
-        setTasks(fetchedTasks);
-      } catch (err: any) {
-        console.error('Error fetching tasks:', err);
-        setError(err.message || 'Failed to load tasks');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTasks();
-  }, [selectedCategories, selectedStatuses, priceRange]);
+  // Use optimized hook with Firestore pagination
+  const {
+    tasks,
+    loading,
+    loadingMore,
+    error,
+    hasMore,
+    loadMore,
+    refresh,
+  } = useTasksOptimized({
+    pageSize: 12,
+    filters: {
+      status: selectedStatuses.length > 0 ? selectedStatuses : undefined,
+      category: selectedCategories.length > 0 ? selectedCategories : undefined,
+      minBudget: priceRange[0],
+      maxBudget: priceRange[1],
+    },
+    sortField: sortBy === 'price' ? 'budget' : 'createdAt',
+    sortDirection: sortBy === 'date' ? 'desc' : 'asc',
+    enableCache: true,
+    cacheTTL: 5 * 60 * 1000, // 5 minutes
+  });
 
   // Get user's current location
   const handleGetLocation = useCallback(async () => {
@@ -125,20 +112,29 @@ export default function TasksPage() {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         });
-        setSortBy('distance'); // Auto-sort by distance when location is obtained
+        setSortBy('distance');
       } else {
-        setLocationError('Unable to get your location. Please check your browser permissions.');
+        setLocationError('Impossible d\'obtenir votre position. Vérifiez les permissions.');
       }
     } catch (err) {
-      setLocationError('Error getting location. Please try again.');
+      setLocationError('Erreur lors de la récupération de la position.');
     } finally {
       setLocating(false);
     }
   }, []);
 
-  // Filter, sort and paginate tasks
+  // Client-side filtering and sorting for distance and search
   const processedTasks = useMemo(() => {
     let processed = [...tasks];
+
+    // Search filter (client-side)
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      processed = processed.filter(task =>
+        task.title.toLowerCase().includes(query) ||
+        task.description.toLowerCase().includes(query)
+      );
+    }
 
     // Apply distance filter if user location is available
     if (userLocation) {
@@ -150,35 +146,13 @@ export default function TasksPage() {
       );
     }
 
-    // Sort tasks
-    switch (sortBy) {
-      case 'distance':
-        if (userLocation) {
-          processed = sortTasksByDistance(processed, userLocation.lat, userLocation.lng);
-        }
-        break;
-      case 'price':
-        processed.sort((a, b) => (a.budget || 0) - (b.budget || 0));
-        break;
-      case 'date':
-      default:
-        processed.sort((a, b) => 
-          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        );
-        break;
+    // Sort by distance (client-side) if selected
+    if (sortBy === 'distance' && userLocation) {
+      processed = sortTasksByDistance(processed, userLocation.lat, userLocation.lng);
     }
 
     return processed;
-  }, [tasks, userLocation, maxDistance, sortBy]);
-
-  // Pagination
-  const paginatedTasks = useMemo(() => {
-    const startIndex = (currentPage - 1) * tasksPerPage;
-    const endIndex = startIndex + tasksPerPage;
-    return processedTasks.slice(startIndex, endIndex);
-  }, [processedTasks, currentPage]);
-
-  const totalPages = Math.ceil(processedTasks.length / tasksPerPage);
+  }, [tasks, userLocation, maxDistance, sortBy, searchQuery]);
 
   // Calculate statistics
   const stats = useMemo(() => {
@@ -199,7 +173,7 @@ export default function TasksPage() {
     setMaxDistance(50);
     setUserLocation(null);
     setSortBy('date');
-    setCurrentPage(1);
+    setSearchQuery('');
   };
 
   const activeFiltersCount = 
@@ -208,7 +182,14 @@ export default function TasksPage() {
     (priceRange[0] > 0 || priceRange[1] < 500 ? 1 : 0) +
     (userLocation ? 1 : 0);
 
-  // Helper to extract location coordinates
+  // Helper to get display address
+  const getDisplayAddress = (task: Task): string => {
+    if (typeof task.location === 'string') return task.location;
+    const loc = task.location as TaskLocation;
+    return loc.city ? `${loc.city}, ${loc.country || ''}` : loc.address;
+  };
+
+  // Helper to get task coordinates
   const getTaskCoordinates = (task: Task): { lat: number; lng: number } | null => {
     if (typeof task.location === 'string') return null;
     const loc = task.location as TaskLocation;
@@ -219,40 +200,17 @@ export default function TasksPage() {
     };
   };
 
-  // Helper to get display address
-  const getDisplayAddress = (task: Task): string => {
-    if (typeof task.location === 'string') return task.location;
-    const loc = task.location as TaskLocation;
-    return loc.city ? `${loc.city}, ${loc.country || ''}` : loc.address;
-  };
-
-  // Loading state
-  if (loading) {
+  // Initial loading state
+  if (loading && tasks.length === 0) {
     return (
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         <div className="flex items-center justify-between mb-8">
           <div>
-            <Skeleton className="h-8 w-48 mb-2" />
-            <Skeleton className="h-4 w-64" />
+            <h1 className="text-3xl font-bold">Explorer les tâches</h1>
+            <p className="text-muted-foreground mt-1">Chargement des tâches...</p>
           </div>
-          <Skeleton className="h-10 w-32" />
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <Card key={i}>
-              <CardHeader>
-                <Skeleton className="h-6 w-3/4 mb-2" />
-                <Skeleton className="h-4 w-1/2" />
-              </CardHeader>
-              <CardContent>
-                <Skeleton className="h-20 w-full" />
-              </CardContent>
-              <CardFooter>
-                <Skeleton className="h-10 w-full" />
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+        <TasksLoadingSkeleton count={6} />
       </div>
     );
   }
@@ -262,23 +220,23 @@ export default function TasksPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">Browse Tasks</h1>
+          <h1 className="text-3xl font-bold tracking-tight">Explorer les tâches</h1>
           <p className="text-muted-foreground mt-1">
-            Find tasks near you and start working
+            Trouvez des tâches près de chez vous et commencez à travailler
           </p>
         </div>
         <div className="flex gap-2">
           {user && (
             <Button asChild variant="outline">
               <Link href="/dashboard/tasks">
-                My Tasks
+                Mes tâches
               </Link>
             </Button>
           )}
           <Button asChild>
             <Link href="/dashboard/tasks/create">
               <Plus className="mr-2 h-4 w-4" />
-              Post Task
+              Publier une tâche
             </Link>
           </Button>
         </div>
@@ -291,323 +249,248 @@ export default function TasksPage() {
         </Alert>
       )}
 
+      {/* Stats Bar */}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+        <Card>
+          <CardContent className="pt-6">
+            <div className="text-2xl font-bold">{stats.total}</div>
+            <p className="text-xs text-muted-foreground">Tâches totales</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="pt-6">
+            <div className="text-2xl font-bold text-green-600">{stats.open}</div>
+            <p className="text-xs text-muted-foreground">Ouvertes</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="pt-6">
+            <div className="text-2xl font-bold text-yellow-600">{stats.inProgress}</div>
+            <p className="text-xs text-muted-foreground">En cours</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent className="pt-6">
+            <div className="text-2xl font-bold">{stats.avgBudget}€</div>
+            <p className="text-xs text-muted-foreground">Budget moyen</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Search Bar */}
+      <div className="mb-4">
+        <Input
+          placeholder="Rechercher une tâche par titre ou description..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="max-w-md"
+        />
+      </div>
+
       {/* Filters Section */}
       <Card className="mb-6">
-        <CardHeader className="pb-3">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <Filter className="h-5 w-5" />
-              <h2 className="text-lg font-semibold">Filters & Sorting</h2>
-              {activeFiltersCount > 0 && (
-                <Badge variant="secondary">{activeFiltersCount} active</Badge>
-              )}
-            </div>
-            {activeFiltersCount > 0 && (
-              <Button variant="ghost" size="sm" onClick={resetFilters}>
-                <X className="h-4 w-4 mr-2" />
-                Reset All
-              </Button>
-            )}
-          </div>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          {/* Location & Distance Filter */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <Label className="text-sm font-medium">Distance</Label>
-              {userLocation && (
-                <Badge variant="outline" className="text-xs">
-                  <Navigation className="h-3 w-3 mr-1" />
-                  Within {maxDistance} km
-                </Badge>
-              )}
-            </div>
-            <div className="flex gap-2">
-              <Button
-                variant={userLocation ? "default" : "outline"}
-                size="sm"
-                onClick={handleGetLocation}
-                disabled={locating}
-                className="flex-1"
-              >
-                {locating ? (
-                  <>
-                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                    Getting location...
-                  </>
-                ) : userLocation ? (
-                  <>
-                    <Navigation className="h-4 w-4 mr-2" />
-                    Location active
-                  </>
-                ) : (
-                  <>
-                    <MapPin className="h-4 w-4 mr-2" />
-                    Use my location
-                  </>
+        <Collapsible open={filtersOpen} onOpenChange={setFiltersOpen}>
+          <CollapsibleTrigger asChild>
+            <Button variant="ghost" className="w-full justify-between p-6">
+              <div className="flex items-center gap-2">
+                <Filter className="h-5 w-5" />
+                <span className="text-lg font-semibold">Filtres & Tri</span>
+                {activeFiltersCount > 0 && (
+                  <Badge variant="secondary">{activeFiltersCount}</Badge>
                 )}
-              </Button>
-              {userLocation && (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => {
-                    setUserLocation(null);
-                    setSortBy('date');
-                  }}
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-              )}
-            </div>
-            {locationError && (
-              <Alert variant="destructive">
-                <AlertDescription className="text-xs">{locationError}</AlertDescription>
-              </Alert>
-            )}
-            {userLocation && (
+              </div>
+            </Button>
+          </CollapsibleTrigger>
+          
+          <CollapsibleContent>
+            <CardContent className="space-y-6 pt-0">
+              {/* Category Filter */}
               <div className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-muted-foreground">Max distance</span>
-                  <span className="font-medium">{maxDistance} km</span>
-                </div>
+                <ServiceCategoryFilter
+                  value={selectedCategories}
+                  onChange={setSelectedCategories}
+                />
+              </div>
+
+              {/* Status Filter */}
+              <div className="space-y-2">
+                <Label>Statut</Label>
+                <Select
+                  value={selectedStatuses[0] || 'open'}
+                  onValueChange={(value) => setSelectedStatuses([value])}
+                >
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="open">Ouvert</SelectItem>
+                    <SelectItem value="assigned">Assigné</SelectItem>
+                    <SelectItem value="in-progress">En cours</SelectItem>
+                    <SelectItem value="completed">Terminé</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Price Range */}
+              <div className="space-y-2">
+                <Label>Budget ({priceRange[0]}€ - {priceRange[1]}€)</Label>
                 <Slider
-                  min={1}
-                  max={100}
-                  step={1}
-                  value={[maxDistance]}
-                  onValueChange={(value) => setMaxDistance(value[0])}
+                  value={priceRange}
+                  onValueChange={(value) => setPriceRange(value as [number, number])}
+                  min={0}
+                  max={500}
+                  step={10}
                   className="w-full"
                 />
               </div>
-            )}
-          </div>
 
-          {/* Category Filter */}
-          <div className="space-y-3">
-            <Label className="text-sm font-medium">Categories</Label>
-            <div className="flex flex-wrap gap-2">
-              {Object.values(ServiceCategory).map(cat => (
-                <Badge
-                  key={cat}
-                  variant={selectedCategories.includes(cat) ? "default" : "outline"}
-                  className="cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => {
-                    setCurrentPage(1);
-                    if (selectedCategories.includes(cat)) {
-                      setSelectedCategories(selectedCategories.filter(c => c !== cat));
-                    } else {
-                      setSelectedCategories([...selectedCategories, cat]);
-                    }
-                  }}
+              {/* Distance Filter */}
+              {userLocation && (
+                <div className="space-y-2">
+                  <Label>Distance maximale ({maxDistance} km)</Label>
+                  <Slider
+                    value={[maxDistance]}
+                    onValueChange={(value) => setMaxDistance(value[0])}
+                    min={1}
+                    max={100}
+                    step={1}
+                  />
+                </div>
+              )}
+
+              {/* Sorting */}
+              <div className="space-y-2">
+                <Label>Trier par</Label>
+                <Select value={sortBy} onValueChange={(value: any) => setSortBy(value)}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="date">Date (plus récent)</SelectItem>
+                    <SelectItem value="price">Prix (croissant)</SelectItem>
+                    {userLocation && <SelectItem value="distance">Distance</SelectItem>}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Actions */}
+              <div className="flex gap-2 pt-4">
+                <Button
+                  variant="outline"
+                  onClick={handleGetLocation}
+                  disabled={locating}
+                  className="flex-1"
                 >
-                  {cat.replace(/_/g, ' ')}
-                </Badge>
-              ))}
-            </div>
-          </div>
-
-          {/* Status Filter */}
-          <div className="space-y-3">
-            <Label className="text-sm font-medium">Status</Label>
-            <div className="flex flex-wrap gap-2">
-              {Object.entries(statusLabels).map(([status, label]) => (
-                <Badge
-                  key={status}
-                  variant={selectedStatuses.includes(status) ? "default" : "outline"}
-                  className="cursor-pointer hover:opacity-80 transition-opacity"
-                  onClick={() => {
-                    setCurrentPage(1);
-                    if (selectedStatuses.includes(status)) {
-                      setSelectedStatuses(selectedStatuses.filter(s => s !== status));
-                    } else {
-                      setSelectedStatuses([...selectedStatuses, status]);
-                    }
-                  }}
+                  <Navigation className="mr-2 h-4 w-4" />
+                  {locating ? 'Localisation...' : 'Ma position'}
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={resetFilters}
+                  className="flex-1"
                 >
-                  {label}
-                </Badge>
-              ))}
-            </div>
-          </div>
+                  <X className="mr-2 h-4 w-4" />
+                  Réinitialiser
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={refresh}
+                  className="flex-1"
+                >
+                  <RefreshCw className="mr-2 h-4 w-4" />
+                  Actualiser
+                </Button>
+              </div>
 
-          {/* Price Range Filter */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <Label className="text-sm font-medium">Budget Range</Label>
-              <span className="text-sm text-muted-foreground">
-                ${priceRange[0]} - ${priceRange[1]}
-              </span>
-            </div>
-            <Slider
-              min={0}
-              max={500}
-              step={10}
-              value={priceRange}
-              onValueChange={(value) => {
-                setCurrentPage(1);
-                setPriceRange(value as [number, number]);
-              }}
-              className="w-full"
-            />
-          </div>
-
-          {/* Sort By */}
-          <div className="space-y-3">
-            <Label className="text-sm font-medium">Sort By</Label>
-            <Select
-              value={sortBy}
-              onValueChange={(value: any) => {
-                setCurrentPage(1);
-                setSortBy(value);
-              }}
-            >
-              <SelectTrigger>
-                <SelectValue />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="date">Latest First</SelectItem>
-                <SelectItem value="price">Price: Low to High</SelectItem>
-                {userLocation && (
-                  <SelectItem value="distance">Distance: Nearest First</SelectItem>
-                )}
-              </SelectContent>
-            </Select>
-          </div>
-        </CardContent>
+              {locationError && (
+                <Alert variant="destructive">
+                  <AlertDescription>{locationError}</AlertDescription>
+                </Alert>
+              )}
+            </CardContent>
+          </CollapsibleContent>
+        </Collapsible>
       </Card>
 
-      {/* Error Alert */}
-      {error && (
-        <Alert variant="destructive" className="mb-6">
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
-      )}
-
-      {/* Statistics */}
-      {processedTasks.length > 0 && (
-        <div className="grid gap-4 md:grid-cols-4 mb-6">
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Total Tasks</CardDescription>
-              <CardTitle className="text-3xl">{stats.total}</CardTitle>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Open</CardDescription>
-              <CardTitle className="text-3xl text-green-600">{stats.open}</CardTitle>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>In Progress</CardDescription>
-              <CardTitle className="text-3xl text-yellow-600">{stats.inProgress}</CardTitle>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Avg Budget</CardDescription>
-              <CardTitle className="text-3xl">${stats.avgBudget}</CardTitle>
-            </CardHeader>
-          </Card>
-        </div>
-      )}
-
       {/* Tasks Grid */}
-      {paginatedTasks.length === 0 ? (
-        <Card className="border-dashed">
-          <CardContent className="flex flex-col items-center justify-center py-16">
-            <div className="rounded-full bg-muted p-4 mb-4">
-              <FileText className="h-8 w-8 text-muted-foreground" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">
-              {tasks.length === 0 ? 'No tasks available' : 'No matching tasks'}
-            </h3>
-            <p className="text-muted-foreground text-center mb-6 max-w-sm">
-              {tasks.length === 0 
-                ? "No tasks have been posted yet. Be the first to post a task!"
-                : "No tasks match your current filters. Try adjusting your search criteria."
-              }
+      {processedTasks.length === 0 && !loading ? (
+        <Card className="p-12">
+          <div className="text-center">
+            <p className="text-lg text-muted-foreground mb-4">
+              Aucune tâche ne correspond à vos critères
             </p>
-            {tasks.length === 0 ? (
-              <Button asChild>
-                <Link href="/dashboard/tasks/create">
-                  <Plus className="mr-2 h-4 w-4" />
-                  Post a Task
-                </Link>
-              </Button>
-            ) : (
-              <Button variant="outline" onClick={resetFilters}>
-                Clear Filters
-              </Button>
-            )}
-          </CardContent>
+            <Button onClick={resetFilters} variant="outline">
+              Réinitialiser les filtres
+            </Button>
+          </div>
         </Card>
       ) : (
         <>
-          {/* Tasks Grid */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mb-8">
-            {paginatedTasks.map((task) => {
-              const serviceCategory = task.category as ServiceCategory;
-              const isValidCategory = Object.values(ServiceCategory).includes(serviceCategory);
-              const taskCoords = getTaskCoordinates(task);
-              const distance = userLocation && taskCoords && (task as any).distance
-                ? (task as any).distance
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {processedTasks.map((task) => {
+              const coords = getTaskCoordinates(task);
+              const distance = userLocation && coords
+                ? formatDistance(
+                    calculateDistance(
+                      userLocation.lat,
+                      userLocation.lng,
+                      coords.lat,
+                      coords.lng
+                    )
+                  )
                 : null;
 
               return (
                 <Card key={task.id} className="flex flex-col hover:shadow-lg transition-shadow">
                   <CardHeader>
-                    <div className="flex items-start justify-between gap-2 mb-2">
-                      <CardTitle className="line-clamp-2 text-lg">
-                        {task.title}
-                      </CardTitle>
-                      <Badge
-                        variant="secondary"
-                        className={`${statusColors[task.status] || 'bg-gray-500'} text-white shrink-0`}
-                      >
+                    <div className="flex items-start justify-between gap-2">
+                      <CardTitle className="line-clamp-2">{task.title}</CardTitle>
+                      <Badge className={statusColors[task.status]}>
                         {statusLabels[task.status]}
                       </Badge>
                     </div>
-                    <div className="flex items-center gap-2">
-                      {isValidCategory && (
-                        <ServiceCategoryBadge category={serviceCategory} showIcon={false} />
-                      )}
-                      {distance !== null && (
-                        <Badge variant="outline" className="text-xs">
-                          <Navigation className="h-3 w-3 mr-1" />
-                          {formatDistance(distance)}
-                        </Badge>
-                      )}
-                    </div>
+                    {task.category && (
+                      <ServiceCategoryBadge category={task.category as ServiceCategory} />
+                    )}
                   </CardHeader>
+
                   <CardContent className="flex-1">
-                    <p className="text-sm text-muted-foreground line-clamp-3 mb-4">
+                    <CardDescription className="line-clamp-3 mb-4">
                       {task.description}
-                    </p>
+                    </CardDescription>
+
                     <div className="space-y-2 text-sm">
                       <div className="flex items-center gap-2 text-muted-foreground">
-                        <MapPin className="h-4 w-4 shrink-0" />
-                        <span className="line-clamp-1">
-                          {getDisplayAddress(task)}
+                        <MapPin className="h-4 w-4 flex-shrink-0" />
+                        <span className="truncate">{getDisplayAddress(task)}</span>
+                        {distance && (
+                          <Badge variant="outline" className="ml-auto">
+                            {distance}
+                          </Badge>
+                        )}
+                      </div>
+
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <DollarSign className="h-4 w-4 flex-shrink-0" />
+                        <span className="font-semibold text-foreground">
+                          {task.budget}€
                         </span>
                       </div>
-                      <div className="flex items-center gap-2 font-semibold text-green-600">
-                        <DollarSign className="h-4 w-4" />
-                        <span>${task.budget}</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <Calendar className="h-3 w-3" />
+
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <Calendar className="h-4 w-4 flex-shrink-0" />
                         <span>
-                          Posted {new Date(task.createdAt).toLocaleDateString()}
+                          {new Date(task.createdAt).toLocaleDateString('fr-FR')}
                         </span>
                       </div>
                     </div>
                   </CardContent>
+
                   <CardFooter>
-                    <Button asChild variant="outline" className="w-full">
-                      <Link href={`/tasks/${task.id}`}>View Details</Link>
+                    <Button asChild className="w-full">
+                      <Link href={`/tasks/${task.id}`}>
+                        Voir les détails
+                      </Link>
                     </Button>
                   </CardFooter>
                 </Card>
@@ -615,57 +498,29 @@ export default function TasksPage() {
             })}
           </div>
 
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                disabled={currentPage === 1}
-              >
-                <ChevronLeft className="h-4 w-4" />
-                Previous
-              </Button>
-              <div className="flex items-center gap-1">
-                {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
-                  let pageNum: number;
-                  if (totalPages <= 5) {
-                    pageNum = i + 1;
-                  } else if (currentPage <= 3) {
-                    pageNum = i + 1;
-                  } else if (currentPage >= totalPages - 2) {
-                    pageNum = totalPages - 4 + i;
-                  } else {
-                    pageNum = currentPage - 2 + i;
-                  }
-                  
-                  return (
-                    <Button
-                      key={pageNum}
-                      variant={currentPage === pageNum ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setCurrentPage(pageNum)}
-                      className="w-10"
-                    >
-                      {pageNum}
-                    </Button>
-                  );
-                })}
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                disabled={currentPage === totalPages}
-              >
-                Next
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </div>
-          )}
+          {/* Infinite Scroll Trigger */}
+          <InfiniteScrollTrigger
+            onLoadMore={loadMore}
+            loading={loadingMore}
+            hasMore={hasMore}
+            threshold={400}
+            loadingText="Chargement de plus de tâches..."
+          />
         </>
       )}
     </div>
   );
+}
+
+// Helper function for distance calculation (if not in geolocation lib)
+function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
+  const R = 6371; // Radius of the Earth in km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
 }
