@@ -11,7 +11,7 @@ import Image from 'next/image';
 import { type Task } from '@/lib/types';
 import { useLocale } from 'next-intl';
 import { cn } from '@/lib/utils';
-import { getCategoryById, TASK_CATEGORIES } from '@/lib/constants/categories';
+import { getCategoryById, TASK_CATEGORIES, getCategoryByFirestoreValue } from '@/lib/constants/categories';
 import { useToggleFavorite } from '@/hooks/use-favorites';
 
 // Unsplash images par catégorie (gratuites et de haute qualité)
@@ -99,12 +99,23 @@ export function TaskCardModern({ task, className }: TaskCardModernProps) {
   // Get category image
   const categoryImage = CATEGORY_IMAGES[categoryLabel] || CATEGORY_IMAGES['aide_domicile'];
   
-  // Get category icon and color
-  const categoryData = TASK_CATEGORIES.find(cat => 
-    cat.slug === categoryLabel || cat.id === categoryLabel
-  );
+  // Get category icon, color, and display name using Firestore value
+  const categoryData = getCategoryByFirestoreValue(categoryLabel);
+  
+  // Debug log
+  if (!categoryData) {
+    console.log('⚠️ [TaskCard] No category match for Firestore value:', categoryLabel);
+  }
+  
   const CategoryIcon = categoryData?.icon;
   const categoryColor = categoryData?.color || '#3B82F6';
+  
+  // Format category display name (convert snake_case to readable text)
+  const categoryDisplayName = categoryLabel
+    .replace(/_/g, ' ')
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 
   // Rating display
   const rating = task.averageRating || 0;
@@ -154,14 +165,20 @@ export function TaskCardModern({ task, className }: TaskCardModernProps) {
               </Badge>
             )}
             
-            {/* Category Badge with Icon */}
+            {/* Category Badge - Always visible */}
             <Badge 
               variant="secondary" 
-              className="shadow-md backdrop-blur-sm bg-background/90"
+              className="shadow-lg backdrop-blur-sm bg-white/95 text-gray-900 flex items-center gap-1.5 text-xs font-semibold"
               style={{ borderLeft: `3px solid ${categoryColor}` }}
             >
-              {CategoryIcon && <CategoryIcon className="mr-1 h-3 w-3" style={{ color: categoryColor }} />}
-              {categoryLabel}
+              {CategoryIcon ? (
+                <span style={{ color: categoryColor }}>
+                  <CategoryIcon className="h-3.5 w-3.5" />
+                </span>
+              ) : (
+                <span className="h-3.5 w-3.5 rounded-full" style={{ backgroundColor: categoryColor }} />
+              )}
+              <span>{categoryDisplayName}</span>
             </Badge>
           </div>
 

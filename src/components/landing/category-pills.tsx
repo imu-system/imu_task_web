@@ -65,7 +65,7 @@ export function CategoryPills({ selectedCategory: externalSelectedCategory, onCa
   };
 
   return (
-    <div id="categories" className="relative w-full py-8 bg-background border-b">
+    <div id="categories" className="relative w-full py-4 bg-background border-b">
       <div className="container mx-auto px-4 md:px-6">
         {/* Scroll Left Button */}
         {canScrollLeft && (

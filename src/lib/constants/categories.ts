@@ -154,3 +154,23 @@ export const FIRESTORE_CATEGORIES = [
 export function slugToFirestoreCategory(slug: string): string {
     return SLUG_TO_FIRESTORE_CATEGORY[slug] || slug;
 }
+
+/**
+ * Convert Firestore category value to frontend slug
+ * Used for finding the right icon/color in TASK_CATEGORIES
+ */
+export function firestoreCategoryToSlug(firestoreCategory: string): string {
+    // Find the slug that maps to this Firestore category
+    const entry = Object.entries(SLUG_TO_FIRESTORE_CATEGORY).find(
+        ([_, value]) => value === firestoreCategory
+    );
+    return entry ? entry[0] : firestoreCategory;
+}
+
+/**
+ * Get category data by Firestore category value
+ */
+export function getCategoryByFirestoreValue(firestoreCategory: string): TaskCategory | undefined {
+    const slug = firestoreCategoryToSlug(firestoreCategory);
+    return TASK_CATEGORIES.find(cat => cat.slug === slug || cat.id === slug);
+}

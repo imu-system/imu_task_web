@@ -100,7 +100,7 @@ export default function Home() {
           🎯 SECTION 2: CATEGORY PILLS
           Filtrage rapide par catégorie (scroll horizontal)
         */}
-        <div className="bg-gradient-to-b from-primary/5 to-background pb-0">
+        <div className="bg-gradient-to-b from-primary/5 to-background py-2">
           <CategoryPills 
             selectedCategory={selectedCategory}
             onCategorySelect={setSelectedCategory}
@@ -113,7 +113,7 @@ export default function Home() {
           Comme Airbnb affiche les logements dès la page d'accueil
           16 tâches + pagination
         */}
-        <div className="bg-gradient-to-b from-background via-accent/5 to-background pt-0 pb-4">
+        <div className="bg-gradient-to-b from-background via-accent/5 to-background py-4">
           <TasksGrid 
             maxTasks={16} 
             showViewAll={true} 

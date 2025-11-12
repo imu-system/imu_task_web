@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
-import { Link } from '@/navigation';
+import { useParams } from 'next/navigation';
+import { useRouter, Link } from '@/navigation';
 import { useTranslations, useLocale } from 'next-intl';
 import { useAuth } from '@/contexts/AuthContext';
 import { getTaskById, updateTask, deleteTask, updateTaskStatus, Task } from '@/lib/firestore-tasks';
@@ -15,7 +15,12 @@ import { TaskMapDisplay } from '@/components/task-detail/task-map-display';
 import { TaskImageGallery } from '@/components/task-detail/task-image-gallery';
 import { TaskStatusActions } from '@/components/task-detail/task-status-actions';
 import { TaskStatusBadge } from '@/components/task-detail/task-status-badge';
+import { getCategoryByFirestoreValue } from '@/lib/constants/categories';
+import { useToggleFavorite } from '@/hooks/use-favorites';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 import type { OfferWithDetails } from '@/types/offer';
+import Image from 'next/image';
 import {
   Card,
   CardContent,
@@ -52,6 +57,8 @@ import {
   XCircle,
   Clock,
   Tag,
+  Heart,
+  MapPin,
 } from 'lucide-react';
 
 export default function TaskDetailPage() {
@@ -67,8 +74,23 @@ export default function TaskDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [deleting, setDeleting] = useState(false);
+  const [clientName, setClientName] = useState<string>('');
+  const [providerName, setProviderName] = useState<string>('');
 
   const taskId = params.id as string;
+
+  // Use toggle favorite hook
+  const { isFavorited, toggle: toggleFavorite, loading: favoriteLoading } = useToggleFavorite(
+    taskId,
+    'task',
+    task ? {
+      title: task.title,
+      category: task.category,
+      location: typeof task.location === 'string' 
+        ? task.location 
+        : (task.location as any)?.city || (task.location as any)?.address,
+    } : undefined
+  );
 
   useEffect(() => {
     const fetchTask = async () => {
@@ -112,6 +134,37 @@ export default function TaskDetailPage() {
 
     fetchOffers();
   }, [task, user, taskId]);
+
+  // Charger les noms des utilisateurs (client et provider)
+  useEffect(() => {
+    const fetchUserNames = async () => {
+      if (!task) return;
+
+      try {
+        // Fetch client name
+        if (task.clientId) {
+          const clientDoc = await getDoc(doc(db, 'users', task.clientId));
+          if (clientDoc.exists()) {
+            const clientData = clientDoc.data();
+            setClientName(clientData?.profile?.displayName || clientData?.displayName || 'Client');
+          }
+        }
+
+        // Fetch provider name if assigned
+        if (task.providerId) {
+          const providerDoc = await getDoc(doc(db, 'users', task.providerId));
+          if (providerDoc.exists()) {
+            const providerData = providerDoc.data();
+            setProviderName(providerData?.profile?.displayName || providerData?.displayName || 'Prestataire');
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching user names:', err);
+      }
+    };
+
+    fetchUserNames();
+  }, [task]);
 
   const handleAcceptOffer = async (offerId: string) => {
     if (!user || !task) return;
@@ -256,6 +309,32 @@ export default function TaskDetailPage() {
   const isOwner = user.uid === task.clientId;
   const canEdit = isOwner && (task.status === 'open' || task.status === 'assigned');
 
+  // Category data and image
+  const categoryData = getCategoryByFirestoreValue(task.category);
+  const CategoryIcon = categoryData?.icon;
+  const categoryColor = categoryData?.color || '#3B82F6';
+  const categoryDisplayName = task.category
+    .replace(/_/g, ' ')
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+
+  // Category images (same as task cards)
+  const CATEGORY_IMAGES: Record<string, string> = {
+    'aide_domicile': 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1200&q=80',
+    'courses_livraisons': 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=1200&q=80',
+    'aide_numerique': 'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1200&q=80',
+    'demenagement': 'https://images.unsplash.com/photo-1600518464441-9154a4dea21b?w=1200&q=80',
+    'accompagnement': 'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1200&q=80',
+    'jardinage': 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1200&q=80',
+    'animaux': 'https://images.unsplash.com/photo-1450778869180-41d0601e046e?w=1200&q=80',
+    'evenements': 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&q=80',
+  };
+
+  const categoryImage = CATEGORY_IMAGES[task.category] || CATEGORY_IMAGES['aide_domicile'];
+  const taskImages = task.images && task.images.length > 0 ? task.images : [categoryImage];
+
+
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Back button */}
@@ -282,61 +361,136 @@ export default function TaskDetailPage() {
         <CardHeader>
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1 min-w-0">
-              <CardTitle className="text-2xl md:text-3xl mb-2">{task.title}</CardTitle>
+              <CardTitle className="text-2xl md:text-3xl mb-3">{task.title}</CardTitle>
               
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2 mb-3">
                 <TaskStatusBadge status={task.status} size="md" />
-                <Badge variant="outline" className="gap-1">
-                  <Tag className="h-3 w-3" />
-                  {task.category}
+                
+                {/* Category Badge with Icon */}
+                <Badge 
+                  variant="secondary" 
+                  className="shadow-md bg-white/95 text-gray-900 flex items-center gap-1.5 text-sm font-semibold"
+                  style={{ borderLeft: `3px solid ${categoryColor}` }}
+                >
+                  {CategoryIcon ? (
+                    <span style={{ color: categoryColor }}>
+                      <CategoryIcon className="h-4 w-4" />
+                    </span>
+                  ) : (
+                    <span className="h-4 w-4 rounded-full" style={{ backgroundColor: categoryColor }} />
+                  )}
+                  <span>{categoryDisplayName}</span>
+                </Badge>
+
+                {/* Budget Badge */}
+                <Badge variant="outline" className="gap-1.5 font-semibold text-base">
+                  <DollarSign className="h-4 w-4 text-primary" />
+                  {task.budget} €
                 </Badge>
               </div>
             </div>
 
-            {/* Action buttons (owner only) */}
-            {isOwner && (
-              <div className="flex gap-2">
-                {canEdit && (
-                  <Button asChild size="sm" variant="outline">
-                    <Link href={`/tasks/${taskId}/edit`}>
-                      <Edit className="mr-2 h-4 w-4" />
-                      {t('edit')}
-                    </Link>
-                  </Button>
-                )}
+            {/* Action buttons */}
+            <div className="flex gap-2">
+              {/* Favorite Button (for all users) */}
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={toggleFavorite}
+                disabled={favoriteLoading}
+                className="gap-2"
+              >
+                <Heart 
+                  className={`h-4 w-4 transition-all ${
+                    isFavorited ? 'fill-red-500 text-red-500' : 'text-muted-foreground'
+                  }`}
+                />
+                {isFavorited ? t('removeFromFavorites') : t('addToFavorites')}
+              </Button>
 
-                <AlertDialog>
-                  <AlertDialogTrigger asChild>
-                    <Button size="sm" variant="destructive" disabled={deleting}>
-                      {deleting ? (
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <Trash2 className="mr-2 h-4 w-4" />
-                      )}
-                      {deleting ? t('deleting') : t('delete')}
+              {/* Owner actions */}
+              {isOwner && (
+                <>
+                  {canEdit && (
+                    <Button asChild size="sm" variant="outline">
+                      <Link href={`/tasks/${taskId}/edit`}>
+                        <Edit className="mr-2 h-4 w-4" />
+                        {t('edit')}
+                      </Link>
                     </Button>
-                  </AlertDialogTrigger>
-                  <AlertDialogContent>
-                    <AlertDialogHeader>
-                      <AlertDialogTitle>{t('deleteConfirmTitle')}</AlertDialogTitle>
-                      <AlertDialogDescription>
-                        {t('deleteConfirmDescription')}
-                      </AlertDialogDescription>
-                    </AlertDialogHeader>
-                    <AlertDialogFooter>
-                      <AlertDialogCancel>{t('deleteConfirmCancel')}</AlertDialogCancel>
-                      <AlertDialogAction onClick={handleDelete} className="bg-red-600">
-                        {t('deleteConfirmDelete')}
-                      </AlertDialogAction>
-                    </AlertDialogFooter>
-                  </AlertDialogContent>
-                </AlertDialog>
-              </div>
-            )}
+                  )}
+
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button size="sm" variant="destructive" disabled={deleting}>
+                        {deleting ? (
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        ) : (
+                          <Trash2 className="mr-2 h-4 w-4" />
+                        )}
+                        {deleting ? t('deleting') : t('delete')}
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>{t('deleteConfirmTitle')}</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          {t('deleteConfirmDescription')}
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>{t('deleteConfirmCancel')}</AlertDialogCancel>
+                        <AlertDialogAction onClick={handleDelete} className="bg-red-600">
+                          {t('deleteConfirmDelete')}
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
+                </>
+              )}
+            </div>
           </div>
         </CardHeader>
 
         <CardContent className="space-y-6">
+          {/* Image Gallery */}
+          {taskImages && taskImages.length > 0 && (
+            <div className="grid gap-4">
+              {taskImages.length === 1 ? (
+                <div className="relative w-full h-[400px] rounded-lg overflow-hidden">
+                  <Image
+                    src={taskImages[0]}
+                    alt={task.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+                    priority
+                  />
+                </div>
+              ) : (
+                <div className="grid grid-cols-2 gap-4">
+                  {taskImages.slice(0, 4).map((image, index) => (
+                    <div 
+                      key={index} 
+                      className={`relative rounded-lg overflow-hidden ${
+                        index === 0 ? 'col-span-2 h-[400px]' : 'h-[200px]'
+                      }`}
+                    >
+                      <Image
+                        src={image}
+                        alt={`${task.title} - ${index + 1}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 40vw, 600px"
+                        priority={index === 0}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
           {/* Description */}
           <div>
             <h3 className="mb-3 text-lg font-semibold">{t('description')}</h3>
@@ -377,7 +531,7 @@ export default function TaskDetailPage() {
               <div>
                 <p className="text-sm font-medium">{t('createdAt')}</p>
                 <p className="text-sm text-muted-foreground">
-                  {new Date(task.createdAt).toLocaleDateString('fr-FR', {
+                  {new Date(task.createdAt).toLocaleDateString(locale, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
@@ -393,7 +547,7 @@ export default function TaskDetailPage() {
                 <div>
                   <p className="text-sm font-medium">{t('deadline')}</p>
                   <p className="text-sm text-muted-foreground">
-                    {new Date(task.deadline).toLocaleDateString('fr-FR', {
+                    {new Date(task.deadline).toLocaleDateString(locale, {
                       year: 'numeric',
                       month: 'long',
                       day: 'numeric',
@@ -409,7 +563,7 @@ export default function TaskDetailPage() {
               <div>
                 <p className="text-sm font-medium">{t('client')}</p>
                 <p className="text-sm text-muted-foreground">
-                  {isOwner ? t('you') : `Client ID: ${task.clientId.slice(0, 8)}...`}
+                  {isOwner ? t('you') : clientName}
                 </p>
               </div>
             </div>
@@ -421,7 +575,7 @@ export default function TaskDetailPage() {
                 <div>
                   <p className="text-sm font-medium">{t('provider')}</p>
                   <p className="text-sm text-muted-foreground">
-                    Provider ID: {task.providerId.slice(0, 8)}...
+                    {providerName}
                   </p>
                 </div>
               </div>

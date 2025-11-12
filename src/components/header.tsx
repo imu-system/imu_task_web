@@ -37,6 +37,8 @@ import Image from 'next/image';
 import { BecomeProviderModal } from './modals/become-provider-modal';
 import { useScrollPosition } from '@/hooks/use-scroll-position';
 import { ThemeToggle } from './theme-toggle';
+import { useAccountType } from '@/hooks/use-account-type';
+import { AccountType } from '@/lib/types';
 
 export default function Header() {
   const t = useTranslations('Header');
@@ -44,6 +46,7 @@ export default function Header() {
   const pathname = usePathname();
   const { user, logout } = useAuth();
   const isAuthenticated = !!user;
+  const { accountType } = useAccountType();
 
   // Header reste toujours visible (pas de masquage au scroll)
   const isVisible = true;
@@ -79,6 +82,9 @@ export default function Header() {
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProviderModalOpen, setIsProviderModalOpen] = useState(false);
+
+  // Les liens de profil restent les mêmes car /dashboard/profile gère déjà dynamiquement l'accountType
+  const getProfileLink = () => '/dashboard/profile';
 
   const UserMenu = () => (
     <div className="hidden md:flex items-center gap-3">
@@ -123,7 +129,7 @@ export default function Header() {
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild className="rounded-xl cursor-pointer py-2.5">
-          <Link href="/dashboard/profile" className="flex items-center">
+          <Link href={getProfileLink()} className="flex items-center">
             <User className="mr-3 h-4 w-4" />
             <span>{t('profile')}</span>
           </Link>
@@ -367,7 +373,7 @@ export default function Header() {
                             {t('dashboard')}
                           </Button>
                         </Link>
-                        <Link href="/dashboard/profile" onClick={() => setIsMobileMenuOpen(false)}>
+                        <Link href={getProfileLink()} onClick={() => setIsMobileMenuOpen(false)}>
                           <Button variant="outline" className="w-full rounded-2xl font-medium" size="lg">
                             <User className="mr-2 h-4 w-4" />
                             {t('profile')}

@@ -95,6 +95,7 @@ export function DashboardNav() {
     { href: '/dashboard/tasks', icon: <BookMarked />, label: 'Mes tâches' },
     { href: '/dashboard/messages', icon: <MessageSquare />, label: 'Messages' },
     { href: '/dashboard/bookings', icon: <CalendarCheck />, label: 'Mes réservations' },
+    { href: '/dashboard/favorites', icon: <Heart />, label: 'Mes favoris' },
     { href: '/dashboard/search', icon: <Search />, label: 'Trouver un prestataire' },
     { href: '/dashboard/wallet', icon: <Wallet />, label: 'Portefeuille' },
   ];
@@ -106,6 +107,7 @@ export function DashboardNav() {
     { href: '/dashboard/tasks', icon: <BookMarked />, label: 'Mes offres' },
     { href: '/dashboard/bookings', icon: <CalendarCheck />, label: 'Planning' },
     { href: '/dashboard/messages', icon: <MessageSquare />, label: 'Messages' },
+    { href: '/dashboard/favorites', icon: <Heart />, label: 'Mes favoris' },
     { href: '/dashboard/stats', icon: <LineChart />, label: 'Statistiques' },
     { href: '/dashboard/availability', icon: <CalendarIcon />, label: 'Disponibilités' },
     { href: '/dashboard/wallet', icon: <Wallet />, label: 'Revenus' },
@@ -114,12 +116,12 @@ export function DashboardNav() {
 
   // Navigation pour SENIORS (Simplifiée)
   const seniorNavItems = [
-    { href: '/dashboard', icon: <Heart />, label: 'Accueil', exact: true },
-    { href: '/dashboard/services/meals', icon: <UtensilsCrossed />, label: 'Repas' },
-    { href: '/dashboard/services/home-help', icon: <Home />, label: 'Aide à domicile' },
-    { href: '/dashboard/contacts', icon: <Users />, label: 'Mes contacts' },
-    { href: '/dashboard/calendar', icon: <CalendarIcon />, label: 'Mon planning' },
-    { href: '/help', icon: <Phone />, label: 'Aide & Support' },
+    { href: '/dashboard', icon: <Home />, label: 'Accueil', exact: true },
+    { href: '/dashboard/tasks', icon: <BookMarked />, label: 'Mes services' },
+    { href: '/dashboard/bookings', icon: <CalendarIcon />, label: 'Mon planning' },
+    { href: '/dashboard/messages', icon: <MessageSquare />, label: 'Messages' },
+    { href: '/dashboard/favorites', icon: <Heart />, label: 'Mes favoris' },
+    { href: '/dashboard/settings', icon: <Settings />, label: 'Paramètres' },
   ];
 
   // Navigation par défaut (fallback)
