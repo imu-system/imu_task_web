@@ -14,7 +14,7 @@ import {
   updateProfile,
 } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
-import { UserRole } from '@/lib/types';
+import { UserRole, Profile } from '@/lib/types';
 import { createUserDocument, getUserDocument, getAccountType } from '@/lib/firestore-users';
 import { setAccountTypeCookie, clearAccountTypeCookie } from '@/lib/account-type-cookie';
 
@@ -24,11 +24,7 @@ export interface AppUser extends FirebaseUser {
   roles?: UserRole[];
   kycStatus?: 'pending' | 'approved' | 'rejected';
   phone?: string;
-  profile?: {
-    displayName?: string;
-    photoUrl?: string;
-    photoPath?: string; // Chemin dans Firebase Storage
-  };
+  profile?: Profile;
 }
 
 interface AuthContextType {

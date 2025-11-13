@@ -178,7 +178,7 @@ export default function ReviewsPage() {
   // Error state
   if (error) {
     return (
-      <div className="max-w-4xl mx-auto space-y-4">
+      <div className="max-w-7xl mx-auto space-y-4">
         <Alert variant="destructive">
           <AlertDescription>{error}</AlertDescription>
         </Alert>
@@ -187,7 +187,7 @@ export default function ReviewsPage() {
   }
 
   return (
-    <div className="space-y-8 max-w-4xl mx-auto" data-testid="reviews-page">
+    <div className="space-y-8 max-w-7xl mx-auto" data-testid="reviews-page">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-bold tracking-tight font-headline flex items-center gap-2">

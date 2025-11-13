@@ -1,7 +1,7 @@
 
 'use client';
 
-import { useAuth } from "@/hooks/use-auth";
+import { useAuth } from "@/contexts/AuthContext";
 import { KYCStatus } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { Loader2, ShieldCheck, CheckCircle, Clock, AlertCircle, ArrowLeft, Camera, Upload, X } from 'lucide-react';
@@ -100,7 +100,7 @@ export default function KycPage() {
 
 
     return (
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-7xl mx-auto space-y-8">
             <div className="flex items-center gap-4">
                 <Button variant="outline" size="icon" asChild>
                     <Link href="/dashboard/profile">

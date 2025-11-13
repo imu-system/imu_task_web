@@ -155,7 +155,7 @@ export default function KYCSubmitPage() {
 
     if (user?.kycStatus === 'approved') {
         return (
-            <div className="container max-w-4xl py-8">
+            <div className="container max-w-7xl py-8">
                 <Alert className="border-green-500">
                     <CheckCircle2 className="h-4 w-4 text-green-500" />
                     <AlertDescription>
@@ -168,7 +168,7 @@ export default function KYCSubmitPage() {
 
     if (user?.kycStatus === 'pending') {
         return (
-            <div className="container max-w-4xl py-8">
+            <div className="container max-w-7xl py-8">
                 <Alert>
                     <Loader2 className="h-4 w-4 animate-spin" />
                     <AlertDescription>
@@ -182,7 +182,7 @@ export default function KYCSubmitPage() {
 
     if (success) {
         return (
-            <div className="container max-w-4xl py-8">
+            <div className="container max-w-7xl py-8">
                 <Alert className="border-green-500">
                     <CheckCircle2 className="h-4 w-4 text-green-500" />
                     <AlertDescription>
@@ -195,7 +195,7 @@ export default function KYCSubmitPage() {
     }
 
     return (
-        <div className="container max-w-4xl py-8 space-y-6">
+        <div className="container max-w-7xl py-8 space-y-6">
             <div>
                 <h1 className="text-3xl font-bold tracking-tight" data-testid="kyc-page-title">Vérification KYC</h1>
                 <p className="text-muted-foreground">

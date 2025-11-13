@@ -270,7 +270,7 @@ export default function ProDashboardPage() {
     // Redirection si pas pro
     if (error === 'not_pro') {
         return (
-            <div className="container max-w-4xl py-8">
+            <div className="container max-w-7xl py-8">
                 <Alert>
                     <AlertCircle className="h-4 w-4" />
                     <AlertDescription>
@@ -287,7 +287,7 @@ export default function ProDashboardPage() {
     // Vérification en attente
     if (proProfile?.verificationStatus === 'pending') {
         return (
-            <div className="container max-w-4xl py-8">
+            <div className="container max-w-7xl py-8">
                 <Alert>
                     <Clock className="h-4 w-4 animate-pulse" />
                     <AlertDescription>
@@ -308,7 +308,7 @@ export default function ProDashboardPage() {
 
     if (error || !proProfile) {
         return (
-            <div className="container max-w-4xl py-8">
+            <div className="container max-w-7xl py-8">
                 <Alert variant="destructive">
                     <AlertCircle className="h-4 w-4" />
                     <AlertDescription>

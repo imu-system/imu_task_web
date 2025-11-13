@@ -360,5 +360,51 @@ service cloud.firestore {
       // WRITE: Only Cloud Functions (no direct client writes)
       allow create, update, delete: if false;
     }
+    
+    // Public Profiles collection
+    match /public_profiles/{profileId} {
+      // READ: Anyone can read public profiles
+      // Unlisted profiles can be read with direct URL
+      allow read: if resource.data.visibility == 'public' || 
+                     resource.data.visibility == 'unlisted' ||
+                     (isAuthenticated() && isOwner(profileId));
+      
+      // CREATE: Only the profile owner can create their public profile
+      allow create: if isAuthenticated() && 
+                       isOwner(profileId) &&
+                       request.resource.data.userId == request.auth.uid &&
+                       // Validate required fields
+                       request.resource.data.keys().hasAll(['userId', 'slug', 'displayName', 'accountType', 'createdAt']) &&
+                       // slug must be unique (validated server-side)
+                       request.resource.data.slug.size() >= 3 &&
+                       // Initial visibility must be private
+                       request.resource.data.visibility == 'private';
+      
+      // UPDATE: Only the profile owner
+      allow update: if isAuthenticated() && 
+                       isOwner(profileId) &&
+                       // userId and slug cannot be changed
+                       !request.resource.data.diff(resource.data).affectedKeys().hasAny(['userId', 'slug']) &&
+                       // Portfolio items limit check
+                       (!request.resource.data.keys().hasAny(['portfolio']) || 
+                        request.resource.data.portfolio.size() <= request.resource.data.get('maxPortfolioItems', 10));
+      
+      // DELETE: Only the profile owner
+      allow delete: if isAuthenticated() && isOwner(profileId);
+    }
+    
+    // Profile Analytics Events collection
+    match /profile_analytics_events/{eventId} {
+      // READ: Only profile owner can read their analytics
+      allow read: if isAuthenticated() && 
+                     exists(/databases/$(database)/documents/public_profiles/$(request.auth.uid));
+      
+      // CREATE: Anyone can create analytics events (views, clicks, etc.)
+      allow create: if request.resource.data.keys().hasAll(['profileId', 'eventType', 'timestamp']) &&
+                       request.resource.data.eventType in ['view', 'cta_click', 'share', 'portfolio_click', 'contact'];
+      
+      // UPDATE/DELETE: Not allowed (write-only for analytics)
+      allow update, delete: if false;
+    }
   }
 }

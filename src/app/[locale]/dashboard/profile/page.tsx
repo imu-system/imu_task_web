@@ -8,7 +8,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { useAuth, profileSchema, ProfileFormValues } from "@/hooks/use-auth";
+import { useAuth } from "@/contexts/AuthContext";
+import { profileSchema, ProfileFormValues } from "@/hooks/use-auth";
 import { UserRole } from "@/lib/types";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -131,7 +132,7 @@ const PortfolioItemForm = ({ onSave, onClose, item }: { onSave: (data: any) => v
 
 
 export default function ProfilePage() {
-  const { user, profileLoading } = useAuth();
+  const { user, loading } = useAuth();
   const { toast } = useToast();
   const [isSaving, setIsSaving] = useState(false);
   const [isAddressFormOpen, setIsAddressFormOpen] = useState(false);
@@ -241,7 +242,7 @@ export default function ProfilePage() {
       });
   }
 
-  if (profileLoading || !user) {
+  if (loading || !user) {
     return (
         <div className="flex justify-center items-center h-64">
             <Loader2 className="h-16 w-16 animate-spin text-primary" />
@@ -251,7 +252,7 @@ export default function ProfilePage() {
   
   if (isEditing) {
     return (
-        <div className="space-y-8 max-w-4xl mx-auto">
+        <div className="space-y-8 max-w-7xl mx-auto">
              <div>
                 <h1 className="text-3xl font-bold tracking-tight font-headline">
                 {t('editProfile')}
@@ -405,7 +406,7 @@ export default function ProfilePage() {
 
 
   return (
-    <div className="space-y-8 max-w-4xl mx-auto">
+    <div className="space-y-8 max-w-7xl mx-auto">
       <div>
         <h1 className="text-3xl font-bold tracking-tight font-headline">
           {t('title')}
@@ -486,7 +487,7 @@ export default function ProfilePage() {
                                     <span>{user.profile.city}</span>
                                 </div>
                             )}
-                             {user.roles.includes(UserRole.provider) && user.profile?.serviceRadiusKm && (
+                             {user.roles?.includes(UserRole.provider) && user.profile?.serviceRadiusKm && (
                                 <div className="flex items-center gap-2">
                                     <SatelliteDish className="h-4 w-4"/>
                                     <span>{t('serviceRadiusDisplay', {km: user.profile.serviceRadiusKm})}</span>

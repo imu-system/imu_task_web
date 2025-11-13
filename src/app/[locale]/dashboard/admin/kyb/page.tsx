@@ -256,7 +256,7 @@ export default function KYBValidationPage() {
 
   if (error && submissions.length === 0) {
     return (
-      <div className="container max-w-4xl mx-auto py-12 px-4">
+      <div className="container max-w-7xl mx-auto py-12 px-4">
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>{error}</AlertDescription>

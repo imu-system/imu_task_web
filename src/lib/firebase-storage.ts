@@ -205,3 +205,50 @@ export const getThumbnailUrl = (imageUrl: string, size: number = 200): string =>
     // In production, you can implement Cloud Function to generate thumbnails
     return imageUrl;
 };
+
+/**
+ * Generic upload to storage
+ * Upload any file to Firebase Storage
+ */
+export const uploadToStorage = async (
+    file: File,
+    path: string,
+    options?: {
+        maxSizeMB?: number;
+        compress?: boolean;
+        compressionQuality?: number;
+    }
+): Promise<string> => {
+    try {
+        const maxSize = (options?.maxSizeMB || 10) * 1024 * 1024;
+
+        // Check file size
+        if (file.size > maxSize) {
+            throw new Error(`File size exceeds ${options?.maxSizeMB || 10}MB limit`);
+        }
+
+        let fileToUpload = file;
+
+        // Compress images if requested
+        if (options?.compress && file.type.startsWith('image/')) {
+            fileToUpload = await compressImage(file, options.compressionQuality || 0.8);
+        }
+
+        // Upload to Firebase Storage
+        const storageRef = ref(storage, path);
+        const snapshot = await uploadBytes(storageRef, fileToUpload, {
+            contentType: file.type,
+            customMetadata: {
+                originalName: file.name,
+                uploadedAt: new Date().toISOString(),
+            },
+        });
+
+        // Get download URL
+        const downloadURL = await getDownloadURL(snapshot.ref);
+        return downloadURL;
+    } catch (error) {
+        console.error('Error uploading file:', error);
+        throw error;
+    }
+};

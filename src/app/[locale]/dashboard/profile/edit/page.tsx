@@ -15,7 +15,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useAuth, profileSchema, ProfileFormValues } from '@/hooks/use-auth';
+import { useAuth } from '@/contexts/AuthContext';
+import { profileSchema, ProfileFormValues } from '@/hooks/use-auth';
 import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { useToast } from '@/hooks/use-toast';
@@ -40,7 +41,7 @@ const availableLanguages = [
 ];
 
 export default function ProfileEditPage() {
-  const { user, profileLoading } = useAuth();
+  const { user, loading } = useAuth();
   const { toast } = useToast();
   const [isSaving, setIsSaving] = useState(false);
   const t = useTranslations('ProfilePage');
@@ -96,16 +97,14 @@ export default function ProfileEditPage() {
     }
   };
 
-  if (profileLoading || !user) {
+  if (loading || !user) {
     return (
-        <div className="flex justify-center items-center h-64">
-            <Loader2 className="h-16 w-16 animate-spin text-primary" />
-        </div>
-    )
-  }
-
-  return (
-    <div className="space-y-8 max-w-4xl mx-auto">
+      <div className="flex justify-center items-center h-64">
+        <Loader2 className="h-16 w-16 animate-spin text-primary" />
+      </div>
+    );
+  }  return (
+    <div className="space-y-8 max-w-7xl mx-auto">
         <div className="flex items-center gap-4">
             <Button variant="outline" size="icon" asChild>
                 <Link href="/dashboard/profile">

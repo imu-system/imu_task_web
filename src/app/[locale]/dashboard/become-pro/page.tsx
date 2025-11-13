@@ -389,7 +389,7 @@ export default function BecomeProPage() {
     // État de vérification déjà en cours
     if (user?.kycStatus === 'pending' || user?.kycStatus === 'approved') {
         return (
-            <div className="container max-w-4xl py-8">
+            <div className="container max-w-7xl py-8">
                 <Alert className={user.kycStatus === 'approved' ? 'border-green-500' : ''}>
                     <CheckCircle2 className={`h-4 w-4 ${user.kycStatus === 'approved' ? 'text-green-500' : ''}`} />
                     <AlertDescription>
@@ -405,7 +405,7 @@ export default function BecomeProPage() {
     // Succès
     if (success) {
         return (
-            <div className="container max-w-4xl py-8">
+            <div className="container max-w-7xl py-8">
                 <Alert className="border-green-500">
                     <CheckCircle2 className="h-4 w-4 text-green-500" />
                     <AlertDescription>

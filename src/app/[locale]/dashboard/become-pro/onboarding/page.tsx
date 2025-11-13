@@ -285,7 +285,7 @@ export default function OnboardingWizardPage() {
   }
 
   return (
-    <div className="container max-w-4xl mx-auto py-8 px-4">
+    <div className="container max-w-7xl mx-auto py-8 px-4">
       {/* Header */}
       <div className="mb-8">
         <Button

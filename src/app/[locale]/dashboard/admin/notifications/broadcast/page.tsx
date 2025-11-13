@@ -113,7 +113,7 @@ export default function AdminBroadcastPage() {
     
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-4xl mx-auto">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-7xl mx-auto">
                 <div>
                     <h1 className="text-3xl font-bold tracking-tight font-headline flex items-center gap-2">
                         <Send className="h-8 w-8 text-primary"/>

@@ -147,7 +147,7 @@ export default function NotificationSettingsPage() {
   }
 
   return (
-    <div className="container mx-auto py-6 px-4 max-w-4xl" data-testid="notification-settings-page">
+    <div className="container mx-auto py-6 px-4 max-w-7xl" data-testid="notification-settings-page">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-2 flex items-center gap-2">
