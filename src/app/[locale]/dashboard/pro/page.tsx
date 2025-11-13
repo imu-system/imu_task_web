@@ -65,6 +65,7 @@ import {
 import { getMonthlyRevenue, getMonthlyMissions, getProviderStats } from '@/lib/firestore-analytics';
 import { useFavorites } from '@/hooks/use-favorites';
 import { useProviderStats as useProviderAnalyticsStats, useProviderMonthlyRevenue, useProviderMonthlyMissions } from '@/hooks/use-analytics';
+import { ExportReports } from '@/components/analytics/export-reports';
 
 interface ProProfile {
     userId: string;
@@ -788,7 +789,7 @@ export default function ProDashboardPage() {
                                 <ResponsiveContainer width="100%" height={300}>
                                     <LineChart data={monthlyRevenue}>
                                         <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis dataKey="month" />
+                                        <XAxis dataKey="mois" />
                                         <YAxis />
                                         <Tooltip 
                                             formatter={(value: number) => [`${value.toLocaleString()} €`, 'Revenus']}
@@ -797,7 +798,7 @@ export default function ProDashboardPage() {
                                         <Legend />
                                         <Line 
                                             type="monotone" 
-                                            dataKey="revenue" 
+                                            dataKey="revenus" 
                                             stroke="hsl(var(--primary))" 
                                             strokeWidth={2}
                                             dot={{ fill: 'hsl(var(--primary))', r: 4 }}
@@ -830,7 +831,7 @@ export default function ProDashboardPage() {
                                 <ResponsiveContainer width="100%" height={250}>
                                     <BarChart data={monthlyMissions}>
                                         <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis dataKey="month" />
+                                        <XAxis dataKey="mois" />
                                         <YAxis />
                                         <Tooltip 
                                             formatter={(value: number) => [`${value}`, 'Missions']}
@@ -853,6 +854,11 @@ export default function ProDashboardPage() {
                     </Card>
                 </TabsContent>
             </Tabs>
+
+            {/* Phase 9: Export Reports pour professionnels */}
+            {user && (
+                <ExportReports userId={user.uid} role="provider" />
+            )}
 
             {/* Actions rapides avec animations */}
             <AnimatedDiv variant="fadeInUp">

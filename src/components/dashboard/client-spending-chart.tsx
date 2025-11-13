@@ -53,8 +53,7 @@ export function ClientSpendingChart({ userId, monthsBack = 6 }: ClientSpendingCh
     const { data: monthlySpending, isLoading: loading, isError, error } = useClientMonthlySpending(userId, monthsBack);
 
     // Calculate metrics
-    const totalSpending = monthlySpending?.reduce((sum, month) => sum + month.revenue, 0) || 0;
-    const totalBookings = monthlySpending?.reduce((sum, month) => sum + month.bookings, 0) || 0;
+    const totalSpending = monthlySpending?.reduce((sum, month) => sum + month.revenus, 0) || 0;
     const avgPerMonth = monthlySpending && monthlySpending.length > 0 
         ? totalSpending / monthlySpending.length 
         : 0;
@@ -65,8 +64,8 @@ export function ClientSpendingChart({ userId, monthsBack = 6 }: ClientSpendingCh
             return { value: 0, isPositive: true };
         }
 
-        const recentSpending = monthlySpending.slice(-3).reduce((sum, m) => sum + m.revenue, 0);
-        const previousSpending = monthlySpending.slice(-6, -3).reduce((sum, m) => sum + m.revenue, 0);
+        const recentSpending = monthlySpending.slice(-3).reduce((sum, m) => sum + m.revenus, 0);
+        const previousSpending = monthlySpending.slice(-6, -3).reduce((sum, m) => sum + m.revenus, 0);
 
         if (previousSpending === 0) return { value: 0, isPositive: true };
 
@@ -220,8 +219,8 @@ export function ClientSpendingChart({ userId, monthsBack = 6 }: ClientSpendingCh
                             margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
                         >
                             <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                            <XAxis
-                                dataKey="month"
+                            <XAxis 
+                                dataKey="mois"
                                 tick={{ fill: 'hsl(var(--muted-foreground))' }}
                                 tickLine={{ stroke: 'hsl(var(--border))' }}
                             />
@@ -238,13 +237,13 @@ export function ClientSpendingChart({ userId, monthsBack = 6 }: ClientSpendingCh
                             />
                             <Tooltip content={<CustomTooltip />} />
                             <Bar
-                                dataKey="revenue"
+                                dataKey="revenus"
                                 radius={[8, 8, 0, 0]}
                             >
                                 {monthlySpending.map((entry, index) => (
                                     <Cell
                                         key={`cell-${index}`}
-                                        fill={entry.revenue > 0 ? 'hsl(var(--primary))' : 'hsl(var(--muted))'}
+                                        fill={entry.revenus > 0 ? 'hsl(var(--primary))' : 'hsl(var(--muted))'}
                                     />
                                 ))}
                             </Bar>
@@ -255,10 +254,7 @@ export function ClientSpendingChart({ userId, monthsBack = 6 }: ClientSpendingCh
                 {/* Summary */}
                 <div className="mt-4 pt-4 border-t">
                     <p className="text-sm text-muted-foreground text-center">
-                        {t('spending.summary', { 
-                            count: totalBookings,
-                            months: monthsBack 
-                        })}
+                        Analyse sur les {monthsBack} derniers mois
                     </p>
                 </div>
             </CardContent>
@@ -279,7 +275,7 @@ function CustomTooltip({ active, payload }: ChartTooltipProps) {
 
     return (
         <div className="rounded-lg border bg-background p-3 shadow-lg">
-            <p className="font-semibold mb-2">{data.month}</p>
+            <p className="font-semibold mb-2">{data.mois}</p>
             <div className="space-y-1">
                 <div className="flex items-center justify-between gap-4">
                     <span className="text-sm text-muted-foreground">Dépenses:</span>
@@ -287,24 +283,9 @@ function CustomTooltip({ active, payload }: ChartTooltipProps) {
                         {new Intl.NumberFormat('fr-FR', {
                             style: 'currency',
                             currency: 'EUR'
-                        }).format(data.revenue)}
+                        }).format(data.revenus)}
                     </span>
                 </div>
-                <div className="flex items-center justify-between gap-4">
-                    <span className="text-sm text-muted-foreground">Missions:</span>
-                    <span className="font-semibold">{data.bookings}</span>
-                </div>
-                {data.bookings > 0 && (
-                    <div className="flex items-center justify-between gap-4 pt-1 border-t">
-                        <span className="text-sm text-muted-foreground">Moyenne:</span>
-                        <span className="font-semibold text-sm">
-                            {new Intl.NumberFormat('fr-FR', {
-                                style: 'currency',
-                                currency: 'EUR'
-                            }).format(data.revenue / data.bookings)}
-                        </span>
-                    </div>
-                )}
             </div>
         </div>
     );

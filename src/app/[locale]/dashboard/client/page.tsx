@@ -54,6 +54,7 @@ import { TaskCategoryChart } from '@/components/dashboard/task-category-chart';
 import { useFavorites } from '@/hooks/use-favorites';
 import { useClientStats, useClientCategoryDistribution } from '@/hooks/use-analytics';
 import { FavoriteProvidersList } from '@/components/dashboard/favorite-providers-list';
+import { ExportReports } from '@/components/analytics/export-reports';
 
 interface ServicePack {
   id: string;
@@ -867,10 +868,17 @@ export default function DashboardPage() {
 
         {/* Phase 9 Option C: Client Analytics Charts */}
         {user?.uid && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-            <ClientSpendingChart userId={user.uid} monthsBack={6} />
-            <TaskCategoryChart userId={user.uid} />
-          </div>
+          <>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+              <ClientSpendingChart userId={user.uid} monthsBack={6} />
+              <TaskCategoryChart userId={user.uid} />
+            </div>
+
+            {/* Phase 9: Export Reports */}
+            <div className="mt-6">
+              <ExportReports userId={user.uid} role="client" />
+            </div>
+          </>
         )}
 
         </AnimatedDiv>

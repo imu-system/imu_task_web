@@ -18,6 +18,7 @@ import { AdminStatsCards } from "@/components/dashboard/admin-stats-cards";
 import { GMVChart } from "@/components/dashboard/gmv-chart";
 import { UserGrowthChart } from "@/components/dashboard/user-growth-chart";
 import { DashboardFilters } from "@/components/dashboard/dashboard-filters";
+import { ExportReports } from "@/components/analytics/export-reports";
 
 const priorityQueue = [
     { id: 'KYC001', type: 'KYC en attente', user: 'Jean Dupont', date: '2023-10-26', icon: <ShieldQuestion className="h-5 w-5 text-yellow-500"/>, href: '/dashboard/admin/kyc'},
@@ -77,6 +78,11 @@ export default function AdminDashboardPage() {
             {/* User Growth Chart */}
             <UserGrowthChart monthsBack={6} />
         </div>
+
+        {/* Phase 9: Export Reports pour admin - Note: userId sera celui de l'admin */}
+        {user && (
+            <ExportReports userId={user.uid} role="provider" />
+        )}
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
              <Card className="lg:col-span-2">
