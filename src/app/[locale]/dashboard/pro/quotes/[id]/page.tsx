@@ -279,7 +279,7 @@ export default function ProQuoteViewPage() {
 
   if (error || !quote) {
     return (
-      <div className="container max-w-7xl mx-auto py-8 px-4">
+      <div className="container mx-auto py-8 px-4">
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>{error || 'Devis introuvable'}</AlertDescription>

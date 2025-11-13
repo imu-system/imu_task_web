@@ -177,7 +177,7 @@ export default function CreateTaskPage() {
   const availableTags = selectedCategory ? ServiceTags[selectedCategory] : [];
 
   return (
-    <div className="container max-w-7xl py-8 space-y-6">
+    <div className="container py-8 space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>

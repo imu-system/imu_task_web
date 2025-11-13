@@ -158,7 +158,7 @@ export default function BecomeProviderPage() {
     }
 
     return (
-        <div className="container max-w-7xl py-12">
+        <div className="container py-12">
             <div className="mb-8">
                 <h1 className="text-3xl font-bold mb-2">Devenir Prestataire</h1>
                 <p className="text-muted-foreground">

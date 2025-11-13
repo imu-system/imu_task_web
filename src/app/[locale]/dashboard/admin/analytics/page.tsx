@@ -209,7 +209,7 @@ export default function AnalyticsPage() {
 
   if (error || !analytics) {
     return (
-      <div className="container max-w-7xl mx-auto py-12 px-4">
+      <div className="container mx-auto py-12 px-4">
         <Alert variant="destructive">
           <AlertCircle className="h-4 w-4" />
           <AlertDescription>{error || 'Erreur de chargement'}</AlertDescription>
@@ -227,7 +227,7 @@ export default function AnalyticsPage() {
   }
 
   return (
-    <div className="container max-w-7xl mx-auto py-8 px-4">
+    <div className="container mx-auto py-8 px-4">
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
         <div>

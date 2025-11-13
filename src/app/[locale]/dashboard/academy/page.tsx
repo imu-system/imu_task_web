@@ -13,7 +13,7 @@ export default function AcademyPage() {
     const t = useTranslations('AcademyPage');
 
     return (
-        <div className="space-y-8 max-w-7xl mx-auto">
+        <div className="space-y-8 mx-auto">
              <div>
                 <h1 className="text-3xl font-bold tracking-tight font-headline flex items-center gap-2">
                     <BookOpen className="h-8 w-8 text-primary"/>

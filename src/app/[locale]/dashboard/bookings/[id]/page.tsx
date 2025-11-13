@@ -22,7 +22,7 @@ export default async function BookingDetailPage({ params }: PageProps) {
   const t = await getTranslations('BookingDetailPage');
 
   return (
-    <div className="container max-w-7xl mx-auto py-8">
+    <div className="container mx-auto py-8">
       <Suspense
         fallback={
           <div className="flex justify-center items-center h-96">

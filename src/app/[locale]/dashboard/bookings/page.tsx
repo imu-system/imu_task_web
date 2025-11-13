@@ -173,7 +173,7 @@ export default function BookingsPage() {
   }
 
   return (
-    <div className="container mx-auto py-8 px-4 max-w-7xl">
+    <div className="container mx-auto py-8 px-4">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">{t('title')}</h1>

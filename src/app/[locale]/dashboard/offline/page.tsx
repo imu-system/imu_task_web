@@ -74,7 +74,7 @@ export default function OfflineStatusPage() {
     }
 
     return (
-        <div className="space-y-8 max-w-7xl mx-auto">
+        <div className="space-y-8 mx-auto">
             <div className="flex items-center gap-4">
                 <Button variant="outline" size="icon" asChild>
                     <Link href="/dashboard">

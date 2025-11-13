@@ -252,7 +252,7 @@ export default function ProfilePage() {
   
   if (isEditing) {
     return (
-        <div className="space-y-8 max-w-7xl mx-auto">
+        <div className="space-y-8 mx-auto">
              <div>
                 <h1 className="text-3xl font-bold tracking-tight font-headline">
                 {t('editProfile')}
@@ -406,7 +406,7 @@ export default function ProfilePage() {
 
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto">
+    <div className="space-y-8 mx-auto">
       <div>
         <h1 className="text-3xl font-bold tracking-tight font-headline">
           {t('title')}

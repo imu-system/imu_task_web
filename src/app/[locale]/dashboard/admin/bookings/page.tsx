@@ -59,7 +59,7 @@ export default function AdminBookingsPage() {
     }
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto">
+    <div className="space-y-8 mx-auto">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
                 <h1 className="text-3xl font-bold tracking-tight font-headline flex items-center gap-2">

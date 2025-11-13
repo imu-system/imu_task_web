@@ -102,7 +102,7 @@ export default function AdminEditTemplatePage() {
     
     return (
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-7xl mx-auto">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mx-auto">
                  <div className="flex items-center gap-4">
                     <Button variant="outline" size="icon" asChild>
                         <Link href="/dashboard/admin/notifications/templates">

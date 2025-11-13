@@ -268,7 +268,7 @@ export default function PublicProfileDashboardPage() {
 
   if (!profile) {
     return (
-      <div className="container max-w-7xl mx-auto py-8 px-4">
+      <div className="container mx-auto py-8 px-4">
         <Alert>
           <AlertTitle>{t('noProfileTitle')}</AlertTitle>
           <AlertDescription>{t('noProfileDescription')}</AlertDescription>
@@ -281,7 +281,7 @@ export default function PublicProfileDashboardPage() {
   const isPublished = profile.visibility === 'public';
 
   return (
-    <div className="container max-w-7xl mx-auto py-8 px-4">
+    <div className="container mx-auto py-8 px-4">
       {/* Header */}
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
@@ -636,7 +636,7 @@ export default function PublicProfileDashboardPage() {
 
 function DashboardSkeleton() {
   return (
-    <div className="container max-w-7xl mx-auto py-8 px-4">
+    <div className="container mx-auto py-8 px-4">
       <div className="space-y-6">
         <Skeleton className="h-12 w-96" />
         <Skeleton className="h-32 w-full" />

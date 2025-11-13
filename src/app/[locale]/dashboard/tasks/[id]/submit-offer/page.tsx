@@ -85,7 +85,7 @@ export default function SubmitOfferPage() {
 
   if (loading) {
     return (
-      <div className="container max-w-7xl mx-auto py-8">
+      <div className="container mx-auto py-8">
         <div className="space-y-4">
           <Skeleton className="h-8 w-64" />
           <Skeleton className="h-64 w-full" />
@@ -97,7 +97,7 @@ export default function SubmitOfferPage() {
 
   if (error) {
     return (
-      <div className="container max-w-7xl mx-auto py-8">
+      <div className="container mx-auto py-8">
         <Card>
           <CardHeader>
             <CardTitle className="text-destructive">{t('errorTitle', { defaultValue: 'Error' })}</CardTitle>
@@ -134,7 +134,7 @@ export default function SubmitOfferPage() {
   };
 
   return (
-    <div className="container max-w-7xl mx-auto py-8">
+    <div className="container mx-auto py-8">
       {/* Header */}
       <div className="mb-6">
         <Button 
