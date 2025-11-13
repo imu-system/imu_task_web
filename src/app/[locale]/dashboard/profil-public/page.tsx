@@ -22,7 +22,8 @@ import { useTranslations } from 'next-intl';
 import { 
   Eye, EyeOff, ExternalLink, Share2, QrCode, 
   TrendingUp, MousePointerClick, Users, Download,
-  Sparkles, Lock, Copy, Check
+  Sparkles, Lock, Copy, Check, Mail, MessageSquare,
+  Printer, Link as LinkIcon, Smartphone
 } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -65,6 +66,7 @@ export default function PublicProfileDashboardPage() {
   const [saving, setSaving] = useState(false);
   const [qrCodeUrl, setQrCodeUrl] = useState<string>('');
   const [copied, setCopied] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   // Charger le profil
   useEffect(() => {
@@ -179,6 +181,63 @@ export default function PublicProfileDashboardPage() {
     link.click();
   };
 
+  // Partager par email
+  const handleShareByEmail = () => {
+    if (!profile?.slug) return;
+    
+    const subject = encodeURIComponent(`Découvrez mon profil sur ImuTask`);
+    const body = encodeURIComponent(
+      `Bonjour,\n\nJe vous invite à découvrir mon profil professionnel sur ImuTask :\n\n${profileUrl}\n\nCordialement,\n${profile.displayName}`
+    );
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  };
+
+  // Partager par SMS
+  const handleShareBySMS = () => {
+    if (!profile?.slug) return;
+    
+    const message = encodeURIComponent(`Découvrez mon profil ImuTask : ${profileUrl}`);
+    window.location.href = `sms:?body=${message}`;
+  };
+
+  // Imprimer le profil
+  const handlePrint = () => {
+    if (!profile?.slug) return;
+    window.open(profileUrl + '?print=true', '_blank');
+  };
+
+  // Copier le lien direct
+  const handleCopyLink = async () => {
+    if (!profile?.slug) return;
+
+    await navigator.clipboard.writeText(profileUrl);
+    setLinkCopied(true);
+    toast({
+      title: t('linkCopied') || 'Lien copié !',
+      description: t('linkCopiedDescription') || 'Le lien a été copié dans le presse-papiers',
+    });
+    setTimeout(() => setLinkCopied(false), 2000);
+  };
+
+  // Partager avec Web Share API (mobile)
+  const handleNativeShare = async () => {
+    if (!profile?.slug) return;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `Profil de ${profile.displayName}`,
+          text: profile.headline || profile.bio || '',
+          url: profileUrl,
+        });
+      } catch (error) {
+        console.log('Partage annulé:', error);
+      }
+    } else {
+      handleCopyLink();
+    }
+  };
+
   // Sauvegarder les modifications du profil
   const handleSaveProfile = async (data: any) => {
     if (!user) return;
@@ -290,14 +349,34 @@ export default function PublicProfileDashboardPage() {
             <p className="text-muted-foreground">{t('description')}</p>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-2">
             <Button
-              variant="outline"
+              variant="default"
               onClick={() => window.open(profileUrl, '_blank')}
               className="gap-2"
             >
-              <ExternalLink className="h-4 w-4" />
-              {t('preview')}
+              <Eye className="h-4 w-4" />
+              {t('viewProfile') || 'Voir mon profil'}
+            </Button>
+            <Button
+              variant="outline"
+              onClick={handleNativeShare}
+              className="gap-2"
+            >
+              <Share2 className="h-4 w-4" />
+              {t('share') || 'Partager'}
+            </Button>
+            <Button
+              variant="outline"
+              onClick={handleCopyLink}
+              className="gap-2"
+            >
+              {linkCopied ? (
+                <Check className="h-4 w-4" />
+              ) : (
+                <LinkIcon className="h-4 w-4" />
+              )}
+              {linkCopied ? t('copied') || 'Copié !' : t('copyLink') || 'Copier le lien'}
             </Button>
           </div>
         </div>
@@ -505,15 +584,59 @@ export default function PublicProfileDashboardPage() {
 
         {/* Share Tab */}
         <TabsContent value="share" className="space-y-6">
+          {/* Actions rapides */}
+          <Card>
+            <CardHeader>
+              <CardTitle>{t('quickActions') || 'Actions rapides'}</CardTitle>
+              <CardDescription>{t('quickActionsDescription') || 'Partagez votre profil rapidement'}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center gap-2 h-auto py-4"
+                  onClick={handleCopyLink}
+                >
+                  {linkCopied ? <Check className="h-5 w-5" /> : <LinkIcon className="h-5 w-5" />}
+                  <span className="text-sm">{linkCopied ? t('copied') || 'Copié !' : t('copyLink') || 'Copier le lien'}</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center gap-2 h-auto py-4"
+                  onClick={handleShareByEmail}
+                >
+                  <Mail className="h-5 w-5" />
+                  <span className="text-sm">{t('shareByEmail') || 'Email'}</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center gap-2 h-auto py-4"
+                  onClick={handleShareBySMS}
+                >
+                  <MessageSquare className="h-5 w-5" />
+                  <span className="text-sm">{t('shareBySMS') || 'SMS'}</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="flex flex-col items-center gap-2 h-auto py-4"
+                  onClick={handlePrint}
+                >
+                  <Printer className="h-5 w-5" />
+                  <span className="text-sm">{t('print') || 'Imprimer'}</span>
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
           <div className="grid md:grid-cols-2 gap-6">
             {/* QR Code */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <QrCode className="h-5 w-5" />
-                  {t('qrCode')}
+                  {t('qrCode') || 'QR Code'}
                 </CardTitle>
-                <CardDescription>{t('qrCodeDescription')}</CardDescription>
+                <CardDescription>{t('qrCodeDescription') || 'Partagez votre profil via QR code'}</CardDescription>
               </CardHeader>
               <CardContent className="flex flex-col items-center gap-4">
                 {qrCodeUrl && (
@@ -521,10 +644,23 @@ export default function PublicProfileDashboardPage() {
                     <div className="p-4 bg-white rounded-lg border">
                       <img src={qrCodeUrl} alt="QR Code" className="w-64 h-64" />
                     </div>
-                    <Button onClick={handleDownloadQR} className="gap-2">
-                      <Download className="h-4 w-4" />
-                      {t('downloadQR')}
-                    </Button>
+                    <div className="flex gap-2 w-full">
+                      <Button onClick={handleDownloadQR} className="gap-2 flex-1">
+                        <Download className="h-4 w-4" />
+                        {t('downloadQR') || 'Télécharger'}
+                      </Button>
+                      <Button 
+                        variant="outline"
+                        onClick={handlePrint} 
+                        className="gap-2 flex-1"
+                      >
+                        <Printer className="h-4 w-4" />
+                        {t('printQR') || 'Imprimer'}
+                      </Button>
+                    </div>
+                    <p className="text-xs text-muted-foreground text-center">
+                      {t('qrCodeHint') || 'Scannez ce code pour accéder directement à votre profil'}
+                    </p>
                   </>
                 )}
               </CardContent>
@@ -535,9 +671,9 @@ export default function PublicProfileDashboardPage() {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Share2 className="h-5 w-5" />
-                  {t('socialShare')}
+                  {t('socialShare') || 'Réseaux sociaux'}
                 </CardTitle>
-                <CardDescription>{t('socialShareDescription')}</CardDescription>
+                <CardDescription>{t('socialShareDescription') || 'Partagez sur les réseaux sociaux'}</CardDescription>
               </CardHeader>
               <CardContent className="space-y-3">
                 <Button
@@ -554,11 +690,11 @@ export default function PublicProfileDashboardPage() {
                   variant="outline"
                   className="w-full justify-start gap-3"
                   onClick={() => window.open(
-                    `https://twitter.com/intent/tweet?url=${encodeURIComponent(profileUrl)}`,
+                    `https://twitter.com/intent/tweet?url=${encodeURIComponent(profileUrl)}&text=${encodeURIComponent(`Découvrez mon profil professionnel`)}`,
                     '_blank'
                   )}
                 >
-                  <span className="text-[#1DA1F2]">Twitter</span>
+                  <span className="text-[#1DA1F2]">Twitter / X</span>
                 </Button>
                 <Button
                   variant="outline"
@@ -574,11 +710,19 @@ export default function PublicProfileDashboardPage() {
                   variant="outline"
                   className="w-full justify-start gap-3"
                   onClick={() => window.open(
-                    `https://wa.me/?text=${encodeURIComponent(profileUrl)}`,
+                    `https://wa.me/?text=${encodeURIComponent(`Découvrez mon profil : ${profileUrl}`)}`,
                     '_blank'
                   )}
                 >
                   <span className="text-[#25D366]">WhatsApp</span>
+                </Button>
+                <Button
+                  variant="outline"
+                  className="w-full justify-start gap-3"
+                  onClick={handleNativeShare}
+                >
+                  <Smartphone className="h-4 w-4" />
+                  <span>{t('moreOptions') || 'Plus d\'options...'}</span>
                 </Button>
               </CardContent>
             </Card>

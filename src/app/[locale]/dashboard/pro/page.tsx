@@ -64,6 +64,7 @@ import {
 } from '@/lib/analytics';
 import { getMonthlyRevenue, getMonthlyMissions, getProviderStats } from '@/lib/firestore-analytics';
 import { useFavorites } from '@/hooks/use-favorites';
+import { useProviderStats as useProviderAnalyticsStats, useProviderMonthlyRevenue, useProviderMonthlyMissions } from '@/hooks/use-analytics';
 
 interface ProProfile {
     userId: string;
@@ -130,9 +131,11 @@ export default function ProDashboardPage() {
     const [quotes, setQuotes] = useState<Quote[]>([]);
     const [notifications, setNotifications] = useState<Notification[]>([]);
     const [error, setError] = useState<string | null>(null);
-    const [revenueChartData, setRevenueChartData] = useState<any[]>([]);
-    const [missionsChartData, setMissionsChartData] = useState<any[]>([]);
 
+    // Phase 9: Analytics hooks avec React Query (caching + auto-refetch)
+    const { data: providerStats, isLoading: loadingStats } = useProviderAnalyticsStats(user?.uid);
+    const { data: monthlyRevenue, isLoading: loadingRevenue } = useProviderMonthlyRevenue(user?.uid, 6);
+    const { data: monthlyMissions, isLoading: loadingMissions } = useProviderMonthlyMissions(user?.uid, 6);
     useEffect(() => {
         if (!user) return;
 
@@ -245,15 +248,8 @@ export default function ProDashboardPage() {
 
                 setQuotes(quotesData);
                 setNotifications(notificationsData);
-                
-                // 4. Charger les données réelles des graphiques depuis Firestore
-                const revenueData = await getMonthlyRevenue(user.uid, 6);
-                const missionsData = await getMonthlyMissions(user.uid, 6);
-                
-                setRevenueChartData(revenueData);
-                setMissionsChartData(missionsData);
 
-                // 5. Log analytics après chargement réussi
+                // 4. Log analytics après chargement réussi
                 logDashboardPageView(AccountType.professional, 'professional');
                 logGradientSectionView('pro_header', AccountType.professional);
             } catch (err: any) {
@@ -319,6 +315,7 @@ export default function ProDashboardPage() {
         );
     }
 
+    // Stats du profil pro (contient averageRating, acceptanceRate, etc.)
     const stats = proProfile.stats;
     const revenueGrowth =
         stats.revenue.lastMonth > 0
@@ -783,11 +780,15 @@ export default function ProDashboardPage() {
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
-                            {revenueChartData.length > 0 ? (
+                            {loadingRevenue ? (
+                                <div className="flex items-center justify-center h-64">
+                                    <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                                </div>
+                            ) : monthlyRevenue && monthlyRevenue.length > 0 ? (
                                 <ResponsiveContainer width="100%" height={300}>
-                                    <LineChart data={revenueChartData}>
+                                    <LineChart data={monthlyRevenue}>
                                         <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis dataKey="mois" />
+                                        <XAxis dataKey="month" />
                                         <YAxis />
                                         <Tooltip 
                                             formatter={(value: number) => [`${value.toLocaleString()} €`, 'Revenus']}
@@ -796,7 +797,7 @@ export default function ProDashboardPage() {
                                         <Legend />
                                         <Line 
                                             type="monotone" 
-                                            dataKey="revenus" 
+                                            dataKey="revenue" 
                                             stroke="hsl(var(--primary))" 
                                             strokeWidth={2}
                                             dot={{ fill: 'hsl(var(--primary))', r: 4 }}
@@ -805,8 +806,8 @@ export default function ProDashboardPage() {
                                     </LineChart>
                                 </ResponsiveContainer>
                             ) : (
-                                <div className="flex items-center justify-center h-64">
-                                    <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                                <div className="flex items-center justify-center h-64 text-muted-foreground">
+                                    Aucune donnée de revenus disponible
                                 </div>
                             )}
                         </CardContent>
@@ -821,11 +822,15 @@ export default function ProDashboardPage() {
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
-                            {missionsChartData.length > 0 ? (
+                            {loadingMissions ? (
+                                <div className="flex items-center justify-center h-64">
+                                    <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                                </div>
+                            ) : monthlyMissions && monthlyMissions.length > 0 ? (
                                 <ResponsiveContainer width="100%" height={250}>
-                                    <BarChart data={missionsChartData}>
+                                    <BarChart data={monthlyMissions}>
                                         <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis dataKey="mois" />
+                                        <XAxis dataKey="month" />
                                         <YAxis />
                                         <Tooltip 
                                             formatter={(value: number) => [`${value}`, 'Missions']}
@@ -840,8 +845,8 @@ export default function ProDashboardPage() {
                                     </BarChart>
                                 </ResponsiveContainer>
                             ) : (
-                                <div className="flex items-center justify-center h-64">
-                                    <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+                                <div className="flex items-center justify-center h-64 text-muted-foreground">
+                                    Aucune donnée de missions disponible
                                 </div>
                             )}
                         </CardContent>

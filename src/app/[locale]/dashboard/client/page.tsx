@@ -52,6 +52,8 @@ import {
 import { ClientSpendingChart } from '@/components/dashboard/client-spending-chart';
 import { TaskCategoryChart } from '@/components/dashboard/task-category-chart';
 import { useFavorites } from '@/hooks/use-favorites';
+import { useClientStats, useClientCategoryDistribution } from '@/hooks/use-analytics';
+import { FavoriteProvidersList } from '@/components/dashboard/favorite-providers-list';
 
 interface ServicePack {
   id: string;
@@ -82,6 +84,10 @@ export default function DashboardPage() {
   const { user } = useAuth();
   const router = useRouter();
   const { favorites: userFavorites } = useFavorites();
+  
+  // Fetch client stats from analytics
+  const { data: clientStats, isLoading: loadingStats } = useClientStats(user?.uid);
+  const { data: categoryDistribution } = useClientCategoryDistribution(user?.uid);
 
   // Fetch user's posted tasks from Firestore
   useEffect(() => {
@@ -108,11 +114,7 @@ export default function DashboardPage() {
         
         setMyPostedTasks(userTasks);
         
-        // Calculate stats
-        const active = userTasks.filter(t => t.status === 'open' || t.status === 'in_progress').length;
-        const completed = userTasks.filter(t => t.status === 'completed').length;
-        
-        // Fetch pending proposals count
+        // Fetch pending proposals count (keep this for quick access)
         let pendingCount = 0;
         try {
           const proposals = await getClientProposals(user.uid);
@@ -121,11 +123,24 @@ export default function DashboardPage() {
           console.error('Error fetching proposals:', error);
         }
         
-        setStats({
-          activeTasks: active,
-          pendingOffers: pendingCount,
-          completedMissions: completed
-        });
+        // Use analytics stats if available, fallback to manual calculation
+        if (clientStats) {
+          setStats({
+            activeTasks: clientStats.tasksPosted - clientStats.completedBookings,
+            pendingOffers: pendingCount,
+            completedMissions: clientStats.completedBookings
+          });
+        } else {
+          // Fallback to manual calculation
+          const active = userTasks.filter(t => t.status === 'open' || t.status === 'in_progress').length;
+          const completed = userTasks.filter(t => t.status === 'completed').length;
+          
+          setStats({
+            activeTasks: active,
+            pendingOffers: pendingCount,
+            completedMissions: completed
+          });
+        }
       } catch (error) {
         console.error('Error fetching user tasks:', error);
       } finally {
@@ -134,19 +149,40 @@ export default function DashboardPage() {
     };
 
     fetchMyTasks();
-  }, [user]);
+  }, [user, clientStats]);
 
-  // Fetch popular service packs
+  // Fetch recommended service packs based on user's category preferences
   useEffect(() => {
-    const fetchServicePacks = async () => {
+    const fetchRecommendedServicePacks = async () => {
       setLoadingServicePacks(true);
       try {
-        const packsQuery = query(
-          collection(db, 'service_packages'),
-          where('active', '==', true),
-          orderBy('bookingCount', 'desc'),
-          limit(2)
-        );
+        let packsQuery;
+        
+        // If user has category history, fetch personalized recommendations
+        if (categoryDistribution && categoryDistribution.length > 0) {
+          // Get top 3 categories by count
+          const topCategories = categoryDistribution
+            .sort((a, b) => b.count - a.count)
+            .slice(0, 3)
+            .map(c => c.category);
+          
+          // Fetch service packs matching these categories
+          packsQuery = query(
+            collection(db, 'service_packages'),
+            where('active', '==', true),
+            where('category', 'in', topCategories),
+            orderBy('bookingCount', 'desc'),
+            limit(3)
+          );
+        } else {
+          // Fallback: fetch globally popular service packs
+          packsQuery = query(
+            collection(db, 'service_packages'),
+            where('active', '==', true),
+            orderBy('bookingCount', 'desc'),
+            limit(3)
+          );
+        }
         
         const snapshot = await getDocs(packsQuery);
         const packs = snapshot.docs.map(doc => {
@@ -171,8 +207,8 @@ export default function DashboardPage() {
       }
     };
 
-    fetchServicePacks();
-  }, []);
+    fetchRecommendedServicePacks();
+  }, [categoryDistribution]);
 
   // Load favorites from localStorage (TODO: migrate to Firestore)
   useEffect(() => {
@@ -264,7 +300,7 @@ export default function DashboardPage() {
     });
   };
 
-  if (loading || loadingMyTasks) {
+  if (loading || loadingMyTasks || loadingStats) {
     return (
       <div className="flex flex-col justify-center items-center min-h-screen gap-4 p-4">
         <ShimmerCard className="w-full max-w-md p-8 bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-700 rounded-xl">
@@ -319,7 +355,7 @@ export default function DashboardPage() {
         </AnimatedDiv>
 
         {/* KPIs modernes avec animations et effets de lueur */}
-        <AnimatedList className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <AnimatedList className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           <AnimatedListItem>
             <GlowCard glowColor="rgba(102, 126, 234, 0.5)">
               <AnimatedCard 
@@ -418,6 +454,75 @@ export default function DashboardPage() {
             </GlowCard>
           </AnimatedListItem>
 
+          {/* NEW: Total Spent Card */}
+          {clientStats && (
+            <AnimatedListItem>
+              <GlowCard glowColor="rgba(168, 85, 247, 0.5)">
+                <AnimatedCard>
+                  <Card className="border-2 h-full bg-gradient-to-br from-purple-50 to-white dark:from-slate-900 dark:to-slate-800">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                      <CardTitle className="text-sm font-medium">Total dépensé</CardTitle>
+                      <TrendingUp className="h-5 w-5 text-purple-500" />
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-3xl font-bold text-purple-500">
+                        {new Intl.NumberFormat('fr-FR', {
+                          style: 'currency',
+                          currency: 'EUR',
+                          maximumFractionDigits: 0
+                        }).format(clientStats.totalSpent)}
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        Sur {clientStats.totalBookings} réservations
+                      </p>
+                      {clientStats.thisMonthSpent > 0 && (
+                        <p className="text-xs text-purple-600 mt-1">
+                          +{new Intl.NumberFormat('fr-FR', {
+                            style: 'currency',
+                            currency: 'EUR'
+                          }).format(clientStats.thisMonthSpent)} ce mois
+                        </p>
+                      )}
+                    </CardContent>
+                  </Card>
+                </AnimatedCard>
+              </GlowCard>
+            </AnimatedListItem>
+          )}
+
+          {/* NEW: Success Rate Card */}
+          {clientStats && clientStats.totalBookings > 0 && (
+            <AnimatedListItem>
+              <GlowCard glowColor="rgba(59, 130, 246, 0.5)">
+                <AnimatedCard>
+                  <Card className="border-2 h-full bg-gradient-to-br from-blue-50 to-white dark:from-slate-900 dark:to-slate-800">
+                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                      <CardTitle className="text-sm font-medium">Taux de succès</CardTitle>
+                      <Clock className="h-5 w-5 text-blue-500" />
+                    </CardHeader>
+                    <CardContent>
+                      <div className="text-3xl font-bold text-blue-500">
+                        {clientStats.successRate.toFixed(0)}%
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        {clientStats.completedBookings} missions complétées
+                      </p>
+                      {clientStats.avgTaskBudget > 0 && (
+                        <p className="text-xs text-blue-600 mt-1">
+                          Budget moyen: {new Intl.NumberFormat('fr-FR', {
+                            style: 'currency',
+                            currency: 'EUR'
+                          }).format(clientStats.avgTaskBudget)}
+                        </p>
+                      )}
+                    </CardContent>
+                  </Card>
+                </AnimatedCard>
+              </GlowCard>
+            </AnimatedListItem>
+          )}
+
+          {/* Keep Favorites Card */}
           <AnimatedListItem>
             <GlowCard glowColor="rgba(236, 72, 153, 0.5)">
               <AnimatedCard 
@@ -659,15 +764,21 @@ export default function DashboardPage() {
               </Alert>
             )}
             
-            {/* Service Packs populaires */}
+            {/* Service Packs personnalisés / populaires */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Star className="text-yellow-400 fill-yellow-400 h-5 w-5"/>
-                  Services populaires
+                  {categoryDistribution && categoryDistribution.length > 0 
+                    ? 'Recommandés pour vous' 
+                    : 'Services populaires'
+                  }
                 </CardTitle>
                 <CardDescription>
-                  Les plus demandés par la communauté
+                  {categoryDistribution && categoryDistribution.length > 0
+                    ? 'Basé sur vos précédentes demandes'
+                    : 'Les plus demandés par la communauté'
+                  }
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
@@ -705,7 +816,7 @@ export default function DashboardPage() {
               </CardContent>
             </Card>
 
-            {/* Prestataires favoris */}
+            {/* Prestataires favoris - Version enrichie avec données réelles */}
             <Card className="border-2">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -719,65 +830,30 @@ export default function DashboardPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                {favorites.length > 0 ? (
-                  <div className="space-y-3">
-                    {favorites.slice(0, 3).map(providerId => (
-                      <Card key={providerId} className="hover:shadow-md transition-all hover:border-primary/50">
-                        <CardContent className="p-4">
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-3">
-                              <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-white font-semibold">
-                                {providerId.charAt(0).toUpperCase()}
-                              </div>
-                              <div>
-                                <p className="font-medium">Prestataire {providerId.slice(0, 8)}</p>
-                                <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                                  <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                                  <span>4.8/5</span>
-                                </div>
-                              </div>
-                            </div>
-                            <ShimmerCard>
-                              <Button
-                                size="sm"
-                                variant="ghost"
-                                onClick={() => {
-                                  toggleFavorite(providerId);
-                                  logFavoriteToggle('remove', providerId, `Prestataire ${providerId.slice(0, 8)}`);
-                                  logAnimatedElementInteraction('favorite_button', 'shimmer', 'remove_favorite');
-                                }}
-                              >
-                                <Heart className="h-4 w-4 fill-red-500 text-red-500" />
-                              </Button>
-                            </ShimmerCard>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                    {favorites.length > 3 && (
-                      <ShimmerCard>
-                        <Button 
-                          variant="outline" 
-                          className="w-full" 
-                          size="sm"
-                          onClick={() => {
-                            logAnimatedElementInteraction('view_all_favorites', 'shimmer', 'client_favorites_expand');
-                            router.push('/dashboard/favorites' as any);
-                          }}
-                        >
-                          Voir tous mes favoris ({favorites.length})
-                        </Button>
-                      </ShimmerCard>
-                    )}
-                  </div>
-                ) : (
-                  <div className="text-center py-8">
-                    <Heart className="h-12 w-12 mx-auto mb-3 text-muted-foreground" />
-                    <p className="font-medium mb-1">Aucun favori</p>
-                    <p className="text-sm text-muted-foreground">
-                      Marquez des prestataires en favoris pour les retrouver facilement
-                    </p>
-                  </div>
+                <FavoriteProvidersList
+                  favoriteIds={favorites}
+                  limit={3}
+                  onToggleFavorite={(providerId) => {
+                    toggleFavorite(providerId);
+                    logFavoriteToggle('remove', providerId, `Provider ${providerId}`);
+                    logAnimatedElementInteraction('favorite_button', 'shimmer', 'remove_favorite');
+                  }}
+                />
+                
+                {favorites.length > 3 && (
+                  <ShimmerCard className="mt-3">
+                    <Button 
+                      variant="outline" 
+                      className="w-full" 
+                      size="sm"
+                      onClick={() => {
+                        logAnimatedElementInteraction('view_all_favorites', 'shimmer', 'client_favorites_expand');
+                        router.push('/dashboard/favorites' as any);
+                      }}
+                    >
+                      Voir tous mes favoris ({favorites.length})
+                    </Button>
+                  </ShimmerCard>
                 )}
               </CardContent>
             </Card>

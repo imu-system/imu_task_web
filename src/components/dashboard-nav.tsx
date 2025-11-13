@@ -61,6 +61,8 @@ import {
   UtensilsCrossed,
   Home,
   Phone,
+  Globe,
+  ExternalLink,
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { UserRole, AccountType } from '@/lib/types';
@@ -103,6 +105,7 @@ export function DashboardNav() {
   // Navigation pour PROFESSIONNELS
   const proNavItems = [
     { href: '/dashboard', icon: <LayoutGrid />, label: 'Tableau de bord', exact: true },
+    { href: '/dashboard/profil-public', icon: <Globe />, label: 'Mon profil public' },
     { href: '/dashboard/offers', icon: <Briefcase />, label: 'Missions disponibles' },
     { href: '/dashboard/tasks', icon: <BookMarked />, label: 'Mes offres' },
     { href: '/dashboard/bookings', icon: <CalendarCheck />, label: 'Planning' },
@@ -276,6 +279,14 @@ export function DashboardNav() {
                                     <span>{t('profile')}</span>
                                 </Link>
                             </DropdownMenuItem>
+                            {isProvider && (
+                                <DropdownMenuItem asChild>
+                                    <Link href="/dashboard/profil-public">
+                                        <Globe className="mr-2 h-4 w-4" />
+                                        <span>{t('publicProfile') || 'Profil public'}</span>
+                                    </Link>
+                                </DropdownMenuItem>
+                            )}
                             <DropdownMenuItem onClick={() => setIsOpen(true)}>
                                 <Settings className="mr-2 h-4 w-4" />
                                 <span>{t('settings')}</span>

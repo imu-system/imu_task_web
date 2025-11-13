@@ -17,7 +17,7 @@ import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useToast } from "@/hooks/use-toast";
 import { useState, useEffect } from "react";
-import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera, Lock, SatelliteDish, UserRound, Briefcase, Link as LinkIcon, File as FileIcon, GripVertical } from "lucide-react";
+import { Loader2, PlusCircle, Home, Trash2, Edit, MapPin, Star, Medal, Languages, ShieldCheck, Camera, Lock, SatelliteDish, UserRound, Briefcase, Link as LinkIcon, File as FileIcon, GripVertical, Globe, ExternalLink } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetDescription, SheetFooter } from "@/components/ui/sheet";
@@ -437,6 +437,14 @@ export default function ProfilePage() {
                                     <Edit className="mr-2 h-4 w-4"/>
                                     {t('editProfile')}
                                 </Button>
+                                {user.roles?.includes(UserRole.provider) && (
+                                    <Button variant="secondary" asChild>
+                                        <Link href="/dashboard/profil-public">
+                                            <Globe className="mr-2 h-4 w-4"/>
+                                            {t('publicProfile') || 'Profil public'}
+                                        </Link>
+                                    </Button>
+                                )}
                                 <Button variant="outline" asChild>
                                     <Link href="/dashboard/profile/kyc">
                                         <Lock className="mr-2 h-4 w-4"/>

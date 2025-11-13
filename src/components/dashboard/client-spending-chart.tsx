@@ -22,10 +22,10 @@ import {
 } from 'recharts';
 import { TrendingUp, TrendingDown, DollarSign, Calendar } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useClientSpendingByMonth, type MonthlySpending } from '@/hooks/use-client-stats';
+import { useClientMonthlySpending } from '@/hooks/use-analytics';
+import type { MonthlyRevenue } from '@/lib/firestore-analytics';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
-import { LiveIndicatorCompact } from './live-indicator';
 
 // ========================================
 // TYPES
@@ -40,7 +40,7 @@ interface ChartTooltipProps {
     active?: boolean;
     payload?: Array<{
         value: number;
-        payload: MonthlySpending;
+        payload: MonthlyRevenue;
     }>;
 }
 
@@ -50,10 +50,10 @@ interface ChartTooltipProps {
 
 export function ClientSpendingChart({ userId, monthsBack = 6 }: ClientSpendingChartProps) {
     const t = useTranslations('Dashboard');
-    const { data: monthlySpending, loading, error, lastUpdate } = useClientSpendingByMonth(userId, monthsBack);
+    const { data: monthlySpending, isLoading: loading, isError, error } = useClientMonthlySpending(userId, monthsBack);
 
     // Calculate metrics
-    const totalSpending = monthlySpending?.reduce((sum, month) => sum + month.spending, 0) || 0;
+    const totalSpending = monthlySpending?.reduce((sum, month) => sum + month.revenue, 0) || 0;
     const totalBookings = monthlySpending?.reduce((sum, month) => sum + month.bookings, 0) || 0;
     const avgPerMonth = monthlySpending && monthlySpending.length > 0 
         ? totalSpending / monthlySpending.length 
@@ -65,8 +65,8 @@ export function ClientSpendingChart({ userId, monthsBack = 6 }: ClientSpendingCh
             return { value: 0, isPositive: true };
         }
 
-        const recentSpending = monthlySpending.slice(-3).reduce((sum, m) => sum + m.spending, 0);
-        const previousSpending = monthlySpending.slice(-6, -3).reduce((sum, m) => sum + m.spending, 0);
+        const recentSpending = monthlySpending.slice(-3).reduce((sum, m) => sum + m.revenue, 0);
+        const previousSpending = monthlySpending.slice(-6, -3).reduce((sum, m) => sum + m.revenue, 0);
 
         if (previousSpending === 0) return { value: 0, isPositive: true };
 
@@ -145,7 +145,6 @@ export function ClientSpendingChart({ userId, monthsBack = 6 }: ClientSpendingCh
                         <CardTitle>{t('spending.title')}</CardTitle>
                         <CardDescription>{t('spending.description')}</CardDescription>
                     </div>
-                    <LiveIndicatorCompact lastUpdate={lastUpdate ?? null} />
                 </div>
             </CardHeader>
             <CardContent>
@@ -239,13 +238,13 @@ export function ClientSpendingChart({ userId, monthsBack = 6 }: ClientSpendingCh
                             />
                             <Tooltip content={<CustomTooltip />} />
                             <Bar
-                                dataKey="spending"
+                                dataKey="revenue"
                                 radius={[8, 8, 0, 0]}
                             >
                                 {monthlySpending.map((entry, index) => (
                                     <Cell
                                         key={`cell-${index}`}
-                                        fill={entry.spending > 0 ? 'hsl(var(--primary))' : 'hsl(var(--muted))'}
+                                        fill={entry.revenue > 0 ? 'hsl(var(--primary))' : 'hsl(var(--muted))'}
                                     />
                                 ))}
                             </Bar>
@@ -288,7 +287,7 @@ function CustomTooltip({ active, payload }: ChartTooltipProps) {
                         {new Intl.NumberFormat('fr-FR', {
                             style: 'currency',
                             currency: 'EUR'
-                        }).format(data.spending)}
+                        }).format(data.revenue)}
                     </span>
                 </div>
                 <div className="flex items-center justify-between gap-4">
@@ -302,7 +301,7 @@ function CustomTooltip({ active, payload }: ChartTooltipProps) {
                             {new Intl.NumberFormat('fr-FR', {
                                 style: 'currency',
                                 currency: 'EUR'
-                            }).format(data.averagePerBooking)}
+                            }).format(data.revenue / data.bookings)}
                         </span>
                     </div>
                 )}

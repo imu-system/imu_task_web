@@ -20,7 +20,8 @@ import {
 } from 'recharts';
 import { Package } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useTasksByCategory, type CategorySpending } from '@/hooks/use-client-stats';
+import { useClientCategoryDistribution } from '@/hooks/use-analytics';
+import type { CategoryDistribution } from '@/lib/firestore-analytics';
 import { Skeleton } from '@/components/ui/skeleton';
 
 // ========================================
@@ -35,7 +36,7 @@ interface ChartTooltipProps {
     active?: boolean;
     payload?: Array<{
         value: number;
-        payload: CategorySpending;
+        payload: CategoryDistribution;
     }>;
 }
 
@@ -60,11 +61,11 @@ const COLORS = [
 
 export function TaskCategoryChart({ userId }: TaskCategoryChartProps) {
     const t = useTranslations('Dashboard');
-    const { data: categoryData, loading, error } = useTasksByCategory(userId);
+    const { data: categoryData, isLoading: loading, isError, error } = useClientCategoryDistribution(userId);
 
     // Calculate totals
     const totalSpending = categoryData?.reduce((sum, cat) => sum + cat.spending, 0) || 0;
-    const totalTasks = categoryData?.reduce((sum, cat) => sum + cat.taskCount, 0) || 0;
+    const totalTasks = categoryData?.reduce((sum, cat) => sum + cat.count, 0) || 0;
 
     // Loading state
     if (loading) {
@@ -179,7 +180,7 @@ export function TaskCategoryChart({ userId }: TaskCategoryChartProps) {
                                 height={36}
                                 formatter={(value, entry: any) => {
                                     const cat = categoryData.find(c => c.category === entry.payload.category);
-                                    return `${value} (${cat?.taskCount || 0})`;
+                                    return `${value} (${cat?.count || 0})`;
                                 }}
                             />
                         </PieChart>
@@ -194,6 +195,7 @@ export function TaskCategoryChart({ userId }: TaskCategoryChartProps) {
                             className="flex items-center justify-between p-3 rounded-lg border bg-card"
                         >
                             <div className="flex items-center gap-3">
+                                {/* eslint-disable-next-line react/forbid-dom-props */}
                                 <div
                                     className="w-4 h-4 rounded-full"
                                     style={{ backgroundColor: COLORS[index % COLORS.length] }}
@@ -201,7 +203,7 @@ export function TaskCategoryChart({ userId }: TaskCategoryChartProps) {
                                 <div>
                                     <p className="font-medium">{cat.category}</p>
                                     <p className="text-sm text-muted-foreground">
-                                        {cat.taskCount} {cat.taskCount > 1 ? 'missions' : 'mission'}
+                                        {cat.count} {cat.count > 1 ? 'missions' : 'mission'}
                                     </p>
                                 </div>
                             </div>
@@ -265,7 +267,7 @@ function CustomTooltip({ active, payload }: ChartTooltipProps) {
                 </div>
                 <div className="flex items-center justify-between gap-4">
                     <span className="text-sm text-muted-foreground">Missions:</span>
-                    <span className="font-semibold">{data.taskCount}</span>
+                    <span className="font-semibold">{data.count}</span>
                 </div>
                 <div className="flex items-center justify-between gap-4 pt-1 border-t">
                     <span className="text-sm text-muted-foreground">Part:</span>

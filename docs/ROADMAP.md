@@ -1015,26 +1015,30 @@
 
 ---
 
-### Phase 13: Profil Public & ImuShop 🔵 (0% complété - Post-V1)
+### Phase 13: Profil Public & ImuShop 🟡 (60% complété - En cours)
 
-**Statut:** 🔵 En validation concept
+**Statut:** 🟡 Phase 13.1 complétée - ImuShop en validation
 
 **Objectif:** Transformer ImuTask en écosystème complet avec profils publics personnalisables et marketplace intégrée.
 
 #### 📋 Features Principales
 
-**Feature 1: Profil Public Personnalisable**
-- [ ] URL personnalisée (`imutask.com/profil/[slug]`)
-- [ ] Portfolio photos/vidéos
-- [ ] Badges & certifications
-- [ ] Avis clients mis en avant
-- [ ] Packs services (ImuPro)
-- [ ] Thèmes personnalisés (premium)
-- [ ] Analytics profil
-- [ ] Partage social + QR code
-- [ ] SEO optimisé
+**Feature 1: Profil Public Personnalisable** ✅ **COMPLÉTÉ**
+- [x] URL personnalisée (`imutask.com/profil/[slug]`)
+- [x] Portfolio photos/vidéos
+- [x] Badges & certifications
+- [x] Avis clients mis en avant
+- [x] Packs services (ImuPro)
+- [x] Thèmes personnalisés (premium)
+- [x] Analytics profil
+- [x] Partage social + QR code
+- [x] SEO optimisé
+- [x] Navigation intégrée (sidebar, dropdown, profil)
+- [x] Actions rapides (Email, SMS, Imprimer, Partage natif)
+- [x] Dashboard de gestion complet
+- [x] Layout responsive pleine largeur
 
-**Feature 2: ImuShop - Marketplace**
+**Feature 2: ImuShop - Marketplace** ⏸️ **EN VALIDATION**
 - [ ] **ImuPro Shop:** Produits artisanaux/professionnels
 - [ ] **ImuMarket:** Seconde main & créations
 - [ ] Panier multi-vendeurs
