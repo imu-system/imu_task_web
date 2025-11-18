@@ -6,6 +6,14 @@
         "systemTheme": "System"
     },
     "Header": {
+        "servicesMenu": {
+            "imutask": "ImuTask - Individuals",
+            "imutaskDesc": "Daily micro-tasks",
+            "imupro": "ImuPro - Professionals",
+            "imuproDesc": "Certified professional services",
+            "carelink": "CareLink - Seniors",
+            "carelinkDesc": "Home care services"
+        },
         "features": "Features",
         "becomeHost": "Become a provider",
         "howItWorks": "How it works",
@@ -2908,6 +2916,30 @@
                     "accessible": "PMR certified",
                     "secure": "100% secure",
                     "simple": "Simple interface"
+                }
+            }
+        },
+        "stats": {
+            "missions": "Missions completed",
+            "members": "Active members",
+            "rating": "Average provider rating",
+            "securePayments": "Secure payments",
+            "trust": {
+                "badge1": {
+                    "title": "Verified providers",
+                    "desc": "Identity confirmed for peace of mind"
+                },
+                "badge2": {
+                    "title": "Secure payments",
+                    "desc": "Certified payment partner"
+                },
+                "badge3": {
+                    "title": "24/7 Support",
+                    "desc": "Assistance when needed"
+                },
+                "badge4": {
+                    "title": "Trusted platform",
+                    "desc": "Secure and reliable"
                 }
             }
         },
