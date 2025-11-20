@@ -31,6 +31,7 @@ import {
 } from 'firebase/firestore';
 import { db } from './firebase';
 import type { Message, MessageType, MessageAttachment } from './types';
+export type { Message, MessageType, MessageAttachment } from './types';
 import { updateThread, incrementUnreadCount, getThread } from './firestore-threads';
 
 const MESSAGES_COLLECTION = 'messages';
@@ -101,17 +102,24 @@ function messageToFirestore(message: Partial<Message>): DocumentData {
 /**
  * Send a message
  */
-export async function sendMessage(messageData: {
-    threadId: string;
+export type SendMessageInput = {
+    threadId?: string;
+    conversationId?: string; // alias used by some callers
     senderId: string;
     senderName?: string;
     senderPhotoUrl?: string;
+    senderAvatar?: string; // legacy alias
     content: string;
     type?: MessageType;
     attachments?: MessageAttachment[];
-}): Promise<string> {
+    recipientId?: string;
+    fileUrl?: string;
+};
+
+export async function sendMessage(messageData: SendMessageInput): Promise<string | void> {
     try {
-        const thread = await getThread(messageData.threadId);
+        const threadId = (messageData as any).threadId || (messageData as any).conversationId;
+        const thread = await getThread(threadId as string);
         if (!thread) {
             throw new Error('Thread not found');
         }
@@ -120,10 +128,10 @@ export async function sendMessage(messageData: {
         const containsPII = detectPII(messageData.content);
 
         const newMessage: Partial<Message> = {
-            threadId: messageData.threadId,
+            threadId: threadId as string,
             senderId: messageData.senderId,
             senderName: messageData.senderName,
-            senderPhotoUrl: messageData.senderPhotoUrl,
+            senderPhotoUrl: (messageData.senderPhotoUrl || messageData.senderAvatar) as string | undefined,
             content: messageData.content,
             type: (messageData.type || 'text') as MessageType,
             attachments: messageData.attachments || [],
@@ -427,5 +435,12 @@ export async function hasUserSentMessages(
         console.error('Error checking user messages:', error);
         return false;
     }
+}
+
+// Backwards-compatible aliases for older imports
+export const subscribeToMessages = subscribeToThreadMessages;
+
+export async function markAllAsRead(threadId: string, userId: string): Promise<void> {
+    return markAllMessagesAsRead(threadId, userId);
 }
 

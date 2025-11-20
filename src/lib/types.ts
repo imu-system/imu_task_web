@@ -207,16 +207,27 @@ export enum MessageType {
 
 export enum ThreadStatus {
   active = 'active',
+  // legacy alias used in fixtures
+  open = 'open',
   archived = 'archived',
   blocked = 'blocked'
 }
 
 export type MessageAttachment = {
   id: string;
-  name: string;
+  name?: string;
   url: string;
-  type: 'image' | 'pdf' | 'document' | 'audio' | 'video' | 'location';
-  size: number; // bytes
+  type?: 'image' | 'pdf' | 'document' | 'audio' | 'video' | 'location';
+  // Legacy/compat: some fixtures use `kind` instead of `type`
+  kind?: AttachmentKind;
+  // Size may be absent in some mock data
+  size?: number; // bytes
+  // Additional legacy/fixture fields
+  filename?: string;
+  uploadedBy?: string;
+  uploadedAt?: Date | string;
+  progress?: number;
+  error?: string;
   mimeType?: string;
   thumbnail?: string; // for images/videos
   duration?: number; // for audio/video in seconds
@@ -249,11 +260,18 @@ export type Message = {
   senderId: string;
   senderName?: string; // denormalized for display
   senderPhotoUrl?: string; // denormalized for display
-  content: string;
+  // Legacy fixtures sometimes used `body` instead of `content`
+  content?: string;
+  body?: string;
+  // Legacy timestamp field used in fixtures
+  sentAt?: Date | string;
+  // Legacy field in some placeholder data
+  conversationId?: string;
   type: MessageType;
   attachments?: MessageAttachment[];
-  readBy: string[]; // array of user IDs who read this message
-  createdAt: Date | string;
+  // readBy may be omitted in lightweight fixtures
+  readBy?: string[]; // array of user IDs who read this message
+  createdAt?: Date | string;
   updatedAt?: Date | string;
   // System message metadata
   systemMetadata?: {
@@ -285,6 +303,7 @@ export type Thread = {
   id: string;
   // Participants: [clientId, providerId]
   participants: string[];
+  // Can be a map keyed by userId or an array of user objects (legacy fixtures)
   participantsData?: {
     [userId: string]: {
       displayName: string;
@@ -293,30 +312,33 @@ export type Thread = {
       lastSeen?: Date | string;
       isOnline?: boolean;
     };
-  };
+  } | any[];
   // Associated task/booking
   taskId?: string;
   taskTitle?: string; // denormalized for display
   bookingId?: string;
   bookingStatus?: BookingStatus;
   // Last message preview
-  lastMessage?: {
+  // lastMessage may be a simple string in placeholder data or a full message preview
+  lastMessage?: string | {
     content: string;
     senderId: string;
     createdAt: Date | string;
     type?: MessageType;
   };
   lastMessageAt: Date | string;
-  // Unread counts per user
-  unreadCount: {
+  // Unread counts per user (optional in fixtures)
+  unreadCount?: {
     [userId: string]: number;
-  };
+  } | any;
   // Thread metadata
   status: ThreadStatus;
   createdAt: Date | string;
   updatedAt: Date | string;
   // Typing indicators
   typingUsers?: string[]; // user IDs currently typing
+  // Group flag used in some components
+  isGroup?: boolean;
   // Advanced features
   pinnedMessages?: string[]; // message IDs that are pinned
   muteNotifications?: {
@@ -622,6 +644,14 @@ export type Notification = {
   user?: any;
   // legacy sentAt timestamp in fixtures
   sentAt?: string | Date;
+};
+
+// Backwards-compatible alias used by some components
+export type NotificationWithId = Notification & {
+  body?: string;
+  priority?: 'low' | 'normal' | 'high';
+  actionUrl?: string;
+  category?: any;
 };
 
 export type ContentPage = {
