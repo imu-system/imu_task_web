@@ -10,22 +10,14 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { formatDistanceToNow } from 'date-fns';
 import { fr } from 'date-fns/locale';
-import {
-  AlertCircle,
-  Calendar,
-  CheckCircle,
-  Clock,
-  Info,
-  MessageSquare,
-  User,
-  XCircle,
-} from 'lucide-react';
+import { Check, X, Trash2, ExternalLink, MessageSquare, Calendar, Info, User } from 'lucide-react';
 import { Link } from '@/navigation';
 import type { NotificationWithId } from '@/lib/types';
+import { NotificationCategory } from '@/lib/types/notifications';
 import { cn } from '@/lib/utils';
 
 interface NotificationCardProps {
-  notification: Notification;
+  notification: NotificationWithId;
   onMarkAsRead?: (id: string) => void;
   onDismiss?: (id: string) => void;
   onDelete?: (id: string) => void;
@@ -37,7 +29,9 @@ export function NotificationCard({
   onDismiss,
   onDelete,
 }: NotificationCardProps) {
-  const { id, title, body, read, priority, createdAt, actionUrl, category } = notification;
+  const { id, title, body, read, priority = 'normal', createdAt, actionUrl, category } = notification;
+
+  const createdAtDate = typeof createdAt === 'string' ? new Date(createdAt) : (createdAt as Date);
 
   const priorityColors = {
     low: 'bg-gray-100 text-gray-700',
@@ -45,7 +39,7 @@ export function NotificationCard({
     high: 'bg-orange-100 text-orange-700',
   };
 
-  const categoryEmojis: Record<NotificationCategory, string> = {
+  const categoryEmojis: Record<string, string> = {
     [NotificationCategory.TASKS]: '📋',
     [NotificationCategory.MESSAGES]: '💬',
     [NotificationCategory.PROPOSALS]: '💼',

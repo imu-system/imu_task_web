@@ -13,6 +13,7 @@ import { useState, useEffect } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { collection, query, where, onSnapshot, doc, getDoc, Timestamp } from 'firebase/firestore';
+import { toDate } from '@/lib/date-utils';
 import { db } from '@/lib/firebase';
 import { getTaskById } from '@/lib/tasks'; // Assuming a function to get task by ID
 
@@ -31,7 +32,7 @@ export function ThreadList() {
 
     const unsubscribe = onSnapshot(q, async (snapshot) => {
       const threadsData: Thread[] = await Promise.all(snapshot.docs.map(async (threadDoc) => {
-        const data = threadDoc.data();
+        const data = threadDoc.data() as any;
         
         // Fetch other participant's data
         const otherParticipantId = data.participants.find((pId: string) => pId !== user.uid);
@@ -57,14 +58,15 @@ export function ThreadList() {
         }
         
         const participantsData = [user, otherParticipantData].filter(Boolean) as User[];
-        
-        return {
+
+        return ({
           id: threadDoc.id,
-          ...data,
           participantsData,
           task: taskData,
           lastMessageAt: (data.lastMessageAt as Timestamp)?.toDate ? (data.lastMessageAt as Timestamp).toDate() : new Date(),
-        } as Thread;
+          // spread legacy data to preserve other fields at runtime
+          ...data,
+        } as unknown) as Thread;
       }));
 
       // Sort by most recent message
@@ -108,7 +110,7 @@ export function ThreadList() {
              <p className="p-4 text-sm text-center text-muted-foreground">Aucune conversation.</p>
           ) : (
             threads.map((thread) => {
-                const otherParticipant = thread.participantsData?.find(p => p.id !== user.uid);
+                const otherParticipant = thread.participantsData?.find((p: any) => p.id !== user.uid);
                 const isActive = pathname.includes(thread.id);
                 // Mock unread count
                 const unreadCount = Math.floor(Math.random() * 5); 
@@ -135,7 +137,18 @@ export function ThreadList() {
                         </time>
                     </div>
                     <div className="flex items-center justify-between">
-                      <p className="text-sm text-muted-foreground truncate">{thread.lastMessage?.body}</p>
+                      <p className="text-sm text-muted-foreground truncate">{
+                        ((): string => {
+                          const lm = thread.lastMessage as unknown;
+                          if (!lm) return '';
+                          if (typeof lm === 'string') return lm;
+                          if (typeof lm === 'object' && lm !== null) {
+                            if ('content' in lm && typeof (lm as any).content === 'string') return (lm as any).content;
+                            if ('body' in lm && typeof (lm as any).body === 'string') return (lm as any).body;
+                          }
+                          return '';
+                        })()
+                      }</p>
                       {unreadCount > 0 && (
                         <Badge className="h-5 w-5 p-0 flex items-center justify-center text-xs">{unreadCount}</Badge>
                       )}

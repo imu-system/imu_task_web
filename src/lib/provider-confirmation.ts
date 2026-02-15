@@ -85,7 +85,13 @@ export async function confirmBooking(
     });
 
     // 6. Send notifications
-    await notifyBookingConfirmed(bookingId, booking.clientId, booking.providerId);
+    // Determine task title and scheduled date for notification payload
+    const taskTitle = booking.taskTitle || (booking.task && booking.task.title) || 'Task';
+    const scheduledDate = booking.scheduledDate ? new Date(booking.scheduledDate) : new Date();
+
+    // Notify both client and provider
+    await notifyBookingConfirmed(booking.clientId, bookingId, taskTitle, scheduledDate);
+    await notifyBookingConfirmed(booking.providerId, bookingId, taskTitle, scheduledDate);
 
     return {
       success: true,

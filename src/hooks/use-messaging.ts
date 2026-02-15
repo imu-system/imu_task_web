@@ -277,14 +277,18 @@ export function useSendMessage() {
         mutationFn: sendMessage,
         onMutate: async (newMessage) => {
             // Optimistic update: Add message to cache immediately
+            const threadId = newMessage.threadId;
+            if (!threadId) return { previousMessages: undefined };
+
             const previousMessages = queryClient.getQueryData<Message[]>(
-                messagingKeys.threadMessages(newMessage.threadId)
+                messagingKeys.threadMessages(threadId)
             );
 
             if (previousMessages) {
                 const optimisticMessage: Message = {
                     id: 'temp-' + Date.now(),
                     ...newMessage,
+                    threadId,
                     type: (newMessage.type || 'text') as MessageType,
                     attachments: newMessage.attachments || [],
                     readBy: [newMessage.senderId],
@@ -293,7 +297,7 @@ export function useSendMessage() {
                 };
 
                 queryClient.setQueryData(
-                    messagingKeys.threadMessages(newMessage.threadId),
+                    messagingKeys.threadMessages(threadId),
                     [...previousMessages, optimisticMessage]
                 );
             }
@@ -302,7 +306,7 @@ export function useSendMessage() {
         },
         onError: (err, newMessage, context) => {
             // Rollback on error
-            if (context?.previousMessages) {
+            if (context?.previousMessages && newMessage.threadId) {
                 queryClient.setQueryData(
                     messagingKeys.threadMessages(newMessage.threadId),
                     context.previousMessages
@@ -312,10 +316,10 @@ export function useSendMessage() {
         onSuccess: (messageId, variables) => {
             // Invalidate queries
             queryClient.invalidateQueries({
-                queryKey: messagingKeys.threadMessages(variables.threadId),
+                queryKey: messagingKeys.threadMessages(variables.threadId as string),
             });
             queryClient.invalidateQueries({
-                queryKey: messagingKeys.thread(variables.threadId),
+                queryKey: messagingKeys.thread(variables.threadId as string),
             });
         },
     });
@@ -443,4 +447,72 @@ export function useDeleteThread() {
             });
         },
     });
+}
+
+// Re-export legacy hook name used across the codebase
+// Provide a compatibility wrapper for `useMessages` so callers can pass either
+// a threadId string (common in many components) or the legacy props object.
+import { useMessages as useMessagesLegacy } from './use-messages';
+
+// Overloads: call with a threadId string -> returns React Query result from useThreadMessages
+export function useMessages(threadId?: string): ReturnType<typeof useThreadMessages>;
+// call with legacy props object -> returns the legacy hook return
+export function useMessages(props: any): ReturnType<typeof useMessagesLegacy>;
+export function useMessages(arg?: string | any) {
+    // If a string (threadId) was passed, route to the React Query based hook
+    if (!arg || typeof arg === 'string') {
+        // arg is threadId
+        return useThreadMessages(arg as string | undefined);
+    }
+
+    // Otherwise call the legacy hook which expects a props object
+    return useMessagesLegacy({
+        conversationId: arg.conversationId,
+        currentUserId: arg.currentUserId,
+        currentUserName: arg.currentUserName || 'Unknown',
+        currentUserAvatar: arg.currentUserAvatar,
+        recipientId: arg.recipientId,
+    });
+}
+
+/**
+ * Hook to get typing users for a thread (returns array of userIds)
+ */
+export function useTypingStatus(threadId: string | undefined) {
+    const queryClient = useQueryClient();
+
+    const query = useQuery({
+        queryKey: [...messagingKeys.all, 'typing', threadId || ''],
+        queryFn: async () => {
+            if (!threadId) return [] as string[];
+            try {
+                const thread = await getThread(threadId);
+                return thread?.typingUsers || [];
+            } catch (err) {
+                return [] as string[];
+            }
+        },
+        enabled: !!threadId,
+        staleTime: 1000 * 10,
+    });
+
+    useEffect(() => {
+        if (!threadId) return;
+        let unsub: (() => void) | undefined;
+        try {
+            unsub = subscribeToThread(threadId, (thread) => {
+                queryClient.setQueryData([...messagingKeys.all, 'typing', threadId], thread?.typingUsers || []);
+            });
+        } catch (err) {
+            // ignore
+        }
+
+        return () => {
+            if (unsub) {
+                try { unsub(); } catch (e) { /* ignore */ }
+            }
+        };
+    }, [threadId, queryClient]);
+
+    return query;
 }

@@ -30,6 +30,7 @@ import {
 } from 'firebase/firestore';
 import { db } from './firebase';
 import type { Thread, ThreadStatus, Message, MessageType } from './types';
+import { toDate } from './date-utils';
 
 const THREADS_COLLECTION = 'threads';
 const MESSAGES_COLLECTION = 'messages';
@@ -42,24 +43,34 @@ const MESSAGES_COLLECTION = 'messages';
  * Convert Firestore document to Thread type
  */
 function firestoreToThread(id: string, data: DocumentData): Thread {
+    const lastMessageRaw = data.lastMessage;
+    let lastMessage: Thread['lastMessage'] | undefined;
+
+    if (typeof lastMessageRaw === 'string') {
+        lastMessage = lastMessageRaw;
+    } else if (lastMessageRaw && typeof lastMessageRaw === 'object') {
+        lastMessage = {
+            content: lastMessageRaw.content,
+            senderId: lastMessageRaw.senderId,
+            createdAt: toDate(lastMessageRaw.createdAt) || new Date(),
+            type: lastMessageRaw.type,
+        };
+    }
+
     return {
         id,
         participants: data.participants || [],
-        participantsData: data.participantsData || {},
+        participantsData: data.participantsData || [],
         taskId: data.taskId,
         taskTitle: data.taskTitle,
         bookingId: data.bookingId,
         bookingStatus: data.bookingStatus,
-        lastMessage: data.lastMessage ? {
-            content: data.lastMessage.content,
-            senderId: data.lastMessage.senderId,
-            createdAt: data.lastMessage.createdAt?.toDate() || new Date(),
-        } : undefined,
-        lastMessageAt: data.lastMessageAt?.toDate() || new Date(),
+        lastMessage,
+        lastMessageAt: toDate(data.lastMessageAt) || new Date(),
         unreadCount: data.unreadCount || {},
         status: data.status || 'active',
-        createdAt: data.createdAt?.toDate() || new Date(),
-        updatedAt: data.updatedAt?.toDate() || new Date(),
+        createdAt: toDate(data.createdAt) || new Date(),
+        updatedAt: toDate(data.updatedAt) || new Date(),
         typingUsers: data.typingUsers || [],
     };
 }
@@ -77,12 +88,17 @@ function threadToFirestore(thread: Partial<Thread>): DocumentData {
     };
 
     if (thread.lastMessage) {
-        data.lastMessage = {
-            ...thread.lastMessage,
-            createdAt: thread.lastMessage.createdAt instanceof Date
-                ? Timestamp.fromDate(thread.lastMessage.createdAt)
-                : serverTimestamp(),
-        };
+        // If lastMessage is a simple string, store it as-is.
+        if (typeof thread.lastMessage === 'string') {
+            data.lastMessage = thread.lastMessage;
+        } else {
+            data.lastMessage = {
+                ...(thread.lastMessage as object),
+                createdAt: (thread.lastMessage as any).createdAt instanceof Date
+                    ? Timestamp.fromDate((thread.lastMessage as any).createdAt)
+                    : serverTimestamp(),
+            };
+        }
     }
 
     if (thread.lastMessageAt instanceof Date) {
@@ -489,9 +505,12 @@ export async function searchThreads(
                 return true;
             }
 
-            // Search in participant names
-            const participantNames = Object.values(thread.participantsData || {})
-                .map(p => p.displayName.toLowerCase());
+            // Search in participant names (participantsData may be array or object)
+            const participants = Array.isArray(thread.participantsData)
+                ? thread.participantsData
+                : Object.values(thread.participantsData || {});
+
+            const participantNames = (participants as any[]).map((p: any) => (p?.displayName || '').toLowerCase());
 
             return participantNames.some(name => name.includes(lowerQuery));
         });

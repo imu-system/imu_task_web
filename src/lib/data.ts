@@ -3,6 +3,7 @@
 import { Task, User, Offer, UserStatus, KYCStatus, TaskStatus, ServiceCategory, OfferStatus, TaskVisibility, ServiceCategoryCreation, Transfer, TransferStatus, Payout, PayoutStatus, Review, ReviewVisibility, Booking, Dispute, DisputeStatus, DisputeType, UserRole, Notification, NotificationType, NotificationChannel, DeliveryStatus, ContentPage, PageStatus, Thread, ThreadStatus, Message, MessageType, Attachment, AttachmentKind, Device, DevicePlatform } from './types';
 import { db } from './firebase';
 import { collection, query, where, getDocs, onSnapshot, Unsubscribe, doc, getDoc, addDoc, serverTimestamp, deleteDoc, updateDoc, Timestamp } from 'firebase/firestore';
+import { tasks } from './placeholder-data';
 
 
 export const users: User[] = [
@@ -646,54 +647,84 @@ export const getPages = (): ContentPage[] => [
 ];
 
 const mockMessages: Message[] = [
-    { id: 'msg1', threadId: 'thread1', senderId: 'user2', body: 'Bonjour, je suis intéressé par votre mission de jardinage. Je suis disponible demain.', type: MessageType.text, sentAt: new Date('2024-08-27T10:00:00Z') },
-    { id: 'msg2', threadId: 'thread1', senderId: 'user4', body: 'Bonjour Lucas, merci pour votre message. Demain 14h vous conviendrait ?', type: MessageType.text, sentAt: new Date('2024-08-27T10:05:00Z') },
-    { id: 'msg3', threadId: 'thread1', senderId: 'user2', body: 'Parfait pour moi !', type: MessageType.text, sentAt: new Date('2024-08-27T10:06:00Z') },
+    {
+        id: 'msg1', threadId: 'thread1', senderId: 'user2', body: 'Bonjour, je suis intéressé par votre mission de jardinage. Je suis disponible demain.', content: 'Bonjour, je suis intéressé par votre mission de jardinage. Je suis disponible demain.', type: MessageType.text, sentAt: new Date('2024-08-27T10:00:00Z'), createdAt: new Date('2024-08-27T10:00:00Z'),
+        readBy: []
+    },
+    {
+        id: 'msg2', threadId: 'thread1', senderId: 'user4', body: 'Bonjour Lucas, merci pour votre message. Demain 14h vous conviendrait ?', content: 'Bonjour Lucas, merci pour votre message. Demain 14h vous conviendrait ?', type: MessageType.text, sentAt: new Date('2024-08-27T10:05:00Z'), createdAt: new Date('2024-08-27T10:05:00Z'),
+        readBy: []
+    },
+    {
+        id: 'msg3', threadId: 'thread1', senderId: 'user2', body: 'Parfait pour moi !', content: 'Parfait pour moi !', type: MessageType.text, sentAt: new Date('2024-08-27T10:06:00Z'), createdAt: new Date('2024-08-27T10:06:00Z'),
+        readBy: []
+    },
     {
         id: 'msg4',
         threadId: 'thread2',
         senderId: 'user3',
         type: MessageType.image,
         body: 'Voici une photo du jardin actuel.',
+        content: 'Voici une photo du jardin actuel.',
         attachments: [{
             id: 'att1',
             url: 'https://picsum.photos/seed/garden1/400/300',
             kind: AttachmentKind.image,
             filename: 'jardin_actuel.jpg',
+            name: 'jardin_actuel.jpg',
             size: 123456,
             mimeType: 'image/jpeg',
             uploadedBy: 'user3',
             uploadedAt: new Date('2024-08-27T10:07:00Z')
         }],
-        sentAt: new Date('2024-08-27T10:07:00Z')
+        sentAt: new Date('2024-08-27T10:07:00Z'),
+        createdAt: new Date('2024-08-27T10:07:00Z'),
+        readBy: []
     },
     {
         id: 'msg5',
         threadId: 'thread2',
         senderId: 'user1',
         body: 'Merci pour la photo. Voici le devis.',
+        content: 'Merci pour la photo. Voici le devis.',
         type: MessageType.file,
         attachments: [{
             id: 'att2',
             url: '#',
             kind: AttachmentKind.file,
             filename: 'devis_jardinage.pdf',
+            name: 'devis_jardinage.pdf',
             size: 78912,
             mimeType: 'application/pdf',
             uploadedBy: 'user1',
             uploadedAt: new Date('2024-08-27T10:08:00Z')
         }],
-        sentAt: new Date('2024-08-27T10:08:00Z')
+        sentAt: new Date('2024-08-27T10:08:00Z'),
+        createdAt: new Date('2024-08-27T10:08:00Z'),
+        readBy: []
     },
-    { id: 'msg6', threadId: 'thread3', senderId: 'user2', body: "Bonjour Marc, je suis disponible pour promener Oscar. J'adore les chiens !", type: MessageType.text, sentAt: new Date('2024-08-19T15:00:00Z') },
-    { id: 'msg7', threadId: 'thread3', senderId: 'user4', body: "Super ! On peut s'appeler pour en discuter ?", type: MessageType.text, sentAt: new Date('2024-08-19T15:05:00Z') },
-    { id: 'msg8', threadId: 'thread4', senderId: 'user1', body: "Bonjour, je n'arrive pas à ajouter une nouvelle adresse sur mon profil.", type: MessageType.text, sentAt: new Date('2024-08-28T09:00:00Z') },
-    { id: 'msg9', threadId: 'thread4', senderId: 'user5', body: "Bonjour Anne-Marie, je suis Emma du support. Pouvez-vous me décrire l'erreur que vous rencontrez ?", type: MessageType.text, sentAt: new Date('2024-08-28T09:02:00Z') },
+    {
+        id: 'msg6', threadId: 'thread3', senderId: 'user2', body: "Bonjour Marc, je suis disponible pour promener Oscar. J'adore les chiens !", content: "Bonjour Marc, je suis disponible pour promener Oscar. J'adore les chiens !", type: MessageType.text, sentAt: new Date('2024-08-19T15:00:00Z'), createdAt: new Date('2024-08-19T15:00:00Z'),
+        readBy: []
+    },
+    {
+        id: 'msg7', threadId: 'thread3', senderId: 'user4', body: "Super ! On peut s'appeler pour en discuter ?", content: "Super ! On peut s'appeler pour en discuter ?", type: MessageType.text, sentAt: new Date('2024-08-19T15:05:00Z'), createdAt: new Date('2024-08-19T15:05:00Z'),
+        readBy: []
+    },
+    {
+        id: 'msg8', threadId: 'thread4', senderId: 'user1', body: "Bonjour, je n'arrive pas à ajouter une nouvelle adresse sur mon profil.", content: "Bonjour, je n'arrive pas à ajouter une nouvelle adresse sur mon profil.", type: MessageType.text, sentAt: new Date('2024-08-28T09:00:00Z'), createdAt: new Date('2024-08-28T09:00:00Z'),
+        readBy: []
+    },
+    {
+        id: 'msg9', threadId: 'thread4', senderId: 'user5', body: "Bonjour Anne-Marie, je suis Emma du support. Pouvez-vous me décrire l'erreur que vous rencontrez ?", content: "Bonjour Anne-Marie, je suis Emma du support. Pouvez-vous me décrire l'erreur que vous rencontrez ?", type: MessageType.text, sentAt: new Date('2024-08-28T09:02:00Z'), createdAt: new Date('2024-08-28T09:02:00Z'),
+        readBy: []
+    },
     {
         id: 'msg10',
         threadId: 'thread2',
         senderId: 'user3',
         body: 'Audio pour confirmer.',
+        content: 'Audio pour confirmer.',
         type: MessageType.audio,
         attachments: [{
             id: 'att3',
@@ -703,9 +734,12 @@ const mockMessages: Message[] = [
             size: 54321,
             mimeType: 'audio/mpeg',
             uploadedBy: 'user3',
-            uploadedAt: new Date('2024-08-27T10:09:00Z')
+            uploadedAt: new Date('2024-08-27T10:09:00Z'),
+            name: ''
         }],
-        sentAt: new Date('2024-08-27T10:09:00Z')
+        sentAt: new Date('2024-08-27T10:09:00Z'),
+        createdAt: new Date('2024-08-27T10:09:00Z'),
+        readBy: []
     },
 
 ];
@@ -721,7 +755,7 @@ export var mockThreads: Thread[] = [
         status: ThreadStatus.open,
         createdAt: new Date(),
         updatedAt: new Date(),
-        task: getTasks().find(t => t.id === 'task2')!
+        tasks: [getTasks().find(t => t.id === 'task2')!]
     },
     {
         id: 'thread2',
@@ -733,7 +767,7 @@ export var mockThreads: Thread[] = [
         status: ThreadStatus.open,
         createdAt: new Date(),
         updatedAt: new Date(),
-        task: getTasks().find(t => t.id === 'task1')!
+        tasks: [getTasks().find(t => t.id === 'task1')!]
     },
     {
         id: 'thread3',
@@ -745,7 +779,7 @@ export var mockThreads: Thread[] = [
         status: ThreadStatus.archived,
         createdAt: new Date(),
         updatedAt: new Date(),
-        task: getTasks().find(t => t.id === 'task4')!
+        tasks: [getTasks().find(t => t.id === 'task4')!]
     },
     {
         id: 'thread4',
@@ -797,7 +831,7 @@ export const getThreadsForUser = (userId: string, callback: (threads: Thread[]) 
                     ...lastMessage,
                     sentAt: (lastMessage.sentAt as Timestamp)?.toDate ? (lastMessage.sentAt as Timestamp).toDate() : new Date(),
                 }
-            } as Thread;
+            } as unknown as Thread;
         }));
 
         // Sort by most recent message

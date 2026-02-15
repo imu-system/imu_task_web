@@ -33,6 +33,7 @@ import { MessageImage } from '@/components/chat/message-image';
 import { AlertCircle, ArrowDown } from 'lucide-react';
 import { useTranslations, useLocale } from 'next-intl';
 import type { Message } from '@/lib/firestore-messages';
+import { toDate, toMillis } from '@/lib/date-utils';
 import { cn } from '@/lib/utils';
 
 interface MessageThreadProps {
@@ -97,11 +98,11 @@ export function MessageThread({ messages, currentUserId, loading, error }: Messa
   // Helper: Check if message should be grouped with previous
   const isGroupedMessage = (currentMsg: Message, prevMsg: Message | undefined): boolean => {
     if (!prevMsg) return false;
-    
-    const timeDiff = currentMsg.createdAt?.toMillis() - prevMsg.createdAt?.toMillis();
+
+    const timeDiff = (toMillis(currentMsg.createdAt) || 0) - (toMillis(prevMsg.createdAt) || 0);
     const isSameSender = prevMsg.senderId === currentMsg.senderId;
     const within5Minutes = timeDiff < 5 * 60 * 1000; // 5 minutes
-    
+
     return isSameSender && within5Minutes;
   };
 
@@ -120,11 +121,11 @@ export function MessageThread({ messages, currentUserId, loading, error }: Messa
   const shouldShowDateSeparator = (currentMsg: Message, prevMsg: Message | undefined): boolean => {
     if (!prevMsg) return true;
     
-    const currentDate = currentMsg.createdAt?.toDate();
-    const prevDate = prevMsg.createdAt?.toDate();
-    
+    const currentDate = toDate(currentMsg.createdAt);
+    const prevDate = toDate(prevMsg.createdAt);
+
     if (!currentDate || !prevDate) return false;
-    
+
     return !isSameDay(currentDate, prevDate);
   };
 
@@ -180,8 +181,9 @@ export function MessageThread({ messages, currentUserId, loading, error }: Messa
           const isGrouped = isGroupedMessage(message, prevMessage);
           const showDateSeparator = shouldShowDateSeparator(message, prevMessage);
           
-          const timestamp = message.createdAt?.toDate
-            ? formatDistanceToNow(message.createdAt.toDate(), {
+          const created = toDate(message.createdAt);
+          const timestamp = created
+            ? formatDistanceToNow(created, {
                 addSuffix: true,
                 locale: localeMap[locale] || enUS,
               })
@@ -190,11 +192,11 @@ export function MessageThread({ messages, currentUserId, loading, error }: Messa
           return (
             <div key={message.id}>
               {/* Date Separator */}
-              {showDateSeparator && message.createdAt?.toDate && (
+              {showDateSeparator && toDate(message.createdAt) && (
                 <div className="flex items-center gap-2 my-6">
                   <div className="h-px bg-border flex-1" />
                   <span className="text-xs text-muted-foreground px-3 py-1 bg-muted rounded-full">
-                    {formatDateSeparator(message.createdAt.toDate())}
+                    {formatDateSeparator(toDate(message.createdAt) as Date)}
                   </span>
                   <div className="h-px bg-border flex-1" />
                 </div>
@@ -210,7 +212,7 @@ export function MessageThread({ messages, currentUserId, loading, error }: Messa
               >
                 {!isCurrentUser && (
                   <Avatar className={cn('h-8 w-8 shrink-0', isGrouped && 'invisible')}>
-                    <AvatarImage src={message.senderAvatar} />
+                    <AvatarImage src={message.senderPhotoUrl} />
                     <AvatarFallback>{message.senderName?.[0]?.toUpperCase() || 'U'}</AvatarFallback>
                   </Avatar>
                 )}
@@ -220,14 +222,14 @@ export function MessageThread({ messages, currentUserId, loading, error }: Messa
                     <span className="text-xs text-muted-foreground px-3">{message.senderName}</span>
                   )}
                   
-                  {message.type === 'image' && message.fileUrl ? (
+                  {message.type === 'image' && (message as any).fileUrl ? (
                     <div
                       className={cn(
                         'rounded-2xl overflow-hidden',
                         isCurrentUser ? 'rounded-br-sm' : 'rounded-bl-sm'
                       )}
                     >
-                      <MessageImage src={message.fileUrl} alt={message.content} />
+                      <MessageImage src={(message.attachments && message.attachments[0]?.url) || (message as any).fileUrl} alt={message.content} />
                       {message.content && message.content !== '📷 Image' && (
                         <div
                           className={cn(
@@ -259,7 +261,7 @@ export function MessageThread({ messages, currentUserId, loading, error }: Messa
 
                 {isCurrentUser && (
                   <Avatar className={cn('h-8 w-8 shrink-0', isGrouped && 'invisible')}>
-                    <AvatarImage src={message.senderAvatar} />
+                    <AvatarImage src={message.senderPhotoUrl} />
                     <AvatarFallback>{message.senderName?.[0]?.toUpperCase() || 'U'}</AvatarFallback>
                   </Avatar>
                 )}

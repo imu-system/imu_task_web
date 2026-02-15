@@ -76,10 +76,11 @@ export function ConversationPageAdvanced() {
   const muteThreadMutation = useMuteThread(user?.uid || '');
 
   // Contact info (autre participant)
-  const otherParticipant = thread?.participants.find((p) => p.userId !== user?.uid);
+  // Use participantsData when available (objects), fallback to participants (ids)
+  const otherParticipant = (thread?.participantsData as any[])?.find((p) => p?.userId !== user?.uid) || null;
   const contactName = otherParticipant?.name || 'Unknown';
   const contactAvatar = otherParticipant?.photoUrl;
-  const contactStatus = typingUsers.some((u) => u.userId !== user?.uid)
+  const contactStatus = (typingUsers as any[]).some((u) => (u as any)?.userId !== user?.uid)
     ? ('typing' as const)
     : ('offline' as const); // TODO: Get real online status
 
@@ -94,7 +95,7 @@ export function ConversationPageAdvanced() {
   useEffect(() => {
     if (messages.length > 0 && user?.uid) {
       const unreadMessageIds = messages
-        .filter((m) => m.senderId !== user.uid && m.status !== 'read')
+        .filter((m) => m.senderId !== user.uid && (m as any).status !== 'read')
         .map((m) => m.id);
 
       if (unreadMessageIds.length > 0) {

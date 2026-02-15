@@ -30,6 +30,7 @@ import {
     DocumentData,
 } from 'firebase/firestore';
 import { db } from './firebase';
+import { toDate } from './date-utils';
 import type { Message, MessageType, MessageAttachment } from './types';
 export type { Message, MessageType, MessageAttachment } from './types';
 import { updateThread, incrementUnreadCount, getThread } from './firestore-threads';
@@ -72,8 +73,8 @@ function firestoreToMessage(id: string, data: DocumentData): Message {
         type: data.type || 'text',
         attachments: data.attachments || [],
         readBy: data.readBy || [],
-        createdAt: data.createdAt?.toDate() || new Date(),
-        updatedAt: data.updatedAt?.toDate(),
+        createdAt: toDate(data.createdAt) || new Date(),
+        updatedAt: toDate(data.updatedAt),
         systemMetadata: data.systemMetadata,
         containsPII: data.containsPII || false,
         piiWarningShown: data.piiWarningShown || false,
@@ -86,12 +87,14 @@ function firestoreToMessage(id: string, data: DocumentData): Message {
 function messageToFirestore(message: Partial<Message>): DocumentData {
     return {
         ...message,
-        createdAt: message.createdAt instanceof Date
-            ? Timestamp.fromDate(message.createdAt)
-            : serverTimestamp(),
-        updatedAt: message.updatedAt instanceof Date
-            ? Timestamp.fromDate(message.updatedAt)
-            : serverTimestamp(),
+        createdAt: ((): any => {
+            const d = toDate(message.createdAt as any);
+            return d ? Timestamp.fromDate(d) : serverTimestamp();
+        })(),
+        updatedAt: ((): any => {
+            const d = toDate(message.updatedAt as any);
+            return d ? Timestamp.fromDate(d) : serverTimestamp();
+        })(),
     };
 }
 
@@ -148,7 +151,7 @@ export async function sendMessage(messageData: SendMessageInput): Promise<string
         );
 
         // Update thread with last message preview
-        await updateThread(messageData.threadId, {
+        await updateThread(threadId as string, {
             lastMessage: {
                 content: messageData.content.substring(0, 100), // Preview (100 chars)
                 senderId: messageData.senderId,
@@ -159,7 +162,7 @@ export async function sendMessage(messageData: SendMessageInput): Promise<string
 
         // Increment unread count for other participants
         await incrementUnreadCount(
-            messageData.threadId,
+            threadId as string,
             messageData.senderId,
             thread.participants
         );

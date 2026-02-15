@@ -1,4 +1,5 @@
 import type { User, Task, Proposal, Message, Conversation } from './types';
+import { MessageType, ThreadStatus } from './types';
 
 export const users: User[] = [
   {
@@ -146,30 +147,42 @@ export const messages: Message[] = [
   {
     id: 'msg-1',
     conversationId: 'conv-1',
+    threadId: 'conv-1',
     senderId: 'user-1',
     content: 'Hello! I saw your task for the landing page and I am very interested.',
-    timestamp: new Date(Date.now() - 1000 * 60 * 5)
+    type: MessageType.text,
+    readBy: [],
+    createdAt: new Date(Date.now() - 1000 * 60 * 5)
   },
   {
     id: 'msg-2',
     conversationId: 'conv-1',
+    threadId: 'conv-1',
     senderId: 'user-2',
     content: 'Great! Do you have a portfolio I can look at?',
-    timestamp: new Date(Date.now() - 1000 * 60 * 4)
+    type: MessageType.text,
+    readBy: [],
+    createdAt: new Date(Date.now() - 1000 * 60 * 4)
   },
   {
     id: 'msg-3',
     conversationId: 'conv-1',
+    threadId: 'conv-1',
     senderId: 'user-1',
     content: 'Yes, you can check it out at myprofile.com/portfolio. I can start immediately.',
-    timestamp: new Date(Date.now() - 1000 * 60 * 3)
+    type: MessageType.text,
+    readBy: [],
+    createdAt: new Date(Date.now() - 1000 * 60 * 3)
   },
   {
     id: 'msg-4',
     conversationId: 'conv-2',
+    threadId: 'conv-2',
     senderId: 'user-3',
     content: 'Regarding the leaky faucet, I can be there at 10 AM tomorrow.',
-    timestamp: new Date(Date.now() - 1000 * 60 * 60 * 24)
+    type: MessageType.text,
+    readBy: [],
+    createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24)
   }
 ];
 
@@ -178,12 +191,18 @@ export const conversations: Conversation[] = [
     id: 'conv-1',
     participants: ['user-1', 'user-2'],
     lastMessage: 'Yes, you can check it out at myprofile.com/portfolio. I can start immediately.',
-    lastMessageAt: new Date(Date.now() - 1000 * 60 * 3)
+    lastMessageAt: new Date(Date.now() - 1000 * 60 * 3),
+    status: ThreadStatus.active,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
     id: 'conv-2',
     participants: ['user-3', 'user-2'],
     lastMessage: 'Regarding the leaky faucet, I can be there at 10 AM tomorrow.',
-    lastMessageAt: new Date(Date.now() - 1000 * 60 * 60 * 24)
+    lastMessageAt: new Date(Date.now() - 1000 * 60 * 60 * 24),
+    status: ThreadStatus.active,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   }
 ];

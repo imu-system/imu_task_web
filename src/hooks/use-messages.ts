@@ -15,6 +15,7 @@ import {
     markAllAsRead as markAllAsReadFn,
     type SendMessageInput,
 } from '@/lib/firestore-messages';
+import { MessageType } from '@/lib/types';
 import { resetUnreadCount } from '@/lib/firestore-conversations';
 
 interface UseMessagesReturn {
@@ -113,7 +114,7 @@ export function useMessages({
                     senderName: currentUserName,
                     senderAvatar: currentUserAvatar,
                     content: content.trim() || '📷 Image',
-                    type: imageUrl ? 'image' : 'text',
+                    type: imageUrl ? MessageType.image : MessageType.text,
                     recipientId,
                     ...(imageUrl && { fileUrl: imageUrl }),
                 };

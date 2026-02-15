@@ -53,7 +53,10 @@ import {
   updateBlockedPeriod,
   deleteBlockedPeriod,
 } from '@/lib/firestore-availability';
-import type { BlockedPeriod, BlockType } from '@/types/availability';
+import type { BlockedPeriod } from '@/types/availability';
+import { toDate } from '@/lib/date-utils';
+
+type BlockType = BlockedPeriod['blockType'];
 
 interface BlockedPeriodsListProps {
   providerId: string;
@@ -68,7 +71,7 @@ interface BlockedPeriodFormData {
   blockType: BlockType;
 }
 
-const BLOCK_TYPES: BlockType[] = ['vacation', 'sick', 'personal', 'other'];
+const BLOCK_TYPES: BlockType[] = ['vacation', 'sick_leave', 'personal', 'other'];
 
 export function BlockedPeriodsList({
   providerId,
@@ -127,8 +130,8 @@ export function BlockedPeriodsList({
   function openEditDialog(period: BlockedPeriod) {
     setEditingPeriod(period);
     setFormData({
-      startDate: format(period.startDate, 'yyyy-MM-dd'),
-      endDate: format(period.endDate, 'yyyy-MM-dd'),
+      startDate: format(toDate(period.startDate) || new Date(), 'yyyy-MM-dd'),
+      endDate: format(toDate(period.endDate) || new Date(), 'yyyy-MM-dd'),
       reason: period.reason,
       blockType: period.blockType,
     });
@@ -289,9 +292,9 @@ export function BlockedPeriodsList({
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4 text-muted-foreground" />
                       <span className="font-medium">
-                        {format(period.startDate, 'PPP', { locale: dateLocale })}
+                        {format(toDate(period.startDate) || new Date(), 'PPP', { locale: dateLocale })}
                         {' → '}
-                        {format(period.endDate, 'PPP', { locale: dateLocale })}
+                        {format(toDate(period.endDate) || new Date(), 'PPP', { locale: dateLocale })}
                       </span>
                       <Badge className={getBlockTypeColor(period.blockType)}>
                         {t(`types.${period.blockType}`)}
@@ -418,9 +421,9 @@ export function BlockedPeriodsList({
             <AlertDialogDescription>
               {periodToDelete && (
                 <>
-                  {format(periodToDelete.startDate, 'PPP', { locale: dateLocale })}
+                  {format(toDate(periodToDelete.startDate) || new Date(), 'PPP', { locale: dateLocale })}
                   {' → '}
-                  {format(periodToDelete.endDate, 'PPP', { locale: dateLocale })}
+                  {format(toDate(periodToDelete.endDate) || new Date(), 'PPP', { locale: dateLocale })}
                   <br />
                   {periodToDelete.reason}
                 </>

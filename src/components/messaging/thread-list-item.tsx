@@ -23,6 +23,7 @@ import {
 import { useTranslations, useLocale } from 'next-intl';
 import { useArchiveThread, useDeleteThread, useUpdateThread } from '@/hooks/use-messaging';
 import type { Thread } from '@/lib/types';
+import { toDate } from '@/lib/date-utils';
 import { cn } from '@/lib/utils';
 
 interface ThreadListItemProps {
@@ -52,21 +53,35 @@ export function ThreadListItem({
   // Nombre de messages non lus pour cet utilisateur
   const unreadCount = thread.unreadCount?.[userId] || 0;
 
+  // Normalize lastMessage safely (can be string | Message | preview)
+  const rawLastMessage = thread.lastMessage;
+  const getLastMessageText = (lm: unknown) => {
+    if (!lm) return '';
+    if (typeof lm === 'string') return lm;
+    if (typeof lm === 'object' && lm !== null) {
+      if ('content' in lm && typeof (lm as any).content === 'string') return (lm as any).content;
+      if ('body' in lm && typeof (lm as any).body === 'string') return (lm as any).body;
+    }
+    return '';
+  };
+
+  const lastMessageContent = getLastMessageText(rawLastMessage) || t('noMessages');
+
   // Dernier message (tronqué)
-  const lastMessagePreview = thread.lastMessage?.content
-    ? thread.lastMessage.content.length > 50
-      ? thread.lastMessage.content.substring(0, 50) + '...'
-      : thread.lastMessage.content
+  const lastMessagePreview = lastMessageContent
+    ? lastMessageContent.length > 50
+      ? lastMessageContent.substring(0, 50) + '...'
+      : lastMessageContent
     : t('noMessages');
 
-  // Timestamp formaté
-  const timestamp = typeof thread.lastMessageAt === 'string' 
-    ? new Date(thread.lastMessageAt) 
-    : thread.lastMessageAt;
-  const formattedTime = formatDistanceToNow(timestamp, {
-    addSuffix: true,
-    locale: locale === 'fr' ? fr : enUS,
-  });
+  // Timestamp formaté (sûr via toDate)
+  const lastMessageDate = toDate(thread.lastMessageAt);
+  const formattedTime = lastMessageDate
+    ? formatDistanceToNow(lastMessageDate, {
+        addSuffix: true,
+        locale: locale === 'fr' ? fr : enUS,
+      })
+    : '';
 
   // Initiales pour l'avatar
   const initials = otherParticipant?.displayName
@@ -142,7 +157,7 @@ export function ThreadListItem({
             'text-sm truncate',
             unreadCount > 0 ? 'font-medium text-[#111b21]' : 'text-[#667781]'
           )}>
-            {thread.lastMessage?.senderId === userId && (
+            {typeof rawLastMessage === 'object' && rawLastMessage !== null && 'senderId' in rawLastMessage && (rawLastMessage as any).senderId === userId && (
               <span className="text-[#00a884] mr-1 font-medium">{t('you')}:</span>
             )}
             {lastMessagePreview}

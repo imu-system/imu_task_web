@@ -26,6 +26,7 @@ import {
   DocumentData,
 } from 'firebase/firestore';
 import { db } from './firebase';
+import { toDate } from './date-utils';
 import type {
   Availability,
   RecurringAvailability,
@@ -72,8 +73,8 @@ export async function getProviderAvailabilitySettings(
       maxBookingDuration: data.maxBookingDuration || 8,
       bufferBetweenBookings: data.bufferBetweenBookings || 30,
       autoAccept: data.autoAccept || false,
-      createdAt: data.createdAt?.toDate() || new Date(),
-      updatedAt: data.updatedAt?.toDate() || new Date(),
+      createdAt: toDate(data.createdAt) || new Date(),
+      updatedAt: toDate(data.updatedAt) || new Date(),
     };
   } catch (error) {
     console.error('Error getting provider availability settings:', error);
@@ -151,10 +152,10 @@ export async function getRecurringAvailabilities(
       type: 'recurring',
       dayOfWeek: docSnap.data().dayOfWeek,
       timeSlots: docSnap.data().timeSlots,
-      validFrom: docSnap.data().validFrom?.toDate(),
-      validUntil: docSnap.data().validUntil?.toDate(),
-      createdAt: docSnap.data().createdAt?.toDate() || new Date(),
-      updatedAt: docSnap.data().updatedAt?.toDate() || new Date(),
+      validFrom: toDate(docSnap.data().validFrom),
+      validUntil: toDate(docSnap.data().validUntil),
+      createdAt: toDate(docSnap.data().createdAt) || new Date(),
+      updatedAt: toDate(docSnap.data().updatedAt) || new Date(),
     }));
   } catch (error) {
     console.error('Error getting recurring availabilities:', error);
@@ -245,11 +246,11 @@ export async function getSpecificAvailabilities(
       id: docSnap.id,
       providerId: docSnap.data().providerId,
       type: 'specific',
-      date: docSnap.data().date?.toDate() || new Date(),
+      date: toDate(docSnap.data().date) || new Date(),
       timeSlots: docSnap.data().timeSlots,
       reason: docSnap.data().reason,
-      createdAt: docSnap.data().createdAt?.toDate() || new Date(),
-      updatedAt: docSnap.data().updatedAt?.toDate() || new Date(),
+      createdAt: toDate(docSnap.data().createdAt) || new Date(),
+      updatedAt: toDate(docSnap.data().updatedAt) || new Date(),
     }));
   } catch (error) {
     console.error('Error getting specific availabilities:', error);
@@ -310,7 +311,7 @@ export async function getBlockedPeriods(
 ): Promise<BlockedPeriod[]> {
   try {
     let q;
-    
+
     if (startDate && endDate) {
       q = query(
         collection(db, AVAILABILITY_COLLECTION),
@@ -333,12 +334,12 @@ export async function getBlockedPeriods(
       id: docSnap.id,
       providerId: docSnap.data().providerId,
       type: 'blocked',
-      startDate: docSnap.data().startDate?.toDate() || new Date(),
-      endDate: docSnap.data().endDate?.toDate() || new Date(),
+      startDate: toDate(docSnap.data().startDate) || new Date(),
+      endDate: toDate(docSnap.data().endDate) || new Date(),
       reason: docSnap.data().reason,
       blockType: docSnap.data().blockType,
-      createdAt: docSnap.data().createdAt?.toDate() || new Date(),
-      updatedAt: docSnap.data().updatedAt?.toDate() || new Date(),
+      createdAt: toDate(docSnap.data().createdAt) || new Date(),
+      updatedAt: toDate(docSnap.data().updatedAt) || new Date(),
     }));
   } catch (error) {
     console.error('Error getting blocked periods:', error);
@@ -355,20 +356,22 @@ export async function updateBlockedPeriod(
 ): Promise<void> {
   try {
     const docRef = doc(db, AVAILABILITY_COLLECTION, blockId);
-    
+
     const data: Record<string, unknown> = {
       ...updates,
       updatedAt: serverTimestamp(),
     };
-    
-    // Convert dates to Timestamps
+
+    // Convert dates to Timestamps (support Date | string | Timestamp)
     if (updates.startDate) {
-      data.startDate = Timestamp.fromDate(new Date(updates.startDate));
+      const sd = toDate(updates.startDate) || new Date();
+      data.startDate = Timestamp.fromDate(sd);
     }
     if (updates.endDate) {
-      data.endDate = Timestamp.fromDate(new Date(updates.endDate));
+      const ed = toDate(updates.endDate) || new Date();
+      data.endDate = Timestamp.fromDate(ed);
     }
-    
+
     await updateDoc(docRef, data);
   } catch (error) {
     console.error('Error updating blocked period:', error);
@@ -404,7 +407,7 @@ export async function checkAvailability(
   try {
     // Get day of week
     const dayOfWeek = date.getDay() as DayOfWeek;
-    
+
     // 1. Check for blocked periods
     const blockedPeriods = await getBlockedPeriods(providerId, date, date);
     if (blockedPeriods.length > 0) {
@@ -415,7 +418,7 @@ export async function checkAvailability(
         blockedReasons: blockedPeriods.map(b => b.reason),
       };
     }
-    
+
     // 2. Check for specific availability (overrides recurring)
     const specificAvailabilities = await getSpecificAvailabilities(providerId, date, date);
     if (specificAvailabilities.length > 0) {
@@ -423,7 +426,7 @@ export async function checkAvailability(
       const hasSlot = specific.timeSlots.some(
         slot => slot.startTime === requestedSlot.startTime && slot.endTime === requestedSlot.endTime
       );
-      
+
       return {
         isAvailable: hasSlot,
         status: hasSlot ? 'available' : 'partially_available',
@@ -431,11 +434,11 @@ export async function checkAvailability(
         blockedReasons: [],
       };
     }
-    
+
     // 3. Check recurring availability
     const recurringAvailabilities = await getRecurringAvailabilities(providerId);
     const recurringForDay = recurringAvailabilities.filter(a => a.dayOfWeek === dayOfWeek);
-    
+
     if (recurringForDay.length === 0) {
       return {
         isAvailable: false,
@@ -444,12 +447,12 @@ export async function checkAvailability(
         blockedReasons: ['No recurring availability for this day'],
       };
     }
-    
+
     const allSlots = recurringForDay.flatMap(a => a.timeSlots);
     const hasSlot = allSlots.some(
       slot => slot.startTime === requestedSlot.startTime && slot.endTime === requestedSlot.endTime
     );
-    
+
     return {
       isAvailable: hasSlot,
       status: hasSlot ? 'available' : 'partially_available',
@@ -471,32 +474,39 @@ export async function searchAvailableSlots(
   try {
     const { providerId, startDate, endDate } = params;
     const results: Array<{ date: Date; slots: TimeSlot[] }> = [];
-    
+
     // Get recurring availabilities
     const recurring = await getRecurringAvailabilities(providerId);
-    
+
     // Get specific availabilities
     const specific = await getSpecificAvailabilities(providerId, startDate, endDate);
-    
+
     // Get blocked periods
     const blocked = await getBlockedPeriods(providerId, startDate, endDate);
-    
+
     // Iterate through each day in the range
     const currentDate = new Date(startDate);
     while (currentDate <= endDate) {
       const dayOfWeek = currentDate.getDay() as DayOfWeek;
-      
-      // Check if blocked
+
+      // Check if blocked (normalize Timestamp -> Date)
       const isBlocked = blocked.some(
-        b => currentDate >= b.startDate && currentDate <= b.endDate
+        b => {
+          const sd = toDate(b.startDate as any) || new Date(0);
+          const ed = toDate(b.endDate as any) || new Date(0);
+          return currentDate >= sd && currentDate <= ed;
+        }
       );
-      
+
       if (!isBlocked) {
         // Check for specific availability
         const specificForDay = specific.find(
-          s => s.date.toDateString() === currentDate.toDateString()
+          s => {
+            const d = toDate(s.date as any);
+            return d ? d.toDateString() === currentDate.toDateString() : false;
+          }
         );
-        
+
         if (specificForDay) {
           results.push({
             date: new Date(currentDate),
@@ -514,11 +524,11 @@ export async function searchAvailableSlots(
           }
         }
       }
-      
+
       // Move to next day
       currentDate.setDate(currentDate.getDate() + 1);
     }
-    
+
     return results;
   } catch (error) {
     console.error('Error searching available slots:', error);

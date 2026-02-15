@@ -32,7 +32,7 @@ export interface TaskLocation {
 }
 
 export interface Task {
-    adresse: any;
+    adresse?: any;
     id?: string;
     title: string;
     description: string;
@@ -123,7 +123,8 @@ export async function createTask(
                     budget: taskData.budget,
                     status: 'open',
                     clientId: userId,
-                    createdAt: new Date().toISOString(),
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
                 };
 
                 // Calculate match scores for all candidates

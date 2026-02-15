@@ -1,3 +1,4 @@
+import { tasks } from './placeholder-data';
 // User-related enums
 export enum UserRole {
   client = 'client',
@@ -215,13 +216,13 @@ export enum ThreadStatus {
 
 export type MessageAttachment = {
   id: string;
-  name?: string;
+  name: string;
   url: string;
   type?: 'image' | 'pdf' | 'document' | 'audio' | 'video' | 'location';
   // Legacy/compat: some fixtures use `kind` instead of `type`
   kind?: AttachmentKind;
-  // Size may be absent in some mock data
-  size?: number; // bytes
+  // Size in bytes
+  size: number; // bytes
   // Additional legacy/fixture fields
   filename?: string;
   uploadedBy?: string;
@@ -261,7 +262,8 @@ export type Message = {
   senderName?: string; // denormalized for display
   senderPhotoUrl?: string; // denormalized for display
   // Legacy fixtures sometimes used `body` instead of `content`
-  content?: string;
+  // Make `content` required to simplify calling sites
+  content: string;
   body?: string;
   // Legacy timestamp field used in fixtures
   sentAt?: Date | string;
@@ -269,9 +271,10 @@ export type Message = {
   conversationId?: string;
   type: MessageType;
   attachments?: MessageAttachment[];
-  // readBy may be omitted in lightweight fixtures
-  readBy?: string[]; // array of user IDs who read this message
-  createdAt?: Date | string;
+  // readBy: array of user IDs who read this message (prefer empty array)
+  readBy: string[];
+  // createdAt is required to simplify formatters
+  createdAt: Date | string;
   updatedAt?: Date | string;
   // System message metadata
   systemMetadata?: {
@@ -303,24 +306,18 @@ export type Thread = {
   id: string;
   // Participants: [clientId, providerId]
   participants: string[];
-  // Can be a map keyed by userId or an array of user objects (legacy fixtures)
-  participantsData?: {
-    [userId: string]: {
-      displayName: string;
-      photoUrl?: string;
-      accountType?: AccountType;
-      lastSeen?: Date | string;
-      isOnline?: boolean;
-    };
-  } | any[];
+  // Keep flexible: allow unknown structure to avoid index signature errors in legacy code
+  participantsData?: any;
   // Associated task/booking
+  tasks?: Task[];
   taskId?: string;
   taskTitle?: string; // denormalized for display
   bookingId?: string;
   bookingStatus?: BookingStatus;
   // Last message preview
   // lastMessage may be a simple string in placeholder data or a full message preview
-  lastMessage?: string | {
+  // lastMessage may be a simple string, a lightweight preview, or a full Message
+  lastMessage?: string | Message | {
     content: string;
     senderId: string;
     createdAt: Date | string;
@@ -476,6 +473,18 @@ export enum DeliveryStatus {
   read = 'read'
   ,
   queued = 'queued'
+}
+
+// Categories used by UI to group notifications
+export enum NotificationCategory {
+  TASKS = 'tasks',
+  MESSAGES = 'messages',
+  PROPOSALS = 'proposals',
+  BOOKINGS = 'bookings',
+  PAYMENTS = 'payments',
+  REVIEWS = 'reviews',
+  PROFILE = 'profile',
+  SYSTEM = 'system'
 }
 
 // Content/CMS-related enums
