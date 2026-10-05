@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { doc, getDoc, updateDoc, Timestamp } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { TransactionStatus } from '@/types/payments';
-
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+import Stripe from 'stripe';
 
 // Helper to check transaction status
 const isRefundedStatus = (status: string) => status === 'refunded';
@@ -11,6 +10,15 @@ const isSucceededStatus = (status: string) => status === 'succeeded';
 
 export async function POST(req: NextRequest) {
     try {
+        const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+        if (!stripeSecretKey) {
+            return NextResponse.json(
+                { error: 'Stripe is not configured on the server' },
+                { status: 500 }
+            );
+        }
+        const stripe = new Stripe(stripeSecretKey);
+
         const { transactionId } = await req.json();
 
         if (!transactionId) {

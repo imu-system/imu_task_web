@@ -24,15 +24,8 @@ import {
   DisputeReasonValues
 } from '@/types/payments';
 
-// Initialize Firebase Admin
-const { db } = initAdmin();
-
-// Initialize Stripe
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-09-30.clover',
-});
-
-const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
+// Initialized when a webhook request arrives so builds do not need production credentials.
+let db: ReturnType<typeof initAdmin>['db'];
 
 // Type guard for Stripe events
 type StripeWebhookEvent =
@@ -44,6 +37,20 @@ type StripeWebhookEvent =
 
 export async function POST(req: NextRequest) {
   try {
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+    const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
+    if (!stripeSecretKey || !webhookSecret) {
+      return NextResponse.json(
+        { error: 'Stripe webhook is not configured on the server' },
+        { status: 500 }
+      );
+    }
+
+    const stripe = new Stripe(stripeSecretKey, {
+      apiVersion: '2025-09-30.clover',
+    });
+    db = initAdmin().db;
+
     // Get the raw body
     const body = await req.text();
     const headersList = await headers();

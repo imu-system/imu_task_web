@@ -12,20 +12,20 @@ ImuTask connecte des **jeunes motivés** (étudiants, auto-entrepreneurs) avec d
 
 ## � Nouveautés - Session du 17 octobre 2025
 
-### ✅ 1. Règles de Sécurité Firestore & Storage
+### 1. Règles de Sécurité Firestore & Storage
 
 - Configuration complète des règles pour la collection `kyc_submissions`
 - Règles Storage pour documents KYC avec validation taille/type
 - Isolation des données utilisateurs + contrôle d'accès admin
 
-### ✅ 2. Tests E2E pour Flux KYC
+### 2. Tests E2E pour Flux KYC
 
 - 10 scénarios de test Playwright créés
 - Couverture complète : soumission → approbation/rejet → vérification
 - Gestion des erreurs (Storage, timeout, validation)
 - Fixtures générées automatiquement
 
-### ✅ 3. Catalogue de Services UI
+### 3. Catalogue de Services UI
 
 - **8 catégories de services** avec métadonnées complètes
 - **16 templates pré-remplis** pour création rapide de tâches
@@ -33,25 +33,25 @@ ImuTask connecte des **jeunes motivés** (étudiants, auto-entrepreneurs) avec d
 - Composants réutilisables : `ServiceCategorySelector`, `TaskTemplates`
 - Interface responsive et moderne
 
-🔗 **Guide de test** : [TESTING_GUIDE_NEW_FEATURES.md](docs/TESTING_GUIDE_NEW_FEATURES.md)
+ **Guide de test** : [TESTING_GUIDE_NEW_FEATURES.md](docs/TESTING_GUIDE_NEW_FEATURES.md)
 
 ---
 
-## �🎯 À propos du projet
+## À propos du projet
 
 ImuTask permet aux utilisateurs de:
 
-- 📝 Poster des tâches avec descriptions détaillées et budgets
-- 🎨 Choisir parmi 8 catégories de services avec templates
-- 🔍 Trouver des prestataires qualifiés automatiquement
-- 💬 Communiquer directement via messagerie intégrée
-- 💳 Gérer les paiements de manière sécurisée
-- ⭐ Évaluer et être évalué après chaque mission
-- 🔐 Système KYC pour devenir prestataire vérifié
+- Poster des tâches avec descriptions détaillées et budgets
+- Choisir parmi 8 catégories de services avec templates
+- Trouver des prestataires qualifiés automatiquement
+- Communiquer directement via messagerie intégrée
+- Gérer les paiements de manière sécurisée
+- Évaluer et être évalué après chaque mission
+- Système KYC pour devenir prestataire vérifié
 
 ---
 
-## 🚀 Démarrage rapide
+## Démarrage rapide
 
 ### Prérequis
 
@@ -81,36 +81,36 @@ L'application sera disponible sur [http://localhost:9002](http://localhost:9002)
 
 ---
 
-## 📚 Documentation
+## Documentation
 
 La documentation complète du projet se trouve dans le dossier `/docs`:
 
-### 🎯 Commencer Ici
+### Commencer Ici
 
 - **[QUICK_START_GUIDE.md](./docs/QUICK_START_GUIDE.md)** ⚡ — Guide complet pour nouveaux développeurs
 - **[GETTING_STARTED.md](./docs/GETTING_STARTED.md)** — Setup environnement de développement
 - **[PROJECT_SUMMARY.md](./docs/PROJECT_SUMMARY.md)** — Synthèse exécutive et métriques
 
-### � Produit & Stratégie
+### Produit & Stratégie
 
 - **[PRODUCT_VISION.md](./docs/PRODUCT_VISION.md)** — Vision produit, business model, personas
 - **[SERVICES_CATALOG.md](./docs/SERVICES_CATALOG.md)** 🆕 — Catalogue détaillé des 8 catégories de services MVP
 - **[IMUPRO_VISION.md](./docs/IMUPRO_VISION.md)** 🆕 — Roadmap V2 : Services professionnels certifiés
 - **[ROADMAP.md](./docs/ROADMAP.md)** — Feuille de route développement (phases MVP→V2)
 
-### 🔐 Fonctionnalités Clés
+### Fonctionnalités Clés
 
 - **[KYC_INTEGRATION_COMPLETED.md](./docs/KYC_INTEGRATION_COMPLETED.md)** 🆕 — Système de validation KYC complet
 - **[FIREBASE_SETUP.md](./docs/FIREBASE_SETUP.md)** — Configuration Firebase complète
 - **[TECHNICAL_ARCHITECTURE.md](./docs/TECHNICAL_ARCHITECTURE.md)** — Architecture technique
 
-### 📝 Sessions & Changelog
+### Sessions & Changelog
 
 - **[SESSION_2025-10-17_KYC_AND_DOCS.md](./docs/SESSION_2025-10-17_KYC_AND_DOCS.md)** 🆕 — Dernière session de dev
 - **[TASKS_TODO.md](./docs/TASKS_TODO.md)** — Tâches prioritaires et sprints
 - **[INDEX.md](./docs/INDEX.md)** — Index de toute la documentation
 
-### 🚀 Quick Start
+### Quick Start
 
 ```bash
 # 1. Installer dépendances
@@ -129,7 +129,7 @@ pnpm dev
 
 ---
 
-## 🛠️ Stack technique
+## Stack technique
 
 - **Framework:** Next.js 15 (App Router)
 - **Langage:** TypeScript
@@ -143,11 +143,11 @@ pnpm dev
 
 ---
 
-## 📁 Structure du projet
+## Structure du projet
 
-```
+```txt
 imu_task_web/
-├── docs/                    # 📚 Documentation complète
+├── docs/                   # Documentation complète
 │   ├── INDEX.md            # Point d'entrée
 │   ├── ROADMAP.md          # Feuille de route
 │   ├── BUGS_AND_ISSUES.md  # Tracker de bugs
@@ -186,7 +186,7 @@ imu_task_web/
 
 ---
 
-## 📊 Progression actuelle
+## Progression actuelle
 
 **Globale: 19.5%**
 
@@ -199,7 +199,7 @@ Consultez [ROADMAP.md](./docs/ROADMAP.md) pour les détails complets.
 
 ---
 
-## 🐛 Bugs connus
+## Bugs connus
 
 **Critiques (à corriger en priorité):**
 
@@ -211,7 +211,7 @@ Voir [BUGS_AND_ISSUES.md](./docs/BUGS_AND_ISSUES.md) pour la liste complète.
 
 ---
 
-## 🤝 Contribution
+## Contribution
 
 ### Pour contribuer
 
@@ -234,7 +234,7 @@ Exemples:
 
 ---
 
-## 🔗 Liens utiles
+## Liens utiles
 
 - **Version mobile:** `/Users/nathanimogo/Documents/GitHub/imu_task_mobile`
 - **Firebase Console:** [https://console.firebase.google.com/](https://console.firebase.google.com/)
@@ -243,7 +243,7 @@ Exemples:
 
 ---
 
-## 📝 Scripts disponibles
+## Scripts disponibles
 
 ```bash
 # Développement
@@ -262,7 +262,7 @@ npm run typecheck        # Vérifier les types TypeScript
 
 ---
 
-## 🌍 Langues supportées
+## Langues supportées
 
 - 🇬🇧 English (en)
 - 🇫🇷 Français (fr)
@@ -272,13 +272,13 @@ npm run typecheck        # Vérifier les types TypeScript
 
 ---
 
-## 📄 License
+## License
 
 [À définir]
 
 ---
 
-## 📞 Contact
+## Contact
 
 Pour toute question, consulter la documentation dans `/docs` ou créer une issue GitHub.
 

@@ -1,4 +1,5 @@
 # 📋 TODO STRATÉGIQUE - ImuTask Ecosystem
+
 **Date de création** : 24 octobre 2025  
 **Vision** : Écosystème complet de services locaux pour tous les besoins
 
@@ -45,10 +46,12 @@
 ### ✅ COMPLÉTÉ RÉCEMMENT (25 octobre 2025)
 
 #### Session 5 - Phase 1: Système AccountType - Dashboards Différenciés 🎉
+
 **Date:** 25 octobre 2025  
 **Résultat:** Système complet de différenciation des utilisateurs par profil (Individual, Professional, Senior) ✅
 
 **Fichiers créés (6):**
+
 - ✅ `src/components/auth/account-type-selector.tsx` - Composant sélection (3 cards)
 - ✅ `src/app/[locale]/onboarding/page.tsx` - Flow onboarding post-signup
 - ✅ `src/app/[locale]/dashboard/client/page.tsx` - Dashboard particuliers
@@ -57,6 +60,7 @@
 - ✅ `docs/ACCOUNT_TYPE_TESTING_GUIDE.md` - Guide tests (7 scénarios)
 
 **Fichiers modifiés (6):**
+
 - ✅ `src/lib/types.ts` - AccountType enum + Profile extension
 - ✅ `src/lib/firestore-users.ts` - UserProfile extension
 - ✅ `src/app/[locale]/auth/signup/page.tsx` - Redirect /onboarding
@@ -65,6 +69,7 @@
 - ✅ `src/components/dashboard-nav.tsx` - Navigation dynamique
 
 **Features implémentées:**
+
 - ✅ Onboarding après signup (sélection type de compte)
 - ✅ 3 dashboards différenciés (Client, Pro, Senior)
 - ✅ Router intelligent basé sur accountType
@@ -77,15 +82,18 @@
 - ✅ 0 erreur TypeScript ✨
 
 **UX par profil:**
+
 - **Client:** 6 liens nav, 3 KPIs, "Poster une tâche"
 - **Pro:** 9 liens nav, stats business, missions, planning
 - **Senior:** 6 liens simplifiés, texte 24px+, bouton SOS rouge
 
 **Documentation:**
+
 - ✅ `docs/PHASE1_ACCOUNT_TYPE_COMPLETE.md` - Récap complet
 - ✅ Guide de test avec 7 scénarios
 
 **Impact:**
+
 - Dashboards différenciés: 1 → 3 (+200%)
 - Navigation personnalisée: ✅ 3 sets
 - Accessibilité Senior: Standard → XXL
@@ -94,6 +102,7 @@
 ---
 
 #### Session 4 - Traductions Pages de Profils (EN) - 100% Bilingue
+
 **Résultat** : 155+ clés anglaises ajoutées → Toutes les pages de profils 100% bilingues (FR/EN) ✅
 
 - [x] **Page Particuliers (profiles.individual)** : +22 clés EN
@@ -124,15 +133,18 @@
   - Ajouté carelink.page.waitlist (formulaire complet 11 clés)
 
 **Fichier modifié** :
+
 - ✅ `src/messages/en.json` (2363 → 2725+ lignes)
 
 **Parité linguistique** :
+
 - ✅ FR ↔ EN : 100% pour toutes les pages de profils
 - ✅ Structure hiérarchique identique (jusqu'à 4 niveaux de nesting)
 - ✅ Terminologie cohérente (Provider, Task, Professional, Individual)
 - ✅ Adaptation culturelle appropriée (SIRET, CESU, RC Pro)
 
 **Pages 100% bilingues** :
+
 - ✅ Landing page principale
 - ✅ /particuliers (Individuals)
 - ✅ /professionnels (Professionals)
@@ -144,6 +156,7 @@
 ---
 
 #### Session 3 - Traductions Landing Page (EN) - Rattrapage Complet
+
 **Résultat** : 95+ clés anglaises ajoutées pour la landing page ✅
 
 - [x] **Hero Search Extensions** : badge + quickSuggestions
@@ -153,11 +166,13 @@
 - [x] **Sections Landing** : profiles (basic), features, testimonials, finalCta, faq
 
 **Fichier modifié** :
+
 - ✅ `src/messages/en.json`
 
 ---
 
 #### Sessions 1-2 - TypeScript & Fondations i18n
+
 **Résultat** : 71 erreurs TypeScript → 0 erreur ✅
 
 - [x] **Erreurs i18n Record<string,string>** : 8 erreurs fixées
@@ -201,9 +216,11 @@
   - Advanced filters
 
 **Fichiers créés** :
+
 - ✅ `src/lib/react-query/notifications/use-notification-mutations.ts`
 
 **Types améliorés** :
+
 - ✅ Types WebRTC (CallSignal, IceCandidateSignal) dans lib/types.ts
 - ✅ AppUser documenté (AuthContext vs lib/types - contextes différents)
 
@@ -214,11 +231,13 @@
 **📊 BILAN GLOBAL i18n (Sessions 1-4)**
 
 **Total clés de traduction ajoutées** : ~300+
+
 - Sessions 1-2 : ~51 clés FR
 - Session 3 : ~95 clés EN (landing page)
 - Session 4 : ~155 clés EN (pages de profils)
 
 **Couverture bilingue** : 100% ✅
+
 - ✅ Landing page
 - ✅ 4 pages de profils (Particuliers, Professionnels, Seniors, CareLink)
 - ✅ Modals (BecomeProvider)
@@ -235,12 +254,14 @@
 **BILAN GLOBAL MVP** : 16/16 tâches terminées ✅
 
 **Session finale (26 oct 2025) - 4 tâches complétées** :
+
 - ✅ Tests e2e AlgoliaSearchBox (35+ tests, 404 lignes)
 - ✅ Credentials production (.env.production template, 150 lignes)
 - ✅ Guide indexation Algolia production (500+ lignes)
 - ✅ Page Profil - Édition AccountType (450 lignes, workflow complet)
 
 **Fonctionnalités MVP V1.0 implémentées** :
+
 - ✅ Dashboards différenciés (Client, Pro, Senior) avec données réelles
 - ✅ Recherche Algolia ultra-rapide (<20ms, typo tolerance, highlighting)
 - ✅ Accessibilité avancée Dashboard Senior (vocal, GPS, SOS)
@@ -252,6 +273,7 @@
 **Statut** : 🟢 **PRODUCTION READY** - Prêt pour déploiement
 
 **Documentation finale** :
+
 - `/docs/MVP_V1.0_FINALE_COMPLETE.md` (1,500+ lignes)
 - `/docs/DEPLOYMENT_CHECKLIST.md` (40 tâches)
 - `/docs/DEPLOYMENT_QUICK_START.md` (guide 5 étapes)
@@ -262,6 +284,7 @@
 ### ✅ PHASE 5 COMPLÉTÉE - Landing Page & Authentification (27 octobre 2025)
 
 #### 🎉 Phase 5 - Landing Page & Profils Publics - 100% TERMINÉE
+
 **Objectif** : Améliorer les pages publiques, l'onboarding et l'authentification
 
 **Durée estimée** : ~17h (2-3 jours)  
@@ -301,6 +324,7 @@
   - Coverage : navigation, Hero variants, badges PMR, responsive, i18n ✅
 
 **Livrables** :
+
 - ✅ 3 composants créés (Hero, ProfileCards, AccessibleBadge)
 - ✅ 31 clés i18n par langue (FR + EN)
 - ✅ 12 tests e2e passing
@@ -341,6 +365,7 @@
   - Coverage : signup, signin, forgot-password, OAuth, responsive ✅
 
 **Livrables** :
+
 - ✅ 3 pages auth modernisées
 - ✅ 64+ clés i18n par langue
 - ✅ 15 tests e2e passing
@@ -372,6 +397,7 @@
   - 17/17 tests actifs passing ✅
 
 **Livrables** :
+
 - ✅ 2 composants créés (AccountTypeCard, AccountTypeModal)
 - ✅ 100 clés i18n par langue
 - ✅ 17 tests e2e passing
@@ -408,6 +434,7 @@
   - 12/12 tests passing ✅
 
 **Livrables** :
+
 - ✅ 31 fichiers modifiés (19 migration + 12 nouveaux)
 - ✅ Middleware Edge-compatible (193 lignes)
 - ✅ Cookie management system
@@ -421,7 +448,7 @@
 **Résumé complet** :
 
 | Task | Sous-tâches | Durée Est. | Durée Réelle | Status | Tests |
-|------|-------------|------------|--------------|--------|-------|
+| ------ | ------------- | ------------ | -------------- | -------- | ------- |
 | Task 1: Landing | 4/4 | 3h15 | 3h15 | ✅ 100% | 12/12 |
 | Task 2: Auth | 5/5 | 6h | 6h | ✅ 100% | 15/15 |
 | Task 3: Onboarding | 3/3 | 3h30 | 3h30 | ✅ 100% | 17/17 |
@@ -429,12 +456,14 @@
 | **TOTAL** | **17/17** | **~17h** | **~16h** | ✅ **100%** | **56/56** |
 
 **Fichiers créés/modifiés** :
+
 - **Créés** : 10 nouveaux composants
 - **Modifiés** : 40+ fichiers
 - **Tests e2e** : 4 fichiers (56 tests, 100% passing)
 - **Traductions** : 195+ clés par langue (FR + EN)
 
 **Impact Production** :
+
 - ✅ Landing page optimisée pour 3 segments
 - ✅ Expérience auth moderne et fluide
 - ✅ Onboarding clair avec choix accountType
@@ -444,6 +473,7 @@
 - ✅ Production ready
 
 **Documentation** :
+
 - `/docs/PHASE_5_LANDING_AUTH_PLAN.md` (1,677 lignes)
 - `/docs/TASK_3_1_COMPLETION.md` (rapport Task 3.1)
 
@@ -452,6 +482,7 @@
 ### ✅ PHASE 9 COMPLÉTÉE - Dashboard Visualizations & Analytics (2 novembre 2025)
 
 #### 🎉 Phase 9 - Dashboard Improvements avec Recharts - 100% TERMINÉE
+
 **Objectif** : Améliorer les dashboards Provider, Client et Admin avec des visualisations de données réelles
 
 **Durée estimée** : ~8h (1 jour)  
@@ -460,9 +491,10 @@
 
 ---
 
-#### Options complétées :
+#### Options complétées
 
 **✅ Option A : Connexion données réelles + Indexes Firestore**
+
 - [x] Phase 9.1-9.3 : Suppression données mockées
 - [x] Phase 9.4 : Tests composants avec données Firestore
 - [x] Phase 9.5 : Connexion hooks réels (useBookings, useProposals)
@@ -472,6 +504,7 @@
   - Documentation complète PHASE9_INDEXES_COMPLETE.md
 
 **✅ Option B : Graphiques de revenus (Recharts)**
+
 - [x] Hook `useRevenueByMonth()` (340 lignes)
 - [x] Composant `<RevenueChart />` (310 lignes)
   - BarChart avec données mensuelles (GMV, transactions)
@@ -482,6 +515,7 @@
 - [x] Documentation PHASE9_OPTION_B_REVENUE_CHARTS.md (600+ lignes)
 
 **✅ Option C : Stats clients (graphiques similaires)**
+
 - [x] Hook `useClientSpending()` (340 lignes)
 - [x] Hook `useTasksByCategory()` (270 lignes)
 - [x] Composant `<ClientSpendingChart />` (290 lignes)
@@ -495,6 +529,7 @@
 - [x] Documentation PHASE9_OPTION_C_CLIENT_STATS.md (550+ lignes)
 
 **✅ Option D : Dashboard admin (métriques globales, GMV, revenue)**
+
 - [x] Hook `useGMVByMonth()` - GMV mensuel depuis bookings
 - [x] Hook `usePlatformRevenue()` - Commission plateforme (15%)
 - [x] Hook `useUserGrowth()` - Acquisition clients/providers
@@ -520,6 +555,7 @@
 **📊 BILAN PHASE 9**
 
 **Composants créés** : 5
+
 - RevenueChart (provider)
 - ClientSpendingChart (client)
 - TaskCategoryChart (client)
@@ -528,6 +564,7 @@
 - AdminStatsCards (admin)
 
 **Hooks de données** : 8
+
 - useRevenueByMonth (provider)
 - useClientSpending (client)
 - useTasksByCategory (client)
@@ -537,12 +574,14 @@
 - useActiveUsersStats (admin)
 
 **Firestore queries optimisées** :
+
 - Indexes composés (bookings, proposals, users, tasks)
 - getCountFromServer pour comptages efficaces
 - Real-time onSnapshot pour données actives
 - Aggregations mensuelles avec remplissage gaps
 
 **Visualizations (Recharts)** :
+
 - BarChart : Revenue provider, GMV admin
 - LineChart : Client spending, Platform revenue overlay
 - PieChart : Task categories
@@ -550,6 +589,7 @@
 - ComposedChart : GMV bars + Revenue line
 
 **Traductions** : 50+ clés (FR/EN)
+
 - Dashboard.revenue (7 clés)
 - Dashboard.spending (7 clés)
 - Dashboard.categories (7 clés)
@@ -558,12 +598,14 @@
 - Admin.stats (11 clés)
 
 **Documentation** :
+
 - PHASE9_INDEXES_COMPLETE.md (Option A)
 - PHASE9_OPTION_B_REVENUE_CHARTS.md (600+ lignes)
 - PHASE9_OPTION_C_CLIENT_STATS.md (550+ lignes)
 - PHASE9_OPTION_D_ADMIN_DASHBOARD.md (1,300+ lignes)
 
 **Métriques business** :
+
 - GMV (Gross Merchandise Value) tracking
 - Platform revenue (15% commission)
 - User acquisition (clients vs providers)
@@ -577,6 +619,7 @@
 ### 🚀 PROCHAINE PHASE : Fonctionnalités Core MVP
 
 #### Phase 6 - Core Features (Priorité #1 - Q4 2025)
+
 **Objectif** : Implémenter les fonctionnalités essentielles pour le lancement MVP
 
 **Durée estimée** : 6-8 semaines
@@ -692,6 +735,7 @@
 **Objectif** : Implémenter les fonctionnalités essentielles pour un MVP fonctionnel
 
 #### A. Système d'Offres (Semaine 5)
+
 - [ ] **Interface Prestataire** (4h)
   - Formulaire soumission offre (prix, délai, message)
   - Historique offres envoyées
@@ -703,6 +747,7 @@
   - Bouton "Accepter l'offre" → Création Booking
 
 #### B. Messagerie Temps Réel
+
 - [ ] **Thread Creation** (3h)
   - Auto-création thread lors de Booking
   - Participants : client + prestataire
@@ -714,6 +759,7 @@
   - Status "lu/non lu"
 
 #### C. Paiements Stripe
+
 - [ ] **Stripe Connect Onboarding** (8h)
   - Création comptes Connect pour prestataires
   - KYC/KYB via Stripe
@@ -726,6 +772,7 @@
   - Calcul commission plateforme
 
 #### D. Avis & Litiges
+
 - [ ] **Système d'Avis** (4h)
   - Formulaire review (note + commentaire)
   - Mutual review (client → prestataire, prestataire → client)
@@ -737,6 +784,7 @@
   - Workflow : ouvert → en cours → résolu/fermé
 
 ### Priorité #3 : Production Ready (Semaine 7-8)
+
 - [ ] Tests E2E critiques
 - [ ] Performance optimization
 - [ ] SEO & Analytics
@@ -833,6 +881,7 @@ interface KYBSubmission {
 #### B. Profil Pro V1
 
 - [ ] **Extension UserProfile** (5h)
+
   ```typescript
   interface ProProfile extends UserProfile {
     isPro: true;
@@ -881,6 +930,7 @@ interface KYBSubmission {
 #### C. Système de Devis
 
 - [ ] **Workflow Devis** (10h)
+
   ```typescript
   interface Quote {
     id: string;
@@ -978,6 +1028,7 @@ interface KYBSubmission {
 ## 🩺 ROADMAP V2.5 - CareLink (2027)
 
 ### Vision CareLink
+
 **"La plateforme complète pour le maintien à domicile des seniors, personnes à mobilité réduite et malades"**
 
 ### Phase 0 : Préparation (Q4 2026 - 3 mois)
@@ -1006,6 +1057,7 @@ interface KYBSubmission {
 #### A. Module "Repas à Domicile"
 
 - [ ] **Catalogue Menus** (8h)
+
   ```typescript
   interface Meal {
     id: string;
@@ -1126,6 +1178,7 @@ interface KYBSubmission {
 ## 📊 PRIORITISATION GLOBALE
 
 ### ✅ COMPLÉTÉ (25 octobre 2025)
+
 ```
 ✅ TypeScript Errors: 71 → 0 (2 jours)
 ✅ Types WebRTC proprement définis
@@ -1134,6 +1187,7 @@ interface KYBSubmission {
 ```
 
 ### Semaines 1-8 (Immédiat - Q4 2025)
+
 ```
 Priority 1: Landing Page Segmentation (2 jours) ← EN COURS
 Priority 2: MVP ImuTask Core Features (6 semaines)
@@ -1144,6 +1198,7 @@ Priority 2: MVP ImuTask Core Features (6 semaines)
 ```
 
 ### Q1-Q2 2026
+
 ```
 ImuTask V1.0 → Production
 ImuPro Préparation (Phase 0)
@@ -1151,12 +1206,14 @@ ImuPro MVP Pilote (Homme à tout faire)
 ```
 
 ### Q3-Q4 2026
+
 ```
 ImuPro Extension (4 catégories pro)
 CareLink Préparation (Phase 0)
 ```
 
 ### 2027
+
 ```
 ImuPro Phase 3: Services à la Personne
 CareLink MVP + Extension services
@@ -1167,6 +1224,7 @@ CareLink MVP + Extension services
 ## 🎯 KPIs Clés par Plateforme
 
 ### ImuTask (V1.0)
+
 - Utilisateurs actifs : 5000+ (fin 2026)
 - Missions/mois : 2000+
 - GMV/mois : 60k€
@@ -1174,6 +1232,7 @@ CareLink MVP + Extension services
 - NPS : > 50
 
 ### ImuPro (V2.0)
+
 - Pros actifs : 500 (fin 2026) → 2000 (2027)
 - Missions/mois : 1000 → 5000
 - GMV/mois : 300k€ → 1,75M€
@@ -1181,6 +1240,7 @@ CareLink MVP + Extension services
 - NPS Pros : > 40
 
 ### CareLink (V2.5)
+
 - Seniors inscrits : 500+ (fin 2027)
 - Services actifs : 6+
 - Repas livrés/mois : 3000+
@@ -1192,7 +1252,7 @@ CareLink MVP + Extension services
 ## 🚨 Risques Identifiés & Mitigations
 
 | Risque | Impact | Probabilité | Mitigation | Status |
-|--------|--------|-------------|------------|--------|
+| -------- | -------- | ------------- | ------------ | -------- |
 | **Complexité réglementaire CareLink** | Haut | Moyen | Avocat spécialisé, phase pilote limitée | À surveiller |
 | **Acquisition pros ImuPro difficile** | Moyen | Moyen | Budget marketing 50k€, proposition valeur claire | À surveiller |
 | **Cannibalisation entre plateformes** | Faible | Faible | Segmentation claire, besoins différents | Faible |
@@ -1210,9 +1270,11 @@ CareLink MVP + Extension services
 ## 📝 Notes de Version
 
 ### v1.0.0 - 25 octobre 2025
+
 **i18n Complete - Production Ready for International Launch**
 
 **Accomplissements Session 4 (Traductions Pages Profils)** :
+
 - ✅ Ajouté 155+ clés de traduction EN pour pages de profils
 - ✅ Page Particuliers : +22 clés (hero, benefits, categories, ctas)
 - ✅ Page Professionnels : +67 clés (hero, categories, features, advantages, pricing)
@@ -1223,12 +1285,14 @@ CareLink MVP + Extension services
 - ✅ Terminologie cohérente et ton marketing adapté
 
 **Accomplissements Session 3 (Traductions Landing Page)** :
+
 - ✅ Ajouté 95+ clés EN pour landing page
 - ✅ Hero search, sticky search, advanced filters
 - ✅ BecomeProviderModal complet
 - ✅ Sections features, testimonials, FAQ
 
 **Accomplissements Sessions 1-2 (TypeScript Quality)** :
+
 - ✅ Résolu 71 erreurs TypeScript → 0 erreur
 - ✅ Créé `use-notification-mutations.ts` avec 6 hooks React Query
 - ✅ Défini types WebRTC propres (CallSignal, IceCandidateSignal)
@@ -1236,6 +1300,7 @@ CareLink MVP + Extension services
 - ✅ Refactoring i18n avec helpers type-safe
 
 **Impact Production** :
+
 - Code 100% type-safe
 - **Plateforme 100% bilingue (FR/EN)** 🌍
 - Prêt pour déploiement international
@@ -1244,6 +1309,7 @@ CareLink MVP + Extension services
 - Architecture i18n complète et scalable
 
 **Prochaines étapes** :
+
 - Landing page segmentation visuelle (3 profils)
 - MVP Core Features (Profil, KYC, Offres)
 - Tests manuels pages EN
@@ -1252,7 +1318,7 @@ CareLink MVP + Extension services
 ---
 
 ### v0.9.5 - 24 octobre 2025 (DEPRECATED - Voir v1.0.0)
+
 **TypeScript Quality Sprint - 100% Type Safety Achieved**
 
 **Note** : Cette version est remplacée par v1.0.0 qui inclut tous les accomplissements TypeScript + i18n complet.
-

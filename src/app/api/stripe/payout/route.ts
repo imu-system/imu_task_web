@@ -2,12 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import { initAdmin } from '@/lib/firebaseAdmin';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2025-09-30.clover',
-});
-
 export async function POST(req: NextRequest) {
     try {
+        const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+        if (!stripeSecretKey) {
+            return NextResponse.json(
+                { error: 'Stripe is not configured on the server' },
+                { status: 500 }
+            );
+        }
+        const stripe = new Stripe(stripeSecretKey, {
+            apiVersion: '2025-09-30.clover',
+        });
+
         const { payoutId } = await req.json();
 
         if (!payoutId) {

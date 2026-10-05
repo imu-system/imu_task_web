@@ -10,12 +10,12 @@ import { connectFunctionsEmulator, getFunctions } from "firebase/functions";
 // Les variables NEXT_PUBLIC_* doivent être référencées directement (pas dynamiquement)
 // pour que Next.js 15 les injecte correctement côté client
 const resolvedEnv = {
-    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY || "AIzaSyDrkIAzZktPxCEZIbsHzRu-l00YPt3nSHY",
-    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || "imutask.firebaseapp.com",
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "imutask",
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET || "imutask.firebasestorage.app",
-    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "354457149125",
-    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID || "1:354457149125:web:4fe8dbfa3192de5aa75aac",
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
 const firebaseConfig = {
@@ -91,7 +91,7 @@ if (
                 `http://${process.env.NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_HOST}`,
                 { disableWarnings: true },
             );
-            console.log("✅ Connected to Auth Emulator");
+            console.log("Connected to Auth Emulator");
         }
 
         // Firestore emulator
@@ -99,7 +99,7 @@ if (
             const [host, port] = process.env
                 .NEXT_PUBLIC_FIREBASE_FIRESTORE_EMULATOR_HOST.split(":");
             connectFirestoreEmulator(db, host, parseInt(port));
-            console.log("✅ Connected to Firestore Emulator");
+            console.log("Connected to Firestore Emulator");
         }
 
         // Storage emulator
@@ -107,7 +107,7 @@ if (
             const [host, port] = process.env
                 .NEXT_PUBLIC_FIREBASE_STORAGE_EMULATOR_HOST.split(":");
             connectStorageEmulator(storage, host, parseInt(port));
-            console.log("✅ Connected to Storage Emulator");
+            console.log("Connected to Storage Emulator");
         }
 
         // Functions emulator
@@ -115,11 +115,11 @@ if (
             const [host, port] = process.env
                 .NEXT_PUBLIC_FIREBASE_FUNCTIONS_EMULATOR_HOST.split(":");
             connectFunctionsEmulator(functions, host, parseInt(port));
-            console.log("✅ Connected to Functions Emulator");
+            console.log("Connected to Functions Emulator");
         }
     } catch (error) {
         console.warn(
-            "⚠️  Firebase emulators already connected or connection failed:",
+            "Firebase emulators already connected or connection failed:",
             error,
         );
     }
@@ -127,7 +127,7 @@ if (
 
 // Log configuration status (only in development)
 if (process.env.NODE_ENV === "development") {
-    console.log("🔥 Firebase initialized:", {
+    console.log("Firebase initialized:", {
         projectId: firebaseConfig.projectId,
         authDomain: firebaseConfig.authDomain,
         emulators: process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATORS === "true",
