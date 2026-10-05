@@ -80,20 +80,23 @@ Phase 10: Tests & Lancement         ░░░░░░░░░░░░░░�
 ## 🎯 Objectifs Sprint Actuel (3-17 oct)
 
 ### Must Have (Critique)
+
 1. ✅ Documentation complète créée
 2. 🔄 Configuration Firebase
 3. 🔄 Authentification fonctionnelle
 4. 🔄 Création de tâches persistée
 
 ### Should Have (Important)
+
 5. ⏸️ Middleware de protection des routes
-6. ⏸️ Profils utilisateurs fonctionnels
-7. ⏸️ Dashboards avec vraies données
+2. ⏸️ Profils utilisateurs fonctionnels
+3. ⏸️ Dashboards avec vraies données
 
 ### Could Have (Optionnel)
+
 8. ⏸️ Émulateurs Firebase configurés
-9. ⏸️ Premiers tests unitaires
-10. ⏸️ README avec screenshots
+2. ⏸️ Premiers tests unitaires
+3. ⏸️ README avec screenshots
 
 ---
 
@@ -114,6 +117,7 @@ Phase 10: Tests & Lancement         ░░░░░░░░░░░░░░�
 ## 📊 Métriques Techniques
 
 ### Code
+
 - **Lignes de code:** ~5,000 (estimation)
 - **Fichiers TypeScript:** ~50
 - **Composants React:** ~30
@@ -121,12 +125,14 @@ Phase 10: Tests & Lancement         ░░░░░░░░░░░░░░�
 - **Features:** 10 modules
 
 ### Qualité
+
 - **Tests:** 0 (0% couverture)
 - **Erreurs TypeScript:** Nombreuses (ignorées temporairement)
 - **Erreurs ESLint:** Non comptabilisées
 - **Warnings:** À évaluer
 
 ### Documentation
+
 - **Pages de doc:** 8
 - **Guides:** 3 (Setup, Getting Started, Sync)
 - **Checklists:** 5
@@ -253,6 +259,7 @@ Avril 2026          [████████░░░░░░░░░░░�
 ## �👥 Ressources Requises
 
 ### Compétences Nécessaires
+
 - ✅ Next.js / React
 - ✅ TypeScript
 - ✅ Tailwind CSS
@@ -261,6 +268,7 @@ Avril 2026          [████████░░░░░░░░░░░�
 - ⏸️ Stripe (Phase 6)
 
 ### Équipe Actuelle
+
 - Développeurs: À déterminer
 - Designer: Design tokens définis
 - Product Owner: Roadmap définie
@@ -286,6 +294,7 @@ Avril 2026          [████████░░░░░░░░░░░�
 ## 💰 Estimation Effort Restant
 
 ### Par Phase
+
 - Phase 1 (80%): ~10h restantes
 - Phase 2 (30%): ~35h restantes
 - Phase 3 (40%): ~30h restantes
@@ -294,6 +303,7 @@ Avril 2026          [████████░░░░░░░░░░░�
 **Total estimé:** ~275 heures de développement
 
 ### Par Sprint (2 semaines)
+
 - Sprint actuel: Configuration & Auth (~40h)
 - Sprint 2: Tâches & Profils (~40h)
 - Sprints 3-7: Features restantes (~195h)
@@ -303,19 +313,22 @@ Avril 2026          [████████░░░░░░░░░░░�
 ## 🎓 Recommandations
 
 ### Immédiates
+
 1. **Configurer Firebase** - Priorité absolue
 2. **Créer `.env.local`** - Nécessaire pour Firebase
 3. **Implémenter AuthContext** - Base pour tout le reste
 
 ### Court terme (2 semaines)
+
 4. **Corriger erreurs TypeScript** - Améliorer la qualité
-5. **Ajouter premiers tests** - Éviter les régressions
-6. **Configurer émulateurs** - Développement plus sûr
+2. **Ajouter premiers tests** - Éviter les régressions
+3. **Configurer émulateurs** - Développement plus sûr
 
 ### Moyen terme (1-2 mois)
+
 7. **Messagerie temps réel** - Feature importante
-8. **Système de paiement** - Critique pour le business
-9. **Notifications push** - Engagement utilisateur
+2. **Système de paiement** - Critique pour le business
+3. **Notifications push** - Engagement utilisateur
 
 ---
 
@@ -334,12 +347,14 @@ Avril 2026          [████████░░░░░░░░░░░�
 ⚠️ **Le projet est en bon état structurel mais nécessite une configuration backend urgente.**
 
 ✅ **Points forts:**
+
 - Architecture claire et scalable
 - Documentation exhaustive
 - Design system cohérent
 - Internationalisation complète
 
 ❌ **Points faibles:**
+
 - Aucune persistance de données
 - Pas de tests
 - Configuration Firebase manquante
@@ -366,6 +381,7 @@ Focus sur la configuration Firebase et l'authentification pour débloquer le dé
 ---
 
 **Cette synthèse est générée à partir de:**
+
 - [ROADMAP.md](./ROADMAP.md)
 - [BUGS_AND_ISSUES.md](./BUGS_AND_ISSUES.md)
 - [TASKS_TODO.md](./TASKS_TODO.md)

@@ -38,6 +38,7 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 **Statut**: ✅ **Implémentation Complète** (9 Nov 2025)
 
 **Fonctionnalités type WhatsApp**:
+
 - 💬 Messages texte, images, vidéos, audio, fichiers
 - 😊 Réactions emoji avec compteurs
 - 📌 Épingler des messages
@@ -74,17 +75,20 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 **Statut**: ✅ **3/3 Migrations Complétées** (12 Nov 2025)
 
 **Résultats globaux**:
+
 - 📉 **-79% Firestore reads** en moyenne (120 → 25 reads)
 - ⚡ **-58% temps de chargement** (3.1s → 0.7s)
 - 💰 **€230-2,300/an économisés** selon trafic
 - 🎯 **0 nouvelle erreur TypeScript**
 
 **Pages optimisées**:
+
 1. `/tasks` (Public) - useTasksOptimized + cache 5min + pagination (-90% reads)
 2. `/dashboard/tasks` (User) - onSnapshot + limit(50) + debounce (-50% reads power users)
 3. `/dashboard/browse-tasks` (Provider) - useTasksOptimized + cache 3min + infinite scroll (-96% reads)
 
 **Infrastructure créée**:
+
 - ✅ Hook `useTasksOptimized` (298 lignes) - Pagination + cache + debounce
 - ✅ Composant `InfiniteScrollTrigger` - Infinite scroll réutilisable
 - ✅ Composants `TasksLoadingSkeleton` - Skeletons cohérents (grid + list)
@@ -92,6 +96,7 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 - ✅ Indexes Firestore déployés - 3 indexes composites tasks
 
 **Guides disponibles**:
+
 - 📊 Arbre de décision (quelle stratégie utiliser ?)
 - 🛠️ Guide d'implémentation (patterns réutilisables)
 - 💡 Best practices (cache TTL, pagination, debounce)
@@ -100,9 +105,11 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 ---
 
 ### 3. [FIREBASE_SETUP.md](./FIREBASE_SETUP.md) - Guide de configuration Firebase
+
 **Quand consulter:** Configuration initiale, setup backend, déploiement
 
 **Contenu:**
+
 - Configuration complète de Firebase
 - Authentication (Email/Password + Google OAuth)
 - Schéma Firestore détaillé (8 collections)
@@ -115,6 +122,7 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 - Checklist complète de configuration
 
 **Schéma de la base de données:**
+
 ```
 - users/
 - tasks/
@@ -129,9 +137,11 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 ---
 
 ### 4. [WEB_MOBILE_SYNC.md](./WEB_MOBILE_SYNC.md) - Synchronisation Web-Mobile
+
 **Quand consulter:** Coordination entre plateformes, architecture partagée
 
 **Contenu:**
+
 - Architecture backend commune (Firebase)
 - Schéma de base de données unifié
 - Authentification cross-platform
@@ -145,6 +155,7 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 - Protocoles de communication équipe
 
 **Points clés:**
+
 - Une seule source de vérité: Firebase Firestore
 - Même système d'authentification
 - Design cohérent via design tokens
@@ -153,14 +164,17 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 ---
 
 ### 5. [blueprint.md](./blueprint.md) - Blueprint original du projet
+
 **Quand consulter:** Comprendre la vision initiale, design et style
 
 **Contenu:**
+
 - Fonctionnalités core d'ImuTask
 - Guidelines de design et couleurs
 - Principes UX/UI
 
 **Style:**
+
 - Couleur primaire: HSL(210, 60%, 50%) - Bleu vibrant
 - Couleur de fond: HSL(210, 20%, 98%) - Bleu très clair
 - Couleur d'accent: HSL(180, 50%, 40%) - Teal
@@ -175,11 +189,11 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 1. **Commencer par lire:**
    - `blueprint.md` - Comprendre la vision
    - `ROADMAP.md` - Voir où en est le projet
-   
+
 2. **Configuration de l'environnement:**
    - Suivre `FIREBASE_SETUP.md` étape par étape
    - Créer son fichier `.env.local`
-   
+
 3. **Développement:**
    - Consulter `BUGS_AND_ISSUES.md` pour les tâches à faire
    - Si travail sur mobile: lire `WEB_MOBILE_SYNC.md`
@@ -197,24 +211,28 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 ## 📊 Métriques du projet (Mise à jour: 3 oct 2025)
 
 ### Progression
+
 - **Globale:** 19.5% (voir [PROJECT_SUMMARY.md](./PROJECT_SUMMARY.md))
 - **Phase 1 (Fondations):** 80%
 - **Phase 2 (Auth):** 30%
 - **Phase 3 (Tasks):** 40%
 
 ### Qualité
+
 - **Bugs critiques:** 3 (Firebase config, Auth, Persistence)
 - **Bugs importants:** 4
 - **Bugs mineurs:** 5
 - **Taux de résolution:** 0% (projet en setup initial)
 
 ### Documentation
+
 - **Pages totales:** 11
 - **Guides techniques:** 4
 - **Documents stratégiques:** 3
 - **Checklists:** 5
 
 ### Business (Objectifs MVP)
+
 - **GMV cible pilote:** 5k€/mois (M3)
 - **Providers cible:** 50 (campus pilote)
 - **Clients cible:** 50
@@ -265,6 +283,7 @@ Ce dossier contient tous les documents nécessaires pour comprendre, développer
 ### Structure des documents
 
 Tous les documents suivent cette structure:
+
 - En-tête avec métadonnées (version, date)
 - Table des matières (si > 500 lignes)
 - Sections clairement délimitées
@@ -381,6 +400,7 @@ docs/
 ## ✅ Checklist d'onboarding nouveau développeur
 
 ### Jour 1
+
 - [ ] Lire ce document (INDEX.md)
 - [ ] Lire le blueprint.md
 - [ ] Cloner le repo web
@@ -388,6 +408,7 @@ docs/
 - [ ] Lancer en dev (`npm run dev`)
 
 ### Jour 2
+
 - [ ] Lire ROADMAP.md
 - [ ] Lire BUGS_AND_ISSUES.md
 - [ ] Suivre FIREBASE_SETUP.md (configuration)
@@ -395,6 +416,7 @@ docs/
 - [ ] Tester l'application localement
 
 ### Jour 3
+
 - [ ] Explorer la structure du code
 - [ ] Lire WEB_MOBILE_SYNC.md (si travail mobile)
 - [ ] Rejoindre les canaux de communication
@@ -402,6 +424,7 @@ docs/
 - [ ] Créer sa première branche
 
 ### Semaine 1
+
 - [ ] Soumettre sa première PR
 - [ ] Participer à la réunion de synchro
 - [ ] Mettre à jour BUGS_AND_ISSUES.md si nécessaire
@@ -433,12 +456,14 @@ docs/
 ## 🏆 Objectifs à long terme
 
 ### Version 1.0 (Avril 2026)
+
 - Toutes les fonctionnalités core implémentées
 - Application web et mobile fonctionnelles
 - Tests complets et déploiement en production
 - Au moins 100 utilisateurs beta testeurs
 
 ### Version 2.0 (TBD)
+
 - Fonctionnalités avancées (IA, analytics)
 - Marketplace de services
 - Intégrations tierces
@@ -461,11 +486,13 @@ docs/
 Cette documentation est vivante et doit évoluer avec le projet.
 
 **Pour suggérer des améliorations:**
+
 1. Créer une issue GitHub avec le label `documentation`
 2. Proposer des modifications via Pull Request
 3. Discuter lors des réunions de synchro
 
 **Questions fréquentes à ajouter:**
+
 - À documenter au fur et à mesure
 
 ---

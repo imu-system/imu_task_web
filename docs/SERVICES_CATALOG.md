@@ -9,6 +9,7 @@
 ImuTask propose des **micro-services de proximité** ne nécessitant généralement pas de qualification professionnelle certifiée, mais plutôt une bonne volonté, de la fiabilité et des compétences pratiques.
 
 L'objectif est de faciliter la mise en relation entre :
+
 - **Clients** : personnes ayant besoin d'aide ponctuelle pour des tâches du quotidien
 - **Prestataires** : jeunes motivés (étudiants, auto-entrepreneurs débutants) cherchant des missions locales
 
@@ -223,6 +224,7 @@ enum ServiceCategory {
 Chaque catégorie peut avoir des tags pour affiner la recherche :
 
 **Exemple pour "Aide à domicile"** :
+
 - `cleaning`
 - `organization`
 - `furniture_assembly`
@@ -234,6 +236,7 @@ Chaque catégorie peut avoir des tags pour affiner la recherche :
 Créer des templates pré-remplis pour faciliter la publication :
 
 **Exemple** : "Monter un meuble IKEA"
+
 - Catégorie : Aide à domicile
 - Durée estimée : 2-3 heures
 - Budget suggéré : 40-60€

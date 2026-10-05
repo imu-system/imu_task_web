@@ -1,3 +1,10 @@
 {
-    "idf.pythonInstallPath": "/usr/bin/python3"
+    "idf.pythonInstallPath": "/usr/bin/python3",
+    "i18n-ally.localesPaths": [
+        "public/locales",
+        "src/messages",
+        "src/app/[locale]/messages",
+        "src/app/[locale]/dashboard/messages",
+        "src/app/[locale]/dashboard/admin/i18n"
+    ]
 }

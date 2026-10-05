@@ -13,17 +13,20 @@ ImuTask connecte des **jeunes motivés** (étudiants, auto-entrepreneurs) avec d
 ## � Nouveautés - Session du 17 octobre 2025
 
 ### ✅ 1. Règles de Sécurité Firestore & Storage
+
 - Configuration complète des règles pour la collection `kyc_submissions`
 - Règles Storage pour documents KYC avec validation taille/type
 - Isolation des données utilisateurs + contrôle d'accès admin
 
 ### ✅ 2. Tests E2E pour Flux KYC
+
 - 10 scénarios de test Playwright créés
 - Couverture complète : soumission → approbation/rejet → vérification
 - Gestion des erreurs (Storage, timeout, validation)
 - Fixtures générées automatiquement
 
 ### ✅ 3. Catalogue de Services UI
+
 - **8 catégories de services** avec métadonnées complètes
 - **16 templates pré-remplis** pour création rapide de tâches
 - **Wizard 3 étapes** : Catégorie → Template → Détails
@@ -37,6 +40,7 @@ ImuTask connecte des **jeunes motivés** (étudiants, auto-entrepreneurs) avec d
 ## �🎯 À propos du projet
 
 ImuTask permet aux utilisateurs de:
+
 - 📝 Poster des tâches avec descriptions détaillées et budgets
 - 🎨 Choisir parmi 8 catégories de services avec templates
 - 🔍 Trouver des prestataires qualifiés automatiquement
@@ -198,6 +202,7 @@ Consultez [ROADMAP.md](./docs/ROADMAP.md) pour les détails complets.
 ## 🐛 Bugs connus
 
 **Critiques (à corriger en priorité):**
+
 1. Configuration Firebase manquante
 2. Pages d'authentification non fonctionnelles
 3. Formulaire de tâches non connecté à la base de données
@@ -208,7 +213,7 @@ Voir [BUGS_AND_ISSUES.md](./docs/BUGS_AND_ISSUES.md) pour la liste complète.
 
 ## 🤝 Contribution
 
-### Pour contribuer:
+### Pour contribuer
 
 1. Lire la [documentation](./docs/INDEX.md)
 2. Choisir une tâche dans [BUGS_AND_ISSUES.md](./docs/BUGS_AND_ISSUES.md)
@@ -216,7 +221,7 @@ Voir [BUGS_AND_ISSUES.md](./docs/BUGS_AND_ISSUES.md) pour la liste complète.
 4. Développer et tester
 5. Soumettre une Pull Request
 
-### Conventions de commits:
+### Conventions de commits
 
 ```
 [web] type: Description

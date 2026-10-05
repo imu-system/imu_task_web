@@ -39,6 +39,7 @@ Bienvenue dans la documentation complète du projet ImuTask Web!
 ## 🎯 Workflows recommandés
 
 ### 🆕 Je suis nouveau développeur
+
 ```
 1. GETTING_STARTED.md → Configuration
 2. INDEX.md → Vue d'ensemble
@@ -47,6 +48,7 @@ Bienvenue dans la documentation complète du projet ImuTask Web!
 ```
 
 ### 🔧 Je configure Firebase
+
 ```
 1. FIREBASE_SETUP.md → Suivre étape par étape
 2. Référencer .env.example
@@ -54,6 +56,7 @@ Bienvenue dans la documentation complète du projet ImuTask Web!
 ```
 
 ### 🐛 Je corrige un bug
+
 ```
 1. BUGS_AND_ISSUES.md → Identifier le bug
 2. INDEX.md → Trouver la doc pertinente
@@ -61,6 +64,7 @@ Bienvenue dans la documentation complète du projet ImuTask Web!
 ```
 
 ### 📱 Je travaille sur mobile
+
 ```
 1. WEB_MOBILE_SYNC.md → Comprendre l'architecture
 2. FIREBASE_SETUP.md → Backend commun
@@ -68,6 +72,7 @@ Bienvenue dans la documentation complète du projet ImuTask Web!
 ```
 
 ### 📅 Je planifie un sprint
+
 ```
 1. ROADMAP.md → Voir les priorités
 2. BUGS_AND_ISSUES.md → Choisir les tâches

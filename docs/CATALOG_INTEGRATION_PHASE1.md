@@ -17,16 +17,19 @@ Intégrer les 8 catégories du catalogue de services dans toute l'interface util
 ### 1. Badges de Catégorie dans les Cartes de Tâches ✅
 
 **Fichiers modifiés** :
+
 - `/src/components/task-card.tsx`
 - `/src/components/task-list-card.tsx`
 
 **Changements** :
+
 - ✅ Import `ServiceCategoryBadge` depuis `/components/services/category-selector`
 - ✅ Détection automatique du type de catégorie (enum `ServiceCategory` vs objet `ServiceCategory`)
 - ✅ Affichage conditionnel avec icône et couleur du catalogue
 - ✅ Fallback pour anciennes tâches sans catégorie du catalogue
 
 **Code clé** :
+
 ```tsx
 // Détection du type de catégorie
 const categoryFromCatalog = typeof category === 'string' && 
@@ -43,6 +46,7 @@ const categoryFromCatalog = typeof category === 'string' &&
 ```
 
 **Résultat visuel** :
+
 - 🏠 Aide à domicile → Badge bleu avec icône Home
 - 🛒 Courses & Livraisons → Badge vert avec icône ShoppingCart
 - 📱 Aide Numérique → Badge violet avec icône Smartphone
@@ -57,15 +61,18 @@ const categoryFromCatalog = typeof category === 'string' &&
 ### 2. Filtres par Catégorie dans Dashboard ✅
 
 **Fichier modifié** :
+
 - `/src/app/[locale]/dashboard/tasks/page.tsx`
 
 **Changements** :
+
 - ✅ Import `ServiceCategoryFilter` depuis `/components/services/category-selector`
 - ✅ Ajout state `selectedCategories: ServiceCategoryEnum[]`
 - ✅ Filtre combiné dans `useMemo` (recherche texte + catégories)
 - ✅ UI avec boutons toggle pour chaque catégorie
 
 **Code clé** :
+
 ```tsx
 // State pour les catégories sélectionnées
 const [selectedCategories, setSelectedCategories] = useState<ServiceCategoryEnum[]>([]);
@@ -86,6 +93,7 @@ const filteredTasks = useMemo(() => {
 ```
 
 **Fonctionnalités** :
+
 - ✅ Sélection/désélection de plusieurs catégories
 - ✅ Affichage du nombre de filtres actifs
 - ✅ Bouton "Effacer les filtres"
@@ -132,11 +140,13 @@ const filteredTasks = useMemo(() => {
 Le système gère maintenant **deux formats de catégorie** :
 
 1. **Nouveau format** (depuis wizard `/dashboard/tasks/create`) :
+
    ```typescript
    category: 'home_help'  // enum ServiceCategory
    ```
 
 2. **Ancien format** (tasks créées avant catalogue) :
+
    ```typescript
    category: {
      id: 'abc123',
@@ -147,6 +157,7 @@ Le système gère maintenant **deux formats de catégorie** :
    ```
 
 **Solution** : Détection automatique avec fallback
+
 ```typescript
 const categoryFromCatalog = typeof category === 'string' && 
   Object.values(ServiceCategory).includes(category as ServiceCategory) 
@@ -161,11 +172,13 @@ const categoryFromCatalog = typeof category === 'string' &&
 ### Avant vs Après
 
 **Avant** :
+
 - Badge simple "Catégorie" sans icône
 - Pas de filtres par catégorie
 - Informations génériques
 
 **Après** :
+
 - ✅ Badge coloré avec icône spécifique
 - ✅ Filtres visuels par catégorie (8 boutons)
 - ✅ Cohérence avec wizard de création
@@ -218,11 +231,13 @@ const categoryFromCatalog = typeof category === 'string' &&
 **Fonctionnalités implémentées** :
 
 #### � Recherche textuelle
+
 - Recherche dans titre + description
 - Insensible à la casse
 - Support paramètre URL `?q=terme`
 
 #### 🏷️ Filtre multi-catégories
+
 - Composant `ServiceCategoryFilter` intégré
 - Sélection multiple (ex: "Aide à domicile" + "Livraisons")
 - Badges visuels avec icônes et couleurs
@@ -230,18 +245,21 @@ const categoryFromCatalog = typeof category === 'string' &&
 - Compteur de catégories sélectionnées
 
 #### 💰 Filtre budget
+
 - Slider double (0€ - 100€)
 - Pas de 5€
 - Affichage dynamique `15€ - 50€`
 - Filtrage en temps réel
 
 #### ⏱️ Filtre durée
+
 - Slider double (0min - 480min / 8h)
 - Pas de 30min
 - Affichage formaté `2h30 - 4h`
 - Valeur par défaut : 120min (2h)
 
 #### 🏷️ Filtres tags intelligents
+
 - **Tags dynamiques** : affichage basé sur catégories sélectionnées
 - Si aucune catégorie → **tous les 39 tags**
 - Si catégories sélectionnées → **tags pertinents uniquement**
@@ -249,11 +267,13 @@ const categoryFromCatalog = typeof category === 'string' &&
 - Compteur de tags sélectionnés
 
 #### 📊 Tri des résultats
+
 - **Plus récentes** (défaut) - Date décroissante
 - **Prix croissant** - Budget ascendant
 - **Durée croissante** - Durée estimée ascendante
 
 #### 🎨 Interface utilisateur
+
 - **Filtres collapseables** avec animation smooth
 - **Compteur de filtres actifs** dans bouton (ex: "Filtres 5")
 - **Bouton "Réinitialiser"** visible si filtres actifs
@@ -288,6 +308,7 @@ const filteredTasks = useMemo(() => {
 ```
 
 **Métriques** :
+
 - **370+ lignes de code**
 - **7 types de filtres**
 - **3 options de tri**
@@ -333,18 +354,21 @@ const filteredTasks = useMemo(() => {
 ## 🚀 Prochaines Étapes - Phase 3
 
 ### 6. Affichage des Tags 🔜
+
 - [ ] TaskCard : Afficher 3 premiers tags
 - [ ] TaskDetailPage : Tous les tags avec descriptions
 - [ ] Tags cliquables → recherche/filtre
 - [ ] Utiliser `ServiceTags` par catégorie
 
 ### 7. Page Publique `/tasks` Enrichie 🔜
+
 - [ ] Intégrer `ServiceCategorySelector` pour navigation
 - [ ] Grouper tâches par catégorie
 - [ ] Ajouter filtres prix/durée basés sur fourchettes catalogue
 - [ ] Afficher statistiques par catégorie (nombre de tâches)
 
 ### 8. Suggestions Templates en Édition 🔜
+
 - [ ] Dans `/dashboard/tasks/[id]/edit`
 - [ ] Détecter catégorie actuelle
 - [ ] Suggérer templates similaires
@@ -352,6 +376,7 @@ const filteredTasks = useMemo(() => {
 - [ ] Amélioration progressive de la description
 
 ### 9. Analytics Catalogue 🔜
+
 - [ ] Dashboard admin analytics
 - [ ] Métriques par catégorie :
   - Nombre de tâches créées
@@ -362,6 +387,7 @@ const filteredTasks = useMemo(() => {
 - [ ] Graphiques d'évolution
 
 ### 10. Documentation Utilisateur 🔜
+
 - [ ] Guide : "Comment choisir une catégorie"
 - [ ] Guide : "Utiliser les templates efficacement"
 - [ ] FAQ basée sur `SERVICES_CATALOG.md`
@@ -373,11 +399,13 @@ const filteredTasks = useMemo(() => {
 ## 🐛 Issues Connues
 
 ### Warnings TypeScript
+
 - ⚠️ Type `category` peut être `string | ServiceCategory` dans Task
 - **Solution temporaire** : Détection avec `typeof` et cast
 - **Solution long terme** : Migrer toutes les tâches vers nouveau format
 
 ### Couleurs Tailwind Dynamiques
+
 - ⚠️ Classes dynamiques `bg-${color}-100` ne fonctionnent pas toujours
 - **Cause** : Tailwind purge les classes non détectées
 - **Solution** : Utiliser safelist ou classes statiques conditionnelles
@@ -408,6 +436,7 @@ pnpm build
 ### Données de Test
 
 Pour tester l'intégration, créer des tâches dans chaque catégorie :
+
 1. Aide à domicile : "Ménage appartement 2 pièces"
 2. Courses & Livraisons : "Courses hebdomadaires supermarché"
 3. Aide Numérique : "Configurer nouveau smartphone"

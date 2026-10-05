@@ -10,11 +10,12 @@
 
 **Pitch:** ImuTask est une plateforme mobile-first et web (admin/marketing) qui met en relation des jeunes (18–30 ans) offrant des micro-services locaux (courses, ménage, accompagnement, aide numérique, etc.) et des particuliers/associations ayant besoin d'un service occasionnel — avec paiements sécurisés, traçabilité complète et montée en compétences via des badges et micro-formations.
 
-**Vision long terme:** Devenir l'écosystème local référent où les jeunes gagnent un revenu légal, se forment et montrent leur valeur, tandis que les communautés locales accèdent à une main-d'œuvre fiable, traçable et qualifiée.
+**Vision long terme:** Devenir l'écosystème local référent où divers type de publics peuvent trouver un revenu légal, se forment et montrent leur valeur, tandis que les communautés locales accèdent à une main-d'œuvre fiable, traçable et qualifiée.
 
 **Stack technique:** Next.js 15, Firebase/Postgres, Expo React Native, architecture multilingue (en, fr, de, es, ja, it, pt).
 
 ### 🎯 Objectifs principaux
+
 - **Pour les jeunes/prestataires:** revenus flexibles, traçabilité, badges/certificats, micro-formations, sécurité
 - **Pour les clients:** accès rapide à des prestataires locaux vérifiables, paiement sécurisé, résolution de litiges
 - **Pour les partenaires:** canaux d'engagement local, reporting RSE, co-financement de missions solidaires
@@ -31,6 +32,7 @@
 ### 🎯 Périmètre MVP → V1 → V2
 
 **MVP (Priorité absolue - Version Web):**
+
 - Auth/profils multi-rôles (client/provider)
 - Création/recherche Tasks (texte + géoloc + créneau)
 - Offers (propositions providers)
@@ -42,6 +44,7 @@
 - Admin minimal (KYC queue, disputes, paiements)
 
 **V1 (Post-validation MVP):**
+
 - Disponibilités/calendrier prestataire
 - Auto-accept rules & matching basique
 - Offline queue, retry & status page
@@ -51,6 +54,7 @@
 - Referrals & Rewards
 
 **V2 (Scale & Growth):**
+
 - ImuChallenge (concours)
 - WebRTC audio (calls + recording avec consentement)
 - Pricing intelligence (IA suggest_pricing)
@@ -67,6 +71,7 @@
 **Statut:** ✅ Complété
 
 #### ✅ Complété
+
 - [x] Configuration Next.js 15 avec TypeScript
 - [x] Structure de projet organisée (features, components, lib)
 - [x] Configuration Tailwind CSS + shadcn/ui
@@ -92,6 +97,7 @@
 **Statut:** ✅ Complété
 
 #### ✅ Complété
+
 - [x] Pages de connexion/inscription (UI)
 - [x] Design des formulaires d'authentification
 - [x] Traductions pour l'authentification
@@ -113,6 +119,7 @@
 - [x] Gestion des erreurs d'authentification
 
 #### 📋 À faire (V2)
+
 - [ ] Vérification d'email obligatoire
 - [ ] Authentification 2FA
 - [ ] Connexion avec Apple/Facebook
@@ -126,6 +133,7 @@
 **Statut:** ✅ Complété
 
 #### ✅ Complété
+
 - [x] Composant NewTaskForm avec validation multi-étapes
 - [x] Schéma de validation Zod pour les tâches
 - [x] Interface utilisateur du formulaire de tâche
@@ -165,6 +173,7 @@
 **Statut:** 🟢 **PRODUCTION READY**
 
 #### ✅ Complété (16/16 tâches MVP)
+
 - [x] Modernisation Dashboard Client (données réelles Firestore)
 - [x] Modernisation Dashboard Professionnel (stats temps réel)
 - [x] Modernisation Dashboard Senior (accessibilité avancée)
@@ -183,6 +192,7 @@
 - [x] Recap visuel (ASCII art, diagrams)
 
 #### 📊 Métriques MVP V1.0
+
 - **Code:** ~7,000 lignes
 - **Tests:** 60+ e2e, 50+ unit
 - **Documentation:** 20+ fichiers, ~5,000 lignes
@@ -193,6 +203,7 @@
 **Date complétée:** 26 octobre 2025
 
 **Documentation finale:**
+
 - `/docs/MVP_V1.0_FINALE_COMPLETE.md` (session complète)
 - `/docs/DEPLOYMENT_CHECKLIST.md` (40 tâches)
 - `/docs/DEPLOYMENT_QUICK_START.md` (guide rapide)
@@ -209,6 +220,7 @@
 #### ✅ Complété
 
 **Task 1: Landing Page - Navigation & Traductions** (Complété le 5 nov 2025)
+
 - [x] Vérification complète des composants landing page (13 composants)
 - [x] Audit traductions FR/EN pour tous les composants
 - [x] Fix navigation category-pills vers /tasks/browse
@@ -225,6 +237,7 @@
 - [x] Support multi-langue (FR, EN, JA)
 
 **Résultats:**
+
 - ✅ Tous les liens de navigation fonctionnels
 - ✅ Aucune traduction manquante détectée
 - ✅ Navigation locale-aware conforme à i18n
@@ -242,6 +255,7 @@
 **Objectif:** Permettre aux providers de découvrir et parcourir les tâches disponibles avant de soumettre des offres.
 
 #### ✅ Complété
+
 - [x] **Page Browse Tasks pour Providers** (3h)
   - [x] Liste des tâches ouvertes (status: 'open')
   - [x] Filtres avancés: catégorie, distance max, budget min/max, search
@@ -273,6 +287,7 @@
   - [x] NotificationSettings namespace (28 clés EN/FR)
 
 #### 📊 Métriques Phase 3.5
+
 - **Code:** ~1,700 lignes (5 nouveaux fichiers)
 - **Algorithme:** Scoring 4 facteurs (Skills 40pts, Budget 20pts, Distance 25pts, Catégories 15pts)
 - **Performance:** Bulk fetch preferences (optimisation requêtes)
@@ -288,6 +303,7 @@
 **Statut:** ✅ Complété
 
 #### ✅ Complété
+
 - [x] Structure de dossiers pour les features (offers, bookings)
 - [x] Types TypeScript pour les propositions et offres
 - [x] Page de soumission d'offres pour prestataires
@@ -411,6 +427,7 @@
 
 **Date de complétion:** 6 novembre 2025  
 **Documentation:**
+
 - `/docs/PHASE4_OFFERS_IMPLEMENTATION_COMPLETE.md`
 - `/docs/PHASE4_CANCELLATION_SYSTEM.md`
 
@@ -421,6 +438,7 @@
 **Statut:** ✅ Complété
 
 #### ✅ Complété
+
 - [x] Structure de dossiers pour le chat
 - [x] Types TypeScript pour les messages
 - [x] Bibliothèques backend Firestore (conversations + messages)
@@ -444,6 +462,7 @@
   - [x] Création d'index Firestore pour requêtes notifications
 
 #### 📋 À faire (V2)
+
 - [ ] Upload de fichiers/images dans le chat
 - [ ] Système de notifications push natives (mobile)
 - [ ] Archivage de conversations
@@ -458,6 +477,7 @@
 **Statut:** ✅ Complété
 
 #### ✅ Complété
+
 - [x] Structure de dossiers pour les paiements
 - [x] Traductions complètes pour les paiements (~500 clés FR + EN)
 - [x] **Système KYC complet:**
@@ -492,6 +512,7 @@
   - [x] PHASE1_PAYMENTS_COMPLETED.md (résumé)
 
 #### 📋 À faire (V2)
+
 - [ ] **Déploiement Cloud Functions** (⚠️ Requiert Blaze plan Firebase)
   - [ ] Upgrade vers plan Blaze
   - [ ] Déployer 11 fonctions (4 notifications + 3 admin + 4 KYC)
@@ -517,6 +538,7 @@
 #### ✅ Complété (8 Tasks - 100%)
 
 **Backend & Types:**
+
 - [x] **Backend Firestore (firestore-reviews.ts - 1,200+ lignes)** ✅ COMPLETE
   - [x] 25+ fonctions CRUD complètes
   - [x] createReview(), updateReview(), deleteReview()
@@ -535,6 +557,7 @@
   - [x] Input/Output types complets
 
 **Task 8.1-8.3: Core Components UI** ✅ **COMPLETED** (Complété le 6 nov 2025)
+
 - [x] ✅ **ReviewForm** (366 lignes) - Note 1-5 étoiles + ratings détaillés + validation Zod
 - [x] ✅ **ReviewCard** (388 lignes) - Avatar, stars, commentaire, helpful votes, response, report
 - [x] ✅ **ReviewsList** (230 lignes) - Filtres (all, verified, photos, response) + tri (recent, rating, helpful)
@@ -545,6 +568,7 @@
 - [x] ✅ Responsive design (mobile/tablet/desktop)
 
 **Task 8.4: Advanced Pages UI** ✅ **COMPLETED** (Complété le 6 nov 2025)
+
 - [x] ✅ **Dashboard Reviews Page** (`/dashboard/reviews`)
   - [x] Tabs: "Reviews Received" & "Reviews Given"
   - [x] ReviewsList avec filtres/sort intégrés
@@ -570,6 +594,7 @@
 - [x] ✅ Navigation links (task cards → profile, booking → review, etc.)
 
 **Task 8.5: Photo Upload System** ✅ **COMPLETED** (Complété le 6 nov 2025)
+
 - [x] ✅ **PhotoUpload Component** (333 lignes)
   - [x] Drag-and-drop interface
   - [x] Click to select files
@@ -601,6 +626,7 @@
   - [x] Translations (10 keys per language)
 
 **Task 8.6: Admin Moderation Panel** ✅ **COMPLETED** (Complété le 6 nov 2025)
+
 - [x] ✅ **ModerationQueue Component** (234 lignes)
   - [x] List all reported reviews
   - [x] Filter by status (All/Pending/Approved/Removed/Dismissed)
@@ -639,6 +665,7 @@
   - [x] FR/EN complete
 
 **Task 8.7: E2E Tests Infrastructure** ✅ **COMPLETED** (Complété le 7 nov 2025)
+
 - [x] ✅ **Test Files**
   - [x] reviews-system.spec.ts (634 lignes, 20+ scenarios)
   - [x] reviews-helpers.ts (328 lignes, 20+ helper functions)
@@ -674,6 +701,7 @@
   - [x] JA: Complete (Reviews.report section added)
 
 **Task 8.8: Comprehensive Documentation** ✅ **COMPLETED** (Complété le 7 nov 2025)
+
 - [x] ✅ **REVIEWS_SYSTEM_COMPLETE.md** (1,400+ lignes)
   - [x] System Overview (50 lines)
   - [x] Architecture (150 lines)
@@ -701,6 +729,7 @@
 #### 📊 Métriques Phase 8 (Final)
 
 **Code:**
+
 - Total lignes ajoutées: 8,000+
 - Composants créés: 15+
 - Fonctions Firestore: 25+
@@ -710,6 +739,7 @@
 - Documentation lines: 2,500+
 
 **Fichiers créés (17):**
+
 - Components (8): review-form.tsx (366), review-card.tsx (388), reviews-list.tsx (230), review-stats-card.tsx (218), photo-upload.tsx (333), photo-gallery.tsx (196), respond-to-review-dialog.tsx (200), report-review-dialog.tsx (232)
 - Admin (2): moderation-queue.tsx (234), review-moderation-form.tsx (355)
 - Pages (1): dashboard/reviews/page.tsx (251)
@@ -718,17 +748,20 @@
 - Docs (2): REVIEWS_SYSTEM_COMPLETE.md (1,400+), MVP_PHASE8_REVIEWS_COMPLETE.md (1,100+)
 
 **Traductions:**
+
 - Reviews namespace: 150+ keys
 - Admin.moderation: 40+ keys
 - Total per language: 190+ keys
 - Languages: FR (100%), EN (100%), JA (100%)
 
 **Collections Firestore:**
+
 - reviews (main collection)
 - review_reports (moderation)
 - review_badges (subcollection under users)
 
 **Features:**
+
 - ✅ Overall + detailed ratings (5 categories)
 - ✅ Written comments (20-500 chars)
 - ✅ Photo uploads (max 5, auto-compression)
@@ -752,6 +785,7 @@
   - [x] Input/Output types complets
 
 **Composants UI (Task 8.1 - COMPLETED):**
+
 - [x] ✅ **ReviewForm** (387 lignes) - Note 1-5 étoiles + ratings détaillés + validation Zod
 - [x] ✅ **ReviewCard** (280 lignes) - Avatar, stars, commentaire, helpful votes, response
 - [x] ✅ **ReviewsList** (220 lignes) - Filtres (all, verified, photos, response) + tri (recent, rating, helpful)
@@ -759,6 +793,7 @@
 - [x] ✅ **RespondToReviewDialog** (140 lignes) - Provider response avec preview
 
 **Pages & Integration (Task 8.2 - COMPLETED):**
+
 - [x] ✅ **booking-detail-client.tsx** (180 lignes) - Prompt "Leave a Review" si completed
 - [x] ✅ **leave-review-client.tsx** (234 lignes) - Formulaire review avec 5 validations
 - [x] ✅ **reviews-demo/page.tsx** (230 lignes) - Demo complète avec handlers onHelpful
@@ -766,11 +801,13 @@
 - [x] ✅ Notifications post-review automatiques
 
 **Pages UI basiques (existantes):**
+
 - [x] `/dashboard/reviews` (received/given tabs) - **TO REFACTOR** (Task 8.4)
 - [x] `/dashboard/admin/reviews` + détails
 - [x] Affichage sur profils publics `/pro/[userId]`
 
 **Configuration:**
+
 - [x] **Firestore Rules basiques** - Collection `reviews` (read auth, create owner)
 - [x] **Traductions complètes EN/FR** (268 keys: 220 Task 8.1 + 48 Task 8.2)
 - [x] **Traductions partielles JA** (fragmentées - à compléter Task 8.4)
@@ -778,6 +815,7 @@
 #### 📋 À faire (35% restant - Tasks 8.3 → 8.8)
 
 **Task 8.1: Composants UI Réutilisables** ✅ **COMPLETED** (4-5h)
+
 - [x] ✅ 🎯 ReviewForm component (création + édition)
   - [x] ✅ Note 1-5 étoiles interactive
   - [x] ✅ Ratings détaillés (communication, qualité, professionnalisme, ponctualité, rapport qualité-prix)
@@ -808,6 +846,7 @@
   - [x] ✅ Submit avec notification
 
 **Task 8.2: Intégration Booking → Review** ✅ **COMPLETED** (Priorité: 🔴 Critique, 3-4h → 2h30 actual)
+
 - [x] ✅ 🔗 Trigger post-completion (dans page booking detail)
   - [x] ✅ Bouton "Laisser un avis" si status: 'completed' && !hasReviewed
   - [x] ✅ Alert conditionnelle avec Star icon (vert)
@@ -872,6 +911,7 @@
 **Statut:** 🟡 En développement
 
 #### ✅ Complété
+
 - [x] Composants de dashboard (client et prestataire)
 - [x] Cartes de statistiques de base
 - [x] Intégration Recharts pour graphiques
@@ -885,6 +925,7 @@
   - [x] Protection routes admin dans middleware
 
 #### 📋 À faire
+
 - [ ] Connexion aux données réelles
 - [ ] Graphiques de revenus pour prestataires
 - [ ] Statistiques de tâches pour clients
@@ -901,6 +942,7 @@
 **Statut:** 🟢 En développement
 
 #### ✅ Complété
+
 - [x] **Mode sombre**
   - [x] Installation et configuration next-themes
   - [x] ThemeProvider avec support light/dark/system
@@ -945,6 +987,7 @@
   - [x] Documentation tests complète (FAVORITES_E2E_TESTS_COMPLETE.md)
 
 #### 📋 À faire
+
 - [ ] Système de disputes et résolution
 - [ ] Programme de parrainage
 - [ ] Progressive Web App (PWA)
@@ -965,6 +1008,7 @@
 **Statut:** 🔴 Non démarré
 
 #### 📋 À faire
+
 - [ ] **NL→Form:** création task via vocal/texte (Genkit + LLM)
 - [ ] **Pricing suggéré:** suggestion locale (p50/p75/max) par catégorie & ville
 - [ ] **Moderation assistée:** LLM classifier + small models (toxicité/spam)
@@ -983,6 +1027,7 @@
 **Statut:** ⚡ En cours
 
 #### ✅ Complété
+
 - [x] **Infrastructure tests E2E (Playwright)**
   - [x] Configuration Playwright avec Chromium
   - [x] Tests E2E authentification (7 scénarios)
@@ -1000,6 +1045,7 @@
   - [x] Documentation sessions de développement
 
 #### 📋 À faire
+
 - [ ] Tests de charge et performance (Artillery/k6)
 - [ ] Optimisation des images et assets (Next.js Image)
 - [ ] Optimisation SEO (meta tags, sitemap, structured data)
@@ -1024,6 +1070,7 @@
 #### 📋 Features Principales
 
 **Feature 1: Profil Public Personnalisable** ✅ **COMPLÉTÉ**
+
 - [x] URL personnalisée (`imutask.com/profil/[slug]`)
 - [x] Portfolio photos/vidéos
 - [x] Badges & certifications
@@ -1039,6 +1086,7 @@
 - [x] Layout responsive pleine largeur
 
 **Feature 2: ImuShop - Marketplace** ⏸️ **EN VALIDATION**
+
 - [ ] **ImuPro Shop:** Produits artisanaux/professionnels
 - [ ] **ImuMarket:** Seconde main & créations
 - [ ] Panier multi-vendeurs
@@ -1052,11 +1100,13 @@
 #### 📊 Business Impact Estimé
 
 **Nouveaux Revenus:**
+
 - Commission ImuShop: 5-15% (cible 800€/mois à M+3)
 - Options premium profil: 300€/mois
 - Mise en avant produits: 2-5€/produit
 
 **Engagement:**
+
 - +40% temps passé plateforme
 - +60% opportunités revenus prestataires
 - Nouveau public: artisans, créateurs
@@ -1064,12 +1114,14 @@
 #### 🎯 Roadmap Détaillée
 
 **Phase 13.1: Profil Public (4 semaines)**
+
 - Semaine 1: Infrastructure Firestore + Cloud Functions
 - Semaine 2: UI Profil Public + SEO
 - Semaine 3: Dashboard Éditeur
 - Semaine 4: Analytics & Partage
 
 **Phase 13.2: ImuShop MVP (6 semaines)**
+
 - Semaines 1-2: Infrastructure Shop + Stripe
 - Semaine 3: UI Frontend (produits, panier)
 - Semaine 4: Checkout & Paiements
@@ -1077,6 +1129,7 @@
 - Semaine 6: Tests & Polish
 
 **Phase 13.3: Features Avancées (4 semaines)**
+
 - Options premium (2 semaines)
 - Optimisations & ML (2 semaines)
 
@@ -1091,6 +1144,7 @@
 - [ ] Décision Go/No-Go
 
 **Critères Go:**
+
 - 70%+ prestataires intéressés profil public
 - 40%+ intéressés vente produits
 - Panier moyen >30€
@@ -1127,17 +1181,20 @@
 ### 📊 KPIs & Métriques à tracker
 
 **Business:**
+
 - GMV daily/monthly, Take-rate, AOV, #bookings
 - Fill rate (#bookings / #tasks published)
 - Conversion publish→booking
 - Time publish→first offer
 
 **Qualité:**
+
 - No-show rate, Dispute rate
 - KYC pass rate, Fraud detection rate
 - Review average rating
 
 **Growth:**
+
 - Retention cohorts (D7/D30/D90)
 - NPS (Net Promoter Score)
 - CAC/LTV ratio
@@ -1150,6 +1207,7 @@
 ### Sprint actuel: 24 octobre - 7 novembre 2025
 
 #### 🎉 Réalisations Sprint précédent (20-24 octobre)
+
 - ✅ **Phase 3 complétée à 100% (Gestion des Tâches)**
 - ✅ Quick Win - 6 tâches terminées:
   - Task 1: Géolocalisation (MapPicker, 430 lignes)
@@ -1207,7 +1265,7 @@
    - [ ] Performance monitoring
    - [ ] Documentation utilisateur
 
-4. **Déploiement Cloud Functions** (⚠️ En attente)
+5. **Déploiement Cloud Functions** (⚠️ En attente)
    - ⏳ Requiert upgrade vers Blaze plan Firebase
    - 11 fonctions prêtes à déployer (notifications, admin, KYC)
    - Tests E2E KYC en attente de déploiement
@@ -1218,7 +1276,8 @@
 
 **Localisation mobile:** `/Users/nathanimogo/Documents/GitHub/imu_task_mobile`
 
-### Points de synchronisation nécessaires:
+### Points de synchronisation nécessaires
+
 - [ ] Schéma de base de données Firestore commun
 - [ ] API REST ou Cloud Functions partagées
 - [ ] Système d'authentification unifié
@@ -1226,7 +1285,8 @@
 - [ ] Notifications push cross-platform
 - [ ] Logique métier partagée
 
-### Réunions de synchronisation:
+### Réunions de synchronisation
+
 - Fréquence: Hebdomadaire
 - Prochaine réunion: À planifier
 
@@ -1247,12 +1307,14 @@
 ## 🚨 Bloqueurs & Dépendances
 
 ### Bloqueurs actifs
+
 - **Cloud Functions déploiement:** Requiert upgrade vers Firebase Blaze plan (payant)
   - 11 fonctions prêtes: 4 notifications + 3 admin + 4 KYC
   - Tests E2E KYC bloqués (soumission nécessite fonction submitKYC)
   - Estimé: ~$5-10/mois en coûts Cloud Functions
 
 ### Dépendances externes
+
 - Google Maps API (pour géolocalisation tâches)
 - Stripe Connect (pour paiements - Phase 6)
 - Service d'email transactionnel (SendGrid/Mailgun)
@@ -1262,6 +1324,7 @@
 ## 🤝 Contribution
 
 Pour contribuer au projet:
+
 1. Vérifier les issues dans le tracker de bugs
 2. Consulter cette roadmap pour les tâches prioritaires
 3. Suivre les conventions de code établies
