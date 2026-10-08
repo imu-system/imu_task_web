@@ -4,8 +4,9 @@
  */
 'use client';
 
+import { useRouter } from '@/navigation';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/contexts/AuthContext';
 import { addUserRole, updateUserDocument } from '@/lib/firestore-users';

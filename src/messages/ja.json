@@ -5,6 +5,150 @@
         "darkTheme": "ダーク",
         "systemTheme": "システム"
     },
+    "Auth": {
+        "signup": {
+            "title": "アカウントを作成",
+            "subtitle": "ImuTaskに参加して、必要なサポートを見つけましょう。",
+            "footerText": "アカウントを作成すると、利用規約とプライバシーポリシーに同意したことになります。",
+            "googleButton": "Googleで続行",
+            "appleButton": "Appleで続行",
+            "firstNameLabel": "名",
+            "firstNamePlaceholder": "名を入力",
+            "lastNameLabel": "姓",
+            "lastNamePlaceholder": "姓を入力",
+            "emailLabel": "メールアドレス",
+            "emailPlaceholder": "name@example.com",
+            "passwordLabel": "パスワード",
+            "passwordPlaceholder": "6文字以上",
+            "submitButton": "アカウントを作成",
+            "submittingButton": "作成中…",
+            "successMessage": "アカウントを作成しました。リダイレクトしています…",
+            "successMessageGoogle": "Googleでログインしました。リダイレクトしています…",
+            "redirecting": "リダイレクトしています…",
+            "termsText": "アカウントを作成すると、以下に同意したことになります：",
+            "termsLink": "利用規約",
+            "privacyLink": "プライバシーポリシー",
+            "alreadyHaveAccount": "すでにアカウントをお持ちですか？",
+            "signInLink": "ログイン",
+            "validation": {
+                "firstNameMin": "名は2文字以上で入力してください",
+                "lastNameMin": "姓は2文字以上で入力してください",
+                "emailInvalid": "有効なメールアドレスを入力してください",
+                "passwordMin": "パスワードは6文字以上で入力してください"
+            },
+            "errors": {
+                "emailInUse": "このメールアドレスはすでに使用されています",
+                "invalidEmail": "メールアドレスが無効です",
+                "weakPassword": "パスワードが弱すぎます。6文字以上で入力してください",
+                "generic": "エラーが発生しました。もう一度お試しください",
+                "popupClosed": "ログインウィンドウが閉じられました",
+                "popupBlocked": "Googleでログインするにはポップアップを許可してください",
+                "googleGeneric": "Googleログインでエラーが発生しました。もう一度お試しください"
+            }
+        },
+        "signin": {
+            "title": "おかえりなさい！",
+            "subtitle": "ImuTaskアカウントにログイン",
+            "footerText": "ダッシュボードでミッションを簡単に管理できます。",
+            "googleButton": "Googleで続行",
+            "appleButton": "Appleで続行",
+            "emailLabel": "メールアドレス",
+            "emailPlaceholder": "name@example.com",
+            "passwordLabel": "パスワード",
+            "passwordPlaceholder": "パスワードを入力",
+            "forgotPasswordLink": "パスワードをお忘れですか？",
+            "rememberMeLabel": "ログイン状態を保持",
+            "submitButton": "ログイン",
+            "submittingButton": "ログイン中…",
+            "successMessage": "ログインしました。リダイレクトしています…",
+            "successMessageGoogle": "Googleでログインしました。リダイレクトしています…",
+            "noAccount": "アカウントをお持ちでないですか？",
+            "signUpLink": "新規登録",
+            "redirecting": "リダイレクトしています…",
+            "validation": {
+                "emailInvalid": "有効なメールアドレスを入力してください",
+                "passwordMin": "パスワードは6文字以上で入力してください"
+            },
+            "errors": {
+                "userNotFound": "このメールアドレスのアカウントが見つかりません",
+                "wrongPassword": "パスワードが正しくありません",
+                "invalidEmail": "メールアドレスが無効です",
+                "userDisabled": "このアカウントは無効になっています",
+                "generic": "エラーが発生しました。もう一度お試しください",
+                "popupClosed": "ログインウィンドウが閉じられました",
+                "popupBlocked": "Googleでログインするにはポップアップを許可してください",
+                "googleGeneric": "Googleログインでエラーが発生しました。もう一度お試しください"
+            }
+        },
+        "forgotPassword": {
+            "title": "パスワードをお忘れですか？",
+            "subtitle": "パスワード再設定用のリンクをメールでお送りします。",
+            "footerText": "パスワード再設定の手順を記載したメールをお送りします。",
+            "emailLabel": "メールアドレス",
+            "emailPlaceholder": "name@example.com",
+            "submitButton": "再設定リンクを送信",
+            "submittingButton": "送信中…",
+            "backToSignin": "ログインに戻る",
+            "successTitle": "メールを送信しました",
+            "successMessage": "{email} にパスワード再設定メールを送信しました",
+            "checkInbox": "受信箱を確認し、メールの手順に従ってください。",
+            "nextSteps": "次の手順：",
+            "resendEmail": "メールを再送信",
+            "noEmail": "メールが届きませんか？",
+            "contactSupport": "サポートに連絡",
+            "helpTitle": "お困りですか？",
+            "help1": "迷惑メールフォルダーを確認してください",
+            "help2": "メールアドレスが正しいか確認してください",
+            "help3": "数分お待ちください",
+            "noAccount": "アカウントをお持ちでないですか？",
+            "signUpLink": "新規登録",
+            "validation": { "emailInvalid": "有効なメールアドレスを入力してください" },
+            "errors": {
+                "userNotFound": "このメールアドレスのアカウントが見つかりません",
+                "invalidEmail": "メールアドレスが無効です",
+                "tooManyRequests": "試行回数が多すぎます。しばらくしてからお試しください",
+                "generic": "メール送信中にエラーが発生しました"
+            }
+        },
+        "illustration": {
+            "signup": {
+                "title": "ImuTaskコミュニティに参加しましょう",
+                "subtitle": "身近なサービスを、シンプルに、安心して利用できます。",
+                "features": {
+                    "verifiedProfiles": { "title": "認証済みプロフィール", "description": "本人確認済みのメンバーとつながれます。" },
+                    "securePayments": { "title": "安全なお支払い", "description": "すべてのお取引を安全に保護します。" },
+                    "fastBooking": { "title": "簡単予約", "description": "ニーズに合った人を簡単に見つけられます。" },
+                    "localCommunity": { "title": "地域のコミュニティ", "description": "近くに住む人々とつながりましょう。" }
+                },
+                "testimonial": { "text": "ImuTaskのおかげで、近所で信頼できる手助けをすぐに見つけられました。", "author": "ImuTaskコミュニティのメンバー" }
+            },
+            "signin": {
+                "title": "おかえりなさい！",
+                "subtitle": "ミッションやコミュニティの続きを始めましょう。",
+                "features": {
+                    "welcomeBack": { "title": "おかえりなさい", "description": "前回の続きから始められます。" },
+                    "secureAccount": { "title": "安全なアカウント", "description": "お客様の情報は安全に保護されます。" },
+                    "quickAccess": { "title": "すばやくアクセス", "description": "ミッションにすぐ戻れます。" },
+                    "yourNetwork": { "title": "あなたのネットワーク", "description": "コミュニティとのつながりを保ちましょう。" }
+                },
+                "testimonial": { "text": "自分のミッションや一緒に働く人たちを簡単に確認できます。", "author": "ImuTaskコミュニティのメンバー" }
+            },
+            "forgot-password": {
+                "title": "アカウントへのアクセスを回復",
+                "subtitle": "すぐにサービスを再開できるようお手伝いします。",
+                "features": {
+                    "secureReset": { "title": "安全な再設定", "description": "アカウント所有者のみがアクセスを回復できます。" },
+                    "quickProcess": { "title": "簡単な手続き", "description": "メールで届く手順に従ってください。" }
+                },
+                "testimonial": { "text": "数分でアカウントに再びアクセスできました。", "author": "ImuTaskコミュニティのメンバー" }
+            }
+        }
+    },
+    "common": {
+        "or": "または",
+        "and": "および",
+        "badges": { "accessible": "バリアフリー認証" }
+    },
     "Header": {
         "features": "特徴",
         "howItWorks": "使い方",

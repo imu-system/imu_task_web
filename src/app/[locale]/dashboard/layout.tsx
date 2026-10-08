@@ -8,7 +8,7 @@ import AuthGuard from '@/components/auth-guard';
 import ImpersonationBanner from '@/components/impersonation-banner';
 import OfflineBanner from '@/components/offline-banner';
 import { MobileBottomNav } from '@/components/mobile-bottom-nav';
-import { useRouter, useSearchParams } from '@/navigation';
+import { useSearchParams } from '@/navigation';
 import { useState, useEffect } from 'react';
 import { TaskDetailSheet } from '@/components/task-detail-sheet';
 import { BookingDetailSheet } from '@/components/booking-detail-sheet';
@@ -20,7 +20,6 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
   const [selectedBookingId, setSelectedBookingId] = useState<string | null>(null);

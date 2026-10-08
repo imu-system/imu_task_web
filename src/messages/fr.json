@@ -3690,6 +3690,39 @@
                 "tooManyRequests": "Trop de tentatives. Veuillez réessayer plus tard",
                 "generic": "Une erreur est survenue lors de l'envoi de l'email"
             }
+        },
+        "illustration": {
+            "signup": {
+                "title": "Rejoignez la communauté ImuTask",
+                "subtitle": "Des services de proximité simples, fiables et sécurisés.",
+                "features": {
+                    "verifiedProfiles": { "title": "Profils vérifiés", "description": "Échangez avec des membres dont l’identité a été vérifiée." },
+                    "securePayments": { "title": "Paiements sécurisés", "description": "Vos transactions sont protégées à chaque étape." },
+                    "fastBooking": { "title": "Réservation rapide", "description": "Trouvez facilement la personne qui répond à votre besoin." },
+                    "localCommunity": { "title": "Une communauté locale", "description": "Créez des liens avec les personnes près de chez vous." }
+                },
+                "testimonial": { "text": "ImuTask m’a permis de trouver rapidement une aide de confiance près de chez moi.", "author": "Membre de la communauté ImuTask" }
+            },
+            "signin": {
+                "title": "Ravi de vous revoir !",
+                "subtitle": "Retrouvez vos missions et votre communauté.",
+                "features": {
+                    "welcomeBack": { "title": "Bienvenue à nouveau", "description": "Reprenez là où vous en étiez." },
+                    "secureAccount": { "title": "Compte protégé", "description": "Vos informations restent sécurisées." },
+                    "quickAccess": { "title": "Accès rapide", "description": "Retrouvez vos missions en quelques instants." },
+                    "yourNetwork": { "title": "Votre réseau", "description": "Restez en contact avec votre communauté." }
+                },
+                "testimonial": { "text": "Je retrouve facilement mes missions et les personnes avec qui je travaille.", "author": "Membre de la communauté ImuTask" }
+            },
+            "forgot-password": {
+                "title": "Récupérez l’accès à votre compte",
+                "subtitle": "Nous vous aidons à reprendre vos activités rapidement.",
+                "features": {
+                    "secureReset": { "title": "Réinitialisation sécurisée", "description": "Seul le titulaire du compte peut en rétablir l’accès." },
+                    "quickProcess": { "title": "Procédure rapide", "description": "Suivez les instructions reçues par e-mail." }
+                },
+                "testimonial": { "text": "J’ai pu retrouver l’accès à mon compte en quelques minutes.", "author": "Membre de la communauté ImuTask" }
+            }
         }
     },
     "messaging": {

@@ -1,7 +1,8 @@
 'use client';
 
+import { useRouter } from '@/navigation';
 import { useEffect, useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/contexts/AuthContext';
 import { getTask, type Task } from '@/lib/firestore-tasks';

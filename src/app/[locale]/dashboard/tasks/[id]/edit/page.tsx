@@ -41,8 +41,8 @@ import { TASK_TEMPLATES, ServiceCategory as ServiceCategoryEnum } from '@/types/
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useTranslations } from 'next-intl';
 import { useAuth } from '@/contexts/AuthContext';
-import { useRouter as useNextRouter, Link } from '@/navigation';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter as useNextRouter, Link, useRouter } from '@/navigation';
+import { useParams } from 'next/navigation';
 import { collection, query, where, getDocs, doc, getDoc, updateDoc, serverTimestamp, Timestamp, deleteDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 

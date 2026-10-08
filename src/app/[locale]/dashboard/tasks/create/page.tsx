@@ -5,8 +5,9 @@
 
 'use client';
 
+import { useRouter } from '@/navigation';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+
 import { useAuth } from '@/contexts/AuthContext';
 import { 
   ServiceCategory, 

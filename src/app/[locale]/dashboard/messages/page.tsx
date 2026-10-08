@@ -8,8 +8,9 @@
 
 'use client';
 
+import { useRouter } from '@/navigation';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+
 import { MessageSquare, ArrowLeft } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';

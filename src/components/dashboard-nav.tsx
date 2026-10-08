@@ -2,7 +2,7 @@
 'use client';
 
 import { Link, useRouter } from '@/navigation';
-import { usePathname } from 'next/navigation';
+import { usePathname } from '@/navigation';
 import { useTranslations } from 'next-intl';
 import {
   Sidebar,

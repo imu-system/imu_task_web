@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from '@/navigation';
 import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -13,7 +14,7 @@ import {
   CheckCircle, AlertCircle, Sparkles, FileText 
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
-import { useRouter } from 'next/navigation';
+
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
 import { type Task } from '@/lib/types';

@@ -1,11 +1,11 @@
 
 'use client';
 
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Link } from '@/navigation';
+import { Link, useRouter } from '@/navigation';
 import { ArrowLeft, Check, Eye, Loader2, Globe } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
