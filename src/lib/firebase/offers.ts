@@ -40,6 +40,17 @@ export async function createOffer(
         throw new Error('Task is not open for offers');
     }
 
+    // Tasks created by the current task flow store their owner in `clientId`.
+    // `createdBy` is retained as a fallback for older task documents.
+    const clientId = task.clientId ?? task.createdBy;
+    if (typeof clientId !== 'string' || !clientId.trim()) {
+        throw new Error('Task owner could not be identified; this offer was not submitted');
+    }
+
+    if (clientId === providerId) {
+        throw new Error('You cannot submit an offer to your own task');
+    }
+
     // 2. Vérifier que le provider n'a pas déjà une offre pending
     const existingOffers = await getProviderOffersForTask(providerId, input.taskId);
     const hasPendingOffer = existingOffers.some(o => o.status === 'pending');
@@ -57,12 +68,12 @@ export async function createOffer(
     const offerData: Omit<Offer, 'id'> = {
         taskId: input.taskId,
         providerId,
-        clientId: task.createdBy,
+        clientId,
         proposedPrice: input.proposedPrice,
         message: input.message,
-        estimatedDuration: input.estimatedDuration,
-        availableFrom: input.availableFrom ? Timestamp.fromDate(input.availableFrom) : undefined,
-        availableTo: input.availableTo ? Timestamp.fromDate(input.availableTo) : undefined,
+        ...(input.estimatedDuration !== undefined && { estimatedDuration: input.estimatedDuration }),
+        ...(input.availableFrom && { availableFrom: Timestamp.fromDate(input.availableFrom) }),
+        ...(input.availableTo && { availableTo: Timestamp.fromDate(input.availableTo) }),
         status: 'pending',
         createdAt: serverTimestamp() as Timestamp,
         updatedAt: serverTimestamp() as Timestamp,
@@ -79,7 +90,7 @@ export async function createOffer(
 
     try {
         await notifyNewOffer(
-            task.createdBy,
+            clientId,
             task.title,
             providerName,
             docRef.id,
