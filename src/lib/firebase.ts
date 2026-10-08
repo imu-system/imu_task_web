@@ -50,7 +50,7 @@ if (!process.env.NEXT_PUBLIC_FIREBASE_APP_ID) {
 
 if (missingVars.length > 0) {
     console.warn(
-        "⚠️ Firebase env vars missing, using placeholder values:",
+        "Firebase env vars missing, using placeholder values:",
         missingVars.join(", "),
     );
 }

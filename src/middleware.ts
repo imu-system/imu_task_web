@@ -13,6 +13,10 @@ const publicRoutes = [
   '/auth/signin',
   '/auth/signup',
   '/auth/forgot-password',
+  '/sign-in',
+  '/sign-up',
+  '/connexion',
+  '/inscription',
   '/legal/terms',
   '/legal/privacy',
   '/test-firebase',
@@ -138,13 +142,24 @@ export default async function middleware(request: NextRequest) {
 
   // Si route protégée et non authentifié → redirect /signin
   if (isProtectedRoute(pathWithoutLocale) && !isAuthenticated) {
-    const signinUrl = new URL(`/${locale}/auth/signin`, request.url);
+    // The localized sign-in screen lives at /sign-in (for example
+    // /fr/connexion). Keep redirects on that route so the page uses the
+    // SignInPage messages instead of the legacy /auth/signin screen.
+    const signInPath = locale === 'fr' ? 'connexion' : 'sign-in';
+    const signinUrl = new URL(`/${locale}/${signInPath}`, request.url);
     signinUrl.searchParams.set('returnUrl', pathname);
     return NextResponse.redirect(signinUrl);
   }
 
   // Si route auth et déjà authentifié → redirect /dashboard
-  if (isAuthenticated && pathWithoutLocale.startsWith('/auth')) {
+  if (
+    isAuthenticated &&
+    (pathWithoutLocale.startsWith('/auth') ||
+      pathWithoutLocale === '/sign-in' ||
+      pathWithoutLocale === '/sign-up' ||
+      pathWithoutLocale === '/connexion' ||
+      pathWithoutLocale === '/inscription')
+  ) {
     const dashboardUrl = new URL(`/${locale}/dashboard`, request.url);
     return NextResponse.redirect(dashboardUrl);
   }

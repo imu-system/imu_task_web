@@ -57,17 +57,17 @@ export default function SignUpPage() {
     }, []);
 
     const onSubmit = async (data: SignUpFormValues) => {
-        console.log('🚀 onSubmit appelé avec les données:', data);
+        console.log('onSubmit appelé avec les données:', data);
         setError(null);
         try {
-            console.log('📞 Appel signUp...');
+            console.log('Appel signUp...');
             await signUp(data.email, data.password, data.name);
-            console.log('✅ signUp terminé avec succès');
+            console.log('signUp terminé avec succès');
             // Redirection vers le dashboard après inscription réussie
-            console.log('🔄 Redirection vers /dashboard');
+            console.log('Redirection vers /dashboard');
             router.push('/dashboard');
         } catch (err) {
-            console.error('❌ Erreur dans onSubmit:', err);
+            console.error('Erreur dans onSubmit:', err);
             setError(err instanceof Error ? err.message : 'Une erreur est survenue');
         }
     };
@@ -92,7 +92,7 @@ export default function SignUpPage() {
         <CardTitle className="text-2xl">{t('title')}</CardTitle>
         <CardDescription>
           {t('orSignIn')}{' '}
-          <Link ref="/connexion" className="font-medium text-primary hover:underline" href={'/'}>
+          <Link href="/sign-in" className="font-medium text-primary hover:underline">
             {t('signInLink')}
           </Link>
         </CardDescription>
